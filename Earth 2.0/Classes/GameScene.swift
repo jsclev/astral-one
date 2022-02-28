@@ -14,6 +14,24 @@ class GameScene: SKScene {
     
     private var isLevelOver = false
     private var didCutVine = false
+    var mapViewModel: MapViewModel
+    
+    init(mapViewModel: MapViewModel) {
+        self.mapViewModel = mapViewModel
+        super.init(size: UIScreen.main.bounds.size)
+    }
+    
+    override init(size: CGSize) {
+        mapViewModel = MapViewModel()
+
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        mapViewModel = MapViewModel()
+
+        super.init(coder: aDecoder)
+    }
     
     override func didMove(to view: SKView) {
         setUpPhysics()
@@ -24,8 +42,6 @@ class GameScene: SKScene {
         setUpAudio()
     }
     
-    //MARK: - Level setup
-    
     private func setUpPhysics() {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
@@ -33,32 +49,7 @@ class GameScene: SKScene {
     }
     
     private func setUpScenery() {
-        let texture = SKTexture(imageNamed: "tyrian-sprites-tiles")
-        
-        var textureRect=CGRect(x: 0.25,
-                               y: 0.25,
-                               width: 1.0,
-                               height: 1.0)
-        
-        //    let backgroundTexture = SKTexture(rect: textureRect, in: texture)
-        //    let sheet=SpriteSheet(texture: SKTexture(imageNamed: "tyrian-sprites-tiles"), rows: 1, columns: 11, spacing: 1, margin: 1)
-        
-        let originalTexture = SKTexture(imageNamed: "map1")
-        
-        let mapSize = originalTexture.size()
-        
-        let textureRect2 = originalTexture.textureRect()
-        
-        let rect = CGRect(origin: originalTexture.textureRect().origin,
-                          size: CGSize(width: 1.0,
-                                       height: 1.0))
-        
-        let croppedTexture = SKTexture(rect: textureRect,
-                                       in: originalTexture)
-        
-        let background=SKSpriteNode(texture: originalTexture)
-        
-        //    let background = SKSpriteNode(imageNamed: ImageName.background)
+        let background = SKSpriteNode(texture: mapViewModel.texture)
         background.anchorPoint = CGPoint(x: 0, y: 0)
         background.position = CGPoint(x: 0, y: 0)
         //    background.zPosition = Layer.background
@@ -223,16 +214,8 @@ class GameScene: SKScene {
     }
     
     private func switchToNewGame(withTransition transition: SKTransition) {
-        let delay = SKAction.wait(forDuration: 1)
-        let sceneChange = SKAction.run {
-            let scene = GameScene(size: self.size)
-            self.view?.presentScene(scene, transition: transition)
-        }
-        
-        run(.sequence([delay, sceneChange]))
+
     }
-    
-    //MARK: - Audio
     
     private func setUpAudio() {
         //    if GameScene.backgroundMusicPlayer == nil {

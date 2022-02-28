@@ -12,6 +12,7 @@
 		52D1218227CC6F110047C2CA /* AstralOneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218127CC6F110047C2CA /* AstralOneApp.swift */; };
 		52D1218527CC7A910047C2CA /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218427CC7A900047C2CA /* GameView.swift */; };
 		52D1218727CC8F1C0047C2CA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218627CC8F1C0047C2CA /* MapView.swift */; };
+		52D1218A27CC92DD0047C2CA /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218927CC92DD0047C2CA /* MapViewModel.swift */; };
 		5394F02521864DF5006E754C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5394F02321864DF4006E754C /* LaunchScreen.storyboard */; };
 		AFEF960E231A01B4006025E5 /* Particle.sks in Resources */ = {isa = PBXBuildFile; fileRef = AFEF960D231A01B4006025E5 /* Particle.sks */; };
 		AFEF9610231A01C2006025E5 /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = AFEF960F231A01C2006025E5 /* Particle.png */; };
@@ -35,6 +36,7 @@
 		52D1218127CC6F110047C2CA /* AstralOneApp.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AstralOneApp.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52D1218427CC7A900047C2CA /* GameView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52D1218627CC8F1C0047C2CA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		52D1218927CC92DD0047C2CA /* MapViewModel.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; tabWidth = 4; };
 		5394F02421864DF4006E754C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFEF960D231A01B4006025E5 /* Particle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Particle.sks; sourceTree = "<group>"; };
 		AFEF960F231A01C2006025E5 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
@@ -80,6 +82,14 @@
 				52D1218627CC8F1C0047C2CA /* MapView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		52D1218827CC92C00047C2CA /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				52D1218927CC92DD0047C2CA /* MapViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		AFEF9609231A016D006025E5 /* Resources */ = {
@@ -167,6 +177,7 @@
 				AFEF961A231A0239006025E5 /* Classes */,
 				AFEF9619231A0231006025E5 /* Supporting Files */,
 				AFEF9609231A016D006025E5 /* Resources */,
+				52D1218827CC92C00047C2CA /* View Models */,
 				52D1218327CC7A4A0047C2CA /* Views */,
 				5394F02321864DF4006E754C /* LaunchScreen.storyboard */,
 				D2A5F20A1F4A9144005CD714 /* Assets.xcassets */,
@@ -261,6 +272,7 @@
 				52D1218027CC09400047C2CA /* SpriteSheet.swift in Sources */,
 				AFEF9620231A043E006025E5 /* GameScene.swift in Sources */,
 				AFEF9622231A04BB006025E5 /* VineNode.swift in Sources */,
+				52D1218A27CC92DD0047C2CA /* MapViewModel.swift in Sources */,
 				AFEF961C231A026E006025E5 /* Constants.swift in Sources */,
 				52D1218227CC6F110047C2CA /* AstralOneApp.swift in Sources */,
 				52D1218527CC7A910047C2CA /* GameView.swift in Sources */,
@@ -340,7 +352,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -394,7 +406,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
