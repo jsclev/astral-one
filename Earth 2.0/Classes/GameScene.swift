@@ -19,7 +19,7 @@ class GameScene: SKScene {
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
         
-        super.init(size: self.mapViewModel.cameraSize)
+        super.init(size: UIScreen.main.bounds.size)
         self.scaleMode = .fill
     }
     

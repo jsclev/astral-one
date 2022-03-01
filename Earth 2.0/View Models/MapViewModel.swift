@@ -8,17 +8,26 @@ class MapViewModel {
     let cameraSize: CGSize
     var startCameraPosition: CGPoint
     var cameraPosition: CGPoint
+    var mainToolbarSize: CGSize
     
     init() {
-        texture = SKTexture(imageNamed: "background3")
+        texture = SKTexture(imageNamed: "background6")
         mapSize = texture.size()
-        cameraSize = UIScreen.main.bounds.size
+        
+        mainToolbarSize = CGSize(width: UIScreen.main.bounds.size.width / 3,
+                                 height: UIScreen.main.bounds.size.height)
+        cameraSize = CGSize(width: UIScreen.main.bounds.size.width - mainToolbarSize.width,
+                            height: UIScreen.main.bounds.size.height)
         
         // Start the initial camera position in the middle of the map
-        cameraPosition = CGPoint(x: (cameraSize.width / 2) + (mapSize.width - cameraSize.width) / 2,
+//        cameraPosition = CGPoint(x: (cameraSize.width / 2) + (mapSize.width - cameraSize.width) / 2 - cameraSize.width,
+//                                 y: (cameraSize.height / 2) + (mapSize.height - cameraSize.height) / 2)
+        
+        cameraPosition = CGPoint(x: 0,
                                  y: (cameraSize.height / 2) + (mapSize.height - cameraSize.height) / 2)
         startCameraPosition = CGPoint(x: cameraPosition.x,
                                       y: cameraPosition.y)
+
         log()
     }
     
@@ -31,8 +40,6 @@ class MapViewModel {
         } else {
             cameraPosition.x = startCameraPosition.x - translation.width
         }
-        
-//        cameraPosition.y = 235.5 + 19.5
         
         if (startCameraPosition.y + translation.height >= (mapSize.height / 2) + (mapSize.height - cameraSize.height) / 2) {
             cameraPosition.y = (mapSize.height / 2) + (mapSize.height - cameraSize.height) / 2
