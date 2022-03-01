@@ -1,31 +1,65 @@
 import Foundation
-import SwiftUI
 import SpriteKit
+import SwiftUI
 
 class MapViewModel {
-//    let cameraSize: CGSize {
-//        CGSize(width: <#T##CGFloat#>, height: <#T##CGFloat#>)
-//        UIScreen.main.bounds.width
-//    }
-//
-//    var height: CGFloat {
-//        UIScreen.main.bounds.height
-//    }
-    
-    var cameraPosition = CGPoint(x: 0.0, y: 0.0)
-    
-    let texture = SKTexture(imageNamed: "map1")
+    let texture: SKTexture
+    let mapSize: CGSize
+    let cameraSize: CGSize
+    var startCameraPosition: CGPoint
+    var cameraPosition: CGPoint
     
     init() {
-        let mapSize = texture.size()
-        let screenSize = UIScreen.main.bounds
+        texture = SKTexture(imageNamed: "background3")
+        mapSize = texture.size()
+        cameraSize = UIScreen.main.bounds.size
         
-        cameraPosition = CGPoint(x: (mapSize.width / 2) - (screenSize.width / 2),
-                                 y: (mapSize.height / 2) - (screenSize.height / 2))
+        // Start the initial camera position in the middle of the map
+        cameraPosition = CGPoint(x: (cameraSize.width / 2) + (mapSize.width - cameraSize.width) / 2,
+                                 y: (cameraSize.height / 2) + (mapSize.height - cameraSize.height) / 2)
+        startCameraPosition = CGPoint(x: cameraPosition.x,
+                                      y: cameraPosition.y)
+        log()
     }
     
-    func setCameraPosition(_ position: CGPoint) {
-        self.cameraPosition.x = -position.x
-        self.cameraPosition.y = position.y
+    func moveCamera(translation: CGSize) {
+        if (startCameraPosition.x - translation.width <= (mapSize.width / 2) - (mapSize.width - cameraSize.width) / 2) {
+            cameraPosition.x = (mapSize.width / 2) - (mapSize.width - cameraSize.width) / 2
+        }
+        else if (startCameraPosition.x - translation.width >= (mapSize.width / 2) + (mapSize.width - cameraSize.width) / 2) {
+            cameraPosition.x = (mapSize.width / 2) + (mapSize.width - cameraSize.width) / 2
+        } else {
+            cameraPosition.x = startCameraPosition.x - translation.width
+        }
+        
+//        cameraPosition.y = 235.5 + 19.5
+        
+        if (startCameraPosition.y + translation.height >= (mapSize.height / 2) + (mapSize.height - cameraSize.height) / 2) {
+            cameraPosition.y = (mapSize.height / 2) + (mapSize.height - cameraSize.height) / 2
+        }
+        else if (startCameraPosition.y + translation.height <= cameraSize.height / 2) {
+            cameraPosition.y = cameraSize.height / 2
+        }
+        else {
+            cameraPosition.y = startCameraPosition.y + translation.height
+        }
+        
+        log()
+        print("Translation width: \(translation.width)")
+        print("Translation height: \(translation.height)")
+
+    }
+    
+    func log() {
+        print("Total map size is [\(mapSize.width), \(mapSize.height)]")
+        print("Camera size is [\(cameraSize.width), \(cameraSize.height)]")
+        print("Camera position is [\(cameraPosition.x), \(cameraPosition.y)]")
+        print("Start camera position is [\(startCameraPosition.x), \(startCameraPosition.y)]")
+        print("----------------------------------------------------------------")
+    }
+    
+    func resetCamera() {
+        startCameraPosition.x = cameraPosition.x
+        startCameraPosition.y = cameraPosition.y
     }
 }

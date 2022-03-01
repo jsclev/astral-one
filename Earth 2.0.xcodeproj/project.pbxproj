@@ -13,6 +13,9 @@
 		52D1218527CC7A910047C2CA /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218427CC7A900047C2CA /* GameView.swift */; };
 		52D1218727CC8F1C0047C2CA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218627CC8F1C0047C2CA /* MapView.swift */; };
 		52D1218A27CC92DD0047C2CA /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218927CC92DD0047C2CA /* MapViewModel.swift */; };
+		52D1218C27CDCCBF0047C2CA /* Background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52D1218B27CDCCBF0047C2CA /* Background.mp3 */; };
+		52D1218E27CDDF220047C2CA /* Background2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52D1218D27CDDF220047C2CA /* Background2.mp3 */; };
+		52D1219027CDE0290047C2CA /* Background3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52D1218F27CDE0290047C2CA /* Background3.mp3 */; };
 		5394F02521864DF5006E754C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5394F02321864DF4006E754C /* LaunchScreen.storyboard */; };
 		AFEF960E231A01B4006025E5 /* Particle.sks in Resources */ = {isa = PBXBuildFile; fileRef = AFEF960D231A01B4006025E5 /* Particle.sks */; };
 		AFEF9610231A01C2006025E5 /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = AFEF960F231A01C2006025E5 /* Particle.png */; };
@@ -37,6 +40,9 @@
 		52D1218427CC7A900047C2CA /* GameView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52D1218627CC8F1C0047C2CA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		52D1218927CC92DD0047C2CA /* MapViewModel.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; tabWidth = 4; };
+		52D1218B27CDCCBF0047C2CA /* Background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background.mp3; sourceTree = "<group>"; };
+		52D1218D27CDDF220047C2CA /* Background2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background2.mp3; sourceTree = "<group>"; };
+		52D1218F27CDE0290047C2CA /* Background3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background3.mp3; sourceTree = "<group>"; };
 		5394F02421864DF4006E754C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFEF960D231A01B4006025E5 /* Particle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Particle.sks; sourceTree = "<group>"; };
 		AFEF960F231A01C2006025E5 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
@@ -123,6 +129,9 @@
 		AFEF960C231A0196006025E5 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				52D1218D27CDDF220047C2CA /* Background2.mp3 */,
+				52D1218F27CDE0290047C2CA /* Background3.mp3 */,
+				52D1218B27CDCCBF0047C2CA /* Background.mp3 */,
 				AFEF9616231A0215006025E5 /* Splash.caf */,
 				AFEF9615231A020A006025E5 /* Slice.caf */,
 				AFEF9614231A0200006025E5 /* NomNom.caf */,
@@ -250,11 +259,14 @@
 				AFEF9628231A1E89006025E5 /* Slice.caf in Resources */,
 				AFEF9627231A1E86006025E5 /* Splash.caf in Resources */,
 				5394F02521864DF5006E754C /* LaunchScreen.storyboard in Resources */,
+				52D1218E27CDDF220047C2CA /* Background2.mp3 in Resources */,
 				D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */,
 				AFEF9618231A0225006025E5 /* VineData.plist in Resources */,
 				AFEF9612231A01CD006025E5 /* Particle@2x.png in Resources */,
+				52D1218C27CDCCBF0047C2CA /* Background.mp3 in Resources */,
 				D2A5F2091F4A9144005CD714 /* Main.storyboard in Resources */,
 				52D1217E27CC04930047C2CA /* tyrian-sprites-tiles.jpeg in Resources */,
+				52D1219027CDE0290047C2CA /* Background3.mp3 in Resources */,
 				AFEF960E231A01B4006025E5 /* Particle.sks in Resources */,
 				AFEF9610231A01C2006025E5 /* Particle.png in Resources */,
 			);

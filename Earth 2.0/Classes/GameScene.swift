@@ -18,19 +18,13 @@ class GameScene: SKScene {
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
-        super.init(size: UIScreen.main.bounds.size)
-    }
-    
-    override init(size: CGSize) {
-        mapViewModel = MapViewModel()
-
-        super.init(size: size)
+        
+        super.init(size: self.mapViewModel.cameraSize)
+        self.scaleMode = .fill
     }
     
     required init?(coder aDecoder: NSCoder) {
-        mapViewModel = MapViewModel()
-
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) is not supported.")
     }
     
     override func didMove(to view: SKView) {
@@ -49,6 +43,8 @@ class GameScene: SKScene {
     }
     
     private func setUpScenery() {
+        self.anchorPoint = CGPoint.zero
+        
         let background = SKSpriteNode(texture: mapViewModel.texture)
         background.anchorPoint = CGPoint(x: 0, y: 0)
         background.position = CGPoint(x: 0, y: 0)
@@ -214,38 +210,38 @@ class GameScene: SKScene {
     }
     
     private func switchToNewGame(withTransition transition: SKTransition) {
-
+        
     }
     
     private func setUpAudio() {
-        //    if GameScene.backgroundMusicPlayer == nil {
-        //      let backgroundMusicURL = Bundle.main.url(
-        //        forResource: SoundFile.backgroundMusic,
-        //        withExtension: nil)
-        //
-        //      do {
-        //        let theme = try AVAudioPlayer(contentsOf: backgroundMusicURL!)
-        //        GameScene.backgroundMusicPlayer = theme
-        //      } catch {
-        //        // couldn't load file :[
-        //      }
-        //
-        //      GameScene.backgroundMusicPlayer.numberOfLoops = -1
-        //    }
-        //
-        //    if !GameScene.backgroundMusicPlayer.isPlaying {
-        //      GameScene.backgroundMusicPlayer.play()
-        //    }
-        //
-        //    sliceSoundAction = .playSoundFileNamed(
-        //      SoundFile.slice,
-        //      waitForCompletion: false)
-        //    splashSoundAction = .playSoundFileNamed(
-        //      SoundFile.splash,
-        //      waitForCompletion: false)
-        //    nomNomSoundAction = .playSoundFileNamed(
-        //      SoundFile.nomNom,
-        //      waitForCompletion: false)
+        if GameScene.backgroundMusicPlayer == nil {
+            let backgroundMusicURL = Bundle.main.url(
+                forResource: SoundFile.backgroundMusic,
+                withExtension: nil)
+            
+            do {
+                let theme = try AVAudioPlayer(contentsOf: backgroundMusicURL!)
+                GameScene.backgroundMusicPlayer = theme
+            } catch {
+                // couldn't load file :[
+            }
+            
+            GameScene.backgroundMusicPlayer.numberOfLoops = -1
+        }
+        
+        if !GameScene.backgroundMusicPlayer.isPlaying {
+            GameScene.backgroundMusicPlayer.play()
+        }
+        
+        sliceSoundAction = .playSoundFileNamed(
+            SoundFile.slice,
+            waitForCompletion: false)
+        splashSoundAction = .playSoundFileNamed(
+            SoundFile.splash,
+            waitForCompletion: false)
+        nomNomSoundAction = .playSoundFileNamed(
+            SoundFile.nomNom,
+            waitForCompletion: false)
     }
 }
 
