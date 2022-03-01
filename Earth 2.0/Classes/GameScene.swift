@@ -7,6 +7,7 @@ class GameScene: SKScene {
     private var prize: SKSpriteNode!
     
     private static var backgroundMusicPlayer: AVAudioPlayer!
+    private let background: SKSpriteNode
     
     private var sliceSoundAction: SKAction!
     private var splashSoundAction: SKAction!
@@ -15,9 +16,14 @@ class GameScene: SKScene {
     private var isLevelOver = false
     private var didCutVine = false
     var mapViewModel: MapViewModel
+    var mapName = "three"
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
+        
+        background = SKSpriteNode(texture: mapViewModel.texture3)
+        background.anchorPoint = CGPoint(x: 0, y: 0)
+        background.position = CGPoint(x: 0, y: 0)
         
         super.init(size: UIScreen.main.bounds.size)
         self.scaleMode = .fill
@@ -45,9 +51,7 @@ class GameScene: SKScene {
     private func setUpScenery() {
         self.anchorPoint = CGPoint.zero
         
-        let background = SKSpriteNode(texture: mapViewModel.texture)
-        background.anchorPoint = CGPoint(x: 0, y: 0)
-        background.position = CGPoint(x: 0, y: 0)
+
         //    background.zPosition = Layer.background
         //    background.size = CGSize(width: size.width, height: size.height)
         addChild(background)
@@ -59,6 +63,41 @@ class GameScene: SKScene {
         water.size = CGSize(width: size.width, height: size.height * 0.2139)
         //    addChild(water)
         
+    }
+    
+    func toggleTexture() {
+        if (mapName == "zero") {
+            mapName = "one"
+        }
+        else if (mapName == "one") {
+            mapName = "two"
+        }
+        else if (mapName == "two") {
+            mapName = "three"
+        }
+        else {
+            mapName = "zero"
+        }
+        
+        if mapName == "zero" {
+            let action = SKAction.setTexture(mapViewModel.texture0, resize: false)
+            background.run(action)
+        }
+        if mapName == "one" {
+            let action = SKAction.setTexture(mapViewModel.texture1, resize: false)
+            background.run(action)
+        }
+        else if mapName == "two" {
+            let action = SKAction.setTexture(mapViewModel.texture2, resize: false)
+            background.run(action)
+        }
+        else if mapName == "three" {
+            let action = SKAction.setTexture(mapViewModel.texture3, resize: false)
+            background.run(action)
+        }
+        
+        mapViewModel.changeMap(mapName: mapName)
+
     }
     
     private func setUpPrize() {

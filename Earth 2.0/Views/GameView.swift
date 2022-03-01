@@ -56,8 +56,18 @@ struct GameView: View {
     }
     
     var body: some View {
-        SpriteView(scene: scene)
-            .ignoresSafeArea()
-            .gesture(simpleDrag)
+        HStack {
+            SpriteView(scene: scene)
+                .ignoresSafeArea()
+                .gesture(simpleDrag)
+            
+            VStack {
+                Button("Change Map") {
+                    scene.toggleTexture()
+                    self.camera.position = mapViewModel.cameraPosition
+
+                }
+            }
+        }
     }
 }

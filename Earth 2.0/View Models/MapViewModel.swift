@@ -3,32 +3,53 @@ import SpriteKit
 import SwiftUI
 
 class MapViewModel {
-    let texture: SKTexture
-    let mapSize: CGSize
+    let texture0: SKTexture
+    let texture1: SKTexture
+    let texture2: SKTexture
+    let texture3: SKTexture
+    var mapSize: CGSize
     let cameraSize: CGSize
     var startCameraPosition: CGPoint
     var cameraPosition: CGPoint
-    var mainToolbarSize: CGSize
     
     init() {
-        texture = SKTexture(imageNamed: "background6")
-        mapSize = texture.size()
-        
-        mainToolbarSize = CGSize(width: UIScreen.main.bounds.size.width / 3,
-                                 height: UIScreen.main.bounds.size.height)
-        cameraSize = CGSize(width: UIScreen.main.bounds.size.width - mainToolbarSize.width,
+        texture0 = SKTexture(imageNamed: "background10")
+        texture1 = SKTexture(imageNamed: "background11")
+        texture2 = SKTexture(imageNamed: "background12")
+        texture3 = SKTexture(imageNamed: "background13")
+
+        mapSize = texture3.size()
+        cameraSize = CGSize(width: UIScreen.main.bounds.size.width,
                             height: UIScreen.main.bounds.size.height)
         
         // Start the initial camera position in the middle of the map
-//        cameraPosition = CGPoint(x: (cameraSize.width / 2) + (mapSize.width - cameraSize.width) / 2 - cameraSize.width,
-//                                 y: (cameraSize.height / 2) + (mapSize.height - cameraSize.height) / 2)
-        
-        cameraPosition = CGPoint(x: 0,
+        cameraPosition = CGPoint(x: (cameraSize.width / 2) + (mapSize.width - cameraSize.width) / 2,
                                  y: (cameraSize.height / 2) + (mapSize.height - cameraSize.height) / 2)
         startCameraPosition = CGPoint(x: cameraPosition.x,
                                       y: cameraPosition.y)
 
         log()
+    }
+    
+    func changeMap(mapName: String) {
+        if (mapName == "zero") {
+            mapSize = texture0.size()
+        }
+        else if (mapName == "one") {
+            mapSize = texture1.size()
+        }
+        else if (mapName == "two") {
+            mapSize = texture2.size()
+        }
+        else {
+            mapSize = texture3.size()
+        }
+        
+        // Start the initial camera position in the middle of the map
+        cameraPosition = CGPoint(x: (cameraSize.width / 2) + (mapSize.width - cameraSize.width) / 2,
+                                 y: (cameraSize.height / 2) + (mapSize.height - cameraSize.height) / 2)
+        startCameraPosition = CGPoint(x: cameraPosition.x,
+                                      y: cameraPosition.y)
     }
     
     func moveCamera(translation: CGSize) {
