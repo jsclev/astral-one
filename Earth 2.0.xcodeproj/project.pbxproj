@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52D1217E27CC04930047C2CA /* tyrian-sprites-tiles.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 52D1217D27CC04930047C2CA /* tyrian-sprites-tiles.jpeg */; };
+		525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 525DC47D27CF41EF003DC3A2 /* Background4.m4a */; };
 		52D1218027CC09400047C2CA /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1217F27CC09400047C2CA /* SpriteSheet.swift */; };
 		52D1218227CC6F110047C2CA /* AstralOneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218127CC6F110047C2CA /* AstralOneApp.swift */; };
 		52D1218527CC7A910047C2CA /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218427CC7A900047C2CA /* GameView.swift */; };
-		52D1218727CC8F1C0047C2CA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218627CC8F1C0047C2CA /* MapView.swift */; };
 		52D1218A27CC92DD0047C2CA /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218927CC92DD0047C2CA /* MapViewModel.swift */; };
 		52D1218C27CDCCBF0047C2CA /* Background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52D1218B27CDCCBF0047C2CA /* Background.mp3 */; };
 		52D1218E27CDDF220047C2CA /* Background2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52D1218D27CDDF220047C2CA /* Background2.mp3 */; };
@@ -35,11 +34,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		52D1217D27CC04930047C2CA /* tyrian-sprites-tiles.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "tyrian-sprites-tiles.jpeg"; path = "Earth 2.0/Assets.xcassets/tyrian-sprites-tiles.jpeg"; sourceTree = SOURCE_ROOT; };
+		525DC47D27CF41EF003DC3A2 /* Background4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Background4.m4a; sourceTree = "<group>"; };
 		52D1217F27CC09400047C2CA /* SpriteSheet.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52D1218127CC6F110047C2CA /* AstralOneApp.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AstralOneApp.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52D1218427CC7A900047C2CA /* GameView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; tabWidth = 4; };
-		52D1218627CC8F1C0047C2CA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		52D1218927CC92DD0047C2CA /* MapViewModel.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52D1218B27CDCCBF0047C2CA /* Background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background.mp3; sourceTree = "<group>"; };
 		52D1218D27CDDF220047C2CA /* Background2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background2.mp3; sourceTree = "<group>"; };
@@ -75,19 +73,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		52D1217C27CC04490047C2CA /* Images.atlas */ = {
-			isa = PBXGroup;
-			children = (
-				52D1217D27CC04930047C2CA /* tyrian-sprites-tiles.jpeg */,
-			);
-			path = Images.atlas;
-			sourceTree = "<group>";
-		};
 		52D1218327CC7A4A0047C2CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				52D1218427CC7A900047C2CA /* GameView.swift */,
-				52D1218627CC8F1C0047C2CA /* MapView.swift */,
 				52D1219127CE6A800047C2CA /* UnitMenuView.swift */,
 			);
 			path = Views;
@@ -132,6 +121,7 @@
 		AFEF960C231A0196006025E5 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				525DC47D27CF41EF003DC3A2 /* Background4.m4a */,
 				52D1218D27CDDF220047C2CA /* Background2.mp3 */,
 				52D1218F27CDE0290047C2CA /* Background3.mp3 */,
 				52D1218B27CDCCBF0047C2CA /* Background.mp3 */,
@@ -185,7 +175,6 @@
 		D2A5F2021F4A9144005CD714 /* Earth 2.0 */ = {
 			isa = PBXGroup;
 			children = (
-				52D1217C27CC04490047C2CA /* Images.atlas */,
 				AFEF961A231A0239006025E5 /* Classes */,
 				AFEF9619231A0231006025E5 /* Supporting Files */,
 				AFEF9609231A016D006025E5 /* Resources */,
@@ -257,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */,
 				AFEF962A231A1E8E006025E5 /* CheeZeeJungle.caf in Resources */,
 				AFEF9629231A1E8C006025E5 /* NomNom.caf in Resources */,
 				AFEF9628231A1E89006025E5 /* Slice.caf in Resources */,
@@ -268,7 +258,6 @@
 				AFEF9612231A01CD006025E5 /* Particle@2x.png in Resources */,
 				52D1218C27CDCCBF0047C2CA /* Background.mp3 in Resources */,
 				D2A5F2091F4A9144005CD714 /* Main.storyboard in Resources */,
-				52D1217E27CC04930047C2CA /* tyrian-sprites-tiles.jpeg in Resources */,
 				52D1219027CDE0290047C2CA /* Background3.mp3 in Resources */,
 				AFEF960E231A01B4006025E5 /* Particle.sks in Resources */,
 				AFEF9610231A01C2006025E5 /* Particle.png in Resources */,
@@ -284,7 +273,6 @@
 			files = (
 				F5EA92432334BD450027F71C /* VineData.swift in Sources */,
 				52D1219227CE6A800047C2CA /* UnitMenuView.swift in Sources */,
-				52D1218727CC8F1C0047C2CA /* MapView.swift in Sources */,
 				52D1218027CC09400047C2CA /* SpriteSheet.swift in Sources */,
 				AFEF9620231A043E006025E5 /* GameScene.swift in Sources */,
 				AFEF9622231A04BB006025E5 /* VineNode.swift in Sources */,

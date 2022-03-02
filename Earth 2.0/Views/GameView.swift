@@ -5,8 +5,6 @@ struct GameView: View {
     @State private var location: CGPoint = CGPoint(x: 0.0, y: 0.0)
     @GestureState private var fingerLocation: CGPoint? = nil
     @GestureState private var startLocation: CGPoint? = nil
-//    @State var lastDragPosition: DragGesture.Value?
-
     
     var camera = SKCameraNode()
     var mapViewModel = MapViewModel()
@@ -18,8 +16,6 @@ struct GameView: View {
         scene.camera = self.camera
         scene.anchorPoint = CGPoint.zero
         self.camera.position = mapViewModel.cameraPosition
-//        let zoomOutAction = SKAction.scale(to: 5, duration: 1)
-//        scene.camera.run(zoomOutAction)
     }
     
     var simpleDrag: some Gesture {
@@ -30,20 +26,10 @@ struct GameView: View {
                 newLocation.y += value.translation.height
                 self.location = newLocation
                 mapViewModel.moveCamera(translation: value.translation)
-//                print("Translation value: \(value.translation)")
-//                print("\(self.location)")
                 self.camera.position = mapViewModel.cameraPosition
-                
-//                self.lastDragPosition = value
             }.updating($startLocation) { (value, startLocation, transaction) in
                 startLocation = startLocation ?? location
             }.onEnded { value in
-//                let timeDiff = value.time.timeIntervalSince(self.lastDragPosition!.time)
-//                let speed: CGFloat = CGFloat(value.translation.height - self.lastDragPosition!.translation.height) / CGFloat(timeDiff)
-//                print("Speed is \(speed)")
-                
-//                let zoomInAction = SKAction.scale(to: 0.5, duration: 1)
-//                camera.run(zoomInAction)
                 mapViewModel.resetCamera()
             }
     }
@@ -60,14 +46,100 @@ struct GameView: View {
             SpriteView(scene: scene)
                 .ignoresSafeArea()
                 .gesture(simpleDrag)
-            
-            VStack {
-                Button("Change Map") {
+            ScrollView(showsIndicators: false) {
+                let buttonSize = 80.0
+                
+                Button {
                     scene.toggleTexture()
                     self.camera.position = mapViewModel.cameraPosition
-
+                } label: {
+                    Image("building0")
+                        .resizable()
+                        .frame(width: buttonSize, height: buttonSize)
+                }
+                
+                Button {
+                    scene.toggleTexture()
+                    self.camera.position = mapViewModel.cameraPosition
+                } label: {
+                    Image("building1")
+                        .resizable()
+                        .frame(width: buttonSize, height: buttonSize)
+                }
+                
+                Button {
+                    scene.toggleTexture()
+                    self.camera.position = mapViewModel.cameraPosition
+                } label: {
+                    Image("building2")
+                        .resizable()
+                        .frame(width: buttonSize, height: buttonSize)
+                }
+                
+                Button {
+                    scene.toggleTexture()
+                    self.camera.position = mapViewModel.cameraPosition
+                } label: {
+                    Image("building3")
+                        .resizable()
+                        .frame(width: buttonSize, height: buttonSize)
+                }
+                
+                Button {
+                    scene.toggleTexture()
+                    self.camera.position = mapViewModel.cameraPosition
+                } label: {
+                    Image("building4")
+                        .resizable()
+                        .frame(width: buttonSize, height: buttonSize)
+                }
+                
+                Button {
+                    scene.toggleTexture()
+                    self.camera.position = mapViewModel.cameraPosition
+                } label: {
+                    Image("building5")
+                        .resizable()
+                        .frame(width: buttonSize, height: buttonSize)
+                }
+                
+                Button {
+                    scene.toggleTexture()
+                    self.camera.position = mapViewModel.cameraPosition
+                } label: {
+                    Image("building6")
+                        .resizable()
+                        .frame(width: buttonSize, height: buttonSize)
+                }
+                
+                Button {
+                    scene.toggleTexture()
+                    self.camera.position = mapViewModel.cameraPosition
+                } label: {
+                    Image("building7")
+                        .resizable()
+                        .frame(width: buttonSize, height: buttonSize)
+                }
+                
+                Button {
+                    scene.toggleTexture()
+                    self.camera.position = mapViewModel.cameraPosition
+                } label: {
+                    Image("building8")
+                        .resizable()
+                        .frame(width: buttonSize, height: buttonSize)
+                }
+                
+                Button {
+                    scene.toggleTexture()
+                    self.camera.position = mapViewModel.cameraPosition
+                } label: {
+                    Image("building9")
+                        .resizable()
+                        .frame(width: buttonSize, height: buttonSize)
                 }
             }
+            .background(Color.black)
         }
     }
 }

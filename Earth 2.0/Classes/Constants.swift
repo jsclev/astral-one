@@ -14,7 +14,7 @@ enum ImageName {
 }
 
 enum SoundFile {
-    static let backgroundMusic = "Background3.mp3"
+    static let backgroundMusic = "Background4.m4a"
     static let slice = "Slice.caf"
     static let splash = "Splash.caf"
     static let nomNom = "NomNom.caf"

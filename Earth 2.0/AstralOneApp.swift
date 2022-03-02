@@ -19,8 +19,12 @@ struct AstralOneApp: App {
         //      skView.presentScene(scene)
         
         WindowGroup {
-            GameView()
-                .environment(\.colorScheme, .dark)
+            ZStack {
+                Color.black
+                    .ignoresSafeArea()
+                GameView()
+            }
+            .environment(\.colorScheme, .dark)
         }
     }
 }
