@@ -17,6 +17,9 @@ class GameScene: SKScene {
     private var didCutVine = false
     var mapViewModel: MapViewModel
     var mapName = "three"
+    var debug = true
+    let gameCamera = GameCamera()
+    var entityManager: EntityManager!
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
@@ -27,6 +30,11 @@ class GameScene: SKScene {
         
         super.init(size: UIScreen.main.bounds.size)
         self.scaleMode = .fill
+        
+        camera = gameCamera
+        addChild(gameCamera)
+        
+        gameCamera.position = mapViewModel.cameraPosition
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,6 +48,28 @@ class GameScene: SKScene {
         setUpVines()
         setUpCrocodile()
         setUpAudio()
+        
+        gameCamera.moneyNode.position = CGPoint(x: 285,
+                                                y: 160)
+        entityManager = EntityManager(scene: self)
+        
+        let commandCenter = CommandCenter(imageName: "command-center")
+        if let spriteComponent = commandCenter.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: 400,
+                                                    y: 300)
+        }
+        entityManager.add(commandCenter)
+        
+        let barracks = Barracks(imageName: "barracks")
+        if let spriteComponent = barracks.component(ofType: SpriteComponent.self) {
+            spriteComponent.node.position = CGPoint(x: 400,
+                                                    y: 150)
+        }
+        entityManager.add(barracks)
+    }
+    
+    func toggleDebug() {
+        
     }
     
     private func setUpPhysics() {
@@ -62,6 +92,8 @@ class GameScene: SKScene {
         water.zPosition = Layer.foreground
         water.size = CGSize(width: size.width, height: size.height * 0.2139)
         //    addChild(water)
+        
+
         
     }
     
@@ -97,7 +129,7 @@ class GameScene: SKScene {
         }
         
         mapViewModel.changeMap(mapName: mapName)
-
+        gameCamera.position = mapViewModel.cameraPosition
     }
     
     private func setUpPrize() {

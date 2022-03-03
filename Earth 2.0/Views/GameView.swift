@@ -2,20 +2,22 @@ import SpriteKit
 import SwiftUI
 
 struct GameView: View {
+    @EnvironmentObject var game: Game
+
     @State private var location: CGPoint = CGPoint(x: 0.0, y: 0.0)
     @GestureState private var fingerLocation: CGPoint? = nil
     @GestureState private var startLocation: CGPoint? = nil
     
-    var camera = SKCameraNode()
+//    var gameCamera = SKCameraNode()
     var mapViewModel = MapViewModel()
     var scene: GameScene
     @GestureState private var cameraPosition = CGPoint.zero
     
     init() {
         scene = GameScene(mapViewModel: mapViewModel)
-        scene.camera = self.camera
-        scene.anchorPoint = CGPoint.zero
-        self.camera.position = mapViewModel.cameraPosition
+//        scene.camera = gameCamera
+//        scene.anchorPoint = CGPoint.zero
+
     }
     
     var simpleDrag: some Gesture {
@@ -26,7 +28,7 @@ struct GameView: View {
                 newLocation.y += value.translation.height
                 self.location = newLocation
                 mapViewModel.moveCamera(translation: value.translation)
-                self.camera.position = mapViewModel.cameraPosition
+                scene.gameCamera.position = mapViewModel.cameraPosition
             }.updating($startLocation) { (value, startLocation, transaction) in
                 startLocation = startLocation ?? location
             }.onEnded { value in
@@ -43,15 +45,29 @@ struct GameView: View {
     
     var body: some View {
         HStack {
+#if DEBUG
+            if #available(iOS 15.0, *) {
+                SpriteView(scene: scene, debugOptions: [.showsFPS,
+                                                        .showsNodeCount])
+                    .ignoresSafeArea()
+                    .gesture(simpleDrag)
+            }
+            else {
+                SpriteView(scene: scene)
+                    .ignoresSafeArea()
+                    .gesture(simpleDrag)
+            }
+#else
             SpriteView(scene: scene)
                 .ignoresSafeArea()
                 .gesture(simpleDrag)
+#endif
+
             ScrollView(showsIndicators: false) {
                 let buttonSize = 80.0
                 
                 Button {
                     scene.toggleTexture()
-                    self.camera.position = mapViewModel.cameraPosition
                 } label: {
                     Image("building0")
                         .resizable()
@@ -60,7 +76,6 @@ struct GameView: View {
                 
                 Button {
                     scene.toggleTexture()
-                    self.camera.position = mapViewModel.cameraPosition
                 } label: {
                     Image("building1")
                         .resizable()
@@ -69,7 +84,6 @@ struct GameView: View {
                 
                 Button {
                     scene.toggleTexture()
-                    self.camera.position = mapViewModel.cameraPosition
                 } label: {
                     Image("building2")
                         .resizable()
@@ -78,7 +92,6 @@ struct GameView: View {
                 
                 Button {
                     scene.toggleTexture()
-                    self.camera.position = mapViewModel.cameraPosition
                 } label: {
                     Image("building3")
                         .resizable()
@@ -87,7 +100,6 @@ struct GameView: View {
                 
                 Button {
                     scene.toggleTexture()
-                    self.camera.position = mapViewModel.cameraPosition
                 } label: {
                     Image("building4")
                         .resizable()
@@ -96,7 +108,6 @@ struct GameView: View {
                 
                 Button {
                     scene.toggleTexture()
-                    self.camera.position = mapViewModel.cameraPosition
                 } label: {
                     Image("building5")
                         .resizable()
@@ -105,7 +116,6 @@ struct GameView: View {
                 
                 Button {
                     scene.toggleTexture()
-                    self.camera.position = mapViewModel.cameraPosition
                 } label: {
                     Image("building6")
                         .resizable()
@@ -114,7 +124,6 @@ struct GameView: View {
                 
                 Button {
                     scene.toggleTexture()
-                    self.camera.position = mapViewModel.cameraPosition
                 } label: {
                     Image("building7")
                         .resizable()
@@ -123,7 +132,6 @@ struct GameView: View {
                 
                 Button {
                     scene.toggleTexture()
-                    self.camera.position = mapViewModel.cameraPosition
                 } label: {
                     Image("building8")
                         .resizable()
@@ -131,8 +139,7 @@ struct GameView: View {
                 }
                 
                 Button {
-                    scene.toggleTexture()
-                    self.camera.position = mapViewModel.cameraPosition
+                    game.showFPS = !game.showFPS
                 } label: {
                     Image("building9")
                         .resizable()

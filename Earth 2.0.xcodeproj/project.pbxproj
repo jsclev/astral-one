@@ -7,7 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		525D6BDE27D04AE0008AA740 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BDD27D04AE0008AA740 /* Camera.swift */; };
+		525D6BE127D123CF008AA740 /* Barracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE027D123CF008AA740 /* Barracks.swift */; };
+		525D6BE327D124EF008AA740 /* CommandCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE227D124EF008AA740 /* CommandCenter.swift */; };
+		525D6BE627D12586008AA740 /* PowerPlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE527D12586008AA740 /* PowerPlant.swift */; };
+		525D6BE827D125B4008AA740 /* Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE727D125B4008AA740 /* Pod.swift */; };
+		525D6BEA27D126DB008AA740 /* EnergyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE927D126DB008AA740 /* EnergyStorage.swift */; };
+		525D6BEC27D12C7D008AA740 /* ConcreteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BEB27D12C7D008AA740 /* ConcreteStorage.swift */; };
+		525D6BEE27D12D0D008AA740 /* MineralStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BED27D12D0D008AA740 /* MineralStorage.swift */; };
+		525D6BF027D14F5B008AA740 /* Shipyard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BEF27D14F5B008AA740 /* Shipyard.swift */; };
+		525D6BF227D14F98008AA740 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BF127D14F98008AA740 /* Wall.swift */; };
+		525D6BF427D14FAA008AA740 /* Gate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BF327D14FAA008AA740 /* Gate.swift */; };
+		525D6BF627D14FC3008AA740 /* RadarTower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BF527D14FC3008AA740 /* RadarTower.swift */; };
+		525D6BF927D15228008AA740 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BF827D15228008AA740 /* SpriteComponent.swift */; };
+		525D6BFB27D153AF008AA740 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BFA27D153AF008AA740 /* EntityManager.swift */; };
 		525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 525DC47D27CF41EF003DC3A2 /* Background4.m4a */; };
+		525DC48127CFF287003DC3A2 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DC48027CFF287003DC3A2 /* Game.swift */; };
+		525DC48327CFF852003DC3A2 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DC48227CFF852003DC3A2 /* Player.swift */; };
 		52D1218027CC09400047C2CA /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1217F27CC09400047C2CA /* SpriteSheet.swift */; };
 		52D1218227CC6F110047C2CA /* AstralOneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218127CC6F110047C2CA /* AstralOneApp.swift */; };
 		52D1218527CC7A910047C2CA /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218427CC7A900047C2CA /* GameView.swift */; };
@@ -34,7 +50,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		525D6BDD27D04AE0008AA740 /* Camera.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BE027D123CF008AA740 /* Barracks.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Barracks.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BE227D124EF008AA740 /* CommandCenter.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CommandCenter.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BE527D12586008AA740 /* PowerPlant.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = PowerPlant.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BE727D125B4008AA740 /* Pod.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Pod.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BE927D126DB008AA740 /* EnergyStorage.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EnergyStorage.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BEB27D12C7D008AA740 /* ConcreteStorage.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ConcreteStorage.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BED27D12D0D008AA740 /* MineralStorage.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MineralStorage.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BEF27D14F5B008AA740 /* Shipyard.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Shipyard.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BF127D14F98008AA740 /* Wall.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BF327D14FAA008AA740 /* Gate.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Gate.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BF527D14FC3008AA740 /* RadarTower.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = RadarTower.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BF827D15228008AA740 /* SpriteComponent.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BFA27D153AF008AA740 /* EntityManager.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525DC47D27CF41EF003DC3A2 /* Background4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Background4.m4a; sourceTree = "<group>"; };
+		525DC48027CFF287003DC3A2 /* Game.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525DC48227CFF852003DC3A2 /* Player.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52D1217F27CC09400047C2CA /* SpriteSheet.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52D1218127CC6F110047C2CA /* AstralOneApp.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AstralOneApp.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52D1218427CC7A900047C2CA /* GameView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -42,7 +74,7 @@
 		52D1218B27CDCCBF0047C2CA /* Background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background.mp3; sourceTree = "<group>"; };
 		52D1218D27CDDF220047C2CA /* Background2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background2.mp3; sourceTree = "<group>"; };
 		52D1218F27CDE0290047C2CA /* Background3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background3.mp3; sourceTree = "<group>"; };
-		52D1219127CE6A800047C2CA /* UnitMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitMenuView.swift; sourceTree = "<group>"; };
+		52D1219127CE6A800047C2CA /* UnitMenuView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = UnitMenuView.swift; sourceTree = "<group>"; tabWidth = 4; };
 		5394F02421864DF4006E754C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFEF960D231A01B4006025E5 /* Particle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Particle.sks; sourceTree = "<group>"; };
 		AFEF960F231A01C2006025E5 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
@@ -73,6 +105,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		525D6BDF27D123B4008AA740 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				525DC48027CFF287003DC3A2 /* Game.swift */,
+				525DC48227CFF852003DC3A2 /* Player.swift */,
+				525D6BE427D12519008AA740 /* Buildings */,
+				525D6BFA27D153AF008AA740 /* EntityManager.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		525D6BE427D12519008AA740 /* Buildings */ = {
+			isa = PBXGroup;
+			children = (
+				525D6BE027D123CF008AA740 /* Barracks.swift */,
+				525D6BE227D124EF008AA740 /* CommandCenter.swift */,
+				525D6BEB27D12C7D008AA740 /* ConcreteStorage.swift */,
+				525D6BE927D126DB008AA740 /* EnergyStorage.swift */,
+				525D6BF327D14FAA008AA740 /* Gate.swift */,
+				525D6BED27D12D0D008AA740 /* MineralStorage.swift */,
+				525D6BE727D125B4008AA740 /* Pod.swift */,
+				525D6BE527D12586008AA740 /* PowerPlant.swift */,
+				525D6BF527D14FC3008AA740 /* RadarTower.swift */,
+				525D6BEF27D14F5B008AA740 /* Shipyard.swift */,
+				525D6BF127D14F98008AA740 /* Wall.swift */,
+			);
+			path = Buildings;
+			sourceTree = "<group>";
+		};
+		525D6BF727D1520A008AA740 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				525D6BF827D15228008AA740 /* SpriteComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		52D1218327CC7A4A0047C2CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +219,7 @@
 				AFEF9621231A04BB006025E5 /* VineNode.swift */,
 				F5EA92422334BD450027F71C /* VineData.swift */,
 				52D1217F27CC09400047C2CA /* SpriteSheet.swift */,
+				525D6BDD27D04AE0008AA740 /* Camera.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -175,9 +245,11 @@
 		D2A5F2021F4A9144005CD714 /* Earth 2.0 */ = {
 			isa = PBXGroup;
 			children = (
-				AFEF961A231A0239006025E5 /* Classes */,
+				525D6BF727D1520A008AA740 /* Components */,
+				525D6BDF27D123B4008AA740 /* Entities */,
 				AFEF9619231A0231006025E5 /* Supporting Files */,
 				AFEF9609231A016D006025E5 /* Resources */,
+				AFEF961A231A0239006025E5 /* Classes */,
 				52D1218827CC92C00047C2CA /* View Models */,
 				52D1218327CC7A4A0047C2CA /* Views */,
 				5394F02321864DF4006E754C /* LaunchScreen.storyboard */,
@@ -215,7 +287,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 1320;
-				ORGANIZATIONNAME = "Ray Wenderlich";
+				ORGANIZATIONNAME = "ZippyZen, LLC";
 				TargetAttributes = {
 					D2A5F1FF1F4A9144005CD714 = {
 						CreatedOnToolsVersion = 9.0;
@@ -271,13 +343,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525D6BF027D14F5B008AA740 /* Shipyard.swift in Sources */,
+				525DC48327CFF852003DC3A2 /* Player.swift in Sources */,
 				F5EA92432334BD450027F71C /* VineData.swift in Sources */,
+				525D6BF227D14F98008AA740 /* Wall.swift in Sources */,
+				525D6BE627D12586008AA740 /* PowerPlant.swift in Sources */,
+				525DC48127CFF287003DC3A2 /* Game.swift in Sources */,
+				525D6BE127D123CF008AA740 /* Barracks.swift in Sources */,
 				52D1219227CE6A800047C2CA /* UnitMenuView.swift in Sources */,
 				52D1218027CC09400047C2CA /* SpriteSheet.swift in Sources */,
+				525D6BEA27D126DB008AA740 /* EnergyStorage.swift in Sources */,
+				525D6BF927D15228008AA740 /* SpriteComponent.swift in Sources */,
+				525D6BE327D124EF008AA740 /* CommandCenter.swift in Sources */,
+				525D6BF427D14FAA008AA740 /* Gate.swift in Sources */,
 				AFEF9620231A043E006025E5 /* GameScene.swift in Sources */,
 				AFEF9622231A04BB006025E5 /* VineNode.swift in Sources */,
+				525D6BFB27D153AF008AA740 /* EntityManager.swift in Sources */,
+				525D6BEE27D12D0D008AA740 /* MineralStorage.swift in Sources */,
+				525D6BE827D125B4008AA740 /* Pod.swift in Sources */,
 				52D1218A27CC92DD0047C2CA /* MapViewModel.swift in Sources */,
+				525D6BDE27D04AE0008AA740 /* Camera.swift in Sources */,
+				525D6BF627D14FC3008AA740 /* RadarTower.swift in Sources */,
 				AFEF961C231A026E006025E5 /* Constants.swift in Sources */,
+				525D6BEC27D12C7D008AA740 /* ConcreteStorage.swift in Sources */,
 				52D1218227CC6F110047C2CA /* AstralOneApp.swift in Sources */,
 				52D1218527CC7A910047C2CA /* GameView.swift in Sources */,
 			);
@@ -431,7 +519,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raywenderlich.Earth-2.0";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zippyzen.Earth-2.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -451,7 +539,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raywenderlich.Earth-2.0";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zippyzen.Earth-2.0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
