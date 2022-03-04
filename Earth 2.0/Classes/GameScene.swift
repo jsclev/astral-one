@@ -18,7 +18,7 @@ class GameScene: SKScene {
     var mapViewModel: MapViewModel
     var mapName = "three"
     var debug = true
-    let gameCamera = GameCamera()
+    var gameCamera: GameCamera!
     var entityManager: EntityManager!
     
     init(mapViewModel: MapViewModel) {
@@ -27,14 +27,15 @@ class GameScene: SKScene {
         background = SKSpriteNode(texture: mapViewModel.texture3)
         background.anchorPoint = CGPoint(x: 0, y: 0)
         background.position = CGPoint(x: 0, y: 0)
-        
+
+
+
         super.init(size: UIScreen.main.bounds.size)
         self.scaleMode = .fill
         
-        camera = gameCamera
-        addChild(gameCamera)
+
         
-        gameCamera.position = mapViewModel.cameraPosition
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,6 +43,16 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        entityManager = EntityManager(scene: self)
+        gameCamera = GameCamera(entityManager)
+        
+        camera = gameCamera
+        addChild(gameCamera)
+        
+        gameCamera.position = mapViewModel.cameraPosition
+        gameCamera.moneyNode.position = CGPoint(x: 285,
+                                                y: 160)
+
         setUpPhysics()
         setUpScenery()
         setUpPrize()
@@ -49,23 +60,21 @@ class GameScene: SKScene {
         setUpCrocodile()
         setUpAudio()
         
-        gameCamera.moneyNode.position = CGPoint(x: 285,
-                                                y: 160)
-        entityManager = EntityManager(scene: self)
-        
         let commandCenter = CommandCenter(imageName: "command-center")
         if let spriteComponent = commandCenter.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = CGPoint(x: 400,
                                                     y: 300)
         }
         entityManager.add(commandCenter)
-        
+
         let barracks = Barracks(imageName: "barracks")
         if let spriteComponent = barracks.component(ofType: SpriteComponent.self) {
             spriteComponent.node.position = CGPoint(x: 400,
                                                     y: 150)
         }
         entityManager.add(barracks)
+        
+        gameCamera.show()
     }
     
     func toggleDebug() {
@@ -80,8 +89,6 @@ class GameScene: SKScene {
     
     private func setUpScenery() {
         self.anchorPoint = CGPoint.zero
-        
-
         //    background.zPosition = Layer.background
         //    background.size = CGSize(width: size.width, height: size.height)
         addChild(background)

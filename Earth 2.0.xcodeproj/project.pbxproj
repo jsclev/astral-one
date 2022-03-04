@@ -21,6 +21,7 @@
 		525D6BF627D14FC3008AA740 /* RadarTower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BF527D14FC3008AA740 /* RadarTower.swift */; };
 		525D6BF927D15228008AA740 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BF827D15228008AA740 /* SpriteComponent.swift */; };
 		525D6BFB27D153AF008AA740 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BFA27D153AF008AA740 /* EntityManager.swift */; };
+		525D6BFD27D17A09008AA740 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BFC27D17A09008AA740 /* Energy.swift */; };
 		525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 525DC47D27CF41EF003DC3A2 /* Background4.m4a */; };
 		525DC48127CFF287003DC3A2 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DC48027CFF287003DC3A2 /* Game.swift */; };
 		525DC48327CFF852003DC3A2 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DC48227CFF852003DC3A2 /* Player.swift */; };
@@ -64,6 +65,7 @@
 		525D6BF527D14FC3008AA740 /* RadarTower.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = RadarTower.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525D6BF827D15228008AA740 /* SpriteComponent.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525D6BFA27D153AF008AA740 /* EntityManager.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6BFC27D17A09008AA740 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
 		525DC47D27CF41EF003DC3A2 /* Background4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Background4.m4a; sourceTree = "<group>"; };
 		525DC48027CFF287003DC3A2 /* Game.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525DC48227CFF852003DC3A2 /* Player.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -108,6 +110,7 @@
 		525D6BDF27D123B4008AA740 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				525D6BFC27D17A09008AA740 /* Energy.swift */,
 				525DC48027CFF287003DC3A2 /* Game.swift */,
 				525DC48227CFF852003DC3A2 /* Player.swift */,
 				525D6BE427D12519008AA740 /* Buildings */,
@@ -368,6 +371,7 @@
 				525D6BEC27D12C7D008AA740 /* ConcreteStorage.swift in Sources */,
 				52D1218227CC6F110047C2CA /* AstralOneApp.swift in Sources */,
 				52D1218527CC7A910047C2CA /* GameView.swift in Sources */,
+				525D6BFD27D17A09008AA740 /* Energy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

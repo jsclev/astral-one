@@ -5,10 +5,21 @@ class GameCamera: SKCameraNode {
     var money: Int = 0
 
     let moneyNode = SKLabelNode(fontNamed: "Arial Bold")
+
+    let entityManager: EntityManager
     
-    override init() {
+    init(_ entityManager: EntityManager) {
+        self.entityManager = entityManager
         super.init()
         
+
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func show() {
         moneyNode.text = "$50"
         moneyNode.zPosition = Layer.foreground
         moneyNode.fontSize = 28
@@ -16,14 +27,13 @@ class GameCamera: SKCameraNode {
         
         addChild(moneyNode)
         
-        
-        moneyNode.position = CGPoint(x: (frame.width) - 100,
-                                     y: (frame.height) - 50)
-        print("camera width is \(frame.width)")
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        let texture0 = SKTexture(imageNamed: "energy")
+        let energy = SKSpriteNode(imageNamed: "energy")
+        energy.size = CGSize(width: 50.0, height: 50.0)
+        energy.zPosition = Layer.foreground
+        energy.position = CGPoint(x: -300,
+                                  y: 160)
+        addChild(energy)
     }
     
     func setMoney(money: Int) {
