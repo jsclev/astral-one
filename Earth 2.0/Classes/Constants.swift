@@ -7,10 +7,7 @@ enum ImageName {
     static let vineTexture = "VineTexture"
     static let vineHolder = "VineHolder"
     static let crocMouthClosed = "CrocMouthClosed"
-    static let crocMouthOpen = "CrocMouthOpen"
-    static let crocMask = "CrocMask"
-    static let prize = "Pineapple"
-    static let prizeMask = "PineappleMask"
+    static let energy = "energy"
 }
 
 enum SoundFile {

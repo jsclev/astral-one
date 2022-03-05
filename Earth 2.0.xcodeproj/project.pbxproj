@@ -22,6 +22,8 @@
 		525D6BF927D15228008AA740 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BF827D15228008AA740 /* SpriteComponent.swift */; };
 		525D6BFB27D153AF008AA740 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BFA27D153AF008AA740 /* EntityManager.swift */; };
 		525D6BFD27D17A09008AA740 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BFC27D17A09008AA740 /* Energy.swift */; };
+		525D6C0127D2A778008AA740 /* DamageableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6C0027D2A778008AA740 /* DamageableComponent.swift */; };
+		525D6C0327D3E51A008AA740 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6C0227D3E51A008AA740 /* Builder.swift */; };
 		525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 525DC47D27CF41EF003DC3A2 /* Background4.m4a */; };
 		525DC48127CFF287003DC3A2 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DC48027CFF287003DC3A2 /* Game.swift */; };
 		525DC48327CFF852003DC3A2 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DC48227CFF852003DC3A2 /* Player.swift */; };
@@ -66,6 +68,8 @@
 		525D6BF827D15228008AA740 /* SpriteComponent.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525D6BFA27D153AF008AA740 /* EntityManager.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525D6BFC27D17A09008AA740 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
+		525D6C0027D2A778008AA740 /* DamageableComponent.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = DamageableComponent.swift; sourceTree = "<group>"; tabWidth = 4; };
+		525D6C0227D3E51A008AA740 /* Builder.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525DC47D27CF41EF003DC3A2 /* Background4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Background4.m4a; sourceTree = "<group>"; };
 		525DC48027CFF287003DC3A2 /* Game.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525DC48227CFF852003DC3A2 /* Player.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -115,6 +119,7 @@
 				525DC48227CFF852003DC3A2 /* Player.swift */,
 				525D6BE427D12519008AA740 /* Buildings */,
 				525D6BFA27D153AF008AA740 /* EntityManager.swift */,
+				525D6C0227D3E51A008AA740 /* Builder.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				525D6BF827D15228008AA740 /* SpriteComponent.swift */,
+				525D6C0027D2A778008AA740 /* DamageableComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -369,6 +375,8 @@
 				525D6BF627D14FC3008AA740 /* RadarTower.swift in Sources */,
 				AFEF961C231A026E006025E5 /* Constants.swift in Sources */,
 				525D6BEC27D12C7D008AA740 /* ConcreteStorage.swift in Sources */,
+				525D6C0327D3E51A008AA740 /* Builder.swift in Sources */,
+				525D6C0127D2A778008AA740 /* DamageableComponent.swift in Sources */,
 				52D1218227CC6F110047C2CA /* AstralOneApp.swift in Sources */,
 				52D1218527CC7A910047C2CA /* GameView.swift in Sources */,
 				525D6BFD27D17A09008AA740 /* Energy.swift in Sources */,
