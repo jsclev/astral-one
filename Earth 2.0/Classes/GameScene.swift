@@ -20,6 +20,7 @@ class GameScene: SKScene {
     var debug = true
     var gameCamera: GameCamera!
     var entityManager: EntityManager!
+    let builder = Builder()
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
@@ -40,6 +41,18 @@ class GameScene: SKScene {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) is not supported.")
+    }
+
+    
+    @objc func tap(sender: UITapGestureRecognizer){
+//        if sender.state == .ended {
+//
+//            var touchLocation: CGPoint = sender.location(in: sender.view)
+//            touchLocation = self.convertPoint(fromView: touchLocation)
+//            print(touchLocation)
+//
+//            builder.moveToPosition(pos: touchLocation, speed: 1.0)
+//        }
     }
     
     override func didMove(to view: SKView) {
@@ -72,11 +85,13 @@ class GameScene: SKScene {
         
         gameCamera.show()
         
-        let builder = Builder()
         builder.position = CGPoint(x: 500, y: 400)
         addChild(builder)
         
-        builder.walk()
+//        builder.walk()
+        
+//        let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
+//        view.addGestureRecognizer(recognizer)
     }
     
     func toggleDebug() {
@@ -142,35 +157,58 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        didCutVine = false
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for t in touches {
+//            print("touchesBegan location: \(t.location(in: self))")
+//            self.touchDown(atPoint: t.location(in: self))
+//        }
+        var location: CGPoint!
+        
         for touch in touches {
-            let startPoint = touch.location(in: self)
-            let endPoint = touch.previousLocation(in: self)
-            
-            // check if vine cut
-            scene?.physicsWorld.enumerateBodies(
-                alongRayStart: startPoint,
-                end: endPoint,
-                using: { body, _, _, _ in
-                    //self.checkIfVineCut(withBody: body)
-                })
-            
-            // produce some nice particles
-            showMoveParticles(touchPosition: startPoint)
+            location = touch.location(in: self)
+            let touchedNode = self.nodes(at: location)
+            for node in touchedNode {
+                if node.name == "builder" {
+                    builder.toggleSelected()
+                    print("Builder is selected: \(builder.isSelected())")
+                }
+            }
+        }
+        
+        if let touchLocation = location {
+            if builder.isSelected() {
+                print("Moving to position")
+                builder.moveToPosition(pos: touchLocation, speed: 1.0)
+            }
+
         }
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        particles?.removeFromParent()
-        particles = nil
-    }
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for touch in touches {
+//            let startPoint = touch.location(in: self)
+//            let endPoint = touch.previousLocation(in: self)
+//            print("touchesMoved startPoint: \(startPoint)")
+//            print("touchesMoved endPoint: \(endPoint)")
+//
+//            // check if vine cut
+////            scene?.physicsWorld.enumerateBodies(
+////                alongRayStart: startPoint,
+////                end: endPoint,
+////                using: { body, _, _, _ in
+////                    //self.checkIfVineCut(withBody: body)
+////                })
+////
+////            // produce some nice particles
+////            showMoveParticles(touchPosition: startPoint)
+//        }
+//    }
     
-    private func showMoveParticles(touchPosition: CGPoint) {
-
-    }
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for t in touches {
+//            print("touchesEnded location: \(t.location(in: self))")
+//            self.touchDown(atPoint: t.location(in: self))
+//        }
+//    }
     
     private func switchToNewGame(withTransition transition: SKTransition) {
         

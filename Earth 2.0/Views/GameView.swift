@@ -51,6 +51,7 @@ struct GameView: View {
                                                         .showsNodeCount])
                     .ignoresSafeArea()
                     .gesture(simpleDrag)
+                    
             }
             else {
                 SpriteView(scene: scene)

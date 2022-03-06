@@ -73,17 +73,17 @@ class MapViewModel {
         }
         
         log()
-        print("Translation width: \(translation.width)")
-        print("Translation height: \(translation.height)")
+//        print("Translation width: \(translation.width)")
+//        print("Translation height: \(translation.height)")
 
     }
     
     func log() {
-        print("Total map size is [\(mapSize.width), \(mapSize.height)]")
-        print("Camera size is [\(cameraSize.width), \(cameraSize.height)]")
-        print("Camera position is [\(cameraPosition.x), \(cameraPosition.y)]")
-        print("Start camera position is [\(startCameraPosition.x), \(startCameraPosition.y)]")
-        print("----------------------------------------------------------------")
+//        print("Total map size is [\(mapSize.width), \(mapSize.height)]")
+//        print("Camera size is [\(cameraSize.width), \(cameraSize.height)]")
+//        print("Camera position is [\(cameraPosition.x), \(cameraPosition.y)]")
+//        print("Start camera position is [\(startCameraPosition.x), \(startCameraPosition.y)]")
+//        print("----------------------------------------------------------------")
     }
     
     func resetCamera() {

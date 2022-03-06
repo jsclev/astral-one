@@ -66,6 +66,8 @@ extension SKSpriteNode {
                         count: Int,
                         resize: Bool,
                         restore: Bool) {
+        self.removeAllActions()
+        
         if (action(forKey: name) == nil) {
             let animation = SKAction.animate(with: textures, timePerFrame: speed,
                                              resize: resize, restore: restore)
