@@ -61,8 +61,9 @@ class GameCamera: SKCameraNode {
         concreteIcon.position = CGPoint(x: -310, y: 120)
         metalIcon.position = CGPoint(x: -310, y: 75)
         mineralIcon.position = CGPoint(x: -310, y: 30)
-
+        
         super.init()
+        name = "camera"
     }
     
     required init?(coder aDecoder: NSCoder) {

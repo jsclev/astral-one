@@ -24,10 +24,12 @@ struct GameView: View {
         DragGesture()
             .onChanged { value in
                 var newLocation = startLocation ?? location
-                newLocation.x += value.translation.width
-                newLocation.y += value.translation.height
+                let finalTranslationX = value.translation.width * scene.gameCamera.xScale
+                let finalTranslationY = value.translation.height * scene.gameCamera.yScale
+                newLocation.x += finalTranslationX
+                newLocation.y += finalTranslationY
                 self.location = newLocation
-                mapViewModel.moveCamera(translation: value.translation)
+                mapViewModel.moveCamera(translation: CGSize(width: finalTranslationX, height: finalTranslationY))
                 scene.gameCamera.position = mapViewModel.cameraPosition
             }.updating($startLocation) { (value, startLocation, transaction) in
                 startLocation = startLocation ?? location

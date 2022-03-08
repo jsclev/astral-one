@@ -19,40 +19,40 @@ class GameScene: SKScene {
     var mapName = "three"
     var debug = true
     var gameCamera: GameCamera!
+    var cameraScale = 1.0
     var entityManager: EntityManager!
+    var initialCameraScale = 1.0
     let builder = Builder()
+    
+    var pinchGestureRecognizer: UIPinchGestureRecognizer!
+    
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
         
         background = SKSpriteNode(texture: mapViewModel.texture3)
+        background.name = "background"
         background.anchorPoint = CGPoint(x: 0, y: 0)
         background.position = CGPoint(x: 0, y: 0)
         
-        
-        
         super.init(size: UIScreen.main.bounds.size)
         self.scaleMode = .fill
-        
-        
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) is not supported.")
     }
-
+    
     
     @objc func tap(sender: UITapGestureRecognizer){
-//        if sender.state == .ended {
-//
-//            var touchLocation: CGPoint = sender.location(in: sender.view)
-//            touchLocation = self.convertPoint(fromView: touchLocation)
-//            print(touchLocation)
-//
-//            builder.moveToPosition(pos: touchLocation, speed: 1.0)
-//        }
+        //        if sender.state == .ended {
+        //
+        //            var touchLocation: CGPoint = sender.location(in: sender.view)
+        //            touchLocation = self.convertPoint(fromView: touchLocation)
+        //            print(touchLocation)
+        //
+        //            builder.moveToPosition(pos: touchLocation, speed: 1.0)
+        //        }
     }
     
     override func didMove(to view: SKView) {
@@ -63,11 +63,11 @@ class GameScene: SKScene {
         addChild(gameCamera)
         
         gameCamera.position = mapViewModel.cameraPosition
-
+        
         
         setUpPhysics()
         setUpScenery()
-//        setUpAudio()
+        //        setUpAudio()
         
         let commandCenter = CommandCenter(imageName: "command-center")
         if let spriteComponent = commandCenter.component(ofType: SpriteComponent.self) {
@@ -88,10 +88,49 @@ class GameScene: SKScene {
         builder.position = CGPoint(x: 500, y: 400)
         addChild(builder)
         
-//        builder.walk()
+        let zoomInAction = SKAction.scale(to: 3.0, duration: 2.0)
+        gameCamera.run(zoomInAction, completion: {
+            self.cameraScale = 3.0
+        })
         
-//        let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
-//        view.addGestureRecognizer(recognizer)
+        //        builder.walk()
+        
+        //        let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
+        //        view.addGestureRecognizer(recognizer)
+        
+        pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
+        view.addGestureRecognizer(pinchGestureRecognizer)
+    }
+    
+    @objc func handleZoom(sender: UIPinchGestureRecognizer) {
+        var anchorPoint: CGPoint = sender.location(in: sender.view)
+        anchorPoint = convertPoint(fromView: anchorPoint)
+        
+        if (sender.state == .began) {
+            print("zoom started")
+            self.initialCameraScale = gameCamera.xScale
+        }
+        else if (sender.state == .changed) {
+//            print("zooming...scale is \(sender.scale)")
+//            var anchorPointInMySkNode: CGPoint = convertPoint(fromView: anchorPoint)
+
+            gameCamera.setScale(initialCameraScale + (1/sender.scale - 1)*initialCameraScale)
+//            gameCamera.position.x -
+            print(anchorPoint)
+//            sender.scale = 1.0
+            //
+            //            [_mySkNode setScale:(_mySkNode.xScale * recognizer.scale)];
+            //
+            //            CGPoint mySkNodeAnchorPointInScene = [self convertPoint:anchorPointInMySkNode fromNode:_mySkNode];
+            //            CGPoint translationOfAnchorInScene = CGPointSubtract(anchorPoint, mySkNodeAnchorPointInScene);
+            //
+            //            _mySkNode.position = CGPointAdd(_mySkNode.position, translationOfAnchorInScene);
+            //
+            //            recognizer.scale = 1.0;
+        }
+        else if (sender.state == .ended) {
+//            print("zoom ended, gameCamera scale is \(self.sca.scale)")
+        }
     }
     
     func toggleDebug() {
@@ -116,9 +155,6 @@ class GameScene: SKScene {
         water.zPosition = Layer.foreground
         water.size = CGSize(width: size.width, height: size.height * 0.2139)
         //    addChild(water)
-        
-        
-        
     }
     
     func toggleTexture() {
@@ -157,58 +193,63 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches {
-//            print("touchesBegan location: \(t.location(in: self))")
-//            self.touchDown(atPoint: t.location(in: self))
-//        }
         var location: CGPoint!
+        var shouldMoveBuilder = true
         
         for touch in touches {
             location = touch.location(in: self)
             let touchedNode = self.nodes(at: location)
+            
             for node in touchedNode {
                 if node.name == "builder" {
+                    if !builder.isSelected() {
+                        shouldMoveBuilder = false
+                    }
                     builder.toggleSelected()
                     print("Builder is selected: \(builder.isSelected())")
                 }
+                else {
+                    if let nodeName = node.name {
+                        print(nodeName)
+                    }
+                    else {
+                        print("Node with no name")
+                    }
+                    
+                    if shouldMoveBuilder && builder.isSelected() {
+                        builder.moveToPosition(pos: location, speed: 1.0)
+                    }
+                }
             }
-        }
-        
-        if let touchLocation = location {
-            if builder.isSelected() {
-                print("Moving to position")
-                builder.moveToPosition(pos: touchLocation, speed: 1.0)
-            }
-
         }
     }
     
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch in touches {
-//            let startPoint = touch.location(in: self)
-//            let endPoint = touch.previousLocation(in: self)
-//            print("touchesMoved startPoint: \(startPoint)")
-//            print("touchesMoved endPoint: \(endPoint)")
-//
-//            // check if vine cut
-////            scene?.physicsWorld.enumerateBodies(
-////                alongRayStart: startPoint,
-////                end: endPoint,
-////                using: { body, _, _, _ in
-////                    //self.checkIfVineCut(withBody: body)
-////                })
-////
-////            // produce some nice particles
-////            showMoveParticles(touchPosition: startPoint)
-//        }
-//    }
+    //    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //        for touch in touches {
+    //            let startPoint = touch.location(in: self)
+    //            let endPoint = touch.previousLocation(in: self)
+    //            print("touchesMoved startPoint: \(startPoint)")
+    //            print("touchesMoved endPoint: \(endPoint)")
+    //
+    //            // check if vine cut
+    ////            scene?.physicsWorld.enumerateBodies(
+    ////                alongRayStart: startPoint,
+    ////                end: endPoint,
+    ////                using: { body, _, _, _ in
+    ////                    //self.checkIfVineCut(withBody: body)
+    ////                })
+    ////
+    ////            // produce some nice particles
+    ////            showMoveParticles(touchPosition: startPoint)
+    //        }
+    //    }
     
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches {
-//            print("touchesEnded location: \(t.location(in: self))")
-//            self.touchDown(atPoint: t.location(in: self))
-//        }
-//    }
+    //    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //        for t in touches {
+    //            print("touchesEnded location: \(t.location(in: self))")
+    //            self.touchDown(atPoint: t.location(in: self))
+    //        }
+    //    }
     
     private func switchToNewGame(withTransition transition: SKTransition) {
         
@@ -244,6 +285,25 @@ class GameScene: SKScene {
             SoundFile.nomNom,
             waitForCompletion: false)
     }
+    //
+    //    func handlePinch(sender: UIPinchGestureRecognizer) {
+    //        if sender.numberOfTouches == 2 {
+    //            let locationInView = sender.location(in: self.view)
+    //            let location = self.convertPoint(fromView: locationInView)
+    //            if sender.state == .changed {
+    //                let deltaScale = (sender.scale - 1.0)*2
+    //                let convertedScale = sender.scale - deltaScale
+    //                let newScale = gameCamera.xScale*convertedScale
+    //                gameCamera.setScale(newScale)
+    //
+    //                let locationAfterScale = self.convertPoint(fromView: locationInView)
+    //                let locationDelta = pointSubtract(location, pointB: locationAfterScale)
+    //                let newPoint = pointAdd(gameCamera.position, pointB: locationDelta)
+    //                gameCamera.position = newPoint
+    //                sender.scale = 1.0
+    //            }
+    //        }
+    //    }
 }
 
 extension GameScene: SKPhysicsContactDelegate {

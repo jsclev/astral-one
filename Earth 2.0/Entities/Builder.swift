@@ -65,8 +65,11 @@ class Builder: SKSpriteNode {
     }
     
     func moveToPosition(pos: CGPoint, speed: TimeInterval) {
-        let moveAction = SKAction.move(to: pos, duration: speed)
-        run(moveAction)
+        let moveAction = SKAction.move(to: pos,
+                                       duration: speed)
+        run(moveAction, completion: {
+            self.removeAllActions()
+        })
     }
     
     required init?(coder aDecoder: NSCoder) {
