@@ -56,6 +56,24 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        let tilesetParser = TiledTilesetParser()
+        let tileset = tilesetParser.parse()
+        
+        let mapParser = TiledMapParser(tileset: tileset)
+        let map = mapParser.parse()
+        
+        print("Tileset: \(tileset.name)")
+        for (rowIndex, row) in map.tiles.enumerated() {
+            for (colIndex, tile) in row.enumerated() {
+                if tile.id != "0" {
+                    print("Tile [\(rowIndex), \(colIndex)]: \(tile.id), walkable: \(tile.walkable)")
+                }
+            }
+        }
+//        for tile in tileset.tiles {
+//            print("Tile id: \(tile.id), walkable: \(tile.walkable)")
+//        }
+        
         entityManager = EntityManager(scene: self)
         gameCamera = GameCamera(entityManager)
         
@@ -114,9 +132,13 @@ class GameScene: SKScene {
 //            print("zooming...scale is \(sender.scale)")
 //            var anchorPointInMySkNode: CGPoint = convertPoint(fromView: anchorPoint)
 
-            gameCamera.setScale(initialCameraScale + (1/sender.scale - 1)*initialCameraScale)
+            var scale = initialCameraScale + (1/sender.scale - 1) * initialCameraScale
+            if scale < 0.5 {
+                scale = 0.5
+            }
+            gameCamera.setScale(scale)
 //            gameCamera.position.x -
-            print(anchorPoint)
+            print(gameCamera.xScale)
 //            sender.scale = 1.0
             //
             //            [_mySkNode setScale:(_mySkNode.xScale * recognizer.scale)];

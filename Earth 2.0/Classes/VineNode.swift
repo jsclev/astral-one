@@ -51,7 +51,6 @@ class VineNode: SKNode {
     }
     
     func addToScene(_ scene: SKScene) {
-        return
         // add vine to scene
         zPosition = Layer.vine
         //    scene.addChild(self)
