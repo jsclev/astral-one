@@ -35,6 +35,7 @@ class GameScene: SKScene {
         background.name = "background"
         background.anchorPoint = CGPoint(x: 0, y: 0)
         background.position = CGPoint(x: 0, y: 0)
+        background.zPosition = Layer.base
         
         super.init(size: UIScreen.main.bounds.size)
         self.scaleMode = .fill
@@ -57,36 +58,7 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        let tilesetParser = TiledTilesetParser()
-        let tileset = tilesetParser.parse()
         
-        let mapParser = TiledMapParser(tileset: tileset)
-        let map = mapParser.parse()
-        map.bake()
-        
-//        print("Tileset: \(tileset.name)")
-        for (rowIndex, row) in map.tiles.enumerated() {
-            for (colIndex, tile) in row.enumerated() {
-                if !tile.walkable {
-                    print("Tile [\(rowIndex), \(colIndex)]: \(tile.id), walkable: \(tile.walkable)")
-                }
-            }
-        }
-        
-        let fromPosition = SIMD2<Int32>(0, 0)
-        let fromNode = map.graph.node(atGridPosition: fromPosition)
-        
-        let toPosition = SIMD2<Int32>(4, 3)
-        let toNode = map.graph.node(atGridPosition: toPosition)
-        
-        if let startNode = fromNode, let endNode = toNode {
-            let path = map.graph.findPath(from: startNode, to: endNode)
-            
-            for node in path {
-                let theNode: GKGridGraphNode = node as! GKGridGraphNode
-                print(theNode.gridPosition)
-            }
-        }
         
         entityManager = EntityManager(scene: self)
         gameCamera = GameCamera(entityManager)
@@ -120,18 +92,63 @@ class GameScene: SKScene {
         builder.position = CGPoint(x: 500, y: 400)
         addChild(builder)
         
-        let zoomInAction = SKAction.scale(to: 3.0, duration: 2.0)
-        gameCamera.run(zoomInAction, completion: {
-            self.cameraScale = 3.0
-        })
-        
-        //        builder.walk()
-        
-        //        let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
-        //        view.addGestureRecognizer(recognizer)
+//        let zoomInAction = SKAction.scale(to: 3.0, duration: 2.0)
+//        gameCamera.run(zoomInAction, completion: {
+//            self.cameraScale = 3.0
+//        })
         
         pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
         view.addGestureRecognizer(pinchGestureRecognizer)
+        
+        let tilesetParser = TiledTilesetParser()
+        let tileset = tilesetParser.parse()
+        
+        let mapParser = TiledMapParser(tileset: tileset)
+        let map = mapParser.parse()
+        map.bake()
+        
+        //        print("Tileset: \(tileset.name)")
+        for (rowIndex, row) in map.tiles.enumerated() {
+            for (colIndex, tile) in row.enumerated() {
+                if let imageName = terrainTiles[tile.id] {
+                    //                    mySquare.position = convertPoint(fromView: CGPoint(x: view.frame.minX, y: view.frame.minY))
+                    //                    addChild(mySquare)
+                    
+                    let spNode = SKSpriteNode(imageNamed: imageName)
+                    print("[\(spNode.calculateAccumulatedFrame().width), \(spNode.calculateAccumulatedFrame().height)]")
+
+                    spNode.position = CGPoint(x: spNode.calculateAccumulatedFrame().width * CGFloat(colIndex),
+                                              y: 1000.0 - spNode.calculateAccumulatedFrame().width * CGFloat(rowIndex))
+                    spNode.name = "terrain_" + tile.id
+                    spNode.anchorPoint = CGPoint(x: 0, y: 0)
+//                    spNode.position = CGPoint(x: 0, y: 0)
+                    spNode.zPosition = Layer.terrain
+                    addChild(spNode)
+                    
+                    print("\(spNode.position)]")
+
+
+                    //                if !tile.walkable {
+                    //                    print("position: [\(rowIndex), \(colIndex)], id: \(tile.id), walkable: \(tile.walkable)")
+                    //                }
+                }
+            }
+        }
+        
+        let fromPosition = SIMD2<Int32>(0, 0)
+        let fromNode = map.graph.node(atGridPosition: fromPosition)
+        
+        let toPosition = SIMD2<Int32>(4, 3)
+        let toNode = map.graph.node(atGridPosition: toPosition)
+        
+        if let startNode = fromNode, let endNode = toNode {
+            let path = map.graph.findPath(from: startNode, to: endNode)
+            
+            //            for node in path {
+            //                let theNode: GKGridGraphNode = node as! GKGridGraphNode
+            //                print(theNode.gridPosition)
+            //            }
+        }
     }
     
     @objc func handleZoom(sender: UIPinchGestureRecognizer) {
@@ -242,7 +259,7 @@ class GameScene: SKScene {
                         shouldMoveBuilder = false
                     }
                     builder.toggleSelected()
-                    print("Builder is selected: \(builder.isSelected())")
+//                    print("Builder is selected: \(builder.isSelected())")
                 }
                 else {
                     if let nodeName = node.name {

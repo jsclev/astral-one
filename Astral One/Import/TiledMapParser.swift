@@ -62,8 +62,8 @@ class TiledMapParser: NSObject, XMLParserDelegate {
             // SAX stream inside the data element that is just whitespace, it
             // is not the actual tile id matrix.
             if trimmedString.count > 0 {
-                print(trimmedString)
-                print("**************************************************************************")
+//                print(trimmedString)
+//                print("**************************************************************************")
                 self.map = Map(width: mapWidth, height: mapHeight)
                 var mapRowIndex = 0
                 let tileIdTable = string.components(separatedBy: "\n")
@@ -81,9 +81,9 @@ class TiledMapParser: NSObject, XMLParserDelegate {
                             if let tile = tileset.getTile(id: String(intTileId)) {
                                 map.tiles[mapRowIndex][colIndex] = tile
                                 
-                                if tileId != "0" && tile.walkable {
-                                    print("Non walkable: " + map.tiles[mapRowIndex][colIndex].id)
-                                }
+//                                if tileId != "0" && tile.walkable {
+//                                    print("Non walkable: " + map.tiles[mapRowIndex][colIndex].id)
+//                                }
                             }
                         }
                         
