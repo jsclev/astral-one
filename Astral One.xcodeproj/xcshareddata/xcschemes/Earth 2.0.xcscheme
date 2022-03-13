@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
                BuildableName = "Earth 2.0.app"
-               BlueprintName = "Earth 2.0"
-               ReferencedContainer = "container:Earth 2.0.xcodeproj">
+               BlueprintName = "Astral One"
+               ReferencedContainer = "container:Astral One.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,8 +32,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
             BuildableName = "Earth 2.0.app"
-            BlueprintName = "Earth 2.0"
-            ReferencedContainer = "container:Earth 2.0.xcodeproj">
+            BlueprintName = "Astral One"
+            ReferencedContainer = "container:Astral One.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -55,8 +55,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
             BuildableName = "Earth 2.0.app"
-            BlueprintName = "Earth 2.0"
-            ReferencedContainer = "container:Earth 2.0.xcodeproj">
+            BlueprintName = "Astral One"
+            ReferencedContainer = "container:Astral One.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,8 +72,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
             BuildableName = "Earth 2.0.app"
-            BlueprintName = "Earth 2.0"
-            ReferencedContainer = "container:Earth 2.0.xcodeproj">
+            BlueprintName = "Astral One"
+            ReferencedContainer = "container:Astral One.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

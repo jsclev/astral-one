@@ -93,8 +93,8 @@
 		52F9FD1D27DC494300B2B7E2 /* Tileset.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Tileset.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52F9FD1F27DC4E0800B2B7E2 /* TiledMapParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiledMapParser.swift; sourceTree = "<group>"; };
 		52F9FD2127DC734900B2B7E2 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		52F9FD2927DD6D7E00B2B7E2 /* map.tmx */ = {isa = PBXFileReference; lastKnownFileType = file; name = map.tmx; path = "Earth 2.0/Resources/map.tmx"; sourceTree = SOURCE_ROOT; };
-		52F9FD2B27DD6DAE00B2B7E2 /* Astral One.tsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Astral One.tsx"; path = "Earth 2.0/Resources/Astral One.tsx"; sourceTree = SOURCE_ROOT; };
+		52F9FD2927DD6D7E00B2B7E2 /* map.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = map.tmx; path = "Earth 2.0/Resources/map.tmx"; sourceTree = SOURCE_ROOT; };
+		52F9FD2B27DD6DAE00B2B7E2 /* Astral One.tsx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "Astral One.tsx"; path = "Earth 2.0/Resources/Astral One.tsx"; sourceTree = SOURCE_ROOT; };
 		5394F02421864DF4006E754C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFEF960D231A01B4006025E5 /* Particle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Particle.sks; sourceTree = "<group>"; };
 		AFEF960F231A01C2006025E5 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		AFEF961B231A026E006025E5 /* Constants.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AFEF961F231A043E006025E5 /* GameScene.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AFEF9621231A04BB006025E5 /* VineNode.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = VineNode.swift; sourceTree = "<group>"; tabWidth = 4; };
-		D2A5F2001F4A9144005CD714 /* Earth 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Earth 2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2A5F2001F4A9144005CD714 /* Astral One.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Astral One.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A5F2081F4A9144005CD714 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2A5F20A1F4A9144005CD714 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2A5F20F1F4A9144005CD714 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -266,7 +266,7 @@
 		D2A5F1F71F4A9143005CD714 = {
 			isa = PBXGroup;
 			children = (
-				D2A5F2021F4A9144005CD714 /* Earth 2.0 */,
+				D2A5F2021F4A9144005CD714 /* Astral One */,
 				D2A5F2011F4A9144005CD714 /* Products */,
 			);
 			indentWidth = 2;
@@ -276,12 +276,12 @@
 		D2A5F2011F4A9144005CD714 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D2A5F2001F4A9144005CD714 /* Earth 2.0.app */,
+				D2A5F2001F4A9144005CD714 /* Astral One.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D2A5F2021F4A9144005CD714 /* Earth 2.0 */ = {
+		D2A5F2021F4A9144005CD714 /* Astral One */ = {
 			isa = PBXGroup;
 			children = (
 				52F9FD1427DC161800B2B7E2 /* Import */,
@@ -296,15 +296,15 @@
 				D2A5F20A1F4A9144005CD714 /* Assets.xcassets */,
 				52D1218127CC6F110047C2CA /* AstralOneApp.swift */,
 			);
-			path = "Earth 2.0";
+			path = "Astral One";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D2A5F1FF1F4A9144005CD714 /* Earth 2.0 */ = {
+		D2A5F1FF1F4A9144005CD714 /* Astral One */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D2A5F2121F4A9144005CD714 /* Build configuration list for PBXNativeTarget "Earth 2.0" */;
+			buildConfigurationList = D2A5F2121F4A9144005CD714 /* Build configuration list for PBXNativeTarget "Astral One" */;
 			buildPhases = (
 				D2A5F1FC1F4A9144005CD714 /* Sources */,
 				D2A5F1FD1F4A9144005CD714 /* Frameworks */,
@@ -314,9 +314,9 @@
 			);
 			dependencies = (
 			);
-			name = "Earth 2.0";
+			name = "Astral One";
 			productName = MyRWTutorial;
-			productReference = D2A5F2001F4A9144005CD714 /* Earth 2.0.app */;
+			productReference = D2A5F2001F4A9144005CD714 /* Astral One.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -335,7 +335,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D2A5F1FB1F4A9143005CD714 /* Build configuration list for PBXProject "Earth 2.0" */;
+			buildConfigurationList = D2A5F1FB1F4A9143005CD714 /* Build configuration list for PBXProject "Astral One" */;
 			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -348,7 +348,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D2A5F1FF1F4A9144005CD714 /* Earth 2.0 */,
+				D2A5F1FF1F4A9144005CD714 /* Astral One */,
 			);
 		};
 /* End PBXProject section */
@@ -569,7 +569,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.zippyzen.Earth-2.0";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zippyzen.astral-one";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -589,7 +589,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.zippyzen.Earth-2.0";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zippyzen.astral-one";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -599,7 +599,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D2A5F1FB1F4A9143005CD714 /* Build configuration list for PBXProject "Earth 2.0" */ = {
+		D2A5F1FB1F4A9143005CD714 /* Build configuration list for PBXProject "Astral One" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D2A5F2101F4A9144005CD714 /* Debug */,
@@ -608,7 +608,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D2A5F2121F4A9144005CD714 /* Build configuration list for PBXNativeTarget "Earth 2.0" */ = {
+		D2A5F2121F4A9144005CD714 /* Build configuration list for PBXNativeTarget "Astral One" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D2A5F2131F4A9144005CD714 /* Debug */,
