@@ -12,7 +12,7 @@ class TiledTilesetParser: NSObject, XMLParserDelegate {
         tileId = ""
         walkable = true
         
-        if let path = Bundle.main.url(forResource: "tileset", withExtension: ".tsx") {
+        if let path = Bundle.main.url(forResource: "Astral One", withExtension: ".tsx") {
             if let parser = XMLParser(contentsOf: path) {
                 parser.delegate = self
                 parser.parse()

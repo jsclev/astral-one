@@ -1,5 +1,6 @@
 import SpriteKit
 import AVFoundation
+import GameplayKit
 
 class GameScene: SKScene {
     private var particles: SKEmitterNode?
@@ -61,18 +62,31 @@ class GameScene: SKScene {
         
         let mapParser = TiledMapParser(tileset: tileset)
         let map = mapParser.parse()
+        map.bake()
         
-        print("Tileset: \(tileset.name)")
+//        print("Tileset: \(tileset.name)")
         for (rowIndex, row) in map.tiles.enumerated() {
             for (colIndex, tile) in row.enumerated() {
-                if tile.id != "0" {
+                if !tile.walkable {
                     print("Tile [\(rowIndex), \(colIndex)]: \(tile.id), walkable: \(tile.walkable)")
                 }
             }
         }
-//        for tile in tileset.tiles {
-//            print("Tile id: \(tile.id), walkable: \(tile.walkable)")
-//        }
+        
+        let fromPosition = SIMD2<Int32>(0, 0)
+        let fromNode = map.graph.node(atGridPosition: fromPosition)
+        
+        let toPosition = SIMD2<Int32>(4, 3)
+        let toNode = map.graph.node(atGridPosition: toPosition)
+        
+        if let startNode = fromNode, let endNode = toNode {
+            let path = map.graph.findPath(from: startNode, to: endNode)
+            
+            for node in path {
+                let theNode: GKGridGraphNode = node as! GKGridGraphNode
+                print(theNode.gridPosition)
+            }
+        }
         
         entityManager = EntityManager(scene: self)
         gameCamera = GameCamera(entityManager)
@@ -125,7 +139,7 @@ class GameScene: SKScene {
         anchorPoint = convertPoint(fromView: anchorPoint)
         
         if (sender.state == .began) {
-            print("zoom started")
+//            print("zoom started")
             self.initialCameraScale = gameCamera.xScale
         }
         else if (sender.state == .changed) {

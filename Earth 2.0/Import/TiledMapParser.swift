@@ -4,13 +4,15 @@ class TiledMapParser: NSObject, XMLParserDelegate {
     var currentEl = ""
     var tileset: Tileset
     var map: Map
-    var mapWidth: Int
-    var mapHeight: Int
+    var mapWidth: Int32
+    var mapHeight: Int32
+    var firstGId: Int
     
     init(tileset: Tileset) {
         self.tileset = tileset
         self.mapWidth = 0
         self.mapHeight = 0
+        self.firstGId = 1
         self.map = Map(width: self.mapWidth, height: self.mapHeight)
     }
     
@@ -28,13 +30,19 @@ class TiledMapParser: NSObject, XMLParserDelegate {
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        if elementName == "tileset" {
+            if let firstGIdAttr = attributeDict["firstgid"] {
+                firstGId = Int(firstGIdAttr) ?? 1
+            }
+        }
+        
         if elementName == "map" {
             if let widthAttr = attributeDict["width"] {
-                mapWidth = Int(widthAttr) ?? 0
+                mapWidth = Int32(widthAttr) ?? 0
             }
             
             if let heightAttr = attributeDict["height"] {
-                mapHeight = Int(heightAttr) ?? 0
+                mapHeight = Int32(heightAttr) ?? 0
             }
         }
         
@@ -48,9 +56,14 @@ class TiledMapParser: NSObject, XMLParserDelegate {
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         if currentEl == "data" {
             let trimmedString = string.trimmingCharacters(in: .whitespacesAndNewlines)
-            //            print(string)
             
+            // Make sure we are parsing the actual data CSV section, and not
+            // the section that is just whitespace.  There is one part of the
+            // SAX stream inside the data element that is just whitespace, it
+            // is not the actual tile id matrix.
             if trimmedString.count > 0 {
+                print(trimmedString)
+                print("**************************************************************************")
                 self.map = Map(width: mapWidth, height: mapHeight)
                 var mapRowIndex = 0
                 let tileIdTable = string.components(separatedBy: "\n")
@@ -59,15 +72,17 @@ class TiledMapParser: NSObject, XMLParserDelegate {
                     let trimmedRowData = rowData.trimmingCharacters(in: .whitespacesAndNewlines)
                     
                     if trimmedRowData.count > 0 {
-                        //                    print("Row index: \(rowIndex), data: \(rowData)")
                         let tileIds = trimmedRowData.components(separatedBy: ",")
                         
                         for (colIndex, tileId) in tileIds.enumerated() {
-                            if let tile = tileset.getTile(id: tileId) {
+                            var intTileId = Int(tileId) ?? 0
+                            intTileId -= firstGId
+                            
+                            if let tile = tileset.getTile(id: String(intTileId)) {
                                 map.tiles[mapRowIndex][colIndex] = tile
                                 
-                                if tileId != "0" {
-                                    print(map.tiles[mapRowIndex][colIndex].id)
+                                if tileId != "0" && tile.walkable {
+                                    print("Non walkable: " + map.tiles[mapRowIndex][colIndex].id)
                                 }
                             }
                         }

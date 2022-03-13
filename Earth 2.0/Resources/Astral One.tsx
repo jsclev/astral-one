@@ -26,39 +26,75 @@
   <image width="256" height="384" source="Terrain Tiles/woodlands00.png"/>
  </tile>
  <tile id="8">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/highlands03.png"/>
  </tile>
  <tile id="9">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/highlands02.png"/>
  </tile>
  <tile id="10">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/highlands01.png"/>
  </tile>
  <tile id="11">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/highlands00.png"/>
  </tile>
  <tile id="12">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/mountain03.png"/>
  </tile>
  <tile id="13">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/mountain02.png"/>
  </tile>
  <tile id="14">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/mountain01.png"/>
  </tile>
  <tile id="15">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/mountain00.png"/>
  </tile>
  <tile id="16">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/forestBroadleaf00.png"/>
  </tile>
  <tile id="17">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/forestBroadleaf01.png"/>
  </tile>
  <tile id="18">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/forestBroadleaf02.png"/>
  </tile>
  <tile id="19">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/forestBroadleaf03.png"/>
  </tile>
  <tile id="20">
@@ -134,15 +170,27 @@
   <image width="256" height="384" source="Terrain Tiles/desertDunes00.png"/>
  </tile>
  <tile id="44">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/ocean03.png"/>
  </tile>
  <tile id="45">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/ocean02.png"/>
  </tile>
  <tile id="46">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/ocean01.png"/>
  </tile>
  <tile id="47">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="256" height="384" source="Terrain Tiles/ocean00.png"/>
  </tile>
  <tile id="48">

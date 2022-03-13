@@ -110,6 +110,9 @@
   <image width="100" height="65" source="../../../../Downloads/roadTiles_v2/png/grass.png"/>
  </tile>
  <tile id="36">
+  <properties>
+   <property name="Walkable" type="bool" value="false"/>
+  </properties>
   <image width="100" height="80" source="../../../../Downloads/roadTiles_v2/png/hillCornerEast.png"/>
  </tile>
  <tile id="37">

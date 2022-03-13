@@ -37,11 +37,11 @@
 		52D1219227CE6A800047C2CA /* UnitMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1219127CE6A800047C2CA /* UnitMenuView.swift */; };
 		52F9FD1627DC16AF00B2B7E2 /* TiledTilesetParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9FD1527DC16AF00B2B7E2 /* TiledTilesetParser.swift */; };
 		52F9FD1827DC194100B2B7E2 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9FD1727DC194100B2B7E2 /* Tile.swift */; };
-		52F9FD1C27DC436800B2B7E2 /* tileset.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 52F9FD1B27DC436800B2B7E2 /* tileset.tsx */; };
 		52F9FD1E27DC494300B2B7E2 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9FD1D27DC494300B2B7E2 /* Tileset.swift */; };
 		52F9FD2027DC4E0800B2B7E2 /* TiledMapParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9FD1F27DC4E0800B2B7E2 /* TiledMapParser.swift */; };
 		52F9FD2227DC734900B2B7E2 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9FD2127DC734900B2B7E2 /* Map.swift */; };
-		52F9FD2427DC770200B2B7E2 /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52F9FD2327DC770200B2B7E2 /* map.tmx */; };
+		52F9FD2A27DD6D7E00B2B7E2 /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52F9FD2927DD6D7E00B2B7E2 /* map.tmx */; };
+		52F9FD2C27DD6DAE00B2B7E2 /* Astral One.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 52F9FD2B27DD6DAE00B2B7E2 /* Astral One.tsx */; };
 		5394F02521864DF5006E754C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5394F02321864DF4006E754C /* LaunchScreen.storyboard */; };
 		AFEF960E231A01B4006025E5 /* Particle.sks in Resources */ = {isa = PBXBuildFile; fileRef = AFEF960D231A01B4006025E5 /* Particle.sks */; };
 		AFEF9610231A01C2006025E5 /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = AFEF960F231A01C2006025E5 /* Particle.png */; };
@@ -90,11 +90,11 @@
 		52D1219127CE6A800047C2CA /* UnitMenuView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = UnitMenuView.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52F9FD1527DC16AF00B2B7E2 /* TiledTilesetParser.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = TiledTilesetParser.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52F9FD1727DC194100B2B7E2 /* Tile.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; tabWidth = 4; };
-		52F9FD1B27DC436800B2B7E2 /* tileset.tsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = tileset.tsx; path = "Earth 2.0/Resources/tileset.tsx"; sourceTree = SOURCE_ROOT; };
 		52F9FD1D27DC494300B2B7E2 /* Tileset.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Tileset.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52F9FD1F27DC4E0800B2B7E2 /* TiledMapParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiledMapParser.swift; sourceTree = "<group>"; };
 		52F9FD2127DC734900B2B7E2 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		52F9FD2327DC770200B2B7E2 /* map.tmx */ = {isa = PBXFileReference; lastKnownFileType = file; name = map.tmx; path = "Earth 2.0/Resources/map.tmx"; sourceTree = SOURCE_ROOT; };
+		52F9FD2927DD6D7E00B2B7E2 /* map.tmx */ = {isa = PBXFileReference; lastKnownFileType = file; name = map.tmx; path = "Earth 2.0/Resources/map.tmx"; sourceTree = SOURCE_ROOT; };
+		52F9FD2B27DD6DAE00B2B7E2 /* Astral One.tsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Astral One.tsx"; path = "Earth 2.0/Resources/Astral One.tsx"; sourceTree = SOURCE_ROOT; };
 		5394F02421864DF4006E754C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFEF960D231A01B4006025E5 /* Particle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Particle.sks; sourceTree = "<group>"; };
 		AFEF960F231A01C2006025E5 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
@@ -219,8 +219,8 @@
 		AFEF960B231A0187006025E5 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				52F9FD2327DC770200B2B7E2 /* map.tmx */,
-				52F9FD1B27DC436800B2B7E2 /* tileset.tsx */,
+				52F9FD2B27DD6DAE00B2B7E2 /* Astral One.tsx */,
+				52F9FD2927DD6D7E00B2B7E2 /* map.tmx */,
 				AFEF9617231A0225006025E5 /* VineData.plist */,
 			);
 			path = Data;
@@ -360,7 +360,6 @@
 			files = (
 				525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */,
 				AFEF962A231A1E8E006025E5 /* CheeZeeJungle.caf in Resources */,
-				52F9FD1C27DC436800B2B7E2 /* tileset.tsx in Resources */,
 				AFEF9629231A1E8C006025E5 /* NomNom.caf in Resources */,
 				AFEF9628231A1E89006025E5 /* Slice.caf in Resources */,
 				AFEF9627231A1E86006025E5 /* Splash.caf in Resources */,
@@ -373,7 +372,8 @@
 				D2A5F2091F4A9144005CD714 /* Main.storyboard in Resources */,
 				52D1219027CDE0290047C2CA /* Background3.mp3 in Resources */,
 				AFEF960E231A01B4006025E5 /* Particle.sks in Resources */,
-				52F9FD2427DC770200B2B7E2 /* map.tmx in Resources */,
+				52F9FD2A27DD6D7E00B2B7E2 /* map.tmx in Resources */,
+				52F9FD2C27DD6DAE00B2B7E2 /* Astral One.tsx in Resources */,
 				AFEF9610231A01C2006025E5 /* Particle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
