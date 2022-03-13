@@ -1,1 +1,1 @@
-# earth-2.0
+# astral-one
