@@ -236,6 +236,36 @@ class GameScene: SKScene {
                 }
             }
         }
+        
+        let tileSet = SKTileSet(named: "Rusted Warfare Tile Set")!
+        let tileSize = CGSize(width: 256, height: 384)
+        let rows = 50, cols = 50
+        
+        let map = SKTileMapNode(tileSet: tileSet,
+                                columns: cols,
+                                rows: rows,
+                                tileSize: tileSize)
+        map.enableAutomapping = true
+        
+        for col in 0..<cols {
+            for row in 0..<rows {
+                let val = noiseMap.value(at: vector2(Int32(row),Int32(col)))
+                //We will then decide what tiles correspond to what value
+                switch val {
+                case -1.0..<(-0.5):
+                    if let g = tileSet.tileGroups.first(where: {
+                        ($0.name ?? "") == "Water"}) {
+                        map.setTileGroup(g, forColumn: col, row: row)
+                    }
+                default:
+                    if let g = tileSet.tileGroups.first(where: {
+                        ($0.name ?? "") == "Grass"}) {
+                        map.setTileGroup(g, forColumn: col, row: row)
+                    }
+                }
+            }
+        }
+        self.addChild(map)
     }
     
     private func setUpPhysics() {
