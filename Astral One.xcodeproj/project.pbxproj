@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		525D6BDE27D04AE0008AA740 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BDD27D04AE0008AA740 /* Camera.swift */; };
+		521B498827DDADB600FED38F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521B498727DDADB600FED38F /* MapView.swift */; };
+		521B498C27DDB27300FED38F /* Astral One.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 521B498B27DDB27300FED38F /* Astral One.tsx */; };
+		521B498E27DEDC7F00FED38F /* map-24x15.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 521B498D27DEDC7F00FED38F /* map-24x15.tmx */; };
+		521B499027DEDC8800FED38F /* map-20x15.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 521B498F27DEDC8800FED38F /* map-20x15.tmx */; };
+		525D6BDE27D04AE0008AA740 /* GameCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BDD27D04AE0008AA740 /* GameCamera.swift */; };
 		525D6BE127D123CF008AA740 /* Barracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE027D123CF008AA740 /* Barracks.swift */; };
 		525D6BE327D124EF008AA740 /* CommandCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE227D124EF008AA740 /* CommandCenter.swift */; };
 		525D6BE627D12586008AA740 /* PowerPlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE527D12586008AA740 /* PowerPlant.swift */; };
@@ -58,7 +62,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		525D6BDD27D04AE0008AA740 /* Camera.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; tabWidth = 4; };
+		521B498727DDADB600FED38F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		521B498B27DDB27300FED38F /* Astral One.tsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Astral One.tsx"; path = "Astral One/Resources/Astral One.tsx"; sourceTree = SOURCE_ROOT; };
+		521B498D27DEDC7F00FED38F /* map-24x15.tmx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "map-24x15.tmx"; path = "Astral One/Resources/map-24x15.tmx"; sourceTree = SOURCE_ROOT; };
+		521B498F27DEDC8800FED38F /* map-20x15.tmx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "map-20x15.tmx"; path = "Astral One/Resources/map-20x15.tmx"; sourceTree = SOURCE_ROOT; };
+		525D6BDD27D04AE0008AA740 /* GameCamera.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameCamera.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525D6BE027D123CF008AA740 /* Barracks.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Barracks.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525D6BE227D124EF008AA740 /* CommandCenter.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CommandCenter.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525D6BE527D12586008AA740 /* PowerPlant.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = PowerPlant.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -215,6 +223,9 @@
 		AFEF960B231A0187006025E5 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				521B498B27DDB27300FED38F /* Astral One.tsx */,
+				521B498F27DEDC8800FED38F /* map-20x15.tmx */,
+				521B498D27DEDC7F00FED38F /* map-24x15.tmx */,
 				AFEF9617231A0225006025E5 /* VineData.plist */,
 			);
 			path = Data;
@@ -252,7 +263,8 @@
 				AFEF9621231A04BB006025E5 /* VineNode.swift */,
 				F5EA92422334BD450027F71C /* VineData.swift */,
 				52D1217F27CC09400047C2CA /* SpriteSheet.swift */,
-				525D6BDD27D04AE0008AA740 /* Camera.swift */,
+				525D6BDD27D04AE0008AA740 /* GameCamera.swift */,
+				521B498727DDADB600FED38F /* MapView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -353,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */,
+				521B498E27DEDC7F00FED38F /* map-24x15.tmx in Resources */,
 				AFEF962A231A1E8E006025E5 /* CheeZeeJungle.caf in Resources */,
 				AFEF9629231A1E8C006025E5 /* NomNom.caf in Resources */,
 				AFEF9628231A1E89006025E5 /* Slice.caf in Resources */,
@@ -360,12 +373,14 @@
 				5394F02521864DF5006E754C /* LaunchScreen.storyboard in Resources */,
 				52D1218E27CDDF220047C2CA /* Background2.mp3 in Resources */,
 				D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */,
+				521B499027DEDC8800FED38F /* map-20x15.tmx in Resources */,
 				AFEF9618231A0225006025E5 /* VineData.plist in Resources */,
 				AFEF9612231A01CD006025E5 /* Particle@2x.png in Resources */,
 				52D1218C27CDCCBF0047C2CA /* Background.mp3 in Resources */,
 				D2A5F2091F4A9144005CD714 /* Main.storyboard in Resources */,
 				52D1219027CDE0290047C2CA /* Background3.mp3 in Resources */,
 				AFEF960E231A01B4006025E5 /* Particle.sks in Resources */,
+				521B498C27DDB27300FED38F /* Astral One.tsx in Resources */,
 				AFEF9610231A01C2006025E5 /* Particle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +401,7 @@
 				525D6BE127D123CF008AA740 /* Barracks.swift in Sources */,
 				52F9FD2227DC734900B2B7E2 /* Map.swift in Sources */,
 				52D1219227CE6A800047C2CA /* UnitMenuView.swift in Sources */,
+				521B498827DDADB600FED38F /* MapView.swift in Sources */,
 				52D1218027CC09400047C2CA /* SpriteSheet.swift in Sources */,
 				525D6BEA27D126DB008AA740 /* EnergyStorage.swift in Sources */,
 				525D6BF927D15228008AA740 /* SpriteComponent.swift in Sources */,
@@ -399,7 +415,7 @@
 				525D6BEE27D12D0D008AA740 /* MineralStorage.swift in Sources */,
 				525D6BE827D125B4008AA740 /* Pod.swift in Sources */,
 				52D1218A27CC92DD0047C2CA /* MapViewModel.swift in Sources */,
-				525D6BDE27D04AE0008AA740 /* Camera.swift in Sources */,
+				525D6BDE27D04AE0008AA740 /* GameCamera.swift in Sources */,
 				525D6BF627D14FC3008AA740 /* RadarTower.swift in Sources */,
 				AFEF961C231A026E006025E5 /* Constants.swift in Sources */,
 				525D6BEC27D12C7D008AA740 /* ConcreteStorage.swift in Sources */,

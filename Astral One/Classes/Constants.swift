@@ -20,9 +20,9 @@ enum SoundFile {
 enum Layer {
     static let base: CGFloat = 0
     static let terrain: CGFloat = 1
-    static let overlays: CGFloat = 1
-    static let hudStats: CGFloat = 2
-    static let foreground: CGFloat = 3
+    static let overlays: CGFloat = 2
+    static let hudStats: CGFloat = 3
+    static let foreground: CGFloat = 4
 }
 
 enum PhysicsCategory {

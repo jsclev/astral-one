@@ -18,10 +18,10 @@ class MapViewModel {
         texture2 = SKTexture(imageNamed: "background12")
         texture3 = SKTexture(imageNamed: "background13")
 
-        mapSize = texture3.size()
         cameraSize = CGSize(width: UIScreen.main.bounds.size.width,
                             height: UIScreen.main.bounds.size.height)
-        
+        mapSize = CGSize(width: 6144.0 / 3.0, height: 3840.0 / 3.0)
+
         // Start the initial camera position in the middle of the map
         cameraPosition = CGPoint(x: (cameraSize.width / 2) + (mapSize.width - cameraSize.width) / 2,
                                  y: (cameraSize.height / 2) + (mapSize.height - cameraSize.height) / 2)

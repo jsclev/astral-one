@@ -50,7 +50,8 @@ struct GameView: View {
 #if DEBUG
             if #available(iOS 15.0, *) {
                 SpriteView(scene: scene, debugOptions: [.showsFPS,
-                                                        .showsNodeCount])
+                                                        .showsNodeCount,
+                                                        .showsDrawCount])
                     .ignoresSafeArea()
                     .gesture(simpleDrag)
                     

@@ -27,7 +27,6 @@ class GameScene: SKScene {
     
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
     
-    
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
         
@@ -45,7 +44,6 @@ class GameScene: SKScene {
         fatalError("init(coder:) is not supported.")
     }
     
-    
     @objc func tap(sender: UITapGestureRecognizer){
         //        if sender.state == .ended {
         //
@@ -58,15 +56,13 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        
-        
         entityManager = EntityManager(scene: self)
         gameCamera = GameCamera(entityManager)
         
         camera = gameCamera
         addChild(gameCamera)
         
-        gameCamera.position = mapViewModel.cameraPosition
+//        gameCamera.position = mapViewModel.cameraPosition
         
         
         setUpPhysics()
@@ -107,48 +103,70 @@ class GameScene: SKScene {
         let map = mapParser.parse()
         map.bake()
         
+        var tileWidth: CGFloat = 0.0
+        var numTiles: CGSize = CGSize(width: 0.0, height: 0.0)
+        
+        renderRandomMap()
+        
         //        print("Tileset: \(tileset.name)")
-        for (rowIndex, row) in map.tiles.enumerated() {
-            for (colIndex, tile) in row.enumerated() {
-                if let imageName = terrainTiles[tile.id] {
-                    //                    mySquare.position = convertPoint(fromView: CGPoint(x: view.frame.minX, y: view.frame.minY))
-                    //                    addChild(mySquare)
-                    
-                    let spNode = SKSpriteNode(imageNamed: imageName)
-                    print("[\(spNode.calculateAccumulatedFrame().width), \(spNode.calculateAccumulatedFrame().height)]")
-
-                    spNode.position = CGPoint(x: spNode.calculateAccumulatedFrame().width * CGFloat(colIndex),
-                                              y: 1000.0 - spNode.calculateAccumulatedFrame().width * CGFloat(rowIndex))
-                    spNode.name = "terrain_" + tile.id
-                    spNode.anchorPoint = CGPoint(x: 0, y: 0)
-//                    spNode.position = CGPoint(x: 0, y: 0)
-                    spNode.zPosition = Layer.terrain
-                    addChild(spNode)
-                    
-                    print("\(spNode.position)]")
-
-
-                    //                if !tile.walkable {
-                    //                    print("position: [\(rowIndex), \(colIndex)], id: \(tile.id), walkable: \(tile.walkable)")
-                    //                }
-                }
-            }
-        }
+//        for (rowIndex, row) in map.tiles.enumerated() {
+//            numTiles.width = CGFloat(rowIndex)
+//
+//            for (colIndex, tile) in row.enumerated() {
+//                if let imageName = terrainTiles[tile.id] {
+//                    let spNode = SKSpriteNode(imageNamed: imageName)
+////                    print("[\(spNode.calculateAccumulatedFrame().width), \(spNode.calculateAccumulatedFrame().height)]")
+//
+//                    tileWidth = spNode.calculateAccumulatedFrame().width
+//                    numTiles.height = CGFloat(colIndex)
+//
+//                    spNode.position = CGPoint(x: tileWidth * CGFloat(colIndex),
+//                                              y: 1000.0 - tileWidth * CGFloat(rowIndex))
+//                    spNode.name = "terrain_" + tile.id
+//                    spNode.anchorPoint = CGPoint(x: 0, y: 0)
+//                    spNode.zPosition = Layer.terrain
+//                    addChild(spNode)
+//                }
+//            }
+//        }
+//
+//        let fromPosition = SIMD2<Int32>(0, 0)
+//        let fromNode = map.graph.node(atGridPosition: fromPosition)
+//
+//        let toPosition = SIMD2<Int32>(4, 3)
+//        let toNode = map.graph.node(atGridPosition: toPosition)
+//
+//        if let startNode = fromNode, let endNode = toNode {
+//            let path = map.graph.findPath(from: startNode, to: endNode)
+//
+//            for node in path {
+//                let theNode: GKGridGraphNode = node as! GKGridGraphNode
+//                print(theNode.gridPosition)
+//
+//                if let imageName = terrainTiles["31"] {
+//                    let spNode = SKSpriteNode(imageNamed: imageName)
+//                    tileWidth = spNode.calculateAccumulatedFrame().width
+//
+//                    spNode.position = CGPoint(x: tileWidth * CGFloat(theNode.gridPosition.y),
+//                                              y: 1000.0 - tileWidth * CGFloat(theNode.gridPosition.x))
+//                    spNode.name = "ai_path_\(theNode.gridPosition.x)_\(theNode.gridPosition.y)"
+//                    spNode.anchorPoint = CGPoint(x: 0, y: 0)
+//                    spNode.zPosition = Layer.overlays
+//                    addChild(spNode)
+//                }
+//            }
+//        }
         
-        let fromPosition = SIMD2<Int32>(0, 0)
-        let fromNode = map.graph.node(atGridPosition: fromPosition)
+        let mapSize = CGSize(width: tileWidth * numTiles.width,
+                             height: tileWidth * numTiles.height)
+        print(mapSize)
+        print(gameCamera.position)
         
-        let toPosition = SIMD2<Int32>(4, 3)
-        let toNode = map.graph.node(atGridPosition: toPosition)
-        
-        if let startNode = fromNode, let endNode = toNode {
-            let path = map.graph.findPath(from: startNode, to: endNode)
-            
-            //            for node in path {
-            //                let theNode: GKGridGraphNode = node as! GKGridGraphNode
-            //                print(theNode.gridPosition)
-            //            }
-        }
+//        gameCamera.position = CGPoint(x: (mapSize.width / 2.0),
+//                                      y: (mapSize.height / 2.0))
+        gameCamera.position = CGPoint(x: 1194.662 / 2.0,
+                                      y: 1621.327 / 3.0)
+        print(gameCamera.position)
     }
     
     @objc func handleZoom(sender: UIPinchGestureRecognizer) {
@@ -164,11 +182,10 @@ class GameScene: SKScene {
 //            var anchorPointInMySkNode: CGPoint = convertPoint(fromView: anchorPoint)
 
             var scale = initialCameraScale + (1/sender.scale - 1) * initialCameraScale
-            if scale < 0.5 {
-                scale = 0.5
+            if scale < 0.4 {
+                scale = 0.4
             }
             gameCamera.setScale(scale)
-//            gameCamera.position.x -
             print(gameCamera.xScale)
 //            sender.scale = 1.0
             //
@@ -190,6 +207,37 @@ class GameScene: SKScene {
         
     }
     
+    private func renderRandomMap() {
+        var tileWidth: CGFloat = 0.0
+        
+        for row in 0...211 {
+            for col in 0...359 {
+                var randomInt = Int.random(in: 0..<terrainTiles.count)
+                
+                while (randomInt >= 20 && randomInt <= 23) ||
+                        (randomInt >= 28 && randomInt <= 31) {
+                    randomInt = Int.random(in: 0..<terrainTiles.count)
+                }
+                
+                if let imageName = terrainTiles[String(randomInt)] {
+                    let tileName = "terrain_\(row)_\(col)"
+                    let spNode = SKSpriteNode(imageNamed: imageName)
+                    // print("[\(spNode.calculateAccumulatedFrame().width), \(spNode.calculateAccumulatedFrame().height)]")
+                    
+                    tileWidth = spNode.calculateAccumulatedFrame().width
+                    
+                    spNode.position = CGPoint(x: tileWidth * CGFloat(col),
+                                              y: 1000.0 - tileWidth * CGFloat(row))
+                    spNode.name = tileName
+                    spNode.anchorPoint = CGPoint(x: 0, y: 0)
+                    spNode.zPosition = Layer.terrain
+                    addChild(spNode)
+                    print("Added tile \(tileName)")
+                }
+            }
+        }
+    }
+    
     private func setUpPhysics() {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
@@ -200,7 +248,7 @@ class GameScene: SKScene {
         self.anchorPoint = CGPoint.zero
         //    background.zPosition = Layer.background
         //    background.size = CGSize(width: size.width, height: size.height)
-        addChild(background)
+//        addChild(background)
         
         let water = SKSpriteNode(imageNamed: ImageName.water)
         //    water.anchorPoint = CGPoint(x: 0, y: 0)
@@ -357,6 +405,9 @@ class GameScene: SKScene {
     //            }
     //        }
     //    }
+    func showAiPath() {
+        
+    }
 }
 
 extension GameScene: SKPhysicsContactDelegate {

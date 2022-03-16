@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 class TiledMapParser: NSObject, XMLParserDelegate {
     var currentEl = ""
@@ -19,7 +20,15 @@ class TiledMapParser: NSObject, XMLParserDelegate {
     func parse() -> Map {
         currentEl = ""
         
-        if let path = Bundle.main.url(forResource: "map", withExtension: ".tmx") {
+        var filename = "map-"
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            filename += "24x15"
+        }
+        else {
+            filename += "20x15"
+        }
+        
+        if let path = Bundle.main.url(forResource: filename, withExtension: ".tmx") {
             if let parser = XMLParser(contentsOf: path) {
                 parser.delegate = self
                 parser.parse()

@@ -51,19 +51,11 @@ class GameCamera: SKCameraNode {
         metalIcon.zPosition = Layer.foreground
         mineralIcon.zPosition = Layer.foreground
         
-        moneyValue.position = CGPoint(x: 285, y: 155)
-        energyValue.position = CGPoint(x: -280, y: 155)
-        concreteValue.position = CGPoint(x: -280, y: 110)
-        metalValue.position = CGPoint(x: -280, y: 65)
-        mineralValue.position = CGPoint(x: -280, y: 20)
-
-        energyIcon.position = CGPoint(x: -310, y: 165)
-        concreteIcon.position = CGPoint(x: -310, y: 120)
-        metalIcon.position = CGPoint(x: -310, y: 75)
-        mineralIcon.position = CGPoint(x: -310, y: 30)
+        
         
         super.init()
         name = "camera"
+        print("Camera size: \(self.calculateAccumulatedFrame().size)")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -77,6 +69,8 @@ class GameCamera: SKCameraNode {
         metalValue.text = "19"
         mineralValue.text = "76"
 
+        print("Camera size: \(self.calculateAccumulatedFrame().size)")
+
         addChild(moneyValue)
         addChild(energyValue)
         addChild(concreteValue)
@@ -87,5 +81,34 @@ class GameCamera: SKCameraNode {
         addChild(concreteIcon)
         addChild(metalIcon)
         addChild(mineralIcon)
+        
+        if let scene = self.scene {
+            let topIconEdge: CGFloat = (scene.size.height / 2.0) - 25.0
+            let topTextEdge: CGFloat = topIconEdge - 9.0
+            let verticalSpacer: CGFloat = 45.0
+            
+            let leftIconEdge: CGFloat = 65.0 + scene.size.width / -2.0
+            let leftTextEdge: CGFloat = leftIconEdge + 40.0
+            let rightTextEdge: CGFloat = (scene.size.width / 2.0) - 40.0
+            
+            moneyValue.position = CGPoint(x: rightTextEdge, y: topTextEdge)
+            energyValue.position = CGPoint(x: leftTextEdge, y: topTextEdge)
+            concreteValue.position = CGPoint(x: leftTextEdge, y: topTextEdge - verticalSpacer)
+            metalValue.position = CGPoint(x: leftTextEdge, y: topTextEdge - 2.0 * verticalSpacer)
+            mineralValue.position = CGPoint(x: leftTextEdge, y: topTextEdge - 3.0 * verticalSpacer)
+
+            energyIcon.position = CGPoint(x: leftIconEdge, y: topIconEdge)
+            concreteIcon.position = CGPoint(x: leftIconEdge, y: topIconEdge - verticalSpacer)
+            metalIcon.position = CGPoint(x: leftIconEdge, y: topIconEdge - 2.0 * verticalSpacer)
+            mineralIcon.position = CGPoint(x: leftIconEdge, y: topIconEdge - 3.0 * verticalSpacer)
+            
+            if let myScene = self.scene {
+                print("scene size: \(myScene.size)")
+
+            }
+            print("Camera size: \(self.calculateAccumulatedFrame().size)")
+            print("Camera position: \(self.calculateAccumulatedFrame().size)")
+        }
+
     }
 }
