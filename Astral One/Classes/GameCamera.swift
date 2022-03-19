@@ -40,18 +40,16 @@ class GameCamera: SKCameraNode {
         metalIcon.size = CGSize(width: 40.0, height: 35.0)
         mineralIcon.size = CGSize(width: 40.0, height: 35.0)
 
-        moneyValue.zPosition = Layer.foreground
-        energyValue.zPosition = Layer.foreground
-        concreteValue.zPosition = Layer.foreground
-        metalValue.zPosition = Layer.foreground
-        mineralValue.zPosition = Layer.foreground
+        moneyValue.zPosition = Layer.hud
+        energyValue.zPosition = Layer.hud
+        concreteValue.zPosition = Layer.hud
+        metalValue.zPosition = Layer.hud
+        mineralValue.zPosition = Layer.hud
 
-        energyIcon.zPosition = Layer.foreground
-        concreteIcon.zPosition = Layer.foreground
-        metalIcon.zPosition = Layer.foreground
-        mineralIcon.zPosition = Layer.foreground
-        
-        
+        energyIcon.zPosition = Layer.hud
+        concreteIcon.zPosition = Layer.hud
+        metalIcon.zPosition = Layer.hud
+        mineralIcon.zPosition = Layer.hud
         
         super.init()
         name = "camera"

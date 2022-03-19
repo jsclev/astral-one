@@ -1,10 +1,15 @@
 import Foundation
 
 class TiledTilesetParser: NSObject, XMLParserDelegate {
+    let filename: String
     var tiles: [Tile] = []
     var elementName = ""
     var tileId = ""
     var walkable: Bool = true
+    
+    init(_ filename: String) {
+        self.filename = filename
+    }
     
     func parse() -> Tileset {
         tiles = []
@@ -12,14 +17,17 @@ class TiledTilesetParser: NSObject, XMLParserDelegate {
         tileId = ""
         walkable = true
         
-        if let path = Bundle.main.url(forResource: "Astral One", withExtension: ".tsx") {
+        if let path = Bundle.main.url(forResource: filename, withExtension: ".tsx") {
             if let parser = XMLParser(contentsOf: path) {
                 parser.delegate = self
                 parser.parse()
             }
         }
+        else {
+            fatalError("Unable to find Tiled tileset file \"\(filename).tsx\" in app bundle.")
+        }
         
-        return Tileset(name: "Astral One Tileset", tiles: tiles)
+        return Tileset(name: "Game Tile Set", tiles: tiles)
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {

@@ -18,12 +18,12 @@ enum SoundFile {
 }
 
 enum Layer {
-    static let base: CGFloat = 0
-    static let terrain: CGFloat = 1
-    static let units: CGFloat = 2
-    static let overlays: CGFloat = 3
-    static let hudStats: CGFloat = 4
-    static let foreground: CGFloat = 5
+    static let base: CGFloat = 0.0
+    static let terrain: CGFloat = 1.0
+    static let cities: CGFloat = 2.0
+    static let units: CGFloat = 3.0
+    static let hud: CGFloat = 5.0
+    static let foreground: CGFloat = 6.0
 }
 
 enum PhysicsCategory {
@@ -38,58 +38,73 @@ enum GameConfiguration {
     static let canCutMultipleVinesAtOnce = false
 }
 
-var terrainTiles: [String: String] = [
-    "0": "scrubland03",
-    "1": "scrubland02",
-    "2": "scrubland01",
-    "3": "scrubland00",
-    "4": "woodlands03",
-    "5": "woodlands02",
-    "6": "woodlands01",
-    "7": "woodlands00",
-    "8": "highlands03",
-    "9": "highlands02",
-    "10": "highlands01",
-    "11": "highlands00",
-    "12": "mountain03",
-    "13": "mountain02",
-    "14": "mountain01",
-    "15": "mountain00",
-    "16": "forestBroadleaf00",
-    "17": "forestBroadleaf01",
-    "18": "forestBroadleaf02",
-    "19": "forestBroadleaf03",
-    "20": "base00",
-    "21": "base01",
-    "22": "base02",
-    "23": "base03",
-    "24": "hills00",
-    "25": "hills01",
-    "26": "hills02",
-    "27": "hills03",
-    "28": "void03",
-    "29": "void02",
-    "30": "void00",
-    "31": "void01",
-    "32": "dirt00",
-    "33": "dirt01",
-    "34": "dirt02",
-    "35": "dirt03",
-    "36": "marsh03",
-    "37": "marsh02",
-    "38": "marsh01",
-    "39": "marsh00",
-    "40": "desertDunes03",
-    "41": "desertDunes02",
-    "42": "desertDunes01",
-    "43": "desertDunes00",
-    "44": "ocean03",
-    "45": "ocean02",
-    "46": "ocean01",
-    "47": "ocean00",
-    "48": "plains03",
-    "49": "plains02",
-    "50": "plains01",
-    "51": "plains00"
+var gameTiles: [String: String] = [
+    "0": "Water",
+    "1": "Tundra",
+    "2": "Town",
+    "3": "Tank",
+    "4": "Swamp",
+    "5": "Snow",
+    "6": "Sand",
+    "7": "Plane",
+    "8": "Plains",
+    "9": "Jungle",
+    "10": "Grass",
+    "11": "Fog"
 ]
+
+//var gameTiles: [String: String] = [
+//    "0": "scrubland03",
+//    "1": "scrubland02",
+//    "2": "scrubland01",
+//    "3": "scrubland00",
+//    "4": "woodlands03",
+//    "5": "woodlands02",
+//    "6": "woodlands01",
+//    "7": "woodlands00",
+//    "8": "highlands03",
+//    "9": "highlands02",
+//    "10": "highlands01",
+//    "11": "highlands00",
+//    "12": "mountain03",
+//    "13": "mountain02",
+//    "14": "mountain01",
+//    "15": "mountain00",
+//    "16": "forestBroadleaf00",
+//    "17": "forestBroadleaf01",
+//    "18": "forestBroadleaf02",
+//    "19": "forestBroadleaf03",
+//    "20": "base00",
+//    "21": "base01",
+//    "22": "base02",
+//    "23": "base03",
+//    "24": "hills00",
+//    "25": "hills01",
+//    "26": "hills02",
+//    "27": "hills03",
+//    "28": "void03",
+//    "29": "void02",
+//    "30": "void00",
+//    "31": "void01",
+//    "32": "dirt00",
+//    "33": "dirt01",
+//    "34": "dirt02",
+//    "35": "dirt03",
+//    "36": "marsh03",
+//    "37": "marsh02",
+//    "38": "marsh01",
+//    "39": "marsh00",
+//    "40": "desertDunes03",
+//    "41": "desertDunes02",
+//    "42": "desertDunes01",
+//    "43": "desertDunes00",
+//    "44": "ocean03",
+//    "45": "ocean02",
+//    "46": "ocean01",
+//    "47": "ocean00",
+//    "48": "plains03",
+//    "49": "plains02",
+//    "50": "plains01",
+//    "51": "plains00"
+//]
 

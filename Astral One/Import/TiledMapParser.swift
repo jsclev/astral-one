@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 
 class TiledMapParser: NSObject, XMLParserDelegate {
+    var filename: String
     var currentEl = ""
     var tileset: Tileset
     var map: Map
@@ -9,7 +10,8 @@ class TiledMapParser: NSObject, XMLParserDelegate {
     var mapHeight: Int32
     var firstGId: Int
     
-    init(tileset: Tileset) {
+    init(tileset: Tileset, filename: String) {
+        self.filename = filename
         self.tileset = tileset
         self.mapWidth = 0
         self.mapHeight = 0
@@ -20,13 +22,13 @@ class TiledMapParser: NSObject, XMLParserDelegate {
     func parse() -> Map {
         currentEl = ""
         
-        var filename = "map-"
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            filename += "24x15"
-        }
-        else {
-            filename += "20x15"
-        }
+//        var filename = "map-"
+//        if UIDevice.current.userInterfaceIdiom == .phone {
+//            filename += "phone"
+//        }
+//        else {
+//            filename += "ipad"
+//        }
         
         if let path = Bundle.main.url(forResource: filename, withExtension: ".tmx") {
             if let parser = XMLParser(contentsOf: path) {

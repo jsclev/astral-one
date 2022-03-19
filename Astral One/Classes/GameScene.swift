@@ -64,10 +64,8 @@ class GameScene: SKScene {
         
 //        gameCamera.position = mapViewModel.cameraPosition
         
-        
         setUpPhysics()
-        setUpScenery()
-        //        setUpAudio()
+        // setUpAudio()
         
         let commandCenter = CommandCenter(imageName: "command-center")
         if let spriteComponent = commandCenter.component(ofType: SpriteComponent.self) {
@@ -96,39 +94,16 @@ class GameScene: SKScene {
         pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
         view.addGestureRecognizer(pinchGestureRecognizer)
         
-        let tilesetParser = TiledTilesetParser()
+        let tilesetParser = TiledTilesetParser("civ2")
         let tileset = tilesetParser.parse()
         
-        let mapParser = TiledMapParser(tileset: tileset)
+        let mapParser = TiledMapParser(tileset: tileset, filename: "civ2")
         let map = mapParser.parse()
         map.bake()
         
         var tileWidth: CGFloat = 0.0
-        var numTiles: CGSize = CGSize(width: 0.0, height: 0.0)
         
-        renderRandomMap()
-        
-        //        print("Tileset: \(tileset.name)")
-//        for (rowIndex, row) in map.tiles.enumerated() {
-//            numTiles.width = CGFloat(rowIndex)
-//
-//            for (colIndex, tile) in row.enumerated() {
-//                if let imageName = terrainTiles[tile.id] {
-//                    let spNode = SKSpriteNode(imageNamed: imageName)
-////                    print("[\(spNode.calculateAccumulatedFrame().width), \(spNode.calculateAccumulatedFrame().height)]")
-//
-//                    tileWidth = spNode.calculateAccumulatedFrame().width
-//                    numTiles.height = CGFloat(colIndex)
-//
-//                    spNode.position = CGPoint(x: tileWidth * CGFloat(colIndex),
-//                                              y: 1000.0 - tileWidth * CGFloat(rowIndex))
-//                    spNode.name = "terrain_" + tile.id
-//                    spNode.anchorPoint = CGPoint(x: 0, y: 0)
-//                    spNode.zPosition = Layer.terrain
-//                    addChild(spNode)
-//                }
-//            }
-//        }
+        renderMap(map: map)
 //
 //        let fromPosition = SIMD2<Int32>(0, 0)
 //        let fromNode = map.graph.node(atGridPosition: fromPosition)
@@ -157,9 +132,9 @@ class GameScene: SKScene {
 //            }
 //        }
         
-        let mapSize = CGSize(width: tileWidth * numTiles.width,
-                             height: tileWidth * numTiles.height)
-        print(mapSize)
+//        let mapSize = CGSize(width: tileWidth * numTiles.width,
+//                             height: tileWidth * numTiles.height)
+//        print(mapSize)
         print(gameCamera.position)
         
 //        gameCamera.position = CGPoint(x: (mapSize.width / 2.0),
@@ -207,35 +182,8 @@ class GameScene: SKScene {
         
     }
     
-    private func renderRandomMap() {
+    private func renderMap(map: Map) {
         var tileWidth: CGFloat = 0.0
-        
-//        for row in 0...211 {
-//            for col in 0...359 {
-//                var randomInt = Int.random(in: 0..<terrainTiles.count)
-//
-//                while (randomInt >= 20 && randomInt <= 23) ||
-//                        (randomInt >= 28 && randomInt <= 31) {
-//                    randomInt = Int.random(in: 0..<terrainTiles.count)
-//                }
-//
-//                if let imageName = terrainTiles[String(randomInt)] {
-//                    let tileName = "terrain_\(row)_\(col)"
-//                    let spNode = SKSpriteNode(imageNamed: imageName)
-//                    // print("[\(spNode.calculateAccumulatedFrame().width), \(spNode.calculateAccumulatedFrame().height)]")
-//
-//                    tileWidth = spNode.calculateAccumulatedFrame().width
-//
-//                    spNode.position = CGPoint(x: tileWidth * CGFloat(col),
-//                                              y: 1000.0 - tileWidth * CGFloat(row))
-//                    spNode.name = tileName
-//                    spNode.anchorPoint = CGPoint(x: 0, y: 0)
-//                    spNode.zPosition = Layer.terrain
-//                    addChild(spNode)
-//                    print("Added tile \(tileName)")
-//                }
-//            }
-//        }
         
         guard let tileSet = SKTileSet(named: "Civ 2 Tile Set") else {
             fatalError("Tile Set not found")
@@ -245,40 +193,21 @@ class GameScene: SKScene {
         let rows = 100
         let cols = 100
 
-        let baseMap = SKTileMapNode(tileSet: tileSet,
+        let terrainMap = SKTileMapNode(tileSet: tileSet,
                                 columns: cols,
                                 rows: rows,
                                 tileSize: tileSize)
-        baseMap.zPosition = Layer.terrain
-        baseMap.position = CGPoint.zero
-        baseMap.enableAutomapping = true
+        terrainMap.zPosition = Layer.terrain
+        terrainMap.position = CGPoint.zero
+        terrainMap.enableAutomapping = true
         
         let unitsMap = SKTileMapNode(tileSet: tileSet,
                                     columns: cols,
                                     rows: rows,
                                     tileSize: tileSize)
-        unitsMap.zPosition = Layer.foreground
+        unitsMap.zPosition = Layer.units
         unitsMap.position = CGPoint.zero
         unitsMap.enableAutomapping = true
-
-//        for col in 0..<cols {
-//            for row in 0..<rows {
-//                let val = noiseMap.value(at: vector2(Int32(row),Int32(col)))
-//                //We will then decide what tiles correspond to what value
-//                switch val {
-//                case -1.0..<(-0.5):
-//                    if let g = tileSet.tileGroups.first(where: {
-//                        ($0.name ?? "") == "Water"}) {
-//                        map.setTileGroup(g, forColumn: col, row: row)
-//                    }
-//                default:
-//                    if let g = tileSet.tileGroups.first(where: {
-//                        ($0.name ?? "") == "Grass"}) {
-//                        map.setTileGroup(g, forColumn: col, row: row)
-//                    }
-//                }
-//            }
-//        }
         
         let tileGroups = tileSet.tileGroups
         
@@ -286,68 +215,95 @@ class GameScene: SKScene {
 //            fatalError("No Grass tile definition found")
 //        }
         
-        let grassTiles = tileSet.tileGroups.first { $0.name == "Grass"}
-        let sandTiles = tileSet.tileGroups.first { $0.name == "Sand"}
-        let tundraTiles = tileSet.tileGroups.first { $0.name == "Tundra"}
-        let waterTiles = tileSet.tileGroups.first { $0.name == "Water"}
-        let townTiles = tileSet.tileGroups.first { $0.name == "Town"}
-        let planeTiles = tileSet.tileGroups.first { $0.name == "Plane"}
-        let tankTiles = tileSet.tileGroups.first { $0.name == "Tank"}
-        let fogTiles = tileSet.tileGroups.first { $0.name == "Fog"}
-        let jungleTiles = tileSet.tileGroups.first { $0.name == "Jungle"}
-        let swampTiles = tileSet.tileGroups.first { $0.name == "Swamp"}
-        let snowTiles = tileSet.tileGroups.first { $0.name == "Snow"}
-        let plainsTiles = tileSet.tileGroups.first { $0.name == "Plains"}
-        
+//        let grassTiles = tileSet.tileGroups.first { $0.name == "Grass"}
+//        let sandTiles = tileSet.tileGroups.first { $0.name == "Sand"}
+//        let tundraTiles = tileSet.tileGroups.first { $0.name == "Tundra"}
+//        let waterTiles = tileSet.tileGroups.first { $0.name == "Water"}
+//        let townTiles = tileSet.tileGroups.first { $0.name == "Town"}
+//        let planeTiles = tileSet.tileGroups.first { $0.name == "Plane"}
+//        let tankTiles = tileSet.tileGroups.first { $0.name == "Tank"}
+//        let fogTiles = tileSet.tileGroups.first { $0.name == "Fog"}
+//        let jungleTiles = tileSet.tileGroups.first { $0.name == "Jungle"}
+//        let swampTiles = tileSet.tileGroups.first { $0.name == "Swamp"}
+//        let snowTiles = tileSet.tileGroups.first { $0.name == "Snow"}
+//        let plainsTiles = tileSet.tileGroups.first { $0.name == "Plains"}
+//
 //        map.fill(with: grassTiles)
+        
+        var numTiles: CGSize = CGSize(width: 0.0, height: 0.0)
+        
+        for (rowIndex, row) in map.tiles.enumerated() {
+            numTiles.width = CGFloat(rowIndex)
+            
+            for (colIndex, tile) in row.enumerated() {
+                
+                if let tileType = gameTiles[tile.id] {
+                    if let tileGroup = tileSet.tileGroups.first { $0.name == tileType} {
+                        terrainMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
 
-        for row in 0..<rows {
-            for col in 0..<cols {
-                let randomInt = Int.random(in: 0..<100)
-                if randomInt >= 0 && randomInt < 20 {
-                    baseMap.setTileGroup(grassTiles, forColumn: col, row: row)
-                }
-                else if randomInt >= 20 && randomInt < 40 {
-                    baseMap.setTileGroup(plainsTiles, forColumn: col, row: row)
-                }
-                else if randomInt >= 40 && randomInt < 50 {
-                    baseMap.setTileGroup(sandTiles, forColumn: col, row: row)
-                }
-                else if randomInt >= 50 && randomInt < 60 {
-                    baseMap.setTileGroup(swampTiles, forColumn: col, row: row)
-                }
-                else if randomInt >= 60 && randomInt < 70 {
-                    baseMap.setTileGroup(waterTiles, forColumn: col, row: row)
-                }
-                else if randomInt >= 70 && randomInt < 90 {
-                    baseMap.setTileGroup(jungleTiles, forColumn: col, row: row)
-                }
-                else if randomInt >= 90 && randomInt < 100 {
-                    baseMap.setTileGroup(snowTiles, forColumn: col, row: row)
-                }
-                else if randomInt >= 101 && randomInt < 100 {
-                    baseMap.setTileGroup(fogTiles, forColumn: col, row: row)
+//                    let spNode = SKSpriteNode(imageNamed: imageName)
+//                    //                    print("[\(spNode.calculateAccumulatedFrame().width), \(spNode.calculateAccumulatedFrame().height)]")
+//
+//                    tileWidth = spNode.calculateAccumulatedFrame().width
+//                    numTiles.height = CGFloat(colIndex)
+//
+//                    spNode.position = CGPoint(x: tileWidth * CGFloat(colIndex),
+//                                              y: 1000.0 - tileWidth * CGFloat(rowIndex))
+//                    spNode.name = "terrain_" + tile.id
+//                    spNode.anchorPoint = CGPoint(x: 0, y: 0)
+//                    spNode.zPosition = Layer.terrain
+//                    addChild(spNode)
+                    }
                 }
             }
         }
+
+//        for row in 0..<rows {
+//            for col in 0..<cols {
+//                let randomInt = Int.random(in: 0..<100)
+//                if randomInt >= 0 && randomInt < 20 {
+//                    terrainMap.setTileGroup(grassTiles, forColumn: col, row: row)
+//                }
+//                else if randomInt >= 20 && randomInt < 40 {
+//                    terrainMap.setTileGroup(plainsTiles, forColumn: col, row: row)
+//                }
+//                else if randomInt >= 40 && randomInt < 50 {
+//                    terrainMap.setTileGroup(sandTiles, forColumn: col, row: row)
+//                }
+//                else if randomInt >= 50 && randomInt < 60 {
+//                    terrainMap.setTileGroup(swampTiles, forColumn: col, row: row)
+//                }
+//                else if randomInt >= 60 && randomInt < 70 {
+//                    terrainMap.setTileGroup(waterTiles, forColumn: col, row: row)
+//                }
+//                else if randomInt >= 70 && randomInt < 90 {
+//                    terrainMap.setTileGroup(jungleTiles, forColumn: col, row: row)
+//                }
+//                else if randomInt >= 90 && randomInt < 100 {
+//                    terrainMap.setTileGroup(snowTiles, forColumn: col, row: row)
+//                }
+//                else if randomInt >= 101 && randomInt < 100 {
+//                    terrainMap.setTileGroup(fogTiles, forColumn: col, row: row)
+//                }
+//            }
+//        }
+//
+//        for row in 0..<rows {
+//            for col in 0..<cols {
+//                let randomInt = Int.random(in: 0..<100)
+//                if randomInt >= 0 && randomInt < 10 {
+//                    unitsMap.setTileGroup(tankTiles, forColumn: col, row: row)
+//                }
+//                else if randomInt >= 20 && randomInt < 30 {
+//                    unitsMap.setTileGroup(planeTiles, forColumn: col, row: row)
+//                }
+//                else if randomInt >= 30 && randomInt < 40 {
+//                    unitsMap.setTileGroup(townTiles, forColumn: col, row: row)
+//                }
+//            }
+//        }
         
-        for row in 0..<rows {
-            for col in 0..<cols {
-                let randomInt = Int.random(in: 0..<100)
-                if randomInt >= 0 && randomInt < 10 {
-                    unitsMap.setTileGroup(tankTiles, forColumn: col, row: row)
-                }
-                else if randomInt >= 20 && randomInt < 30 {
-                    unitsMap.setTileGroup(planeTiles, forColumn: col, row: row)
-                }
-                else if randomInt >= 30 && randomInt < 40 {
-                    unitsMap.setTileGroup(townTiles, forColumn: col, row: row)
-                }
-            }
-        }
-        
-        unitsMap.alpha = 1.0
-        addChild(baseMap)
+        addChild(terrainMap)
         addChild(unitsMap)
     }
     
@@ -355,20 +311,6 @@ class GameScene: SKScene {
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
         physicsWorld.speed = 1.0
-    }
-    
-    private func setUpScenery() {
-        self.anchorPoint = CGPoint.zero
-        //    background.zPosition = Layer.background
-        //    background.size = CGSize(width: size.width, height: size.height)
-//        addChild(background)
-        
-        let water = SKSpriteNode(imageNamed: ImageName.water)
-        //    water.anchorPoint = CGPoint(x: 0, y: 0)
-        water.position = CGPoint(x: 0, y: 0)
-        water.zPosition = Layer.foreground
-        water.size = CGSize(width: size.width, height: size.height * 0.2139)
-        //    addChild(water)
     }
     
     func toggleTexture() {
