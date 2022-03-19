@@ -210,62 +210,145 @@ class GameScene: SKScene {
     private func renderRandomMap() {
         var tileWidth: CGFloat = 0.0
         
-        for row in 0...211 {
-            for col in 0...359 {
-                var randomInt = Int.random(in: 0..<terrainTiles.count)
-                
-                while (randomInt >= 20 && randomInt <= 23) ||
-                        (randomInt >= 28 && randomInt <= 31) {
-                    randomInt = Int.random(in: 0..<terrainTiles.count)
-                }
-                
-                if let imageName = terrainTiles[String(randomInt)] {
-                    let tileName = "terrain_\(row)_\(col)"
-                    let spNode = SKSpriteNode(imageNamed: imageName)
-                    // print("[\(spNode.calculateAccumulatedFrame().width), \(spNode.calculateAccumulatedFrame().height)]")
-                    
-                    tileWidth = spNode.calculateAccumulatedFrame().width
-                    
-                    spNode.position = CGPoint(x: tileWidth * CGFloat(col),
-                                              y: 1000.0 - tileWidth * CGFloat(row))
-                    spNode.name = tileName
-                    spNode.anchorPoint = CGPoint(x: 0, y: 0)
-                    spNode.zPosition = Layer.terrain
-                    addChild(spNode)
-                    print("Added tile \(tileName)")
-                }
-            }
+//        for row in 0...211 {
+//            for col in 0...359 {
+//                var randomInt = Int.random(in: 0..<terrainTiles.count)
+//
+//                while (randomInt >= 20 && randomInt <= 23) ||
+//                        (randomInt >= 28 && randomInt <= 31) {
+//                    randomInt = Int.random(in: 0..<terrainTiles.count)
+//                }
+//
+//                if let imageName = terrainTiles[String(randomInt)] {
+//                    let tileName = "terrain_\(row)_\(col)"
+//                    let spNode = SKSpriteNode(imageNamed: imageName)
+//                    // print("[\(spNode.calculateAccumulatedFrame().width), \(spNode.calculateAccumulatedFrame().height)]")
+//
+//                    tileWidth = spNode.calculateAccumulatedFrame().width
+//
+//                    spNode.position = CGPoint(x: tileWidth * CGFloat(col),
+//                                              y: 1000.0 - tileWidth * CGFloat(row))
+//                    spNode.name = tileName
+//                    spNode.anchorPoint = CGPoint(x: 0, y: 0)
+//                    spNode.zPosition = Layer.terrain
+//                    addChild(spNode)
+//                    print("Added tile \(tileName)")
+//                }
+//            }
+//        }
+        
+        guard let tileSet = SKTileSet(named: "Civ 2 Tile Set") else {
+            fatalError("Tile Set not found")
         }
-        
-        let tileSet = SKTileSet(named: "Rusted Warfare Tile Set")!
-        let tileSize = CGSize(width: 256, height: 384)
-        let rows = 50, cols = 50
-        
-        let map = SKTileMapNode(tileSet: tileSet,
+
+        let tileSize = CGSize(width: 96, height: 48)
+        let rows = 100
+        let cols = 100
+
+        let baseMap = SKTileMapNode(tileSet: tileSet,
                                 columns: cols,
                                 rows: rows,
                                 tileSize: tileSize)
-        map.enableAutomapping = true
+        baseMap.zPosition = Layer.terrain
+        baseMap.position = CGPoint.zero
+        baseMap.enableAutomapping = true
         
-        for col in 0..<cols {
-            for row in 0..<rows {
-                let val = noiseMap.value(at: vector2(Int32(row),Int32(col)))
-                //We will then decide what tiles correspond to what value
-                switch val {
-                case -1.0..<(-0.5):
-                    if let g = tileSet.tileGroups.first(where: {
-                        ($0.name ?? "") == "Water"}) {
-                        map.setTileGroup(g, forColumn: col, row: row)
-                    }
-                default:
-                    if let g = tileSet.tileGroups.first(where: {
-                        ($0.name ?? "") == "Grass"}) {
-                        map.setTileGroup(g, forColumn: col, row: row)
-                    }
+        let unitsMap = SKTileMapNode(tileSet: tileSet,
+                                    columns: cols,
+                                    rows: rows,
+                                    tileSize: tileSize)
+        unitsMap.zPosition = Layer.foreground
+        unitsMap.position = CGPoint.zero
+        unitsMap.enableAutomapping = true
+
+//        for col in 0..<cols {
+//            for row in 0..<rows {
+//                let val = noiseMap.value(at: vector2(Int32(row),Int32(col)))
+//                //We will then decide what tiles correspond to what value
+//                switch val {
+//                case -1.0..<(-0.5):
+//                    if let g = tileSet.tileGroups.first(where: {
+//                        ($0.name ?? "") == "Water"}) {
+//                        map.setTileGroup(g, forColumn: col, row: row)
+//                    }
+//                default:
+//                    if let g = tileSet.tileGroups.first(where: {
+//                        ($0.name ?? "") == "Grass"}) {
+//                        map.setTileGroup(g, forColumn: col, row: row)
+//                    }
+//                }
+//            }
+//        }
+        
+        let tileGroups = tileSet.tileGroups
+        
+//        guard let grassTile = tileGroups.first(where: {$0.name == "Grass"}) else {
+//            fatalError("No Grass tile definition found")
+//        }
+        
+        let grassTiles = tileSet.tileGroups.first { $0.name == "Grass"}
+        let sandTiles = tileSet.tileGroups.first { $0.name == "Sand"}
+        let tundraTiles = tileSet.tileGroups.first { $0.name == "Tundra"}
+        let waterTiles = tileSet.tileGroups.first { $0.name == "Water"}
+        let townTiles = tileSet.tileGroups.first { $0.name == "Town"}
+        let planeTiles = tileSet.tileGroups.first { $0.name == "Plane"}
+        let tankTiles = tileSet.tileGroups.first { $0.name == "Tank"}
+        let fogTiles = tileSet.tileGroups.first { $0.name == "Fog"}
+        let jungleTiles = tileSet.tileGroups.first { $0.name == "Jungle"}
+        let swampTiles = tileSet.tileGroups.first { $0.name == "Swamp"}
+        let snowTiles = tileSet.tileGroups.first { $0.name == "Snow"}
+        let plainsTiles = tileSet.tileGroups.first { $0.name == "Plains"}
+        
+//        map.fill(with: grassTiles)
+
+        for row in 0..<rows {
+            for col in 0..<cols {
+                let randomInt = Int.random(in: 0..<100)
+                if randomInt >= 0 && randomInt < 20 {
+                    baseMap.setTileGroup(grassTiles, forColumn: col, row: row)
+                }
+                else if randomInt >= 20 && randomInt < 40 {
+                    baseMap.setTileGroup(plainsTiles, forColumn: col, row: row)
+                }
+                else if randomInt >= 40 && randomInt < 50 {
+                    baseMap.setTileGroup(sandTiles, forColumn: col, row: row)
+                }
+                else if randomInt >= 50 && randomInt < 60 {
+                    baseMap.setTileGroup(swampTiles, forColumn: col, row: row)
+                }
+                else if randomInt >= 60 && randomInt < 70 {
+                    baseMap.setTileGroup(waterTiles, forColumn: col, row: row)
+                }
+                else if randomInt >= 70 && randomInt < 90 {
+                    baseMap.setTileGroup(jungleTiles, forColumn: col, row: row)
+                }
+                else if randomInt >= 90 && randomInt < 100 {
+                    baseMap.setTileGroup(snowTiles, forColumn: col, row: row)
+                }
+                else if randomInt >= 101 && randomInt < 100 {
+                    baseMap.setTileGroup(fogTiles, forColumn: col, row: row)
                 }
             }
         }
-        self.addChild(map)
+        
+        for row in 0..<rows {
+            for col in 0..<cols {
+                let randomInt = Int.random(in: 0..<100)
+                if randomInt >= 0 && randomInt < 10 {
+                    unitsMap.setTileGroup(tankTiles, forColumn: col, row: row)
+                }
+                else if randomInt >= 20 && randomInt < 30 {
+                    unitsMap.setTileGroup(planeTiles, forColumn: col, row: row)
+                }
+                else if randomInt >= 30 && randomInt < 40 {
+                    unitsMap.setTileGroup(townTiles, forColumn: col, row: row)
+                }
+            }
+        }
+        
+        unitsMap.alpha = 1.0
+        addChild(baseMap)
+        addChild(unitsMap)
     }
     
     private func setUpPhysics() {
