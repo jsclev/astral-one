@@ -11,25 +11,9 @@
 		521B498E27DEDC7F00FED38F /* map-24x15.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 521B498D27DEDC7F00FED38F /* map-24x15.tmx */; };
 		521B499027DEDC8800FED38F /* map-20x15.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 521B498F27DEDC8800FED38F /* map-20x15.tmx */; };
 		525D6BDE27D04AE0008AA740 /* GameCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BDD27D04AE0008AA740 /* GameCamera.swift */; };
-		525D6BE127D123CF008AA740 /* Barracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE027D123CF008AA740 /* Barracks.swift */; };
-		525D6BE327D124EF008AA740 /* CommandCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE227D124EF008AA740 /* CommandCenter.swift */; };
-		525D6BE627D12586008AA740 /* PowerPlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE527D12586008AA740 /* PowerPlant.swift */; };
-		525D6BE827D125B4008AA740 /* Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE727D125B4008AA740 /* Pod.swift */; };
-		525D6BEA27D126DB008AA740 /* EnergyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BE927D126DB008AA740 /* EnergyStorage.swift */; };
-		525D6BEC27D12C7D008AA740 /* ConcreteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BEB27D12C7D008AA740 /* ConcreteStorage.swift */; };
-		525D6BEE27D12D0D008AA740 /* MineralStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BED27D12D0D008AA740 /* MineralStorage.swift */; };
-		525D6BF027D14F5B008AA740 /* Shipyard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BEF27D14F5B008AA740 /* Shipyard.swift */; };
-		525D6BF227D14F98008AA740 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BF127D14F98008AA740 /* Wall.swift */; };
-		525D6BF427D14FAA008AA740 /* Gate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BF327D14FAA008AA740 /* Gate.swift */; };
-		525D6BF627D14FC3008AA740 /* RadarTower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BF527D14FC3008AA740 /* RadarTower.swift */; };
 		525D6BF927D15228008AA740 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BF827D15228008AA740 /* SpriteComponent.swift */; };
-		525D6BFB27D153AF008AA740 /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BFA27D153AF008AA740 /* EntityManager.swift */; };
-		525D6BFD27D17A09008AA740 /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BFC27D17A09008AA740 /* Energy.swift */; };
 		525D6C0127D2A778008AA740 /* DamageableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6C0027D2A778008AA740 /* DamageableComponent.swift */; };
-		525D6C0327D3E51A008AA740 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6C0227D3E51A008AA740 /* Builder.swift */; };
 		525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 525DC47D27CF41EF003DC3A2 /* Background4.m4a */; };
-		525DC48127CFF287003DC3A2 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DC48027CFF287003DC3A2 /* Game.swift */; };
-		525DC48327CFF852003DC3A2 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525DC48227CFF852003DC3A2 /* Player.swift */; };
 		52A8787D27E5651200968F7D /* Civ 2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52A8787C27E5651200968F7D /* Civ 2.sks */; };
 		52D1218027CC09400047C2CA /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1217F27CC09400047C2CA /* SpriteSheet.swift */; };
 		52D1218227CC6F110047C2CA /* AstralOneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218127CC6F110047C2CA /* AstralOneApp.swift */; };
@@ -61,25 +45,9 @@
 		521B498D27DEDC7F00FED38F /* map-24x15.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "map-24x15.tmx"; path = "Astral One/Resources/map-24x15.tmx"; sourceTree = SOURCE_ROOT; };
 		521B498F27DEDC8800FED38F /* map-20x15.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "map-20x15.tmx"; path = "Astral One/Resources/map-20x15.tmx"; sourceTree = SOURCE_ROOT; };
 		525D6BDD27D04AE0008AA740 /* GameCamera.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameCamera.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BE027D123CF008AA740 /* Barracks.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Barracks.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BE227D124EF008AA740 /* CommandCenter.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CommandCenter.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BE527D12586008AA740 /* PowerPlant.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = PowerPlant.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BE727D125B4008AA740 /* Pod.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Pod.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BE927D126DB008AA740 /* EnergyStorage.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EnergyStorage.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BEB27D12C7D008AA740 /* ConcreteStorage.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ConcreteStorage.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BED27D12D0D008AA740 /* MineralStorage.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = MineralStorage.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BEF27D14F5B008AA740 /* Shipyard.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Shipyard.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BF127D14F98008AA740 /* Wall.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BF327D14FAA008AA740 /* Gate.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Gate.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BF527D14FC3008AA740 /* RadarTower.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = RadarTower.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525D6BF827D15228008AA740 /* SpriteComponent.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BFA27D153AF008AA740 /* EntityManager.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6BFC27D17A09008AA740 /* Energy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
 		525D6C0027D2A778008AA740 /* DamageableComponent.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = DamageableComponent.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525D6C0227D3E51A008AA740 /* Builder.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525DC47D27CF41EF003DC3A2 /* Background4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Background4.m4a; sourceTree = "<group>"; };
-		525DC48027CFF287003DC3A2 /* Game.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; tabWidth = 4; };
-		525DC48227CFF852003DC3A2 /* Player.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52A8787C27E5651200968F7D /* Civ 2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Civ 2.sks"; sourceTree = "<group>"; };
 		52D1217F27CC09400047C2CA /* SpriteSheet.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52D1218127CC6F110047C2CA /* AstralOneApp.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AstralOneApp.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -121,37 +89,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		525D6BDF27D123B4008AA740 /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				525D6BFC27D17A09008AA740 /* Energy.swift */,
-				525DC48027CFF287003DC3A2 /* Game.swift */,
-				525DC48227CFF852003DC3A2 /* Player.swift */,
-				525D6BE427D12519008AA740 /* Buildings */,
-				525D6BFA27D153AF008AA740 /* EntityManager.swift */,
-				525D6C0227D3E51A008AA740 /* Builder.swift */,
-			);
-			path = Entities;
-			sourceTree = "<group>";
-		};
-		525D6BE427D12519008AA740 /* Buildings */ = {
-			isa = PBXGroup;
-			children = (
-				525D6BE027D123CF008AA740 /* Barracks.swift */,
-				525D6BE227D124EF008AA740 /* CommandCenter.swift */,
-				525D6BEB27D12C7D008AA740 /* ConcreteStorage.swift */,
-				525D6BE927D126DB008AA740 /* EnergyStorage.swift */,
-				525D6BF327D14FAA008AA740 /* Gate.swift */,
-				525D6BED27D12D0D008AA740 /* MineralStorage.swift */,
-				525D6BE727D125B4008AA740 /* Pod.swift */,
-				525D6BE527D12586008AA740 /* PowerPlant.swift */,
-				525D6BF527D14FC3008AA740 /* RadarTower.swift */,
-				525D6BEF27D14F5B008AA740 /* Shipyard.swift */,
-				525D6BF127D14F98008AA740 /* Wall.swift */,
-			);
-			path = Buildings;
-			sourceTree = "<group>";
-		};
 		525D6BF727D1520A008AA740 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,7 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				525D6BF727D1520A008AA740 /* Components */,
-				525D6BDF27D123B4008AA740 /* Entities */,
 				AFEF9619231A0231006025E5 /* Supporting Files */,
 				AFEF9609231A016D006025E5 /* Resources */,
 				AFEF961A231A0239006025E5 /* Classes */,
@@ -382,30 +318,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525D6BF027D14F5B008AA740 /* Shipyard.swift in Sources */,
-				525DC48327CFF852003DC3A2 /* Player.swift in Sources */,
-				525D6BF227D14F98008AA740 /* Wall.swift in Sources */,
-				525D6BE627D12586008AA740 /* PowerPlant.swift in Sources */,
-				525DC48127CFF287003DC3A2 /* Game.swift in Sources */,
-				525D6BE127D123CF008AA740 /* Barracks.swift in Sources */,
 				52D1218027CC09400047C2CA /* SpriteSheet.swift in Sources */,
-				525D6BEA27D126DB008AA740 /* EnergyStorage.swift in Sources */,
 				525D6BF927D15228008AA740 /* SpriteComponent.swift in Sources */,
-				525D6BE327D124EF008AA740 /* CommandCenter.swift in Sources */,
-				525D6BF427D14FAA008AA740 /* Gate.swift in Sources */,
 				AFEF9620231A043E006025E5 /* GameScene.swift in Sources */,
-				525D6BFB27D153AF008AA740 /* EntityManager.swift in Sources */,
-				525D6BEE27D12D0D008AA740 /* MineralStorage.swift in Sources */,
-				525D6BE827D125B4008AA740 /* Pod.swift in Sources */,
 				52D1218A27CC92DD0047C2CA /* MapViewModel.swift in Sources */,
 				525D6BDE27D04AE0008AA740 /* GameCamera.swift in Sources */,
-				525D6BF627D14FC3008AA740 /* RadarTower.swift in Sources */,
-				525D6BEC27D12C7D008AA740 /* ConcreteStorage.swift in Sources */,
-				525D6C0327D3E51A008AA740 /* Builder.swift in Sources */,
 				525D6C0127D2A778008AA740 /* DamageableComponent.swift in Sources */,
 				52D1218227CC6F110047C2CA /* AstralOneApp.swift in Sources */,
 				52D1218527CC7A910047C2CA /* GameView.swift in Sources */,
-				525D6BFD27D17A09008AA740 /* Energy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
