@@ -20,14 +20,17 @@ class MapViewModel {
 
         cameraSize = CGSize(width: UIScreen.main.bounds.size.width,
                             height: UIScreen.main.bounds.size.height)
-        mapSize = CGSize(width: 6144.0 / 3.0, height: 3840.0 / 3.0)
+        mapSize = CGSize(width: 7680.0 / 3.0, height: 3840.0 / 3.0)
 
         // Start the initial camera position in the middle of the map
-        cameraPosition = CGPoint(x: (cameraSize.width / 2) + (mapSize.width - cameraSize.width) / 2,
-                                 y: (cameraSize.height / 2) + (mapSize.height - cameraSize.height) / 2)
+        cameraPosition = CGPoint(x: (mapSize.width - cameraSize.width) / 2,
+                                 y: (mapSize.height - cameraSize.height) / 2)
         startCameraPosition = CGPoint(x: cameraPosition.x,
                                       y: cameraPosition.y)
-
+//        cameraPosition = CGPoint(x: 0.0,
+//                                 y: 0.0)
+//        startCameraPosition = CGPoint(x: cameraPosition.x,
+//                                      y: cameraPosition.y)
         log()
     }
     
@@ -53,24 +56,29 @@ class MapViewModel {
     }
     
     func moveCamera(translation: CGSize) {
-        if (startCameraPosition.x - translation.width <= (mapSize.width / 2) - (mapSize.width - cameraSize.width) / 2) {
-            cameraPosition.x = (mapSize.width / 2) - (mapSize.width - cameraSize.width) / 2
-        }
-        else if (startCameraPosition.x - translation.width >= (mapSize.width / 2) + (mapSize.width - cameraSize.width) / 2) {
-            cameraPosition.x = (mapSize.width / 2) + (mapSize.width - cameraSize.width) / 2
-        } else {
-            cameraPosition.x = startCameraPosition.x - translation.width
-        }
+        cameraPosition.x = startCameraPosition.x - translation.width
+        cameraPosition.y = startCameraPosition.y + translation.height
+
+//        if (startCameraPosition.x - translation.width <= (mapSize.width / 2) - (mapSize.width - cameraSize.width) / 2) {
+//            cameraPosition.x = (mapSize.width / 2) - (mapSize.width - cameraSize.width) / 2
+//        }
+//        else if (startCameraPosition.x - translation.width >= (mapSize.width / 2) + (mapSize.width - cameraSize.width) / 2) {
+//
+//            cameraPosition.x = (mapSize.width / 2) - (mapSize.width - cameraSize.width) / 2
+//            cameraPosition.x = (mapSize.width / 2) + (mapSize.width - cameraSize.width) / 2
+//        } else {
+//            cameraPosition.x = startCameraPosition.x - translation.width
+//        }
         
-        if (startCameraPosition.y + translation.height >= (mapSize.height / 2) + (mapSize.height - cameraSize.height) / 2) {
-            cameraPosition.y = (mapSize.height / 2) + (mapSize.height - cameraSize.height) / 2
-        }
-        else if (startCameraPosition.y + translation.height <= cameraSize.height / 2) {
-            cameraPosition.y = cameraSize.height / 2
-        }
-        else {
-            cameraPosition.y = startCameraPosition.y + translation.height
-        }
+//        if (startCameraPosition.y + translation.height >= (mapSize.height / 2) + (mapSize.height - cameraSize.height) / 2) {
+//            cameraPosition.y = (mapSize.height / 2) + (mapSize.height - cameraSize.height) / 2
+//        }
+//        else if (startCameraPosition.y + translation.height <= cameraSize.height / 2) {
+//            cameraPosition.y = cameraSize.height / 2
+//        }
+//        else {
+//            cameraPosition.y = startCameraPosition.y + translation.height
+//        }
         
         log()
 //        print("Translation width: \(translation.width)")

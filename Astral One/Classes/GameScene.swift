@@ -1,6 +1,7 @@
 import SpriteKit
 import AVFoundation
 import GameplayKit
+import Engine
 
 class GameScene: SKScene {
     private var particles: SKEmitterNode?
@@ -56,6 +57,9 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        let engine = Astral_One_Engine()
+        print(engine.test)
+        
         entityManager = EntityManager(scene: self)
         gameCamera = GameCamera(entityManager)
         
@@ -139,8 +143,8 @@ class GameScene: SKScene {
         
 //        gameCamera.position = CGPoint(x: (mapSize.width / 2.0),
 //                                      y: (mapSize.height / 2.0))
-        gameCamera.position = CGPoint(x: 1194.662 / 2.0,
-                                      y: 1621.327 / 3.0)
+//        gameCamera.position = CGPoint(x: 1194.662 / 2.0,
+//                                      y: 1621.327 / 3.0)
         print(gameCamera.position)
     }
     
@@ -209,13 +213,11 @@ class GameScene: SKScene {
         unitsMap.position = CGPoint.zero
         unitsMap.enableAutomapping = true
         
-        let tileGroups = tileSet.tileGroups
-        
 //        guard let grassTile = tileGroups.first(where: {$0.name == "Grass"}) else {
 //            fatalError("No Grass tile definition found")
 //        }
         
-//        let grassTiles = tileSet.tileGroups.first { $0.name == "Grass"}
+        let grassTiles = tileSet.tileGroups.first { $0.name == "Grass"}
 //        let sandTiles = tileSet.tileGroups.first { $0.name == "Sand"}
 //        let tundraTiles = tileSet.tileGroups.first { $0.name == "Tundra"}
 //        let waterTiles = tileSet.tileGroups.first { $0.name == "Water"}
@@ -238,21 +240,17 @@ class GameScene: SKScene {
             for (colIndex, tile) in row.enumerated() {
                 
                 if let tileType = gameTiles[tile.id] {
-                    if let tileGroup = tileSet.tileGroups.first { $0.name == tileType} {
-                        terrainMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
+                    if tileType == "Tank" || tileType == "Plane" || tileType == "Town" {
+                        if let tileGroup = tileSet.tileGroups.first { $0.name == tileType} {
+                            unitsMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
+                            terrainMap.setTileGroup(grassTiles, forColumn: colIndex, row: rowIndex)
+                        }
+                    }
+                    else {
+                        if let tileGroup = tileSet.tileGroups.first { $0.name == tileType} {
+                            terrainMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
 
-//                    let spNode = SKSpriteNode(imageNamed: imageName)
-//                    //                    print("[\(spNode.calculateAccumulatedFrame().width), \(spNode.calculateAccumulatedFrame().height)]")
-//
-//                    tileWidth = spNode.calculateAccumulatedFrame().width
-//                    numTiles.height = CGFloat(colIndex)
-//
-//                    spNode.position = CGPoint(x: tileWidth * CGFloat(colIndex),
-//                                              y: 1000.0 - tileWidth * CGFloat(rowIndex))
-//                    spNode.name = "terrain_" + tile.id
-//                    spNode.anchorPoint = CGPoint(x: 0, y: 0)
-//                    spNode.zPosition = Layer.terrain
-//                    addChild(spNode)
+                        }
                     }
                 }
             }

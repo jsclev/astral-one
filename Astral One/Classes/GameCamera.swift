@@ -105,7 +105,6 @@ class GameCamera: SKCameraNode {
 
             }
             print("Camera size: \(self.calculateAccumulatedFrame().size)")
-            print("Camera position: \(self.calculateAccumulatedFrame().size)")
         }
 
     }
