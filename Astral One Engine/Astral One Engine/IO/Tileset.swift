@@ -1,6 +1,6 @@
 import Foundation
 
-struct Tileset {
+public struct Tileset {
     var name: String
     var tiles: [Tile] = []
     

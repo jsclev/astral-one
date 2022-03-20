@@ -17,13 +17,13 @@ enum SoundFile {
     static let nomNom = "NomNom.caf"
 }
 
-enum Layer {
-    static let base: CGFloat = 0.0
-    static let terrain: CGFloat = 1.0
-    static let cities: CGFloat = 2.0
-    static let units: CGFloat = 3.0
-    static let hud: CGFloat = 5.0
-    static let foreground: CGFloat = 6.0
+public enum Layer {
+    public static let base: CGFloat = 0.0
+    public static let terrain: CGFloat = 1.0
+    public static let cities: CGFloat = 2.0
+    public static let units: CGFloat = 3.0
+    public static let hud: CGFloat = 5.0
+    public static let foreground: CGFloat = 6.0
 }
 
 enum PhysicsCategory {
@@ -38,7 +38,7 @@ enum GameConfiguration {
     static let canCutMultipleVinesAtOnce = false
 }
 
-var gameTiles: [String: String] = [
+public var gameTiles: [String: String] = [
     "0": "Water",
     "1": "Tundra",
     "2": "Town",

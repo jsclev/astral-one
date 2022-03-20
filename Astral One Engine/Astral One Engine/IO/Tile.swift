@@ -1,6 +1,6 @@
 import Foundation
 
-struct Tile {
-    var id: String = ""
+public struct Tile {
+    public var id: String = ""
     var walkable: Bool = true
 }

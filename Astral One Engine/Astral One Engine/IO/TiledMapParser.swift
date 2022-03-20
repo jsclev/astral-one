@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-class TiledMapParser: NSObject, XMLParserDelegate {
+public class TiledMapParser: NSObject, XMLParserDelegate {
     var filename: String
     var currentEl = ""
     var tileset: Tileset
@@ -10,7 +10,7 @@ class TiledMapParser: NSObject, XMLParserDelegate {
     var mapHeight: Int32
     var firstGId: Int
     
-    init(tileset: Tileset, filename: String) {
+    public init(tileset: Tileset, filename: String) {
         self.filename = filename
         self.tileset = tileset
         self.mapWidth = 0
@@ -19,7 +19,7 @@ class TiledMapParser: NSObject, XMLParserDelegate {
         self.map = Map(width: self.mapWidth, height: self.mapHeight)
     }
     
-    func parse() -> Map {
+    public func parse() -> Map {
         currentEl = ""
         
 //        var filename = "map-"
@@ -40,7 +40,7 @@ class TiledMapParser: NSObject, XMLParserDelegate {
         return map
     }
     
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+    public func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if elementName == "tileset" {
             if let firstGIdAttr = attributeDict["firstgid"] {
                 firstGId = Int(firstGIdAttr) ?? 1
@@ -60,11 +60,11 @@ class TiledMapParser: NSObject, XMLParserDelegate {
         self.currentEl = elementName
     }
     
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+    public func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
     }
     
-    func parser(_ parser: XMLParser, foundCharacters string: String) {
+    public func parser(_ parser: XMLParser, foundCharacters string: String) {
         if currentEl == "data" {
             let trimmedString = string.trimmingCharacters(in: .whitespacesAndNewlines)
             

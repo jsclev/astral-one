@@ -1,6 +1,7 @@
 import SpriteKit
 import AVFoundation
 import GameplayKit
+import Astral_One_Engine
 
 class GameScene: SKScene {
     private var particles: SKEmitterNode?
@@ -56,9 +57,6 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        let engine = Astral_One_Engine()
-        print(engine.test)
-        
         entityManager = EntityManager(scene: self)
         gameCamera = GameCamera(entityManager)
         
@@ -103,8 +101,6 @@ class GameScene: SKScene {
         let mapParser = TiledMapParser(tileset: tileset, filename: "civ2")
         let map = mapParser.parse()
         map.bake()
-        
-        var tileWidth: CGFloat = 0.0
         
         renderMap(map: map)
 //
@@ -186,8 +182,6 @@ class GameScene: SKScene {
     }
     
     private func renderMap(map: Map) {
-        var tileWidth: CGFloat = 0.0
-        
         guard let tileSet = SKTileSet(named: "Civ 2 Tile Set") else {
             fatalError("Tile Set not found")
         }
@@ -406,37 +400,6 @@ class GameScene: SKScene {
     
     private func switchToNewGame(withTransition transition: SKTransition) {
         
-    }
-    
-    private func setUpAudio() {
-        if GameScene.backgroundMusicPlayer == nil {
-            let backgroundMusicURL = Bundle.main.url(
-                forResource: SoundFile.backgroundMusic,
-                withExtension: nil)
-            
-            do {
-                let theme = try AVAudioPlayer(contentsOf: backgroundMusicURL!)
-                GameScene.backgroundMusicPlayer = theme
-            } catch {
-                // couldn't load file :[
-            }
-            
-            GameScene.backgroundMusicPlayer.numberOfLoops = -1
-        }
-        
-        if !GameScene.backgroundMusicPlayer.isPlaying {
-            GameScene.backgroundMusicPlayer.play()
-        }
-        
-        sliceSoundAction = .playSoundFileNamed(
-            SoundFile.slice,
-            waitForCompletion: false)
-        splashSoundAction = .playSoundFileNamed(
-            SoundFile.splash,
-            waitForCompletion: false)
-        nomNomSoundAction = .playSoundFileNamed(
-            SoundFile.nomNom,
-            waitForCompletion: false)
     }
     //
     //    func handlePinch(sender: UIPinchGestureRecognizer) {

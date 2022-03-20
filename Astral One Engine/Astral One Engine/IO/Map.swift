@@ -1,8 +1,8 @@
 import Foundation
 import GameplayKit
 
-struct Map {
-    var tiles: [[Tile]] = [[]]
+public struct Map {
+    public var tiles: [[Tile]] = [[]]
     var width: Int32 = 0
     var height: Int32 = 0
     var graph: GKGridGraph<GKGridGraphNode>
@@ -19,7 +19,7 @@ struct Map {
                                              diagonalsAllowed: true)
     }
     
-    func bake() {
+    public func bake() {
         var nodesToRemove: [GKGridGraphNode] = []
         
         for (rowIndex, row) in tiles.enumerated() {

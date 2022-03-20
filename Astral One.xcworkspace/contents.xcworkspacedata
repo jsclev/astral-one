@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Astral One Engine/Astral One Engine.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Pathfinder/Pathfinder.xcodeproj">
    </FileRef>
    <FileRef
