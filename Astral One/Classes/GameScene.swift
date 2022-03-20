@@ -1,7 +1,6 @@
 import SpriteKit
 import AVFoundation
 import GameplayKit
-import Astral_One_Engine
 
 class GameScene: SKScene {
     private var particles: SKEmitterNode?

@@ -1,5 +1,6 @@
 import SpriteKit
 import SwiftUI
+import Astral_One_Engine
 
 class GameCamera: SKCameraNode {
     let entityManager: EntityManager
