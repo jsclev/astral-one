@@ -1,8 +1,8 @@
 import SpriteKit
 import GameplayKit
 
-class PowerPlant: GKEntity {
-    init(imageName: String) {
+public class PowerPlant: GKEntity {
+    public init(imageName: String) {
         super.init()
         
         let spriteComponent = SpriteComponent(texture: SKTexture(imageNamed: imageName))

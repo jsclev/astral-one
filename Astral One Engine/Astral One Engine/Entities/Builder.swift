@@ -1,13 +1,13 @@
 import Foundation
 import SpriteKit
 
-class Builder: SKSpriteNode {
+public class Builder: SKSpriteNode {
     private var walkTextures: [SKTexture]?
     private var unselectedWalkTextures: [SKTexture]?
     private var selectedWalkTextures: [SKTexture]?
     private var isSpriteSelected = false
     
-    init() {
+    public init() {
         let texture = SKTexture(imageNamed: "builder1")
         super.init(texture: texture, color: .clear, size: texture.size())
         
@@ -29,7 +29,11 @@ class Builder: SKSpriteNode {
         anchorPoint = CGPoint(x: 0.5, y: 0.0)
     }
     
-    func walk() {
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func walk() {
         // Check for textures
         guard let walkTextures = walkTextures else {
             preconditionFailure("Could not find textures!")
@@ -46,7 +50,7 @@ class Builder: SKSpriteNode {
                        count: 0, resize: true, restore: true)
     }
     
-    func toggleSelected() {
+    public func toggleSelected() {
         print("Selected builder")
         isSpriteSelected = !isSpriteSelected
         
@@ -60,19 +64,15 @@ class Builder: SKSpriteNode {
         walk()
     }
     
-    func isSelected() -> Bool {
+    public func isSelected() -> Bool {
         return isSpriteSelected
     }
     
-    func moveToPosition(pos: CGPoint, speed: TimeInterval) {
+    public func moveToPosition(pos: CGPoint, speed: TimeInterval) {
         let moveAction = SKAction.move(to: pos,
                                        duration: speed)
         run(moveAction, completion: {
             self.removeAllActions()
         })
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

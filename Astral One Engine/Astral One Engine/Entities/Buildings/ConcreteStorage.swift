@@ -1,8 +1,8 @@
 import SpriteKit
 import GameplayKit
 
-class ConcreteStorage: GKEntity {
-    init(imageName: String) {
+public class ConcreteStorage: GKEntity {
+    public init(imageName: String) {
         super.init()
         
         let spriteComponent = SpriteComponent(texture: SKTexture(imageNamed: imageName))

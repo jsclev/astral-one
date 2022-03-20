@@ -1,15 +1,15 @@
 import Foundation
 import Combine
 
-class Game: ObservableObject {
-    @Published var showFPS = false
-    @Published var player = Player()
+public class Game: ObservableObject {
+    @Published public var showFPS = false
+    @Published public var player = Player()
     
     // Deal with SwiftUI update problems
     //    private var anyCancellableUserViewModel: AnyCancellable? = nil
     //    private var anyCancellableWorkListViewModel: AnyCancellable? = nil
     
-    init() {
+    public init() {
         //    let workList = WorkList(works: self.db.work.getHugoWorks())
         //    userViewModel = UserViewModel(user: self.db.user.getCurrentUser(), workList: workList)
         //    workListViewModel = WorkListViewModel(workList)

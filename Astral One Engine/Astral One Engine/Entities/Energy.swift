@@ -1,7 +1,7 @@
 import SpriteKit
 import GameplayKit
 
-class Energy: GKEntity {
+public class Energy: GKEntity {
   init(imageName: String) {
     super.init()
     

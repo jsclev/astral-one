@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class Player: ObservableObject {
+public class Player: ObservableObject {
     @Published var showFPS = false
     @Published var money: Int = 0
     

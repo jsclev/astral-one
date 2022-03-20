@@ -7,23 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52F9B5CF27E6A4EF005D55E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9B5CE27E6A4EF005D55E6 /* AppDelegate.swift */; };
-		52F9B5D127E6A4EF005D55E6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52F9B5D027E6A4EF005D55E6 /* GameScene.sks */; };
-		52F9B5D327E6A4EF005D55E6 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52F9B5D227E6A4EF005D55E6 /* Actions.sks */; };
+		52E0B1C327E6E66E00607FBE /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C227E6E66E00607FBE /* GameView.swift */; };
+		52E0B1C527E6E6BC00607FBE /* PathfinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C427E6E6BC00607FBE /* PathfinderApp.swift */; };
+		52E0B1CA27E6E86E00607FBE /* GameCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C927E6E86E00607FBE /* GameCamera.swift */; };
+		52E0B1CD27E6E95700607FBE /* libAstral One Engine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E0B1CC27E6E95700607FBE /* libAstral One Engine.a */; };
+		52E0B1D127E6EA6700607FBE /* civ2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1D027E6EA6700607FBE /* civ2.tmx */; };
+		52E0B1D327E6EA8900607FBE /* civ2.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1D227E6EA8900607FBE /* civ2.tsx */; };
+		52E0B1D527E6EC4400607FBE /* Civ 2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1D427E6EC4400607FBE /* Civ 2.sks */; };
 		52F9B5D527E6A4EF005D55E6 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9B5D427E6A4EF005D55E6 /* GameScene.swift */; };
-		52F9B5D727E6A4EF005D55E6 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9B5D627E6A4EF005D55E6 /* GameViewController.swift */; };
 		52F9B5DA27E6A4EF005D55E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F9B5D827E6A4EF005D55E6 /* Main.storyboard */; };
 		52F9B5DC27E6A4F0005D55E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52F9B5DB27E6A4F0005D55E6 /* Assets.xcassets */; };
 		52F9B5DF27E6A4F0005D55E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F9B5DD27E6A4F0005D55E6 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52E0B1C227E6E66E00607FBE /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		52E0B1C427E6E6BC00607FBE /* PathfinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathfinderApp.swift; sourceTree = "<group>"; };
+		52E0B1C927E6E86E00607FBE /* GameCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCamera.swift; sourceTree = "<group>"; };
+		52E0B1CC27E6E95700607FBE /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52E0B1D027E6EA6700607FBE /* civ2.tmx */ = {isa = PBXFileReference; explicitFileType = text.xml; path = civ2.tmx; sourceTree = "<group>"; };
+		52E0B1D227E6EA8900607FBE /* civ2.tsx */ = {isa = PBXFileReference; explicitFileType = text.xml; path = civ2.tsx; sourceTree = "<group>"; };
+		52E0B1D427E6EC4400607FBE /* Civ 2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Civ 2.sks"; sourceTree = "<group>"; };
 		52F9B5CB27E6A4EF005D55E6 /* Pathfinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pathfinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		52F9B5CE27E6A4EF005D55E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		52F9B5D027E6A4EF005D55E6 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		52F9B5D227E6A4EF005D55E6 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		52F9B5D427E6A4EF005D55E6 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		52F9B5D627E6A4EF005D55E6 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		52F9B5D927E6A4EF005D55E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52F9B5DB27E6A4F0005D55E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52F9B5DE27E6A4F0005D55E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -34,17 +40,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52E0B1CD27E6E95700607FBE /* libAstral One Engine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52E0B1CB27E6E95700607FBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				52E0B1CC27E6E95700607FBE /* libAstral One Engine.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		52E0B1CE27E6E9A300607FBE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				52E0B1D427E6EC4400607FBE /* Civ 2.sks */,
+				52E0B1CF27E6E9CB00607FBE /* Data */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		52E0B1CF27E6E9CB00607FBE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				52E0B1D027E6EA6700607FBE /* civ2.tmx */,
+				52E0B1D227E6EA8900607FBE /* civ2.tsx */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		52F9B5C227E6A4EF005D55E6 = {
 			isa = PBXGroup;
 			children = (
 				52F9B5CD27E6A4EF005D55E6 /* Pathfinder */,
 				52F9B5CC27E6A4EF005D55E6 /* Products */,
+				52E0B1CB27E6E95700607FBE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,14 +93,14 @@
 		52F9B5CD27E6A4EF005D55E6 /* Pathfinder */ = {
 			isa = PBXGroup;
 			children = (
-				52F9B5CE27E6A4EF005D55E6 /* AppDelegate.swift */,
-				52F9B5D027E6A4EF005D55E6 /* GameScene.sks */,
-				52F9B5D227E6A4EF005D55E6 /* Actions.sks */,
-				52F9B5D427E6A4EF005D55E6 /* GameScene.swift */,
-				52F9B5D627E6A4EF005D55E6 /* GameViewController.swift */,
+				52E0B1CE27E6E9A300607FBE /* Resources */,
 				52F9B5D827E6A4EF005D55E6 /* Main.storyboard */,
-				52F9B5DB27E6A4F0005D55E6 /* Assets.xcassets */,
 				52F9B5DD27E6A4F0005D55E6 /* LaunchScreen.storyboard */,
+				52F9B5DB27E6A4F0005D55E6 /* Assets.xcassets */,
+				52E0B1C427E6E6BC00607FBE /* PathfinderApp.swift */,
+				52E0B1C927E6E86E00607FBE /* GameCamera.swift */,
+				52F9B5D427E6A4EF005D55E6 /* GameScene.swift */,
+				52E0B1C227E6E66E00607FBE /* GameView.swift */,
 			);
 			path = Pathfinder;
 			sourceTree = "<group>";
@@ -130,10 +164,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				52F9B5DA27E6A4EF005D55E6 /* Main.storyboard in Resources */,
-				52F9B5D127E6A4EF005D55E6 /* GameScene.sks in Resources */,
 				52F9B5DC27E6A4F0005D55E6 /* Assets.xcassets in Resources */,
+				52E0B1D327E6EA8900607FBE /* civ2.tsx in Resources */,
 				52F9B5DF27E6A4F0005D55E6 /* LaunchScreen.storyboard in Resources */,
-				52F9B5D327E6A4EF005D55E6 /* Actions.sks in Resources */,
+				52E0B1D527E6EC4400607FBE /* Civ 2.sks in Resources */,
+				52E0B1D127E6EA6700607FBE /* civ2.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,8 +180,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				52F9B5D527E6A4EF005D55E6 /* GameScene.swift in Sources */,
-				52F9B5D727E6A4EF005D55E6 /* GameViewController.swift in Sources */,
-				52F9B5CF27E6A4EF005D55E6 /* AppDelegate.swift in Sources */,
+				52E0B1C527E6E6BC00607FBE /* PathfinderApp.swift in Sources */,
+				52E0B1CA27E6E86E00607FBE /* GameCamera.swift in Sources */,
+				52E0B1C327E6E66E00607FBE /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +337,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationLandscapeLeft";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -329,6 +366,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationLandscapeLeft";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

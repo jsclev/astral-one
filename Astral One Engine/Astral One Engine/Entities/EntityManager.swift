@@ -2,15 +2,15 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
-class EntityManager {
+public class EntityManager {
     var entities = Set<GKEntity>()
     let scene: SKScene
     
-    init(scene: SKScene) {
+    public init(scene: SKScene) {
         self.scene = scene
     }
     
-    func add(_ entity: GKEntity) {
+    public func add(_ entity: GKEntity) {
         entities.insert(entity)
         
         if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
@@ -18,7 +18,7 @@ class EntityManager {
         }
     }
     
-    func remove(_ entity: GKEntity) {
+    public func remove(_ entity: GKEntity) {
         if let spriteNode = entity.component(ofType: SpriteComponent.self)?.node {
             spriteNode.removeFromParent()
         }

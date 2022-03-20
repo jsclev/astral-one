@@ -1,23 +1,24 @@
 import SpriteKit
 import SwiftUI
+import Astral_One_Engine
 
 struct GameView: View {
     @EnvironmentObject var game: Game
-
+    
     @State private var location: CGPoint = CGPoint(x: 0.0, y: 0.0)
     @GestureState private var fingerLocation: CGPoint? = nil
     @GestureState private var startLocation: CGPoint? = nil
     
-//    var gameCamera = SKCameraNode()
+    //    var gameCamera = SKCameraNode()
     var mapViewModel = MapViewModel()
     var scene: GameScene
     @GestureState private var cameraPosition = CGPoint.zero
     
     init() {
         scene = GameScene(mapViewModel: mapViewModel)
-//        scene.camera = gameCamera
-//        scene.anchorPoint = CGPoint.zero
-
+        //        scene.camera = gameCamera
+        //        scene.anchorPoint = CGPoint.zero
+        
     }
     
     var simpleDrag: some Gesture {
@@ -54,7 +55,7 @@ struct GameView: View {
                                                         .showsDrawCount])
                     .ignoresSafeArea()
                     .gesture(simpleDrag)
-                    
+                
             }
             else {
                 SpriteView(scene: scene)
@@ -66,7 +67,7 @@ struct GameView: View {
                 .ignoresSafeArea()
                 .gesture(simpleDrag)
 #endif
-
+            
             ScrollView(showsIndicators: false) {
                 let buttonSize = 80.0
                 

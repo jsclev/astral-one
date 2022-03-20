@@ -1,8 +1,8 @@
 import SpriteKit
 import GameplayKit
 
-class Barracks: GKEntity {
-    init(imageName: String) {
+public class Barracks: GKEntity {
+    public init(imageName: String) {
         super.init()
         
         let spriteComponent = SpriteComponent(texture: SKTexture(imageNamed: imageName))

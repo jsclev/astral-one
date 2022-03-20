@@ -1,5 +1,6 @@
 import SpriteKit
 import SwiftUI
+import Astral_One_Engine
 
 @main
 struct AstralOneApp: App {

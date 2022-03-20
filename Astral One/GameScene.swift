@@ -182,8 +182,9 @@ class GameScene: SKScene {
     }
     
     private func renderMap(map: Map) {
-        guard let tileSet = SKTileSet(named: "Civ 2 Tile Set") else {
-            fatalError("Tile Set not found")
+        let tilesetName = "Civ 2 Tile Set"
+        guard let tileSet = SKTileSet(named: tilesetName) else {
+            fatalError("Tileset \"\(tilesetName)\" was not found in app bundle.")
         }
 
         let tileSize = CGSize(width: 96, height: 48)
@@ -234,13 +235,13 @@ class GameScene: SKScene {
                 
                 if let tileType = gameTiles[tile.id] {
                     if tileType == "Tank" || tileType == "Plane" || tileType == "Town" {
-                        if let tileGroup = tileSet.tileGroups.first { $0.name == tileType} {
+                        if let tileGroup = tileSet.tileGroups.first(where: { $0.name == tileType}) {
                             unitsMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
                             terrainMap.setTileGroup(grassTiles, forColumn: colIndex, row: rowIndex)
                         }
                     }
                     else {
-                        if let tileGroup = tileSet.tileGroups.first { $0.name == tileType} {
+                        if let tileGroup = tileSet.tileGroups.first(where: { $0.name == tileType}) {
                             terrainMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
 
                         }

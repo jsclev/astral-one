@@ -29,6 +29,10 @@
 		52E0B1B727E6DFD100607FBE /* ConcreteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1AC27E6DFD100607FBE /* ConcreteStorage.swift */; };
 		52E0B1B827E6DFD100607FBE /* RadarTower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1AD27E6DFD100607FBE /* RadarTower.swift */; };
 		52E0B1B927E6DFD100607FBE /* Barracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1AE27E6DFD100607FBE /* Barracks.swift */; };
+		52E0B1BC27E6E18000607FBE /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1BB27E6E18000607FBE /* SpriteComponent.swift */; };
+		52E0B1BE27E6E1AC00607FBE /* DamageableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1BD27E6E1AC00607FBE /* DamageableComponent.swift */; };
+		52E0B1C127E6E25300607FBE /* SpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C027E6E25300607FBE /* SpriteNode.swift */; };
+		52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C727E6E7A900607FBE /* MapViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,6 +70,10 @@
 		52E0B1AC27E6DFD100607FBE /* ConcreteStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreteStorage.swift; sourceTree = "<group>"; };
 		52E0B1AD27E6DFD100607FBE /* RadarTower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarTower.swift; sourceTree = "<group>"; };
 		52E0B1AE27E6DFD100607FBE /* Barracks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Barracks.swift; sourceTree = "<group>"; };
+		52E0B1BB27E6E18000607FBE /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
+		52E0B1BD27E6E1AC00607FBE /* DamageableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageableComponent.swift; sourceTree = "<group>"; };
+		52E0B1C027E6E25300607FBE /* SpriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteNode.swift; sourceTree = "<group>"; };
+		52E0B1C727E6E7A900607FBE /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		52F9B60727E6AA4C005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -123,6 +131,31 @@
 			path = Buildings;
 			sourceTree = "<group>";
 		};
+		52E0B1BA27E6E15500607FBE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				52E0B1BB27E6E18000607FBE /* SpriteComponent.swift */,
+				52E0B1BD27E6E1AC00607FBE /* DamageableComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		52E0B1BF27E6E1F300607FBE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				52E0B1C027E6E25300607FBE /* SpriteNode.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		52E0B1C627E6E76D00607FBE /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				52E0B1C727E6E7A900607FBE /* MapViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		52F9B5FE27E6AA4C005D55E6 = {
 			isa = PBXGroup;
 			children = (
@@ -142,8 +175,11 @@
 		52F9B60927E6AA4C005D55E6 /* Astral One Engine */ = {
 			isa = PBXGroup;
 			children = (
+				52E0B1BA27E6E15500607FBE /* Components */,
 				52E0B19827E6DF8600607FBE /* Entities */,
+				52E0B1BF27E6E1F300607FBE /* Extensions */,
 				52E0B18B27E6D87600607FBE /* IO */,
+				52E0B1C627E6E76D00607FBE /* View Models */,
 				52E0B18927E6D86A00607FBE /* Constants.swift */,
 			);
 			path = "Astral One Engine";
@@ -209,10 +245,12 @@
 			files = (
 				52E0B1A227E6DFA100607FBE /* EntityManager.swift in Sources */,
 				52E0B19227E6D87600607FBE /* TiledMapParser.swift in Sources */,
+				52E0B1BE27E6E1AC00607FBE /* DamageableComponent.swift in Sources */,
 				52E0B19F27E6DFA100607FBE /* Energy.swift in Sources */,
 				52E0B19127E6D87600607FBE /* Tileset.swift in Sources */,
 				52E0B1B427E6DFD100607FBE /* Pod.swift in Sources */,
 				52E0B1B827E6DFD100607FBE /* RadarTower.swift in Sources */,
+				52E0B1C127E6E25300607FBE /* SpriteNode.swift in Sources */,
 				52E0B1B927E6DFD100607FBE /* Barracks.swift in Sources */,
 				52E0B19E27E6DFA100607FBE /* Game.swift in Sources */,
 				52E0B19527E6D87600607FBE /* Tile.swift in Sources */,
@@ -222,9 +260,11 @@
 				52E0B19327E6D87600607FBE /* TiledTilesetParser.swift in Sources */,
 				52E0B19427E6D87600607FBE /* Map.swift in Sources */,
 				52E0B1A127E6DFA100607FBE /* Player.swift in Sources */,
+				52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */,
 				52E0B1B327E6DFD100607FBE /* MineralStorage.swift in Sources */,
 				52E0B1B027E6DFD100607FBE /* EnergyStorage.swift in Sources */,
 				52E0B1B527E6DFD100607FBE /* PowerPlant.swift in Sources */,
+				52E0B1BC27E6E18000607FBE /* SpriteComponent.swift in Sources */,
 				52E0B1B727E6DFD100607FBE /* ConcreteStorage.swift in Sources */,
 				52E0B1B627E6DFD100607FBE /* CommandCenter.swift in Sources */,
 				52E0B1AF27E6DFD100607FBE /* Gate.swift in Sources */,
