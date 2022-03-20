@@ -5,9 +5,9 @@
       location = "group:Astral One Engine/Astral One Engine.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pathfinder/Pathfinder.xcodeproj">
+      location = "group:Astral One.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Astral One.xcodeproj">
+      location = "group:Pathfinder/Pathfinder.xcodeproj">
    </FileRef>
 </Workspace>
