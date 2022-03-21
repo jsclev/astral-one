@@ -15,8 +15,6 @@ class GameScene: SKScene {
     private var splashSoundAction: SKAction!
     private var nomNomSoundAction: SKAction!
     
-    private var isLevelOver = false
-    private var didCutVine = false
     var mapViewModel: MapViewModel
     var mapName = "three"
     var debug = true
@@ -62,11 +60,6 @@ class GameScene: SKScene {
         
         camera = gameCamera
         addChild(gameCamera)
-        
-//        gameCamera.position = mapViewModel.cameraPosition
-        
-        setUpPhysics()
-        // setUpAudio()
         
         let commandCenter = CommandCenter(imageName: "command-center")
         if let spriteComponent = commandCenter.component(ofType: SpriteComponent.self) {
@@ -299,12 +292,6 @@ class GameScene: SKScene {
         addChild(unitsMap)
     }
     
-    private func setUpPhysics() {
-        physicsWorld.contactDelegate = self
-        physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
-        physicsWorld.speed = 1.0
-    }
-    
     func toggleTexture() {
         if (mapName == "zero") {
             mapName = "one"
@@ -426,14 +413,3 @@ class GameScene: SKScene {
     }
 }
 
-extension GameScene: SKPhysicsContactDelegate {
-    override func update(_ currentTime: TimeInterval) {
-        if isLevelOver {
-            return
-        }
-    }
-    
-    func didBegin(_ contact: SKPhysicsContact) {
-        
-    }
-}

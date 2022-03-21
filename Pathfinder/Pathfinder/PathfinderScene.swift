@@ -11,7 +11,6 @@ enum PathfinderState {
 }
 
 class PathfinderScene: SKScene {
-    private let background: SKSpriteNode
     var mapViewModel: MapViewModel
     var debug = true
     var gameCamera: PathfinderCamera!
@@ -38,12 +37,6 @@ class PathfinderScene: SKScene {
         self.mapViewModel = mapViewModel
         
         map = Map(width: 0, height: 0)
-        
-        background = SKSpriteNode(texture: mapViewModel.texture3)
-        background.name = "background"
-        background.anchorPoint = CGPoint(x: 0, y: 0)
-        background.position = CGPoint(x: 0, y: 0)
-        background.zPosition = Layer.base
         
         tileset = SKTileSet(named: tilesetName)
         pathMap = SKTileMapNode(tileSet: tileset,
@@ -209,7 +202,6 @@ class PathfinderScene: SKScene {
                     else {
                         if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType}) {
                             terrainMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
-                            
                         }
                     }
                 }
@@ -227,20 +219,15 @@ class PathfinderScene: SKScene {
     }
     
     func showAiPath() {
-        let startNode = map.graph.node(atGridPosition: startPosition)
-        let endNode = map.graph.node(atGridPosition: endPosition)
+        let path = map.findPath(from: startPosition, to: endPosition)
 
-        if let startNode = startNode, let endNode = endNode {
-            let path = map.graph.findPath(from: startNode, to: endNode)
-
-            for node in path {
-                let theNode: GKGridGraphNode = node as! GKGridGraphNode
-                
-                if let tileGroup = tileset.tileGroups.first(where: { $0.name == "Fog"}) {
-                    pathMap.setTileGroup(tileGroup,
-                                         forColumn: Int(theNode.gridPosition.y),
-                                         row: Int(theNode.gridPosition.x))
-                }
+        for node in path {
+            let theNode: GKGridGraphNode = node as! GKGridGraphNode
+            
+            if let tileGroup = tileset.tileGroups.first(where: { $0.name == "Fog"}) {
+                pathMap.setTileGroup(tileGroup,
+                                     forColumn: Int(theNode.gridPosition.y),
+                                     row: Int(theNode.gridPosition.x))
             }
         }
     }

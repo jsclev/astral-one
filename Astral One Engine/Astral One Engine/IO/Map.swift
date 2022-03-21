@@ -39,4 +39,15 @@ public struct Map {
         
         graph.remove(nodesToRemove)
     }
+    
+    public func findPath(from: SIMD2<Int32>, to: SIMD2<Int32>) -> [GKGraphNode] {
+        let startNode = graph.node(atGridPosition: from)
+        let endNode = graph.node(atGridPosition: to)
+        
+        if let startNode = startNode, let endNode = endNode {
+            return graph.findPath(from: startNode, to: endNode)
+        }
+        
+        return []
+    }
 }
