@@ -3,7 +3,7 @@ import SwiftUI
 import Astral_One_Engine
 
 @main
-struct AstralOneApp: App {
+struct GameApp: App {
     @StateObject var game: Game
     
     init() {

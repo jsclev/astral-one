@@ -22,6 +22,8 @@ public enum Layer {
     public static let terrain: CGFloat = 1.0
     public static let cities: CGFloat = 2.0
     public static let units: CGFloat = 3.0
+    public static let unitPath: CGFloat = 4.0
+    public static let unitPath2: CGFloat = 4.5
     public static let hud: CGFloat = 5.0
     public static let foreground: CGFloat = 6.0
 }

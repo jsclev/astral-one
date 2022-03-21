@@ -33,6 +33,7 @@
 		52E0B1BE27E6E1AC00607FBE /* DamageableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1BD27E6E1AC00607FBE /* DamageableComponent.swift */; };
 		52E0B1C127E6E25300607FBE /* SpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C027E6E25300607FBE /* SpriteNode.swift */; };
 		52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C727E6E7A900607FBE /* MapViewModel.swift */; };
+		52E0B1E527E8474300607FBE /* TerrainType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1E427E8474300607FBE /* TerrainType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,6 +75,7 @@
 		52E0B1BD27E6E1AC00607FBE /* DamageableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageableComponent.swift; sourceTree = "<group>"; };
 		52E0B1C027E6E25300607FBE /* SpriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteNode.swift; sourceTree = "<group>"; };
 		52E0B1C727E6E7A900607FBE /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		52E0B1E427E8474300607FBE /* TerrainType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainType.swift; sourceTree = "<group>"; };
 		52F9B60727E6AA4C005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -181,6 +183,7 @@
 				52E0B18B27E6D87600607FBE /* IO */,
 				52E0B1C627E6E76D00607FBE /* View Models */,
 				52E0B18927E6D86A00607FBE /* Constants.swift */,
+				52E0B1E427E8474300607FBE /* TerrainType.swift */,
 			);
 			path = "Astral One Engine";
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52E0B1A227E6DFA100607FBE /* EntityManager.swift in Sources */,
+				52E0B1E527E8474300607FBE /* TerrainType.swift in Sources */,
 				52E0B19227E6D87600607FBE /* TiledMapParser.swift in Sources */,
 				52E0B1BE27E6E1AC00607FBE /* DamageableComponent.swift in Sources */,
 				52E0B19F27E6DFA100607FBE /* Energy.swift in Sources */,

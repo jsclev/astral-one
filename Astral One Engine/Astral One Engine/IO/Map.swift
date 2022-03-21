@@ -3,11 +3,11 @@ import GameplayKit
 
 public struct Map {
     public var tiles: [[Tile]] = [[]]
-    var width: Int32 = 0
-    var height: Int32 = 0
-    var graph: GKGridGraph<GKGridGraphNode>
+    public var width: Int32 = 0
+    public var height: Int32 = 0
+    public var graph: GKGridGraph<GKGridGraphNode>
     
-    init(width: Int32, height: Int32) {
+    public init(width: Int32, height: Int32) {
         self.width = width
         self.height = height
         
@@ -38,6 +38,5 @@ public struct Map {
         }
         
         graph.remove(nodesToRemove)
-
     }
 }

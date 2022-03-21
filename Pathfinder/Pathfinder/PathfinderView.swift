@@ -2,23 +2,19 @@ import SpriteKit
 import SwiftUI
 import Astral_One_Engine
 
-struct GameView: View {
+struct PathfinderView: View {
     @EnvironmentObject var game: Game
     
     @State private var location: CGPoint = CGPoint(x: 0.0, y: 0.0)
     @GestureState private var fingerLocation: CGPoint? = nil
     @GestureState private var startLocation: CGPoint? = nil
-    
-    //    var gameCamera = SKCameraNode()
-    var mapViewModel = MapViewModel()
-    var scene: GameScene
     @GestureState private var cameraPosition = CGPoint.zero
+
+    var mapViewModel = MapViewModel()
+    var scene: PathfinderScene
     
     init() {
-        scene = GameScene(mapViewModel: mapViewModel)
-        //        scene.camera = gameCamera
-        //        scene.anchorPoint = CGPoint.zero
-        
+        scene = PathfinderScene(mapViewModel: mapViewModel)
     }
     
     var simpleDrag: some Gesture {
@@ -30,7 +26,8 @@ struct GameView: View {
                 newLocation.x += finalTranslationX
                 newLocation.y += finalTranslationY
                 self.location = newLocation
-                mapViewModel.moveCamera(translation: CGSize(width: finalTranslationX, height: finalTranslationY))
+                mapViewModel.moveCamera(translation: CGSize(width: finalTranslationX,
+                                                            height: finalTranslationY))
                 scene.gameCamera.position = mapViewModel.cameraPosition
             }.updating($startLocation) { (value, startLocation, transaction) in
                 startLocation = startLocation ?? location

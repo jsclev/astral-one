@@ -16,7 +16,7 @@ struct PathfinderApp: App {
             ZStack {
                 Color.black
                     .ignoresSafeArea()
-                GameView()
+                PathfinderView()
                     .environmentObject(game)
             }
         }
