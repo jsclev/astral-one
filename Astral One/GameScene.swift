@@ -107,7 +107,7 @@ class GameScene: SKScene {
 //            let path = map.graph.findPath(from: startNode, to: endNode)
 //
 //            for node in path {
-//                let theNode: GKGridGraphNode = node as! GKGridGraphNode
+//                let theNode: GameNode = node as! GameNode
 //                print(theNode.gridPosition)
 //
 //                if let imageName = terrainTiles["31"] {

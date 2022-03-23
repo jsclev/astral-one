@@ -55,6 +55,23 @@ public var gameTiles: [String: String] = [
     "11": "Fog"
 ]
 
+struct Constants {
+    static let terrainTypes: [String: TerrainType] = [
+        "0": TerrainType.Water,
+        "1": TerrainType.Tundra,
+        "2": TerrainType.Water,
+        "3": TerrainType.Water,
+        "4": TerrainType.Swamp,
+        "5": TerrainType.Glacier,
+        "6": TerrainType.Desert,
+        "7": TerrainType.Water,
+        "8": TerrainType.Plains,
+        "9": TerrainType.Jungle,
+        "10": TerrainType.Grassland,
+        "11": TerrainType.Water
+    ]
+}
+
 //var gameTiles: [String: String] = [
 //    "0": "scrubland03",
 //    "1": "scrubland02",

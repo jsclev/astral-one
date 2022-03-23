@@ -22,14 +22,6 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
     public func parse() -> Map {
         currentEl = ""
         
-//        var filename = "map-"
-//        if UIDevice.current.userInterfaceIdiom == .phone {
-//            filename += "phone"
-//        }
-//        else {
-//            filename += "ipad"
-//        }
-        
         if let path = Bundle.main.url(forResource: filename, withExtension: ".tmx") {
             if let parser = XMLParser(contentsOf: path) {
                 parser.delegate = self
@@ -73,9 +65,7 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
             // SAX stream inside the data element that is just whitespace, it
             // is not the actual tile id matrix.
             if trimmedString.count > 0 {
-//                print(trimmedString)
-//                print("**************************************************************************")
-                self.map = Map(width: mapWidth, height: mapHeight)
+                map = Map(width: mapWidth, height: mapHeight)
                 var mapRowIndex = 0
                 let tileIdTable = string.components(separatedBy: "\n")
                 

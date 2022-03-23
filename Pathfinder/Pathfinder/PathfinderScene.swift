@@ -59,7 +59,6 @@ class PathfinderScene: SKScene {
         mapIcons.enableAutomapping = true
         
         super.init(size: UIScreen.main.bounds.size)
-        self.scaleMode = .fill
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,15 +75,13 @@ class PathfinderScene: SKScene {
         let touchedNodes = nodes(at: location)
         
         if !touchedNodes.isEmpty && touchedNodes[0].name == "set-start-position" {
-            print("Clicked start position")
             clearMapIcons()
             state = PathfinderState.settingStartPosition
             return
         }
         else if !touchedNodes.isEmpty && touchedNodes[0].name == "calculate-path" {
-            print("Clicked calculate path")
             state = PathfinderState.calculatingPath
-            showAiPath()
+            showAIPath()
             return
         }
             
@@ -111,12 +108,10 @@ class PathfinderScene: SKScene {
         for row in 0..<mapIcons.numberOfRows {
             for col in 0..<mapIcons.numberOfColumns {
                 if let tg = mapIcons.tileGroup(atColumn: col, row: row) {
-                    print("Removing existing map icon \(tg.name) at [\(row),\(col)].")
                     mapIcons.setTileGroup(nil, forColumn: col, row: row)
                 }
                 
                 if let tg = pathMap.tileGroup(atColumn: col, row: row) {
-                    print("Removing existing map icon \(tg.name) at [\(row),\(col)].")
                     pathMap.setTileGroup(nil, forColumn: col, row: row)
                 }
             }
@@ -150,18 +145,13 @@ class PathfinderScene: SKScene {
     }
     
     @objc func handleZoom(sender: UIPinchGestureRecognizer) {
-        var anchorPoint: CGPoint = sender.location(in: sender.view)
-        anchorPoint = convertPoint(fromView: anchorPoint)
-        
-        if (sender.state == .began) {
-            initialCameraScale = gameCamera.xScale
-        }
-        else if (sender.state == .changed) {
-            let scale = initialCameraScale + (1/sender.scale - 1) * initialCameraScale
+        if (sender.state == .changed) {
+            var scale = initialCameraScale + (1/sender.scale - 1) * initialCameraScale
+            
+            if scale >= 4.4 {
+                scale = 4.4
+            }
             gameCamera.setScale(scale)
-        }
-        else if (sender.state == .ended) {
-            //            print("zoom ended, gameCamera scale is \(self.sca.scale)")
         }
     }
     
@@ -218,9 +208,9 @@ class PathfinderScene: SKScene {
 
     }
     
-    func showAiPath() {
+    func showAIPath() {
         let path = map.findPath(from: startPosition, to: endPosition)
-
+        
         for node in path {
             let theNode: GKGridGraphNode = node as! GKGridGraphNode
             
@@ -230,5 +220,31 @@ class PathfinderScene: SKScene {
                                      row: Int(theNode.gridPosition.x))
             }
         }
+    }
+    
+    func showRandomAIPaths() {
+//        print("About to calculate \(numPaths) paths: " + formatter.string(from: Date()))
+        let numPaths: Int = 1000
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss.SSSS"
+        
+        for _ in 0..<numPaths {
+            let from = SIMD2<Int32>(Int32.random(in: 0..<Int32(pathMap.numberOfRows)),
+                                    Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
+            let to = SIMD2<Int32>(Int32.random(in: 0..<Int32(pathMap.numberOfRows)),
+                                  Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
+            let path = map.findPath(from: from, to: to)
+
+            for node in path {
+                let theNode: GKGridGraphNode = node as! GKGridGraphNode
+
+                if let tileGroup = tileset.tileGroups.first(where: { $0.name == "Fog"}) {
+                    pathMap.setTileGroup(tileGroup,
+                                         forColumn: Int(theNode.gridPosition.y),
+                                         row: Int(theNode.gridPosition.x))
+                }
+            }
+        }
+//        print("Done calculating \(numPaths) paths: " + formatter.string(from: Date()))
     }
 }

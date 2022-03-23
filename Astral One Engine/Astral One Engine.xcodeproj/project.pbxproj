@@ -34,6 +34,7 @@
 		52E0B1C127E6E25300607FBE /* SpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C027E6E25300607FBE /* SpriteNode.swift */; };
 		52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C727E6E7A900607FBE /* MapViewModel.swift */; };
 		52E0B1E527E8474300607FBE /* TerrainType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1E427E8474300607FBE /* TerrainType.swift */; };
+		52E0B1EB27EAB6B800607FBE /* GameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1EA27EAB6B700607FBE /* GameNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -76,6 +77,7 @@
 		52E0B1C027E6E25300607FBE /* SpriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteNode.swift; sourceTree = "<group>"; };
 		52E0B1C727E6E7A900607FBE /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		52E0B1E427E8474300607FBE /* TerrainType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainType.swift; sourceTree = "<group>"; };
+		52E0B1EA27EAB6B700607FBE /* GameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNode.swift; sourceTree = "<group>"; };
 		52F9B60727E6AA4C005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -145,6 +147,7 @@
 		52E0B1BF27E6E1F300607FBE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				52E0B1EA27EAB6B700607FBE /* GameNode.swift */,
 				52E0B1C027E6E25300607FBE /* SpriteNode.swift */,
 			);
 			path = Extensions;
@@ -270,6 +273,7 @@
 				52E0B1B527E6DFD100607FBE /* PowerPlant.swift in Sources */,
 				52E0B1BC27E6E18000607FBE /* SpriteComponent.swift in Sources */,
 				52E0B1B727E6DFD100607FBE /* ConcreteStorage.swift in Sources */,
+				52E0B1EB27EAB6B800607FBE /* GameNode.swift in Sources */,
 				52E0B1B627E6DFD100607FBE /* CommandCenter.swift in Sources */,
 				52E0B1AF27E6DFD100607FBE /* Gate.swift in Sources */,
 				52E0B18A27E6D86A00607FBE /* Constants.swift in Sources */,

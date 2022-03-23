@@ -20,7 +20,7 @@
 		52D1219027CDE0290047C2CA /* Background3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52D1218F27CDE0290047C2CA /* Background3.mp3 */; };
 		52E0B19727E6D9D600607FBE /* libAstral One Engine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E0B19627E6D9D600607FBE /* libAstral One Engine.a */; };
 		52E0B1DB27E80F9800607FBE /* civ2.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1DA27E80F9800607FBE /* civ2.tsx */; };
-		52E0B1E127E8137C00607FBE /* civ2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1E027E8137C00607FBE /* civ2.tmx */; };
+		52E0B1E727E95FB700607FBE /* civ2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1E627E95FB700607FBE /* civ2.tmx */; };
 		52FA8F9927E382DE001794BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FA8F9727E382DE001794BD /* Assets.xcassets */; };
 		5394F02521864DF5006E754C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5394F02321864DF4006E754C /* LaunchScreen.storyboard */; };
 		AFEF960E231A01B4006025E5 /* Particle.sks in Resources */ = {isa = PBXBuildFile; fileRef = AFEF960D231A01B4006025E5 /* Particle.sks */; };
@@ -50,7 +50,7 @@
 		52D1218F27CDE0290047C2CA /* Background3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background3.mp3; sourceTree = "<group>"; };
 		52E0B19627E6D9D600607FBE /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E0B1DA27E80F9800607FBE /* civ2.tsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = civ2.tsx; path = "Astral One/Resources/civ2/civ2.tsx"; sourceTree = SOURCE_ROOT; };
-		52E0B1E027E8137C00607FBE /* civ2.tmx */ = {isa = PBXFileReference; lastKnownFileType = file; name = civ2.tmx; path = "Astral One/Resources/civ2/civ2.tmx"; sourceTree = SOURCE_ROOT; };
+		52E0B1E627E95FB700607FBE /* civ2.tmx */ = {isa = PBXFileReference; lastKnownFileType = file; name = civ2.tmx; path = "Astral One/Resources/civ2/civ2.tmx"; sourceTree = SOURCE_ROOT; };
 		52F9B61227E6AB02005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FA8F9727E382DE001794BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5394F02421864DF4006E754C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		AFEF960B231A0187006025E5 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				52E0B1E027E8137C00607FBE /* civ2.tmx */,
+				52E0B1E627E95FB700607FBE /* civ2.tmx */,
 				52E0B1DA27E80F9800607FBE /* civ2.tsx */,
 				521B498B27DDB27300FED38F /* Astral One.tsx */,
 				521B498F27DEDC8800FED38F /* map-20x15.tmx */,
@@ -287,7 +287,7 @@
 				AFEF960E231A01B4006025E5 /* Particle.sks in Resources */,
 				521B498C27DDB27300FED38F /* Astral One.tsx in Resources */,
 				AFEF9610231A01C2006025E5 /* Particle.png in Resources */,
-				52E0B1E127E8137C00607FBE /* civ2.tmx in Resources */,
+				52E0B1E727E95FB700607FBE /* civ2.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

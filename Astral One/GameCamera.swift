@@ -54,7 +54,6 @@ class GameCamera: SKCameraNode {
         
         super.init()
         name = "camera"
-        print("Camera size: \(self.calculateAccumulatedFrame().size)")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -100,13 +99,6 @@ class GameCamera: SKCameraNode {
             concreteIcon.position = CGPoint(x: leftIconEdge, y: topIconEdge - verticalSpacer)
             metalIcon.position = CGPoint(x: leftIconEdge, y: topIconEdge - 2.0 * verticalSpacer)
             mineralIcon.position = CGPoint(x: leftIconEdge, y: topIconEdge - 3.0 * verticalSpacer)
-            
-            if let myScene = self.scene {
-                print("scene size: \(myScene.size)")
-
-            }
-            print("Camera size: \(self.calculateAccumulatedFrame().size)")
         }
-
     }
 }
