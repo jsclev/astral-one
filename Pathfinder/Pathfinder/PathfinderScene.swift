@@ -33,7 +33,7 @@ class PathfinderScene: SKScene {
     var map: Map
     var startPosition = SIMD2<Int32>(0, 0)
     var endPosition = SIMD2<Int32>(0, 0)
-
+    
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
         
@@ -41,9 +41,9 @@ class PathfinderScene: SKScene {
         
         tileset = SKTileSet(named: tilesetName)
         pathMap = SKTileMapNode(tileSet: tileset,
-                                     columns: cols,
-                                     rows: rows,
-                                     tileSize: tileSize)
+                                columns: cols,
+                                rows: rows,
+                                tileSize: tileSize)
         pathMap.name = "terrain"
         pathMap.zPosition = Layer.unitPath
         pathMap.position = CGPoint.zero
@@ -51,9 +51,9 @@ class PathfinderScene: SKScene {
         
         mapIconsTileset = SKTileSet(named: mapIconsTilesetName)
         mapIcons = SKTileMapNode(tileSet: mapIconsTileset,
-                                columns: cols,
-                                rows: rows,
-                                tileSize: tileSize)
+                                 columns: cols,
+                                 rows: rows,
+                                 tileSize: tileSize)
         mapIcons.name = "map-icons"
         mapIcons.zPosition = Layer.unitPath2
         mapIcons.position = CGPoint.zero
@@ -85,7 +85,7 @@ class PathfinderScene: SKScene {
             showAIPath()
             return
         }
-            
+        
         let tappedRow = mapIcons.tileRowIndex(fromPosition: location)
         let tappedCol = mapIcons.tileColumnIndex(fromPosition: location)
         
@@ -138,7 +138,7 @@ class PathfinderScene: SKScene {
         let tilesetParser = TiledTilesetParser(filename)
         let tileset = tilesetParser.parse()
         
-        let mapParser = TiledMapParser(tileset: tileset, filename: filename)
+        let mapParser = TiledMapParser(tiledTileset: tileset, filename: filename)
         map = mapParser.parse()
         map.bake()
         
@@ -157,14 +157,20 @@ class PathfinderScene: SKScene {
     }
     
     private func renderMap(map: Map) {
-        let terrainMap = SKTileMapNode(tileSet: tileset,
-                                       columns: cols,
-                                       rows: rows,
-                                       tileSize: tileSize)
-        terrainMap.name = "terrain"
-        terrainMap.zPosition = Layer.terrain
-        terrainMap.position = CGPoint.zero
-        terrainMap.enableAutomapping = true
+        var terrainMaps: [SKTileMapNode] = []
+
+        for layer in 0..<map.getMaxNumLayers() {
+            let terrainMap = SKTileMapNode(tileSet: tileset,
+                                           columns: cols,
+                                           rows: rows,
+                                           tileSize: tileSize)
+            terrainMap.name = "terrain_\(layer)"
+            terrainMap.zPosition = Layer.terrain + CGFloat(layer)
+            terrainMap.position = CGPoint.zero
+            terrainMap.enableAutomapping = true
+
+            terrainMaps.append(terrainMap)
+        }
         
         let unitsMap = SKTileMapNode(tileSet: tileset,
                                      columns: cols,
@@ -175,41 +181,31 @@ class PathfinderScene: SKScene {
         unitsMap.position = CGPoint.zero
         unitsMap.enableAutomapping = true
         
-        let grassTiles = tileset.tileGroups.first { $0.name == "Grass"}
-        var numTiles: CGSize = CGSize(width: 0.0, height: 0.0)
-        
-        for (rowIndex, row) in map.getTiles().enumerated() {
-            numTiles.width = CGFloat(rowIndex)
-            
-            for (colIndex, tile) in row.enumerated() {
-                
-                if let tileType = Constants.tiles[tile.id] {
-                    if tileType == "Tank" || tileType == "Plane" || tileType == "Town" {
-                        if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType}) {
-                            unitsMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
-                            terrainMap.setTileGroup(grassTiles, forColumn: colIndex, row: rowIndex)
+        for row in 0..<map.width {
+            for col in 0..<map.height {
+                for tile in map.getTiles(row: row, col: col) {
+                    if let tileType = Constants.tiles[tile.id] {
+                        if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType }) {
+                            // Make sure we are setting the tile on the correct layered terrain map
+                            let terrainMap = terrainMaps[tile.layerIndex]
+                            
+                            terrainMap.setTileGroup(tileGroup, forColumn: col, row: row)
                         }
                     }
-                    else {
-                        if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType}) {
-                            terrainMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
-                        }
-                    }
-                }
-                else {
-                    fatalError("Unable to find tile id \(tile.id).")
                 }
             }
         }
         
-        addChild(terrainMap)
+        for terrainMap in terrainMaps {
+            addChild(terrainMap)
+        }
         addChild(unitsMap)
         addChild(pathMap)
         addChild(mapIcons)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        
     }
     
     func showAIPath() {
@@ -227,7 +223,7 @@ class PathfinderScene: SKScene {
     }
     
     func showRandomAIPaths() {
-//        print("About to calculate \(numPaths) paths: " + formatter.string(from: Date()))
+        //        print("About to calculate \(numPaths) paths: " + formatter.string(from: Date()))
         let numPaths: Int = 1000
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss.SSSS"
@@ -238,10 +234,10 @@ class PathfinderScene: SKScene {
             let to = SIMD2<Int32>(Int32.random(in: 0..<Int32(pathMap.numberOfRows)),
                                   Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
             let path = map.findPath(from: from, to: to)
-
+            
             for node in path {
                 let theNode: GKGridGraphNode = node as! GKGridGraphNode
-
+                
                 if let tileGroup = tileset.tileGroups.first(where: { $0.name == "Fog"}) {
                     pathMap.setTileGroup(tileGroup,
                                          forColumn: Int(theNode.gridPosition.y),
@@ -249,6 +245,6 @@ class PathfinderScene: SKScene {
                 }
             }
         }
-//        print("Done calculating \(numPaths) paths: " + formatter.string(from: Date()))
+        //        print("Done calculating \(numPaths) paths: " + formatter.string(from: Date()))
     }
 }

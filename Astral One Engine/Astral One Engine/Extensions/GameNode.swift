@@ -1,52 +1,70 @@
 import GameplayKit
 
-class GameNode: GKGridGraphNode {
-    public var tile: Tile = Tile()
+public class GameNode: GKGridGraphNode {
+    private var tiles: [Tile] = []
     
     override init(gridPosition: vector_int2) {
         super.init(gridPosition: gridPosition)
     }
     
-    override func cost(to node: GKGraphNode) -> Float {
-        if tile.terrainType == TerrainType.Grassland {
-            return 3.0
+    override public func cost(to node: GKGraphNode) -> Float {
+        var cost: Float = 0.0
+        
+        for tile in tiles {
+            if tile.terrainType == TerrainType.Grassland {
+                cost += 3.0
+            }
+            else if tile.terrainType == TerrainType.Jungle {
+                cost += 3.0
+            }
+            else if tile.terrainType == TerrainType.Plains {
+                cost += 1.0
+            }
+            else if tile.terrainType == TerrainType.Desert {
+                cost += 4.0
+            }
+            else if tile.terrainType == TerrainType.Swamp {
+                cost += 5.0
+            }
+            else if tile.terrainType == TerrainType.Tundra {
+                cost += 4.0
+            }
+            else if tile.terrainType == TerrainType.Forest {
+                cost += 5.0
+            }
+            else if tile.terrainType == TerrainType.Hills {
+                cost += 5.0
+            }
+            else if tile.terrainType == TerrainType.Mountains {
+                cost += 9999.0
+            }
+            else if tile.terrainType == TerrainType.Glacier {
+                cost += 7.0
+            }
+            else if tile.terrainType == TerrainType.River {
+                cost += 9999.0
+            }
+            else if tile.terrainType == TerrainType.Water {
+                cost += 9999.0
+            }
+            else {
+                cost += 2.0
+            }
         }
-        else if tile.terrainType == TerrainType.Jungle {
-            return 3.0
+        
+        return cost
+    }
+    
+    public func getTiles() -> [Tile] {
+        return tiles
+    }
+    
+    public func setTile(tile: Tile) {
+        while tiles.count < tile.layerIndex + 1 {
+            tiles.append(Tile())
         }
-        else if tile.terrainType == TerrainType.Plains {
-            return 1.0
-        }
-        else if tile.terrainType == TerrainType.Desert {
-            return 4.0
-        }
-        else if tile.terrainType == TerrainType.Swamp {
-            return 5.0
-        }
-        else if tile.terrainType == TerrainType.Tundra {
-            return 4.0
-        }
-        else if tile.terrainType == TerrainType.Forest {
-            return 5.0
-        }
-        else if tile.terrainType == TerrainType.Hills {
-            return 5.0
-        }
-        else if tile.terrainType == TerrainType.Mountains {
-            return 9999.0
-        }
-        else if tile.terrainType == TerrainType.Glacier {
-            return 7.0
-        }
-        else if tile.terrainType == TerrainType.River {
-            return 9999.0
-        }
-        else if tile.terrainType == TerrainType.Water {
-            return 9999.0
-        }
-        else {
-            return 2.0
-        }
+        
+        tiles[tile.layerIndex] = tile
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -4,22 +4,26 @@ import SwiftUI
 public class TiledMapParser: NSObject, XMLParserDelegate {
     var filename: String
     var currentEl = ""
-    var tileset: Tileset
-    var map: Map
+    var tiledTileset: TiledTileset
+    private var map: Map
+    var mapInitialized = false
     var mapWidth: Int32
     var mapHeight: Int32
     var firstGId: Int
+    var layerOrdinal: Int
     
-    public init(tileset: Tileset, filename: String) {
+    public init(tiledTileset: TiledTileset, filename: String) {
         self.filename = filename
-        self.tileset = tileset
-        self.mapWidth = 0
-        self.mapHeight = 0
+        self.tiledTileset = tiledTileset
+        self.mapWidth = 60
+        self.mapHeight = 60
         self.firstGId = 1
+        self.layerOrdinal = 0
         self.map = Map(width: self.mapWidth, height: self.mapHeight)
     }
     
     public func parse() -> Map {
+        mapInitialized = false
         currentEl = ""
         
         if let path = Bundle.main.url(forResource: filename, withExtension: ".tmx") {
@@ -33,14 +37,17 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
     }
     
     public func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        if elementName == "tileset" {
+        if elementName == "layer" {
+            
+        }
+        else if elementName == "tileset" {
             if let firstGIdAttr = attributeDict["firstgid"] {
                 firstGId = Int(firstGIdAttr) ?? 1
             }
         }
-        
-        if elementName == "map" {
+        else if elementName == "map" {
             if let widthAttr = attributeDict["width"] {
+                // FIXME: Need to add error condition here
                 mapWidth = Int32(widthAttr) ?? 0
             }
             
@@ -53,11 +60,18 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
     }
     
     public func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        
+        if elementName == "layer" {
+            layerOrdinal += 1
+        }
     }
     
     public func parser(_ parser: XMLParser, foundCharacters string: String) {
         if currentEl == "data" {
+            if !mapInitialized {
+                map = Map(width: mapWidth, height: mapHeight)
+                mapInitialized = true
+            }
+            
             let trimmedString = string.trimmingCharacters(in: .whitespacesAndNewlines)
             
             // Make sure we are parsing the actual data CSV section, and not
@@ -65,7 +79,6 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
             // SAX stream inside the data element that is just whitespace, it
             // is not the actual tile id matrix.
             if trimmedString.count > 0 {
-                map = Map(width: mapWidth, height: mapHeight)
                 var mapRowIndex = 0
                 let tileIdTable = string.components(separatedBy: "\n")
                 
@@ -82,20 +95,32 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                     if trimmedRowData.count > 0 {
                         let tileIds = trimmedRowData.components(separatedBy: ",")
                         
-                        for (colIndex, tileId) in tileIds.enumerated() {
-                            var intTileId = Int(tileId) ?? 0
-                            intTileId -= firstGId
-                            let strTileId: String = String(intTileId)
-                            
-                            if let tile = tileset.getTile(id: strTileId) {
-                                map.setTile(row: mapRowIndex, col: colIndex, tile: tile)
-                                
-//                                if tileId != "0" && tile.walkable {
-//                                    print("Non walkable: " + map.tiles[mapRowIndex][colIndex].id)
-//                                }
+                        for (col, strGlobalTileId) in tileIds.enumerated() {
+                            if var intGlobalTileId = Int(strGlobalTileId) {
+                                // Tiled uses Global Tile IDs with a value of 0 (zero)
+                                // to specify that there is no tile at this position,
+                                // so we don't want to import those. See the Tiled online
+                                // documentation for more information.
+                                if intGlobalTileId > 0 {
+                                    // Convert the Tiled global tile id to the local tileset id
+                                    let intLocalTileId = intGlobalTileId - 1
+                                    let strLocalTileId = String(intLocalTileId)
+                                    
+                                    if let tile = tiledTileset.getTile(id: strLocalTileId) {
+//                                        print("Adding tile [\(tile.id),\(tile.terrainType)] at position [\(mapRowIndex),\(col),\(layerOrdinal)]")
+                                        map.setTile(row: mapRowIndex,
+                                                    col: col,
+                                                    layer: layerOrdinal,
+                                                    tile: tile)
+                                    
+                                    }
+                                    else {
+                                        fatalError("Unable to find tile id \(strLocalTileId).")
+                                    }
+                                }
                             }
                             else {
-                                fatalError("Unable to find tile id \(strTileId).")
+                                fatalError("Unable to convert the Global Tile ID \"\(strGlobalTileId)\" to an Int.")
                             }
                         }
                         

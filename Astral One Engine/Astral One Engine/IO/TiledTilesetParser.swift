@@ -5,17 +5,15 @@ public class TiledTilesetParser: NSObject, XMLParserDelegate {
     var tiles: [Tile] = []
     var elementName = ""
     var tileId = ""
-    var walkable: Bool = true
     
     public init(_ filename: String) {
         self.filename = filename
     }
     
-    public func parse() -> Tileset {
+    public func parse() -> TiledTileset {
         tiles = []
         elementName = ""
         tileId = ""
-        walkable = true
         
         if let path = Bundle.main.url(forResource: filename, withExtension: ".tsx") {
             if let parser = XMLParser(contentsOf: path) {
@@ -27,22 +25,13 @@ public class TiledTilesetParser: NSObject, XMLParserDelegate {
             fatalError("Unable to find Tiled tileset file \"\(filename).tsx\" in app bundle.")
         }
         
-        return Tileset(name: "Game Tile Set", tiles: tiles)
+        return TiledTileset(name: "Game Tile Set", tiles: tiles)
     }
     
     public func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         if elementName == "tile" {
             if let idAttribute = attributeDict["id"] {
                 tileId = idAttribute
-            }
-        }
-        else if elementName == "property" {
-            if let nameAttr = attributeDict["name"], let valueAttr = attributeDict["value"] {
-                if nameAttr == "Walkable" {
-                    if valueAttr == "false" {
-                        walkable = false
-                    }
-                }
             }
         }
         
@@ -53,9 +42,7 @@ public class TiledTilesetParser: NSObject, XMLParserDelegate {
         if elementName == "tile" {
             if let terrainType = Constants.terrainTypes[tileId] {
                 tiles.append(Tile(id: tileId,
-                                  walkable: walkable,
                                   terrainType: terrainType))
-                walkable = true
             }
         }
     }
