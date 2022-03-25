@@ -81,9 +81,6 @@ public class MapViewModel {
         //        }
         
         log()
-        //        print("Translation width: \(translation.width)")
-        //        print("Translation height: \(translation.height)")
-        
     }
     
     public func log() {

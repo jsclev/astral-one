@@ -48,7 +48,6 @@ class GameScene: SKScene {
         //
         //            var touchLocation: CGPoint = sender.location(in: sender.view)
         //            touchLocation = self.convertPoint(fromView: touchLocation)
-        //            print(touchLocation)
         //
         //            builder.moveToPosition(pos: touchLocation, speed: 1.0)
         //        }
@@ -88,11 +87,12 @@ class GameScene: SKScene {
         pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
         view.addGestureRecognizer(pinchGestureRecognizer)
         
-        let tilesetParser = TiledTilesetParser("civ2")
+        let filename: String = "freeland"
+        let tilesetParser = TiledTilesetParser(filename)
         let tileset = tilesetParser.parse()
         
-        let mapParser = TiledMapParser(tileset: tileset, filename: "civ2")
-        let map = mapParser.parse()
+        let mapParser = TiledMapParser(tileset: tileset, filename: filename)
+        var map = mapParser.parse()
         map.bake()
         
         renderMap(map: map)
@@ -127,13 +127,11 @@ class GameScene: SKScene {
 //        let mapSize = CGSize(width: tileWidth * numTiles.width,
 //                             height: tileWidth * numTiles.height)
 //        print(mapSize)
-        print(gameCamera.position)
         
 //        gameCamera.position = CGPoint(x: (mapSize.width / 2.0),
 //                                      y: (mapSize.height / 2.0))
 //        gameCamera.position = CGPoint(x: 1194.662 / 2.0,
 //                                      y: 1621.327 / 3.0)
-        print(gameCamera.position)
     }
     
     @objc func handleZoom(sender: UIPinchGestureRecognizer) {
@@ -141,29 +139,15 @@ class GameScene: SKScene {
         anchorPoint = convertPoint(fromView: anchorPoint)
         
         if (sender.state == .began) {
-//            print("zoom started")
             self.initialCameraScale = gameCamera.xScale
         }
         else if (sender.state == .changed) {
-//            print("zooming...scale is \(sender.scale)")
-//            var anchorPointInMySkNode: CGPoint = convertPoint(fromView: anchorPoint)
-
             var scale = initialCameraScale + (1/sender.scale - 1) * initialCameraScale
             if scale < 0.4 {
                 scale = 0.4
             }
+            
             gameCamera.setScale(scale)
-            print(gameCamera.xScale)
-//            sender.scale = 1.0
-            //
-            //            [_mySkNode setScale:(_mySkNode.xScale * recognizer.scale)];
-            //
-            //            CGPoint mySkNodeAnchorPointInScene = [self convertPoint:anchorPointInMySkNode fromNode:_mySkNode];
-            //            CGPoint translationOfAnchorInScene = CGPointSubtract(anchorPoint, mySkNodeAnchorPointInScene);
-            //
-            //            _mySkNode.position = CGPointAdd(_mySkNode.position, translationOfAnchorInScene);
-            //
-            //            recognizer.scale = 1.0;
         }
         else if (sender.state == .ended) {
 //            print("zoom ended, gameCamera scale is \(self.sca.scale)")
@@ -175,7 +159,7 @@ class GameScene: SKScene {
     }
     
     private func renderMap(map: Map) {
-        let tilesetName = "Civ 2 Tile Set"
+        let tilesetName = "Freeland Tile Set"
         guard let tileSet = SKTileSet(named: tilesetName) else {
             fatalError("Tileset \"\(tilesetName)\" was not found in app bundle.")
         }
@@ -226,7 +210,7 @@ class GameScene: SKScene {
             
             for (colIndex, tile) in row.enumerated() {
                 
-                if let tileType = gameTiles[tile.id] {
+                if let tileType = Constants.tiles[tile.id] {
                     if tileType == "Tank" || tileType == "Plane" || tileType == "Town" {
                         if let tileGroup = tileSet.tileGroups.first(where: { $0.name == tileType}) {
                             unitsMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
@@ -341,15 +325,14 @@ class GameScene: SKScene {
                         shouldMoveBuilder = false
                     }
                     builder.toggleSelected()
-//                    print("Builder is selected: \(builder.isSelected())")
                 }
                 else {
-                    if let nodeName = node.name {
-                        print(nodeName)
-                    }
-                    else {
-                        print("Node with no name")
-                    }
+//                    if let nodeName = node.name {
+//                        print(nodeName)
+//                    }
+//                    else {
+//                        print("Node with no name")
+//                    }
                     
                     if shouldMoveBuilder && builder.isSelected() {
                         builder.moveToPosition(pos: location, speed: 1.0)

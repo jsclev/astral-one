@@ -15,6 +15,9 @@
 		52E0B1D727E7AEC900607FBE /* Map Icons.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1D627E7AEC900607FBE /* Map Icons.sks */; };
 		52E0B1DF27E80FD500607FBE /* civ2.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1DE27E80FD500607FBE /* civ2.tsx */; };
 		52E0B1E927E95FBF00607FBE /* civ2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1E827E95FBF00607FBE /* civ2.tmx */; };
+		52E0B1ED27ED393400607FBE /* Freeland.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1EC27ED393400607FBE /* Freeland.sks */; };
+		52E0B1F127ED54C700607FBE /* freeland.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1F027ED54C700607FBE /* freeland.tsx */; };
+		52E0B1F527ED650100607FBE /* freeland.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1F427ED650100607FBE /* freeland.tmx */; };
 		52F9B5D527E6A4EF005D55E6 /* PathfinderScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9B5D427E6A4EF005D55E6 /* PathfinderScene.swift */; };
 		52F9B5DA27E6A4EF005D55E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F9B5D827E6A4EF005D55E6 /* Main.storyboard */; };
 		52F9B5DC27E6A4F0005D55E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52F9B5DB27E6A4F0005D55E6 /* Assets.xcassets */; };
@@ -30,6 +33,9 @@
 		52E0B1D627E7AEC900607FBE /* Map Icons.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Map Icons.sks"; sourceTree = "<group>"; };
 		52E0B1DE27E80FD500607FBE /* civ2.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = civ2.tsx; path = "../../../../Astral One/Resources/civ2/civ2.tsx"; sourceTree = "<group>"; };
 		52E0B1E827E95FBF00607FBE /* civ2.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = civ2.tmx; path = "../../../../Astral One/Resources/civ2/civ2.tmx"; sourceTree = "<group>"; };
+		52E0B1EC27ED393400607FBE /* Freeland.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Freeland.sks; sourceTree = "<group>"; };
+		52E0B1F027ED54C700607FBE /* freeland.tsx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = freeland.tsx; path = "../../../../Astral One/Resources/freeland/freeland.tsx"; sourceTree = "<group>"; };
+		52E0B1F427ED650100607FBE /* freeland.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = freeland.tmx; path = "../../../../Astral One/Resources/freeland/freeland.tmx"; sourceTree = "<group>"; };
 		52F9B5CB27E6A4EF005D55E6 /* Pathfinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pathfinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F9B5D427E6A4EF005D55E6 /* PathfinderScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathfinderScene.swift; sourceTree = "<group>"; };
 		52F9B5D927E6A4EF005D55E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -63,6 +69,7 @@
 				52E0B1CF27E6E9CB00607FBE /* Data */,
 				52E0B1D427E6EC4400607FBE /* Civ 2.sks */,
 				52E0B1D627E7AEC900607FBE /* Map Icons.sks */,
+				52E0B1EC27ED393400607FBE /* Freeland.sks */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -70,6 +77,8 @@
 		52E0B1CF27E6E9CB00607FBE /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				52E0B1F427ED650100607FBE /* freeland.tmx */,
+				52E0B1F027ED54C700607FBE /* freeland.tsx */,
 				52E0B1E827E95FBF00607FBE /* civ2.tmx */,
 				52E0B1DE27E80FD500607FBE /* civ2.tsx */,
 			);
@@ -166,10 +175,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52E0B1F527ED650100607FBE /* freeland.tmx in Resources */,
 				52E0B1E927E95FBF00607FBE /* civ2.tmx in Resources */,
 				52F9B5DA27E6A4EF005D55E6 /* Main.storyboard in Resources */,
 				52F9B5DC27E6A4F0005D55E6 /* Assets.xcassets in Resources */,
 				52E0B1DF27E80FD500607FBE /* civ2.tsx in Resources */,
+				52E0B1F127ED54C700607FBE /* freeland.tsx in Resources */,
+				52E0B1ED27ED393400607FBE /* Freeland.sks in Resources */,
 				52E0B1D727E7AEC900607FBE /* Map Icons.sks in Resources */,
 				52F9B5DF27E6A4F0005D55E6 /* LaunchScreen.storyboard in Resources */,
 				52E0B1D527E6EC4400607FBE /* Civ 2.sks in Resources */,

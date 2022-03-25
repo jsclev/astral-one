@@ -67,8 +67,6 @@ class GameCamera: SKCameraNode {
         metalValue.text = "19"
         mineralValue.text = "76"
 
-        print("Camera size: \(self.calculateAccumulatedFrame().size)")
-
         addChild(moneyValue)
         addChild(energyValue)
         addChild(concreteValue)

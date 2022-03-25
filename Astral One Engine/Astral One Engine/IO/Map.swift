@@ -2,7 +2,7 @@ import Foundation
 import GameplayKit
 
 public struct Map {
-    public var tiles: [[Tile]] = [[]]
+    private var tiles: [[Tile]] = [[]]
     public var width: Int32 = 0
     public var height: Int32 = 0
     private var graph: GKGridGraph<GameNode>
@@ -30,6 +30,14 @@ public struct Map {
                 }
             }
         }
+    }
+    
+    public func getTiles() -> [[Tile]] {
+        return tiles
+    }
+    
+    mutating public func setTile(row: Int, col: Int, tile: Tile) {
+        tiles[row][col] = tile
     }
     
     private func getSurroundingPositions(position: SIMD2<Int32>) -> [SIMD2<Int32>] {

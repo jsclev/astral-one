@@ -19,7 +19,6 @@ class PathfinderCamera: SKCameraNode {
         super.init()
         
         name = "camera"
-        print("Camera size: \(self.calculateAccumulatedFrame().size)")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,8 +29,6 @@ class PathfinderCamera: SKCameraNode {
         addChild(startPositionIcon)
         addChild(calculatePathIcon)
         
-        print("Camera size: \(self.calculateAccumulatedFrame().size)")
-        
         if let scene = self.scene {
             let topIconEdge: CGFloat = (scene.size.height / 2.0) - 25.0
             let verticalSpacer: CGFloat = 45.0
@@ -39,11 +36,6 @@ class PathfinderCamera: SKCameraNode {
             
             startPositionIcon.position = CGPoint(x: leftIconEdge, y: topIconEdge)
             calculatePathIcon.position = CGPoint(x: leftIconEdge, y: topIconEdge - verticalSpacer)
-            
-            if let myScene = self.scene {
-                print("scene size: \(myScene.size)")
-                
-            }
         }
     }
 }

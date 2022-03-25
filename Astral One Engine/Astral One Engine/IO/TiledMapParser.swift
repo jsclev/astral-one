@@ -70,7 +70,14 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                 let tileIdTable = string.components(separatedBy: "\n")
                 
                 for rowData in tileIdTable {
-                    let trimmedRowData = rowData.trimmingCharacters(in: .whitespacesAndNewlines)
+                    // Make sure we trim off any extraneous whitespace characters
+                    // or punctuation characters from the row of data.  There have been
+                    // Tiled files that contain a trailing comma, or a trailing tab
+                    // character for some reason, so we want to make sure we get rid
+                    // of all that junk.
+                    let trimmedRowData = rowData
+                        .trimmingCharacters(in: .whitespacesAndNewlines)
+                        .trimmingCharacters(in: .punctuationCharacters)
                     
                     if trimmedRowData.count > 0 {
                         let tileIds = trimmedRowData.components(separatedBy: ",")
@@ -78,13 +85,17 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                         for (colIndex, tileId) in tileIds.enumerated() {
                             var intTileId = Int(tileId) ?? 0
                             intTileId -= firstGId
+                            let strTileId: String = String(intTileId)
                             
-                            if let tile = tileset.getTile(id: String(intTileId)) {
-                                map.tiles[mapRowIndex][colIndex] = tile
+                            if let tile = tileset.getTile(id: strTileId) {
+                                map.setTile(row: mapRowIndex, col: colIndex, tile: tile)
                                 
 //                                if tileId != "0" && tile.walkable {
 //                                    print("Non walkable: " + map.tiles[mapRowIndex][colIndex].id)
 //                                }
+                            }
+                            else {
+                                fatalError("Unable to find tile id \(strTileId).")
                             }
                         }
                         

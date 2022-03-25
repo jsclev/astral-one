@@ -18,7 +18,8 @@ class PathfinderScene: SKScene {
     var entityManager: EntityManager!
     var initialCameraScale = 1.0
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
-    let tilesetName: String = "Civ 2 Tile Set"
+    let tilesetName: String = "Freeland Tile Set"
+    let filename: String = "freeland"
     let mapIconsTilesetName: String = "Map Icons"
     let mapName = "terrain"
     var tileset: SKTileSet!
@@ -107,11 +108,11 @@ class PathfinderScene: SKScene {
     func clearMapIcons() {
         for row in 0..<mapIcons.numberOfRows {
             for col in 0..<mapIcons.numberOfColumns {
-                if let tg = mapIcons.tileGroup(atColumn: col, row: row) {
+                if let _ = mapIcons.tileGroup(atColumn: col, row: row) {
                     mapIcons.setTileGroup(nil, forColumn: col, row: row)
                 }
                 
-                if let tg = pathMap.tileGroup(atColumn: col, row: row) {
+                if let _ = pathMap.tileGroup(atColumn: col, row: row) {
                     pathMap.setTileGroup(nil, forColumn: col, row: row)
                 }
             }
@@ -134,10 +135,10 @@ class PathfinderScene: SKScene {
         tapGestureRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(tapGestureRecognizer)
         
-        let tilesetParser = TiledTilesetParser("civ2")
+        let tilesetParser = TiledTilesetParser(filename)
         let tileset = tilesetParser.parse()
         
-        let mapParser = TiledMapParser(tileset: tileset, filename: "civ2")
+        let mapParser = TiledMapParser(tileset: tileset, filename: filename)
         map = mapParser.parse()
         map.bake()
         
@@ -177,12 +178,12 @@ class PathfinderScene: SKScene {
         let grassTiles = tileset.tileGroups.first { $0.name == "Grass"}
         var numTiles: CGSize = CGSize(width: 0.0, height: 0.0)
         
-        for (rowIndex, row) in map.tiles.enumerated() {
+        for (rowIndex, row) in map.getTiles().enumerated() {
             numTiles.width = CGFloat(rowIndex)
             
             for (colIndex, tile) in row.enumerated() {
                 
-                if let tileType = gameTiles[tile.id] {
+                if let tileType = Constants.tiles[tile.id] {
                     if tileType == "Tank" || tileType == "Plane" || tileType == "Town" {
                         if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType}) {
                             unitsMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
@@ -194,6 +195,9 @@ class PathfinderScene: SKScene {
                             terrainMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
                         }
                     }
+                }
+                else {
+                    fatalError("Unable to find tile id \(tile.id).")
                 }
             }
         }

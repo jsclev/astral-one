@@ -1,5 +1,5 @@
 
-enum TerrainType {
+public enum TerrainType {
     case Desert
     case Forest
     case Glacier

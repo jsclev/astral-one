@@ -51,7 +51,6 @@ public class Builder: SKSpriteNode {
     }
     
     public func toggleSelected() {
-        print("Selected builder")
         isSpriteSelected = !isSpriteSelected
         
         if isSpriteSelected {

@@ -1,22 +1,5 @@
 import CoreGraphics
 
-enum ImageName {
-    static let background = "Background"
-    static let ground = "Ground"
-    static let water = "Water"
-    static let vineTexture = "VineTexture"
-    static let vineHolder = "VineHolder"
-    static let crocMouthClosed = "CrocMouthClosed"
-    static let energy = "energy"
-}
-
-enum SoundFile {
-    static let backgroundMusic = "Background4.m4a"
-    static let slice = "Slice.caf"
-    static let splash = "Splash.caf"
-    static let nomNom = "NomNom.caf"
-}
-
 public enum Layer {
     public static let base: CGFloat = 0.0
     public static let terrain: CGFloat = 1.0
@@ -28,102 +11,65 @@ public enum Layer {
     public static let foreground: CGFloat = 6.0
 }
 
-enum PhysicsCategory {
-    static let crocodile: UInt32 = 1
-    static let vineHolder: UInt32 = 2
-    static let vine: UInt32 = 4
-    static let prize: UInt32 = 8
-}
-
-enum GameConfiguration {
-    static let vineDataFile = "VineData.plist"
-    static let canCutMultipleVinesAtOnce = false
-}
-
-public var gameTiles: [String: String] = [
-    "0": "Water",
-    "1": "Tundra",
-    "2": "Town",
-    "3": "Tank",
-    "4": "Swamp",
-    "5": "Snow",
-    "6": "Sand",
-    "7": "Plane",
-    "8": "Plains",
-    "9": "Jungle",
-    "10": "Grass",
-    "11": "Fog"
-]
-
-struct Constants {
-    static let terrainTypes: [String: TerrainType] = [
-        "0": TerrainType.Water,
-        "1": TerrainType.Tundra,
-        "2": TerrainType.Water,
-        "3": TerrainType.Water,
-        "4": TerrainType.Swamp,
-        "5": TerrainType.Glacier,
-        "6": TerrainType.Desert,
-        "7": TerrainType.Water,
-        "8": TerrainType.Plains,
-        "9": TerrainType.Jungle,
+public struct Constants {
+    public static let terrainTypes: [String: TerrainType] = [
+        "0": TerrainType.Grassland,
+        "1": TerrainType.Grassland,
+        "2": TerrainType.Grassland,
+        "3": TerrainType.Grassland,
+        "4": TerrainType.Grassland,
+        "5": TerrainType.Grassland,
+        "6": TerrainType.Grassland,
+        "7": TerrainType.Grassland,
+        "8": TerrainType.Grassland,
+        "9": TerrainType.Grassland,
         "10": TerrainType.Grassland,
-        "11": TerrainType.Water
+        "11": TerrainType.Grassland
     ]
+    
+    public static let tiles: [String: String] = [
+        "0": "Grass",
+        "1": "Grass",
+        "2": "Grass",
+        "3": "Grass",
+        "4": "Grass",
+        "5": "Grass",
+        "6": "Grass",
+        "7": "Grass",
+        "8": "Grass",
+        "9": "Grass",
+        "10": "Grass",
+        "11": "Grass"
+    ]
+    
+//    public static let terrainTypes: [String: TerrainType] = [
+//        "0": TerrainType.Water,
+//        "1": TerrainType.Tundra,
+//        "2": TerrainType.Water,
+//        "3": TerrainType.Water,
+//        "4": TerrainType.Swamp,
+//        "5": TerrainType.Glacier,
+//        "6": TerrainType.Desert,
+//        "7": TerrainType.Water,
+//        "8": TerrainType.Plains,
+//        "9": TerrainType.Jungle,
+//        "10": TerrainType.Grassland,
+//        "11": TerrainType.Water
+//    ]
+//
+//    public static let tiles: [String: String] = [
+//        "0": "Water",
+//        "1": "Tundra",
+//        "2": "Town",
+//        "3": "Tank",
+//        "4": "Swamp",
+//        "5": "Snow",
+//        "6": "Sand",
+//        "7": "Plane",
+//        "8": "Plains",
+//        "9": "Jungle",
+//        "10": "Grass",
+//        "11": "Fog"
+//    ]
 }
-
-//var gameTiles: [String: String] = [
-//    "0": "scrubland03",
-//    "1": "scrubland02",
-//    "2": "scrubland01",
-//    "3": "scrubland00",
-//    "4": "woodlands03",
-//    "5": "woodlands02",
-//    "6": "woodlands01",
-//    "7": "woodlands00",
-//    "8": "highlands03",
-//    "9": "highlands02",
-//    "10": "highlands01",
-//    "11": "highlands00",
-//    "12": "mountain03",
-//    "13": "mountain02",
-//    "14": "mountain01",
-//    "15": "mountain00",
-//    "16": "forestBroadleaf00",
-//    "17": "forestBroadleaf01",
-//    "18": "forestBroadleaf02",
-//    "19": "forestBroadleaf03",
-//    "20": "base00",
-//    "21": "base01",
-//    "22": "base02",
-//    "23": "base03",
-//    "24": "hills00",
-//    "25": "hills01",
-//    "26": "hills02",
-//    "27": "hills03",
-//    "28": "void03",
-//    "29": "void02",
-//    "30": "void00",
-//    "31": "void01",
-//    "32": "dirt00",
-//    "33": "dirt01",
-//    "34": "dirt02",
-//    "35": "dirt03",
-//    "36": "marsh03",
-//    "37": "marsh02",
-//    "38": "marsh01",
-//    "39": "marsh00",
-//    "40": "desertDunes03",
-//    "41": "desertDunes02",
-//    "42": "desertDunes01",
-//    "43": "desertDunes00",
-//    "44": "ocean03",
-//    "45": "ocean02",
-//    "46": "ocean01",
-//    "47": "ocean00",
-//    "48": "plains03",
-//    "49": "plains02",
-//    "50": "plains01",
-//    "51": "plains00"
-//]
 
