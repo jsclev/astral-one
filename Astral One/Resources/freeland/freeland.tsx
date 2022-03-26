@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.8" tiledversion="1.8.2" name="freeland" tilewidth="128" tileheight="88" tilecount="19" columns="0">
+<tileset version="1.8" tiledversion="1.8.2" name="freeland" tilewidth="128" tileheight="88" tilecount="25" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <image width="128" height="88" source="terrains/grass/grass-001.png"/>
@@ -57,5 +57,23 @@
  </tile>
  <tile id="18">
   <image width="128" height="88" source="terrains/mountain/mountain-002.png"/>
+ </tile>
+ <tile id="19">
+  <image width="128" height="88" source="terrains/hills/hills-001.png"/>
+ </tile>
+ <tile id="20">
+  <image width="128" height="88" source="terrains/farm/farm-001.png"/>
+ </tile>
+ <tile id="21">
+  <image width="128" height="88" source="terrains/desert/desert-001.png"/>
+ </tile>
+ <tile id="22">
+  <image width="128" height="88" source="terrains/jungle/jungle-001.png"/>
+ </tile>
+ <tile id="23">
+  <image width="128" height="88" source="terrains/swamp/swamp-001.png"/>
+ </tile>
+ <tile id="24">
+  <image width="128" height="88" source="terrains/water/water-001.png"/>
  </tile>
 </tileset>

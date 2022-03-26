@@ -29,6 +29,7 @@ struct PathfinderView: View {
                 mapViewModel.moveCamera(translation: CGSize(width: finalTranslationX,
                                                             height: finalTranslationY))
                 scene.gameCamera.position = mapViewModel.cameraPosition
+                scene.gameCamera.updatePositionLabel()
             }.updating($startLocation) { (value, startLocation, transaction) in
                 startLocation = startLocation ?? location
             }.onEnded { value in

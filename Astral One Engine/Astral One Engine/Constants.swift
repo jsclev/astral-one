@@ -12,6 +12,9 @@ public enum Layer {
 }
 
 public struct Constants {
+    public static let mapWidth: CGFloat = 1000.0 / 3.0
+    public static let mapHeight: CGFloat = 1000.0 / 3.0
+
     public static let terrainTypes: [String: TerrainType] = [
         "0": TerrainType.Grassland,
         "1": TerrainType.Forest,
@@ -30,13 +33,14 @@ public struct Constants {
         "14": TerrainType.Forest,
         "15": TerrainType.Forest,
         "16": TerrainType.Forest,
-        "17": TerrainType.Forest,
-        "18": TerrainType.Forest,
-        "19": TerrainType.Forest,
+        "17": TerrainType.Mountains,
+        "18": TerrainType.Mountains,
+        "19": TerrainType.Hills,
         "20": TerrainType.Forest,
         "21": TerrainType.Forest,
         "22": TerrainType.Forest,
-        "23": TerrainType.Forest
+        "23": TerrainType.Forest,
+        "24": TerrainType.Water
     ]
     
     public static let tiles: [String: String] = [
@@ -57,19 +61,19 @@ public struct Constants {
         "14": "Forest",
         "15": "Forest",
         "16": "Forest",
-        "17": "Forest",
-        "18": "Forest",
-        "19": "Forest",
+        "17": "Mountain",
+        "18": "Mountain",
+        "19": "Hills",
         "20": "Forest",
         "21": "Forest",
         "22": "Forest",
         "23": "Forest",
-        "24": "Forest",
-        "25": "Forest",
-        "26": "Forest",
-        "27": "Forest",
-        "28": "Forest",
-        "29": "Forest",
+        "24": "Water"
+//        "25": "Forest",
+//        "26": "Forest",
+//        "27": "Forest",
+//        "28": "Forest",
+//        "29": "Forest",
     ]
     
 //    public static let terrainTypes: [String: TerrainType] = [

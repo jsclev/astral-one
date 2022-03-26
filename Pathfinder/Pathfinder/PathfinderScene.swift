@@ -181,8 +181,8 @@ class PathfinderScene: SKScene {
         unitsMap.position = CGPoint.zero
         unitsMap.enableAutomapping = true
         
-        for row in 0..<map.width {
-            for col in 0..<map.height {
+        for row in stride(from: map.height, to: -1, by: -1) {
+            for col in 0..<map.width {
                 for tile in map.getTiles(row: row, col: col) {
                     if let tileType = Constants.tiles[tile.id] {
                         if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType }) {
@@ -191,6 +191,12 @@ class PathfinderScene: SKScene {
                             
                             terrainMap.setTileGroup(tileGroup, forColumn: col, row: row)
                         }
+                        else {
+                            fatalError("No tile group \"\(tileType)\" in tile set \"\(tilesetName)\"")
+                        }
+                    }
+                    else {
+                        fatalError("No tile id \"\(tile.id)\" in global lookup.")
                     }
                 }
             }
@@ -209,15 +215,19 @@ class PathfinderScene: SKScene {
     }
     
     func showAIPath() {
+        let tileGroupName = "Fog"
         let path = map.findPath(from: startPosition, to: endPosition)
         
         for node in path {
             let theNode: GKGridGraphNode = node as! GKGridGraphNode
             
-            if let tileGroup = tileset.tileGroups.first(where: { $0.name == "Fog"}) {
+            if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileGroupName }) {
                 pathMap.setTileGroup(tileGroup,
                                      forColumn: Int(theNode.gridPosition.y),
                                      row: Int(theNode.gridPosition.x))
+            }
+            else {
+                fatalError("\"\(tileGroupName)\" tile group not found in \"\(tilesetName)\" tile set.")
             }
         }
     }

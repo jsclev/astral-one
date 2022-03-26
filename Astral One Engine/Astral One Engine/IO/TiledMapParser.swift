@@ -7,18 +7,14 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
     var tiledTileset: TiledTileset
     private var map: Map
     var mapInitialized = false
-    var mapWidth: Int32
-    var mapHeight: Int32
-    var firstGId: Int
-    var layerOrdinal: Int
+    var mapWidth: Int32 = 0
+    var mapHeight: Int32 = 0
+    var firstGId: Int = 1
+    var layerOrdinal: Int = 0
     
     public init(tiledTileset: TiledTileset, filename: String) {
         self.filename = filename
         self.tiledTileset = tiledTileset
-        self.mapWidth = 60
-        self.mapHeight = 60
-        self.firstGId = 1
-        self.layerOrdinal = 0
         self.map = Map(width: self.mapWidth, height: self.mapHeight)
     }
     
@@ -69,6 +65,7 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
         if currentEl == "data" {
             if !mapInitialized {
                 map = Map(width: mapWidth, height: mapHeight)
+                map.log()
                 mapInitialized = true
             }
             

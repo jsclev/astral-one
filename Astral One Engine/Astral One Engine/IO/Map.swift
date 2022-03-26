@@ -82,10 +82,6 @@ public struct Map {
 //        return maxNumLayers
     }
     
-    private func getSurroundingPositions(position: SIMD2<Int32>) -> [SIMD2<Int32>] {
-        return []
-    }
-    
     public func findPath(from: SIMD2<Int32>, to: SIMD2<Int32>) -> [GKGraphNode] {
         let startNode = graph.node(atGridPosition: from)
         let endNode = graph.node(atGridPosition: to)
