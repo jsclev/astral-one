@@ -2,9 +2,6 @@ import Foundation
 import GameplayKit
 
 public struct Map {
-//    private var tiles: [[[Tile]]] = [[[]]]
-//    private var width: Int32 = 0
-//    private var height: Int32 = 0
     private let graph: GKGridGraph<GameNode>
     
     public var width: Int {
@@ -16,14 +13,6 @@ public struct Map {
     }
     
     public init(width: Int32, height: Int32) {
-//        self.width = width
-//        self.height = height
-        
-//        let layerArray: [Tile] = []
-//        let rowArray = Array(repeating: layerArray, count: Int(self.width))
-        
-//        tiles = Array(repeating: rowArray, count: Int(self.height))
-        
         graph = GKGridGraph<GameNode>(fromGridStartingAt: SIMD2<Int32>(0, 0),
                                       width: width,
                                       height: height,
@@ -44,10 +33,6 @@ public struct Map {
 //        }
     }
     
-//    public func getTiles() -> [[[Tile]]] {
-//        return tiles
-//    }
-    
     public func getNode(row: Int, col: Int) -> GameNode? {
         return graph.node(atGridPosition: SIMD2<Int32>(Int32(row), Int32(col)))
     }
@@ -60,26 +45,28 @@ public struct Map {
         return []
     }
     
-    mutating public func setTile(row: Int, col: Int, layer: Int, tile: Tile) {
+    mutating public func addTile(row: Int, col: Int, tile: Tile) {
         if let node = graph.node(atGridPosition: SIMD2<Int32>(Int32(row), Int32(col))) {
-            node.setTile(tile: Tile(id: tile.id,
+            node.addTile(tile: Tile(id: tile.id,
                                     terrainType: tile.terrainType,
-                                    layerIndex: layer))
+                                    layerIndex: node.getTiles().count))
         }
     }
     
-    public func getMaxNumLayers() -> Int {
-        return 2
-//        var maxNumLayers: Int = 0
-//        for row in tiles {
-//            for col in row {
-//                if col.count > maxNumLayers {
-//                    maxNumLayers = col.count
-//                }
-//            }
-//        }
-//
-//        return maxNumLayers
+    public func getNumLayers() -> Int {
+        var numLayers: Int = 0
+        for row in 0..<width {
+            for col in 0..<height {
+                if let node = graph.node(atGridPosition: SIMD2<Int32>(Int32(row), Int32(col))) {
+                    let myLayerCount = node.getTiles().count
+                    if myLayerCount > numLayers {
+                        numLayers = myLayerCount
+                    }
+                }
+            }
+        }
+
+        return numLayers
     }
     
     public func findPath(from: SIMD2<Int32>, to: SIMD2<Int32>) -> [GKGraphNode] {
@@ -112,24 +99,5 @@ public struct Map {
         }
         
         print("****************************************************************")
-        
-        // Draw top border
-//        var verticalBorder: String = ""
-//        for _ in 0..<graph.gridWidth {
-//            verticalBorder += " -"
-//        }
-//        print(verticalBorder)
-//
-//        for row in 0..<graph.gridHeight {
-//            var rowString: String = "|"
-//            for col in 0..<graph.gridWidth {
-//                rowString += " |"
-//                if let node = graph.node(atGridPosition: SIMD2<Int32>(Int32(row), Int32(col))) {
-//                    print("\(node.connectedNodes.count)")
-//                }
-//            }
-//            print(rowString)
-//            print(verticalBorder)
-//        }
     }
 }

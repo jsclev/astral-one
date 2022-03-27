@@ -65,7 +65,6 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
         if currentEl == "data" {
             if !mapInitialized {
                 map = Map(width: mapWidth, height: mapHeight)
-                map.log()
                 mapInitialized = true
             }
             
@@ -105,11 +104,9 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                     
                                     if let tile = tiledTileset.getTile(id: strLocalTileId) {
 //                                        print("Adding tile [\(tile.id),\(tile.terrainType)] at position [\(mapRowIndex),\(col),\(layerOrdinal)]")
-                                        map.setTile(row: mapRowIndex,
+                                        map.addTile(row: mapRowIndex,
                                                     col: col,
-                                                    layer: layerOrdinal,
                                                     tile: tile)
-                                    
                                     }
                                     else {
                                         fatalError("Unable to find tile id \(strLocalTileId).")

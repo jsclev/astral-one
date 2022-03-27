@@ -31,7 +31,6 @@ public class MapViewModel {
 //                                         y: 0.0)
 //                startCameraPosition = CGPoint(x: cameraPosition.x,
 //                                              y: cameraPosition.y)
-        log()
     }
     
     public func changeMap(mapName: String) {
@@ -79,16 +78,14 @@ public class MapViewModel {
         //        else {
         //            cameraPosition.y = startCameraPosition.y + translation.height
         //        }
-        
-        log()
     }
     
     public func log() {
-        //        print("Total map size is [\(mapSize.width), \(mapSize.height)]")
-        //        print("Camera size is [\(cameraSize.width), \(cameraSize.height)]")
-        //        print("Camera position is [\(cameraPosition.x), \(cameraPosition.y)]")
-        //        print("Start camera position is [\(startCameraPosition.x), \(startCameraPosition.y)]")
-        //        print("----------------------------------------------------------------")
+        print("Total map size is [\(mapSize.width), \(mapSize.height)]")
+        print("Camera size is [\(cameraSize.width), \(cameraSize.height)]")
+        print("Camera position is [\(cameraPosition.x), \(cameraPosition.y)]")
+        print("Start camera position is [\(startCameraPosition.x), \(startCameraPosition.y)]")
+        print("----------------------------------------------------------------")
     }
     
     public func resetCamera() {

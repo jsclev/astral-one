@@ -8,39 +8,38 @@ public class GameNode: GKGridGraphNode {
     }
     
     override public func cost(to node: GKGraphNode) -> Float {
-        print("calculating cost")
         var cost: Float = 0.0
         
         for tile in tiles {
             if tile.terrainType == TerrainType.Grassland {
-                cost = 1.0
+                cost += 1.0
             }
             else if tile.terrainType == TerrainType.Jungle {
-                cost = 2.0
+                cost += 2.0
             }
             else if tile.terrainType == TerrainType.Plains {
-                cost = 1.0
+                cost += 1.0
             }
             else if tile.terrainType == TerrainType.Desert {
-                cost = 1.0
+                cost += 1.0
             }
             else if tile.terrainType == TerrainType.Swamp {
-                cost = 2.0
+                cost += 2.0
             }
             else if tile.terrainType == TerrainType.Tundra {
-                cost = 1.0
+                cost += 1.0
             }
             else if tile.terrainType == TerrainType.Forest {
-                cost = 2.0
+                cost += 2.0
             }
             else if tile.terrainType == TerrainType.Hills {
-                cost = 2.0
+                cost += 2.0
             }
             else if tile.terrainType == TerrainType.Mountains {
-                cost = 3.0
+                cost += 3.0
             }
             else if tile.terrainType == TerrainType.Glacier {
-                cost = 2.0
+                cost += 2.0
             }
             else if tile.terrainType == TerrainType.River {
                 cost += 9999.0
@@ -49,7 +48,7 @@ public class GameNode: GKGridGraphNode {
                 cost += 9999.0
             }
             else {
-                cost = 9999.0
+                cost += 9999.0
             }
         }
         
@@ -60,12 +59,12 @@ public class GameNode: GKGridGraphNode {
         return tiles
     }
     
-    public func setTile(tile: Tile) {
-        while tiles.count < tile.layerIndex + 1 {
-            tiles.append(Tile())
+    public func addTile(tile: Tile) {
+        if tile.id == "" {
+            fatalError("Cannot add tile with empty id.")
         }
         
-        tiles[tile.layerIndex] = tile
+        tiles.append(tile)
     }
     
     required init?(coder aDecoder: NSCoder) {

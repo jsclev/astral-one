@@ -159,7 +159,7 @@ class PathfinderScene: SKScene {
     private func renderMap(map: Map) {
         var terrainMaps: [SKTileMapNode] = []
 
-        for layer in 0..<map.getMaxNumLayers() {
+        for layer in 0..<map.getNumLayers() {
             let terrainMap = SKTileMapNode(tileSet: tileset,
                                            columns: cols,
                                            rows: rows,
