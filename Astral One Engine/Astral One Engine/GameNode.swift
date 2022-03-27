@@ -2,8 +2,8 @@ import GameplayKit
 
 public class GameNode: GKGridGraphNode {
     private var tiles: [Tile] = []
-    private var enemyAttack: Float = 0.0
-    private var enemyDefense: Float = 0.0
+    private var enemyLandAttack: Float = 0.0
+    private var enemyLandDefense: Float = 0.0
     private var avgEnemyMovement: Float = 0.0
     
     override init(gridPosition: vector_int2) {
@@ -74,20 +74,20 @@ public class GameNode: GKGridGraphNode {
         let spec = tile.spec
         if spec.tileType == TileType.Unit {
             if tile.spec.terrainType == TerrainType.Tank {
-                enemyAttack += 10.0
-                enemyDefense += 5.0
+                enemyLandAttack += 10.0
+                enemyLandDefense += 5.0
             }
         }
         
         tiles.append(tile)
     }
     
-    public func getEnemyAttack() -> Float {
-        return enemyAttack
+    public func getEnemyLandAttack() -> Float {
+        return enemyLandAttack
     }
     
-    public func getEnemyDefense() -> Float {
-        return enemyDefense
+    public func getEnemyLandDefense() -> Float {
+        return enemyLandDefense
     }
     
     required init?(coder aDecoder: NSCoder) {

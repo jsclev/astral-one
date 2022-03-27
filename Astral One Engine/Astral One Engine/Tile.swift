@@ -36,6 +36,7 @@ public enum UnitType {
     case Battleship
     case Bomber
     case Chariot
+    case Explorer
     case Tank
 }
 

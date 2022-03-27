@@ -91,9 +91,15 @@ public struct Constants {
         "24": TileDef(tileType: TileType.Terrain,
                       terrainType: TerrainType.Water,
                       unitType: UnitType.None),
-        "25": TileDef(tileType: TileType.Terrain,
+        "25": TileDef(tileType: TileType.Unit,
                       terrainType: TerrainType.None,
-                      unitType: UnitType.Tank)
+                      unitType: UnitType.Tank),
+        "26": TileDef(tileType: TileType.Unit,
+                      terrainType: TerrainType.None,
+                      unitType: UnitType.Battleship),
+        "27": TileDef(tileType: TileType.Unit,
+                      terrainType: TerrainType.None,
+                      unitType: UnitType.Explorer)
     ]
     
     public static let tiles: [String: String] = [
@@ -122,9 +128,9 @@ public struct Constants {
         "22": "Forest",
         "23": "Forest",
         "24": "Water",
-        "25": "Tank"
-//        "26": "Forest",
-//        "27": "Forest",
+        "25": "Tank",
+        "26": "Battleship",
+        "27": "Explorer",
 //        "28": "Forest",
 //        "29": "Forest",
     ]
