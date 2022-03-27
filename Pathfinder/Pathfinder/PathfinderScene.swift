@@ -187,7 +187,7 @@ class PathfinderScene: SKScene {
                     if let tileType = Constants.tiles[tile.id] {
                         if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType }) {
                             // Make sure we are setting the tile on the correct layered terrain map
-                            let terrainMap = terrainMaps[tile.layerIndex]
+                            let terrainMap = terrainMaps[tile.ordinal]
                             
                             terrainMap.setTileGroup(tileGroup, forColumn: col, row: row)
                         }

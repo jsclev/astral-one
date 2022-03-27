@@ -92,7 +92,7 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                         let tileIds = trimmedRowData.components(separatedBy: ",")
                         
                         for (col, strGlobalTileId) in tileIds.enumerated() {
-                            if var intGlobalTileId = Int(strGlobalTileId) {
+                            if let intGlobalTileId = Int(strGlobalTileId) {
                                 // Tiled uses Global Tile IDs with a value of 0 (zero)
                                 // to specify that there is no tile at this position,
                                 // so we don't want to import those. See the Tiled online
