@@ -11,13 +11,18 @@ public enum Layer {
     public static let foreground: CGFloat = 600.0
 }
 
+public enum unitType {
+    case Explorer
+    case Settler
+    case Tank
+}
+
 public struct Constants {
     public static let mapWidth: CGFloat = 1000.0 / 3.0
     public static let mapHeight: CGFloat = 1000.0 / 3.0
-
     public static let terrainTypes: [String: TileDef] = [
         "0": TileDef(tileType: TileType.Terrain,
-                     terrainType: TerrainType.Forest,
+                     terrainType: TerrainType.Grassland,
                      unitType: UnitType.None),
         "1": TileDef(tileType: TileType.Terrain,
                      terrainType: TerrainType.Forest,

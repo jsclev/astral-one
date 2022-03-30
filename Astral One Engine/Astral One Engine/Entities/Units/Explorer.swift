@@ -1,0 +1,209 @@
+import GameplayKit
+import SwiftUI
+
+public class Explorer {
+    private let game: Game
+    private var position: SIMD2<Int32>
+    
+    public init(game: Game, position: SIMD2<Int32>) {
+        self.game = game
+        self.position = position
+    }
+    
+    func add<NodeType>(node: NodeType, to graph: GKGridGraph<NodeType>) {
+        
+        // If there's a node at this position here already, remove it
+        if let existingNode = graph.node(atGridPosition: node.gridPosition) {
+            graph.remove([existingNode])
+        }
+        
+        // Add the new node, and connect it to the other nodes on the graph
+        graph.connectToAdjacentNodes(node: node)
+    }
+    
+    public func getPath(to: SIMD2<Int32>) -> [GKGraphNode] {
+        let graph = GKGridGraph<ExplorerNode>(fromGridStartingAt: SIMD2<Int32>(0, 0),
+                                              width: Int32(game.map.width),
+                                              height: Int32(game.map.height),
+                                              diagonalsAllowed: true)
+//        let graph = GKGridGraph<ExplorerNode>()
+        var nodes: [ExplorerNode] = []
+        for row in 0..<game.map.height {
+            for col in 0..<game.map.width {
+                let gridPosition = SIMD2<Int32>(Int32(row), Int32(col))
+                
+                if let mapNode = game.map.getNode(row: row, col: col) {
+                    let tiles = mapNode.getTiles()
+                    
+                    if tiles.count > 0 &&
+                        (tiles[0].spec.terrainType == TerrainType.Water ||
+                         tiles[0].spec.terrainType == TerrainType.Glacier) {
+//                        nodesToRemove.append(localNode)
+                        //                        graph.remove([localNode])
+                    }
+                    else {
+                        let localNode = ExplorerNode(gridPosition: gridPosition)
+                        localNode.setMap(map: game.map)
+//                        nodes.append(localNode)
+                        add(node: localNode, to: graph)
+                    }
+                }
+            }
+        }
+        
+//        graph.add(nodes)
+//
+//        for node in nodes {
+//            var connectedNodes: [ExplorerNode] = []
+//            print(node.gridPosition)
+//
+//            int idx = (position.y - self.gridOrigin.y) * (int)self.gridWidth + (position.x - self.gridOrigin.x);
+//            return self.gridNodes[idx];
+//
+//            let nPosition = SIMD2<Int32>(Int32(node.gridPosition.x), Int32(node.gridPosition.y - 1))
+//            if let north = graph.node(atGridPosition: nPosition) {
+//                connectedNodes.append(north)
+//            }
+//
+//            let nePosition = SIMD2<Int32>(Int32(node.gridPosition.x + 1), Int32(node.gridPosition.y - 1))
+//            if let northeast = graph.node(atGridPosition: nePosition) {
+//                connectedNodes.append(northeast)
+//            }
+//
+//            let ePosition = SIMD2<Int32>(Int32(node.gridPosition.x + 1), Int32(node.gridPosition.y))
+//            if let east = graph.node(atGridPosition: ePosition) {
+//                connectedNodes.append(east)
+//            }
+//
+//            let sePosition = SIMD2<Int32>(Int32(node.gridPosition.x + 1), Int32(node.gridPosition.y + 1))
+//            if let southeast = graph.node(atGridPosition: sePosition) {
+//                connectedNodes.append(southeast)
+//            }
+//
+//            let sPosition = SIMD2<Int32>(Int32(node.gridPosition.x), Int32(node.gridPosition.y + 1))
+//            if let south = graph.node(atGridPosition: sPosition) {
+//                connectedNodes.append(south)
+//            }
+//
+//            node.addConnections(to: connectedNodes, bidirectional: true)
+//        }
+        
+        // Prune non-traversable nodes
+//        var nodesToRemove: [ExplorerNode] = []
+//        for row in 0..<graph.gridHeight {
+//            for col in 0..<graph.gridWidth {
+//                let gridPosition = SIMD2<Int32>(Int32(row), Int32(col))
+//
+//                if let mapNode = game.map.getNode(row: row, col: col),
+//                   let localNode = graph.node(atGridPosition: gridPosition) {
+//                    let tiles = mapNode.getTiles()
+//
+//                    if tiles.count > 0 &&
+//                        (tiles[0].spec.terrainType == TerrainType.Water ||
+//                         tiles[0].spec.terrainType == TerrainType.Glacier) {
+////                        print("Removing water or glacier node at [\(gridPosition)].")
+//                        nodesToRemove.append(localNode)
+////                        graph.remove([localNode])
+//                    }
+//                    else {
+//                        localNode.setMap(map: game.map)
+//                    }
+//                }
+//            }
+//        }
+//
+//        graph.remove(nodesToRemove)
+    
+//        if let fromNode = graph.node(atGridPosition: position),
+//           let toNode = graph.node(atGridPosition: to){
+//            var path: [GKGridGraphNode] = []
+//
+//            let localPath = graph.findPath(from: fromNode, to: toNode)
+//
+//            for aNode in localPath as! [GKGridGraphNode] {
+//                path.append(aNode)
+//            }
+//
+//            return path
+//        }
+        
+        return []
+    }
+}
+
+public class ExplorerNode: GKGridGraphNode {
+    private var map: Map = Map(width: 0, height: 0)
+    private var enemyHP: Float = 0.0
+    private var enemyLandAttack: Float = 0.0
+    private var enemyLandDefense: Float = 0.0
+    private var avgEnemyMovement: Float = 0.0
+    
+    override init(gridPosition: vector_int2) {
+        super.init(gridPosition: gridPosition)
+    }
+    
+    public func setMap(map: Map) {
+        self.map = map
+    }
+    
+    override public func cost(to node: GKGraphNode) -> Float {
+        var cost: Float = 0.0
+        if let mapNode = map.getNode(row: Int(gridPosition.y), col: Int(gridPosition.x)) {
+            for tile in mapNode.getTiles() {
+                if tile.spec.terrainType == TerrainType.Grassland {
+                    cost += 1.0
+                }
+                else if tile.spec.terrainType == TerrainType.Jungle {
+                    cost += 2.0
+                }
+                else if tile.spec.terrainType == TerrainType.Plains {
+                    cost += 1.0
+                }
+                else if tile.spec.terrainType == TerrainType.Desert {
+                    cost += 1.0
+                }
+                else if tile.spec.terrainType == TerrainType.Swamp {
+                    cost += 2.0
+                }
+                else if tile.spec.terrainType == TerrainType.Tundra {
+                    cost += 1.0
+                }
+                else if tile.spec.terrainType == TerrainType.Forest {
+                    cost += 2.0
+                }
+                else if tile.spec.terrainType == TerrainType.Hills {
+                    cost += 2.0
+                }
+                else if tile.spec.terrainType == TerrainType.Mountains {
+                    cost += 3.0
+                }
+                else if tile.spec.terrainType == TerrainType.Glacier {
+                    cost += 2.0
+                }
+                else if tile.spec.terrainType == TerrainType.River {
+                    cost += 9999.0
+                }
+                else if tile.spec.terrainType == TerrainType.Water {
+                    cost += 9999.0
+                }
+                else {
+                    cost += 9999.0
+                }
+            }
+        }
+        
+        return cost
+    }
+    
+    public func getEnemyLandAttack() -> Float {
+        return enemyLandAttack
+    }
+    
+    public func getEnemyLandDefense() -> Float {
+        return enemyLandDefense
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("not implemented")
+    }
+}

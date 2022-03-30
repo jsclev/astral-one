@@ -1,8 +1,9 @@
 import Foundation
 import GameplayKit
 
-public struct Map {
+public class Map {
     private let graph: GKGridGraph<GameNode>
+    private var unitType: UnitType = UnitType.Explorer
     
     public var width: Int {
         graph.gridWidth
@@ -10,6 +11,10 @@ public struct Map {
     
     public var height: Int {
         graph.gridHeight
+    }
+    
+    public func setUnitType(unitType: UnitType) {
+        self.unitType = unitType
     }
     
     public init(width: Int32, height: Int32) {
@@ -20,17 +25,24 @@ public struct Map {
                                       nodeClass: GameNode.self)
     }
     
-    mutating public func bake() {
-//        for (rowIndex, row) in tiles.enumerated() {
-//            for (colIndex, col) in row.enumerated() {
-//                for (layerIndex, tile) in col.enumerated() {
-//                    let position = SIMD2<Int32>(Int32(rowIndex), Int32(colIndex))
-//                    if let node = graph.node(atGridPosition: position) {
-//                        node.addTile(tile: tile)
-//                    }
-//                }
-//            }
-//        }
+    public func prune() {
+        var nodesToRemove: [GameNode] = []
+        for row in 0..<graph.gridHeight {
+            for col in 0..<graph.gridWidth {
+                if let node = getNode(row: row, col: col) {
+                    let tiles = node.getTiles()
+                    
+                    if tiles.count > 0 &&
+                        (tiles[0].spec.terrainType == TerrainType.Water ||
+                         tiles[0].spec.terrainType == TerrainType.Glacier) {
+                        nodesToRemove.append(node)
+                        //                        graph.remove([localNode])
+                    }
+                }
+            }
+        }
+        
+        graph.remove(nodesToRemove)
     }
     
     public func getNode(row: Int, col: Int) -> GameNode? {
@@ -45,7 +57,7 @@ public struct Map {
         return []
     }
     
-    mutating public func addTile(row: Int, col: Int, tile: Tile) {
+    public func addTile(row: Int, col: Int, tile: Tile) {
         if let node = graph.node(atGridPosition: SIMD2<Int32>(Int32(row), Int32(col))) {
             node.addTile(tile: Tile(id: tile.id,
                                     spec: tile.spec,

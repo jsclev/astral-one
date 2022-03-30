@@ -2,6 +2,7 @@ import GameplayKit
 
 public class GameNode: GKGridGraphNode {
     private var tiles: [Tile] = []
+    private var enemyHP: Float = 0.0
     private var enemyLandAttack: Float = 0.0
     private var enemyLandDefense: Float = 0.0
     private var avgEnemyMovement: Float = 0.0
@@ -11,10 +12,6 @@ public class GameNode: GKGridGraphNode {
     }
     
     override public func cost(to node: GKGraphNode) -> Float {
-        for item in connectedNodes {
-            if let connectedNode = item as? GameNode {
-                print("Num tiles: \(connectedNode.getTiles().count)") }
-        }
         var cost: Float = 0.0
         
         for tile in tiles {
@@ -74,6 +71,7 @@ public class GameNode: GKGridGraphNode {
         let spec = tile.spec
         if spec.tileType == TileType.Unit {
             if tile.spec.terrainType == TerrainType.Tank {
+                enemyHP += 3.0
                 enemyLandAttack += 10.0
                 enemyLandDefense += 5.0
             }

@@ -34,6 +34,7 @@
 		52E0B1C127E6E25300607FBE /* SpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C027E6E25300607FBE /* SpriteNode.swift */; };
 		52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C727E6E7A900607FBE /* MapViewModel.swift */; };
 		52E0B1EB27EAB6B800607FBE /* GameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1EA27EAB6B700607FBE /* GameNode.swift */; };
+		52E0B1FE27F173A500607FBE /* Explorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1FD27F173A500607FBE /* Explorer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -76,6 +77,7 @@
 		52E0B1C027E6E25300607FBE /* SpriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteNode.swift; sourceTree = "<group>"; };
 		52E0B1C727E6E7A900607FBE /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		52E0B1EA27EAB6B700607FBE /* GameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNode.swift; sourceTree = "<group>"; };
+		52E0B1FD27F173A500607FBE /* Explorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explorer.swift; sourceTree = "<group>"; };
 		52F9B60727E6AA4C005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -104,8 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				52E0B1A327E6DFAB00607FBE /* Buildings */,
+				52E0B1FC27F1734000607FBE /* Units */,
 				52E0B19A27E6DFA000607FBE /* Energy.swift */,
-				52E0B19927E6DFA000607FBE /* Game.swift */,
 				52E0B19C27E6DFA100607FBE /* Player.swift */,
 				52E0B19D27E6DFA100607FBE /* EntityManager.swift */,
 				52E0B19B27E6DFA000607FBE /* Builder.swift */,
@@ -156,6 +158,14 @@
 			path = "View Models";
 			sourceTree = "<group>";
 		};
+		52E0B1FC27F1734000607FBE /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				52E0B1FD27F173A500607FBE /* Explorer.swift */,
+			);
+			path = Units;
+			sourceTree = "<group>";
+		};
 		52F9B5FE27E6AA4C005D55E6 = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +191,7 @@
 				52E0B18B27E6D87600607FBE /* IO */,
 				52E0B1C627E6E76D00607FBE /* View Models */,
 				52E0B18927E6D86A00607FBE /* Constants.swift */,
+				52E0B19927E6DFA000607FBE /* Game.swift */,
 				52E0B1EA27EAB6B700607FBE /* GameNode.swift */,
 				52E0B18F27E6D87600607FBE /* Map.swift */,
 				52E0B19027E6D87600607FBE /* Tile.swift */,
@@ -248,6 +259,7 @@
 			files = (
 				52E0B1A227E6DFA100607FBE /* EntityManager.swift in Sources */,
 				52E0B19227E6D87600607FBE /* TiledMapParser.swift in Sources */,
+				52E0B1FE27F173A500607FBE /* Explorer.swift in Sources */,
 				52E0B1BE27E6E1AC00607FBE /* DamageableComponent.swift in Sources */,
 				52E0B19F27E6DFA100607FBE /* Energy.swift in Sources */,
 				52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */,

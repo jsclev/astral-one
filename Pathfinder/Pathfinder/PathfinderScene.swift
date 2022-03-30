@@ -31,6 +31,7 @@ class PathfinderScene: SKScene {
     let cols: Int = 100
     var state: PathfinderState = PathfinderState.initialized
     var map: Map
+    var game: Game
     var startPosition = SIMD2<Int32>(0, 0)
     var endPosition = SIMD2<Int32>(0, 0)
     
@@ -38,6 +39,7 @@ class PathfinderScene: SKScene {
         self.mapViewModel = mapViewModel
         
         map = Map(width: 0, height: 0)
+        game = Game(map: map)
         
         tileset = SKTileSet(named: tilesetName)
         pathMap = SKTileMapNode(tileSet: tileset,
@@ -82,7 +84,8 @@ class PathfinderScene: SKScene {
         }
         else if !touchedNodes.isEmpty && touchedNodes[0].name == "calculate-path" {
             state = PathfinderState.calculatingPath
-            showAIPath()
+            let path = map.findPath(from: startPosition, to: endPosition)
+            showAIPath(path: path)
             return
         }
         
@@ -135,14 +138,34 @@ class PathfinderScene: SKScene {
         tapGestureRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(tapGestureRecognizer)
         
+        printDate(string: "Starting to parse Tiled XML files, and build traversal grid graph: ")
+
         let tilesetParser = TiledTilesetParser(filename)
         let tileset = tilesetParser.parse()
         
         let mapParser = TiledMapParser(tiledTileset: tileset, filename: filename)
         map = mapParser.parse()
-        map.bake()
-        
+        printDate(string: "Done parsing Tile XML, main traversal grid graph is parsed, now rendering map: ")
+
         renderMap(map: map)
+        printDate(string: "Done rendering, now building Explorer-specific traversal graph: ")
+        
+        game = Game(map: map)
+        let explorer = Explorer(game: game, position: SIMD2<Int32>(1, 1))
+        let path: [GKGraphNode] = explorer.getPath(to: SIMD2<Int32>(3, 3))
+        printDate(string: "Done building Explorer-specific traversal graph, rendering path: ")
+
+//        showAIPath(path: path)
+        printDate(string: "About to prune main graph: ")
+        map.prune()
+        printDate(string: "Done pruning main graph: ")
+    }
+    
+    func printDate(string: String) {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "ss.SSS"
+        print(string + formatter.string(from: date))
     }
     
     @objc func handleZoom(sender: UIPinchGestureRecognizer) {
@@ -214,14 +237,14 @@ class PathfinderScene: SKScene {
         
     }
     
-    func showAIPath() {
+    func showAIPath(path: [GKGraphNode]) {
         let tileGroupName = "Fog"
-        let path = map.findPath(from: startPosition, to: endPosition)
         
         for node in path {
             let theNode: GKGridGraphNode = node as! GKGridGraphNode
             
             if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileGroupName }) {
+                print("[\(theNode.gridPosition.y),\(theNode.gridPosition.x)]")
                 pathMap.setTileGroup(tileGroup,
                                      forColumn: Int(theNode.gridPosition.y),
                                      row: Int(theNode.gridPosition.x))
