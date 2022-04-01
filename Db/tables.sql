@@ -1,14 +1,17 @@
 DROP TABLE IF EXISTS game_tech_action;
 DROP TABLE IF EXISTS game_settle_action;
+DROP TABLE IF EXISTS game_building_action;
 DROP TABLE IF EXISTS game_movement_action;
 DROP TABLE IF EXISTS game_settings;
 DROP TABLE IF EXISTS game_log;
 DROP TABLE IF EXISTS game_unit;
+DROP TABLE IF EXISTS game_building;
 DROP TABLE IF EXISTS game_city;
 DROP TABLE IF EXISTS game_position;
 DROP TABLE IF EXISTS game_player;
 DROP TABLE IF EXISTS game;
 DROP TABLE IF EXISTS action;
+DROP TABLE IF EXISTS building;
 DROP TABLE IF EXISTS unit;
 DROP TABLE IF EXISTS tech;
 DROP TABLE IF EXISTS turn;
@@ -19,12 +22,17 @@ CREATE TABLE turn (
     year INTEGER NOT NULL
 );
 
+CREATE TABLE action (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
 CREATE TABLE unit (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL
 );
 
-CREATE TABLE action (
+CREATE TABLE building (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL
 );
@@ -68,6 +76,13 @@ CREATE TABLE game_city (
     city TEXT NOT NULL
 );
 
+CREATE TABLE game_building (
+    id INTEGER PRIMARY KEY,
+    game_id INTEGER NOT NULL,
+    game_player_id INTEGER NOT NULL,
+    building_id INTEGER NOT NULL
+);
+
 CREATE TABLE game_log (
     id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
@@ -98,11 +113,6 @@ CREATE TABLE game_movement_action (
     to_position INTEGER NOT NULL
 );
 
--- CREATE TABLE combat_action (
---     id INTEGER PRIMARY KEY,
---     name TEXT NOT NULL
--- );
---
 CREATE TABLE game_settle_action (
     id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
@@ -110,8 +120,10 @@ CREATE TABLE game_settle_action (
     game_unit_id INTEGER NOT NULL,
     game_city_id INTEGER NOT NULL
 );
---
--- CREATE TABLE build_action (
---     id INTEGER PRIMARY KEY,
---     name TEXT NOT NULL
--- );
+
+CREATE TABLE game_building_action (
+    id INTEGER PRIMARY KEY,
+    game_id INTEGER NOT NULL,
+    game_log_id INTEGER NOT NULL,
+    game_building_id INTEGER NOT NULL
+);

@@ -2,7 +2,8 @@ import Foundation
 
 public class Pikemen: Unit {
     init() {
-        super.init(name: "Pikemen")
+        super.init(name: "Pikemen",
+        maxHP: 10)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -27,7 +27,7 @@ public class Explorer {
                                               height: Int32(game.map.height),
                                               diagonalsAllowed: true)
 //        let graph = GKGridGraph<ExplorerNode>()
-        var nodes: [ExplorerNode] = []
+//        var nodes: [ExplorerNode] = []
         for row in 0..<game.map.height {
             for col in 0..<game.map.width {
                 let gridPosition = SIMD2<Int32>(Int32(row), Int32(col))

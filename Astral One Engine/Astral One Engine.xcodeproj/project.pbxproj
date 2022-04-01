@@ -38,6 +38,11 @@
 		52F9042627F4E1AC00D1AC97 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042527F4E1AC00D1AC97 /* Unit.swift */; };
 		52F9042827F4E27B00D1AC97 /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042727F4E27B00D1AC97 /* Warrior.swift */; };
 		52F9042A27F4E3C600D1AC97 /* Pikemen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042927F4E3C600D1AC97 /* Pikemen.swift */; };
+		52F9042D27F6B54D00D1AC97 /* Db.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042C27F6B54D00D1AC97 /* Db.swift */; };
+		52F9043027F6B5B100D1AC97 /* BaseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042F27F6B5B100D1AC97 /* BaseDAO.swift */; };
+		52F9043727F6CF8900D1AC97 /* DbError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9043627F6CF8900D1AC97 /* DbError.swift */; };
+		52F9043927F6D02500D1AC97 /* SqliteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9043827F6D02500D1AC97 /* SqliteError.swift */; };
+		52F9044427F6D68A00D1AC97 /* GameDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044327F6D68A00D1AC97 /* GameDAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -84,6 +89,12 @@
 		52F9042527F4E1AC00D1AC97 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		52F9042727F4E27B00D1AC97 /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = "<group>"; };
 		52F9042927F4E3C600D1AC97 /* Pikemen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pikemen.swift; sourceTree = "<group>"; };
+		52F9042C27F6B54D00D1AC97 /* Db.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Db.swift; sourceTree = "<group>"; };
+		52F9042F27F6B5B100D1AC97 /* BaseDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDAO.swift; sourceTree = "<group>"; };
+		52F9043327F6CD1100D1AC97 /* civitas.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = civitas.db; sourceTree = "<group>"; };
+		52F9043627F6CF8900D1AC97 /* DbError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbError.swift; sourceTree = "<group>"; };
+		52F9043827F6D02500D1AC97 /* SqliteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteError.swift; sourceTree = "<group>"; };
+		52F9044327F6D68A00D1AC97 /* GameDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDAO.swift; sourceTree = "<group>"; };
 		52F9B60727E6AA4C005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -175,6 +186,42 @@
 			path = Units;
 			sourceTree = "<group>";
 		};
+		52F9042B27F6B4AB00D1AC97 /* Data Access Layer */ = {
+			isa = PBXGroup;
+			children = (
+				52F9042E27F6B56200D1AC97 /* Data Access Objects */,
+				52F9042C27F6B54D00D1AC97 /* Db.swift */,
+				52F9043627F6CF8900D1AC97 /* DbError.swift */,
+				52F9043827F6D02500D1AC97 /* SqliteError.swift */,
+			);
+			path = "Data Access Layer";
+			sourceTree = "<group>";
+		};
+		52F9042E27F6B56200D1AC97 /* Data Access Objects */ = {
+			isa = PBXGroup;
+			children = (
+				52F9042F27F6B5B100D1AC97 /* BaseDAO.swift */,
+				52F9044327F6D68A00D1AC97 /* GameDAO.swift */,
+			);
+			path = "Data Access Objects";
+			sourceTree = "<group>";
+		};
+		52F9043127F6B62B00D1AC97 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				52F9043227F6B65200D1AC97 /* Data */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		52F9043227F6B65200D1AC97 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				52F9043327F6CD1100D1AC97 /* civitas.db */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		52F9B5FE27E6AA4C005D55E6 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +241,8 @@
 		52F9B60927E6AA4C005D55E6 /* Astral One Engine */ = {
 			isa = PBXGroup;
 			children = (
+				52F9043127F6B62B00D1AC97 /* Resources */,
+				52F9042B27F6B4AB00D1AC97 /* Data Access Layer */,
 				52E0B1BA27E6E15500607FBE /* Components */,
 				52E0B19827E6DF8600607FBE /* Entities */,
 				52E0B1BF27E6E1F300607FBE /* Extensions */,
@@ -275,19 +324,24 @@
 				52F9042827F4E27B00D1AC97 /* Warrior.swift in Sources */,
 				52F9042A27F4E3C600D1AC97 /* Pikemen.swift in Sources */,
 				52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */,
+				52F9042D27F6B54D00D1AC97 /* Db.swift in Sources */,
 				52E0B1B427E6DFD100607FBE /* Pod.swift in Sources */,
 				52E0B1B827E6DFD100607FBE /* RadarTower.swift in Sources */,
 				52E0B1C127E6E25300607FBE /* SpriteNode.swift in Sources */,
+				52F9043927F6D02500D1AC97 /* SqliteError.swift in Sources */,
 				52E0B1B927E6DFD100607FBE /* Barracks.swift in Sources */,
 				52E0B19E27E6DFA100607FBE /* Game.swift in Sources */,
 				52E0B19527E6D87600607FBE /* Tile.swift in Sources */,
 				52E0B1A027E6DFA100607FBE /* Builder.swift in Sources */,
+				52F9044427F6D68A00D1AC97 /* GameDAO.swift in Sources */,
 				52E0B1B227E6DFD100607FBE /* Wall.swift in Sources */,
 				52E0B1B127E6DFD100607FBE /* Shipyard.swift in Sources */,
 				52E0B19327E6D87600607FBE /* TiledTilesetParser.swift in Sources */,
 				52E0B19427E6D87600607FBE /* Map.swift in Sources */,
 				52E0B1A127E6DFA100607FBE /* Player.swift in Sources */,
+				52F9043727F6CF8900D1AC97 /* DbError.swift in Sources */,
 				52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */,
+				52F9043027F6B5B100D1AC97 /* BaseDAO.swift in Sources */,
 				52E0B1B327E6DFD100607FBE /* MineralStorage.swift in Sources */,
 				52E0B1B027E6DFD100607FBE /* EnergyStorage.swift in Sources */,
 				52E0B1B527E6DFD100607FBE /* PowerPlant.swift in Sources */,

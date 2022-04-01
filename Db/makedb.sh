@@ -11,4 +11,5 @@ sqlite3 civitas.sqlite < data/game-1.sql
 
 # Copy the database to the correct directory for the iOS project
 #mkdir -p ../ios/Scintillate/Scintillate/Assets.db
-#cp scintillate.sqlite ../ios/Scintillate/Scintillate/Assets.db/scintillate.db
+cp civitas.sqlite "../Astral One Engine/Astral One Engine/Resources/Data/civitas.db"
+cp civitas.sqlite "../Pathfinder/Pathfinder/Resources/Data/civitas.sqlite"

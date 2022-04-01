@@ -2,7 +2,8 @@ import Foundation
 
 public class Warrior: Unit {
     init() {
-        super.init(name: "Warrior")
+        super.init(name: "Warrior",
+                   maxHP: 10)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -5,6 +5,7 @@ select
     log.action_ordinal,
     a.name as action_name,
     gc.city as city_name,
+    b.name as building_name,
     tech.name as tech_name,
     u.name as unit_name
 from
@@ -27,10 +28,12 @@ left outer join
     game_unit gu on gu.id = gma.game_unit_id
 left outer join
     unit u on gu.unit_id = u.id
--- left outer join
---     game_build_action gba on gba.game_log_id = log.id
--- left outer join
---     game_building gc on gc.id = gsa.game_city_id
+left outer join
+    game_building_action gba on gba.game_log_id = log.id
+left outer join
+    game_building gb on gb.id = gba.game_building_id
+left outer join
+    building b on b.id = gb.building_id
 left outer join
     game_tech_action gta on log.id = gta.game_log_id
 left outer join

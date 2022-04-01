@@ -5,6 +5,8 @@ public class Game: ObservableObject {
     @Published public var showFPS = false
 
     public let map: Map
+    public let db = Db(fullRefresh: false)
+
 
     public init(map: Map) {
         self.map = map
