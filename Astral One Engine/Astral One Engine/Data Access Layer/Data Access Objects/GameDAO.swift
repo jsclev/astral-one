@@ -7,24 +7,6 @@ public class GameDAO: BaseDAO {
     }
     
     public func getCurrentUnit() -> Unit {
-//        var stmt: OpaquePointer?
-//        let sql = """
-//            SELECT
-//                id,
-//                name
-//            FROM
-//                game
-//        """
-        
-//        if sqlite3_prepare_v2(conn, statSql, -1, &stmt, nil) == SQLITE_OK {
-//            while sqlite3_step(stmt) == SQLITE_ROW {
-//                let id = getInt(stmt: stmt, colIndex: 0)
-//                let workId = getInt(stmt: statStmt, colIndex: 1)
-//                let dbReadStatus = getInt(stmt: statStmt, colIndex: 2)
-//                let dbOwnStatus = getInt(stmt: statStmt, colIndex: 3)
-//            }
-//        }
-        
         var stmt: OpaquePointer?
         var id = 1
         var unitName: String = ""

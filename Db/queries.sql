@@ -1,41 +1,41 @@
 select
     g.id as game_id,
-    gp.name as player_name,
+    gp.name as player,
     t.ordinal as turn,
-    log.action_ordinal,
-    a.name as action_name,
-    gc.city as city_name,
-    b.name as building_name,
-    tech.name as tech_name,
-    u.name as unit_name
+    ga.action_ordinal,
+    a.name as action,
+    gc.city as city,
+    b.name as building,
+    tech.name as tech,
+    u.name as unit
 from
     game g
 inner join
     game_player gp on gp.game_id = g.id
 inner join
-    game_log log on log.game_id = g.id
+    game_action ga on ga.game_id = g.id
 inner join
-    action a on a.id = log.action_id
+    action a on a.id = ga.action_id
 inner join
-    turn t on t.id = log.turn_id
+    turn t on t.id = ga.turn_id
 left outer join
-    game_settle_action gsa on gsa.game_log_id = log.id
+    game_settle_action gsa on gsa.game_action_id = ga.id
 left outer join
     game_city gc on gc.id = gsa.game_city_id
 left outer join
-    game_movement_action gma on gma.game_log_id = log.id
+    game_movement_action gma on gma.game_action_id = ga.id
 left outer join
     game_unit gu on gu.id = gma.game_unit_id
 left outer join
     unit u on gu.unit_id = u.id
 left outer join
-    game_building_action gba on gba.game_log_id = log.id
+    game_building_action gba on gba.game_action_id = ga.id
 left outer join
     game_building gb on gb.id = gba.game_building_id
 left outer join
     building b on b.id = gb.building_id
 left outer join
-    game_tech_action gta on log.id = gta.game_log_id
+    game_tech_action gta on ga.id = gta.game_action_id
 left outer join
     tech on gta.tech_id = tech.id
 where
@@ -44,5 +44,5 @@ where
 order by
     g.id,
     t.ordinal,
-    log.action_ordinal
+    ga.action_ordinal
 ;

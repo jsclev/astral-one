@@ -9,7 +9,7 @@ public class Db {
     let dbExtension = "sqlite"
     
     public let gameDao: GameDAO
-//    let work: WorkDAO
+    public let gameActionDao: GameActionDAO
     
     init(fullRefresh: Bool) {
         let dbBundlePath = dbFilename
@@ -91,7 +91,7 @@ public class Db {
         sqlite3_finalize(stmt)
         
         gameDao = GameDAO(conn: dbPointer)
-//        work = WorkDAO(conn: dbPointer)
+        gameActionDao = GameActionDAO(conn: dbPointer)
     }
     
     deinit {

@@ -161,6 +161,10 @@ class PathfinderScene: SKScene {
         printDate(string: "Done pruning main graph: ")
         
         let user = game.db.gameDao.getCurrentUnit()
+        let gameActions = game.db.gameActionDao.getActions(gameId: 1)
+        for gameAction in gameActions {
+            print(gameAction.actionId)
+        }
         print(user)
     }
     

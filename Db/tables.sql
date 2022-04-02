@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS game_settle_action;
 DROP TABLE IF EXISTS game_building_action;
 DROP TABLE IF EXISTS game_movement_action;
 DROP TABLE IF EXISTS game_settings;
-DROP TABLE IF EXISTS game_log;
+DROP TABLE IF EXISTS game_action;
 DROP TABLE IF EXISTS game_unit;
 DROP TABLE IF EXISTS game_building;
 DROP TABLE IF EXISTS game_city;
@@ -19,7 +19,8 @@ DROP TABLE IF EXISTS turn;
 CREATE TABLE turn (
     id INTEGER PRIMARY KEY,
     ordinal INTEGER NOT NULL,
-    year INTEGER NOT NULL
+    year INTEGER NOT NULL,
+    display_text TEXT NOT NULL
 );
 
 CREATE TABLE action (
@@ -83,13 +84,13 @@ CREATE TABLE game_building (
     building_id INTEGER NOT NULL
 );
 
-CREATE TABLE game_log (
+CREATE TABLE game_action (
     id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
     turn_id INTEGER NOT NULL,
     game_player_id INTEGER NOT NULL,
     action_id INTEGER NOT NULL,
-    action_ordinal INTEGER NOT NULL
+    ordinal INTEGER NOT NULL
 );
 
 CREATE TABLE game_position (
@@ -101,13 +102,15 @@ CREATE TABLE game_position (
 
 CREATE TABLE game_tech_action (
     id INTEGER PRIMARY KEY,
-    game_log_id INTEGER NOT NULL,
-    tech_id INTEGER NOT NULL
+    game_action_id INTEGER NOT NULL,
+    tech_id INTEGER NOT NULL,
+    FOREIGN KEY (game_action_id) REFERENCES game_action (id),
+    FOREIGN KEY (tech_id) REFERENCES tech (id)
 );
 
 CREATE TABLE game_movement_action (
     id INTEGER PRIMARY KEY,
-    game_log_id INTEGER NOT NULL,
+    game_action_id INTEGER NOT NULL,
     game_unit_id INTEGER NOT NULL,
     from_position INTEGER NOT NULL,
     to_position INTEGER NOT NULL
@@ -115,15 +118,13 @@ CREATE TABLE game_movement_action (
 
 CREATE TABLE game_settle_action (
     id INTEGER PRIMARY KEY,
-    game_id INTEGER NOT NULL,
-    game_log_id INTEGER NOT NULL,
+    game_action_id INTEGER NOT NULL,
     game_unit_id INTEGER NOT NULL,
     game_city_id INTEGER NOT NULL
 );
 
 CREATE TABLE game_building_action (
     id INTEGER PRIMARY KEY,
-    game_id INTEGER NOT NULL,
-    game_log_id INTEGER NOT NULL,
+    game_action_id INTEGER NOT NULL,
     game_building_id INTEGER NOT NULL
 );

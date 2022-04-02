@@ -43,6 +43,8 @@
 		52F9043727F6CF8900D1AC97 /* DbError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9043627F6CF8900D1AC97 /* DbError.swift */; };
 		52F9043927F6D02500D1AC97 /* SqliteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9043827F6D02500D1AC97 /* SqliteError.swift */; };
 		52F9044427F6D68A00D1AC97 /* GameDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044327F6D68A00D1AC97 /* GameDAO.swift */; };
+		52F9044627F80B0500D1AC97 /* GameActionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044527F80B0500D1AC97 /* GameActionDAO.swift */; };
+		52F9044927F80BB800D1AC97 /* GameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044827F80BB800D1AC97 /* GameAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,6 +97,8 @@
 		52F9043627F6CF8900D1AC97 /* DbError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbError.swift; sourceTree = "<group>"; };
 		52F9043827F6D02500D1AC97 /* SqliteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteError.swift; sourceTree = "<group>"; };
 		52F9044327F6D68A00D1AC97 /* GameDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDAO.swift; sourceTree = "<group>"; };
+		52F9044527F80B0500D1AC97 /* GameActionDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameActionDAO.swift; sourceTree = "<group>"; };
+		52F9044827F80BB800D1AC97 /* GameAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAction.swift; sourceTree = "<group>"; };
 		52F9B60727E6AA4C005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -202,6 +206,7 @@
 			children = (
 				52F9042F27F6B5B100D1AC97 /* BaseDAO.swift */,
 				52F9044327F6D68A00D1AC97 /* GameDAO.swift */,
+				52F9044527F80B0500D1AC97 /* GameActionDAO.swift */,
 			);
 			path = "Data Access Objects";
 			sourceTree = "<group>";
@@ -220,6 +225,14 @@
 				52F9043327F6CD1100D1AC97 /* civitas.db */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		52F9044727F80BA000D1AC97 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				52F9044827F80BB800D1AC97 /* GameAction.swift */,
+			);
+			path = Log;
 			sourceTree = "<group>";
 		};
 		52F9B5FE27E6AA4C005D55E6 = {
@@ -247,6 +260,7 @@
 				52E0B19827E6DF8600607FBE /* Entities */,
 				52E0B1BF27E6E1F300607FBE /* Extensions */,
 				52E0B18B27E6D87600607FBE /* IO */,
+				52F9044727F80BA000D1AC97 /* Log */,
 				52E0B1C627E6E76D00607FBE /* View Models */,
 				52E0B18927E6D86A00607FBE /* Constants.swift */,
 				52E0B19927E6DFA000607FBE /* Game.swift */,
@@ -323,6 +337,7 @@
 				52F9042627F4E1AC00D1AC97 /* Unit.swift in Sources */,
 				52F9042827F4E27B00D1AC97 /* Warrior.swift in Sources */,
 				52F9042A27F4E3C600D1AC97 /* Pikemen.swift in Sources */,
+				52F9044627F80B0500D1AC97 /* GameActionDAO.swift in Sources */,
 				52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */,
 				52F9042D27F6B54D00D1AC97 /* Db.swift in Sources */,
 				52E0B1B427E6DFD100607FBE /* Pod.swift in Sources */,
@@ -333,6 +348,7 @@
 				52E0B19E27E6DFA100607FBE /* Game.swift in Sources */,
 				52E0B19527E6D87600607FBE /* Tile.swift in Sources */,
 				52E0B1A027E6DFA100607FBE /* Builder.swift in Sources */,
+				52F9044927F80BB800D1AC97 /* GameAction.swift in Sources */,
 				52F9044427F6D68A00D1AC97 /* GameDAO.swift in Sources */,
 				52E0B1B227E6DFD100607FBE /* Wall.swift in Sources */,
 				52E0B1B127E6DFD100607FBE /* Shipyard.swift in Sources */,
