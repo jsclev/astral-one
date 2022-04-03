@@ -16,7 +16,6 @@
 		52E0B19E27E6DFA100607FBE /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B19927E6DFA000607FBE /* Game.swift */; };
 		52E0B19F27E6DFA100607FBE /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B19A27E6DFA000607FBE /* Energy.swift */; };
 		52E0B1A027E6DFA100607FBE /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B19B27E6DFA000607FBE /* Builder.swift */; };
-		52E0B1A127E6DFA100607FBE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B19C27E6DFA100607FBE /* Player.swift */; };
 		52E0B1A227E6DFA100607FBE /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B19D27E6DFA100607FBE /* EntityManager.swift */; };
 		52E0B1AF27E6DFD100607FBE /* Gate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1A427E6DFD000607FBE /* Gate.swift */; };
 		52E0B1B027E6DFD100607FBE /* EnergyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1A527E6DFD000607FBE /* EnergyStorage.swift */; };
@@ -43,8 +42,11 @@
 		52F9043727F6CF8900D1AC97 /* DbError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9043627F6CF8900D1AC97 /* DbError.swift */; };
 		52F9043927F6D02500D1AC97 /* SqliteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9043827F6D02500D1AC97 /* SqliteError.swift */; };
 		52F9044427F6D68A00D1AC97 /* GameDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044327F6D68A00D1AC97 /* GameDAO.swift */; };
-		52F9044627F80B0500D1AC97 /* GameActionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044527F80B0500D1AC97 /* GameActionDAO.swift */; };
+		52F9044627F80B0500D1AC97 /* ActionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044527F80B0500D1AC97 /* ActionDAO.swift */; };
 		52F9044927F80BB800D1AC97 /* GameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044827F80BB800D1AC97 /* GameAction.swift */; };
+		52F9044B27F8E56200D1AC97 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044A27F8E56200D1AC97 /* Turn.swift */; };
+		52F9044D27F9325300D1AC97 /* ActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044C27F9325300D1AC97 /* ActionType.swift */; };
+		52F9044F27F93A6D00D1AC97 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044E27F93A6D00D1AC97 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,7 +71,6 @@
 		52E0B19927E6DFA000607FBE /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		52E0B19A27E6DFA000607FBE /* Energy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
 		52E0B19B27E6DFA000607FBE /* Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
-		52E0B19C27E6DFA100607FBE /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		52E0B19D27E6DFA100607FBE /* EntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 		52E0B1A427E6DFD000607FBE /* Gate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gate.swift; sourceTree = "<group>"; };
 		52E0B1A527E6DFD000607FBE /* EnergyStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyStorage.swift; sourceTree = "<group>"; };
@@ -97,8 +98,11 @@
 		52F9043627F6CF8900D1AC97 /* DbError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbError.swift; sourceTree = "<group>"; };
 		52F9043827F6D02500D1AC97 /* SqliteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteError.swift; sourceTree = "<group>"; };
 		52F9044327F6D68A00D1AC97 /* GameDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDAO.swift; sourceTree = "<group>"; };
-		52F9044527F80B0500D1AC97 /* GameActionDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameActionDAO.swift; sourceTree = "<group>"; };
+		52F9044527F80B0500D1AC97 /* ActionDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionDAO.swift; sourceTree = "<group>"; };
 		52F9044827F80BB800D1AC97 /* GameAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAction.swift; sourceTree = "<group>"; };
+		52F9044A27F8E56200D1AC97 /* Turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn.swift; sourceTree = "<group>"; };
+		52F9044C27F9325300D1AC97 /* ActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionType.swift; sourceTree = "<group>"; };
+		52F9044E27F93A6D00D1AC97 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		52F9B60727E6AA4C005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -129,7 +133,6 @@
 				52E0B1A327E6DFAB00607FBE /* Buildings */,
 				52E0B1FC27F1734000607FBE /* Units */,
 				52E0B19A27E6DFA000607FBE /* Energy.swift */,
-				52E0B19C27E6DFA100607FBE /* Player.swift */,
 				52E0B19D27E6DFA100607FBE /* EntityManager.swift */,
 			);
 			path = Entities;
@@ -206,7 +209,7 @@
 			children = (
 				52F9042F27F6B5B100D1AC97 /* BaseDAO.swift */,
 				52F9044327F6D68A00D1AC97 /* GameDAO.swift */,
-				52F9044527F80B0500D1AC97 /* GameActionDAO.swift */,
+				52F9044527F80B0500D1AC97 /* ActionDAO.swift */,
 			);
 			path = "Data Access Objects";
 			sourceTree = "<group>";
@@ -230,7 +233,9 @@
 		52F9044727F80BA000D1AC97 /* Log */ = {
 			isa = PBXGroup;
 			children = (
+				52F9044C27F9325300D1AC97 /* ActionType.swift */,
 				52F9044827F80BB800D1AC97 /* GameAction.swift */,
+				52F9044E27F93A6D00D1AC97 /* Player.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 				52E0B1EA27EAB6B700607FBE /* GameNode.swift */,
 				52E0B18F27E6D87600607FBE /* Map.swift */,
 				52E0B19027E6D87600607FBE /* Tile.swift */,
+				52F9044A27F8E56200D1AC97 /* Turn.swift */,
 			);
 			path = "Astral One Engine";
 			sourceTree = "<group>";
@@ -337,11 +343,12 @@
 				52F9042627F4E1AC00D1AC97 /* Unit.swift in Sources */,
 				52F9042827F4E27B00D1AC97 /* Warrior.swift in Sources */,
 				52F9042A27F4E3C600D1AC97 /* Pikemen.swift in Sources */,
-				52F9044627F80B0500D1AC97 /* GameActionDAO.swift in Sources */,
+				52F9044627F80B0500D1AC97 /* ActionDAO.swift in Sources */,
 				52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */,
 				52F9042D27F6B54D00D1AC97 /* Db.swift in Sources */,
 				52E0B1B427E6DFD100607FBE /* Pod.swift in Sources */,
 				52E0B1B827E6DFD100607FBE /* RadarTower.swift in Sources */,
+				52F9044D27F9325300D1AC97 /* ActionType.swift in Sources */,
 				52E0B1C127E6E25300607FBE /* SpriteNode.swift in Sources */,
 				52F9043927F6D02500D1AC97 /* SqliteError.swift in Sources */,
 				52E0B1B927E6DFD100607FBE /* Barracks.swift in Sources */,
@@ -354,12 +361,13 @@
 				52E0B1B127E6DFD100607FBE /* Shipyard.swift in Sources */,
 				52E0B19327E6D87600607FBE /* TiledTilesetParser.swift in Sources */,
 				52E0B19427E6D87600607FBE /* Map.swift in Sources */,
-				52E0B1A127E6DFA100607FBE /* Player.swift in Sources */,
 				52F9043727F6CF8900D1AC97 /* DbError.swift in Sources */,
 				52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */,
 				52F9043027F6B5B100D1AC97 /* BaseDAO.swift in Sources */,
 				52E0B1B327E6DFD100607FBE /* MineralStorage.swift in Sources */,
 				52E0B1B027E6DFD100607FBE /* EnergyStorage.swift in Sources */,
+				52F9044F27F93A6D00D1AC97 /* Player.swift in Sources */,
+				52F9044B27F8E56200D1AC97 /* Turn.swift in Sources */,
 				52E0B1B527E6DFD100607FBE /* PowerPlant.swift in Sources */,
 				52E0B1BC27E6E18000607FBE /* SpriteComponent.swift in Sources */,
 				52E0B1B727E6DFD100607FBE /* ConcreteStorage.swift in Sources */,

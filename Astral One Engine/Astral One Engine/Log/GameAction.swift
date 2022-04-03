@@ -1,19 +1,24 @@
 import GameplayKit
 
-public class GameAction {
+public class Action: CustomStringConvertible {
     public let id: Int
     public let gameId: Int
-    public let turnId: Int
+    public let turn: Turn
     public let gamePlayerId: Int
-    public let actionId: Int
+    public let actionType: ActionType
     public let ordinal: Int
+    
+    public var description: String {
+        return "{id: \(id), game: \(gameId), turn: \(turn), " +
+               "playerId: \(gamePlayerId), actionType: \(actionType), ordinal: \(ordinal)}"
+    }
 
-    init(id: Int, gameId: Int, turnId: Int, gamePlayerId: Int, actionId: Int, ordinal: Int) {
+    init(id: Int, gameId: Int, turn: Turn, gamePlayerId: Int, actionType: ActionType, ordinal: Int) {
         self.id = id
         self.gameId = gameId
-        self.turnId = turnId
+        self.turn = turn
         self.gamePlayerId = gamePlayerId
-        self.actionId = actionId
+        self.actionType = actionType
         self.ordinal = ordinal
     }
     

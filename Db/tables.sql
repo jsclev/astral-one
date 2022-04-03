@@ -1,18 +1,20 @@
-DROP TABLE IF EXISTS game_tech_action;
-DROP TABLE IF EXISTS game_settle_action;
-DROP TABLE IF EXISTS game_building_action;
-DROP TABLE IF EXISTS game_movement_action;
+DROP TABLE IF EXISTS tech_action;
+DROP TABLE IF EXISTS settle_action;
+DROP TABLE IF EXISTS building_action;
+DROP TABLE IF EXISTS movement_action;
 DROP TABLE IF EXISTS game_settings;
-DROP TABLE IF EXISTS game_action;
-DROP TABLE IF EXISTS game_unit;
-DROP TABLE IF EXISTS game_building;
-DROP TABLE IF EXISTS game_city;
-DROP TABLE IF EXISTS game_position;
-DROP TABLE IF EXISTS game_player;
-DROP TABLE IF EXISTS game;
-DROP TABLE IF EXISTS action;
-DROP TABLE IF EXISTS building;
 DROP TABLE IF EXISTS unit;
+DROP TABLE IF EXISTS building;
+DROP TABLE IF EXISTS city;
+DROP TABLE IF EXISTS game_position;
+DROP TABLE IF EXISTS action;
+DROP TABLE IF EXISTS player;
+DROP TABLE IF EXISTS tile;
+DROP TABLE IF EXISTS tilemap;
+DROP TABLE IF EXISTS game;
+DROP TABLE IF EXISTS action_type;
+DROP TABLE IF EXISTS building_type;
+DROP TABLE IF EXISTS unit_type;
 DROP TABLE IF EXISTS tech;
 DROP TABLE IF EXISTS turn;
 
@@ -23,17 +25,17 @@ CREATE TABLE turn (
     display_text TEXT NOT NULL
 );
 
-CREATE TABLE action (
+CREATE TABLE action_type (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL
 );
 
-CREATE TABLE unit (
+CREATE TABLE unit_type (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL
 );
 
-CREATE TABLE building (
+CREATE TABLE building_type (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL
 );
@@ -56,7 +58,7 @@ CREATE TABLE game_settings (
     game_id INTEGER NOT NULL
 );
 
-CREATE TABLE game_player (
+CREATE TABLE player (
     id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
     ordinal INTEGER NOT NULL,
@@ -64,32 +66,46 @@ CREATE TABLE game_player (
     type TEXT NOT NULL
 );
 
-CREATE TABLE game_unit (
+CREATE TABLE tilemap (
     id INTEGER PRIMARY KEY,
-    game_id INTEGER NOT NULL,
-    unit_id INTEGER NOT NULL
+    game_id INTEGER NOT NULL
 );
 
-CREATE TABLE game_city (
+CREATE TABLE tile (
     id INTEGER PRIMARY KEY,
-    game_id INTEGER NOT NULL,
-    game_player_id INTEGER NOT NULL,
-    city TEXT NOT NULL
+    tilemap_id INTEGER NOT NULL,
+    x INTEGER NOT NULL,
+    y INTEGER NOT NULL,
+    type TEXT NOT NULL,
+    layer INTEGER NOT NULL
 );
 
-CREATE TABLE game_building (
+CREATE TABLE unit (
     id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
-    game_player_id INTEGER NOT NULL,
+    unit_type_id INTEGER NOT NULL
+);
+
+CREATE TABLE city (
+    id INTEGER PRIMARY KEY,
+    game_id INTEGER NOT NULL,
+    player_id INTEGER NOT NULL,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE building (
+    id INTEGER PRIMARY KEY,
+    game_id INTEGER NOT NULL,
+    player_id INTEGER NOT NULL,
     building_id INTEGER NOT NULL
 );
 
-CREATE TABLE game_action (
+CREATE TABLE action (
     id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
     turn_id INTEGER NOT NULL,
-    game_player_id INTEGER NOT NULL,
-    action_id INTEGER NOT NULL,
+    player_id INTEGER NOT NULL,
+    action_type_id INTEGER NOT NULL,
     ordinal INTEGER NOT NULL
 );
 
@@ -100,31 +116,31 @@ CREATE TABLE game_position (
     col INTEGER NOT NULL
 );
 
-CREATE TABLE game_tech_action (
+CREATE TABLE tech_action (
     id INTEGER PRIMARY KEY,
-    game_action_id INTEGER NOT NULL,
+    action_id INTEGER NOT NULL,
     tech_id INTEGER NOT NULL,
-    FOREIGN KEY (game_action_id) REFERENCES game_action (id),
+    FOREIGN KEY (action_id) REFERENCES action (id),
     FOREIGN KEY (tech_id) REFERENCES tech (id)
 );
 
-CREATE TABLE game_movement_action (
+CREATE TABLE movement_action (
     id INTEGER PRIMARY KEY,
-    game_action_id INTEGER NOT NULL,
-    game_unit_id INTEGER NOT NULL,
+    action_id INTEGER NOT NULL,
+    unit_id INTEGER NOT NULL,
     from_position INTEGER NOT NULL,
     to_position INTEGER NOT NULL
 );
 
-CREATE TABLE game_settle_action (
+CREATE TABLE settle_action (
     id INTEGER PRIMARY KEY,
-    game_action_id INTEGER NOT NULL,
-    game_unit_id INTEGER NOT NULL,
-    game_city_id INTEGER NOT NULL
+    action_id INTEGER NOT NULL,
+    unit_type_id INTEGER NOT NULL,
+    city_id INTEGER NOT NULL
 );
 
-CREATE TABLE game_building_action (
+CREATE TABLE building_action (
     id INTEGER PRIMARY KEY,
-    game_action_id INTEGER NOT NULL,
+    action_id INTEGER NOT NULL,
     game_building_id INTEGER NOT NULL
 );

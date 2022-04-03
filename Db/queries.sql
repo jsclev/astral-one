@@ -11,31 +11,31 @@ select
 from
     game g
 inner join
-    game_player gp on gp.game_id = g.id
+    player gp on gp.game_id = g.id
 inner join
-    game_action ga on ga.game_id = g.id
+    action ga on ga.game_id = g.id
 inner join
     action a on a.id = ga.action_id
 inner join
     turn t on t.id = ga.turn_id
 left outer join
-    game_settle_action gsa on gsa.game_action_id = ga.id
+    game_settle_action gsa on gsa.action_id = ga.id
 left outer join
     game_city gc on gc.id = gsa.game_city_id
 left outer join
-    game_movement_action gma on gma.game_action_id = ga.id
+    game_movement_action gma on gma.action_id = ga.id
 left outer join
     game_unit gu on gu.id = gma.game_unit_id
 left outer join
-    unit u on gu.unit_id = u.id
+    unit_type ut on ut.unit_type_id = u.id
 left outer join
-    game_building_action gba on gba.game_action_id = ga.id
+    game_building_action gba on gba.action_id = ga.id
 left outer join
     game_building gb on gb.id = gba.game_building_id
 left outer join
     building b on b.id = gb.building_id
 left outer join
-    game_tech_action gta on ga.id = gta.game_action_id
+    game_tech_action gta on ga.id = gta.action_id
 left outer join
     tech on gta.tech_id = tech.id
 where

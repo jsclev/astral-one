@@ -163,7 +163,7 @@ class PathfinderScene: SKScene {
         let user = game.db.gameDao.getCurrentUnit()
         let gameActions = game.db.gameActionDao.getActions(gameId: 1)
         for gameAction in gameActions {
-            print(gameAction.actionId)
+            print(gameAction)
         }
         print(user)
     }
