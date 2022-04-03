@@ -1,6 +1,6 @@
 import Foundation
 
-public class ActionType: CustomStringConvertible {
+public class CommandType: CustomStringConvertible {
     public let id: Int
     public let name: String
     

@@ -1,7 +1,7 @@
 # TODO
 # Copy db file to correct iOS folder
-#rm civitas.sqlite 2>/dev/null
-#sqlite3 civitas.sqlite ""
+rm civitas.sqlite 2>/dev/null
+sqlite3 civitas.sqlite ""
 sqlite3 civitas.sqlite < tables.sql
 sqlite3 civitas.sqlite < data/core.sql
 sqlite3 civitas.sqlite < data/game-1.sql

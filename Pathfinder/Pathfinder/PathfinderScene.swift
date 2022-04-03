@@ -150,24 +150,7 @@ class PathfinderScene: SKScene {
         game.prune()
         printDate(string: "Done pruning main graph: ")
         
-        let user = game.db.gameDao.getCurrentUnit()
-        let gameActions = game.db.gameActionDao.getActions(gameId: 1)
-        for gameAction in gameActions {
-            if gameAction.actionType.name == "Move Unit" {
-                game.addCommand(command: MoveCommand(unit: Unit(name: "Settler", maxHP: 10), toPosition: ""))
-            }
-            else if gameAction.actionType.name == "Research Tech" {
-                game.addCommand(command: TechCommand())
-            }
-            else if gameAction.actionType.name == "Build Building" {
-                game.addCommand(command: BuildBuildingCommand())
-            }
-            else if gameAction.actionType.name == "Build City" {
-                game.addCommand(command: BuildCityCommand())
-            }
-        }
-        
-        game.processCommands()
+        game.processCommands(commands: game.db.commandDao.getCommands(gameId: 1))
     }
     
     func printDate(string: String) {

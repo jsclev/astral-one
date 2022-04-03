@@ -9,12 +9,12 @@ insert into turn values (7, 7, -3880, '3880 BC');
 insert into turn values (8, 8, -3860, '3860 BC');
 
 -- Action types
-insert into action_type values (1, 'Move Unit');
-insert into action_type values (2, 'Attack Unit');
-insert into action_type values (3, 'Build City');
-insert into action_type values (4, 'Build Building');
-insert into action_type values (5, 'Research Tech');
-insert into action_type values (6, 'Create Unit');
+insert into command_type values (1, 'Move Unit');
+insert into command_type values (2, 'Attack Unit');
+insert into command_type values (3, 'Build City');
+insert into command_type values (4, 'Build Building');
+insert into command_type values (5, 'Research Tech');
+insert into command_type values (6, 'Create Unit');
 
 -- Unit types
 insert into unit_type values (1, 'Settlers');

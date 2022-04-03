@@ -6,7 +6,6 @@ public class Game: ObservableObject {
 
     private var map: Map = Map(width: 0, height: 0)
     public let db = Db(fullRefresh: true)
-    private var commands: [Command] = []
 
     public init() {
         
@@ -28,12 +27,9 @@ public class Game: ObservableObject {
         map.prune()
     }
     
-    public func addCommand(command: Command) {
-        commands.append(command)
-    }
-    
-    public func processCommands() {
+    public func processCommands(commands: [Command]) {
         for command in commands {
+            print(command)
             command.execute()
         }
     }

@@ -112,4 +112,22 @@ public class Map {
         
         print("****************************************************************")
     }
+    
+    public func getUnit() -> Unit? {
+        for row in 0..<width {
+            for col in 0..<height {
+                if let node = graph.node(atGridPosition: SIMD2<Int32>(Int32(row), Int32(col))) {
+                    let tiles = node.getTiles()
+                    
+                    for tile in tiles {
+                        if tile.spec.tileType == TileType.Unit {
+                            return Unit(name: "Settler", maxHP: 10)
+                        }
+                    }
+                }
+            }
+        }
+        
+        return nil
+    }
 }
