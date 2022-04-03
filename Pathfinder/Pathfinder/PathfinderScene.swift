@@ -30,16 +30,12 @@ class PathfinderScene: SKScene {
     let rows: Int = 100
     let cols: Int = 100
     var state: PathfinderState = PathfinderState.initialized
-    var map: Map
-    var game: Game
+    var game: Game = Game()
     var startPosition = SIMD2<Int32>(0, 0)
     var endPosition = SIMD2<Int32>(0, 0)
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
-        
-        map = Map(width: 0, height: 0)
-        game = Game(map: map)
         
         tileset = SKTileSet(named: tilesetName)
         pathMap = SKTileMapNode(tileSet: tileset,
@@ -84,7 +80,7 @@ class PathfinderScene: SKScene {
         }
         else if !touchedNodes.isEmpty && touchedNodes[0].name == "calculate-path" {
             state = PathfinderState.calculatingPath
-            let path = map.findPath(from: startPosition, to: endPosition)
+            let path = game.getMap().findPath(from: startPosition, to: endPosition)
             showAIPath(path: path)
             return
         }
@@ -139,33 +135,39 @@ class PathfinderScene: SKScene {
         view.addGestureRecognizer(tapGestureRecognizer)
         
         printDate(string: "Starting to parse Tiled XML files, and build traversal grid graph: ")
-
-        let tilesetParser = TiledTilesetParser(filename)
-        let tileset = tilesetParser.parse()
-        
-        let mapParser = TiledMapParser(tiledTileset: tileset, filename: filename)
-        map = mapParser.parse()
+        game.importTiledMap(filename: filename)
         printDate(string: "Done parsing Tile XML, main traversal grid graph is parsed, now rendering map: ")
 
-        renderMap(map: map)
+        renderMap(map: game.getMap())
         printDate(string: "Done rendering, now building Explorer-specific traversal graph: ")
         
-        game = Game(map: map)
 //        let explorer = Explorer(game: game, position: SIMD2<Int32>(1, 1))
 //        let path: [GKGraphNode] = explorer.getPath(to: SIMD2<Int32>(3, 3))
         printDate(string: "Done building Explorer-specific traversal graph, rendering path: ")
 
 //        showAIPath(path: path)
         printDate(string: "About to prune main graph: ")
-        map.prune()
+        game.prune()
         printDate(string: "Done pruning main graph: ")
         
         let user = game.db.gameDao.getCurrentUnit()
         let gameActions = game.db.gameActionDao.getActions(gameId: 1)
         for gameAction in gameActions {
-            print(gameAction)
+            if gameAction.actionType.name == "Move Unit" {
+                game.addCommand(command: MoveCommand(unit: Unit(name: "Settler", maxHP: 10), toPosition: ""))
+            }
+            else if gameAction.actionType.name == "Research Tech" {
+                game.addCommand(command: TechCommand())
+            }
+            else if gameAction.actionType.name == "Build Building" {
+                game.addCommand(command: BuildBuildingCommand())
+            }
+            else if gameAction.actionType.name == "Build City" {
+                game.addCommand(command: BuildCityCommand())
+            }
         }
-        print(user)
+        
+        game.processCommands()
     }
     
     func printDate(string: String) {
@@ -273,7 +275,7 @@ class PathfinderScene: SKScene {
                                     Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
             let to = SIMD2<Int32>(Int32.random(in: 0..<Int32(pathMap.numberOfRows)),
                                   Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
-            let path = map.findPath(from: from, to: to)
+            let path = game.getMap().findPath(from: from, to: to)
             
             for node in path {
                 let theNode: GKGridGraphNode = node as! GKGridGraphNode

@@ -23,16 +23,16 @@ public class Explorer {
     
     public func getPath(to: SIMD2<Int32>) -> [GKGraphNode] {
         let graph = GKGridGraph<ExplorerNode>(fromGridStartingAt: SIMD2<Int32>(0, 0),
-                                              width: Int32(game.map.width),
-                                              height: Int32(game.map.height),
+                                              width: Int32(game.getMap().width),
+                                              height: Int32(game.getMap().height),
                                               diagonalsAllowed: true)
 //        let graph = GKGridGraph<ExplorerNode>()
 //        var nodes: [ExplorerNode] = []
-        for row in 0..<game.map.height {
-            for col in 0..<game.map.width {
+        for row in 0..<game.getMap().height {
+            for col in 0..<game.getMap().width {
                 let gridPosition = SIMD2<Int32>(Int32(row), Int32(col))
                 
-                if let mapNode = game.map.getNode(row: row, col: col) {
+                if let mapNode = game.getMap().getNode(row: row, col: col) {
                     let tiles = mapNode.getTiles()
                     
                     if tiles.count > 0 &&
@@ -43,7 +43,7 @@ public class Explorer {
                     }
                     else {
                         let localNode = ExplorerNode(gridPosition: gridPosition)
-                        localNode.setMap(map: game.map)
+                        localNode.setMap(map: game.getMap())
 //                        nodes.append(localNode)
                         add(node: localNode, to: graph)
                     }

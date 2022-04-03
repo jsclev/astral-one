@@ -43,10 +43,15 @@
 		52F9043927F6D02500D1AC97 /* SqliteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9043827F6D02500D1AC97 /* SqliteError.swift */; };
 		52F9044427F6D68A00D1AC97 /* GameDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044327F6D68A00D1AC97 /* GameDAO.swift */; };
 		52F9044627F80B0500D1AC97 /* ActionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044527F80B0500D1AC97 /* ActionDAO.swift */; };
-		52F9044927F80BB800D1AC97 /* GameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044827F80BB800D1AC97 /* GameAction.swift */; };
+		52F9044927F80BB800D1AC97 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044827F80BB800D1AC97 /* Action.swift */; };
 		52F9044B27F8E56200D1AC97 /* Turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044A27F8E56200D1AC97 /* Turn.swift */; };
 		52F9044D27F9325300D1AC97 /* ActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044C27F9325300D1AC97 /* ActionType.swift */; };
 		52F9044F27F93A6D00D1AC97 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044E27F93A6D00D1AC97 /* Player.swift */; };
+		52F9045227F9F92C00D1AC97 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9045127F9F92C00D1AC97 /* Command.swift */; };
+		52F9045427F9F9C500D1AC97 /* MoveCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9045327F9F9C500D1AC97 /* MoveCommand.swift */; };
+		52F9045627F9FF6A00D1AC97 /* TechCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9045527F9FF6A00D1AC97 /* TechCommand.swift */; };
+		52F9045827FA007400D1AC97 /* BuildCityCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9045727FA007400D1AC97 /* BuildCityCommand.swift */; };
+		52F9045A27FA009E00D1AC97 /* BuildBuildingCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9045927FA009E00D1AC97 /* BuildBuildingCommand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -99,10 +104,15 @@
 		52F9043827F6D02500D1AC97 /* SqliteError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteError.swift; sourceTree = "<group>"; };
 		52F9044327F6D68A00D1AC97 /* GameDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDAO.swift; sourceTree = "<group>"; };
 		52F9044527F80B0500D1AC97 /* ActionDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionDAO.swift; sourceTree = "<group>"; };
-		52F9044827F80BB800D1AC97 /* GameAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAction.swift; sourceTree = "<group>"; };
+		52F9044827F80BB800D1AC97 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		52F9044A27F8E56200D1AC97 /* Turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turn.swift; sourceTree = "<group>"; };
 		52F9044C27F9325300D1AC97 /* ActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionType.swift; sourceTree = "<group>"; };
 		52F9044E27F93A6D00D1AC97 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		52F9045127F9F92C00D1AC97 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		52F9045327F9F9C500D1AC97 /* MoveCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCommand.swift; sourceTree = "<group>"; };
+		52F9045527F9FF6A00D1AC97 /* TechCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechCommand.swift; sourceTree = "<group>"; };
+		52F9045727FA007400D1AC97 /* BuildCityCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildCityCommand.swift; sourceTree = "<group>"; };
+		52F9045927FA009E00D1AC97 /* BuildBuildingCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildBuildingCommand.swift; sourceTree = "<group>"; };
 		52F9B60727E6AA4C005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -234,10 +244,22 @@
 			isa = PBXGroup;
 			children = (
 				52F9044C27F9325300D1AC97 /* ActionType.swift */,
-				52F9044827F80BB800D1AC97 /* GameAction.swift */,
+				52F9044827F80BB800D1AC97 /* Action.swift */,
 				52F9044E27F93A6D00D1AC97 /* Player.swift */,
 			);
 			path = Log;
+			sourceTree = "<group>";
+		};
+		52F9045027F9F8CF00D1AC97 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				52F9045127F9F92C00D1AC97 /* Command.swift */,
+				52F9045327F9F9C500D1AC97 /* MoveCommand.swift */,
+				52F9045527F9FF6A00D1AC97 /* TechCommand.swift */,
+				52F9045727FA007400D1AC97 /* BuildCityCommand.swift */,
+				52F9045927FA009E00D1AC97 /* BuildBuildingCommand.swift */,
+			);
+			path = Commands;
 			sourceTree = "<group>";
 		};
 		52F9B5FE27E6AA4C005D55E6 = {
@@ -260,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				52F9043127F6B62B00D1AC97 /* Resources */,
+				52F9045027F9F8CF00D1AC97 /* Commands */,
 				52F9042B27F6B4AB00D1AC97 /* Data Access Layer */,
 				52E0B1BA27E6E15500607FBE /* Components */,
 				52E0B19827E6DF8600607FBE /* Entities */,
@@ -351,20 +374,25 @@
 				52F9044D27F9325300D1AC97 /* ActionType.swift in Sources */,
 				52E0B1C127E6E25300607FBE /* SpriteNode.swift in Sources */,
 				52F9043927F6D02500D1AC97 /* SqliteError.swift in Sources */,
+				52F9045427F9F9C500D1AC97 /* MoveCommand.swift in Sources */,
 				52E0B1B927E6DFD100607FBE /* Barracks.swift in Sources */,
 				52E0B19E27E6DFA100607FBE /* Game.swift in Sources */,
+				52F9045227F9F92C00D1AC97 /* Command.swift in Sources */,
 				52E0B19527E6D87600607FBE /* Tile.swift in Sources */,
 				52E0B1A027E6DFA100607FBE /* Builder.swift in Sources */,
-				52F9044927F80BB800D1AC97 /* GameAction.swift in Sources */,
+				52F9044927F80BB800D1AC97 /* Action.swift in Sources */,
 				52F9044427F6D68A00D1AC97 /* GameDAO.swift in Sources */,
+				52F9045627F9FF6A00D1AC97 /* TechCommand.swift in Sources */,
 				52E0B1B227E6DFD100607FBE /* Wall.swift in Sources */,
 				52E0B1B127E6DFD100607FBE /* Shipyard.swift in Sources */,
 				52E0B19327E6D87600607FBE /* TiledTilesetParser.swift in Sources */,
 				52E0B19427E6D87600607FBE /* Map.swift in Sources */,
 				52F9043727F6CF8900D1AC97 /* DbError.swift in Sources */,
 				52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */,
+				52F9045A27FA009E00D1AC97 /* BuildBuildingCommand.swift in Sources */,
 				52F9043027F6B5B100D1AC97 /* BaseDAO.swift in Sources */,
 				52E0B1B327E6DFD100607FBE /* MineralStorage.swift in Sources */,
+				52F9045827FA007400D1AC97 /* BuildCityCommand.swift in Sources */,
 				52E0B1B027E6DFD100607FBE /* EnergyStorage.swift in Sources */,
 				52F9044F27F93A6D00D1AC97 /* Player.swift in Sources */,
 				52F9044B27F8E56200D1AC97 /* Turn.swift in Sources */,
