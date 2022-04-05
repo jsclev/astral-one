@@ -22,7 +22,6 @@
 		52E0B1DB27E80F9800607FBE /* civ2.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1DA27E80F9800607FBE /* civ2.tsx */; };
 		52E0B1E727E95FB700607FBE /* civ2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1E627E95FB700607FBE /* civ2.tmx */; };
 		52F9048127FCD1FC00D1AC97 /* CommandDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9048027FCD1FC00D1AC97 /* CommandDAOTests.swift */; };
-		52F9048327FCD20400D1AC97 /* TestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9048227FCD20400D1AC97 /* TestUtil.swift */; };
 		52FA8F9927E382DE001794BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FA8F9727E382DE001794BD /* Assets.xcassets */; };
 		5394F02521864DF5006E754C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5394F02321864DF4006E754C /* LaunchScreen.storyboard */; };
 		AFEF960E231A01B4006025E5 /* Particle.sks in Resources */ = {isa = PBXBuildFile; fileRef = AFEF960D231A01B4006025E5 /* Particle.sks */; };
@@ -65,7 +64,6 @@
 		52E0B1E627E95FB700607FBE /* civ2.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = civ2.tmx; path = "Astral One/Resources/civ2/civ2.tmx"; sourceTree = SOURCE_ROOT; };
 		52F9047527FCD10600D1AC97 /* Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F9048027FCD1FC00D1AC97 /* CommandDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandDAOTests.swift; sourceTree = "<group>"; };
-		52F9048227FCD20400D1AC97 /* TestUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtil.swift; sourceTree = "<group>"; };
 		52F9B61227E6AB02005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FA8F9727E382DE001794BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5394F02421864DF4006E754C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				52F9047E27FCD1CB00D1AC97 /* Data Access Layer */,
-				52F9048227FCD20400D1AC97 /* TestUtil.swift */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -378,7 +375,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				52F9048127FCD1FC00D1AC97 /* CommandDAOTests.swift in Sources */,
-				52F9048327FCD20400D1AC97 /* TestUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
