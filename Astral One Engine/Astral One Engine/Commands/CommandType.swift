@@ -8,7 +8,7 @@ public class CommandType: CustomStringConvertible {
         return "{id: \(id), name: \"\(name)\"}"
     }
     
-    init(id: Int, name: String) {
+    public init(id: Int, name: String) {
         self.id = id
         self.name = name
     }

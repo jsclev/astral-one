@@ -1,8 +1,8 @@
 import Foundation
 
 public class MoveCommand: Command {
-    private let unit: Unit
-    private let toPosition: String
+    public let unit: Unit
+    public let toPosition: String
     
     public init(commandId: Int,
                 gameId: Int,

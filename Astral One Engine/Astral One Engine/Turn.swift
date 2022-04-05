@@ -10,7 +10,7 @@ public class Turn: CustomStringConvertible {
         return "{id: \(id), year: \(year), ordinal: \(ordinal), displayText: \"\(displayText)\"}"
     }
 
-    init(id: Int, year: Int, ordinal: Int, displayText: String) {
+    public init(id: Int, year: Int, ordinal: Int, displayText: String) {
         self.id = id
         self.year = year
         self.ordinal = ordinal

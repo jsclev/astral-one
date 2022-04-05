@@ -109,4 +109,54 @@ public class CommandDAO: BaseDAO {
         
         return commands
     }
+    
+    public func insertMoveCommand(moveCommand: MoveCommand) throws -> MoveCommand {
+//        var sql = "INSERT INTO command (" +
+//            "client_id, account_id, updated_at, synced_at, " +
+//            "person_id, status, payment_type_id, delivery_notes, " +
+//        "general_notes, pet_notes" +
+//        ") VALUES "
+//
+//        sql += "("
+//        sql += getSql(val: clientDTO.clientId, postfix: ", ")
+//        sql += getSql(val: Date(), postfix: ", ")
+//        sql += getSql(val: Date(), postfix: ", ")
+//        sql += getSql(val: clientDTO.person.personId, postfix: ", ")
+//        sql += getSql(val: clientDTO.status, postfix: ", ")
+//        sql += getSql(val: clientDTO.paymentType.paymentTypeId, postfix: ", ")
+//        sql += getSql(val: clientDTO.deliveryNotes, postfix: ", ")
+//        sql += getSql(val: clientDTO.generalNotes, postfix: ", ")
+//        sql += getSql(val: clientDTO.petNotes, postfix: "")
+//        sql += "), "
+//
+//        sql = getCleanedSql(sql)
+//
+//        do {
+//            try executeInsert(table: table, numRows: 1, sql: sql)
+//        }
+//        catch SQLiteError.Prepare(let message) {
+//            var errMsg = "Failed to compile the SQL to insert rows into the \(table) table.  "
+//            errMsg += "SQLite error message: " + message
+//            throw DbError.Db(message: errMsg)
+//        }
+//        catch SQLiteError.Step(let message) {
+//            var errMsg = "Failed to execute the SQL to insert rows into the \(table) table.  "
+//            errMsg += "SQLite error message: " + message
+//            throw DbError.Db(message: errMsg)
+//        }
+        let turn = Turn(id: 1,
+                        year: -4000,
+                        ordinal: 0,
+                        displayText: "4000 BCE")
+        let commandType = CommandType(id: 1,
+                                      name: "Move Unit")
+        return MoveCommand(commandId: 1,
+                           gameId: 1,
+                           turn: turn,
+                           playerId: 1,
+                           type: commandType,
+                           ordinal: 1,
+                           unit: Unit(name: "Settler", maxHP: 10),
+                           toPosition: "Hello")
+    }
 }
