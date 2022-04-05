@@ -113,7 +113,6 @@
 		52F9045727FA007400D1AC97 /* BuildCityCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildCityCommand.swift; sourceTree = "<group>"; };
 		52F9045927FA009E00D1AC97 /* BuildBuildingCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildBuildingCommand.swift; sourceTree = "<group>"; };
 		52F9046127FBC55500D1AC97 /* CommandDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandDAOTests.swift; sourceTree = "<group>"; };
-		52F9046927FBC62300D1AC97 /* TestUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestUtil.swift; path = "../../Unit Tests/TestUtil.swift"; sourceTree = "<group>"; };
 		52F9046D27FC8B7D00D1AC97 /* MoveCommandDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCommandDAO.swift; sourceTree = "<group>"; };
 		52F9B60727E6AA4C005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -267,7 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				52F9046B27FBC88900D1AC97 /* Data Access Layer */,
-				52F9046927FBC62300D1AC97 /* TestUtil.swift */,
 			);
 			path = "Engine Unit Tests";
 			sourceTree = "<group>";
