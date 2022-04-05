@@ -21,4 +21,4 @@ insert into tech_command values (1, 3, (select id from tech where name = 'Alphab
 -- Turn 1: Move Warriors
 insert into unit values (2, 1, (select id from unit_type where name = 'Warriors'));
 insert into command values (4, 1, 1, 1, (select id from command_type where name = 'Move Unit'), 4);
-insert into movement_command values (1, 4, 2, 1, 2);
+insert into move_command values (1, 4, 2, 1, 2);

@@ -110,52 +110,88 @@ public class CommandDAO: BaseDAO {
         return commands
     }
     
+    public func insertCommand(command: Command) throws -> Command {
+        var commandId: Int = -1
+        
+        var sql = "INSERT INTO command (" +
+        "game_id, turn_id, player_id, command_type_id, ordinal" +
+        ") VALUES "
+        
+        sql += "("
+        sql += getSql(val: command.gameId, postfix: ", ")
+        sql += getSql(val: command.turn.id, postfix: ", ")
+        sql += getSql(val: command.playerId, postfix: ", ")
+        sql += getSql(val: command.type.id, postfix: ", ")
+        sql += getSql(val: command.ordinal, postfix: "")
+        sql += ")"
+        
+        sql = getCleanedSql(sql)
+        
+        do {
+            commandId = try insertOneRow(sql: sql)
+        }
+        catch SQLiteError.Prepare(let message) {
+            var errMsg = "Failed to compile the SQL to insert rows into the \(table) table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        catch SQLiteError.Step(let message) {
+            var errMsg = "Failed to execute the SQL to insert rows into the \(table) table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        
+        return Command(id: commandId,
+                       gameId: command.gameId,
+                       turn: command.turn,
+                       playerId: command.playerId,
+                       type: command.type,
+                       ordinal: command.ordinal)
+    }
+    
     public func insertMoveCommand(moveCommand: MoveCommand) throws -> MoveCommand {
-//        var sql = "INSERT INTO command (" +
-//            "client_id, account_id, updated_at, synced_at, " +
-//            "person_id, status, payment_type_id, delivery_notes, " +
-//        "general_notes, pet_notes" +
-//        ") VALUES "
-//
-//        sql += "("
-//        sql += getSql(val: clientDTO.clientId, postfix: ", ")
-//        sql += getSql(val: Date(), postfix: ", ")
-//        sql += getSql(val: Date(), postfix: ", ")
-//        sql += getSql(val: clientDTO.person.personId, postfix: ", ")
-//        sql += getSql(val: clientDTO.status, postfix: ", ")
-//        sql += getSql(val: clientDTO.paymentType.paymentTypeId, postfix: ", ")
-//        sql += getSql(val: clientDTO.deliveryNotes, postfix: ", ")
-//        sql += getSql(val: clientDTO.generalNotes, postfix: ", ")
-//        sql += getSql(val: clientDTO.petNotes, postfix: "")
-//        sql += "), "
-//
-//        sql = getCleanedSql(sql)
-//
-//        do {
-//            try executeInsert(table: table, numRows: 1, sql: sql)
-//        }
-//        catch SQLiteError.Prepare(let message) {
-//            var errMsg = "Failed to compile the SQL to insert rows into the \(table) table.  "
-//            errMsg += "SQLite error message: " + message
-//            throw DbError.Db(message: errMsg)
-//        }
-//        catch SQLiteError.Step(let message) {
-//            var errMsg = "Failed to execute the SQL to insert rows into the \(table) table.  "
-//            errMsg += "SQLite error message: " + message
-//            throw DbError.Db(message: errMsg)
-//        }
-        let turn = Turn(id: 1,
-                        year: -4000,
-                        ordinal: 0,
-                        displayText: "4000 BCE")
-        let commandType = CommandType(id: 1,
-                                      name: "Move Unit")
-        return MoveCommand(commandId: 1,
-                           gameId: 1,
-                           turn: turn,
-                           playerId: 1,
-                           type: commandType,
-                           ordinal: 1,
+        var moveCommandId: Int = -1
+        
+        var command = try insertCommand(command: Command(id: moveCommand.id,
+                                                         gameId: moveCommand.gameId,
+                                                         turn: moveCommand.turn,
+                                                         playerId: moveCommand.playerId,
+                                                         type: moveCommand.type,
+                                                         ordinal: moveCommand.ordinal))
+        
+        var sql = "INSERT INTO move_command (" +
+        "command_id, unit_id, from_position, to_position)" +
+        ") VALUES "
+        
+        sql += "("
+        sql += getSql(val: moveCommand.id, postfix: ", ")
+        sql += getSql(val: 1, postfix: ", ")
+        sql += getSql(val: 1, postfix: ", ")
+        sql += getSql(val: 1, postfix: "")
+        sql += "), "
+        
+        sql = getCleanedSql(sql)
+        
+        do {
+            moveCommandId = try insertOneRow(sql: sql)
+        }
+        catch SQLiteError.Prepare(let message) {
+            var errMsg = "Failed to compile the SQL to insert rows into the \(table) table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        catch SQLiteError.Step(let message) {
+            var errMsg = "Failed to execute the SQL to insert rows into the \(table) table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        
+        return MoveCommand(commandId: moveCommand.id,
+                           gameId: moveCommand.gameId,
+                           turn: moveCommand.turn,
+                           playerId: moveCommand.playerId,
+                           type: moveCommand.type,
+                           ordinal: moveCommand.ordinal,
                            unit: Unit(name: "Settler", maxHP: 10),
                            toPosition: "Hello")
     }

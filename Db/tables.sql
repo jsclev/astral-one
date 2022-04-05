@@ -116,7 +116,7 @@ CREATE TABLE tech_command (
     FOREIGN KEY (tech_id) REFERENCES tech (id)
 );
 
-CREATE TABLE movement_command (
+CREATE TABLE move_command (
     id INTEGER PRIMARY KEY,
     command_id INTEGER NOT NULL,
     unit_id INTEGER NOT NULL,

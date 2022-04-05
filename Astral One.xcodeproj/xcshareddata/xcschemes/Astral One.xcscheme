@@ -37,6 +37,16 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "52F9047427FCD10600D1AC97"
+               BuildableName = "Unit Tests.xctest"
+               BlueprintName = "Unit Tests"
+               ReferencedContainer = "container:Astral One.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -192,7 +192,7 @@ public class BaseDAO {
         }
     }
     
-    fileprivate func insertOneRow(sql: String) throws -> Int {
+    func insertOneRow(sql: String) throws -> Int {
         var insertStmt: OpaquePointer?
         if sqlite3_prepare_v2(conn, sql, -1, &insertStmt, nil) == SQLITE_OK {
             if sqlite3_step(insertStmt) == SQLITE_DONE {
