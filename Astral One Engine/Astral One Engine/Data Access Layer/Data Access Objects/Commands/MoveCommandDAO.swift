@@ -12,7 +12,7 @@ public class MoveCommandDAO: BaseDAO {
         ") VALUES "
         
         sql += "("
-        sql += getSql(val: moveCommand.id, postfix: ", ")
+        sql += getSql(val: moveCommand.commandId, postfix: ", ")
         sql += getSql(val: 1, postfix: ", ")
         sql += getSql(val: 1, postfix: ", ")
         sql += getSql(val: 1, postfix: "")

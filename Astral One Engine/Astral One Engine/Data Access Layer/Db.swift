@@ -11,7 +11,7 @@ public class Db {
     public let gameDao: GameDAO
     public let commandDao: CommandDAO
     
-    init(fullRefresh: Bool) {
+    public init(fullRefresh: Bool) {
         let dbBundlePath = dbFilename
         let fileManager = FileManager.default
         let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)

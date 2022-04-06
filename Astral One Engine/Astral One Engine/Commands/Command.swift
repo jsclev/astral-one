@@ -1,7 +1,7 @@
 import Foundation
 
 public class Command: CustomStringConvertible {
-    public let id: Int
+    public let commandId: Int
     public let gameId: Int
     public let turn: Turn
     public let playerId: Int
@@ -9,12 +9,12 @@ public class Command: CustomStringConvertible {
     public let ordinal: Int
     
     public var description: String {
-        return "{id: \(id), game: \(gameId), turn: \(turn), " +
+        return "{id: \(commandId), game: \(gameId), turn: \(turn), " +
             "playerId: \(playerId), type: \(type), ordinal: \(ordinal)}"
     }
     
-    init(id: Int, gameId: Int, turn: Turn, playerId: Int, type: CommandType, ordinal: Int) {
-        self.id = id
+    init(commandId: Int, gameId: Int, turn: Turn, playerId: Int, type: CommandType, ordinal: Int) {
+        self.commandId = commandId
         self.gameId = gameId
         self.turn = turn
         self.playerId = playerId

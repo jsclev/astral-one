@@ -87,15 +87,15 @@ class GameScene: SKScene {
         pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
         view.addGestureRecognizer(pinchGestureRecognizer)
         
-        let filename: String = "freeland"
-        let tilesetParser = TiledTilesetParser(filename)
-        let tileset = tilesetParser.parse()
+//        let filename: String = "freeland"
+//        let tilesetParser = TiledTilesetParser(filename)
+//        let tileset = tilesetParser.parse()
         
-        let mapParser = TiledMapParser(tileset: tileset, filename: filename)
-        var map = mapParser.parse()
-        map.bake()
-        
-        renderMap(map: map)
+//        let mapParser = TiledMapParser(tileset: tileset, filename: filename)
+//        var map = mapParser.parse()
+//        map.bake()
+//
+//        renderMap(map: map)
 //
 //        let fromPosition = SIMD2<Int32>(0, 0)
 //        let fromNode = map.graph.node(atGridPosition: fromPosition)
@@ -188,7 +188,7 @@ class GameScene: SKScene {
 //            fatalError("No Grass tile definition found")
 //        }
         
-        let grassTiles = tileSet.tileGroups.first { $0.name == "Grass"}
+//        let grassTiles = tileSet.tileGroups.first { $0.name == "Grass"}
 //        let sandTiles = tileSet.tileGroups.first { $0.name == "Sand"}
 //        let tundraTiles = tileSet.tileGroups.first { $0.name == "Tundra"}
 //        let waterTiles = tileSet.tileGroups.first { $0.name == "Water"}
@@ -203,29 +203,29 @@ class GameScene: SKScene {
 //
 //        map.fill(with: grassTiles)
         
-        var numTiles: CGSize = CGSize(width: 0.0, height: 0.0)
-        
-        for (rowIndex, row) in map.tiles.enumerated() {
-            numTiles.width = CGFloat(rowIndex)
-            
-            for (colIndex, tile) in row.enumerated() {
-                
-                if let tileType = Constants.tiles[tile.id] {
-                    if tileType == "Tank" || tileType == "Plane" || tileType == "Town" {
-                        if let tileGroup = tileSet.tileGroups.first(where: { $0.name == tileType}) {
-                            unitsMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
-                            terrainMap.setTileGroup(grassTiles, forColumn: colIndex, row: rowIndex)
-                        }
-                    }
-                    else {
-                        if let tileGroup = tileSet.tileGroups.first(where: { $0.name == tileType}) {
-                            terrainMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
-
-                        }
-                    }
-                }
-            }
-        }
+//        var numTiles: CGSize = CGSize(width: 0.0, height: 0.0)
+//
+//        for (rowIndex, row) in map.getTiles.enumerated() {
+//            numTiles.width = CGFloat(rowIndex)
+//
+//            for (colIndex, tile) in row.enumerated() {
+//
+//                if let tileType = Constants.tiles[tile.id] {
+//                    if tileType == "Tank" || tileType == "Plane" || tileType == "Town" {
+//                        if let tileGroup = tileSet.tileGroups.first(where: { $0.name == tileType}) {
+//                            unitsMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
+//                            terrainMap.setTileGroup(grassTiles, forColumn: colIndex, row: rowIndex)
+//                        }
+//                    }
+//                    else {
+//                        if let tileGroup = tileSet.tileGroups.first(where: { $0.name == tileType}) {
+//                            terrainMap.setTileGroup(tileGroup, forColumn: colIndex, row: rowIndex)
+//
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
 //        for row in 0..<rows {
 //            for col in 0..<cols {

@@ -7,7 +7,8 @@ struct GameApp: App {
     @StateObject var game: Game
     
     init() {
-        let game = Game()
+        let db = Db(fullRefresh: true)
+        let game = Game(db: db)
         self._game = StateObject(wrappedValue: game)
     }
 

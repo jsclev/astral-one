@@ -14,7 +14,7 @@ public class TechCommand: Command {
                 toPosition: String) {
         //        self.unit = unit
         //        self.toPosition = toPosition
-        super.init(id: commandId,
+        super.init(commandId: commandId,
                    gameId: gameId,
                    turn: turn,
                    playerId: playerId,

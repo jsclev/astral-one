@@ -1,5 +1,5 @@
 select
-    g.id as game_id,
+    g.game_id,
     gp.name as player,
     t.ordinal as turn,
     ga.action_ordinal,
@@ -11,13 +11,13 @@ select
 from
     game g
 inner join
-    player gp on gp.game_id = g.id
+    player gp on gp.game_id = g.game_id
 inner join
-    action ga on ga.game_id = g.id
+    action ga on ga.game_id = g.game_id
 inner join
-    action a on a.id = ga.action_id
+    action a on a.action_id = ga.action_id
 inner join
-    turn t on t.id = ga.turn_id
+    turn t on t.turn_id = ga.turn_id
 left outer join
     game_settle_action gsa on gsa.action_id = ga.id
 left outer join

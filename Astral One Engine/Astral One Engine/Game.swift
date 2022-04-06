@@ -5,10 +5,10 @@ public class Game: ObservableObject {
     @Published public var showFPS = false
 
     private var map: Map = Map(width: 0, height: 0)
-    public let db = Db(fullRefresh: true)
+    public let db: Db
 
-    public init() {
-        
+    public init(db: Db) {
+        self.db = db
     }
     
     public func getMap() -> Map {

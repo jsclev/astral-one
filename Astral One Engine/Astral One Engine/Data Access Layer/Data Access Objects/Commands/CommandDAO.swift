@@ -123,7 +123,7 @@ public class CommandDAO: BaseDAO {
         sql += getSql(val: command.playerId, postfix: ", ")
         sql += getSql(val: command.type.id, postfix: ", ")
         sql += getSql(val: command.ordinal, postfix: "")
-        sql += ")"
+        sql += "), "
         
         sql = getCleanedSql(sql)
         
@@ -141,7 +141,7 @@ public class CommandDAO: BaseDAO {
             throw DbError.Db(message: errMsg)
         }
         
-        return Command(id: commandId,
+        return Command(commandId: commandId,
                        gameId: command.gameId,
                        turn: command.turn,
                        playerId: command.playerId,
@@ -152,19 +152,19 @@ public class CommandDAO: BaseDAO {
     public func insertMoveCommand(moveCommand: MoveCommand) throws -> MoveCommand {
         var moveCommandId: Int = -1
         
-        var command = try insertCommand(command: Command(id: moveCommand.id,
+        var command = try insertCommand(command: Command(commandId: moveCommand.commandId,
                                                          gameId: moveCommand.gameId,
                                                          turn: moveCommand.turn,
                                                          playerId: moveCommand.playerId,
                                                          type: moveCommand.type,
                                                          ordinal: moveCommand.ordinal))
         
-        var sql = "INSERT INTO move_command (" +
-        "command_id, unit_id, from_position, to_position)" +
-        ") VALUES "
+        var sql = "INSERT INTO move_command " +
+        "(command_id, unit_id, from_position, to_position)" +
+        " VALUES "
         
         sql += "("
-        sql += getSql(val: moveCommand.id, postfix: ", ")
+        sql += getSql(val: moveCommand.commandId, postfix: ", ")
         sql += getSql(val: 1, postfix: ", ")
         sql += getSql(val: 1, postfix: ", ")
         sql += getSql(val: 1, postfix: "")
@@ -186,7 +186,7 @@ public class CommandDAO: BaseDAO {
             throw DbError.Db(message: errMsg)
         }
         
-        return MoveCommand(commandId: moveCommand.id,
+        return MoveCommand(commandId: moveCommand.commandId,
                            gameId: moveCommand.gameId,
                            turn: moveCommand.turn,
                            playerId: moveCommand.playerId,

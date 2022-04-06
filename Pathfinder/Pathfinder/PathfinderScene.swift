@@ -30,7 +30,7 @@ class PathfinderScene: SKScene {
     let rows: Int = 100
     let cols: Int = 100
     var state: PathfinderState = PathfinderState.initialized
-    var game: Game = Game()
+    var game: Game
     var startPosition = SIMD2<Int32>(0, 0)
     var endPosition = SIMD2<Int32>(0, 0)
     
@@ -56,6 +56,9 @@ class PathfinderScene: SKScene {
         mapIcons.zPosition = Layer.unitPath2
         mapIcons.position = CGPoint.zero
         mapIcons.enableAutomapping = true
+        
+        let db = Db(fullRefresh: true)
+        game = Game(db: db)
         
         super.init(size: UIScreen.main.bounds.size)
     }

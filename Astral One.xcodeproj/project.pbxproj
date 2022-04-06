@@ -21,6 +21,9 @@
 		52E0B19727E6D9D600607FBE /* libAstral One Engine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E0B19627E6D9D600607FBE /* libAstral One Engine.a */; };
 		52E0B1DB27E80F9800607FBE /* civ2.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1DA27E80F9800607FBE /* civ2.tsx */; };
 		52E0B1E727E95FB700607FBE /* civ2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1E627E95FB700607FBE /* civ2.tmx */; };
+		52F9048527FCD3CB00D1AC97 /* TestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9048427FCD3CB00D1AC97 /* TestUtil.swift */; };
+		52F9048727FCD40200D1AC97 /* CommandDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9048627FCD40200D1AC97 /* CommandDAOTests.swift */; };
+		52F9048C27FCFEFD00D1AC97 /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52F9048B27FCFEFD00D1AC97 /* civitas.sqlite */; };
 		52FA8F9927E382DE001794BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FA8F9727E382DE001794BD /* Assets.xcassets */; };
 		5394F02521864DF5006E754C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5394F02321864DF4006E754C /* LaunchScreen.storyboard */; };
 		AFEF960E231A01B4006025E5 /* Particle.sks in Resources */ = {isa = PBXBuildFile; fileRef = AFEF960D231A01B4006025E5 /* Particle.sks */; };
@@ -62,6 +65,9 @@
 		52E0B1DA27E80F9800607FBE /* civ2.tsx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = civ2.tsx; path = "Astral One/Resources/civ2/civ2.tsx"; sourceTree = SOURCE_ROOT; };
 		52E0B1E627E95FB700607FBE /* civ2.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = civ2.tmx; path = "Astral One/Resources/civ2/civ2.tmx"; sourceTree = SOURCE_ROOT; };
 		52F9047527FCD10600D1AC97 /* Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F9048427FCD3CB00D1AC97 /* TestUtil.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = TestUtil.swift; sourceTree = "<group>"; tabWidth = 4; };
+		52F9048627FCD40200D1AC97 /* CommandDAOTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CommandDAOTests.swift; sourceTree = "<group>"; tabWidth = 4; };
+		52F9048B27FCFEFD00D1AC97 /* civitas.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = civitas.sqlite; sourceTree = "<group>"; };
 		52F9B61227E6AB02005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FA8F9727E382DE001794BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5394F02421864DF4006E754C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				52F9047E27FCD1CB00D1AC97 /* Data Access Layer */,
+				52F9048427FCD3CB00D1AC97 /* TestUtil.swift */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -133,6 +140,7 @@
 		52F9047F27FCD1D600D1AC97 /* Data Access Objects */ = {
 			isa = PBXGroup;
 			children = (
+				52F9048627FCD40200D1AC97 /* CommandDAOTests.swift */,
 			);
 			path = "Data Access Objects";
 			sourceTree = "<group>";
@@ -171,6 +179,7 @@
 		AFEF960B231A0187006025E5 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				52F9048B27FCFEFD00D1AC97 /* civitas.sqlite */,
 				52E0B1E627E95FB700607FBE /* civ2.tmx */,
 				52E0B1DA27E80F9800607FBE /* civ2.tsx */,
 				521B498B27DDB27300FED38F /* Astral One.tsx */,
@@ -300,6 +309,7 @@
 				TargetAttributes = {
 					52F9047427FCD10600D1AC97 = {
 						CreatedOnToolsVersion = 13.3;
+						LastSwiftMigration = 1330;
 						TestTargetID = D2A5F1FF1F4A9144005CD714;
 					};
 					D2A5F1FF1F4A9144005CD714 = {
@@ -358,6 +368,7 @@
 				D2A5F2091F4A9144005CD714 /* Main.storyboard in Resources */,
 				52D1219027CDE0290047C2CA /* Background3.mp3 in Resources */,
 				AFEF960E231A01B4006025E5 /* Particle.sks in Resources */,
+				52F9048C27FCFEFD00D1AC97 /* civitas.sqlite in Resources */,
 				521B498C27DDB27300FED38F /* Astral One.tsx in Resources */,
 				AFEF9610231A01C2006025E5 /* Particle.png in Resources */,
 				52E0B1E727E95FB700607FBE /* civ2.tmx in Resources */,
@@ -371,6 +382,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F9048727FCD40200D1AC97 /* CommandDAOTests.swift in Sources */,
+				52F9048527FCD3CB00D1AC97 /* TestUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,18 +433,25 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SNJW4KBXLV;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zippyzen.Unit-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astral One.app/Astral One";
@@ -443,12 +463,18 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SNJW4KBXLV;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zippyzen.Unit-Tests";
