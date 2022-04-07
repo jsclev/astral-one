@@ -10,7 +10,7 @@
 		52F9049D27FD344900D1AC97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9049C27FD344900D1AC97 /* AppDelegate.swift */; };
 		52F9049F27FD344900D1AC97 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52F9049E27FD344900D1AC97 /* GameScene.sks */; };
 		52F904A127FD344900D1AC97 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52F904A027FD344900D1AC97 /* Actions.sks */; };
-		52F904A327FD344900D1AC97 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F904A227FD344900D1AC97 /* GameScene.swift */; };
+		52F904A327FD344900D1AC97 /* SimulatorScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F904A227FD344900D1AC97 /* SimulatorScene.swift */; };
 		52F904A527FD344900D1AC97 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F904A427FD344900D1AC97 /* GameViewController.swift */; };
 		52F904A827FD344900D1AC97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F904A627FD344900D1AC97 /* Main.storyboard */; };
 		52F904AA27FD344B00D1AC97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52F904A927FD344B00D1AC97 /* Assets.xcassets */; };
@@ -19,6 +19,9 @@
 		52F904C127FD344B00D1AC97 /* SimulatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F904C027FD344B00D1AC97 /* SimulatorUITests.swift */; };
 		52F904C327FD344B00D1AC97 /* SimulatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F904C227FD344B00D1AC97 /* SimulatorUITestsLaunchTests.swift */; };
 		52F904D127FD348D00D1AC97 /* libAstral One Engine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F904D027FD348D00D1AC97 /* libAstral One Engine.a */; };
+		52F904D527FD396B00D1AC97 /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52F904D427FD396B00D1AC97 /* civitas.sqlite */; };
+		52F904D627FD396B00D1AC97 /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52F904D427FD396B00D1AC97 /* civitas.sqlite */; };
+		52F904D727FD396B00D1AC97 /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52F904D427FD396B00D1AC97 /* civitas.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +46,7 @@
 		52F9049C27FD344900D1AC97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52F9049E27FD344900D1AC97 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		52F904A027FD344900D1AC97 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		52F904A227FD344900D1AC97 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		52F904A227FD344900D1AC97 /* SimulatorScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorScene.swift; sourceTree = "<group>"; };
 		52F904A427FD344900D1AC97 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		52F904A727FD344900D1AC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52F904A927FD344B00D1AC97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +57,7 @@
 		52F904C027FD344B00D1AC97 /* SimulatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorUITests.swift; sourceTree = "<group>"; };
 		52F904C227FD344B00D1AC97 /* SimulatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		52F904D027FD348D00D1AC97 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F904D427FD396B00D1AC97 /* civitas.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = civitas.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,10 +110,11 @@
 		52F9049B27FD344900D1AC97 /* Simulator */ = {
 			isa = PBXGroup;
 			children = (
+				52F904D227FD38FD00D1AC97 /* Resources */,
 				52F9049C27FD344900D1AC97 /* AppDelegate.swift */,
 				52F9049E27FD344900D1AC97 /* GameScene.sks */,
 				52F904A027FD344900D1AC97 /* Actions.sks */,
-				52F904A227FD344900D1AC97 /* GameScene.swift */,
+				52F904A227FD344900D1AC97 /* SimulatorScene.swift */,
 				52F904A427FD344900D1AC97 /* GameViewController.swift */,
 				52F904A627FD344900D1AC97 /* Main.storyboard */,
 				52F904A927FD344B00D1AC97 /* Assets.xcassets */,
@@ -141,6 +146,22 @@
 				52F904D027FD348D00D1AC97 /* libAstral One Engine.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		52F904D227FD38FD00D1AC97 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				52F904D327FD390900D1AC97 /* Data */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		52F904D327FD390900D1AC97 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				52F904D427FD396B00D1AC97 /* civitas.sqlite */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +271,7 @@
 				52F904A827FD344900D1AC97 /* Main.storyboard in Resources */,
 				52F9049F27FD344900D1AC97 /* GameScene.sks in Resources */,
 				52F904AA27FD344B00D1AC97 /* Assets.xcassets in Resources */,
+				52F904D527FD396B00D1AC97 /* civitas.sqlite in Resources */,
 				52F904AD27FD344B00D1AC97 /* LaunchScreen.storyboard in Resources */,
 				52F904A127FD344900D1AC97 /* Actions.sks in Resources */,
 			);
@@ -259,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F904D627FD396B00D1AC97 /* civitas.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +289,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F904D727FD396B00D1AC97 /* civitas.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +300,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52F904A327FD344900D1AC97 /* GameScene.swift in Sources */,
+				52F904A327FD344900D1AC97 /* SimulatorScene.swift in Sources */,
 				52F904A527FD344900D1AC97 /* GameViewController.swift in Sources */,
 				52F9049D27FD344900D1AC97 /* AppDelegate.swift in Sources */,
 			);

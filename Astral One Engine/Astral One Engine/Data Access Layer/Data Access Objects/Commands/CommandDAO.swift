@@ -186,7 +186,7 @@ public class CommandDAO: BaseDAO {
             throw DbError.Db(message: errMsg)
         }
         
-        return MoveCommand(commandId: moveCommand.commandId,
+        return MoveCommand(commandId: command.commandId,
                            gameId: moveCommand.gameId,
                            turn: moveCommand.turn,
                            playerId: moveCommand.playerId,
@@ -195,4 +195,74 @@ public class CommandDAO: BaseDAO {
                            unit: Unit(name: "Settler", maxHP: 10),
                            toPosition: "Hello")
     }
+    
+//    func bulkInsert(values: String, objectID: String) -> Bool {
+//        let fileUrl = //your file path to your DB
+//
+//        //open our database
+//        if sqlite3_open(fileUrl.path, &amp;amp;amp;db) != SQLITE_OK {
+//        }
+//        let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+//
+//        // convert our JSON string into an object
+//        let fieldStringData = fieldString.data(using: .utf8, allowLossyConversion: false)
+//        let objectID = String(objectID)
+//        let data = values.data(using: .utf8, allowLossyConversion: false)
+//
+//        if let json = try? JSON(data: data!)
+//        {
+//
+//            var compiledStatement: OpaquePointer?
+//            //Start our transaction
+//            sqlite3_exec(conn, "BEGIN IMMEDIATE TRANSACTION", nil, nil, nil)
+//            var query = "INSERT OR REPLACE INTO coffee_shops VALUES (?, ?, ?, ?);";
+//
+//            let rowObjects = json[objectID]
+//
+//            if(sqlite3_prepare_v2(conn, query, -1, &amp;amp;amp;compiledStatement, nil) == SQLITE_OK) {
+//                for (index, obj) in rowObjects
+//                {
+//
+//                    sqlite3_bind_int(compiledStatement, Int32(1),
+//                                     Int32(obj[&amp;quot;id&amp;quot;].stringValue)!);
+//                    sqlite3_bind_text(compiledStatement, Int32(2),
+//                                      obj[&amp;quot;name&amp;quot;].stringValue, -1, SQLITE_TRANSIENT);
+//                    sqlite3_bind_text(compiledStatement, Int32(3),
+//                                      obj[&amp;quot;address&amp;quot;].stringValue, -1, SQLITE_TRANSIENT);
+//                    sqlite3_bind_text(compiledStatement, Int32(4),
+//                                      obj[&amp;quot;price_range&amp;quot;].stringValue, -1, SQLITE_TRANSIENT);
+//
+//                    if (sqlite3_step(compiledStatement) != SQLITE_DONE)
+//                    {
+//                        NSLog(&amp;quot;%s&amp;quot;,sqlite3_errmsg(db));
+//                    }
+//
+//                    if (sqlite3_reset(compiledStatement) != SQLITE_OK)
+//                    {
+//                        NSLog(&amp;quot;%s&amp;quot;,sqlite3_errmsg(db));
+//                    }
+//                }
+//            }
+//
+//            if (sqlite3_finalize(compiledStatement) != SQLITE_OK) {
+//                NSLog("%s", sqlite3_errmsg(conn));
+//            }
+//
+//            if (sqlite3_exec(conn, "COMMIT TRANSACTION", nil, nil, nil) != SQLITE_OK) {
+//                NSLog("%s",sqlite3_errmsg(conn));
+//            }
+//        }
+//
+//        if sqlite3_close_v2(conn) != SQLITE_OK {
+//            print("error closing the database")
+//        }
+//        return true
+//    }
+//    //Close our DB
+//    if sqlite3_close_v2(conn) != SQLITE_OK {
+//        print("error closing the database")
+//    }
+//    return false
+//
+//}
 }

@@ -1,3 +1,10 @@
+//
+//  GameScene.swift
+//  Simulator
+//
+//  Created by John Cleveland on 4/5/22.
+//
+
 import SpriteKit
 import GameplayKit
 import Astral_One_Engine
@@ -12,7 +19,6 @@ class GameScene: SKScene {
     private var spinnyNode : SKShapeNode?
     
     override func sceneDidLoad() {
-
         self.lastUpdateTime = 0
         
         // Get label node from scene and store it for use later
@@ -35,8 +41,65 @@ class GameScene: SKScene {
                                               SKAction.removeFromParent()]))
         }
         
+        let fileManager = FileManager.default
+        
+        guard let url = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return
+        }
+        
+        let fileUrl = url.appendingPathComponent("commands.txt")
+        print("Writing command data to \(fileUrl.path).")
+        
+        fileManager.createFile(atPath: fileUrl.path,
+                               contents: nil,
+                               attributes: [FileAttributeKey.creationDate: Date()])
+        
         let db = Db(fullRefresh: true)
-        game = Game(db: db)
+        let game = Game(db: db)
+        
+        let turn = Turn(id: 1,
+                        year: -4000,
+                        ordinal: 0,
+                        displayText: "4000 BCE")
+        let commandType = CommandType(id: 1,
+                                      name: "Move Unit")
+        
+        
+        printDate(string: "Starting: ")
+        if let fileHandle = try? FileHandle(forWritingTo: fileUrl) {
+            for _ in 0..<1000000 {
+                let moveCommand = MoveCommand(commandId: -1,
+                                              gameId: 1,
+                                              turn: turn,
+                                              playerId: 1,
+                                              type: commandType,
+                                              ordinal: 1,
+                                              unit: Unit(name: "Settler", maxHP: 10),
+                                              toPosition: "Hello")
+                do {
+                    //                let cmd = try game.db.commandDao.insertMoveCommand(moveCommand: moveCommand)
+                    
+                        fileHandle.seekToEndOfFile()
+                        fileHandle.write((moveCommand.description + "\n").data(using: .utf8)!)
+                    
+
+                    //                print("Added move command, id: \(cmd.commandId)")
+                }
+                catch {
+                    print("Unexpected error: \(error).")
+                }
+            }
+            
+            fileHandle.closeFile()
+            printDate(string: "Done: ")
+        }
+    }
+    
+    func printDate(string: String) {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm:ss.SSS"
+        print(string + formatter.string(from: date))
     }
     
     

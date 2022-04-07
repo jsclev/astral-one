@@ -14,3 +14,5 @@ sqlite3 civitas.sqlite < data/core.sql
 cp civitas.sqlite "../Astral One Engine/Astral One Engine/Resources/Data/civitas.sqlite"
 cp civitas.sqlite "../Astral One/Resources/Data/civitas.sqlite"
 cp civitas.sqlite "../Pathfinder/Pathfinder/Resources/Data/civitas.sqlite"
+cp civitas.sqlite "../Simulator/Simulator/Resources/Data/civitas.sqlite"
+
