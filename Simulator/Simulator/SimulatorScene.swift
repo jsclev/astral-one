@@ -54,6 +54,9 @@ class GameScene: SKScene {
                                contents: nil,
                                attributes: [FileAttributeKey.creationDate: Date()])
         
+        var gridGraph = GameGridGraph()
+        gridGraph.addNode(nodeToAdd: GameGridGraphNode(row: 0, col: 0))
+        
         let db = Db(fullRefresh: true)
         let game = Game(db: db)
         

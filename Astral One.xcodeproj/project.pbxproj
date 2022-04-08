@@ -12,6 +12,7 @@
 		521B499027DEDC8800FED38F /* map-20x15.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 521B498F27DEDC8800FED38F /* map-20x15.tmx */; };
 		525D6BDE27D04AE0008AA740 /* GameCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BDD27D04AE0008AA740 /* GameCamera.swift */; };
 		525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 525DC47D27CF41EF003DC3A2 /* Background4.m4a */; };
+		52605C8328009C550082C0DB /* SomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8228009C550082C0DB /* SomeTests.swift */; };
 		52A8787D27E5651200968F7D /* Civ 2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52A8787C27E5651200968F7D /* Civ 2.sks */; };
 		52D1218227CC6F110047C2CA /* GameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218127CC6F110047C2CA /* GameApp.swift */; };
 		52D1218527CC7A910047C2CA /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218427CC7A900047C2CA /* GameView.swift */; };
@@ -55,6 +56,7 @@
 		521B498F27DEDC8800FED38F /* map-20x15.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "map-20x15.tmx"; path = "Astral One/Resources/map-20x15.tmx"; sourceTree = SOURCE_ROOT; };
 		525D6BDD27D04AE0008AA740 /* GameCamera.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameCamera.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525DC47D27CF41EF003DC3A2 /* Background4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Background4.m4a; sourceTree = "<group>"; };
+		52605C8228009C550082C0DB /* SomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeTests.swift; sourceTree = "<group>"; };
 		52A8787C27E5651200968F7D /* Civ 2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Civ 2.sks"; sourceTree = "<group>"; };
 		52D1218127CC6F110047C2CA /* GameApp.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameApp.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52D1218427CC7A900047C2CA /* GameView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -125,6 +127,7 @@
 			children = (
 				52F9047E27FCD1CB00D1AC97 /* Data Access Layer */,
 				52F9048427FCD3CB00D1AC97 /* TestUtil.swift */,
+				52605C8228009C550082C0DB /* SomeTests.swift */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 			files = (
 				52F9048727FCD40200D1AC97 /* CommandDAOTests.swift in Sources */,
 				52F9048527FCD3CB00D1AC97 /* TestUtil.swift in Sources */,
+				52605C8328009C550082C0DB /* SomeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

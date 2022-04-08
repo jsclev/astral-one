@@ -1,5 +1,5 @@
 import XCTest
-import Astral_One_Engine
+@testable import Astral_One_Engine
 
 class CommandDAOTests: XCTestCase {
     private var db = TestUtil.getDb()
@@ -29,13 +29,13 @@ class CommandDAOTests: XCTestCase {
                                   unit: Unit(name: "Settler", maxHP: 10),
                                   toPosition: "Hello")
         
-        let actual = try db.commandDao.insertMoveCommand(moveCommand: fixture)
+        let actuals = try db.commandDao.insertMoveCommands(moveCommands: [fixture])
         
-        XCTAssertEqual(actual.commandId, 1)
-        XCTAssertEqual(actual.gameId, 1)
-        XCTAssertEqual(actual.turn.id, 1)
-        XCTAssertEqual(actual.playerId, 1)
-        XCTAssertEqual(actual.ordinal, 1)
+        XCTAssertEqual(actuals[0].commandId, 1)
+        XCTAssertEqual(actuals[0].gameId, 1)
+        XCTAssertEqual(actuals[0].turn.id, 1)
+        XCTAssertEqual(actuals[0].playerId, 1)
+        XCTAssertEqual(actuals[0].ordinal, 1)
     }
     
     func testPerformanceExample() throws {
