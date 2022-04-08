@@ -52,6 +52,8 @@ extension ObservableObject where Self.ObjectWillChangePublisher == ObservableObj
 
 public class GameGridGraph {
     var nodes: Dictionary<GameGridGraphNode, Set<GameGridGraphNode>> = [:]
+    public var gridWidth: Int = 0
+    public var gridHeight: Int = 0
     
     public init() {
         print("initializing grid graph")
@@ -60,6 +62,14 @@ public class GameGridGraph {
     @discardableResult public func addNode(nodeToAdd: GameGridGraphNode) -> Dictionary<GameGridGraphNode, Set<GameGridGraphNode>> {
         if nodes[nodeToAdd] == nil {
             nodes[nodeToAdd] = Set<GameGridGraphNode>()
+            
+            if nodeToAdd.row > gridHeight {
+                gridHeight = nodeToAdd.row
+            }
+            
+            if nodeToAdd.col > gridWidth {
+                gridWidth = nodeToAdd.col
+            }
         }
         
         return nodes
@@ -90,15 +100,60 @@ public class GameGridGraph {
         
         return nodes
     }
+    
+    public func node(row: Int, col: Int) -> GameGridGraphNode? {
+        for node in nodes.keys {
+            if node.row == row && node.col == col {
+                return node
+            }
+        }
+        
+        return nil
+    }
 }
 
 public class GameGridGraphNode: Hashable {
-    private let row: Int
-    private let col: Int
+    public let row: Int
+    public let col: Int
+    
+    private var tiles: [Tile] = []
+    private var enemyHP: Float = 0.0
+    private var enemyLandAttack: Float = 0.0
+    private var enemyLandDefense: Float = 0.0
+    private var avgEnemyMovement: Float = 0.0
     
     public init(row: Int, col: Int) {
         self.row = row
         self.col = col
+    }
+    
+    public func getTiles() -> [Tile] {
+        return tiles
+    }
+    
+    public func addTile(tile: Tile) {
+        if tile.id == "" {
+            fatalError("Cannot add tile with empty id.")
+        }
+        
+        let spec = tile.spec
+        if spec.tileType == TileType.Unit {
+            if tile.spec.terrainType == TerrainType.Tank {
+                enemyHP += 3.0
+                enemyLandAttack += 10.0
+                enemyLandDefense += 5.0
+            }
+        }
+        
+        tiles.append(tile)
+    }
+    
+    public func getEnemyLandAttack() -> Float {
+        return enemyLandAttack
+    }
+    
+    public func getEnemyLandDefense() -> Float {
+        return enemyLandDefense
     }
     
     public func hash(into hasher: inout Hasher) {

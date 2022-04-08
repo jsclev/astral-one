@@ -2,7 +2,7 @@ import Foundation
 import GameplayKit
 
 public class Map {
-    private let graph: GKGridGraph<GameNode>
+    private let graph = GameGridGraph()
     private var unitType: UnitType = UnitType.Explorer
     
     public var width: Int {
@@ -18,11 +18,11 @@ public class Map {
     }
     
     public init(width: Int32, height: Int32) {
-        graph = GKGridGraph<GameNode>(fromGridStartingAt: SIMD2<Int32>(0, 0),
-                                      width: width,
-                                      height: height,
-                                      diagonalsAllowed: true,
-                                      nodeClass: GameNode.self)
+//        graph = GKGridGraph<GameNode>(fromGridStartingAt: SIMD2<Int32>(0, 0),
+//                                      width: width,
+//                                      height: height,
+//                                      diagonalsAllowed: true,
+//                                      nodeClass: GameNode.self)
     }
     
     public func prune() {
@@ -35,18 +35,18 @@ public class Map {
                     if tiles.count > 0 &&
                         (tiles[0].spec.terrainType == TerrainType.Water ||
                          tiles[0].spec.terrainType == TerrainType.Glacier) {
-                        nodesToRemove.append(node)
+//                        nodesToRemove.append(node)
                         //                        graph.remove([localNode])
                     }
                 }
             }
         }
         
-        graph.remove(nodesToRemove)
+//        graph.remove(nodesToRemove)
     }
     
-    public func getNode(row: Int, col: Int) -> GameNode? {
-        return graph.node(atGridPosition: SIMD2<Int32>(Int32(row), Int32(col)))
+    public func getNode(row: Int, col: Int) -> GameGridGraphNode? {
+        return graph.node(row: row, col: col)
     }
     
     public func getTiles(row: Int, col: Int) -> [Tile] {
@@ -58,10 +58,17 @@ public class Map {
     }
     
     public func addTile(row: Int, col: Int, tile: Tile) {
-        if let node = graph.node(atGridPosition: SIMD2<Int32>(Int32(row), Int32(col))) {
+        if let node = graph.node(row: row, col: col) {
             node.addTile(tile: Tile(id: tile.id,
                                     spec: tile.spec,
                                     ordinal: node.getTiles().count))
+        }
+        else {
+            let node = GameGridGraphNode(row: row, col: col)
+            node.addTile(tile: Tile(id: tile.id,
+                                    spec: tile.spec,
+                                    ordinal: node.getTiles().count))
+            graph.addNode(nodeToAdd: node)
         }
     }
     
@@ -69,7 +76,7 @@ public class Map {
         var numLayers: Int = 0
         for row in 0..<width {
             for col in 0..<height {
-                if let node = graph.node(atGridPosition: SIMD2<Int32>(Int32(row), Int32(col))) {
+                if let node = graph.node(row: row, col: col) {
                     let myLayerCount = node.getTiles().count
                     if myLayerCount > numLayers {
                         numLayers = myLayerCount
@@ -82,10 +89,10 @@ public class Map {
     }
     
     public func findPath(from: SIMD2<Int32>, to: SIMD2<Int32>) -> [GKGraphNode] {
-        let startNode = graph.node(atGridPosition: from)
-        let endNode = graph.node(atGridPosition: to)
+        let startNode = graph.node(row: Int(from.y), col: Int(from.x))
+        let endNode = graph.node(row: Int(to.y), col: Int(to.x))
         if let startNode = startNode, let endNode = endNode {
-            return graph.findPath(from: startNode, to: endNode)
+//            return graph.findPath(from: startNode, to: endNode)
         }
         
         return []
@@ -97,7 +104,7 @@ public class Map {
         
         for row in 0..<width {
             for col in 0..<height {
-                if let node = graph.node(atGridPosition: SIMD2<Int32>(Int32(row), Int32(col))) {
+                if let node = graph.node(row: row, col: col) {
                     print("Node [\(row),\(col)]: \(node.getTiles().count) tiles.")
 //                    for tile in node.getTiles() {
 //                        if let tileType = Constants.tiles[tile.id] {
@@ -116,7 +123,7 @@ public class Map {
     public func getUnit() -> Unit? {
         for row in 0..<width {
             for col in 0..<height {
-                if let node = graph.node(atGridPosition: SIMD2<Int32>(Int32(row), Int32(col))) {
+                if let node = graph.node(row: row, col: col) {
                     let tiles = node.getTiles()
                     
                     for tile in tiles {
