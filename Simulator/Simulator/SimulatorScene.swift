@@ -66,104 +66,109 @@ class GameScene: SKScene {
         
         
         printDate(string: "Starting: ")
-        if let fileHandle = try? FileHandle(forWritingTo: fileUrl) {
-            for _ in 0..<1000000 {
-                let moveCommand = MoveCommand(commandId: -1,
-                                              gameId: 1,
-                                              turn: turn,
-                                              playerId: 1,
-                                              type: commandType,
-                                              ordinal: 1,
-                                              unit: Unit(name: "Settler", maxHP: 10),
-                                              toPosition: "Hello")
-                do {
-                    //                let cmd = try game.db.commandDao.insertMoveCommand(moveCommand: moveCommand)
-                    
-                        fileHandle.seekToEndOfFile()
-                        fileHandle.write((moveCommand.description + "\n").data(using: .utf8)!)
-                    
+        var moveCommands: [MoveCommand] = []
+        var newCommands: [MoveCommand] = []
 
-                    //                print("Added move command, id: \(cmd.commandId)")
-                }
-                catch {
-                    print("Unexpected error: \(error).")
-                }
-            }
+        //        if let fileHandle = try? FileHandle(forWritingTo: fileUrl) {
+        for _ in 0..<1000000 {
+            moveCommands.append(MoveCommand(commandId: -1,
+                                            gameId: 1,
+                                            turn: turn,
+                                            playerId: 1,
+                                            type: commandType,
+                                            ordinal: 1,
+                                            unit: Unit(name: "Settler", maxHP: 10),
+                                            toPosition: "Hello"))
+        }
+        
+        do {
+            newCommands = try game.db.commandDao.insertMoveCommands(moveCommands: moveCommands)
             
-            fileHandle.closeFile()
-            printDate(string: "Done: ")
+//            fileHandle.seekToEndOfFile()
+//            fileHandle.write((moveCommand.description + "\n").data(using: .utf8)!)
+            
+//            print("Added move command, id: \(cmd.commandId)")
         }
-    }
-    
-    func printDate(string: String) {
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm:ss.SSS"
-        print(string + formatter.string(from: date))
-    }
-    
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+        catch {
+            print("Unexpected error: \(error).")
         }
         
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+//        for newCommand in newCommands {
+//            print(newCommand)
+//        }
+        //            fileHandle.closeFile()
+        printDate(string: "Done: ")
+}
+
+func printDate(string: String) {
+    let date = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "h:mm:ss.SSS"
+    print(string + formatter.string(from: date))
+}
+
+
+func touchDown(atPoint pos : CGPoint) {
+    if let n = self.spinnyNode?.copy() as! SKShapeNode? {
+        n.position = pos
+        n.strokeColor = SKColor.green
+        self.addChild(n)
+    }
+}
+
+func touchMoved(toPoint pos : CGPoint) {
+    if let n = self.spinnyNode?.copy() as! SKShapeNode? {
+        n.position = pos
+        n.strokeColor = SKColor.blue
+        self.addChild(n)
+    }
+}
+
+func touchUp(atPoint pos : CGPoint) {
+    if let n = self.spinnyNode?.copy() as! SKShapeNode? {
+        n.position = pos
+        n.strokeColor = SKColor.red
+        self.addChild(n)
+    }
+}
+
+override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if let label = self.label {
+        label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
+    for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+}
+
+override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+}
+
+override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+}
+
+override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+}
+
+
+override func update(_ currentTime: TimeInterval) {
+    // Called before each frame is rendered
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        
-        // Initialize _lastUpdateTime if it has not already been
-        if (self.lastUpdateTime == 0) {
-            self.lastUpdateTime = currentTime
-        }
-        
-        // Calculate time since last update
-        let dt = currentTime - self.lastUpdateTime
-        
-        // Update entities
-        for entity in self.entities {
-            entity.update(deltaTime: dt)
-        }
-        
+    // Initialize _lastUpdateTime if it has not already been
+    if (self.lastUpdateTime == 0) {
         self.lastUpdateTime = currentTime
     }
+    
+    // Calculate time since last update
+    let dt = currentTime - self.lastUpdateTime
+    
+    // Update entities
+    for entity in self.entities {
+        entity.update(deltaTime: dt)
+    }
+    
+    self.lastUpdateTime = currentTime
+}
 }
