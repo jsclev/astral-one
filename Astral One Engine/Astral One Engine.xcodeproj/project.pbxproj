@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52605C8D2801622D0082C0DB /* InfluenceMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8C2801622D0082C0DB /* InfluenceMap.swift */; };
+		52605C902801E3B00082C0DB /* InfluenceMapStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8F2801E3B00082C0DB /* InfluenceMapStrategy.swift */; };
+		52605C922801E5510082C0DB /* CityInfluenceMapStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C912801E5510082C0DB /* CityInfluenceMapStrategy.swift */; };
+		52605C942801E9560082C0DB /* CityInfluenceSpreadStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C932801E9560082C0DB /* CityInfluenceSpreadStrategy.swift */; };
+		52AB06FB2801FB400039B47D /* UnitInfluenceMapStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB06FA2801FB400039B47D /* UnitInfluenceMapStrategy.swift */; };
 		52E0B18A27E6D86A00607FBE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18927E6D86A00607FBE /* Constants.swift */; };
 		52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18C27E6D87600607FBE /* TiledTileset.swift */; };
 		52E0B19227E6D87600607FBE /* TiledMapParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18D27E6D87600607FBE /* TiledMapParser.swift */; };
@@ -34,6 +39,7 @@
 		52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C727E6E7A900607FBE /* MapViewModel.swift */; };
 		52E0B1EB27EAB6B800607FBE /* GameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1EA27EAB6B700607FBE /* GameNode.swift */; };
 		52E0B1FE27F173A500607FBE /* Explorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1FD27F173A500607FBE /* Explorer.swift */; };
+		52F623142801FA91009F202A /* UnitInfluenceSpreadStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F623132801FA91009F202A /* UnitInfluenceSpreadStrategy.swift */; };
 		52F9042627F4E1AC00D1AC97 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042527F4E1AC00D1AC97 /* Unit.swift */; };
 		52F9042827F4E27B00D1AC97 /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042727F4E27B00D1AC97 /* Warrior.swift */; };
 		52F9042A27F4E3C600D1AC97 /* Pikemen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042927F4E3C600D1AC97 /* Pikemen.swift */; };
@@ -67,6 +73,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		52605C8C2801622D0082C0DB /* InfluenceMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceMap.swift; sourceTree = "<group>"; };
+		52605C8F2801E3B00082C0DB /* InfluenceMapStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceMapStrategy.swift; sourceTree = "<group>"; };
+		52605C912801E5510082C0DB /* CityInfluenceMapStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityInfluenceMapStrategy.swift; sourceTree = "<group>"; };
+		52605C932801E9560082C0DB /* CityInfluenceSpreadStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityInfluenceSpreadStrategy.swift; sourceTree = "<group>"; };
+		52AB06FA2801FB400039B47D /* UnitInfluenceMapStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitInfluenceMapStrategy.swift; sourceTree = "<group>"; };
 		52E0B18927E6D86A00607FBE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		52E0B18C27E6D87600607FBE /* TiledTileset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiledTileset.swift; sourceTree = "<group>"; };
 		52E0B18D27E6D87600607FBE /* TiledMapParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiledMapParser.swift; sourceTree = "<group>"; };
@@ -94,6 +105,7 @@
 		52E0B1C727E6E7A900607FBE /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		52E0B1EA27EAB6B700607FBE /* GameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNode.swift; sourceTree = "<group>"; };
 		52E0B1FD27F173A500607FBE /* Explorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explorer.swift; sourceTree = "<group>"; };
+		52F623132801FA91009F202A /* UnitInfluenceSpreadStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitInfluenceSpreadStrategy.swift; sourceTree = "<group>"; };
 		52F9042527F4E1AC00D1AC97 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
 		52F9042727F4E27B00D1AC97 /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = "<group>"; };
 		52F9042927F4E3C600D1AC97 /* Pikemen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pikemen.swift; sourceTree = "<group>"; };
@@ -127,6 +139,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52605C8828014FF90082C0DB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				52605C8E2801E37E0082C0DB /* Influence Maps */,
+				52E0B18927E6D86A00607FBE /* Constants.swift */,
+				52E0B19927E6DFA000607FBE /* Game.swift */,
+				52E0B1EA27EAB6B700607FBE /* GameNode.swift */,
+				52605C8C2801622D0082C0DB /* InfluenceMap.swift */,
+				52E0B18F27E6D87600607FBE /* Map.swift */,
+				52E0B19027E6D87600607FBE /* Tile.swift */,
+				52F9044A27F8E56200D1AC97 /* Turn.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		52605C8E2801E37E0082C0DB /* Influence Maps */ = {
+			isa = PBXGroup;
+			children = (
+				52605C8F2801E3B00082C0DB /* InfluenceMapStrategy.swift */,
+				52605C912801E5510082C0DB /* CityInfluenceMapStrategy.swift */,
+				52605C932801E9560082C0DB /* CityInfluenceSpreadStrategy.swift */,
+				52F623132801FA91009F202A /* UnitInfluenceSpreadStrategy.swift */,
+				52AB06FA2801FB400039B47D /* UnitInfluenceMapStrategy.swift */,
+			);
+			path = "Influence Maps";
+			sourceTree = "<group>";
+		};
 		52E0B18B27E6D87600607FBE /* IO */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +328,7 @@
 		52F9B60927E6AA4C005D55E6 /* Astral One Engine */ = {
 			isa = PBXGroup;
 			children = (
+				52605C8828014FF90082C0DB /* Core */,
 				52F9043127F6B62B00D1AC97 /* Resources */,
 				52F9045027F9F8CF00D1AC97 /* Commands */,
 				52F9042B27F6B4AB00D1AC97 /* Data Access Layer */,
@@ -298,12 +338,6 @@
 				52E0B18B27E6D87600607FBE /* IO */,
 				52F9044727F80BA000D1AC97 /* Log */,
 				52E0B1C627E6E76D00607FBE /* View Models */,
-				52E0B18927E6D86A00607FBE /* Constants.swift */,
-				52E0B19927E6DFA000607FBE /* Game.swift */,
-				52E0B1EA27EAB6B700607FBE /* GameNode.swift */,
-				52E0B18F27E6D87600607FBE /* Map.swift */,
-				52E0B19027E6D87600607FBE /* Tile.swift */,
-				52F9044A27F8E56200D1AC97 /* Turn.swift */,
 			);
 			path = "Astral One Engine";
 			sourceTree = "<group>";
@@ -375,9 +409,12 @@
 				52F9042827F4E27B00D1AC97 /* Warrior.swift in Sources */,
 				52F9042A27F4E3C600D1AC97 /* Pikemen.swift in Sources */,
 				52F9044627F80B0500D1AC97 /* CommandDAO.swift in Sources */,
+				52605C942801E9560082C0DB /* CityInfluenceSpreadStrategy.swift in Sources */,
 				52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */,
+				52AB06FB2801FB400039B47D /* UnitInfluenceMapStrategy.swift in Sources */,
 				52F9042D27F6B54D00D1AC97 /* Db.swift in Sources */,
 				52E0B1B427E6DFD100607FBE /* Pod.swift in Sources */,
+				52605C922801E5510082C0DB /* CityInfluenceMapStrategy.swift in Sources */,
 				52E0B1B827E6DFD100607FBE /* RadarTower.swift in Sources */,
 				52F9044D27F9325300D1AC97 /* CommandType.swift in Sources */,
 				52E0B1C127E6E25300607FBE /* SpriteNode.swift in Sources */,
@@ -390,10 +427,12 @@
 				52E0B1A027E6DFA100607FBE /* Builder.swift in Sources */,
 				52F9044427F6D68A00D1AC97 /* GameDAO.swift in Sources */,
 				52F9045627F9FF6A00D1AC97 /* TechCommand.swift in Sources */,
+				52605C8D2801622D0082C0DB /* InfluenceMap.swift in Sources */,
 				52E0B1B227E6DFD100607FBE /* Wall.swift in Sources */,
 				52E0B1B127E6DFD100607FBE /* Shipyard.swift in Sources */,
 				52E0B19327E6D87600607FBE /* TiledTilesetParser.swift in Sources */,
 				52E0B19427E6D87600607FBE /* Map.swift in Sources */,
+				52F623142801FA91009F202A /* UnitInfluenceSpreadStrategy.swift in Sources */,
 				52F9046E27FC8B7D00D1AC97 /* MoveCommandDAO.swift in Sources */,
 				52F9043727F6CF8900D1AC97 /* DbError.swift in Sources */,
 				52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */,
@@ -402,6 +441,7 @@
 				52E0B1B327E6DFD100607FBE /* MineralStorage.swift in Sources */,
 				52F9045827FA007400D1AC97 /* BuildCityCommand.swift in Sources */,
 				52E0B1B027E6DFD100607FBE /* EnergyStorage.swift in Sources */,
+				52605C902801E3B00082C0DB /* InfluenceMapStrategy.swift in Sources */,
 				52F9044F27F93A6D00D1AC97 /* Player.swift in Sources */,
 				52F9044B27F8E56200D1AC97 /* Turn.swift in Sources */,
 				52E0B1B527E6DFD100607FBE /* PowerPlant.swift in Sources */,
@@ -468,7 +508,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -523,7 +563,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

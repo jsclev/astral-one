@@ -2,7 +2,7 @@ import Foundation
 import GameplayKit
 
 public class Map {
-    private let graph = GameGridGraph()
+    private let graph = GridGraph()
     private var unitType: UnitType = UnitType.Explorer
     
     public var width: Int {
@@ -26,7 +26,7 @@ public class Map {
     }
     
     public func prune() {
-        var nodesToRemove: [GameNode] = []
+//        var nodesToRemove: [GameNode] = []
         for row in 0..<graph.gridHeight {
             for col in 0..<graph.gridWidth {
                 if let node = getNode(row: row, col: col) {
@@ -45,7 +45,7 @@ public class Map {
 //        graph.remove(nodesToRemove)
     }
     
-    public func getNode(row: Int, col: Int) -> GameGridGraphNode? {
+    public func getNode(row: Int, col: Int) -> Node? {
         return graph.node(row: row, col: col)
     }
     
@@ -64,11 +64,11 @@ public class Map {
                                     ordinal: node.getTiles().count))
         }
         else {
-            let node = GameGridGraphNode(row: row, col: col)
+            let node = Node(row: row, col: col)
             node.addTile(tile: Tile(id: tile.id,
                                     spec: tile.spec,
                                     ordinal: node.getTiles().count))
-            graph.addNode(nodeToAdd: node)
+            graph.add(node: node)
         }
     }
     

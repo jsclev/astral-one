@@ -13,6 +13,8 @@
 		525D6BDE27D04AE0008AA740 /* GameCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525D6BDD27D04AE0008AA740 /* GameCamera.swift */; };
 		525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 525DC47D27CF41EF003DC3A2 /* Background4.m4a */; };
 		52605C8328009C550082C0DB /* SomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8228009C550082C0DB /* SomeTests.swift */; };
+		52605C8B280150910082C0DB /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8A280150910082C0DB /* NodeTests.swift */; };
+		52605C992801EF0C0082C0DB /* CityInfluenceMapStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C982801EF0C0082C0DB /* CityInfluenceMapStrategyTests.swift */; };
 		52A8787D27E5651200968F7D /* Civ 2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52A8787C27E5651200968F7D /* Civ 2.sks */; };
 		52D1218227CC6F110047C2CA /* GameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218127CC6F110047C2CA /* GameApp.swift */; };
 		52D1218527CC7A910047C2CA /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218427CC7A900047C2CA /* GameView.swift */; };
@@ -22,6 +24,7 @@
 		52E0B19727E6D9D600607FBE /* libAstral One Engine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E0B19627E6D9D600607FBE /* libAstral One Engine.a */; };
 		52E0B1DB27E80F9800607FBE /* civ2.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1DA27E80F9800607FBE /* civ2.tsx */; };
 		52E0B1E727E95FB700607FBE /* civ2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1E627E95FB700607FBE /* civ2.tmx */; };
+		52F623122801FA23009F202A /* CityInfluenceSpreadStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F623112801FA23009F202A /* CityInfluenceSpreadStrategyTests.swift */; };
 		52F9048527FCD3CB00D1AC97 /* TestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9048427FCD3CB00D1AC97 /* TestUtil.swift */; };
 		52F9048727FCD40200D1AC97 /* CommandDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9048627FCD40200D1AC97 /* CommandDAOTests.swift */; };
 		52F9048C27FCFEFD00D1AC97 /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52F9048B27FCFEFD00D1AC97 /* civitas.sqlite */; };
@@ -57,6 +60,8 @@
 		525D6BDD27D04AE0008AA740 /* GameCamera.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameCamera.swift; sourceTree = "<group>"; tabWidth = 4; };
 		525DC47D27CF41EF003DC3A2 /* Background4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Background4.m4a; sourceTree = "<group>"; };
 		52605C8228009C550082C0DB /* SomeTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = SomeTests.swift; sourceTree = "<group>"; tabWidth = 4; };
+		52605C8A280150910082C0DB /* NodeTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; tabWidth = 4; };
+		52605C982801EF0C0082C0DB /* CityInfluenceMapStrategyTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CityInfluenceMapStrategyTests.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52A8787C27E5651200968F7D /* Civ 2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Civ 2.sks"; sourceTree = "<group>"; };
 		52D1218127CC6F110047C2CA /* GameApp.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameApp.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52D1218427CC7A900047C2CA /* GameView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -66,6 +71,7 @@
 		52E0B19627E6D9D600607FBE /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E0B1DA27E80F9800607FBE /* civ2.tsx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = civ2.tsx; path = "Astral One/Resources/civ2/civ2.tsx"; sourceTree = SOURCE_ROOT; };
 		52E0B1E627E95FB700607FBE /* civ2.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = civ2.tmx; path = "Astral One/Resources/civ2/civ2.tmx"; sourceTree = SOURCE_ROOT; };
+		52F623112801FA23009F202A /* CityInfluenceSpreadStrategyTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CityInfluenceSpreadStrategyTests.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52F9047527FCD10600D1AC97 /* Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F9048427FCD3CB00D1AC97 /* TestUtil.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = TestUtil.swift; sourceTree = "<group>"; tabWidth = 4; };
 		52F9048627FCD40200D1AC97 /* CommandDAOTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = CommandDAOTests.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -107,6 +113,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52605C892801506F0082C0DB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				52605C952801EEA50082C0DB /* Influence Maps */,
+				52605C8A280150910082C0DB /* NodeTests.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		52605C952801EEA50082C0DB /* Influence Maps */ = {
+			isa = PBXGroup;
+			children = (
+				52605C982801EF0C0082C0DB /* CityInfluenceMapStrategyTests.swift */,
+				52F623112801FA23009F202A /* CityInfluenceSpreadStrategyTests.swift */,
+			);
+			path = "Influence Maps";
+			sourceTree = "<group>";
+		};
 		52D1218327CC7A4A0047C2CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +149,7 @@
 		52F9047627FCD10600D1AC97 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				52605C892801506F0082C0DB /* Core */,
 				52F9047E27FCD1CB00D1AC97 /* Data Access Layer */,
 				52F9048427FCD3CB00D1AC97 /* TestUtil.swift */,
 				52605C8228009C550082C0DB /* SomeTests.swift */,
@@ -385,9 +410,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F623122801FA23009F202A /* CityInfluenceSpreadStrategyTests.swift in Sources */,
 				52F9048727FCD40200D1AC97 /* CommandDAOTests.swift in Sources */,
 				52F9048527FCD3CB00D1AC97 /* TestUtil.swift in Sources */,
 				52605C8328009C550082C0DB /* SomeTests.swift in Sources */,
+				52605C8B280150910082C0DB /* NodeTests.swift in Sources */,
+				52605C992801EF0C0082C0DB /* CityInfluenceMapStrategyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

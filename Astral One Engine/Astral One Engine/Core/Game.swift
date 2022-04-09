@@ -36,22 +36,24 @@ public class Game: ObservableObject {
 }
 
 extension ObservableObject where Self.ObjectWillChangePublisher == ObservableObjectPublisher {
-    func registerNestedObservableObject<Object: ObservableObject>(_ vm: Object, cancellables: inout [AnyCancellable]) {
+    func registerNestedObservableObject<Object: ObservableObject>(_ vm: Object,
+                                                                  cancellables: inout [AnyCancellable]) {
         cancellables.append(
             vm.objectWillChange.sink { [weak self] _ in
                 self?.objectWillChange.send()
             }
         )
     }
-    func registerNestedObservableObject<Object: ObservableObject>(_ vm: Object, cancellable: inout AnyCancellable?) {
+    func registerNestedObservableObject<Object: ObservableObject>(_ vm: Object,
+                                                                  cancellable: inout AnyCancellable?) {
         cancellable = vm.objectWillChange.sink { [weak self] _ in
             self?.objectWillChange.send()
         }
     }
 }
 
-public class GameGridGraph {
-    var nodes: Dictionary<GameGridGraphNode, Set<GameGridGraphNode>> = [:]
+public class GridGraph {
+    var nodes: Dictionary<Node, Set<Node>> = [:]
     public var gridWidth: Int = 0
     public var gridHeight: Int = 0
     
@@ -59,39 +61,43 @@ public class GameGridGraph {
         print("initializing grid graph")
     }
     
-    @discardableResult public func addNode(nodeToAdd: GameGridGraphNode) -> Dictionary<GameGridGraphNode, Set<GameGridGraphNode>> {
-        if nodes[nodeToAdd] == nil {
-            nodes[nodeToAdd] = Set<GameGridGraphNode>()
+    @discardableResult
+    public func add(node: Node) -> Dictionary<Node, Set<Node>> {
+        if nodes[node] == nil {
+            nodes[node] = Set<Node>()
             
-            if nodeToAdd.row > gridHeight {
-                gridHeight = nodeToAdd.row
+            if node.row > gridHeight {
+                gridHeight = node.row
             }
             
-            if nodeToAdd.col > gridWidth {
-                gridWidth = nodeToAdd.col
+            if node.col > gridWidth {
+                gridWidth = node.col
             }
         }
         
         return nodes
     }
     
-    @discardableResult public func addConnection(origin: GameGridGraphNode, destination: GameGridGraphNode) -> Dictionary<GameGridGraphNode, Set<GameGridGraphNode>> {
-        addNode(nodeToAdd: origin)
-        addNode(nodeToAdd: destination)
+    @discardableResult
+    public func addConnection(from: Node, to: Node) -> Dictionary<Node, Set<Node>> {
+        add(node: from)
+        add(node: to)
         
         // FIXME Need to rewrite the implementation below in a more robust way
-        nodes[origin]?.insert(destination)
+        nodes[from]?.insert(to)
         
         return nodes
     }
     
-    @discardableResult public func removeConnection(origin: GameGridGraphNode, destination: GameGridGraphNode) -> Dictionary<GameGridGraphNode, Set<GameGridGraphNode>>{
+    @discardableResult
+    public func removeConnection(origin: Node, destination: Node) -> Dictionary<Node, Set<Node>>{
         nodes[origin]?.remove(destination)
         
         return nodes
     }
     
-    @discardableResult public func removeNode(nodeToDelete: GameGridGraphNode) -> Dictionary<GameGridGraphNode, Set<GameGridGraphNode>> {
+    @discardableResult
+    public func removeNode(nodeToDelete: Node) -> Dictionary<Node, Set<Node>> {
         nodes[nodeToDelete] = nil
         
         for node in nodes.keys {
@@ -101,7 +107,7 @@ public class GameGridGraph {
         return nodes
     }
     
-    public func node(row: Int, col: Int) -> GameGridGraphNode? {
+    public func node(row: Int, col: Int) -> Node? {
         for node in nodes.keys {
             if node.row == row && node.col == col {
                 return node
@@ -112,7 +118,7 @@ public class GameGridGraph {
     }
 }
 
-public class GameGridGraphNode: Hashable {
+public class Node: Hashable {
     public let row: Int
     public let col: Int
     
@@ -156,12 +162,32 @@ public class GameGridGraphNode: Hashable {
         return enemyLandDefense
     }
     
+    public func getScore(accordingTo: Unit) -> Float {
+        var score: Float = 0.0
+        var help: Float = 100.0
+        var threat: Float = 0.0
+        var movementCost: Float = 0.0
+        
+        for tile in tiles {
+            if tile.spec.tileType == TileType.Terrain {
+                if tile.spec.terrainType == TerrainType.Forest {
+                    movementCost += 1.0
+                }
+                else {
+                    movementCost += 1.0
+                }
+            }
+        }
+        
+        return help - 5.0 * movementCost - threat
+    }
+    
     public func hash(into hasher: inout Hasher) {
         hasher.combine(row)
         hasher.combine(col)
     }
     
-    public static func == (lhs: GameGridGraphNode, rhs: GameGridGraphNode) -> Bool {
+    public static func == (lhs: Node, rhs: Node) -> Bool {
         return lhs.row == rhs.row && lhs.col == rhs.col
     }
 }
