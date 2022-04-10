@@ -17,6 +17,17 @@ public enum unitType {
     case Tank
 }
 
+public enum DiplomacyStatus {
+    case Same
+    case Ally
+    case DeclaredFriend
+    case Friendly
+    case Neutral
+    case Unfriendly
+    case Denounced
+    case AtWar
+}
+
 public struct Constants {
     public static let mapWidth: CGFloat = 1000.0 / 3.0
     public static let mapHeight: CGFloat = 1000.0 / 3.0

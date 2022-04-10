@@ -54,11 +54,12 @@ extension ObservableObject where Self.ObjectWillChangePublisher == ObservableObj
 
 public class GridGraph {
     var nodes: Dictionary<Node, Set<Node>> = [:]
-    public var gridWidth: Int = 0
-    public var gridHeight: Int = 0
+    public let gridWidth: Int
+    public let gridHeight: Int
     
-    public init() {
-        print("initializing grid graph")
+    public init(size: Int) {
+        gridWidth = size
+        gridHeight = size
     }
     
     @discardableResult
@@ -66,13 +67,13 @@ public class GridGraph {
         if nodes[node] == nil {
             nodes[node] = Set<Node>()
             
-            if node.row > gridHeight {
-                gridHeight = node.row
-            }
-            
-            if node.col > gridWidth {
-                gridWidth = node.col
-            }
+//            if node.row > gridHeight {
+//                gridHeight = node.row
+//            }
+//
+//            if node.col > gridWidth {
+//                gridWidth = node.col
+//            }
         }
         
         return nodes

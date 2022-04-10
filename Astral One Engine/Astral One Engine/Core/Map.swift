@@ -2,7 +2,7 @@ import Foundation
 import GameplayKit
 
 public class Map {
-    private let graph = GridGraph()
+    private let graph: GridGraph
     private var unitType: UnitType = UnitType.Explorer
     
     public var width: Int {
@@ -23,6 +23,7 @@ public class Map {
 //                                      height: height,
 //                                      diagonalsAllowed: true,
 //                                      nodeClass: GameNode.self)
+        graph = GridGraph(size: Int(width))
     }
     
     public func prune() {
@@ -128,7 +129,11 @@ public class Map {
                     
                     for tile in tiles {
                         if tile.spec.tileType == TileType.Unit {
-                            return Unit(name: "Settler", maxHP: 10)
+                            return Unit(playerId: 1,
+                                        name: "Settler",
+                                        maxHP: 10,
+                                        row: row,
+                                        col: col)
                         }
                     }
                 }

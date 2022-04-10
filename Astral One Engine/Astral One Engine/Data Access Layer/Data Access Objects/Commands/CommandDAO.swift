@@ -64,7 +64,11 @@ public class CommandDAO: BaseDAO {
                                                         playerId: playerId,
                                                         type: commandType,
                                                         ordinal: commandOrdinal,
-                                                        unit: Unit(name: "Settler", maxHP: 10),
+                                                        unit: Unit(playerId: playerId,
+                                                                   name: "Settler",
+                                                                   maxHP: 10,
+                                                                   row: 0,
+                                                                   col: 0),
                                                         toPosition: "Hello"))
                         }
                         else if commandName == "Research Tech" {
@@ -74,7 +78,11 @@ public class CommandDAO: BaseDAO {
                                                         playerId: playerId,
                                                         type: commandType,
                                                         ordinal: commandOrdinal,
-                                                        unit: Unit(name: "Settler", maxHP: 10),
+                                                        unit: Unit(playerId: playerId,
+                                                                   name: "Settler",
+                                                                   maxHP: 10,
+                                                                   row: 0,
+                                                                   col: 0),
                                                         toPosition: "Hello"))
                         }
                         else if commandName == "Build Building" {
@@ -84,7 +92,11 @@ public class CommandDAO: BaseDAO {
                                                                  playerId: playerId,
                                                                  type: commandType,
                                                                  ordinal: commandOrdinal,
-                                                                 unit: Unit(name: "Settler", maxHP: 10),
+                                                                 unit: Unit(playerId: playerId,
+                                                                            name: "Settler",
+                                                                            maxHP: 10,
+                                                                            row: 0,
+                                                                            col: 0),
                                                                  toPosition: "Hello"))
                         }
                         else if commandName == "Build City" {
@@ -94,7 +106,11 @@ public class CommandDAO: BaseDAO {
                                                              playerId: playerId,
                                                              type: commandType,
                                                              ordinal: commandOrdinal,
-                                                             unit: Unit(name: "Settler", maxHP: 10),
+                                                             unit: Unit(playerId: playerId,
+                                                                        name: "Settler",
+                                                                        maxHP: 10,
+                                                                        row: 0,
+                                                                        col: 0),
                                                              toPosition: "Hello"))
                         }
                     }

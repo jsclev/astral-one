@@ -54,8 +54,8 @@ class GameScene: SKScene {
                                contents: nil,
                                attributes: [FileAttributeKey.creationDate: Date()])
         
-        var gridGraph = GameGridGraph()
-        gridGraph.addNode(nodeToAdd: GameGridGraphNode(row: 0, col: 0))
+        var gridGraph = GridGraph(size: 0)
+        gridGraph.add(node: Node(row: 0, col: 0))
         
         let db = Db(fullRefresh: true)
         let game = Game(db: db)
@@ -80,7 +80,11 @@ class GameScene: SKScene {
                                             playerId: 1,
                                             type: commandType,
                                             ordinal: 1,
-                                            unit: Unit(name: "Settler", maxHP: 10),
+                                            unit: Unit(playerId: 1,
+                                                       name: "Settler",
+                                                       maxHP: 10,
+                                                       row: 0,
+                                                       col: 0),
                                             toPosition: "Hello"))
         }
         

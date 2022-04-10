@@ -7,17 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52AB0709280200550039B47D /* Engine_TestsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0708280200550039B47D /* Engine_TestsApp.swift */; };
+		52AB0709280200550039B47D /* EngineTestsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0708280200550039B47D /* EngineTestsApp.swift */; };
 		52AB070B280200550039B47D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB070A280200550039B47D /* ContentView.swift */; };
 		52AB070D280200560039B47D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52AB070C280200560039B47D /* Assets.xcassets */; };
 		52AB0710280200560039B47D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52AB070F280200560039B47D /* Preview Assets.xcassets */; };
-		52AB071A280200560039B47D /* Engine_TestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0719280200560039B47D /* Engine_TestsTests.swift */; };
 		52AB0734280213A20039B47D /* libAstral One Engine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AB0733280213A20039B47D /* libAstral One Engine.a */; };
 		52AB0736280213DA0039B47D /* libAstral One Engine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AB0735280213DA0039B47D /* libAstral One Engine.a */; };
 		52AB073C280216200039B47D /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52AB073B280216200039B47D /* civitas.sqlite */; };
 		52AB073D280216200039B47D /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52AB073B280216200039B47D /* civitas.sqlite */; };
 		52AB0741280219660039B47D /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0740280219660039B47D /* NodeTests.swift */; };
-		52AB074428021D7D0039B47D /* CityIMSpreadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB074328021D7D0039B47D /* CityIMSpreadTests.swift */; };
+		52AB074428021D7D0039B47D /* CityInfluenceMapCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB074328021D7D0039B47D /* CityInfluenceMapCalculatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,17 +31,16 @@
 
 /* Begin PBXFileReference section */
 		52AB0705280200550039B47D /* Engine Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Engine Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52AB0708280200550039B47D /* Engine_TestsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine_TestsApp.swift; sourceTree = "<group>"; };
+		52AB0708280200550039B47D /* EngineTestsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTestsApp.swift; sourceTree = "<group>"; };
 		52AB070A280200550039B47D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		52AB070C280200560039B47D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52AB070F280200560039B47D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		52AB0715280200560039B47D /* Engine TestsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Engine TestsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52AB0719280200560039B47D /* Engine_TestsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engine_TestsTests.swift; sourceTree = "<group>"; };
 		52AB0733280213A20039B47D /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB0735280213DA0039B47D /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB073B280216200039B47D /* civitas.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = civitas.sqlite; path = ../../Db/civitas.sqlite; sourceTree = "<group>"; };
 		52AB0740280219660039B47D /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
-		52AB074328021D7D0039B47D /* CityIMSpreadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityIMSpreadTests.swift; sourceTree = "<group>"; };
+		52AB074328021D7D0039B47D /* CityInfluenceMapCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityInfluenceMapCalculatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +67,10 @@
 			isa = PBXGroup;
 			children = (
 				52AB0707280200550039B47D /* Placeholder App */,
-				52AB0718280200560039B47D /* Engine Tests */,
 				52AB073A2802157D0039B47D /* Resources */,
 				52AB0706280200550039B47D /* Products */,
 				52AB0732280213A20039B47D /* Frameworks */,
+				52AB0718280200560039B47D /* Unit Tests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,7 +86,7 @@
 		52AB0707280200550039B47D /* Placeholder App */ = {
 			isa = PBXGroup;
 			children = (
-				52AB0708280200550039B47D /* Engine_TestsApp.swift */,
+				52AB0708280200550039B47D /* EngineTestsApp.swift */,
 				52AB070A280200550039B47D /* ContentView.swift */,
 				52AB070C280200560039B47D /* Assets.xcassets */,
 				52AB070E280200560039B47D /* Preview Content */,
@@ -104,13 +102,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		52AB0718280200560039B47D /* Engine Tests */ = {
+		52AB0718280200560039B47D /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
 				52AB073F280219470039B47D /* Core */,
-				52AB0719280200560039B47D /* Engine_TestsTests.swift */,
 			);
-			path = "Engine Tests";
+			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
 		52AB0732280213A20039B47D /* Frameworks */ = {
@@ -142,7 +139,7 @@
 		52AB074228021D200039B47D /* Influence Maps */ = {
 			isa = PBXGroup;
 			children = (
-				52AB074328021D7D0039B47D /* CityIMSpreadTests.swift */,
+				52AB074328021D7D0039B47D /* CityInfluenceMapCalculatorTests.swift */,
 			);
 			path = "Influence Maps";
 			sourceTree = "<group>";
@@ -250,7 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52AB070B280200550039B47D /* ContentView.swift in Sources */,
-				52AB0709280200550039B47D /* Engine_TestsApp.swift in Sources */,
+				52AB0709280200550039B47D /* EngineTestsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,8 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52AB071A280200560039B47D /* Engine_TestsTests.swift in Sources */,
-				52AB074428021D7D0039B47D /* CityIMSpreadTests.swift in Sources */,
+				52AB074428021D7D0039B47D /* CityInfluenceMapCalculatorTests.swift in Sources */,
 				52AB0741280219660039B47D /* NodeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,7 +321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -381,7 +377,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

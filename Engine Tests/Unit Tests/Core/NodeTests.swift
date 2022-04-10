@@ -21,7 +21,7 @@ class NodeTests: XCTestCase {
     }
 
     func testPerformanceExample() throws {
-        var gridGraph = GridGraph()
+        var gridGraph = GridGraph(size: 5)
         var nodes: [Node] = []
         
         for row in 0..<50 {

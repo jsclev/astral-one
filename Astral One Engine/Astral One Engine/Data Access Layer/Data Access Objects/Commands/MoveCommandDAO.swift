@@ -45,7 +45,11 @@ public class MoveCommandDAO: BaseDAO {
                            playerId: 1,
                            type: commandType,
                            ordinal: 1,
-                           unit: Unit(name: "Settler", maxHP: 10),
+                           unit: Unit(playerId: 1,
+                                      name: "Settler",
+                                      maxHP: 10,
+                                      row: 0,
+                                      col: 0),
                            toPosition: "Hello")
     }
 }
