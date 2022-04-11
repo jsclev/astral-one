@@ -80,7 +80,7 @@
 		AFEF9616231A0215006025E5 /* Splash.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Splash.caf; sourceTree = "<group>"; };
 		AFEF9617231A0225006025E5 /* VineData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = VineData.plist; sourceTree = "<group>"; };
 		AFEF961F231A043E006025E5 /* GameScene.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; tabWidth = 4; };
-		D2A5F2001F4A9144005CD714 /* Astral One.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Astral One.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2A5F2001F4A9144005CD714 /* Main.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Main.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A5F2081F4A9144005CD714 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2A5F20A1F4A9144005CD714 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2A5F20F1F4A9144005CD714 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 		D2A5F2011F4A9144005CD714 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D2A5F2001F4A9144005CD714 /* Astral One.app */,
+				D2A5F2001F4A9144005CD714 /* Main.app */,
 				52F9047527FCD10600D1AC97 /* Unit Tests.xctest */,
 			);
 			name = Products;
@@ -280,9 +280,9 @@
 			productReference = 52F9047527FCD10600D1AC97 /* Unit Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D2A5F1FF1F4A9144005CD714 /* Astral One */ = {
+		D2A5F1FF1F4A9144005CD714 /* Main */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D2A5F2121F4A9144005CD714 /* Build configuration list for PBXNativeTarget "Astral One" */;
+			buildConfigurationList = D2A5F2121F4A9144005CD714 /* Build configuration list for PBXNativeTarget "Main" */;
 			buildPhases = (
 				D2A5F1FC1F4A9144005CD714 /* Sources */,
 				D2A5F1FD1F4A9144005CD714 /* Frameworks */,
@@ -292,9 +292,9 @@
 			);
 			dependencies = (
 			);
-			name = "Astral One";
+			name = Main;
 			productName = MyRWTutorial;
-			productReference = D2A5F2001F4A9144005CD714 /* Astral One.app */;
+			productReference = D2A5F2001F4A9144005CD714 /* Main.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -318,7 +318,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D2A5F1FB1F4A9143005CD714 /* Build configuration list for PBXProject "Astral One" */;
+			buildConfigurationList = D2A5F1FB1F4A9143005CD714 /* Build configuration list for PBXProject "Main" */;
 			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -331,7 +331,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D2A5F1FF1F4A9144005CD714 /* Astral One */,
+				D2A5F1FF1F4A9144005CD714 /* Main */,
 				52F9047427FCD10600D1AC97 /* Unit Tests */,
 			);
 		};
@@ -403,7 +403,7 @@
 /* Begin PBXTargetDependency section */
 		52F9047A27FCD10600D1AC97 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D2A5F1FF1F4A9144005CD714 /* Astral One */;
+			target = D2A5F1FF1F4A9144005CD714 /* Main */;
 			targetProxy = 52F9047927FCD10600D1AC97 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -454,7 +454,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astral One.app/Astral One";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Main.app/Main";
 			};
 			name = Debug;
 		};
@@ -482,7 +482,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astral One.app/Astral One";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Main.app/Main";
 			};
 			name = Release;
 		};
@@ -651,7 +651,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D2A5F1FB1F4A9143005CD714 /* Build configuration list for PBXProject "Astral One" */ = {
+		D2A5F1FB1F4A9143005CD714 /* Build configuration list for PBXProject "Main" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D2A5F2101F4A9144005CD714 /* Debug */,
@@ -660,7 +660,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D2A5F2121F4A9144005CD714 /* Build configuration list for PBXNativeTarget "Astral One" */ = {
+		D2A5F2121F4A9144005CD714 /* Build configuration list for PBXNativeTarget "Main" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D2A5F2131F4A9144005CD714 /* Debug */,
