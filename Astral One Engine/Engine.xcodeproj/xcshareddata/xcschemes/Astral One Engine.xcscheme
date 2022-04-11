@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52F9B60627E6AA4C005D55E6"
                BuildableName = "libAstral One Engine.a"
-               BlueprintName = "Astral One Engine"
-               ReferencedContainer = "container:Astral One Engine.xcodeproj">
+               BlueprintName = "Engine"
+               ReferencedContainer = "container:Engine.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -52,8 +52,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52F9B60627E6AA4C005D55E6"
             BuildableName = "libAstral One Engine.a"
-            BlueprintName = "Astral One Engine"
-            ReferencedContainer = "container:Astral One Engine.xcodeproj">
+            BlueprintName = "Engine"
+            ReferencedContainer = "container:Engine.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

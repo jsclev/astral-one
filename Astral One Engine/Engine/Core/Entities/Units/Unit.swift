@@ -4,6 +4,7 @@ import GameplayKit
 public class Unit: GKEntity {
     public let playerId: Int
     public let name: String
+    public let cost: Int
     public let hp: Int
     public var currentHp: Int
     public let attackRating: Int
@@ -16,6 +17,7 @@ public class Unit: GKEntity {
     
     public init(playerId: Int,
                 name: String,
+                cost: Int,
                 hp: Int,
                 attackRating: Int,
                 defenseRating: Int,
@@ -25,6 +27,7 @@ public class Unit: GKEntity {
                 col: Int) {
         self.playerId = playerId
         self.name = name
+        self.cost = cost
         self.hp = hp
         self.currentHp = hp
         self.attackRating = attackRating
@@ -48,5 +51,9 @@ public class Unit: GKEntity {
         }
         
         return DiplomacyStatus.AtWar
+    }
+    
+    public func getDistance(to: Unit) -> Int {
+        return abs(row - to.row) + abs(col - to.col) - 1
     }
 }

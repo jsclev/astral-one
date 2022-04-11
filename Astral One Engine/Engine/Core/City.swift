@@ -21,7 +21,7 @@ public class City {
         return DiplomacyStatus.AtWar
     }
     
-    public func getDistance(toUnit: Unit) -> Int {
-        return abs(row - toUnit.row) + abs(col - toUnit.col) - 1
+    public func getDistance(to: Unit) -> Int {
+        return abs(row - to.row) + abs(col - to.col) - 1
     }
 }

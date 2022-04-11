@@ -1,12 +1,16 @@
 import Foundation
+import GameplayKit
 
-public class Pikeman: Unit {
-    init(playerId: Int, row: Int, col: Int) {
+public class Warrior: Unit {
+    public init(playerId: Int,
+                row: Int,
+                col: Int) {
         super.init(playerId: playerId,
-                   name: "Pikeman",
+                   name: "Warrior",
+                   cost: 10,
                    hp: 10,
                    attackRating: 1,
-                   defenseRating: 2,
+                   defenseRating: 1,
                    firepower: 1,
                    movementPoints: 1.0,
                    row: row,

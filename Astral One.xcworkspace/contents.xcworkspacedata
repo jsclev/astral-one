@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Astral One Engine/Astral One Engine.xcodeproj">
+      location = "group:/Users/john/projects/astral-one/Astral One Engine/Engine.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Engine Tests/Engine Tests.xcodeproj">

@@ -123,7 +123,7 @@
 		52F9045727FA007400D1AC97 /* BuildCityCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildCityCommand.swift; sourceTree = "<group>"; };
 		52F9045927FA009E00D1AC97 /* BuildBuildingCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildBuildingCommand.swift; sourceTree = "<group>"; };
 		52F9046D27FC8B7D00D1AC97 /* MoveCommandDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCommandDAO.swift; sourceTree = "<group>"; };
-		52F9B60727E6AA4C005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F9B60727E6AA4C005D55E6 /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,7 +310,7 @@
 		52F9B5FE27E6AA4C005D55E6 = {
 			isa = PBXGroup;
 			children = (
-				52F9B60927E6AA4C005D55E6 /* Astral One Engine */,
+				52F9B60927E6AA4C005D55E6 /* Engine */,
 				52F9B60827E6AA4C005D55E6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -318,12 +318,12 @@
 		52F9B60827E6AA4C005D55E6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				52F9B60727E6AA4C005D55E6 /* libAstral One Engine.a */,
+				52F9B60727E6AA4C005D55E6 /* libEngine.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		52F9B60927E6AA4C005D55E6 /* Astral One Engine */ = {
+		52F9B60927E6AA4C005D55E6 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
 				52605C8828014FF90082C0DB /* Core */,
@@ -336,15 +336,15 @@
 				52F9044727F80BA000D1AC97 /* Log */,
 				52E0B1C627E6E76D00607FBE /* View Models */,
 			);
-			path = "Astral One Engine";
+			path = Engine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		52F9B60627E6AA4C005D55E6 /* Astral One Engine */ = {
+		52F9B60627E6AA4C005D55E6 /* Engine */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52F9B60E27E6AA4C005D55E6 /* Build configuration list for PBXNativeTarget "Astral One Engine" */;
+			buildConfigurationList = 52F9B60E27E6AA4C005D55E6 /* Build configuration list for PBXNativeTarget "Engine" */;
 			buildPhases = (
 				52F9B60327E6AA4C005D55E6 /* Sources */,
 				52F9B60427E6AA4C005D55E6 /* Frameworks */,
@@ -354,9 +354,9 @@
 			);
 			dependencies = (
 			);
-			name = "Astral One Engine";
+			name = Engine;
 			productName = "Astral One Engine";
-			productReference = 52F9B60727E6AA4C005D55E6 /* libAstral One Engine.a */;
+			productReference = 52F9B60727E6AA4C005D55E6 /* libEngine.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -374,7 +374,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 52F9B60227E6AA4C005D55E6 /* Build configuration list for PBXProject "Astral One Engine" */;
+			buildConfigurationList = 52F9B60227E6AA4C005D55E6 /* Build configuration list for PBXProject "Engine" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -387,7 +387,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				52F9B60627E6AA4C005D55E6 /* Astral One Engine */,
+				52F9B60627E6AA4C005D55E6 /* Engine */,
 			);
 		};
 /* End PBXProject section */
@@ -598,7 +598,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		52F9B60227E6AA4C005D55E6 /* Build configuration list for PBXProject "Astral One Engine" */ = {
+		52F9B60227E6AA4C005D55E6 /* Build configuration list for PBXProject "Engine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52F9B60C27E6AA4C005D55E6 /* Debug */,
@@ -607,7 +607,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52F9B60E27E6AA4C005D55E6 /* Build configuration list for PBXNativeTarget "Astral One Engine" */ = {
+		52F9B60E27E6AA4C005D55E6 /* Build configuration list for PBXNativeTarget "Engine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52F9B60F27E6AA4C005D55E6 /* Debug */,
