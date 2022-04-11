@@ -25,6 +25,6 @@ public class GameDAO: BaseDAO {
         
         sqlite3_finalize(stmt)
         
-        return Unit(playerId: 1, name: unitName, maxHP: id, row: 0, col: 0)
+        return Warrior(playerId: 1, row: 0, col: 0)
     }
 }

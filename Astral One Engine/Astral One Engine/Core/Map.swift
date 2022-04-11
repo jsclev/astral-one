@@ -129,11 +129,9 @@ public class Map {
                     
                     for tile in tiles {
                         if tile.spec.tileType == TileType.Unit {
-                            return Unit(playerId: 1,
-                                        name: "Settler",
-                                        maxHP: 10,
-                                        row: row,
-                                        col: col)
+                            return Warrior(playerId: 1,
+                                           row: 0,
+                                           col: 0)
                         }
                     }
                 }

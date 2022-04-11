@@ -1,10 +1,14 @@
 import Foundation
 
-public class Pikemen: Unit {
+public class Pikeman: Unit {
     init(playerId: Int, row: Int, col: Int) {
         super.init(playerId: playerId,
-                   name: "Pikemen",
-                   maxHP: 10,
+                   name: "Pikeman",
+                   hp: 10,
+                   attackRating: 1,
+                   defenseRating: 2,
+                   firepower: 1,
+                   movementPoints: 1.0,
                    row: row,
                    col: col)
     }

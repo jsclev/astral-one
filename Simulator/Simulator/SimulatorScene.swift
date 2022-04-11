@@ -80,11 +80,9 @@ class GameScene: SKScene {
                                             playerId: 1,
                                             type: commandType,
                                             ordinal: 1,
-                                            unit: Unit(playerId: 1,
-                                                       name: "Settler",
-                                                       maxHP: 10,
-                                                       row: 0,
-                                                       col: 0),
+                                            unit: Warrior(playerId: 1,
+                                                          row: 0,
+                                                          col: 0),
                                             toPosition: "Hello"))
         }
         

@@ -2,31 +2,51 @@ import Foundation
 import GameplayKit
 
 public class Unit: GKEntity {
-    let playerId: Int
-    let name: String
-    let maxHP: Int
-    let row: Int
-    let col: Int
+    public let playerId: Int
+    public let name: String
+    public let hp: Int
+    public var currentHp: Int
+    public let attackRating: Int
+    public let defenseRating: Int
+    public let firepower: Int
+    public let movementPoints: Float
+    public var currentMovementPoints: Float
+    public let row: Int
+    public let col: Int
     
-    public init(playerId: Int, name: String, maxHP: Int, row: Int, col: Int) {
+    public init(playerId: Int,
+                name: String,
+                hp: Int,
+                attackRating: Int,
+                defenseRating: Int,
+                firepower: Int,
+                movementPoints: Float,
+                row: Int,
+                col: Int) {
         self.playerId = playerId
         self.name = name
-        self.maxHP = maxHP
+        self.hp = hp
+        self.currentHp = hp
+        self.attackRating = attackRating
+        self.defenseRating = defenseRating
+        self.firepower = firepower
+        self.movementPoints = movementPoints
+        self.currentMovementPoints = movementPoints
         self.row = row
         self.col = col
         
         super.init()
     }
     
-    public func getDiplomacyStatus(otherUnit: Unit) -> DiplomacyStatus {
-        if playerId == otherUnit.playerId {
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func getDiplomacyStatus(between: Unit) -> DiplomacyStatus {
+        if playerId == between.playerId {
             return DiplomacyStatus.Same
         }
         
         return DiplomacyStatus.AtWar
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

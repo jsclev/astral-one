@@ -22,7 +22,7 @@ class GameScene: SKScene {
     var cameraScale = 1.0
     var entityManager: EntityManager!
     var initialCameraScale = 1.0
-    let builder = Builder()
+    let builder = Settler()
     
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
     
