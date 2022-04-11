@@ -1,7 +1,7 @@
 import SpriteKit
 import AVFoundation
 import GameplayKit
-import Astral_One_Engine
+import Engine
 
 enum PathfinderState {
     case initialized

@@ -1,5 +1,5 @@
 import XCTest
-@testable import Astral_One_Engine
+import Engine
 
 class CommandDAOTests: XCTestCase {
     private var db = TestUtil.getDb()

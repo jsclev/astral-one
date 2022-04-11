@@ -1,9 +1,9 @@
 import Foundation
 
-public class Pikeman: Unit {
-    init(playerId: Int, row: Int, col: Int) {
+public class BasicDefensiveGround: Unit {
+    public init(playerId: Int, name: String, row: Int, col: Int) {
         super.init(playerId: playerId,
-                   name: "Pikeman",
+                   name: name,
                    cost: 20,
                    hp: 10,
                    attackRating: 1,

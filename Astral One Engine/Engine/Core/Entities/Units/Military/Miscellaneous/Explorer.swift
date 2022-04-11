@@ -1,13 +1,28 @@
 import GameplayKit
 import SwiftUI
 
-public class Explorer {
+public class Explorer: Unit {
     private let game: Game
     private var position: SIMD2<Int32>
     
     public init(game: Game, position: SIMD2<Int32>) {
         self.game = game
         self.position = position
+        
+        super.init(playerId: 1,
+                   name: "Explorer",
+                   cost: 10,
+                   hp: 10,
+                   attackRating: 1,
+                   defenseRating: 1,
+                   firepower: 1,
+                   movementPoints: 1.0,
+                   row: Int(position.y),
+                   col: Int(position.x))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func add<NodeType>(node: NodeType, to graph: GKGridGraph<NodeType>) {

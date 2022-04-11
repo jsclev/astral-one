@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521F21C72804827600F1D61D /* Infantry1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21C62804827600F1D61D /* Infantry1Tests.swift */; };
+		521F21CD280485FC00F1D61D /* libEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 521F21CC280485FC00F1D61D /* libEngine.a */; };
+		521F21CF2804860F00F1D61D /* libEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 521F21CE2804860F00F1D61D /* libEngine.a */; };
 		52AB0709280200550039B47D /* EngineTestsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0708280200550039B47D /* EngineTestsApp.swift */; };
 		52AB070B280200550039B47D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB070A280200550039B47D /* ContentView.swift */; };
 		52AB070D280200560039B47D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52AB070C280200560039B47D /* Assets.xcassets */; };
 		52AB0710280200560039B47D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52AB070F280200560039B47D /* Preview Assets.xcassets */; };
-		52AB0734280213A20039B47D /* libAstral One Engine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AB0733280213A20039B47D /* libAstral One Engine.a */; };
-		52AB0736280213DA0039B47D /* libAstral One Engine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52AB0735280213DA0039B47D /* libAstral One Engine.a */; };
 		52AB073C280216200039B47D /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52AB073B280216200039B47D /* civitas.sqlite */; };
 		52AB073D280216200039B47D /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52AB073B280216200039B47D /* civitas.sqlite */; };
 		52AB0741280219660039B47D /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0740280219660039B47D /* NodeTests.swift */; };
@@ -30,12 +31,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		521F21C62804827600F1D61D /* Infantry1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry1Tests.swift; sourceTree = "<group>"; };
+		521F21C8280485A700F1D61D /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		521F21CA280485B700F1D61D /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		521F21CC280485FC00F1D61D /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		521F21CE2804860F00F1D61D /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB0705280200550039B47D /* Engine Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Engine Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB0708280200550039B47D /* EngineTestsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTestsApp.swift; sourceTree = "<group>"; };
 		52AB070A280200550039B47D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		52AB070C280200560039B47D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52AB070F280200560039B47D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		52AB0715280200560039B47D /* Engine TestsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Engine TestsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52AB0715280200560039B47D /* Engine Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Engine Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB0733280213A20039B47D /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB0735280213DA0039B47D /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB073B280216200039B47D /* civitas.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = civitas.sqlite; path = ../../Db/civitas.sqlite; sourceTree = "<group>"; };
@@ -48,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52AB0734280213A20039B47D /* libAstral One Engine.a in Frameworks */,
+				521F21CF2804860F00F1D61D /* libEngine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,13 +62,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52AB0736280213DA0039B47D /* libAstral One Engine.a in Frameworks */,
+				521F21CD280485FC00F1D61D /* libEngine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		521F21C22804821D00F1D61D /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				521F21C32804822300F1D61D /* Military */,
+			);
+			path = Units;
+			sourceTree = "<group>";
+		};
+		521F21C32804822300F1D61D /* Military */ = {
+			isa = PBXGroup;
+			children = (
+				521F21C42804822B00F1D61D /* Ground */,
+			);
+			path = Military;
+			sourceTree = "<group>";
+		};
+		521F21C42804822B00F1D61D /* Ground */ = {
+			isa = PBXGroup;
+			children = (
+				521F21C52804823200F1D61D /* Infantry */,
+			);
+			path = Ground;
+			sourceTree = "<group>";
+		};
+		521F21C52804823200F1D61D /* Infantry */ = {
+			isa = PBXGroup;
+			children = (
+				521F21C62804827600F1D61D /* Infantry1Tests.swift */,
+			);
+			path = Infantry;
+			sourceTree = "<group>";
+		};
 		52AB06FC280200540039B47D = {
 			isa = PBXGroup;
 			children = (
@@ -78,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				52AB0705280200550039B47D /* Engine Tests.app */,
-				52AB0715280200560039B47D /* Engine TestsTests.xctest */,
+				52AB0715280200560039B47D /* Engine Unit Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,6 +151,10 @@
 		52AB0732280213A20039B47D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				521F21CE2804860F00F1D61D /* libEngine.a */,
+				521F21CC280485FC00F1D61D /* libEngine.a */,
+				521F21CA280485B700F1D61D /* libEngine.a */,
+				521F21C8280485A700F1D61D /* libEngine.a */,
 				52AB0735280213DA0039B47D /* libAstral One Engine.a */,
 				52AB0733280213A20039B47D /* libAstral One Engine.a */,
 			);
@@ -130,6 +172,7 @@
 		52AB073F280219470039B47D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				521F21C22804821D00F1D61D /* Units */,
 				52AB074228021D200039B47D /* Influence Maps */,
 				52AB0740280219660039B47D /* NodeTests.swift */,
 			);
@@ -164,9 +207,9 @@
 			productReference = 52AB0705280200550039B47D /* Engine Tests.app */;
 			productType = "com.apple.product-type.application";
 		};
-		52AB0714280200560039B47D /* Engine TestsTests */ = {
+		52AB0714280200560039B47D /* Engine Unit Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52AB072C280200560039B47D /* Build configuration list for PBXNativeTarget "Engine TestsTests" */;
+			buildConfigurationList = 52AB072C280200560039B47D /* Build configuration list for PBXNativeTarget "Engine Unit Tests" */;
 			buildPhases = (
 				52AB0711280200560039B47D /* Sources */,
 				52AB0712280200560039B47D /* Frameworks */,
@@ -177,9 +220,9 @@
 			dependencies = (
 				52AB0717280200560039B47D /* PBXTargetDependency */,
 			);
-			name = "Engine TestsTests";
+			name = "Engine Unit Tests";
 			productName = "Engine TestsTests";
-			productReference = 52AB0715280200560039B47D /* Engine TestsTests.xctest */;
+			productReference = 52AB0715280200560039B47D /* Engine Unit Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -215,7 +258,7 @@
 			projectRoot = "";
 			targets = (
 				52AB0704280200540039B47D /* Engine Tests */,
-				52AB0714280200560039B47D /* Engine TestsTests */,
+				52AB0714280200560039B47D /* Engine Unit Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -257,6 +300,7 @@
 			files = (
 				52AB074428021D7D0039B47D /* CityInfluenceMapCalculatorTests.swift in Sources */,
 				52AB0741280219660039B47D /* NodeTests.swift in Sources */,
+				521F21C72804827600F1D61D /* Infantry1Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,7 +554,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52AB072C280200560039B47D /* Build configuration list for PBXNativeTarget "Engine TestsTests" */ = {
+		52AB072C280200560039B47D /* Build configuration list for PBXNativeTarget "Engine Unit Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52AB072D280200560039B47D /* Debug */,

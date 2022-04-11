@@ -7,7 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52012F602803A77A008388F6 /* Settler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52012F5F2803A77A008388F6 /* Settler.swift */; };
+		52012F602803A77A008388F6 /* Founder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52012F5F2803A77A008388F6 /* Founder.swift */; };
+		521F21A02803F88400F1D61D /* Infantry2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F219F2803F88400F1D61D /* Infantry2.swift */; };
+		521F21A22803F89A00F1D61D /* Infantry3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21A12803F89A00F1D61D /* Infantry3.swift */; };
+		521F21A42803F8A900F1D61D /* Infantry4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21A32803F8A900F1D61D /* Infantry4.swift */; };
+		521F21A62803F8BB00F1D61D /* Infantry5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21A52803F8BB00F1D61D /* Infantry5.swift */; };
+		521F21A92803F8F100F1D61D /* Artillery1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21A82803F8F100F1D61D /* Artillery1.swift */; };
+		521F21AB2803F91200F1D61D /* Artillery2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21AA2803F91200F1D61D /* Artillery2.swift */; };
+		521F21AD2803F92300F1D61D /* Artillery3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21AC2803F92300F1D61D /* Artillery3.swift */; };
+		521F21AF2803F92F00F1D61D /* Artillery4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21AE2803F92F00F1D61D /* Artillery4.swift */; };
+		521F21B328047F7600F1D61D /* Trade1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21B228047F7600F1D61D /* Trade1.swift */; };
+		521F21B528047F8000F1D61D /* Trade2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21B428047F8000F1D61D /* Trade2.swift */; };
+		521F21B7280480E600F1D61D /* Paratrooper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21B6280480E600F1D61D /* Paratrooper.swift */; };
+		521F21B9280480FC00F1D61D /* Air1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21B8280480FC00F1D61D /* Air1.swift */; };
+		521F21BB2804810700F1D61D /* Air2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21BA2804810700F1D61D /* Air2.swift */; };
+		521F21BD2804811200F1D61D /* Air3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21BC2804811200F1D61D /* Air3.swift */; };
+		521F21BF2804811C00F1D61D /* Air4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21BE2804811C00F1D61D /* Air4.swift */; };
+		521F21C12804812600F1D61D /* Air5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21C02804812600F1D61D /* Air5.swift */; };
 		52605C8D2801622D0082C0DB /* InfluenceMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8C2801622D0082C0DB /* InfluenceMap.swift */; };
 		52605C902801E3B00082C0DB /* InfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */; };
 		52605C922801E5510082C0DB /* CityInfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C912801E5510082C0DB /* CityInfluenceMapCalculator.swift */; };
@@ -20,7 +36,6 @@
 		52E0B19427E6D87600607FBE /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18F27E6D87600607FBE /* Map.swift */; };
 		52E0B19527E6D87600607FBE /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B19027E6D87600607FBE /* Tile.swift */; };
 		52E0B19E27E6DFA100607FBE /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B19927E6DFA000607FBE /* Game.swift */; };
-		52E0B19F27E6DFA100607FBE /* Energy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B19A27E6DFA000607FBE /* Energy.swift */; };
 		52E0B1A227E6DFA100607FBE /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B19D27E6DFA100607FBE /* EntityManager.swift */; };
 		52E0B1AF27E6DFD100607FBE /* Gate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1A427E6DFD000607FBE /* Gate.swift */; };
 		52E0B1B027E6DFD100607FBE /* EnergyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1A527E6DFD000607FBE /* EnergyStorage.swift */; };
@@ -40,8 +55,8 @@
 		52E0B1EB27EAB6B800607FBE /* GameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1EA27EAB6B700607FBE /* GameNode.swift */; };
 		52E0B1FE27F173A500607FBE /* Explorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1FD27F173A500607FBE /* Explorer.swift */; };
 		52F9042627F4E1AC00D1AC97 /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042527F4E1AC00D1AC97 /* Unit.swift */; };
-		52F9042827F4E27B00D1AC97 /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042727F4E27B00D1AC97 /* Warrior.swift */; };
-		52F9042A27F4E3C600D1AC97 /* Pikeman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042927F4E3C600D1AC97 /* Pikeman.swift */; };
+		52F9042827F4E27B00D1AC97 /* Infantry1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042727F4E27B00D1AC97 /* Infantry1.swift */; };
+		52F9042A27F4E3C600D1AC97 /* DefensiveInfantry1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042927F4E3C600D1AC97 /* DefensiveInfantry1.swift */; };
 		52F9042D27F6B54D00D1AC97 /* Db.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042C27F6B54D00D1AC97 /* Db.swift */; };
 		52F9043027F6B5B100D1AC97 /* BaseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9042F27F6B5B100D1AC97 /* BaseDAO.swift */; };
 		52F9043727F6CF8900D1AC97 /* DbError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9043627F6CF8900D1AC97 /* DbError.swift */; };
@@ -72,7 +87,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		52012F5F2803A77A008388F6 /* Settler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settler.swift; sourceTree = "<group>"; };
+		52012F5F2803A77A008388F6 /* Founder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Founder.swift; sourceTree = "<group>"; };
+		521F219F2803F88400F1D61D /* Infantry2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry2.swift; sourceTree = "<group>"; };
+		521F21A12803F89A00F1D61D /* Infantry3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry3.swift; sourceTree = "<group>"; };
+		521F21A32803F8A900F1D61D /* Infantry4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry4.swift; sourceTree = "<group>"; };
+		521F21A52803F8BB00F1D61D /* Infantry5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry5.swift; sourceTree = "<group>"; };
+		521F21A82803F8F100F1D61D /* Artillery1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artillery1.swift; sourceTree = "<group>"; };
+		521F21AA2803F91200F1D61D /* Artillery2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artillery2.swift; sourceTree = "<group>"; };
+		521F21AC2803F92300F1D61D /* Artillery3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artillery3.swift; sourceTree = "<group>"; };
+		521F21AE2803F92F00F1D61D /* Artillery4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artillery4.swift; sourceTree = "<group>"; };
+		521F21B228047F7600F1D61D /* Trade1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade1.swift; sourceTree = "<group>"; };
+		521F21B428047F8000F1D61D /* Trade2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade2.swift; sourceTree = "<group>"; };
+		521F21B6280480E600F1D61D /* Paratrooper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paratrooper.swift; sourceTree = "<group>"; };
+		521F21B8280480FC00F1D61D /* Air1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Air1.swift; sourceTree = "<group>"; };
+		521F21BA2804810700F1D61D /* Air2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Air2.swift; sourceTree = "<group>"; };
+		521F21BC2804811200F1D61D /* Air3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Air3.swift; sourceTree = "<group>"; };
+		521F21BE2804811C00F1D61D /* Air4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Air4.swift; sourceTree = "<group>"; };
+		521F21C02804812600F1D61D /* Air5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Air5.swift; sourceTree = "<group>"; };
 		52605C8C2801622D0082C0DB /* InfluenceMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceMap.swift; sourceTree = "<group>"; };
 		52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceMapCalculator.swift; sourceTree = "<group>"; };
 		52605C912801E5510082C0DB /* CityInfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityInfluenceMapCalculator.swift; sourceTree = "<group>"; };
@@ -85,7 +116,6 @@
 		52E0B18F27E6D87600607FBE /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		52E0B19027E6D87600607FBE /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		52E0B19927E6DFA000607FBE /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		52E0B19A27E6DFA000607FBE /* Energy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Energy.swift; sourceTree = "<group>"; };
 		52E0B19D27E6DFA100607FBE /* EntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 		52E0B1A427E6DFD000607FBE /* Gate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gate.swift; sourceTree = "<group>"; };
 		52E0B1A527E6DFD000607FBE /* EnergyStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyStorage.swift; sourceTree = "<group>"; };
@@ -105,8 +135,8 @@
 		52E0B1EA27EAB6B700607FBE /* GameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNode.swift; sourceTree = "<group>"; };
 		52E0B1FD27F173A500607FBE /* Explorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explorer.swift; sourceTree = "<group>"; };
 		52F9042527F4E1AC00D1AC97 /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
-		52F9042727F4E27B00D1AC97 /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = "<group>"; };
-		52F9042927F4E3C600D1AC97 /* Pikeman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pikeman.swift; sourceTree = "<group>"; };
+		52F9042727F4E27B00D1AC97 /* Infantry1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry1.swift; sourceTree = "<group>"; };
+		52F9042927F4E3C600D1AC97 /* DefensiveInfantry1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefensiveInfantry1.swift; sourceTree = "<group>"; };
 		52F9042C27F6B54D00D1AC97 /* Db.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Db.swift; sourceTree = "<group>"; };
 		52F9042F27F6B5B100D1AC97 /* BaseDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDAO.swift; sourceTree = "<group>"; };
 		52F9043327F6CD1100D1AC97 /* civitas.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = civitas.db; sourceTree = "<group>"; };
@@ -137,6 +167,96 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		521F21992803F6C900F1D61D /* Ground */ = {
+			isa = PBXGroup;
+			children = (
+				521F21A72803F8DA00F1D61D /* Artillery */,
+				521F219B2803F71600F1D61D /* Cavalry */,
+				521F219A2803F70B00F1D61D /* Infantry */,
+			);
+			path = Ground;
+			sourceTree = "<group>";
+		};
+		521F219A2803F70B00F1D61D /* Infantry */ = {
+			isa = PBXGroup;
+			children = (
+				52F9042927F4E3C600D1AC97 /* DefensiveInfantry1.swift */,
+				52F9042727F4E27B00D1AC97 /* Infantry1.swift */,
+				521F219F2803F88400F1D61D /* Infantry2.swift */,
+				521F21A12803F89A00F1D61D /* Infantry3.swift */,
+				521F21A32803F8A900F1D61D /* Infantry4.swift */,
+				521F21A52803F8BB00F1D61D /* Infantry5.swift */,
+			);
+			path = Infantry;
+			sourceTree = "<group>";
+		};
+		521F219B2803F71600F1D61D /* Cavalry */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cavalry;
+			sourceTree = "<group>";
+		};
+		521F219C2803F74200F1D61D /* Air */ = {
+			isa = PBXGroup;
+			children = (
+				521F21B8280480FC00F1D61D /* Air1.swift */,
+				521F21BA2804810700F1D61D /* Air2.swift */,
+				521F21BC2804811200F1D61D /* Air3.swift */,
+				521F21BE2804811C00F1D61D /* Air4.swift */,
+				521F21C02804812600F1D61D /* Air5.swift */,
+			);
+			path = Air;
+			sourceTree = "<group>";
+		};
+		521F219D2803F74B00F1D61D /* Naval */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Naval;
+			sourceTree = "<group>";
+		};
+		521F219E2803F82A00F1D61D /* Miscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				52E0B1FD27F173A500607FBE /* Explorer.swift */,
+				52012F5F2803A77A008388F6 /* Founder.swift */,
+				521F21B6280480E600F1D61D /* Paratrooper.swift */,
+			);
+			path = Miscellaneous;
+			sourceTree = "<group>";
+		};
+		521F21A72803F8DA00F1D61D /* Artillery */ = {
+			isa = PBXGroup;
+			children = (
+				521F21A82803F8F100F1D61D /* Artillery1.swift */,
+				521F21AA2803F91200F1D61D /* Artillery2.swift */,
+				521F21AC2803F92300F1D61D /* Artillery3.swift */,
+				521F21AE2803F92F00F1D61D /* Artillery4.swift */,
+			);
+			path = Artillery;
+			sourceTree = "<group>";
+		};
+		521F21B028047F3800F1D61D /* Military */ = {
+			isa = PBXGroup;
+			children = (
+				521F219C2803F74200F1D61D /* Air */,
+				521F21992803F6C900F1D61D /* Ground */,
+				521F219D2803F74B00F1D61D /* Naval */,
+				521F219E2803F82A00F1D61D /* Miscellaneous */,
+			);
+			path = Military;
+			sourceTree = "<group>";
+		};
+		521F21B128047F4100F1D61D /* Non-Military */ = {
+			isa = PBXGroup;
+			children = (
+				521F21B228047F7600F1D61D /* Trade1.swift */,
+				521F21B428047F8000F1D61D /* Trade2.swift */,
+			);
+			path = "Non-Military";
+			sourceTree = "<group>";
+		};
 		52605C8828014FF90082C0DB /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,7 +299,6 @@
 			children = (
 				52E0B1A327E6DFAB00607FBE /* Buildings */,
 				52E0B1FC27F1734000607FBE /* Units */,
-				52E0B19A27E6DFA000607FBE /* Energy.swift */,
 				52E0B19D27E6DFA100607FBE /* EntityManager.swift */,
 			);
 			path = Entities;
@@ -231,11 +350,9 @@
 		52E0B1FC27F1734000607FBE /* Units */ = {
 			isa = PBXGroup;
 			children = (
+				521F21B028047F3800F1D61D /* Military */,
+				521F21B128047F4100F1D61D /* Non-Military */,
 				52F9042527F4E1AC00D1AC97 /* Unit.swift */,
-				52E0B1FD27F173A500607FBE /* Explorer.swift */,
-				52F9042927F4E3C600D1AC97 /* Pikeman.swift */,
-				52012F5F2803A77A008388F6 /* Settler.swift */,
-				52F9042727F4E27B00D1AC97 /* Warrior.swift */,
 			);
 			path = Units;
 			sourceTree = "<group>";
@@ -401,26 +518,31 @@
 				52E0B19227E6D87600607FBE /* TiledMapParser.swift in Sources */,
 				52E0B1FE27F173A500607FBE /* Explorer.swift in Sources */,
 				52E0B1BE27E6E1AC00607FBE /* DamageableComponent.swift in Sources */,
-				52E0B19F27E6DFA100607FBE /* Energy.swift in Sources */,
 				52F9042627F4E1AC00D1AC97 /* Unit.swift in Sources */,
 				52AB0748280287580039B47D /* City.swift in Sources */,
-				52F9042827F4E27B00D1AC97 /* Warrior.swift in Sources */,
-				52F9042A27F4E3C600D1AC97 /* Pikeman.swift in Sources */,
+				52F9042827F4E27B00D1AC97 /* Infantry1.swift in Sources */,
+				52F9042A27F4E3C600D1AC97 /* DefensiveInfantry1.swift in Sources */,
 				52F9044627F80B0500D1AC97 /* CommandDAO.swift in Sources */,
 				52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */,
+				521F21A22803F89A00F1D61D /* Infantry3.swift in Sources */,
 				52AB06FB2801FB400039B47D /* UnitInfluenceMapCalculator.swift in Sources */,
 				52F9042D27F6B54D00D1AC97 /* Db.swift in Sources */,
 				52E0B1B427E6DFD100607FBE /* Pod.swift in Sources */,
+				521F21B528047F8000F1D61D /* Trade2.swift in Sources */,
 				52605C922801E5510082C0DB /* CityInfluenceMapCalculator.swift in Sources */,
 				52E0B1B827E6DFD100607FBE /* RadarTower.swift in Sources */,
+				521F21A02803F88400F1D61D /* Infantry2.swift in Sources */,
 				52F9044D27F9325300D1AC97 /* CommandType.swift in Sources */,
 				52E0B1C127E6E25300607FBE /* SpriteNode.swift in Sources */,
 				52F9043927F6D02500D1AC97 /* SqliteError.swift in Sources */,
 				52F9045427F9F9C500D1AC97 /* MoveCommand.swift in Sources */,
 				52E0B1B927E6DFD100607FBE /* Barracks.swift in Sources */,
-				52012F602803A77A008388F6 /* Settler.swift in Sources */,
+				521F21AD2803F92300F1D61D /* Artillery3.swift in Sources */,
+				521F21A92803F8F100F1D61D /* Artillery1.swift in Sources */,
+				52012F602803A77A008388F6 /* Founder.swift in Sources */,
 				52E0B19E27E6DFA100607FBE /* Game.swift in Sources */,
 				52F9045227F9F92C00D1AC97 /* Command.swift in Sources */,
+				521F21B9280480FC00F1D61D /* Air1.swift in Sources */,
 				52E0B19527E6D87600607FBE /* Tile.swift in Sources */,
 				52F9044427F6D68A00D1AC97 /* GameDAO.swift in Sources */,
 				52F9045627F9FF6A00D1AC97 /* TechCommand.swift in Sources */,
@@ -429,20 +551,30 @@
 				52E0B1B127E6DFD100607FBE /* Shipyard.swift in Sources */,
 				52E0B19327E6D87600607FBE /* TiledTilesetParser.swift in Sources */,
 				52E0B19427E6D87600607FBE /* Map.swift in Sources */,
+				521F21BB2804810700F1D61D /* Air2.swift in Sources */,
 				52F9046E27FC8B7D00D1AC97 /* MoveCommandDAO.swift in Sources */,
 				52F9043727F6CF8900D1AC97 /* DbError.swift in Sources */,
 				52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */,
+				521F21C12804812600F1D61D /* Air5.swift in Sources */,
 				52F9045A27FA009E00D1AC97 /* BuildBuildingCommand.swift in Sources */,
+				521F21A42803F8A900F1D61D /* Infantry4.swift in Sources */,
 				52F9043027F6B5B100D1AC97 /* BaseDAO.swift in Sources */,
 				52E0B1B327E6DFD100607FBE /* MineralStorage.swift in Sources */,
 				52F9045827FA007400D1AC97 /* BuildCityCommand.swift in Sources */,
 				52E0B1B027E6DFD100607FBE /* EnergyStorage.swift in Sources */,
+				521F21A62803F8BB00F1D61D /* Infantry5.swift in Sources */,
 				52605C902801E3B00082C0DB /* InfluenceMapCalculator.swift in Sources */,
 				52F9044F27F93A6D00D1AC97 /* Player.swift in Sources */,
+				521F21AB2803F91200F1D61D /* Artillery2.swift in Sources */,
+				521F21B328047F7600F1D61D /* Trade1.swift in Sources */,
 				52F9044B27F8E56200D1AC97 /* Turn.swift in Sources */,
+				521F21BF2804811C00F1D61D /* Air4.swift in Sources */,
+				521F21AF2803F92F00F1D61D /* Artillery4.swift in Sources */,
 				52E0B1B527E6DFD100607FBE /* PowerPlant.swift in Sources */,
 				52E0B1BC27E6E18000607FBE /* SpriteComponent.swift in Sources */,
 				52E0B1B727E6DFD100607FBE /* ConcreteStorage.swift in Sources */,
+				521F21BD2804811200F1D61D /* Air3.swift in Sources */,
+				521F21B7280480E600F1D61D /* Paratrooper.swift in Sources */,
 				52E0B1EB27EAB6B800607FBE /* GameNode.swift in Sources */,
 				52E0B1B627E6DFD100607FBE /* CommandCenter.swift in Sources */,
 				52E0B1AF27E6DFD100607FBE /* Gate.swift in Sources */,

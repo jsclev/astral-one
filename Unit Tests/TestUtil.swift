@@ -1,5 +1,5 @@
 import Foundation
-@testable import Astral_One_Engine
+import Engine
 
 class TestUtil {
     static func getDb() -> Db {

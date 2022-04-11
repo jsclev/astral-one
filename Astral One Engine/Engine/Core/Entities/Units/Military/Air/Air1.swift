@@ -1,12 +1,12 @@
 import Foundation
-import GameplayKit
 
-public class Warrior: Unit {
+public class Air1: Unit {
     public init(playerId: Int,
+                name: String,
                 row: Int,
                 col: Int) {
         super.init(playerId: playerId,
-                   name: "Warrior",
+                   name: name,
                    cost: 10,
                    hp: 10,
                    attackRating: 1,

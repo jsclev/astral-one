@@ -64,9 +64,10 @@ public class CommandDAO: BaseDAO {
                                                         playerId: playerId,
                                                         type: commandType,
                                                         ordinal: commandOrdinal,
-                                                        unit: Warrior(playerId: 1,
-                                                                      row: 0,
-                                                                      col: 0),
+                                                        unit: Infantry1(playerId: 1,
+                                                                          name: "Warrior",
+                                                                          row: 0,
+                                                                          col: 0),
                                                         toPosition: "Hello"))
                         }
                         else if commandName == "Research Tech" {
@@ -76,9 +77,10 @@ public class CommandDAO: BaseDAO {
                                                         playerId: playerId,
                                                         type: commandType,
                                                         ordinal: commandOrdinal,
-                                                        unit: Warrior(playerId: 1,
-                                                                      row: 0,
-                                                                      col: 0),
+                                                        unit: Infantry1(playerId: 1,
+                                                                          name: "Warrior",
+                                                                          row: 0,
+                                                                          col: 0),
                                                         toPosition: "Hello"))
                         }
                         else if commandName == "Build Building" {
@@ -88,9 +90,10 @@ public class CommandDAO: BaseDAO {
                                                                  playerId: playerId,
                                                                  type: commandType,
                                                                  ordinal: commandOrdinal,
-                                                                 unit: Warrior(playerId: 1,
-                                                                               row: 0,
-                                                                               col: 0),
+                                                                 unit: Infantry1(playerId: 1,
+                                                                                   name: "Warrior",
+                                                                                   row: 0,
+                                                                                   col: 0),
                                                                  toPosition: "Hello"))
                         }
                         else if commandName == "Build City" {
@@ -100,9 +103,10 @@ public class CommandDAO: BaseDAO {
                                                              playerId: playerId,
                                                              type: commandType,
                                                              ordinal: commandOrdinal,
-                                                             unit: Warrior(playerId: 1,
-                                                                           row: 0,
-                                                                           col: 0),
+                                                             unit: Infantry1(playerId: 1,
+                                                                               name: "Warrior",
+                                                                               row: 0,
+                                                                               col: 0),
                                                              toPosition: "Hello"))
                         }
                     }

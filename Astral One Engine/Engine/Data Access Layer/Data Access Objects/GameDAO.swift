@@ -8,13 +8,13 @@ public class GameDAO: BaseDAO {
     
     public func getCurrentUnit() -> Unit {
         var stmt: OpaquePointer?
-        var id = 1
+//        var id = 1
         var unitName: String = ""
         
         do {
             try getRowById(stmt: &stmt, table: table, idName: "id", id: 1)
             
-            id = getInt(stmt: stmt, colIndex: 0)
+//            id = getInt(stmt: stmt, colIndex: 0)
             if let name = try getString(stmt: stmt, colIndex: 1) {
                 unitName = name
             }
@@ -25,6 +25,9 @@ public class GameDAO: BaseDAO {
         
         sqlite3_finalize(stmt)
         
-        return Warrior(playerId: 1, row: 0, col: 0)
+        return Infantry1(playerId: 1,
+                           name: unitName,
+                           row: 0,
+                           col: 0)
     }
 }

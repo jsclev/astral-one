@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
-               BuildableName = "Astral One.app"
+               BuildableName = "Main.app"
                BlueprintName = "Main"
                ReferencedContainer = "container:Main.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
-            BuildableName = "Astral One.app"
+            BuildableName = "Main.app"
             BlueprintName = "Main"
             ReferencedContainer = "container:Main.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
-            BuildableName = "Astral One.app"
+            BuildableName = "Main.app"
             BlueprintName = "Main"
             ReferencedContainer = "container:Main.xcodeproj">
          </BuildableReference>
@@ -81,7 +81,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D2A5F1FF1F4A9144005CD714"
-            BuildableName = "Astral One.app"
+            BuildableName = "Main.app"
             BlueprintName = "Main"
             ReferencedContainer = "container:Main.xcodeproj">
          </BuildableReference>

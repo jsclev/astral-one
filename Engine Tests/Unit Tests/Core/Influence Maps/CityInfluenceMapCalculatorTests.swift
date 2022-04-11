@@ -1,5 +1,5 @@
 import XCTest
-import Astral_One_Engine
+import Engine
 
 class CityInfluenceMapCalculatorTests: XCTestCase {
     func testUsingMapSize5() throws {
@@ -13,9 +13,10 @@ class CityInfluenceMapCalculatorTests: XCTestCase {
                                                             name: "New York",
                                                             row: 2,
                                                             col: 2),
-                                                 unit: Warrior(playerId: 2,
-                                                               row: 0,
-                                                               col: 0))
+                                                 unit: Infantry1(playerId: 2,
+                                                                 name: "Infantry",
+                                                                 row: 0,
+                                                                 col: 0))
         let influenceMap = fixture.getInfluenceMap()
         XCTAssertEqual(influenceMap.count, 5)
         

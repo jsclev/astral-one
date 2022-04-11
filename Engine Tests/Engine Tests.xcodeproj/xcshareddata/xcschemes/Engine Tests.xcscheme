@@ -34,7 +34,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52AB0714280200560039B47D"
                BuildableName = "Engine TestsTests.xctest"
-               BlueprintName = "Engine TestsTests"
+               BlueprintName = "Engine Unit Tests"
                ReferencedContainer = "container:Engine Tests.xcodeproj">
             </BuildableReference>
          </TestableReference>

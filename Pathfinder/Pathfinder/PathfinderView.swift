@@ -1,6 +1,6 @@
 import SpriteKit
 import SwiftUI
-import Astral_One_Engine
+import Engine
 
 struct PathfinderView: View {
     @EnvironmentObject var game: Game

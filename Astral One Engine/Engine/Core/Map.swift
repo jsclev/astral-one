@@ -90,11 +90,11 @@ public class Map {
     }
     
     public func findPath(from: SIMD2<Int32>, to: SIMD2<Int32>) -> [GKGraphNode] {
-        let startNode = graph.node(row: Int(from.y), col: Int(from.x))
-        let endNode = graph.node(row: Int(to.y), col: Int(to.x))
-        if let startNode = startNode, let endNode = endNode {
+//        let startNode = graph.node(row: Int(from.y), col: Int(from.x))
+//        let endNode = graph.node(row: Int(to.y), col: Int(to.x))
+//        if let startNode = startNode, let endNode = endNode {
 //            return graph.findPath(from: startNode, to: endNode)
-        }
+//        }
         
         return []
     }
@@ -129,9 +129,10 @@ public class Map {
                     
                     for tile in tiles {
                         if tile.spec.tileType == TileType.Unit {
-                            return Warrior(playerId: 1,
-                                           row: 0,
-                                           col: 0)
+                            return Infantry1(playerId: 1,
+                                               name: "Warrior",
+                                               row: 0,
+                                               col: 0)
                         }
                     }
                 }

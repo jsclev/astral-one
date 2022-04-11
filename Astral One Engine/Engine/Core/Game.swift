@@ -164,9 +164,9 @@ public class Node: Hashable {
     }
     
     public func getScore(accordingTo: Unit) -> Float {
-        var score: Float = 0.0
-        var help: Float = 100.0
-        var threat: Float = 0.0
+//        var score: Float = 0.0
+        let help: Float = 100.0
+        let threat: Float = 0.0
         var movementCost: Float = 0.0
         
         for tile in tiles {

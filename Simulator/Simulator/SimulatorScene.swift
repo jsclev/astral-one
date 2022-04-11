@@ -7,7 +7,7 @@
 
 import SpriteKit
 import GameplayKit
-import Astral_One_Engine
+import Engine
 
 class GameScene: SKScene {
     
@@ -54,11 +54,11 @@ class GameScene: SKScene {
                                contents: nil,
                                attributes: [FileAttributeKey.creationDate: Date()])
         
-        var gridGraph = GridGraph(size: 0)
+        let gridGraph = GridGraph(size: 0)
         gridGraph.add(node: Node(row: 0, col: 0))
         
-        let db = Db(fullRefresh: true)
-        let game = Game(db: db)
+//        let db = Db(fullRefresh: true)
+//        let game = Game(db: db)
         
         let turn = Turn(id: 1,
                         year: -4000,
@@ -70,7 +70,7 @@ class GameScene: SKScene {
         
         printDate(string: "Starting: ")
         var moveCommands: [MoveCommand] = []
-        var newCommands: [MoveCommand] = []
+//        let newCommands: [MoveCommand] = []
 
         //        if let fileHandle = try? FileHandle(forWritingTo: fileUrl) {
         for _ in 0..<1000000 {
@@ -86,23 +86,23 @@ class GameScene: SKScene {
                                             toPosition: "Hello"))
         }
         
-        do {
-            newCommands = try game.db.commandDao.insertMoveCommands(moveCommands: moveCommands)
-            
-//            fileHandle.seekToEndOfFile()
-//            fileHandle.write((moveCommand.description + "\n").data(using: .utf8)!)
-            
-//            print("Added move command, id: \(cmd.commandId)")
-        }
-        catch {
-            print("Unexpected error: \(error).")
-        }
-        
-//        for newCommand in newCommands {
-//            print(newCommand)
+//        do {
+//            try game.db.commandDao.insertMoveCommands(moveCommands: moveCommands)
+//
+////            fileHandle.seekToEndOfFile()
+////            fileHandle.write((moveCommand.description + "\n").data(using: .utf8)!)
+//
+////            print("Added move command, id: \(cmd.commandId)")
 //        }
-        //            fileHandle.closeFile()
-        printDate(string: "Done: ")
+//        catch {
+//            print("Unexpected error: \(error).")
+//        }
+//
+////        for newCommand in newCommands {
+////            print(newCommand)
+////        }
+//        //            fileHandle.closeFile()
+//        printDate(string: "Done: ")
 }
 
 func printDate(string: String) {

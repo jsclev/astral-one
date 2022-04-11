@@ -45,9 +45,10 @@ public class MoveCommandDAO: BaseDAO {
                            playerId: 1,
                            type: commandType,
                            ordinal: 1,
-                           unit: Warrior(playerId: 1,
-                                         row: 0,
-                                         col: 0),
+                           unit: Infantry1(playerId: 1,
+                                             name: "Warrior",
+                                             row: 0,
+                                             col: 0),
                            toPosition: "Hello")
     }
 }
