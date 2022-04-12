@@ -12,11 +12,11 @@ public class Explorer: Unit {
         super.init(playerId: 1,
                    name: "Explorer",
                    cost: 10,
-                   hp: 10,
+                   maxHp: 10,
                    attackRating: 1,
                    defenseRating: 1,
-                   firepower: 1,
-                   movementPoints: 1.0,
+                   fp: 1,
+                   maxMovementPoints: 1.0,
                    row: Int(position.y),
                    col: Int(position.x))
     }

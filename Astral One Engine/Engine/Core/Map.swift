@@ -141,4 +141,8 @@ public class Map {
         
         return nil
     }
+    
+    public func getDistance(fromRow: Int, fromCol: Int, toRow: Int, toCol: Int) -> Int {
+        return abs(toRow - fromRow) + abs(toCol - fromCol) + 1
+    }
 }

@@ -5,12 +5,12 @@ public class Unit: GKEntity {
     public let playerId: Int
     public let name: String
     public let cost: Int
-    public let hp: Int
+    public let maxHp: Int
     public var currentHp: Int
     public let attackRating: Int
     public let defenseRating: Int
-    public let firepower: Int
-    public let movementPoints: Float
+    public let fp: Int
+    public let maxMovementPoints: Float
     public var currentMovementPoints: Float
     public let row: Int
     public let col: Int
@@ -18,23 +18,23 @@ public class Unit: GKEntity {
     public init(playerId: Int,
                 name: String,
                 cost: Int,
-                hp: Int,
+                maxHp: Int,
                 attackRating: Int,
                 defenseRating: Int,
-                firepower: Int,
-                movementPoints: Float,
+                fp: Int,
+                maxMovementPoints: Float,
                 row: Int,
                 col: Int) {
         self.playerId = playerId
         self.name = name
         self.cost = cost
-        self.hp = hp
-        self.currentHp = hp
+        self.maxHp = maxHp
+        self.currentHp = maxHp
         self.attackRating = attackRating
         self.defenseRating = defenseRating
-        self.firepower = firepower
-        self.movementPoints = movementPoints
-        self.currentMovementPoints = movementPoints
+        self.fp = fp
+        self.maxMovementPoints = maxMovementPoints
+        self.currentMovementPoints = maxMovementPoints
         self.row = row
         self.col = col
         

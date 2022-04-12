@@ -5,11 +5,11 @@ public class BasicDefensiveGround: Unit {
         super.init(playerId: playerId,
                    name: name,
                    cost: 20,
-                   hp: 10,
+                   maxHp: 10,
                    attackRating: 1,
                    defenseRating: 2,
-                   firepower: 1,
-                   movementPoints: 1.0,
+                   fp: 1,
+                   maxMovementPoints: 1.0,
                    row: row,
                    col: col)
     }
