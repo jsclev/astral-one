@@ -41,7 +41,7 @@ public class TiledTilesetParser: NSObject, XMLParserDelegate {
     public func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "tile" {
             if let tileSpec = Constants.terrainTypes[tileId] {
-                tiles.append(Tile(id: tileId, spec: tileSpec))
+                tiles.append(Tile(id: tileId, spec: tileSpec, ordinal: 0))
             }
         }
     }

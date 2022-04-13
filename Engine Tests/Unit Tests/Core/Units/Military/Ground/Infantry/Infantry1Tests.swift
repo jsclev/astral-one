@@ -37,35 +37,35 @@ class Infantry1Tests: XCTestCase {
         // Col 0
         XCTAssertEqual(influenceMap[0][0], -0.00001, accuracy: 0.00005)
         XCTAssertEqual(influenceMap[0][1], -0.00001, accuracy: 0.00005)
-        XCTAssertEqual(influenceMap[0][2], -0.00001, accuracy: 0.00005)
+        XCTAssertEqual(influenceMap[0][2], -0.0001, accuracy: 0.0005)
         XCTAssertEqual(influenceMap[0][3], -0.00001, accuracy: 0.00005)
         XCTAssertEqual(influenceMap[0][4], -0.00001, accuracy: 0.00005)
         
         // Col 1
         XCTAssertEqual(influenceMap[1][0], -0.00001, accuracy: 0.00005)
-        XCTAssertEqual(influenceMap[1][1], -0.00001, accuracy: 0.00005)
-        XCTAssertEqual(influenceMap[1][2], -0.008, accuracy: 0.001)
-        XCTAssertEqual(influenceMap[1][3], -0.00001, accuracy: 0.00005)
+        XCTAssertEqual(influenceMap[1][1], -0.0001, accuracy: 0.0005)
+        XCTAssertEqual(influenceMap[1][2], -0.035, accuracy: 0.01)
+        XCTAssertEqual(influenceMap[1][3], -0.0001, accuracy: 0.0005)
         XCTAssertEqual(influenceMap[1][4], -0.00001, accuracy: 0.00005)
         
         // Col 2
-        XCTAssertEqual(influenceMap[2][0], -0.00001, accuracy: 0.00005)
-        XCTAssertEqual(influenceMap[2][1], -0.008, accuracy: 0.001)
-        XCTAssertEqual(influenceMap[2][2], -0.6, accuracy: 0.1)
-        XCTAssertEqual(influenceMap[2][3], -0.008, accuracy: 0.001)
-        XCTAssertEqual(influenceMap[2][4], -0.00001, accuracy: 0.00005)
+        XCTAssertEqual(influenceMap[2][0], -0.0001, accuracy: 0.0005)
+        XCTAssertEqual(influenceMap[2][1], -0.035, accuracy: 0.01)
+        XCTAssertEqual(influenceMap[2][2], -0.9, accuracy: 0.1)
+        XCTAssertEqual(influenceMap[2][3], -0.035, accuracy: 0.01)
+        XCTAssertEqual(influenceMap[2][4], -0.0001, accuracy: 0.0005)
         
         // Col 3
         XCTAssertEqual(influenceMap[3][0], -0.00001, accuracy: 0.00005)
-        XCTAssertEqual(influenceMap[3][1], -0.00001, accuracy: 0.00005)
-        XCTAssertEqual(influenceMap[3][2], -0.008, accuracy: 0.001)
-        XCTAssertEqual(influenceMap[3][3], -0.00001, accuracy: 0.00005)
+        XCTAssertEqual(influenceMap[3][1], -0.0001, accuracy: 0.0005)
+        XCTAssertEqual(influenceMap[3][2], -0.035, accuracy: 0.01)
+        XCTAssertEqual(influenceMap[3][3], -0.0001, accuracy: 0.0005)
         XCTAssertEqual(influenceMap[3][4], -0.00001, accuracy: 0.00005)
         
         // Col 4
         XCTAssertEqual(influenceMap[4][0], -0.00001, accuracy: 0.00005)
         XCTAssertEqual(influenceMap[4][1], -0.00001, accuracy: 0.00005)
-        XCTAssertEqual(influenceMap[4][2], -0.00001, accuracy: 0.00005)
+        XCTAssertEqual(influenceMap[4][2], -0.0001, accuracy: 0.0005)
         XCTAssertEqual(influenceMap[4][3], -0.00001, accuracy: 0.00005)
         XCTAssertEqual(influenceMap[4][4], -0.00001, accuracy: 0.00005)
     }

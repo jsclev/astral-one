@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521F21E12806A62500F1D61D /* libEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 521F21E02806A62500F1D61D /* libEngine.a */; };
 		52F9049D27FD344900D1AC97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9049C27FD344900D1AC97 /* AppDelegate.swift */; };
 		52F9049F27FD344900D1AC97 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52F9049E27FD344900D1AC97 /* GameScene.sks */; };
 		52F904A127FD344900D1AC97 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52F904A027FD344900D1AC97 /* Actions.sks */; };
@@ -15,11 +16,11 @@
 		52F904A827FD344900D1AC97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F904A627FD344900D1AC97 /* Main.storyboard */; };
 		52F904AA27FD344B00D1AC97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52F904A927FD344B00D1AC97 /* Assets.xcassets */; };
 		52F904AD27FD344B00D1AC97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F904AB27FD344B00D1AC97 /* LaunchScreen.storyboard */; };
-		52F904D127FD348D00D1AC97 /* libAstral One Engine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F904D027FD348D00D1AC97 /* libAstral One Engine.a */; };
 		52F904D527FD396B00D1AC97 /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52F904D427FD396B00D1AC97 /* civitas.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		521F21E02806A62500F1D61D /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F9049927FD344900D1AC97 /* Simulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F9049C27FD344900D1AC97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52F9049E27FD344900D1AC97 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -38,7 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52F904D127FD348D00D1AC97 /* libAstral One Engine.a in Frameworks */,
+				521F21E12806A62500F1D61D /* libEngine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +82,7 @@
 		52F904CF27FD348D00D1AC97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				521F21E02806A62500F1D61D /* libEngine.a */,
 				52F904D027FD348D00D1AC97 /* libAstral One Engine.a */,
 			);
 			name = Frameworks;

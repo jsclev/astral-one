@@ -40,7 +40,7 @@ public class Infantry1: Unit {
     }
     
     private func getThreat(distance: Int) -> Float {
-        -1 / (1 + exp(3 * (1.8 * Float(distance) - 2.0)))
+        -1 / (1 + exp(3 * (1.8 * Float(distance) - 2.5)))
     }
     
     public func logInfluenceMap(theMap: [[Float]]) {

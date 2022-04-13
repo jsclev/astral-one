@@ -4,7 +4,7 @@ import Engine
 
 class NodeTests: XCTestCase {
     func testPerformanceExample() throws {
-        let gridGraph = GridGraph(size: 5)
+        let gridGraph = GridGraph(width: 5, height: 5)
         var nodes: [Node] = []
         
         for row in 0..<50 {

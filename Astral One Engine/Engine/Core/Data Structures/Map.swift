@@ -3,47 +3,24 @@ import GameplayKit
 
 public class Map {
     private let graph: GridGraph
+    private var movementCosts: [[Float]] = [[]]
     private var unitType: UnitType = UnitType.Explorer
     
     public var width: Int {
-        graph.gridWidth
+        graph.width
     }
     
     public var height: Int {
-        graph.gridHeight
+        graph.height
+    }
+    
+    public init(width: Int32, height: Int32) {
+        graph = GridGraph(width: Int(width), height: Int(height))
+        movementCosts = Array(repeating: Array(repeating: 0.0, count: self.width), count: self.height)
     }
     
     public func setUnitType(unitType: UnitType) {
         self.unitType = unitType
-    }
-    
-    public init(width: Int32, height: Int32) {
-//        graph = GKGridGraph<GameNode>(fromGridStartingAt: SIMD2<Int32>(0, 0),
-//                                      width: width,
-//                                      height: height,
-//                                      diagonalsAllowed: true,
-//                                      nodeClass: GameNode.self)
-        graph = GridGraph(size: Int(width))
-    }
-    
-    public func prune() {
-//        var nodesToRemove: [GameNode] = []
-        for row in 0..<graph.gridHeight {
-            for col in 0..<graph.gridWidth {
-                if let node = getNode(row: row, col: col) {
-                    let tiles = node.getTiles()
-                    
-                    if tiles.count > 0 &&
-                        (tiles[0].spec.terrainType == TerrainType.Water ||
-                         tiles[0].spec.terrainType == TerrainType.Glacier) {
-//                        nodesToRemove.append(node)
-                        //                        graph.remove([localNode])
-                    }
-                }
-            }
-        }
-        
-//        graph.remove(nodesToRemove)
     }
     
     public func getNode(row: Int, col: Int) -> Node? {
@@ -58,11 +35,16 @@ public class Map {
         return []
     }
     
+    public func getMovementCosts() -> [[Float]] {
+        return movementCosts
+    }
+    
     public func addTile(row: Int, col: Int, tile: Tile) {
         if let node = graph.node(row: row, col: col) {
             node.addTile(tile: Tile(id: tile.id,
                                     spec: tile.spec,
                                     ordinal: node.getTiles().count))
+            
         }
         else {
             let node = Node(row: row, col: col)
@@ -70,6 +52,34 @@ public class Map {
                                     spec: tile.spec,
                                     ordinal: node.getTiles().count))
             graph.add(node: node)
+        }
+        
+        if tile.spec.terrainType == TerrainType.Desert {
+            movementCosts[row][col] += 1.0
+        }
+        else if tile.spec.terrainType == TerrainType.Forest {
+            movementCosts[row][col] += 2.0
+        }
+        else if tile.spec.terrainType == TerrainType.Grassland {
+            movementCosts[row][col] += 1.0
+        }
+        else if tile.spec.terrainType == TerrainType.Hills {
+            movementCosts[row][col] += 2.0
+        }
+        else if tile.spec.terrainType == TerrainType.Jungle {
+            movementCosts[row][col] += 2.0
+        }
+        else if tile.spec.terrainType == TerrainType.Mountains {
+            movementCosts[row][col] += 3.0
+        }
+        else if tile.spec.terrainType == TerrainType.Plains {
+            movementCosts[row][col] += 1.0
+        }
+        else if tile.spec.terrainType == TerrainType.Tundra {
+            movementCosts[row][col] += 1.0
+        }
+        else if tile.spec.terrainType == TerrainType.Water {
+            movementCosts[row][col] += 1.0
         }
     }
     
@@ -101,7 +111,7 @@ public class Map {
     
     public func log() {
         print("****************************************************************")
-        print("Map dimensions: [\(graph.gridWidth), \(graph.gridHeight)]")
+        print("Map dimensions: [\(graph.width), \(graph.height)]")
         
         for row in 0..<width {
             for col in 0..<height {

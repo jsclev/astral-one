@@ -1,16 +1,8 @@
-//
-//  GameScene.swift
-//  Simulator
-//
-//  Created by John Cleveland on 4/5/22.
-//
-
 import SpriteKit
 import GameplayKit
 import Engine
 
 class GameScene: SKScene {
-    
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
     
@@ -54,7 +46,7 @@ class GameScene: SKScene {
                                contents: nil,
                                attributes: [FileAttributeKey.creationDate: Date()])
         
-        let gridGraph = GridGraph(size: 0)
+        let gridGraph = GridGraph(width: 0, height: 0)
         gridGraph.add(node: Node(row: 0, col: 0))
         
 //        let db = Db(fullRefresh: true)
@@ -80,9 +72,10 @@ class GameScene: SKScene {
                                             playerId: 1,
                                             type: commandType,
                                             ordinal: 1,
-                                            unit: Warrior(playerId: 1,
-                                                          row: 0,
-                                                          col: 0),
+                                            unit: Infantry1(playerId: 1,
+                                                            name: "Warrior",
+                                                            row: 0,
+                                                            col: 0),
                                             toPosition: "Hello"))
         }
         
