@@ -12,7 +12,7 @@ class MapTests: XCTestCase {
             XCTAssertEqual(movementCosts[row].count, 10)
 
             for col in 0..<10 {
-                XCTAssertEqual(map.getMovementCosts()[row][col], 0.000001)
+                XCTAssertEqual(map.getMovementCosts()[row][col], Constants.minMovementCost)
             }
         }
     }
@@ -60,6 +60,40 @@ class MapTests: XCTestCase {
         XCTAssertEqual(map.getMovementCosts().count, 1)
         XCTAssertEqual(map.getMovementCosts()[0].count, 2)
         XCTAssertEqual(map.getMovementCost(fromRow: 0, fromCol: 0, toRow: 0, toCol: 1), 1.0)
+    }
+    
+    func testGetMoveCostsExpectsModifiers() throws {
+        let map = Map(width: 2, height: 2)
+        let node00 = Node(row: 0,
+                          col: 0,
+                          terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
+        node00.add(movementModifier: MovementModifier(name: "", movementCost: 100.0))
+        
+        let node01 = Node(row: 0,
+                          col: 1,
+                          terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
+        node01.add(movementModifier: MovementModifier(name: "", movementCost: 200.0))
+        
+        let node10 = Node(row: 1,
+                          col: 0,
+                          terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
+        node10.add(movementModifier: MovementModifier(name: "", movementCost: 300.0))
+        
+        let node11 = Node(row: 1,
+                          col: 1,
+                          terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
+        node11.add(movementModifier: MovementModifier(name: "", movementCost: 400.0))
+        
+        map.add(node: node00)
+        map.add(node: node01)
+        map.add(node: node10)
+        map.add(node: node11)
+
+        let movementCosts = map.getMovementCosts()
+        XCTAssertEqual(movementCosts[0][0], 100.0)
+        XCTAssertEqual(movementCosts[0][1], 200.0)
+        XCTAssertEqual(movementCosts[1][0], 300.0)
+        XCTAssertEqual(movementCosts[1][1], 400.0)
     }
 
 }

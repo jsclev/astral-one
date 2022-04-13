@@ -5,13 +5,14 @@ public class Map {
     var nodes: Dictionary<Node, Set<Node>> = [:]
     public let width: Int
     public let height: Int
-    private let minMovementCost: Float = 0.000001
-    private var movementCosts: [[Float]] = [[]]
+    private var movementCosts: [[Double]] = [[]]
     
     public init(width: Int, height: Int) {
         self.width = width
         self.height = height
-        self.movementCosts = Array(repeating: Array(repeating: minMovementCost, count: width), count: height)
+        self.movementCosts = Array(repeating: Array(repeating: Constants.minMovementCost,
+                                                    count: width),
+                                   count: height)
     }
     
     @discardableResult
@@ -72,18 +73,18 @@ public class Map {
         return []
     }
     
-    public func getMovementCosts() -> [[Float]] {
+    public func getMovementCosts() -> [[Double]] {
         return movementCosts
     }
     
-    public func getMovementCost(fromRow: Int, fromCol: Int, toRow: Int, toCol: Int) -> Float {
-        var movementCost: Float = 0.0
+    public func getMovementCost(fromRow: Int, fromCol: Int, toRow: Int, toCol: Int) -> Double {
+        var movementCost = 0.0
         
         if let node = node(row: toRow, col: toCol) {
             movementCost += node.getMovementCost()
         }
         
-        return movementCost == 0.0 ? minMovementCost : movementCost
+        return movementCost <= 0.0 ? Constants.minMovementCost : movementCost
     }
     
     public func getNumLayers() -> Int {

@@ -29,6 +29,7 @@
 		521F21D72806996100F1D61D /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21D62806996100F1D61D /* Node.swift */; };
 		521F21E32807115100F1D61D /* Terrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21E22807115100F1D61D /* Terrain.swift */; };
 		521F21E52807123D00F1D61D /* TerrainFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21E42807123D00F1D61D /* TerrainFactory.swift */; };
+		521F21E7280740E000F1D61D /* MovementModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21E6280740E000F1D61D /* MovementModifier.swift */; };
 		52605C8D2801622D0082C0DB /* InfluenceMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8C2801622D0082C0DB /* InfluenceMap.swift */; };
 		52605C902801E3B00082C0DB /* InfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */; };
 		52605C922801E5510082C0DB /* CityInfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C912801E5510082C0DB /* CityInfluenceMapCalculator.swift */; };
@@ -114,6 +115,7 @@
 		521F21D62806996100F1D61D /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		521F21E22807115100F1D61D /* Terrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terrain.swift; sourceTree = "<group>"; };
 		521F21E42807123D00F1D61D /* TerrainFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainFactory.swift; sourceTree = "<group>"; };
+		521F21E6280740E000F1D61D /* MovementModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementModifier.swift; sourceTree = "<group>"; };
 		52605C8C2801622D0082C0DB /* InfluenceMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceMap.swift; sourceTree = "<group>"; };
 		52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceMapCalculator.swift; sourceTree = "<group>"; };
 		52605C912801E5510082C0DB /* CityInfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityInfluenceMapCalculator.swift; sourceTree = "<group>"; };
@@ -267,14 +269,15 @@
 			path = "Non-Military";
 			sourceTree = "<group>";
 		};
-		521F21D22806984300F1D61D /* Terrain */ = {
+		521F21D22806984300F1D61D /* Map Features */ = {
 			isa = PBXGroup;
 			children = (
+				521F21E6280740E000F1D61D /* MovementModifier.swift */,
 				521F21E22807115100F1D61D /* Terrain.swift */,
-				521F21D32806985800F1D61D /* TerrainType.swift */,
 				521F21E42807123D00F1D61D /* TerrainFactory.swift */,
+				521F21D32806985800F1D61D /* TerrainType.swift */,
 			);
-			path = Terrain;
+			path = "Map Features";
 			sourceTree = "<group>";
 		};
 		521F21D52806991100F1D61D /* Archive */ = {
@@ -301,7 +304,7 @@
 				521F21D8280699CD00F1D61D /* Data Structures */,
 				52E0B19827E6DF8600607FBE /* Entities */,
 				52605C8E2801E37E0082C0DB /* Influence Maps */,
-				521F21D22806984300F1D61D /* Terrain */,
+				521F21D22806984300F1D61D /* Map Features */,
 				52E0B18927E6D86A00607FBE /* Constants.swift */,
 				52AB0747280287580039B47D /* City.swift */,
 				52E0B19927E6DFA000607FBE /* Game.swift */,
@@ -619,6 +622,7 @@
 				52E0B1B727E6DFD100607FBE /* ConcreteStorage.swift in Sources */,
 				521F21BD2804811200F1D61D /* Air3.swift in Sources */,
 				521F21B7280480E600F1D61D /* Paratrooper.swift in Sources */,
+				521F21E7280740E000F1D61D /* MovementModifier.swift in Sources */,
 				52E0B1EB27EAB6B800607FBE /* GameNode.swift in Sources */,
 				52E0B1B627E6DFD100607FBE /* CommandCenter.swift in Sources */,
 				52E0B1AF27E6DFD100607FBE /* Gate.swift in Sources */,

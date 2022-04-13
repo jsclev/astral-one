@@ -6,10 +6,7 @@ public class Node: Hashable {
     public let terrain: Terrain
     
     private var units: [Unit] = []
-    private var enemyHP: Float = 0.0
-    private var enemyLandAttack: Float = 0.0
-    private var enemyLandDefense: Float = 0.0
-    private var avgEnemyMovement: Float = 0.0
+    private var movementModifier: MovementModifier?
     
     public init(row: Int, col: Int, terrain: Terrain) {
         self.row = row
@@ -26,24 +23,26 @@ public class Node: Hashable {
         return lhs.row == rhs.row && lhs.col == rhs.col
     }
     
-    public func getUnits() -> [Unit] {
-        return units
-    }
-    
-    public func getMovementCost() -> Float {
-        return Float(terrain.movementCost)
-    }
-    
     public func addUnit(unit: Unit) {
         units.append(unit)
     }
     
-    public func getEnemyLandAttack() -> Float {
-        return enemyLandAttack
+    public func add(movementModifier: MovementModifier) {
+        self.movementModifier = movementModifier
     }
     
-    public func getEnemyLandDefense() -> Float {
-        return enemyLandDefense
+    public func getUnits() -> [Unit] {
+        return units
+    }
+    
+    public func getMovementCost() -> Double {
+        var movementCost = terrain.movementCost
+        
+        if let modifier = movementModifier {
+            movementCost = modifier.movementCost
+        }
+        
+        return movementCost <= 0.0 ? Constants.minMovementCost : movementCost
     }
 
 }

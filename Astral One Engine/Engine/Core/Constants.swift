@@ -29,6 +29,7 @@ public enum DiplomacyStatus {
 }
 
 public struct Constants {
+    public static let minMovementCost: Double = 0.0
     public static let mapWidth: CGFloat = 1000.0 / 3.0
     public static let mapHeight: CGFloat = 1000.0 / 3.0
     public static let terrainTypes: [String: TileDef] = [

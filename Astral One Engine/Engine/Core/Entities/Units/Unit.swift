@@ -4,25 +4,25 @@ import GameplayKit
 public class Unit: GKEntity {
     public let playerId: Int
     public let name: String
-    public let cost: Int
-    public let maxHp: Int
-    public var currentHp: Int
-    public let attackRating: Int
-    public let defenseRating: Int
-    public let fp: Int
-    public let maxMovementPoints: Float
-    public var currentMovementPoints: Float
+    public let cost: Double
+    public let maxHp: Double
+    public var currentHp: Double
+    public let attackRating: Double
+    public let defenseRating: Double
+    public let fp: Double
+    public let maxMovementPoints: Double
+    public var currentMovementPoints: Double
     public let row: Int
     public let col: Int
     
     public init(playerId: Int,
                 name: String,
-                cost: Int,
-                maxHp: Int,
-                attackRating: Int,
-                defenseRating: Int,
-                fp: Int,
-                maxMovementPoints: Float,
+                cost: Double,
+                maxHp: Double,
+                attackRating: Double,
+                defenseRating: Double,
+                fp: Double,
+                maxMovementPoints: Double,
                 row: Int,
                 col: Int) {
         self.playerId = playerId
