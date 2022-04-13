@@ -47,22 +47,22 @@ public class Explorer: Unit {
             for col in 0..<game.getMap().width {
                 let gridPosition = SIMD2<Int32>(Int32(row), Int32(col))
                 
-                if let mapNode = game.getMap().getNode(row: row, col: col) {
-                    let tiles = mapNode.getTiles()
-                    
-                    if tiles.count > 0 &&
-                        (tiles[0].spec.terrainType == TerrainType.Water ||
-                         tiles[0].spec.terrainType == TerrainType.Glacier) {
+//                if let mapNode = game.getMap().getNode(row: row, col: col) {
+//                    let tiles = mapNode.getTiles()
+//
+//                    if tiles.count > 0 &&
+//                        (tiles[0].spec.terrainType == TerrainType.Water ||
+//                         tiles[0].spec.terrainType == TerrainType.Glacier) {
 //                        nodesToRemove.append(localNode)
-                        //                        graph.remove([localNode])
-                    }
-                    else {
-                        let localNode = ExplorerNode(gridPosition: gridPosition)
-                        localNode.setMap(map: game.getMap())
+//                        graph.remove([localNode])
+//                    }
+//                    else {
+//                        let localNode = ExplorerNode(gridPosition: gridPosition)
+//                        localNode.setMap(map: game.getMap())
 //                        nodes.append(localNode)
-                        add(node: localNode, to: graph)
-                    }
-                }
+//                        add(node: localNode, to: graph)
+//                    }
+//                }
             }
         }
         
@@ -159,55 +159,6 @@ public class ExplorerNode: GKGridGraphNode {
     
     public func setMap(map: Map) {
         self.map = map
-    }
-    
-    override public func cost(to node: GKGraphNode) -> Float {
-        var cost: Float = 0.0
-        if let mapNode = map.getNode(row: Int(gridPosition.y), col: Int(gridPosition.x)) {
-            for tile in mapNode.getTiles() {
-                if tile.spec.terrainType == TerrainType.Grassland {
-                    cost += 1.0
-                }
-                else if tile.spec.terrainType == TerrainType.Jungle {
-                    cost += 2.0
-                }
-                else if tile.spec.terrainType == TerrainType.Plains {
-                    cost += 1.0
-                }
-                else if tile.spec.terrainType == TerrainType.Desert {
-                    cost += 1.0
-                }
-                else if tile.spec.terrainType == TerrainType.Swamp {
-                    cost += 2.0
-                }
-                else if tile.spec.terrainType == TerrainType.Tundra {
-                    cost += 1.0
-                }
-                else if tile.spec.terrainType == TerrainType.Forest {
-                    cost += 2.0
-                }
-                else if tile.spec.terrainType == TerrainType.Hills {
-                    cost += 2.0
-                }
-                else if tile.spec.terrainType == TerrainType.Mountains {
-                    cost += 3.0
-                }
-                else if tile.spec.terrainType == TerrainType.Glacier {
-                    cost += 2.0
-                }
-                else if tile.spec.terrainType == TerrainType.River {
-                    cost += 9999.0
-                }
-                else if tile.spec.terrainType == TerrainType.Water {
-                    cost += 9999.0
-                }
-                else {
-                    cost += 9999.0
-                }
-            }
-        }
-        
-        return cost
     }
     
     public func getEnemyLandAttack() -> Float {

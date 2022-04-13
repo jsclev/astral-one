@@ -19,10 +19,11 @@ public enum TileType {
     case Unit
 }
 
-public struct Tile {
+public class Tile {
     public var id: String = ""
     public var spec: TileDef
     public var ordinal: Int = 0
+    
     
     public init(id: String, spec: TileDef, ordinal: Int) {
         self.id = id

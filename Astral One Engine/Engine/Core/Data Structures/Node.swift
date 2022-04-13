@@ -3,16 +3,18 @@ import Foundation
 public class Node: Hashable {
     public let row: Int
     public let col: Int
+    public let terrain: Terrain
     
-    private var tiles: [Tile] = []
+    private var units: [Unit] = []
     private var enemyHP: Float = 0.0
     private var enemyLandAttack: Float = 0.0
     private var enemyLandDefense: Float = 0.0
     private var avgEnemyMovement: Float = 0.0
     
-    public init(row: Int, col: Int) {
+    public init(row: Int, col: Int, terrain: Terrain) {
         self.row = row
         self.col = col
+        self.terrain = terrain
     }
     
     public func hash(into hasher: inout Hasher) {
@@ -24,25 +26,16 @@ public class Node: Hashable {
         return lhs.row == rhs.row && lhs.col == rhs.col
     }
     
-    public func getTiles() -> [Tile] {
-        return tiles
+    public func getUnits() -> [Unit] {
+        return units
     }
     
-    public func addTile(tile: Tile) {
-        if tile.id == "" {
-            fatalError("Cannot add tile with empty id.")
-        }
-        
-        let spec = tile.spec
-        if spec.tileType == TileType.Unit {
-            if tile.spec.terrainType == TerrainType.Tank {
-                enemyHP += 3.0
-                enemyLandAttack += 10.0
-                enemyLandDefense += 5.0
-            }
-        }
-        
-        tiles.append(tile)
+    public func getMovementCost() -> Float {
+        return Float(terrain.movementCost)
+    }
+    
+    public func addUnit(unit: Unit) {
+        units.append(unit)
     }
     
     public func getEnemyLandAttack() -> Float {
@@ -51,26 +44,6 @@ public class Node: Hashable {
     
     public func getEnemyLandDefense() -> Float {
         return enemyLandDefense
-    }
-    
-    public func getScore(accordingTo: Unit) -> Float {
-        //        var score: Float = 0.0
-        let help: Float = 100.0
-        let threat: Float = 0.0
-        var movementCost: Float = 0.0
-        
-        for tile in tiles {
-            if tile.spec.tileType == TileType.Terrain {
-                if tile.spec.terrainType == TerrainType.Forest {
-                    movementCost += 1.0
-                }
-                else {
-                    movementCost += 1.0
-                }
-            }
-        }
-        
-        return help - 5.0 * movementCost - threat
     }
 
 }

@@ -10,7 +10,6 @@
 		521F21C72804827600F1D61D /* Infantry1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21C62804827600F1D61D /* Infantry1Tests.swift */; };
 		521F21CD280485FC00F1D61D /* libEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 521F21CC280485FC00F1D61D /* libEngine.a */; };
 		521F21CF2804860F00F1D61D /* libEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 521F21CE2804860F00F1D61D /* libEngine.a */; };
-		521F21DD28069EC200F1D61D /* GridGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21DC28069EC200F1D61D /* GridGraphTests.swift */; };
 		521F21DF2806A02C00F1D61D /* MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21DE2806A02C00F1D61D /* MapTests.swift */; };
 		52AB0709280200550039B47D /* EngineTestsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0708280200550039B47D /* EngineTestsApp.swift */; };
 		52AB070B280200550039B47D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB070A280200550039B47D /* ContentView.swift */; };
@@ -38,7 +37,6 @@
 		521F21CA280485B700F1D61D /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		521F21CC280485FC00F1D61D /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		521F21CE2804860F00F1D61D /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		521F21DC28069EC200F1D61D /* GridGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGraphTests.swift; sourceTree = "<group>"; };
 		521F21DE2806A02C00F1D61D /* MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTests.swift; sourceTree = "<group>"; };
 		52AB0705280200550039B47D /* Engine Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Engine Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB0708280200550039B47D /* EngineTestsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTestsApp.swift; sourceTree = "<group>"; };
@@ -108,9 +106,8 @@
 		521F21DB28069E3F00F1D61D /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
-				521F21DC28069EC200F1D61D /* GridGraphTests.swift */,
-				52AB0740280219660039B47D /* NodeTests.swift */,
 				521F21DE2806A02C00F1D61D /* MapTests.swift */,
+				52AB0740280219660039B47D /* NodeTests.swift */,
 			);
 			path = "Data Structures";
 			sourceTree = "<group>";
@@ -315,7 +312,6 @@
 				52AB074428021D7D0039B47D /* CityInfluenceMapCalculatorTests.swift in Sources */,
 				521F21DF2806A02C00F1D61D /* MapTests.swift in Sources */,
 				52AB0741280219660039B47D /* NodeTests.swift in Sources */,
-				521F21DD28069EC200F1D61D /* GridGraphTests.swift in Sources */,
 				521F21C72804827600F1D61D /* Infantry1Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

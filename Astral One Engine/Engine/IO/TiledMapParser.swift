@@ -7,8 +7,8 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
     var tiledTileset: TiledTileset
     private var map: Map
     var mapInitialized = false
-    var mapWidth: Int32 = 0
-    var mapHeight: Int32 = 0
+    var mapWidth: Int = 0
+    var mapHeight: Int = 0
     var firstGId: Int = 1
     var layerOrdinal: Int = 0
     
@@ -44,11 +44,11 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
         else if elementName == "map" {
             if let widthAttr = attributeDict["width"] {
                 // FIXME: Need to add error condition here
-                mapWidth = Int32(widthAttr) ?? 0
+                mapWidth = Int(widthAttr) ?? 0
             }
             
             if let heightAttr = attributeDict["height"] {
-                mapHeight = Int32(heightAttr) ?? 0
+                mapHeight = Int(heightAttr) ?? 0
             }
         }
         
@@ -104,9 +104,9 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                     
                                     if let tile = tiledTileset.getTile(id: strLocalTileId) {
 //                                        print("Adding tile [\(tile.id),\(tile.terrainType)] at position [\(mapRowIndex),\(col),\(layerOrdinal)]")
-                                        map.addTile(row: mapRowIndex,
-                                                    col: col,
-                                                    tile: tile)
+//                                        map.addTile(row: mapRowIndex,
+//                                                    col: col,
+//                                                    tile: tile)
                                     }
                                     else {
                                         fatalError("Unable to find tile id \(strLocalTileId).")

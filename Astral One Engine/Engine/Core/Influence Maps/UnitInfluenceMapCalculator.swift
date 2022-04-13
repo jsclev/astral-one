@@ -14,23 +14,23 @@ public class UnitInfluenceMapCalculator: InfluenceMapCalculator {
     public func getInfluenceMap() -> [[Float]] {
         var threatMap: [[Float]] = Array(repeating: Array(repeating: 0.0, count: map.width), count: map.height)
         
-        if agent.getDiplomacyStatus(between: unit) == DiplomacyStatus.AtWar {
-            for row in 0..<map.height {
-                for col in 0..<map.width {
-                    if let node = map.getNode(row: row, col: col) {
-                        let tiles = node.getTiles()
-                        
-                        if tiles.count > 0 {
-                            let terrainType = tiles[0].spec.terrainType
-                            
-                            if terrainType == TerrainType.Grassland {
-                                threatMap[row][col] = -1.0
-                            }
-                        }
-                    }
-                }
-            }
-        }
+//        if agent.getDiplomacyStatus(between: unit) == DiplomacyStatus.AtWar {
+//            for row in 0..<map.height {
+//                for col in 0..<map.width {
+//                    if let node = map.getNode(row: row, col: col) {
+//                        let tiles = node.getTiles()
+//                        
+//                        if tiles.count > 0 {
+//                            let terrainType = tiles[0].spec.terrainType
+//                            
+//                            if terrainType == TerrainType.Grassland {
+//                                threatMap[row][col] = -1.0
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
         
         return threatMap
     }

@@ -2,34 +2,71 @@ import Foundation
 import GameplayKit
 
 public class Map {
-    private let graph: GridGraph
+    var nodes: Dictionary<Node, Set<Node>> = [:]
+    public let width: Int
+    public let height: Int
+    private let minMovementCost: Float = 0.000001
     private var movementCosts: [[Float]] = [[]]
-    private var unitType: UnitType = UnitType.Explorer
     
-    public var width: Int {
-        graph.width
+    public init(width: Int, height: Int) {
+        self.width = width
+        self.height = height
+        self.movementCosts = Array(repeating: Array(repeating: minMovementCost, count: width), count: height)
     }
     
-    public var height: Int {
-        graph.height
+    @discardableResult
+    public func add(node: Node) -> Dictionary<Node, Set<Node>> {
+        if nodes[node] == nil {
+            nodes[node] = Set<Node>()
+            
+            movementCosts[node.row][node.col] = node.getMovementCost()
+        }
+        
+        return nodes
     }
     
-    public init(width: Int32, height: Int32) {
-        graph = GridGraph(width: Int(width), height: Int(height))
-        movementCosts = Array(repeating: Array(repeating: 0.0, count: self.width), count: self.height)
+    @discardableResult
+    public func addConnection(from: Node, to: Node) -> Dictionary<Node, Set<Node>> {
+        add(node: from)
+        add(node: to)
+        
+        // FIXME Need to rewrite the implementation below in a more robust way
+        nodes[from]?.insert(to)
+        
+        return nodes
     }
     
-    public func setUnitType(unitType: UnitType) {
-        self.unitType = unitType
+    @discardableResult
+    public func removeConnection(origin: Node, destination: Node) -> Dictionary<Node, Set<Node>>{
+        nodes[origin]?.remove(destination)
+        
+        return nodes
     }
     
-    public func getNode(row: Int, col: Int) -> Node? {
-        return graph.node(row: row, col: col)
+    @discardableResult
+    public func removeNode(nodeToDelete: Node) -> Dictionary<Node, Set<Node>> {
+        nodes[nodeToDelete] = nil
+        
+        for node in nodes.keys {
+            removeConnection(origin: node, destination: nodeToDelete)
+        }
+        
+        return nodes
     }
     
-    public func getTiles(row: Int, col: Int) -> [Tile] {
-        if let node = getNode(row: row, col: col) {
-            return node.getTiles()
+    public func node(row: Int, col: Int) -> Node? {
+        for node in nodes.keys {
+            if node.row == row && node.col == col {
+                return node
+            }
+        }
+        
+        return nil
+    }
+    
+    public func getUnits(row: Int, col: Int) -> [Unit] {
+        if let node = node(row: row, col: col) {
+            return node.getUnits()
         }
         
         return []
@@ -39,56 +76,22 @@ public class Map {
         return movementCosts
     }
     
-    public func addTile(row: Int, col: Int, tile: Tile) {
-        if let node = graph.node(row: row, col: col) {
-            node.addTile(tile: Tile(id: tile.id,
-                                    spec: tile.spec,
-                                    ordinal: node.getTiles().count))
-            
-        }
-        else {
-            let node = Node(row: row, col: col)
-            node.addTile(tile: Tile(id: tile.id,
-                                    spec: tile.spec,
-                                    ordinal: node.getTiles().count))
-            graph.add(node: node)
+    public func getMovementCost(fromRow: Int, fromCol: Int, toRow: Int, toCol: Int) -> Float {
+        var movementCost: Float = 0.0
+        
+        if let node = node(row: toRow, col: toCol) {
+            movementCost += node.getMovementCost()
         }
         
-        if tile.spec.terrainType == TerrainType.Desert {
-            movementCosts[row][col] += 1.0
-        }
-        else if tile.spec.terrainType == TerrainType.Forest {
-            movementCosts[row][col] += 2.0
-        }
-        else if tile.spec.terrainType == TerrainType.Grassland {
-            movementCosts[row][col] += 1.0
-        }
-        else if tile.spec.terrainType == TerrainType.Hills {
-            movementCosts[row][col] += 2.0
-        }
-        else if tile.spec.terrainType == TerrainType.Jungle {
-            movementCosts[row][col] += 2.0
-        }
-        else if tile.spec.terrainType == TerrainType.Mountains {
-            movementCosts[row][col] += 3.0
-        }
-        else if tile.spec.terrainType == TerrainType.Plains {
-            movementCosts[row][col] += 1.0
-        }
-        else if tile.spec.terrainType == TerrainType.Tundra {
-            movementCosts[row][col] += 1.0
-        }
-        else if tile.spec.terrainType == TerrainType.Water {
-            movementCosts[row][col] += 1.0
-        }
+        return movementCost == 0.0 ? minMovementCost : movementCost
     }
     
     public func getNumLayers() -> Int {
-        var numLayers: Int = 0
+        var numLayers: Int = 1
         for row in 0..<width {
             for col in 0..<height {
-                if let node = graph.node(row: row, col: col) {
-                    let myLayerCount = node.getTiles().count
+                if let node = node(row: row, col: col) {
+                    let myLayerCount = node.getUnits().count
                     if myLayerCount > numLayers {
                         numLayers = myLayerCount
                     }
@@ -111,12 +114,12 @@ public class Map {
     
     public func log() {
         print("****************************************************************")
-        print("Map dimensions: [\(graph.width), \(graph.height)]")
+        print("Map dimensions: [\(width), \(height)]")
         
         for row in 0..<width {
             for col in 0..<height {
-                if let node = graph.node(row: row, col: col) {
-                    print("Node [\(row),\(col)]: \(node.getTiles().count) tiles.")
+                if let node = node(row: row, col: col) {
+                    print("Node [\(row),\(col)]: \(node.getUnits().count) units.")
 //                    for tile in node.getTiles() {
 //                        if let tileType = Constants.tiles[tile.id] {
 //                            if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType }) {
@@ -131,28 +134,9 @@ public class Map {
         print("****************************************************************")
     }
     
-    public func getUnit() -> Unit? {
-        for row in 0..<width {
-            for col in 0..<height {
-                if let node = graph.node(row: row, col: col) {
-                    let tiles = node.getTiles()
-                    
-                    for tile in tiles {
-                        if tile.spec.tileType == TileType.Unit {
-                            return Infantry1(playerId: 1,
-                                               name: "Warrior",
-                                               row: 0,
-                                               col: 0)
-                        }
-                    }
-                }
-            }
-        }
-        
-        return nil
-    }
-    
     public func getDistance(fromRow: Int, fromCol: Int, toRow: Int, toCol: Int) -> Int {
         return abs(toRow - fromRow) + abs(toCol - fromCol) + 1
     }
+    
+    
 }
