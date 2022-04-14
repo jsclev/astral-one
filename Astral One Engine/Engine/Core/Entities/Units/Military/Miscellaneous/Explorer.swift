@@ -36,17 +36,17 @@ public class Explorer: Unit {
         graph.connectToAdjacentNodes(node: node)
     }
     
-    public func getPath(to: SIMD2<Int32>) -> [GKGraphNode] {
-        let graph = GKGridGraph<ExplorerNode>(fromGridStartingAt: SIMD2<Int32>(0, 0),
-                                              width: Int32(game.getMap().width),
-                                              height: Int32(game.getMap().height),
-                                              diagonalsAllowed: true)
-//        let graph = GKGridGraph<ExplorerNode>()
-//        var nodes: [ExplorerNode] = []
-        for row in 0..<game.getMap().height {
-            for col in 0..<game.getMap().width {
-                let gridPosition = SIMD2<Int32>(Int32(row), Int32(col))
-                
+//    public func getPath(to: SIMD2<Int32>) -> [GKGraphNode] {
+//        let graph = GKGridGraph<ExplorerNode>(fromGridStartingAt: SIMD2<Int32>(0, 0),
+//                                              width: Int32(game.getMap().width),
+//                                              height: Int32(game.getMap().height),
+//                                              diagonalsAllowed: true)
+////        let graph = GKGridGraph<ExplorerNode>()
+////        var nodes: [ExplorerNode] = []
+//        for row in 0..<game.getMap().height {
+//            for col in 0..<game.getMap().width {
+//                let gridPosition = SIMD2<Int32>(Int32(row), Int32(col))
+//
 //                if let mapNode = game.getMap().getNode(row: row, col: col) {
 //                    let tiles = mapNode.getTiles()
 //
@@ -63,8 +63,8 @@ public class Explorer: Unit {
 //                        add(node: localNode, to: graph)
 //                    }
 //                }
-            }
-        }
+//            }
+//        }
         
 //        graph.add(nodes)
 //
@@ -141,9 +141,9 @@ public class Explorer: Unit {
 //
 //            return path
 //        }
-        
-        return []
-    }
+//
+//        return []
+//    }
 }
 
 public class ExplorerNode: GKGridGraphNode {

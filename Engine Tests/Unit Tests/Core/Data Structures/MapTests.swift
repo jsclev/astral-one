@@ -59,7 +59,6 @@ class MapTests: XCTestCase {
         
         XCTAssertEqual(map.getMovementCosts().count, 1)
         XCTAssertEqual(map.getMovementCosts()[0].count, 2)
-        XCTAssertEqual(map.getMovementCost(fromRow: 0, fromCol: 0, toRow: 0, toCol: 1), 1.0)
     }
     
     func testGetMoveCostsExpectsModifiers() throws {

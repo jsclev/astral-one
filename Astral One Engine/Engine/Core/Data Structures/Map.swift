@@ -77,16 +77,6 @@ public class Map {
         return movementCosts
     }
     
-    public func getMovementCost(fromRow: Int, fromCol: Int, toRow: Int, toCol: Int) -> Double {
-        var movementCost = 0.0
-        
-        if let node = node(row: toRow, col: toCol) {
-            movementCost += node.getMovementCost()
-        }
-        
-        return movementCost <= 0.0 ? Constants.minMovementCost : movementCost
-    }
-    
     public func getNumLayers() -> Int {
         var numLayers: Int = 1
         for row in 0..<width {

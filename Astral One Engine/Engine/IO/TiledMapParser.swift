@@ -62,66 +62,66 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
     }
     
     public func parser(_ parser: XMLParser, foundCharacters string: String) {
-        if currentEl == "data" {
-            if !mapInitialized {
-                map = Map(width: mapWidth, height: mapHeight)
-                mapInitialized = true
-            }
-            
-            let trimmedString = string.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            // Make sure we are parsing the actual data CSV section, and not
-            // the section that is just whitespace.  There is one part of the
-            // SAX stream inside the data element that is just whitespace, it
-            // is not the actual tile id matrix.
-            if trimmedString.count > 0 {
-                var mapRowIndex = 0
-                let tileIdTable = string.components(separatedBy: "\n")
-                
-                for rowData in tileIdTable {
-                    // Make sure we trim off any extraneous whitespace characters
-                    // or punctuation characters from the row of data.  There have been
-                    // Tiled files that contain a trailing comma, or a trailing tab
-                    // character for some reason, so we want to make sure we get rid
-                    // of all that junk.
-                    let trimmedRowData = rowData
-                        .trimmingCharacters(in: .whitespacesAndNewlines)
-                        .trimmingCharacters(in: .punctuationCharacters)
-                    
-                    if trimmedRowData.count > 0 {
-                        let tileIds = trimmedRowData.components(separatedBy: ",")
-                        
-                        for (col, strGlobalTileId) in tileIds.enumerated() {
-                            if let intGlobalTileId = Int(strGlobalTileId) {
-                                // Tiled uses Global Tile IDs with a value of 0 (zero)
-                                // to specify that there is no tile at this position,
-                                // so we don't want to import those. See the Tiled online
-                                // documentation for more information.
-                                if intGlobalTileId > 0 {
-                                    // Convert the Tiled global tile id to the local tileset id
-                                    let intLocalTileId = intGlobalTileId - 1
-                                    let strLocalTileId = String(intLocalTileId)
-                                    
-                                    if let tile = tiledTileset.getTile(id: strLocalTileId) {
-//                                        print("Adding tile [\(tile.id),\(tile.terrainType)] at position [\(mapRowIndex),\(col),\(layerOrdinal)]")
-//                                        map.addTile(row: mapRowIndex,
-//                                                    col: col,
-//                                                    tile: tile)
-                                    }
-                                    else {
-                                        fatalError("Unable to find tile id \(strLocalTileId).")
-                                    }
-                                }
-                            }
-                            else {
-                                fatalError("Unable to convert the Global Tile ID \"\(strGlobalTileId)\" to an Int.")
-                            }
-                        }
-                        
-                        mapRowIndex += 1
-                    }
-                }
-            }
-        }
+//        if currentEl == "data" {
+//            if !mapInitialized {
+//                map = Map(width: mapWidth, height: mapHeight)
+//                mapInitialized = true
+//            }
+//
+//            let trimmedString = string.trimmingCharacters(in: .whitespacesAndNewlines)
+//
+//            // Make sure we are parsing the actual data CSV section, and not
+//            // the section that is just whitespace.  There is one part of the
+//            // SAX stream inside the data element that is just whitespace, it
+//            // is not the actual tile id matrix.
+//            if trimmedString.count > 0 {
+//                var mapRowIndex = 0
+//                let tileIdTable = string.components(separatedBy: "\n")
+//
+//                for rowData in tileIdTable {
+//                    // Make sure we trim off any extraneous whitespace characters
+//                    // or punctuation characters from the row of data.  There have been
+//                    // Tiled files that contain a trailing comma, or a trailing tab
+//                    // character for some reason, so we want to make sure we get rid
+//                    // of all that junk.
+//                    let trimmedRowData = rowData
+//                        .trimmingCharacters(in: .whitespacesAndNewlines)
+//                        .trimmingCharacters(in: .punctuationCharacters)
+//
+//                    if trimmedRowData.count > 0 {
+//                        let tileIds = trimmedRowData.components(separatedBy: ",")
+//
+//                        for (_, strGlobalTileId) in tileIds.enumerated() {
+//                            if let intGlobalTileId = Int(strGlobalTileId) {
+//                                // Tiled uses Global Tile IDs with a value of 0 (zero)
+//                                // to specify that there is no tile at this position,
+//                                // so we don't want to import those. See the Tiled online
+//                                // documentation for more information.
+//                                if intGlobalTileId > 0 {
+//                                    // Convert the Tiled global tile id to the local tileset id
+//                                    let intLocalTileId = intGlobalTileId - 1
+//                                    let strLocalTileId = String(intLocalTileId)
+//
+////                                    if let tile = tiledTileset.getTile(id: strLocalTileId) {
+////                                        print("Adding tile [\(tile.id),\(tile.terrainType)] at position [\(mapRowIndex),\(col),\(layerOrdinal)]")
+////                                        map.addTile(row: mapRowIndex,
+////                                                    col: col,
+////                                                    tile: tile)
+////                                    }
+////                                    else {
+////                                        fatalError("Unable to find tile id \(strLocalTileId).")
+////                                    }
+//                                }
+//                            }
+//                            else {
+//                                fatalError("Unable to convert the Global Tile ID \"\(strGlobalTileId)\" to an Int.")
+//                            }
+//                        }
+//
+//                        mapRowIndex += 1
+//                    }
+//                }
+//            }
+//        }
     }
 }

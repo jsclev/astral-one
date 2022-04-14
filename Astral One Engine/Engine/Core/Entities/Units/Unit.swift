@@ -53,7 +53,11 @@ public class Unit: GKEntity {
         return DiplomacyStatus.AtWar
     }
     
-    public func getDistance(to: Unit) -> Int {
-        return abs(row - to.row) + abs(col - to.col) - 1
+    public func getChebyshevDistance(to: Unit) -> Int {
+        // This is also known as the "Chessboard distance"
+        let xDistance = abs(to.col - col)
+        let yDistance = abs(to.row - row)
+        
+        return max(xDistance, yDistance)
     }
 }
