@@ -55,9 +55,58 @@ public class Unit: GKEntity {
     
     public func getChebyshevDistance(to: Unit) -> Int {
         // This is also known as the "Chessboard distance"
+        // See https://towardsdatascience.com/3-distances-that-every-data-scientist-should-know-59d864e5030a
         let xDistance = abs(to.col - col)
         let yDistance = abs(to.row - row)
         
         return max(xDistance, yDistance)
     }
+    
+    public func getPathfindingGraph(map: Map) -> GridGraph {
+        let graph = GridGraph(width: map.width, height: map.height)
+
+        for mapRow in 0..<map.height {
+            for mapCol in 0..<map.width {
+                if mapRow == row && mapCol == col {
+                    graph.add(node: ValueNode(row: mapRow, col: mapCol, value: 1.0))
+                    continue
+                }
+                
+                if let node = map.node(row: mapRow, col: mapCol) {
+                    if node.getUnits().count > 0 {
+                        for unit in node.getUnits() {
+                            let calculator = UnitInfluenceMapCalculator(map: map,
+                                                                        unit: unit,
+                                                                        agent: self)
+                            let unitMap = calculator.getInfluenceMap()
+                            
+                            for threatRow in 0..<unitMap.count {
+                                for threatCol in 0..<unitMap[threatRow].count {
+                                    if let gridGraphNode = graph.node(row: threatRow, col: threatCol) {
+                                        gridGraphNode.add(value: unitMap[threatRow][threatCol])
+                                    }
+                                    else {
+                                        graph.add(node: ValueNode(row: threatRow,
+                                                                      col: threatCol,
+                                                                      value: unitMap[threatRow][threatCol]))
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        if let gridGraphNode = graph.node(row: mapRow, col: mapCol) {
+                            gridGraphNode.add(value: 1.0)
+                        }
+                        else {
+                            graph.add(node: ValueNode(row: mapRow, col: mapCol, value: 1.0))
+                        }
+                    }
+                }
+            }
+        }
+        
+        return graph
+    }
+    
 }

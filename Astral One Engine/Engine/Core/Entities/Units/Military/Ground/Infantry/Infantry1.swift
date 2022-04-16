@@ -21,16 +21,13 @@ public class Infantry1: Unit {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func getInfluenceMap(map: Map, on: Unit) -> [[Float]] {
-        var threatMap: [[Float]] = Array(repeating: Array(repeating: 0.0, count: map.width), count: map.height)
+    public func getInfluenceMap(map: Map, on: Unit) -> [[Double]] {
+        var threatMap: [[Double]] = Array(repeating: Array(repeating: 0.0, count: map.width), count: map.height)
         
         if getDiplomacyStatus(between: on) == DiplomacyStatus.AtWar {
             for y in 0..<map.height {
                 for x in 0..<map.width {
-                    let movementCost = map.getDistance(fromRow: row,
-                                                       fromCol: col,
-                                                       toRow: y,
-                                                       toCol: x)
+                    let movementCost = getChebyshevDistance(to: on)
                     threatMap[y][x] = getThreat(distance: movementCost)
                 }
             }
@@ -39,11 +36,11 @@ public class Infantry1: Unit {
         return threatMap
     }
     
-    private func getThreat(distance: Int) -> Float {
-        -1 / (1 + exp(3 * (1.8 * Float(distance) - 2.5)))
+    private func getThreat(distance: Int) -> Double {
+        -1 / (1 + exp(3 * (1.8 * Double(distance) - 2.5)))
     }
     
-    public func logInfluenceMap(theMap: [[Float]]) {
+    public func logInfluenceMap(theMap: [[Double]]) {
         var line1 = "-"
         var line2 = ""
         var line3 = ""
@@ -67,7 +64,7 @@ public class Infantry1: Unit {
                 let formattedNum = String(format: "%.7f", theMap[i][j])
                 
                 line2 += "              |"
-                line3 += "  " + formattedNum + "  |"
+                line3 += "  " + formattedNum + "   |"
                 line4 += "              |"
                 line5 += "---------------"
             }

@@ -11,8 +11,8 @@ public class UnitInfluenceMapCalculator: InfluenceMapCalculator {
         self.agent = agent
     }
     
-    public func getInfluenceMap() -> [[Float]] {
-        let threatMap: [[Float]] = Array(repeating: Array(repeating: 0.0, count: map.width), count: map.height)
+    public func getInfluenceMap() -> [[Double]] {
+        let threatMap: [[Double]] = Array(repeating: Array(repeating: 0.0, count: map.width), count: map.height)
         
 //        if agent.getDiplomacyStatus(between: unit) == DiplomacyStatus.AtWar {
 //            for row in 0..<map.height {

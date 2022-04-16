@@ -11,8 +11,8 @@ public class CityInfluenceMapCalculator: InfluenceMapCalculator {
         self.unit = unit
     }
     
-    public func getInfluenceMap() -> [[Float]] {
-        var im: [[Float]] = Array(repeating: Array(repeating: 0.0, count: map.width), count: map.height)
+    public func getInfluenceMap() -> [[Double]] {
+        var im: [[Double]] = Array(repeating: Array(repeating: 0.0, count: map.width), count: map.height)
         let diplomacy = city.getDiplomacyStatus(unit: unit)
         
         let startRow = city.row - 1 >= 0 ? city.row - 1 : 0
