@@ -45,12 +45,13 @@ public class Unit: GKEntity {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func getDiplomacyStatus(between: Unit) -> DiplomacyStatus {
-        if playerId == between.playerId {
-            return DiplomacyStatus.Same
-        }
+    public func getChebyshevDistance(toRow: Int, toCol: Int) -> Int {
+        // This is also known as the "Chessboard distance"
+        // See https://towardsdatascience.com/3-distances-that-every-data-scientist-should-know-59d864e5030a
+        let xDistance = abs(toCol - col)
+        let yDistance = abs(toRow - row)
         
-        return DiplomacyStatus.AtWar
+        return max(xDistance, yDistance)
     }
     
     public func getChebyshevDistance(to: Unit) -> Int {
@@ -60,6 +61,14 @@ public class Unit: GKEntity {
         let yDistance = abs(to.row - row)
         
         return max(xDistance, yDistance)
+    }
+    
+    public func getDiplomacyStatus(between: Unit) -> DiplomacyStatus {
+        if playerId == between.playerId {
+            return DiplomacyStatus.Same
+        }
+        
+        return DiplomacyStatus.AtWar
     }
     
     public func getPathfindingGraph(map: Map) -> GridGraph {
@@ -72,35 +81,35 @@ public class Unit: GKEntity {
                     continue
                 }
                 
-                if let node = map.node(row: mapRow, col: mapCol) {
-                    if node.getUnits().count > 0 {
-                        for unit in node.getUnits() {
-                            let calculator = UnitInfluenceMapCalculator(map: map,
-                                                                        unit: unit,
-                                                                        agent: self)
-                            let unitMap = calculator.getInfluenceMap()
-                            
-                            for threatRow in 0..<unitMap.count {
-                                for threatCol in 0..<unitMap[threatRow].count {
-                                    if let gridGraphNode = graph.node(row: threatRow, col: threatCol) {
-                                        gridGraphNode.add(value: unitMap[threatRow][threatCol])
-                                    }
-                                    else {
-                                        graph.add(node: ValueNode(row: threatRow,
-                                                                      col: threatCol,
-                                                                      value: unitMap[threatRow][threatCol]))
-                                    }
+                let tile = map.tile(row: mapRow, col: mapCol)
+                
+                if tile.getUnits().count > 0 {
+                    for unit in tile.getUnits() {
+                        let calculator = UnitInfluenceMapCalculator(map: map,
+                                                                    unit: unit,
+                                                                    agent: self)
+                        let unitMap = calculator.getInfluenceMap()
+                        
+                        for threatRow in 0..<unitMap.count {
+                            for threatCol in 0..<unitMap[threatRow].count {
+                                if let gridGraphNode = graph.node(row: threatRow, col: threatCol) {
+                                    gridGraphNode.add(value: unitMap[threatRow][threatCol])
+                                }
+                                else {
+                                    graph.add(node: ValueNode(row: threatRow,
+                                                                  col: threatCol,
+                                                                  value: unitMap[threatRow][threatCol]))
                                 }
                             }
                         }
                     }
+                }
+                else {
+                    if let gridGraphNode = graph.node(row: mapRow, col: mapCol) {
+                        gridGraphNode.add(value: 1.0)
+                    }
                     else {
-                        if let gridGraphNode = graph.node(row: mapRow, col: mapCol) {
-                            gridGraphNode.add(value: 1.0)
-                        }
-                        else {
-                            graph.add(node: ValueNode(row: mapRow, col: mapCol, value: 1.0))
-                        }
+                        graph.add(node: ValueNode(row: mapRow, col: mapCol, value: 1.0))
                     }
                 }
             }

@@ -9,17 +9,17 @@ class NodeTests: XCTestCase {
         // will always be more than zero.
         
         // Purposefully attempt to create a node with zero movement cost terrain
-        let node = Node(row: 0, col: 0, terrain: Terrain(name: "Grass",
+        let tile = Tile(row: 0, col: 0, terrain: Terrain(name: "Grass",
                                                          food: 0.0,
                                                          shields: 0.0,
                                                          trade: 0.0,
                                                          movementCost: 0.0))
         // Make sure the node's movement cost is greater than zero
-        XCTAssertEqual(node.getMovementCost(), Constants.minMovementCost)
+        XCTAssertEqual(tile.getMovementCost(), Constants.minMovementCost)
     }
     
     func testMovementCostNegTerrain() {
-        let node = Node(row: 0, col: 0, terrain: Terrain(name: "Grass",
+        let tile = Tile(row: 0, col: 0, terrain: Terrain(name: "Grass",
                                                          food: 0.0,
                                                          shields: 0.0,
                                                          trade: 0.0,
@@ -27,74 +27,74 @@ class NodeTests: XCTestCase {
         
         // Make sure the node's movement cost is greater than zero, even
         // though we purposefully gave the terrain negative movement cost
-        XCTAssertEqual(node.getMovementCost(), Constants.minMovementCost)
+        XCTAssertEqual(tile.getMovementCost(), Constants.minMovementCost)
     }
     
     func testMovementCostNormalTerrain() {
-        let node = Node(row: 0, col: 0, terrain: Terrain(name: "Test",
+        let tile = Tile(row: 0, col: 0, terrain: Terrain(name: "Test",
                                                          food: 0.0,
                                                          shields: 0.0,
                                                          trade: 0.0,
                                                          movementCost: 1.0))
-        XCTAssertEqual(node.getMovementCost(), 1.0)
+        XCTAssertEqual(tile.getMovementCost(), 1.0)
     }
     
     func testMovementCostModifier1() {
-        let node = Node(row: 0, col: 0, terrain: Terrain(name: "Test",
+        let tile = Tile(row: 0, col: 0, terrain: Terrain(name: "Test",
                                                          food: 0.0,
                                                          shields: 0.0,
                                                          trade: 0.0,
                                                          movementCost: -1.0))
-        node.add(movementModifier: MovementModifier(name: "", movementCost: 1.0 / 3.0))
+        tile.add(movementModifier: MovementModifier(name: "", movementCost: 1.0 / 3.0))
         
-        XCTAssertEqual(node.getMovementCost(), 1.0 / 3.0)
+        XCTAssertEqual(tile.getMovementCost(), 1.0 / 3.0)
     }
     
     func testMovementCostModifier2() {
-        let node = Node(row: 0, col: 0, terrain: Terrain(name: "Test",
+        let tile = Tile(row: 0, col: 0, terrain: Terrain(name: "Test",
                                                          food: 0.0,
                                                          shields: 0.0,
                                                          trade: 0.0,
                                                          movementCost: 0.0))
-        node.add(movementModifier: MovementModifier(name: "", movementCost: 1.0 / 3.0))
+        tile.add(movementModifier: MovementModifier(name: "", movementCost: 1.0 / 3.0))
 
-        XCTAssertEqual(node.getMovementCost(), 1.0 / 3.0)
+        XCTAssertEqual(tile.getMovementCost(), 1.0 / 3.0)
     }
     
     func testMovementCostModifier3() {
-        let node = Node(row: 0, col: 0, terrain: Terrain(name: "Test",
+        let tile = Tile(row: 0, col: 0, terrain: Terrain(name: "Test",
                                                          food: 0.0,
                                                          shields: 0.0,
                                                          trade: 0.0,
                                                          movementCost: 1.0))
-        node.add(movementModifier: MovementModifier(name: "", movementCost: 1.0 / 3.0))
+        tile.add(movementModifier: MovementModifier(name: "", movementCost: 1.0 / 3.0))
 
-        XCTAssertEqual(node.getMovementCost(), 1.0 / 3.0)
+        XCTAssertEqual(tile.getMovementCost(), 1.0 / 3.0)
     }
     
     func testMovementCostModifier4() {
-        let node = Node(row: 0, col: 0, terrain: Terrain(name: "Test",
+        let tile = Tile(row: 0, col: 0, terrain: Terrain(name: "Test",
                                                          food: 0.0,
                                                          shields: 0.0,
                                                          trade: 0.0,
                                                          movementCost: 100.0))
-        node.add(movementModifier: MovementModifier(name: "", movementCost: 1.0 / 3.0))
+        tile.add(movementModifier: MovementModifier(name: "", movementCost: 1.0 / 3.0))
 
-        XCTAssertEqual(node.getMovementCost(), 1.0 / 3.0)
+        XCTAssertEqual(tile.getMovementCost(), 1.0 / 3.0)
     }
     
     func testMovementCostModifier5() {
-        let node = Node(row: 0, col: 0, terrain: Terrain(name: "Test",
+        let tile = Tile(row: 0, col: 0, terrain: Terrain(name: "Test",
                                                          food: 0.0,
                                                          shields: 0.0,
                                                          trade: 0.0,
                                                          movementCost: 1000.0))
         
-        node.add(movementModifier: MovementModifier(name: "", movementCost: 1.0))
-        XCTAssertEqual(node.getMovementCost(), 1.0)
+        tile.add(movementModifier: MovementModifier(name: "", movementCost: 1.0))
+        XCTAssertEqual(tile.getMovementCost(), 1.0)
         
-        node.add(movementModifier: MovementModifier(name: "", movementCost: 3.0))
-        XCTAssertEqual(node.getMovementCost(), 3.0)
+        tile.add(movementModifier: MovementModifier(name: "", movementCost: 3.0))
+        XCTAssertEqual(tile.getMovementCost(), 3.0)
     }
     
 //    func testPerformanceExample() throws {

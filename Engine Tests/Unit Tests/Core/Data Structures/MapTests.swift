@@ -19,18 +19,18 @@ class MapTests: XCTestCase {
     
     func testGetMoveCostsBaseTerrain() throws {
         let map = Map(width: 4, height: 4)
-        map.add(node: Node(row: 0, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Desert)))
-        map.add(node: Node(row: 0, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Forest)))
-        map.add(node: Node(row: 0, col: 2, terrain: TerrainFactory.create(terrainType: TerrainType.Glacier)))
-        map.add(node: Node(row: 0, col: 3, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
-        map.add(node: Node(row: 1, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Hills)))
-        map.add(node: Node(row: 1, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Jungle)))
-        map.add(node: Node(row: 1, col: 2, terrain: TerrainFactory.create(terrainType: TerrainType.Mountains)))
-        map.add(node: Node(row: 1, col: 3, terrain: TerrainFactory.create(terrainType: TerrainType.Ocean)))
-        map.add(node: Node(row: 2, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Plains)))
-        map.add(node: Node(row: 2, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Swamp)))
-        map.add(node: Node(row: 2, col: 2, terrain: TerrainFactory.create(terrainType: TerrainType.Tundra)))
-        map.add(node: Node(row: 2, col: 3, terrain: TerrainFactory.create(terrainType: TerrainType.Water)))
+        map.add(tile: Tile(row: 0, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Desert)))
+        map.add(tile: Tile(row: 0, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Forest)))
+        map.add(tile: Tile(row: 0, col: 2, terrain: TerrainFactory.create(terrainType: TerrainType.Glacier)))
+        map.add(tile: Tile(row: 0, col: 3, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
+        map.add(tile: Tile(row: 1, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Hills)))
+        map.add(tile: Tile(row: 1, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Jungle)))
+        map.add(tile: Tile(row: 1, col: 2, terrain: TerrainFactory.create(terrainType: TerrainType.Mountains)))
+        map.add(tile: Tile(row: 1, col: 3, terrain: TerrainFactory.create(terrainType: TerrainType.Ocean)))
+        map.add(tile: Tile(row: 2, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Plains)))
+        map.add(tile: Tile(row: 2, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Swamp)))
+        map.add(tile: Tile(row: 2, col: 2, terrain: TerrainFactory.create(terrainType: TerrainType.Tundra)))
+        map.add(tile: Tile(row: 2, col: 3, terrain: TerrainFactory.create(terrainType: TerrainType.Water)))
         
         // Make sure we have the correctly sized movement cost map
         XCTAssertEqual(map.getMovementCosts().count, 4)
@@ -54,8 +54,8 @@ class MapTests: XCTestCase {
     
     func testGetMoveCostTwoGrassNodes() throws {
         let map = Map(width: 2, height: 1)
-        map.add(node: Node(row: 0, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
-        map.add(node: Node(row: 0, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
+        map.add(tile: Tile(row: 0, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
+        map.add(tile: Tile(row: 0, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
         
         XCTAssertEqual(map.getMovementCosts().count, 1)
         XCTAssertEqual(map.getMovementCosts()[0].count, 2)
@@ -63,30 +63,30 @@ class MapTests: XCTestCase {
     
     func testGetMoveCostsExpectsModifiers() throws {
         let map = Map(width: 2, height: 2)
-        let node00 = Node(row: 0,
+        let tile00 = Tile(row: 0,
                           col: 0,
                           terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
-        node00.add(movementModifier: MovementModifier(name: "", movementCost: 100.0))
+        tile00.add(movementModifier: MovementModifier(name: "", movementCost: 100.0))
         
-        let node01 = Node(row: 0,
+        let tile01 = Tile(row: 0,
                           col: 1,
                           terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
-        node01.add(movementModifier: MovementModifier(name: "", movementCost: 200.0))
+        tile01.add(movementModifier: MovementModifier(name: "", movementCost: 200.0))
         
-        let node10 = Node(row: 1,
+        let tile10 = Tile(row: 1,
                           col: 0,
                           terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
-        node10.add(movementModifier: MovementModifier(name: "", movementCost: 300.0))
+        tile10.add(movementModifier: MovementModifier(name: "", movementCost: 300.0))
         
-        let node11 = Node(row: 1,
+        let tile11 = Tile(row: 1,
                           col: 1,
                           terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
-        node11.add(movementModifier: MovementModifier(name: "", movementCost: 400.0))
+        tile11.add(movementModifier: MovementModifier(name: "", movementCost: 400.0))
         
-        map.add(node: node00)
-        map.add(node: node01)
-        map.add(node: node10)
-        map.add(node: node11)
+        map.add(tile: tile00)
+        map.add(tile: tile01)
+        map.add(tile: tile10)
+        map.add(tile: tile11)
 
         let movementCosts = map.getMovementCosts()
         XCTAssertEqual(movementCosts[0][0], 100.0)

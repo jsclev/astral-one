@@ -184,25 +184,54 @@ public class GridGraph {
     }
     
     public func log() {
-        print("****************************************************************")
-        print("Map dimensions: [\(width), \(height)]")
+        var line1 = "-"
+        var line2 = ""
+        var line3 = ""
+        var line4 = ""
+        var line5 = ""
         
-//        for row in 0..<width {
-//            for col in 0..<height {
-//                if let node = node(row: row, col: col) {
-//                    print("Node [\(row),\(col)]: \(node.getUnits().count) units.")
-                    //                    for tile in node.getTiles() {
-                    //                        if let tileType = Constants.tiles[tile.id] {
-                    //                            if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType }) {
-                    //                                unitsMap.setTileGroup(tileGroup, forColumn: col, row: row)
-                    //                            }
-                    //                        }
-                    //                    }
-//                }
-//            }
-//        }
+        for _ in 0..<width {
+            line1 += "----------------"
+        }
         
-        print("****************************************************************")
+        print(line1)
+        line1 = ""
+        
+        for i in 0..<height {
+            line2 = "|"
+            line3 = "|"
+            line4 = "|"
+            line5 = "-"
+            
+            for j in 0..<width {
+                if let node = self.node(row: i, col: j) {
+                    let formattedNum = String(format: "%.7f", node.getValue())
+                    
+                    line2 += "               |"
+                    
+                    if formattedNum.count == 9 {
+                        line3 += "  " + formattedNum + "    |"
+                    }
+                    else if formattedNum.count == 10 {
+                        line3 += "  " + formattedNum + "   |"
+                    }
+                    
+                    line4 += "               |"
+                    line5 += "----------------"
+                }
+            }
+            
+            print(line2)
+            print(line3)
+            print(line4)
+            print(line5)
+            
+            line1 = ""
+            line2 = ""
+            line3 = ""
+            line4 = ""
+            line5 = ""
+        }
     }
     
     

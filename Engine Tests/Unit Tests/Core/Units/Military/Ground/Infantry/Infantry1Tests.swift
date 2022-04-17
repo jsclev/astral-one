@@ -16,5 +16,4 @@ class Infantry1Tests: XCTestCase {
         XCTAssertEqual(1, fixture.fp)
     }
     
-    
 }

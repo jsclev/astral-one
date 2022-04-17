@@ -1,7 +1,7 @@
 import GameplayKit
 
 public class GameNode: GKGridGraphNode {
-    private var tiles: [Tile] = []
+    private var tiles: [Tile2] = []
     private var enemyHP: Float = 0.0
     private var enemyLandAttack: Float = 0.0
     private var enemyLandDefense: Float = 0.0
@@ -59,11 +59,11 @@ public class GameNode: GKGridGraphNode {
         return cost
     }
     
-    public func getTiles() -> [Tile] {
+    public func getTiles() -> [Tile2] {
         return tiles
     }
     
-    public func addTile(tile: Tile) {
+    public func addTile(tile: Tile2) {
         if tile.id == "" {
             fatalError("Cannot add tile with empty id.")
         }

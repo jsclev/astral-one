@@ -2,7 +2,7 @@ import Foundation
 
 public class TiledTilesetParser: NSObject, XMLParserDelegate {
     let filename: String
-    var tiles: [Tile] = []
+    var tiles: [Tile2] = []
     var elementName = ""
     var tileId = ""
     
@@ -41,7 +41,7 @@ public class TiledTilesetParser: NSObject, XMLParserDelegate {
     public func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "tile" {
             if let tileSpec = Constants.terrainTypes[tileId] {
-                tiles.append(Tile(id: tileId, spec: tileSpec, ordinal: 0))
+                tiles.append(Tile2(id: tileId, spec: tileSpec, ordinal: 0))
             }
         }
     }

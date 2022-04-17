@@ -1,59 +1,152 @@
 import XCTest
 import Engine
 
-//class UnitInfluenceMapCalculatorTests: XCTestCase {
-//    func testGetInfluenceMapScenario1() throws {
-//        // We'll create a 5x5 map with an enemy infantry unit in the
-//        // exact center.  We'll put a unit in the lower-left corner at
-//        // position (0, 0).  The influence map should show the highest
-//        // negative level at the enemy position, then spreading out.
-//        let map = Map(width: 5, height: 5)
-//        let agent = Infantry1(playerId: 1, name: "Test", row: 0, col: 0)
-//        let enemyUnit = Infantry1(playerId: 2, name: "Test", row: 2, col: 2)
-//        let influenceMap = enemyUnit.getInfluenceMap(map: map, on: agent)
-//
-//        agent.logInfluenceMap(theMap: influenceMap)
-//
-//        // Make sure our influence map is the correct size
-//        XCTAssertEqual(influenceMap.count, 5)
-//        for i in 0..<5 {
-//            XCTAssertEqual(influenceMap[i].count, 5)
-//        }
-//
-//        // Col 0
-//        XCTAssertEqual(influenceMap[0][0], -0.00001, accuracy: 0.00005)
-//        XCTAssertEqual(influenceMap[0][1], -0.00001, accuracy: 0.00005)
-//        XCTAssertEqual(influenceMap[0][2], -0.0001, accuracy: 0.0005)
-//        XCTAssertEqual(influenceMap[0][3], -0.00001, accuracy: 0.00005)
-//        XCTAssertEqual(influenceMap[0][4], -0.00001, accuracy: 0.00005)
-//
-//        // Col 1
-//        XCTAssertEqual(influenceMap[1][0], -0.00001, accuracy: 0.00005)
-//        XCTAssertEqual(influenceMap[1][1], -0.0001, accuracy: 0.0005)
-//        XCTAssertEqual(influenceMap[1][2], -0.035, accuracy: 0.01)
-//        XCTAssertEqual(influenceMap[1][3], -0.0001, accuracy: 0.0005)
-//        XCTAssertEqual(influenceMap[1][4], -0.00001, accuracy: 0.00005)
-//
-//        // Col 2
-//        XCTAssertEqual(influenceMap[2][0], -0.0001, accuracy: 0.0005)
-//        XCTAssertEqual(influenceMap[2][1], -0.035, accuracy: 0.01)
-//        XCTAssertEqual(influenceMap[2][2], -0.9, accuracy: 0.1)
-//        XCTAssertEqual(influenceMap[2][3], -0.035, accuracy: 0.01)
-//        XCTAssertEqual(influenceMap[2][4], -0.0001, accuracy: 0.0005)
-//
-//        // Col 3
-//        XCTAssertEqual(influenceMap[3][0], -0.00001, accuracy: 0.00005)
-//        XCTAssertEqual(influenceMap[3][1], -0.0001, accuracy: 0.0005)
-//        XCTAssertEqual(influenceMap[3][2], -0.035, accuracy: 0.01)
-//        XCTAssertEqual(influenceMap[3][3], -0.0001, accuracy: 0.0005)
-//        XCTAssertEqual(influenceMap[3][4], -0.00001, accuracy: 0.00005)
-//
-//        // Col 4
-//        XCTAssertEqual(influenceMap[4][0], -0.01, accuracy: 0.1)
-//        XCTAssertEqual(influenceMap[4][1], -0.01, accuracy: 0.1)
-//        XCTAssertEqual(influenceMap[4][2], -0.0001, accuracy: 0.0005)
-//        XCTAssertEqual(influenceMap[4][3], -0.00001, accuracy: 0.00005)
-//        XCTAssertEqual(influenceMap[4][4], -0.00001, accuracy: 0.00005)
-//    }
+class UnitInfluenceMapCalculatorTests: XCTestCase {
+    func testGetInfluenceMapScenario1() throws {
+        // Create a 3x3 map and place an agent in the lower-left
+        // corner.  We'll create an enemy unit, but won't actually
+        // add it to the map, and assert that the influence is zero.
+        let map = Map(width: 3, height: 3)
+        let agent = Infantry1(playerId: 1, name: "Test", row: 0, col: 0)
+        let enemyUnit = Infantry1(playerId: 2, name: "Test", row: 1, col: 1)
 
-//}
+        let calculator = UnitInfluenceMapCalculator(map: map, unit: enemyUnit, agent: agent)
+        let influenceMap = calculator.getInfluenceMap()
+
+//        calculator.logInfluenceMap(theMap: influenceMap)
+
+        // Col 0
+        XCTAssertEqual(influenceMap[0][0], 0.0, accuracy: 0.01)
+        XCTAssertEqual(influenceMap[0][1], 0.0, accuracy: 0.01)
+        XCTAssertEqual(influenceMap[0][2], 0.0, accuracy: 0.01)
+
+        // Col 1
+        XCTAssertEqual(influenceMap[1][0], 0.0, accuracy: 0.01)
+        XCTAssertEqual(influenceMap[1][1], 0.0, accuracy: 0.01)
+        XCTAssertEqual(influenceMap[1][2], 0.0, accuracy: 0.01)
+
+        // Col 2
+        XCTAssertEqual(influenceMap[2][0], 0.0, accuracy: 0.01)
+        XCTAssertEqual(influenceMap[2][1], 0.0, accuracy: 0.01)
+        XCTAssertEqual(influenceMap[2][2], 0.0, accuracy: 0.01)
+    }
+    
+    func testGetInfluenceMapScenario2() throws {
+        // Create a 3x3 map with an enemy infantry unit in the
+        // exact center.  We'll put an agent in the lower-left corner at
+        // position (0, 0).  The influence map should show the highest
+        // negative level at the enemy position, then spreading out.
+        let map = Map(width: 3, height: 3)
+        let agent = Infantry1(playerId: 1, name: "Test", row: 0, col: 0)
+        let enemyUnit = Infantry1(playerId: 2, name: "Test", row: 1, col: 1)
+        
+        let tile = Tile(row: 1, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
+        tile.addUnit(unit: enemyUnit)
+        map.add(tile: tile)
+        
+        let calculator = UnitInfluenceMapCalculator(map: map, unit: enemyUnit, agent: agent)
+        let influenceMap = calculator.getInfluenceMap()
+        
+        //calculator.logInfluenceMap(theMap: influenceMap)
+        
+        // Make sure our influence map is the correct size
+        XCTAssertEqual(influenceMap.count, 3)
+        for i in 0..<3 {
+            XCTAssertEqual(influenceMap[i].count, 3)
+        }
+        
+        // Make sure the 8 locations around the edge are the same
+        XCTAssertEqual(influenceMap[0][0], -0.25, accuracy: 0.1)
+        XCTAssertEqual(influenceMap[0][0], influenceMap[0][1])
+        XCTAssertEqual(influenceMap[0][0], influenceMap[0][2])
+        XCTAssertEqual(influenceMap[0][0], influenceMap[1][0])
+        XCTAssertEqual(influenceMap[0][0], influenceMap[1][2])
+        XCTAssertEqual(influenceMap[0][0], influenceMap[2][0])
+        XCTAssertEqual(influenceMap[0][0], influenceMap[2][1])
+        XCTAssertEqual(influenceMap[0][0], influenceMap[2][2])
+
+        // The only location that should be more negative is the enemy unit location
+        XCTAssertLessThan(influenceMap[1][1], influenceMap[0][0])
+    }
+    
+    func testGetInfluenceMapScenario3() throws {
+        /*
+         Create a 3x3 map, and put an agent in the lower-left corner at (0, 0). Put two
+         enemy units in the center at (1, 1) and check the influence maps from each enemy
+         unit, and make sure the influence map from the more powerful enemy unit has a higher
+         negative influence.
+         */
+        let map = Map(width: 3, height: 3)
+        let tile = Tile(row: 1, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
+
+        let agent = Infantry1(playerId: 1, name: "Agent", row: 0, col: 0)
+        let enemyUnit1 = Infantry1(playerId: 2, name: "Enemy1", row: 1, col: 1)
+        let enemyUnit2 = Cavalry7(playerId: 2, name: "Enemy2", row: 1, col: 1)
+
+        tile.addUnit(unit: enemyUnit1)
+        tile.addUnit(unit: enemyUnit2)
+        map.add(tile: tile)
+        
+        let calculator1 = UnitInfluenceMapCalculator(map: map, unit: enemyUnit1, agent: agent)
+        let influenceMap1 = calculator1.getInfluenceMap()
+        calculator1.logInfluenceMap(theMap: influenceMap1)
+        
+        let calculator2 = UnitInfluenceMapCalculator(map: map, unit: enemyUnit2, agent: agent)
+        let influenceMap2 = calculator2.getInfluenceMap()
+        calculator2.logInfluenceMap(theMap: influenceMap2)
+
+        // Make sure the 2nd more powerful enemy unit has a higher negative value
+        XCTAssertLessThan(influenceMap2[0][0], influenceMap1[0][0])
+        XCTAssertLessThan(influenceMap2[0][1], influenceMap1[0][1])
+        XCTAssertLessThan(influenceMap2[0][2], influenceMap1[0][2])
+        XCTAssertLessThan(influenceMap2[1][0], influenceMap1[1][0])
+        XCTAssertLessThan(influenceMap2[1][1], influenceMap1[1][1])
+        XCTAssertLessThan(influenceMap2[1][2], influenceMap1[1][2])
+        XCTAssertLessThan(influenceMap2[2][0], influenceMap1[2][0])
+        XCTAssertLessThan(influenceMap2[2][1], influenceMap1[2][1])
+        XCTAssertLessThan(influenceMap2[2][2], influenceMap1[2][2])
+    }
+    
+    func testSumScenario1() throws {
+        /*
+         Create a 3x3 map, and put an agent in the lower-left corner at (0, 0). Put two
+         enemy units in the center at (1, 1) and check the influence maps from each enemy
+         unit, and make sure the influence map from the more powerful enemy unit has a higher
+         negative influence.
+         */
+        let mainMap = Map(width: 3, height: 3)
+        let tile = Tile(row: 1, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
+        
+        let agent = Infantry1(playerId: 1, name: "Agent", row: 0, col: 0)
+        let enemyUnit1 = Infantry1(playerId: 2, name: "Enemy1", row: 1, col: 1)
+        let enemyUnit2 = Cavalry7(playerId: 2, name: "Enemy2", row: 1, col: 1)
+        
+        tile.addUnit(unit: enemyUnit1)
+        tile.addUnit(unit: enemyUnit2)
+        mainMap.add(tile: tile)
+        
+        let calculator1 = UnitInfluenceMapCalculator(map: mainMap, unit: enemyUnit1, agent: agent)
+        let map1 = calculator1.getInfluenceMap()
+        calculator1.logInfluenceMap(theMap: map1)
+        
+        let calculator2 = UnitInfluenceMapCalculator(map: mainMap, unit: enemyUnit2, agent: agent)
+        let map2 = calculator2.getInfluenceMap()
+        calculator2.logInfluenceMap(theMap: map2)
+        
+        let map3 = UnitInfluenceMapCalculator.sum(map1: map1, map2: map2)
+        
+        // Make sure the 2nd more powerful enemy unit has a higher negative value
+        XCTAssertEqual(map3[0][0], map1[0][0] + map2[0][0])
+        XCTAssertEqual(map3[0][1], map1[0][1] + map2[0][1])
+        XCTAssertEqual(map3[0][2], map1[0][2] + map2[0][2])
+        XCTAssertEqual(map3[1][0], map1[1][0] + map2[1][0])
+        XCTAssertEqual(map3[1][1], map1[1][1] + map2[1][1])
+        XCTAssertEqual(map3[1][2], map1[1][2] + map2[1][2])
+        XCTAssertEqual(map3[2][0], map1[2][0] + map2[2][0])
+        XCTAssertEqual(map3[2][1], map1[2][1] + map2[2][1])
+        XCTAssertEqual(map3[2][2], map1[2][2] + map2[2][2])
+
+        XCTAssertLessThan(map3[0][0], 0)
+    }
+
+}

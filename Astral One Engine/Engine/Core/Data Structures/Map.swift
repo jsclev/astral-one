@@ -2,75 +2,55 @@ import Foundation
 import GameplayKit
 
 public class Map {
-    var nodes: Dictionary<Node, Set<Node>> = [:]
     public let width: Int
     public let height: Int
-    private var movementCosts: [[Double]] = [[]]
+    private var grid: [[Tile]]
+    private var movementCosts: [[Double]]
     
     public init(width: Int, height: Int) {
         self.width = width
         self.height = height
-        self.movementCosts = Array(repeating: Array(repeating: Constants.minMovementCost,
-                                                    count: width),
-                                   count: height)
-    }
-    
-    @discardableResult
-    public func add(node: Node) -> Dictionary<Node, Set<Node>> {
-        if nodes[node] == nil {
-            nodes[node] = Set<Node>()
-            
-            movementCosts[node.row][node.col] = node.getMovementCost()
-        }
         
-        return nodes
-    }
-    
-    @discardableResult
-    public func addConnection(from: Node, to: Node) -> Dictionary<Node, Set<Node>> {
-        add(node: from)
-        add(node: to)
+        self.grid = Array(repeating: Array(repeating: Tile(row: 0,
+                                                           col: 0,
+                                                           terrain: Terrain(name: "",
+                                                                            food: 0.0,
+                                                                            shields: 0.0,
+                                                                            trade: 0.0,
+                                                                            movementCost: Constants.minMovementCost)),
+                                           count: width), count: height)
+
         
-        // FIXME Need to rewrite the implementation below in a more robust way
-        nodes[from]?.insert(to)
-        
-        return nodes
-    }
-    
-    @discardableResult
-    public func removeConnection(origin: Node, destination: Node) -> Dictionary<Node, Set<Node>>{
-        nodes[origin]?.remove(destination)
-        
-        return nodes
-    }
-    
-    @discardableResult
-    public func removeNode(nodeToDelete: Node) -> Dictionary<Node, Set<Node>> {
-        nodes[nodeToDelete] = nil
-        
-        for node in nodes.keys {
-            removeConnection(origin: node, destination: nodeToDelete)
-        }
-        
-        return nodes
-    }
-    
-    public func node(row: Int, col: Int) -> Node? {
-        for node in nodes.keys {
-            if node.row == row && node.col == col {
-                return node
+        for row in 0..<height {
+            for col in 0..<width {
+                self.grid[row][col] = Tile(row: row,
+                                      col: col,
+                                      terrain: Terrain(name: "",
+                                                       food: 0.0,
+                                                       shields: 0.0,
+                                                       trade: 0.0,
+                                                       movementCost: Constants.minMovementCost))
             }
         }
         
-        return nil
+        self.movementCosts = Array(repeating: Array(repeating:0.0, count: width), count: height)
+    }
+    
+    public func add(tile: Tile) {
+        grid[tile.row][tile.col] = tile
+        movementCosts[tile.row][tile.col] = tile.getMovementCost()
+    }
+    
+    public func tile(row: Int, col: Int) -> Tile {
+        return grid[row][col]
+    }
+    
+    public func getGrid() -> [[Tile]] {
+        return grid
     }
     
     public func getUnits(row: Int, col: Int) -> [Unit] {
-        if let node = node(row: row, col: col) {
-            return node.getUnits()
-        }
-        
-        return []
+        return grid[row][col].getUnits()
     }
     
     public func getMovementCosts() -> [[Double]] {
@@ -79,28 +59,17 @@ public class Map {
     
     public func getNumLayers() -> Int {
         var numLayers: Int = 1
+        
         for row in 0..<width {
             for col in 0..<height {
-                if let node = node(row: row, col: col) {
-                    let myLayerCount = node.getUnits().count
-                    if myLayerCount > numLayers {
-                        numLayers = myLayerCount
-                    }
+                let myLayerCount = grid[row][col].getUnits().count
+                if myLayerCount > numLayers {
+                    numLayers = myLayerCount
                 }
             }
         }
 
         return numLayers
-    }
-    
-    public func findPath(from: SIMD2<Int32>, to: SIMD2<Int32>) -> [GKGraphNode] {
-//        let startNode = graph.node(row: Int(from.y), col: Int(from.x))
-//        let endNode = graph.node(row: Int(to.y), col: Int(to.x))
-//        if let startNode = startNode, let endNode = endNode {
-//            return graph.findPath(from: startNode, to: endNode)
-//        }
-        
-        return []
     }
     
     public func log() {
@@ -109,8 +78,8 @@ public class Map {
         
         for row in 0..<width {
             for col in 0..<height {
-                if let node = node(row: row, col: col) {
-                    print("Node [\(row),\(col)]: \(node.getUnits().count) units.")
+                let tile = grid[row][col]
+                print("Node [\(row),\(col)]: \(tile.getUnits().count) units.")
 //                    for tile in node.getTiles() {
 //                        if let tileType = Constants.tiles[tile.id] {
 //                            if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType }) {
@@ -118,7 +87,6 @@ public class Map {
 //                            }
 //                        }
 //                    }
-                }
             }
         }
         

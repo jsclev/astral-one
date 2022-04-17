@@ -15,7 +15,7 @@
 		521F21ED2807E14000F1D61D /* UnitInfluenceMapCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21EC2807E14000F1D61D /* UnitInfluenceMapCalculatorTests.swift */; };
 		521F21EF2808BAA900F1D61D /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21EE2808BAA900F1D61D /* GameTests.swift */; };
 		521F21F52808FB7B00F1D61D /* GridGraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21F42808FB7B00F1D61D /* GridGraphTests.swift */; };
-		521F21F9280A17AD00F1D61D /* UtilityNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21F8280A17AD00F1D61D /* UtilityNodeTests.swift */; };
+		521F21F9280A17AD00F1D61D /* ValueNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21F8280A17AD00F1D61D /* ValueNodeTests.swift */; };
 		52AB0709280200550039B47D /* EngineTestsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0708280200550039B47D /* EngineTestsApp.swift */; };
 		52AB070B280200550039B47D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB070A280200550039B47D /* ContentView.swift */; };
 		52AB070D280200560039B47D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52AB070C280200560039B47D /* Assets.xcassets */; };
@@ -23,7 +23,6 @@
 		52AB073C280216200039B47D /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52AB073B280216200039B47D /* civitas.sqlite */; };
 		52AB073D280216200039B47D /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52AB073B280216200039B47D /* civitas.sqlite */; };
 		52AB0741280219660039B47D /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0740280219660039B47D /* NodeTests.swift */; };
-		52AB074428021D7D0039B47D /* CityInfluenceMapCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB074328021D7D0039B47D /* CityInfluenceMapCalculatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +46,7 @@
 		521F21EC2807E14000F1D61D /* UnitInfluenceMapCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitInfluenceMapCalculatorTests.swift; sourceTree = "<group>"; };
 		521F21EE2808BAA900F1D61D /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		521F21F42808FB7B00F1D61D /* GridGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGraphTests.swift; sourceTree = "<group>"; };
-		521F21F8280A17AD00F1D61D /* UtilityNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityNodeTests.swift; sourceTree = "<group>"; };
+		521F21F8280A17AD00F1D61D /* ValueNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueNodeTests.swift; sourceTree = "<group>"; };
 		52AB0705280200550039B47D /* Engine Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Engine Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB0708280200550039B47D /* EngineTestsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTestsApp.swift; sourceTree = "<group>"; };
 		52AB070A280200550039B47D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,7 +57,6 @@
 		52AB0735280213DA0039B47D /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB073B280216200039B47D /* civitas.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = civitas.sqlite; path = ../../Db/civitas.sqlite; sourceTree = "<group>"; };
 		52AB0740280219660039B47D /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
-		52AB074328021D7D0039B47D /* CityInfluenceMapCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityInfluenceMapCalculatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +118,7 @@
 				521F21F42808FB7B00F1D61D /* GridGraphTests.swift */,
 				521F21DE2806A02C00F1D61D /* MapTests.swift */,
 				52AB0740280219660039B47D /* NodeTests.swift */,
-				521F21F8280A17AD00F1D61D /* UtilityNodeTests.swift */,
+				521F21F8280A17AD00F1D61D /* ValueNodeTests.swift */,
 			);
 			path = "Data Structures";
 			sourceTree = "<group>";
@@ -207,7 +205,6 @@
 		52AB074228021D200039B47D /* Influence Maps */ = {
 			isa = PBXGroup;
 			children = (
-				52AB074328021D7D0039B47D /* CityInfluenceMapCalculatorTests.swift */,
 				521F21EC2807E14000F1D61D /* UnitInfluenceMapCalculatorTests.swift */,
 			);
 			path = "Influence Maps";
@@ -325,10 +322,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				521F21EF2808BAA900F1D61D /* GameTests.swift in Sources */,
-				521F21F9280A17AD00F1D61D /* UtilityNodeTests.swift in Sources */,
+				521F21F9280A17AD00F1D61D /* ValueNodeTests.swift in Sources */,
 				521F21ED2807E14000F1D61D /* UnitInfluenceMapCalculatorTests.swift in Sources */,
 				521F21F52808FB7B00F1D61D /* GridGraphTests.swift in Sources */,
-				52AB074428021D7D0039B47D /* CityInfluenceMapCalculatorTests.swift in Sources */,
 				521F21DF2806A02C00F1D61D /* MapTests.swift in Sources */,
 				52AB0741280219660039B47D /* NodeTests.swift in Sources */,
 				521F21EB280768B900F1D61D /* UnitTests.swift in Sources */,
