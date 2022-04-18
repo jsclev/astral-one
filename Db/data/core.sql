@@ -62,3 +62,17 @@ insert into building_type values (38, 'University');
 
 -- Techs
 insert into tech values (1, NULL, 'Alphabet', 'alphabet');
+
+-- Terrain
+insert into terrain values (1, 'Desert', 0.0, 1.0, 0.0, 1.0, 1.0);
+insert into terrain values (2, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (3, 'Glacier', 0.0, 0.0, 0.0, 2.0, 1.0);
+insert into terrain values (4, 'Grassland', 2.0, 0.0, 0.0, 1.0, 1.0);
+insert into terrain values (5, 'Hills', 1.0, 0.0, 0.0, 2.0, 2.0);
+insert into terrain values (6, 'Jungle', 1.0, 0.0, 0.0, 2.0, 1.5);
+insert into terrain values (7, 'Mountains', 0.0, 1.0, 0.0, 3.0, 3.0);
+insert into terrain values (8, 'Ocean', 1.0, 0.0, 2.0, 1.0, 1.0);
+insert into terrain values (9, 'Plains', 1.0, 1.0, 0.0, 1.0, 1.0);
+insert into terrain values (10, 'River', 0.0, 0.0, 1.0, 0.33, 0.5);
+insert into terrain values (11, 'Swamp', 1.0, 0.0, 0.0, 2.0, 1.5);
+insert into terrain values (12, 'Tundra', 1.0, 0.0, 0.0, 1.0, 1.0);

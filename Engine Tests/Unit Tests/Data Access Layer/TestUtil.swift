@@ -3,7 +3,7 @@ import Engine
 
 class TestUtil {
     static func getDb() -> Db {
-        Db(fullRefresh: false)
+        Db(fullRefresh: true)
     }
     
     //    static func getGame(gameId: Int,

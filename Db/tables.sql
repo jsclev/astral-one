@@ -1,14 +1,14 @@
 DROP TABLE IF EXISTS tech_command;
 DROP TABLE IF EXISTS settle_command;
 DROP TABLE IF EXISTS building_command;
-DROP TABLE IF EXISTS movement_command;
-DROP TABLE IF EXISTS game_settings;
+DROP TABLE IF EXISTS move_command;
+DROP TABLE IF EXISTS game_setting;
 DROP TABLE IF EXISTS unit;
 DROP TABLE IF EXISTS building;
 DROP TABLE IF EXISTS city;
 DROP TABLE IF EXISTS command;
 DROP TABLE IF EXISTS player;
-DROP TABLE IF EXISTS tile;
+DROP TABLE IF EXISTS terrain;
 DROP TABLE IF EXISTS tilemap;
 DROP TABLE IF EXISTS game;
 DROP TABLE IF EXISTS command_type;
@@ -70,13 +70,22 @@ CREATE TABLE tilemap (
     game_id INTEGER NOT NULL
 );
 
-CREATE TABLE tile (
-    tile_id INTEGER PRIMARY KEY,
-    tilemap_id INTEGER NOT NULL,
+CREATE TABLE terrain (
+    terrain_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    food REAL NOT NULL,
+    shields REAL NOT NULL,
+    trade REAL NOT NULL,
+    movement_cost REAL NOT NULL,
+    defensive_bonus REAL NOT NULL
+);
+
+CREATE TABLE map (
+    map_id INTEGER PRIMARY KEY,
+    game_id INTEGER NOT NULL,
     x INTEGER NOT NULL,
     y INTEGER NOT NULL,
-    type TEXT NOT NULL,
-    layer INTEGER NOT NULL
+    terrain_id INTEGER NOT NULL
 );
 
 CREATE TABLE unit (

@@ -35,6 +35,7 @@
 		52605C902801E3B00082C0DB /* InfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */; };
 		5293BC26280A4947001DE2F3 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293BC25280A4947001DE2F3 /* Queue.swift */; };
 		5293BC28280B6A86001DE2F3 /* Cavalry7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293BC27280B6A86001DE2F3 /* Cavalry7.swift */; };
+		5293BC2C280DD55A001DE2F3 /* TerrainDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293BC2B280DD55A001DE2F3 /* TerrainDAO.swift */; };
 		52AB06FB2801FB400039B47D /* UnitInfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB06FA2801FB400039B47D /* UnitInfluenceMapCalculator.swift */; };
 		52AB0748280287580039B47D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0747280287580039B47D /* City.swift */; };
 		52E0B18A27E6D86A00607FBE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18927E6D86A00607FBE /* Constants.swift */; };
@@ -123,6 +124,7 @@
 		52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceMapCalculator.swift; sourceTree = "<group>"; };
 		5293BC25280A4947001DE2F3 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		5293BC27280B6A86001DE2F3 /* Cavalry7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cavalry7.swift; sourceTree = "<group>"; };
+		5293BC2B280DD55A001DE2F3 /* TerrainDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainDAO.swift; sourceTree = "<group>"; };
 		52AB06FA2801FB400039B47D /* UnitInfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitInfluenceMapCalculator.swift; sourceTree = "<group>"; };
 		52AB0747280287580039B47D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		52E0B18927E6D86A00607FBE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 				52F9046F27FC8B8800D1AC97 /* Commands */,
 				52F9042F27F6B5B100D1AC97 /* BaseDAO.swift */,
 				52F9044327F6D68A00D1AC97 /* GameDAO.swift */,
+				5293BC2B280DD55A001DE2F3 /* TerrainDAO.swift */,
 			);
 			path = "Data Access Objects";
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */,
 				521F21A22803F89A00F1D61D /* Infantry3.swift in Sources */,
 				52AB06FB2801FB400039B47D /* UnitInfluenceMapCalculator.swift in Sources */,
+				5293BC2C280DD55A001DE2F3 /* TerrainDAO.swift in Sources */,
 				521F21F32808F78C00F1D61D /* ValueNode.swift in Sources */,
 				52F9042D27F6B54D00D1AC97 /* Db.swift in Sources */,
 				52E0B1B427E6DFD100607FBE /* Pod.swift in Sources */,

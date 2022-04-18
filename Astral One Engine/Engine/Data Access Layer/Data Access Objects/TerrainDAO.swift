@@ -1,0 +1,54 @@
+import Foundation
+import SQLite3
+
+public class TerrainDAO: BaseDAO {
+    init(conn: OpaquePointer?) {
+        super.init(conn: conn, table: "terrain", loggerName: String(describing: type(of: self)))
+    }
+    
+    public func insert(terrain: Terrain) throws -> MoveCommand {
+        var sql = "INSERT INTO terrain (" +
+        "tilemap_id, x, y, type)" +
+        ") VALUES "
+        
+        sql += "("
+        sql += getSql(val: 1, postfix: ", ")
+        sql += getSql(val: 1, postfix: ", ")
+        sql += getSql(val: 1, postfix: ", ")
+        sql += getSql(val: 1, postfix: "")
+        sql += "), "
+        
+        sql = getCleanedSql(sql)
+        
+        do {
+            try executeInsert(table: table, numRows: 1, sql: sql)
+        }
+        catch SQLiteError.Prepare(let message) {
+            var errMsg = "Failed to compile the SQL to insert rows into the \(table) table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        catch SQLiteError.Step(let message) {
+            var errMsg = "Failed to execute the SQL to insert rows into the \(table) table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        let turn = Turn(id: 1,
+                        year: -4000,
+                        ordinal: 0,
+                        displayText: "4000 BCE")
+        let commandType = CommandType(id: 1,
+                                      name: "Move Unit")
+        return MoveCommand(commandId: 1,
+                           gameId: 1,
+                           turn: turn,
+                           playerId: 1,
+                           type: commandType,
+                           ordinal: 1,
+                           unit: Infantry1(playerId: 1,
+                                           name: "Warrior",
+                                           row: 0,
+                                           col: 0),
+                           toPosition: "Hello")
+    }
+}

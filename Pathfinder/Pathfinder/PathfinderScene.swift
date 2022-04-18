@@ -83,7 +83,7 @@ class PathfinderScene: SKScene {
         }
         else if !touchedNodes.isEmpty && touchedNodes[0].name == "calculate-path" {
             state = PathfinderState.calculatingPath
-            let path = game.getMap().findPath(from: startPosition, to: endPosition)
+            let path: [GKGridGraphNode] = [] //game.getMap().findPath(from: startPosition, to: endPosition)
             showAIPath(path: path)
             return
         }
@@ -148,11 +148,6 @@ class PathfinderScene: SKScene {
 //        let path: [GKGraphNode] = explorer.getPath(to: SIMD2<Int32>(3, 3))
         printDate(string: "Done building Explorer-specific traversal graph, rendering path: ")
 
-//        showAIPath(path: path)
-        printDate(string: "About to prune main graph: ")
-        game.prune()
-        printDate(string: "Done pruning main graph: ")
-        
         game.processCommands(commands: game.db.commandDao.getCommands(gameId: 1))
     }
     
@@ -201,21 +196,20 @@ class PathfinderScene: SKScene {
         
         for row in stride(from: game.getMap().height, to: -1, by: -1) {
             for col in 0..<game.getMap().width {
-                for tile in game.getMap().getTiles(row: row, col: col) {
-                    if let tileType = Constants.tiles[tile.id] {
-                        if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType }) {
-                            // Make sure we are setting the tile on the correct layered terrain map
-                            let terrainMap = terrainMaps[tile.ordinal]
-                            
-                            terrainMap.setTileGroup(tileGroup, forColumn: col, row: row)
-                        }
-                        else {
-                            fatalError("No tile group \"\(tileType)\" in tile set \"\(tilesetName)\"")
-                        }
+                let tile = game.getMap().tile(row: row, col: col)
+                if let tileType = Constants.tiles["0"] {
+                    if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType }) {
+                        // Make sure we are setting the tile on the correct layered terrain map
+                        let terrainMap = terrainMaps[0]
+                        
+                        terrainMap.setTileGroup(tileGroup, forColumn: col, row: row)
                     }
                     else {
-                        fatalError("No tile id \"\(tile.id)\" in global lookup.")
+                        fatalError("No tile group \"\(tileType)\" in tile set \"\(tilesetName)\"")
                     }
+                }
+                else {
+                    fatalError("No tile id \"\(tile)\" in global lookup.")
                 }
             }
         }
@@ -261,7 +255,7 @@ class PathfinderScene: SKScene {
                                     Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
             let to = SIMD2<Int32>(Int32.random(in: 0..<Int32(pathMap.numberOfRows)),
                                   Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
-            let path = game.getMap().findPath(from: from, to: to)
+            let path: [GKGridGraphNode] = [] //game.getMap().findPath(from: from, to: to)
             
             for node in path {
                 let theNode: GKGridGraphNode = node as! GKGridGraphNode
