@@ -25,7 +25,6 @@ class CommandDAOTests: XCTestCase {
                                maxMovementPoints: 0.0,
                                row: 0,
                                col: 0)
-        
         let fixture = MoveCommand(commandId: 1,
                                   gameId: 1,
                                   turn: turn,
@@ -42,13 +41,6 @@ class CommandDAOTests: XCTestCase {
         XCTAssertEqual(insertedCommands[0].turn.id, 1)
         XCTAssertEqual(insertedCommands[0].playerId, 1)
         XCTAssertEqual(insertedCommands[0].ordinal, 1)
-    }
-    
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
     }
     
 }

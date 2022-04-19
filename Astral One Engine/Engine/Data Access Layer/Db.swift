@@ -10,6 +10,7 @@ public class Db {
     
     public let gameDao: GameDAO
     public let commandDao: CommandDAO
+    public let terrainDao: TerrainDAO
     
     public init(fullRefresh: Bool) {
         let dbBundlePath = dbFilename
@@ -46,14 +47,14 @@ public class Db {
         }
         else {
             print("Unable to find the \"Documents\" directory.")
-            //            throw SQLiteError.OpenDatabase(message: "Unable to find the \"Documents\" directory.")
+            // throw SQLiteError.OpenDatabase(message: "Unable to find the \"Documents\" directory.")
         }
         
         let docDirUrls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         
         if docDirUrls.count == 0 {
             print("Unable to find the \"Documents\" directory.")
-            //            throw SQLiteError.OpenDatabase(message: "Unable to find the \"Documents\" directory.")
+            // throw SQLiteError.OpenDatabase(message: "Unable to find the \"Documents\" directory.")
         }
         
         let documentsUrl = docDirUrls[0]
@@ -66,41 +67,40 @@ public class Db {
             let sqliteMsg = String(cString: sqlite3_errmsg(dbPointer))
             let errMsg = "Failed to open database connection to " + dbPath + ".  " + sqliteMsg
             print(errMsg)
-            //            throw SQLiteError.OpenDatabase(message: errMsg)
+            // throw SQLiteError.OpenDatabase(message: errMsg)
         }
-        
-        //        logger.debug("Opened database at \(dbPath, privacy: .public).")
         
         // Enable foreign keys (they are off by default in SQLite as of version 3.34)
         let pragma = "PRAGMA foreign_keys = ON;"
         var stmt: OpaquePointer?
         if sqlite3_prepare_v2(dbPointer, pragma, -1, &stmt, nil) == SQLITE_OK {
             if sqlite3_step(stmt) == SQLITE_DONE {
-                //                logger.debug("Turned on foreign keys using command \"\(pragma, privacy: .public)\"")
+                // logger.debug("Turned on foreign keys using command \"\(pragma, privacy: .public)\"")
             } else {
                 let errMsg = String(cString: sqlite3_errmsg(dbPointer)!)
                 print(errMsg)
-                //                throw SQLiteError.OpenDatabase(message: errMsg)
+                // throw SQLiteError.OpenDatabase(message: errMsg)
             }
         } else {
             let errMsg = String(cString: sqlite3_errmsg(dbPointer)!)
             print(errMsg)
-            //            throw SQLiteError.OpenDatabase(message: errMsg)
+            // throw SQLiteError.OpenDatabase(message: errMsg)
         }
         
         sqlite3_finalize(stmt)
         
         gameDao = GameDAO(conn: dbPointer)
         commandDao = CommandDAO(conn: dbPointer)
+        terrainDao = TerrainDAO(conn: dbPointer)
     }
     
     deinit {
-        //        let rc: Int32 = sqlite3_close_v2(dbPointer)
+        // let rc: Int32 = sqlite3_close_v2(dbPointer)
         
-        //        if (rc != SQLITE_OK) {
-        //            let sqliteMsg = String(cString: sqlite3_errmsg(dbPointer))
-        //            logger.error("\(sqliteMsg)")
-        //        }
+        // if (rc != SQLITE_OK) {
+        //     let sqliteMsg = String(cString: sqlite3_errmsg(dbPointer))
+        //     logger.error("\(sqliteMsg)")
+        // }
     }
 }
 

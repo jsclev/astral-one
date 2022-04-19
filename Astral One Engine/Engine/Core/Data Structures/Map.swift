@@ -13,7 +13,8 @@ public class Map {
         
         self.grid = Array(repeating: Array(repeating: Tile(row: 0,
                                                            col: 0,
-                                                           terrain: Terrain(name: "",
+                                                           terrain: Terrain(id: 0,
+                                                                            type: TerrainType.None,
                                                                             food: 0.0,
                                                                             shields: 0.0,
                                                                             trade: 0.0,
@@ -24,24 +25,65 @@ public class Map {
         for row in 0..<height {
             for col in 0..<width {
                 self.grid[row][col] = Tile(row: row,
-                                      col: col,
-                                      terrain: Terrain(name: "",
-                                                       food: 0.0,
-                                                       shields: 0.0,
-                                                       trade: 0.0,
-                                                       movementCost: Constants.minMovementCost))
+                                           col: col,
+                                           terrain: Terrain(id: 0,
+                                                            type: TerrainType.None,
+                                                            food: 0.0,
+                                                            shields: 0.0,
+                                                            trade: 0.0,
+                                                            movementCost: Constants.minMovementCost))
             }
         }
         
         self.movementCosts = Array(repeating: Array(repeating:0.0, count: width), count: height)
     }
     
-    public func add(tile: Tile) {
+    public func add(tile: Tile) throws {
+        if tile.row < 0 {
+            let errorMsg = "Row must be greater than or equal to zero."
+            throw MapError.invalidRow(message: errorMsg, row: tile.row)
+        }
+        
+        if tile.row >= height {
+            let errorMsg = "Row must be less than map height of \(height)."
+            throw MapError.invalidRow(message: errorMsg, row: tile.row)
+        }
+        
+        if tile.col < 0 {
+            let errorMsg = "Column must be greater than or equal to zero."
+            throw MapError.invalidCol(message: errorMsg, col: tile.col)
+        }
+        
+        if tile.col >= width {
+            let errorMsg = "Column must be less than map width of \(width)."
+            throw MapError.invalidCol(message: errorMsg, col: tile.col)
+        }
+        
         grid[tile.row][tile.col] = tile
         movementCosts[tile.row][tile.col] = tile.getMovementCost()
     }
     
-    public func tile(row: Int, col: Int) -> Tile {
+    public func tile(row: Int, col: Int) throws -> Tile {
+        if row < 0 {
+            let errorMsg = "Row must be greater than or equal to zero."
+            throw MapError.invalidRow(message: errorMsg, row: row)
+        }
+        
+        if row >= height {
+            let errorMsg = "Row must be less than map height of \(height)."
+            throw MapError.invalidRow(message: errorMsg, row: row)
+        }
+        
+        if col < 0 {
+            let errorMsg = "Column must be greater than or equal to zero."
+            throw MapError.invalidCol(message: errorMsg, col: col)
+        }
+        
+        if col >= width {
+            let errorMsg = "Column must be less than map width of \(width)."
+            throw MapError.invalidCol(message: errorMsg, col: col)
+        }
+        
         return grid[row][col]
     }
     

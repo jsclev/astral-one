@@ -71,7 +71,7 @@ public class Unit: GKEntity {
         return DiplomacyStatus.AtWar
     }
     
-    public func getPathfindingGraph(map: Map) -> GridGraph {
+    public func getPathfindingGraph(map: Map) throws -> GridGraph {
         let graph = GridGraph(width: map.width, height: map.height)
 
         for mapRow in 0..<map.height {
@@ -81,14 +81,14 @@ public class Unit: GKEntity {
                     continue
                 }
                 
-                let tile = map.tile(row: mapRow, col: mapCol)
+                let tile = try map.tile(row: mapRow, col: mapCol)
                 
                 if tile.getUnits().count > 0 {
                     for unit in tile.getUnits() {
                         let calculator = UnitInfluenceMapCalculator(map: map,
                                                                     unit: unit,
                                                                     agent: self)
-                        let unitMap = calculator.getInfluenceMap()
+                        let unitMap = try calculator.getInfluenceMap()
                         
                         for threatRow in 0..<unitMap.count {
                             for threatCol in 0..<unitMap[threatRow].count {

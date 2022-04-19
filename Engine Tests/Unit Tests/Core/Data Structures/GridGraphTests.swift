@@ -4,7 +4,6 @@ import Engine
 class GridGraphTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
-        
         continueAfterFailure = false
     }
     
@@ -64,19 +63,24 @@ class GridGraphTests: XCTestCase {
         XCTAssertEqual(graph.neighbors(of: node).count, 8)
     }
 
-    func testFindPathScenario1() {
+    func testFindPathScenario1() throws {
         let agent = Infantry1(playerId: 1, name: "Agent", row: 0, col: 0)
-        let terrain = Terrain(name: "test", food: 0.0, shields: 0.0, trade: 0.0, movementCost: 1.0)
+        let terrain = Terrain(id: -1,
+                              type: TerrainType.Grassland,
+                              food: 0.0,
+                              shields: 0.0,
+                              trade: 0.0,
+                              movementCost: 1.0)
         let map = Map(width: 3, height: 3)
         
         // Add 25 nodes to the map, all nodes have a uniform traversal score
         for row in 0..<3 {
             for col in 0..<3 {
-                map.add(tile: Tile(row: row, col: col, terrain: terrain))
+                try map.add(tile: Tile(row: row, col: col, terrain: terrain))
             }
         }
         
-        let graph = agent.getPathfindingGraph(map: map)
+        let graph = try agent.getPathfindingGraph(map: map)
         
         // Put our pathing agent at (0, 0), lower-left corner.  Make a target node
         // for pathing be (4, 4), upper-right corner.  Make sure that our optimal

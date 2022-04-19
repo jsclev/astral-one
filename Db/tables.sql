@@ -72,7 +72,18 @@ CREATE TABLE tilemap (
 
 CREATE TABLE terrain (
     terrain_id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
+    terrain_type TEXT CHECK(terrain_type IN ('Desert',
+                                             'Forest',
+                                             'Glacier',
+                                             'Grassland',
+                                             'Hills',
+                                             'Jungle',
+                                             'Mountains',
+                                             'Ocean',
+                                             'Plains',
+                                             'River',
+                                             'Swamp',
+                                             'Tundra')) NOT NULL,
     food REAL NOT NULL,
     shields REAL NOT NULL,
     trade REAL NOT NULL,
@@ -85,7 +96,8 @@ CREATE TABLE map (
     game_id INTEGER NOT NULL,
     x INTEGER NOT NULL,
     y INTEGER NOT NULL,
-    terrain_id INTEGER NOT NULL
+    terrain_id INTEGER NOT NULL,
+    has_river INTEGER NOT NULL
 );
 
 CREATE TABLE unit (

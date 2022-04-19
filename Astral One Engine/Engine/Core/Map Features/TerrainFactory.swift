@@ -1,38 +1,48 @@
 import Foundation
+import SwiftUI
 
 public class TerrainFactory {
-    public static func create(terrainType: TerrainType) -> Terrain {
+    public static func create(terrainType: TerrainType) throws -> Terrain {
+        let terrains = try Constants.db.terrainDao.getTerrains()
+        
         switch terrainType {
         case .Desert:
-            return Terrain(name: "Desert", food: 0, shields: 1, trade: 0, movementCost: 1.0)
+            for terrain in terrains { if terrain.type == TerrainType.Desert { return terrain} }
         case .Forest:
-            return Terrain(name: "Forest", food: 0, shields: 1, trade: 0, movementCost: 2.0)
+            for terrain in terrains { if terrain.type == TerrainType.Forest { return terrain} }
         case .Glacier:
-            return Terrain(name: "Glacier", food: 0, shields: 1, trade: 0, movementCost: 2.0)
+            for terrain in terrains { if terrain.type == TerrainType.Glacier { return terrain} }
         case .Grassland:
-            return Terrain(name: "Grasslands", food: 0, shields: 1, trade: 0, movementCost: 1.0)
+            for terrain in terrains { if terrain.type == TerrainType.Grassland { return terrain} }
         case .Hills:
-            return Terrain(name: "Hills", food: 0, shields: 1, trade: 0, movementCost: 2.0)
+            for terrain in terrains { if terrain.type == TerrainType.Hills { return terrain} }
         case .Jungle:
-            return Terrain(name: "Jungle", food: 0, shields: 1, trade: 0, movementCost: 2.0)
+            for terrain in terrains { if terrain.type == TerrainType.Jungle { return terrain} }
         case .Mountains:
-            return Terrain(name: "Mountains", food: 0, shields: 1, trade: 0, movementCost: 3.0)
+            for terrain in terrains { if terrain.type == TerrainType.Mountains { return terrain} }
         case .Ocean:
-            return Terrain(name: "Ocean", food: 0, shields: 1, trade: 0, movementCost: 1.0)
+            for terrain in terrains { if terrain.type == TerrainType.Ocean { return terrain} }
         case .Plains:
-            return Terrain(name: "Plains", food: 0, shields: 1, trade: 0, movementCost: 1.0)
+            for terrain in terrains { if terrain.type == TerrainType.Plains { return terrain} }
         case .River:
-            return Terrain(name: "River", food: 0, shields: 1, trade: 0, movementCost: 1.0)
+            for terrain in terrains { if terrain.type == TerrainType.River { return terrain} }
         case .Swamp:
-            return Terrain(name: "Swamp", food: 0, shields: 1, trade: 0, movementCost: 2.0)
-        case .Tank:
-            return Terrain(name: "Tank", food: 0, shields: 1, trade: 0, movementCost: 1.0)
+            for terrain in terrains { if terrain.type == TerrainType.Swamp { return terrain} }
         case .Tundra:
-            return Terrain(name: "Tundra", food: 0, shields: 1, trade: 0, movementCost: 1.0)
+            for terrain in terrains { if terrain.type == TerrainType.Tundra { return terrain} }
         case .Water:
-            return Terrain(name: "Water", food: 0, shields: 1, trade: 0, movementCost: 1.0)
+            for terrain in terrains { if terrain.type == TerrainType.Water { return terrain} }
         case .None:
-            return Terrain(name: "None", food: 0, shields: 0, trade: 0, movementCost: 0.0)
+            for terrain in terrains { if terrain.type == TerrainType.None { return terrain} }
+        case .Tank:
+            for terrain in terrains { if terrain.type == TerrainType.None { return terrain} }
         }
+        
+        return Terrain(id: 0,
+                       type: TerrainType.None,
+                       food: 0.0,
+                       shields: 0.0,
+                       trade: 0.0,
+                       movementCost: 0.0)
     }
 }

@@ -141,7 +141,12 @@ class PathfinderScene: SKScene {
         game.importTiledMap(filename: filename)
         printDate(string: "Done parsing Tile XML, main traversal grid graph is parsed, now rendering map: ")
 
-        renderMap()
+        do {
+            try renderMap()
+        }
+        catch {
+            print(error)
+        }
         printDate(string: "Done rendering, now building Explorer-specific traversal graph: ")
         
 //        let explorer = Explorer(game: game, position: SIMD2<Int32>(1, 1))
@@ -169,7 +174,7 @@ class PathfinderScene: SKScene {
         }
     }
     
-    private func renderMap() {
+    private func renderMap() throws {
         var terrainMaps: [SKTileMapNode] = []
 
         for layer in 0..<game.getMap().getNumLayers() {
@@ -194,9 +199,9 @@ class PathfinderScene: SKScene {
         unitsMap.position = CGPoint.zero
         unitsMap.enableAutomapping = true
         
-        for row in stride(from: game.getMap().height, to: -1, by: -1) {
+        for row in 0..<game.getMap().width {
             for col in 0..<game.getMap().width {
-                let tile = game.getMap().tile(row: row, col: col)
+                let tile = try game.getMap().tile(row: row, col: col)
                 if let tileType = Constants.tiles["0"] {
                     if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType }) {
                         // Make sure we are setting the tile on the correct layered terrain map

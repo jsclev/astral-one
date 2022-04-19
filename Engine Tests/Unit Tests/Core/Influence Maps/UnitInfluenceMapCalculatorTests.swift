@@ -11,7 +11,7 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         let enemyUnit = Infantry1(playerId: 2, name: "Test", row: 1, col: 1)
 
         let calculator = UnitInfluenceMapCalculator(map: map, unit: enemyUnit, agent: agent)
-        let influenceMap = calculator.getInfluenceMap()
+        let influenceMap = try calculator.getInfluenceMap()
 
 //        calculator.logInfluenceMap(theMap: influenceMap)
 
@@ -40,12 +40,12 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         let agent = Infantry1(playerId: 1, name: "Test", row: 0, col: 0)
         let enemyUnit = Infantry1(playerId: 2, name: "Test", row: 1, col: 1)
         
-        let tile = Tile(row: 1, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
+        let tile = Tile(row: 1, col: 1, terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         tile.addUnit(unit: enemyUnit)
-        map.add(tile: tile)
+        try map.add(tile: tile)
         
         let calculator = UnitInfluenceMapCalculator(map: map, unit: enemyUnit, agent: agent)
-        let influenceMap = calculator.getInfluenceMap()
+        let influenceMap = try calculator.getInfluenceMap()
         
         //calculator.logInfluenceMap(theMap: influenceMap)
         
@@ -77,7 +77,7 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
          negative influence.
          */
         let map = Map(width: 3, height: 3)
-        let tile = Tile(row: 1, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
+        let tile = Tile(row: 1, col: 1, terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
 
         let agent = Infantry1(playerId: 1, name: "Agent", row: 0, col: 0)
         let enemyUnit1 = Infantry1(playerId: 2, name: "Enemy1", row: 1, col: 1)
@@ -85,14 +85,14 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
 
         tile.addUnit(unit: enemyUnit1)
         tile.addUnit(unit: enemyUnit2)
-        map.add(tile: tile)
+        try map.add(tile: tile)
         
         let calculator1 = UnitInfluenceMapCalculator(map: map, unit: enemyUnit1, agent: agent)
-        let influenceMap1 = calculator1.getInfluenceMap()
+        let influenceMap1 = try calculator1.getInfluenceMap()
         calculator1.logInfluenceMap(theMap: influenceMap1)
         
         let calculator2 = UnitInfluenceMapCalculator(map: map, unit: enemyUnit2, agent: agent)
-        let influenceMap2 = calculator2.getInfluenceMap()
+        let influenceMap2 = try calculator2.getInfluenceMap()
         calculator2.logInfluenceMap(theMap: influenceMap2)
 
         // Make sure the 2nd more powerful enemy unit has a higher negative value
@@ -115,7 +115,7 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
          negative influence.
          */
         let mainMap = Map(width: 3, height: 3)
-        let tile = Tile(row: 1, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland))
+        let tile = Tile(row: 1, col: 1, terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         
         let agent = Infantry1(playerId: 1, name: "Agent", row: 0, col: 0)
         let enemyUnit1 = Infantry1(playerId: 2, name: "Enemy1", row: 1, col: 1)
@@ -123,14 +123,14 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         
         tile.addUnit(unit: enemyUnit1)
         tile.addUnit(unit: enemyUnit2)
-        mainMap.add(tile: tile)
+        try mainMap.add(tile: tile)
         
         let calculator1 = UnitInfluenceMapCalculator(map: mainMap, unit: enemyUnit1, agent: agent)
-        let map1 = calculator1.getInfluenceMap()
+        let map1 = try calculator1.getInfluenceMap()
         calculator1.logInfluenceMap(theMap: map1)
         
         let calculator2 = UnitInfluenceMapCalculator(map: mainMap, unit: enemyUnit2, agent: agent)
-        let map2 = calculator2.getInfluenceMap()
+        let map2 = try calculator2.getInfluenceMap()
         calculator2.logInfluenceMap(theMap: map2)
         
         let map3 = UnitInfluenceMapCalculator.sum(map1: map1, map2: map2)

@@ -33,6 +33,7 @@
 		521F21F12808F6DF00F1D61D /* GridGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21F02808F6DF00F1D61D /* GridGraph.swift */; };
 		521F21F32808F78C00F1D61D /* ValueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21F22808F78C00F1D61D /* ValueNode.swift */; };
 		52605C902801E3B00082C0DB /* InfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */; };
+		527A0D85280F6884006B9D9F /* MapError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A0D84280F6884006B9D9F /* MapError.swift */; };
 		5293BC26280A4947001DE2F3 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293BC25280A4947001DE2F3 /* Queue.swift */; };
 		5293BC28280B6A86001DE2F3 /* Cavalry7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293BC27280B6A86001DE2F3 /* Cavalry7.swift */; };
 		5293BC2C280DD55A001DE2F3 /* TerrainDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293BC2B280DD55A001DE2F3 /* TerrainDAO.swift */; };
@@ -122,6 +123,7 @@
 		521F21F02808F6DF00F1D61D /* GridGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGraph.swift; sourceTree = "<group>"; };
 		521F21F22808F78C00F1D61D /* ValueNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueNode.swift; sourceTree = "<group>"; };
 		52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceMapCalculator.swift; sourceTree = "<group>"; };
+		527A0D84280F6884006B9D9F /* MapError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapError.swift; sourceTree = "<group>"; };
 		5293BC25280A4947001DE2F3 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		5293BC27280B6A86001DE2F3 /* Cavalry7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cavalry7.swift; sourceTree = "<group>"; };
 		5293BC2B280DD55A001DE2F3 /* TerrainDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainDAO.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				521F21D62806996100F1D61D /* Tile.swift */,
 				52E0B19027E6D87600607FBE /* Tile2.swift */,
 				521F21F22808F78C00F1D61D /* ValueNode.swift */,
+				527A0D84280F6884006B9D9F /* MapError.swift */,
 			);
 			path = "Data Structures";
 			sourceTree = "<group>";
@@ -330,6 +333,28 @@
 				52AB06FA2801FB400039B47D /* UnitInfluenceMapCalculator.swift */,
 			);
 			path = "Influence Maps";
+			sourceTree = "<group>";
+		};
+		5293BC37280E3E2F001DE2F3 /* Map Features */ = {
+			isa = PBXGroup;
+			children = (
+				5293BC2B280DD55A001DE2F3 /* TerrainDAO.swift */,
+			);
+			path = "Map Features";
+			sourceTree = "<group>";
+		};
+		5293BC38280E77BA001DE2F3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5293BC39280E77F2001DE2F3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		52E0B18B27E6D87600607FBE /* IO */ = {
@@ -420,10 +445,10 @@
 		52F9042E27F6B56200D1AC97 /* Data Access Objects */ = {
 			isa = PBXGroup;
 			children = (
+				5293BC37280E3E2F001DE2F3 /* Map Features */,
 				52F9046F27FC8B8800D1AC97 /* Commands */,
 				52F9042F27F6B5B100D1AC97 /* BaseDAO.swift */,
 				52F9044327F6D68A00D1AC97 /* GameDAO.swift */,
-				5293BC2B280DD55A001DE2F3 /* TerrainDAO.swift */,
 			);
 			path = "Data Access Objects";
 			sourceTree = "<group>";
@@ -447,6 +472,7 @@
 		52F9044727F80BA000D1AC97 /* Log */ = {
 			isa = PBXGroup;
 			children = (
+				5293BC38280E77BA001DE2F3 /* Views */,
 				52F9044E27F93A6D00D1AC97 /* Player.swift */,
 			);
 			path = Log;
@@ -494,14 +520,15 @@
 			isa = PBXGroup;
 			children = (
 				521F21D52806991100F1D61D /* Archive */,
-				52605C8828014FF90082C0DB /* Core */,
 				52F9043127F6B62B00D1AC97 /* Resources */,
+				52605C8828014FF90082C0DB /* Core */,
 				52F9045027F9F8CF00D1AC97 /* Commands */,
-				52F9042B27F6B4AB00D1AC97 /* Data Access Layer */,
 				52E0B1BA27E6E15500607FBE /* Components */,
+				52F9042B27F6B4AB00D1AC97 /* Data Access Layer */,
 				52E0B1BF27E6E1F300607FBE /* Extensions */,
 				52E0B18B27E6D87600607FBE /* IO */,
 				52F9044727F80BA000D1AC97 /* Log */,
+				5293BC39280E77F2001DE2F3 /* Views */,
 				52E0B1C627E6E76D00607FBE /* View Models */,
 			);
 			path = Engine;
@@ -615,6 +642,7 @@
 				521F21C12804812600F1D61D /* Air5.swift in Sources */,
 				52F9045A27FA009E00D1AC97 /* BuildBuildingCommand.swift in Sources */,
 				521F21E52807123D00F1D61D /* TerrainFactory.swift in Sources */,
+				527A0D85280F6884006B9D9F /* MapError.swift in Sources */,
 				521F21A42803F8A900F1D61D /* Infantry4.swift in Sources */,
 				52F9043027F6B5B100D1AC97 /* BaseDAO.swift in Sources */,
 				52E0B1B327E6DFD100607FBE /* MineralStorage.swift in Sources */,
