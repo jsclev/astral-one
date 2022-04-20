@@ -39,6 +39,8 @@ public class TerrainFactory {
         }
         
         return Terrain(id: 0,
+                       tiledId: 0,
+                       name: "Hello",
                        type: TerrainType.None,
                        food: 0.0,
                        shields: 0.0,

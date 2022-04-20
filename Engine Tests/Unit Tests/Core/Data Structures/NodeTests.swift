@@ -10,6 +10,8 @@ class NodeTests: XCTestCase {
         
         // Purposefully attempt to create a node with zero movement cost terrain
         let tile = Tile(row: 0, col: 0, terrain: Terrain(id: -1,
+                                                         tiledId: 0,
+                                                         name: "Grassland",
                                                          type: TerrainType.Grassland,
                                                          food: 0.0,
                                                          shields: 0.0,
@@ -21,6 +23,8 @@ class NodeTests: XCTestCase {
     
     func testMovementCostNegTerrain() {
         let tile = Tile(row: 0, col: 0, terrain: Terrain(id: -1,
+                                                         tiledId: 0,
+                                                         name: "Grassland",
                                                          type: TerrainType.Grassland,
                                                          food: 0.0,
                                                          shields: 0.0,
@@ -34,6 +38,8 @@ class NodeTests: XCTestCase {
     
     func testMovementCostNormalTerrain() {
         let tile = Tile(row: 0, col: 0, terrain: Terrain(id: -1,
+                                                         tiledId: 0,
+                                                         name: "Grassland",
                                                          type: TerrainType.Grassland,
                                                          food: 0.0,
                                                          shields: 0.0,
@@ -44,6 +50,8 @@ class NodeTests: XCTestCase {
     
     func testMovementCostModifier1() {
         let tile = Tile(row: 0, col: 0, terrain: Terrain(id: -1,
+                                                         tiledId: 0,
+                                                         name: "Grassland",
                                                          type: TerrainType.Grassland,
                                                          food: 0.0,
                                                          shields: 0.0,
@@ -56,6 +64,8 @@ class NodeTests: XCTestCase {
     
     func testMovementCostModifier2() {
         let tile = Tile(row: 0, col: 0, terrain: Terrain(id: -1,
+                                                         tiledId: 0,
+                                                         name: "Grassland",
                                                          type: TerrainType.Grassland,
                                                          food: 0.0,
                                                          shields: 0.0,
@@ -68,6 +78,8 @@ class NodeTests: XCTestCase {
     
     func testMovementCostModifier3() {
         let tile = Tile(row: 0, col: 0, terrain: Terrain(id: -1,
+                                                         tiledId: 0,
+                                                         name: "Grassland",
                                                          type: TerrainType.Grassland,
                                                          food: 0.0,
                                                          shields: 0.0,
@@ -80,6 +92,8 @@ class NodeTests: XCTestCase {
     
     func testMovementCostModifier4() {
         let tile = Tile(row: 0, col: 0, terrain: Terrain(id: -1,
+                                                         tiledId: 0,
+                                                         name: "Grassland",
                                                          type: TerrainType.Grassland,
                                                          food: 0.0,
                                                          shields: 0.0,
@@ -92,6 +106,8 @@ class NodeTests: XCTestCase {
     
     func testMovementCostModifier5() {
         let tile = Tile(row: 0, col: 0, terrain: Terrain(id: -1,
+                                                         tiledId: 0,
+                                                         name: "Grassland",
                                                          type: TerrainType.Grassland,
                                                          food: 0.0,
                                                          shields: 0.0,

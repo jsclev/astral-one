@@ -15,12 +15,12 @@ public class Game: ObservableObject {
         return map
     }
     
-    public func importTiledMap(filename: String) {
+    public func importTiledMap(filename: String) throws {
         let tilesetParser = TiledTilesetParser(filename)
         let tileset = tilesetParser.parse()
         let mapParser = TiledMapParser(tiledTileset: tileset, filename: filename)
         
-        map = mapParser.parse()
+        try map = mapParser.parse()
     }
     
     public func processCommands(commands: [Command]) {

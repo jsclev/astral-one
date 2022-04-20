@@ -136,12 +136,12 @@ class PathfinderScene: SKScene {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         tapGestureRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(tapGestureRecognizer)
-        
-        printDate(string: "Starting to parse Tiled XML files, and build traversal grid graph: ")
-        game.importTiledMap(filename: filename)
-        printDate(string: "Done parsing Tile XML, main traversal grid graph is parsed, now rendering map: ")
 
         do {
+            printDate(string: "Starting to parse Tiled XML files, and build traversal grid graph: ")
+            try game.importTiledMap(filename: filename)
+            printDate(string: "Done parsing Tile XML, main traversal grid graph is parsed, now rendering map: ")
+
             try renderMap()
         }
         catch {
@@ -202,19 +202,18 @@ class PathfinderScene: SKScene {
         for row in 0..<game.getMap().width {
             for col in 0..<game.getMap().width {
                 let tile = try game.getMap().tile(row: row, col: col)
-                if let tileType = Constants.tiles["0"] {
-                    if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType }) {
-                        // Make sure we are setting the tile on the correct layered terrain map
-                        let terrainMap = terrainMaps[0]
-                        
-                        terrainMap.setTileGroup(tileGroup, forColumn: col, row: row)
-                    }
-                    else {
-                        fatalError("No tile group \"\(tileType)\" in tile set \"\(tilesetName)\"")
-                    }
+                
+                print(tile.terrain.description)
+                
+                if let tileGroup = tileset.tileGroups.first(where: { $0.name == tile.terrain.name }) {
+                    // Make sure we are setting the tile on the correct layered terrain map
+                    let terrainMap = terrainMaps[0]
+                    
+                    terrainMap.setTileGroup(tileGroup, forColumn: col, row: row)
                 }
                 else {
-                    fatalError("No tile id \"\(tile)\" in global lookup.")
+                    print("Unable to find tile group \(tile.terrain.name)")
+//                    fatalError("Unable to find tile group \(tile.terrain.name)")
                 }
             }
         }

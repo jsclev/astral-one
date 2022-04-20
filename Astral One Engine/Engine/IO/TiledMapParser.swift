@@ -11,6 +11,7 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
     var mapHeight: Int = 0
     var firstGId: Int = 1
     var layerOrdinal: Int = 0
+    var terrains: [Terrain] = []
     
     public init(tiledTileset: TiledTileset, filename: String) {
         self.filename = filename
@@ -18,9 +19,10 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
         self.map = Map(width: self.mapWidth, height: self.mapHeight)
     }
     
-    public func parse() -> Map {
+    public func parse() throws -> Map {
         mapInitialized = false
         currentEl = ""
+        try terrains = Constants.db.terrainDao.getTerrains()
         
         if let path = Bundle.main.url(forResource: filename, withExtension: ".tmx") {
             if let parser = XMLParser(contentsOf: path) {
@@ -91,7 +93,7 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                     if trimmedRowData.count > 0 {
                         let tileIds = trimmedRowData.components(separatedBy: ",")
 
-                        for (_, strGlobalTileId) in tileIds.enumerated() {
+                        for (col, strGlobalTileId) in tileIds.enumerated() {
                             if let intGlobalTileId = Int(strGlobalTileId) {
                                 // Tiled uses Global Tile IDs with a value of 0 (zero)
                                 // to specify that there is no tile at this position,
@@ -102,20 +104,23 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                     let intLocalTileId = intGlobalTileId - 1
                                     let strLocalTileId = String(intLocalTileId)
 
-                                    if let tile = tiledTileset.getTile(id: strLocalTileId) {
+                                    print("Tiled ID: \(strLocalTileId)")
+                                    if let terrain = getTerrain(strTiledId: strLocalTileId) {
                                         // print("Adding tile [\(tile.id)] at position [\(mapRowIndex),\(0),\(layerOrdinal)]")
                                         
+//                                        print("[\(mapRowIndex),\(col)")
+//                                        print(terrain.description)
                                         do {
                                             try map.add(tile: Tile(row: mapRowIndex,
-                                                        col: 0,
-                                                        terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland)))
+                                                                   col: col,
+                                                                   terrain: terrain))
                                         }
                                         catch {
                                             print(error)
                                         }
                                     }
                                     else {
-                                        fatalError("Unable to find tile id \(strLocalTileId).")
+                                        fatalError("Unable to find tile with Tiled ID \(strLocalTileId).")
                                     }
                                 }
                             }
@@ -129,5 +134,17 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                 }
             }
         }
+    }
+    
+    private func getTerrain(strTiledId: String) -> Terrain? {
+        if let tiledId = Int(strTiledId) {
+            for terrain in terrains {
+                if terrain.tiledId == tiledId {
+                    return terrain
+                }
+            }
+        }
+        
+        return nil
     }
 }

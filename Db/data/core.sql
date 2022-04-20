@@ -64,15 +64,36 @@ insert into building_type values (38, 'University');
 insert into tech values (1, NULL, 'Alphabet', 'alphabet');
 
 -- Terrain
-insert into terrain values (1, 'Desert', 0.0, 1.0, 0.0, 1.0, 1.0);
-insert into terrain values (2, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain values (3, 'Glacier', 0.0, 0.0, 0.0, 2.0, 1.0);
-insert into terrain values (4, 'Grassland', 2.0, 0.0, 0.0, 1.0, 1.0);
-insert into terrain values (5, 'Hills', 1.0, 0.0, 0.0, 2.0, 2.0);
-insert into terrain values (6, 'Jungle', 1.0, 0.0, 0.0, 2.0, 1.5);
-insert into terrain values (7, 'Mountains', 0.0, 1.0, 0.0, 3.0, 3.0);
-insert into terrain values (8, 'Ocean', 1.0, 0.0, 2.0, 1.0, 1.0);
-insert into terrain values (9, 'Plains', 1.0, 1.0, 0.0, 1.0, 1.0);
-insert into terrain values (10, 'River', 0.0, 0.0, 1.0, 0.33, 0.5);
-insert into terrain values (11, 'Swamp', 1.0, 0.0, 0.0, 2.0, 1.5);
-insert into terrain values (12, 'Tundra', 1.0, 0.0, 0.0, 1.0, 1.0);
+insert into terrain values (1, 21, 'Desert', 0.0, 1.0, 0.0, 1.0, 1.0);
+insert into terrain values (2, 1, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (3, 2, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (4, 20, 'Glacier', 0.0, 0.0, 0.0, 2.0, 1.0);
+insert into terrain values (5, 0, 'Grass', 2.0, 0.0, 0.0, 1.0, 1.0);
+insert into terrain values (6, 19, 'Hills', 1.0, 0.0, 0.0, 2.0, 2.0);
+insert into terrain values (7, 22, 'Jungle', 1.0, 0.0, 0.0, 2.0, 1.5);
+insert into terrain values (8, 17, 'Mountain', 0.0, 1.0, 0.0, 3.0, 3.0);
+insert into terrain values (9, 18, 'Mountain', 0.0, 1.0, 0.0, 3.0, 3.0);
+insert into terrain values (10, 24, 'Water', 1.0, 0.0, 2.0, 1.0, 1.0);
+insert into terrain values (11, 20, 'Plains', 1.0, 1.0, 0.0, 1.0, 1.0);
+insert into terrain values (12, 20, 'River', 0.0, 0.0, 1.0, 0.33, 0.5);
+insert into terrain values (13, 23, 'Swamp', 1.0, 0.0, 0.0, 2.0, 1.5);
+insert into terrain values (14, 20, 'Tundra', 1.0, 0.0, 0.0, 1.0, 1.0);
+
+insert into terrain values (15, 3, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (16, 4, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (17, 5, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (18, 6, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (19, 7, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (20, 8, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (21, 9, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (22, 10, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (23, 11, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (24, 12, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (25, 13, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (26, 14, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (27, 15, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (28, 16, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+
+insert into terrain values (29, 25, 'Hills', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (30, 26, 'Swamp', 1.0, 2.0, 0.0, 2.0, 1.5);
+insert into terrain values (31, 27, 'Glacier', 1.0, 2.0, 0.0, 2.0, 1.5);

@@ -8,11 +8,6 @@ public class Command: CustomStringConvertible {
     public let type: CommandType
     public let ordinal: Int
     
-    public var description: String {
-        return "{id: \(commandId), game: \(gameId), turn: \(turn), " +
-            "playerId: \(playerId), type: \(type), ordinal: \(ordinal)}"
-    }
-    
     init(commandId: Int, gameId: Int, turn: Turn, playerId: Int, type: CommandType, ordinal: Int) {
         self.commandId = commandId
         self.gameId = gameId
@@ -24,6 +19,11 @@ public class Command: CustomStringConvertible {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public var description: String {
+        return "{id: \(commandId), game: \(gameId), turn: \(turn), " +
+        "playerId: \(playerId), type: \(type), ordinal: \(ordinal)}"
     }
     
     public func execute() {

@@ -72,14 +72,15 @@ CREATE TABLE tilemap (
 
 CREATE TABLE terrain (
     terrain_id INTEGER PRIMARY KEY,
+    tiled_id INTEGER NOT NULL,
     terrain_type TEXT CHECK(terrain_type IN ('Desert',
                                              'Forest',
                                              'Glacier',
-                                             'Grassland',
+                                             'Grass',
                                              'Hills',
                                              'Jungle',
-                                             'Mountains',
-                                             'Ocean',
+                                             'Mountain',
+                                             'Water',
                                              'Plains',
                                              'River',
                                              'Swamp',
