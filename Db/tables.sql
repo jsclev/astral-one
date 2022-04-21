@@ -31,6 +31,7 @@ CREATE TABLE command_type (
 
 CREATE TABLE unit_type (
     unit_type_id INTEGER PRIMARY KEY,
+    tiled_id INTEGER NOT NULL,
     name TEXT NOT NULL
 );
 

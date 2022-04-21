@@ -10,6 +10,7 @@ public class Explorer: Unit {
         self.position = position
         
         super.init(playerId: 1,
+                   tiledId: 27,
                    name: "Explorer",
                    cost: 10,
                    maxHp: 10,

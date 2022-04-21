@@ -3,6 +3,7 @@ import GameplayKit
 
 public class Unit: GKEntity {
     public let playerId: Int
+    public let tiledId: Int
     public let name: String
     public let cost: Double
     public let maxHp: Double
@@ -16,6 +17,7 @@ public class Unit: GKEntity {
     public let col: Int
     
     public init(playerId: Int,
+                tiledId: Int,
                 name: String,
                 cost: Double,
                 maxHp: Double,
@@ -26,6 +28,7 @@ public class Unit: GKEntity {
                 row: Int,
                 col: Int) {
         self.playerId = playerId
+        self.tiledId = tiledId
         self.name = name
         self.cost = cost
         self.maxHp = maxHp

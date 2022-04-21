@@ -6,6 +6,7 @@ public class Air2: Unit {
                 row: Int,
                 col: Int) {
         super.init(playerId: playerId,
+                   tiledId: 100,
                    name: name,
                    cost: 10,
                    maxHp: 10,

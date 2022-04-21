@@ -16,6 +16,7 @@ class CommandDAOTests: XCTestCase {
         let commandType = CommandType(id: 1,
                                       name: "Move Unit")
         let unit = Engine.Unit(playerId: 1,
+                               tiledId: 1,
                                name: "Test",
                                cost: 0.0,
                                maxHp: 0.0,

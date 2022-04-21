@@ -203,7 +203,7 @@ class PathfinderScene: SKScene {
             for col in 0..<game.getMap().width {
                 let tile = try game.getMap().tile(row: row, col: col)
                 
-                print(tile.terrain.description)
+//                print(tile.terrain.description)
                 
                 if let tileGroup = tileset.tileGroups.first(where: { $0.name == tile.terrain.name }) {
                     // Make sure we are setting the tile on the correct layered terrain map
@@ -212,8 +212,17 @@ class PathfinderScene: SKScene {
                     terrainMap.setTileGroup(tileGroup, forColumn: col, row: row)
                 }
                 else {
-                    print("Unable to find tile group \(tile.terrain.name)")
-//                    fatalError("Unable to find tile group \(tile.terrain.name)")
+                    fatalError("Unable to find tile group \(tile.terrain.name)")
+                }
+                
+                for unit in tile.getUnits() {
+                    print("Adding unit with name \(unit.name)")
+                    if let tileGroup = tileset.tileGroups.first(where: { $0.name == unit.name }) {
+                        unitsMap.setTileGroup(tileGroup, forColumn: col, row: row)
+                    }
+                    else {
+                        fatalError("Unable to find tile group \(unit.name)")
+                    }
                 }
             }
         }

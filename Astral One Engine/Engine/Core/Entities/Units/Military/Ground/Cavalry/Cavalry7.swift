@@ -6,6 +6,7 @@ public class Cavalry7: Unit {
                 row: Int,
                 col: Int) {
         super.init(playerId: playerId,
+                   tiledId: 100,
                    name: name,
                    cost: 80,
                    maxHp: 30,

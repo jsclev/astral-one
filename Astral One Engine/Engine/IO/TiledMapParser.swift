@@ -20,6 +20,7 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
     }
     
     public func parse() throws -> Map {
+        layerOrdinal = 0
         mapInitialized = false
         currentEl = ""
         try terrains = Constants.db.terrainDao.getTerrains()
@@ -103,24 +104,33 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                     // Convert the Tiled global tile id to the local tileset id
                                     let intLocalTileId = intGlobalTileId - 1
                                     let strLocalTileId = String(intLocalTileId)
+                                    
+                                    do {
+                                        if let tiledId = Int(strLocalTileId) {
+                                            if tiledId <= 24 {
+                                                if let terrain = getTerrain(tiledId: tiledId) {
+                                                    // print("Adding tile [\(tile.id)] at position [\(mapRowIndex),\(0),\(layerOrdinal)]")
+                                                    try map.add(tile: Tile(row: mapRowIndex,
+                                                                           col: col,
+                                                                           terrain: terrain))
+                                                }
+                                                else {
+                                                    fatalError("Unable to find tile with Tiled ID \(strLocalTileId).")
+                                                }
+                                            }
+                                            else {
+                                                print("Tiled ID: \(strLocalTileId), layerOrdinal: \(layerOrdinal)")
 
-                                    print("Tiled ID: \(strLocalTileId)")
-                                    if let terrain = getTerrain(strTiledId: strLocalTileId) {
-                                        // print("Adding tile [\(tile.id)] at position [\(mapRowIndex),\(0),\(layerOrdinal)]")
-                                        
-//                                        print("[\(mapRowIndex),\(col)")
-//                                        print(terrain.description)
-                                        do {
-                                            try map.add(tile: Tile(row: mapRowIndex,
-                                                                   col: col,
-                                                                   terrain: terrain))
-                                        }
-                                        catch {
-                                            print(error)
+                                                let unit = UnitFactory.createUnit(tiledId: tiledId,
+                                                                                  row: mapRowIndex,
+                                                                                  col: col)
+                                                let tile = try map.tile(row: mapRowIndex, col: col)
+                                                tile.addUnit(unit: unit)
+                                            }
                                         }
                                     }
-                                    else {
-                                        fatalError("Unable to find tile with Tiled ID \(strLocalTileId).")
+                                    catch {
+                                        fatalError("\(error)")
                                     }
                                 }
                             }
@@ -136,12 +146,10 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
         }
     }
     
-    private func getTerrain(strTiledId: String) -> Terrain? {
-        if let tiledId = Int(strTiledId) {
-            for terrain in terrains {
-                if terrain.tiledId == tiledId {
-                    return terrain
-                }
+    private func getTerrain(tiledId: Int) -> Terrain? {
+        for terrain in terrains {
+            if terrain.tiledId == tiledId {
+                return terrain
             }
         }
         
