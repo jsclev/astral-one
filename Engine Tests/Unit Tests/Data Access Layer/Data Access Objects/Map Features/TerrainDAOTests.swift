@@ -12,7 +12,7 @@ class TerrainDAOTests: XCTestCase {
         let terrains = try db.terrainDao.getTerrains()
         
         XCTAssertEqual(terrains.count, 31)
-        XCTAssertTrue(terrains.contains(Terrain(id: -1,
+        XCTAssertTrue(terrains.contains(Terrain(id: 1,
                                                 tiledId: 0,
                                                 name: "Desert",
                                                 type: TerrainType.Desert,
@@ -20,7 +20,7 @@ class TerrainDAOTests: XCTestCase {
                                                 shields: 0.0,
                                                 trade: 0.0,
                                                 movementCost: 0.0)))
-        XCTAssertTrue(terrains.contains(Terrain(id: -1,
+        XCTAssertTrue(terrains.contains(Terrain(id: 2,
                                                 tiledId: 0,
                                                 name: "Forest",
                                                 type: TerrainType.Forest,
@@ -28,7 +28,7 @@ class TerrainDAOTests: XCTestCase {
                                                 shields: 0.0,
                                                 trade: 0.0,
                                                 movementCost: 0.0)))
-        XCTAssertTrue(terrains.contains(Terrain(id: -1,
+        XCTAssertTrue(terrains.contains(Terrain(id: 3,
                                                 tiledId: 0,
                                                 name: "Glacier",
                                                 type: TerrainType.Glacier,
@@ -36,7 +36,7 @@ class TerrainDAOTests: XCTestCase {
                                                 shields: 0.0,
                                                 trade: 0.0,
                                                 movementCost: 0.0)))
-        XCTAssertTrue(terrains.contains(Terrain(id: -1,
+        XCTAssertTrue(terrains.contains(Terrain(id: 4,
                                                 tiledId: 0,
                                                 name: "Grass",
                                                 type: TerrainType.Grassland,
@@ -44,7 +44,7 @@ class TerrainDAOTests: XCTestCase {
                                                 shields: 0.0,
                                                 trade: 0.0,
                                                 movementCost: 0.0)))
-        XCTAssertTrue(terrains.contains(Terrain(id: -1,
+        XCTAssertTrue(terrains.contains(Terrain(id: 5,
                                                 tiledId: 0,
                                                 name: "Hills",
                                                 type: TerrainType.Hills,
@@ -52,7 +52,7 @@ class TerrainDAOTests: XCTestCase {
                                                 shields: 0.0,
                                                 trade: 0.0,
                                                 movementCost: 0.0)))
-        XCTAssertTrue(terrains.contains(Terrain(id: -1,
+        XCTAssertTrue(terrains.contains(Terrain(id: 6,
                                                 tiledId: 0,
                                                 name: "Jungle",
                                                 type: TerrainType.Jungle,
@@ -60,7 +60,7 @@ class TerrainDAOTests: XCTestCase {
                                                 shields: 0.0,
                                                 trade: 0.0,
                                                 movementCost: 0.0)))
-        XCTAssertTrue(terrains.contains(Terrain(id: -1,
+        XCTAssertTrue(terrains.contains(Terrain(id: 7,
                                                 tiledId: 0,
                                                 name: "Mountain",
                                                 type: TerrainType.Mountains,
@@ -68,7 +68,7 @@ class TerrainDAOTests: XCTestCase {
                                                 shields: 0.0,
                                                 trade: 0.0,
                                                 movementCost: 0.0)))
-        XCTAssertTrue(terrains.contains(Terrain(id: -1,
+        XCTAssertTrue(terrains.contains(Terrain(id: 8,
                                                 tiledId: 0,
                                                 name: "Water",
                                                 type: TerrainType.Ocean,
@@ -76,7 +76,7 @@ class TerrainDAOTests: XCTestCase {
                                                 shields: 0.0,
                                                 trade: 0.0,
                                                 movementCost: 0.0)))
-        XCTAssertTrue(terrains.contains(Terrain(id: -1,
+        XCTAssertTrue(terrains.contains(Terrain(id: 9,
                                                 tiledId: 0,
                                                 name: "Plains",
                                                 type: TerrainType.Plains,
@@ -84,7 +84,7 @@ class TerrainDAOTests: XCTestCase {
                                                 shields: 0.0,
                                                 trade: 0.0,
                                                 movementCost: 0.0)))
-        XCTAssertTrue(terrains.contains(Terrain(id: -1,
+        XCTAssertTrue(terrains.contains(Terrain(id: 10,
                                                 tiledId: 0,
                                                 name: "River",
                                                 type: TerrainType.River,
@@ -92,7 +92,7 @@ class TerrainDAOTests: XCTestCase {
                                                 shields: 0.0,
                                                 trade: 0.0,
                                                 movementCost: 0.0)))
-        XCTAssertTrue(terrains.contains(Terrain(id: -1,
+        XCTAssertTrue(terrains.contains(Terrain(id: 11,
                                                 tiledId: 0,
                                                 name: "Swamp",
                                                 type: TerrainType.Swamp,
@@ -100,7 +100,7 @@ class TerrainDAOTests: XCTestCase {
                                                 shields: 0.0,
                                                 trade: 0.0,
                                                 movementCost: 0.0)))
-        XCTAssertTrue(terrains.contains(Terrain(id: -1,
+        XCTAssertTrue(terrains.contains(Terrain(id: 12,
                                                 tiledId: 0,
                                                 name: "Tundra",
                                                 type: TerrainType.Tundra,

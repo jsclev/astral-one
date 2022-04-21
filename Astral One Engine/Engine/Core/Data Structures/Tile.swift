@@ -1,6 +1,7 @@
 import Foundation
 
 public class Tile: Hashable {
+    public let id: Int
     public let row: Int
     public let col: Int
     public let terrain: Terrain
@@ -9,6 +10,14 @@ public class Tile: Hashable {
     private var movementModifier: MovementModifier?
     
     public init(row: Int, col: Int, terrain: Terrain) {
+        self.id = -1
+        self.row = row
+        self.col = col
+        self.terrain = terrain
+    }
+    
+    public init(id: Int, row: Int, col: Int, terrain: Terrain) {
+        self.id = id
         self.row = row
         self.col = col
         self.terrain = terrain

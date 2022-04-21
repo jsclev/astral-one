@@ -30,8 +30,8 @@ public class MapDAO: BaseDAO {
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
             while sqlite3_step(stmt) == SQLITE_ROW {
                 let tileId = getInt(stmt: stmt, colIndex: 0)
-                let gameId = getInt(stmt: stmt, colIndex: 1)
-                let mapId = getInt(stmt: stmt, colIndex: 2)
+                // let gameId = getInt(stmt: stmt, colIndex: 1)
+                // let mapId = getInt(stmt: stmt, colIndex: 2)
                 let row = getInt(stmt: stmt, colIndex: 3)
                 let col = getInt(stmt: stmt, colIndex: 4)
                 let terrainId = getInt(stmt: stmt, colIndex: 5)
@@ -73,7 +73,8 @@ public class MapDAO: BaseDAO {
                     
                     maxRow = row > maxRow ? row : maxRow
                     maxCol = col > maxCol ? col : maxCol
-                    tiles.append(Tile(row: row,
+                    tiles.append(Tile(id: tileId,
+                                      row: row,
                                       col: col,
                                       terrain: Terrain(id: terrainId,
                                                        tiledId: tiledId,
@@ -99,16 +100,17 @@ public class MapDAO: BaseDAO {
     }
         
     public func insert(map: Map) throws -> Map {
-        //        var newTiles: [Tile] = []
         var tileId = -1
         var mainStmt: OpaquePointer?
         var rowIdStmt: OpaquePointer?
+        let returnMap = Map(mapId: 1, width: map.width, height: map.height)
         
-        let mainSql = """
-        INSERT INTO \(table)
-        (game_id, map_id, row, col, terrain_id, has_river)
-        VALUES (?, ?, ?, ?, ?, ?);
-    """
+        let mainSql =
+            """
+            INSERT INTO \(table)
+            (game_id, map_id, row, col, terrain_id, has_river)
+            VALUES (?, ?, ?, ?, ?, ?);
+            """
         
         let rowIdSql = "SELECT last_insert_rowid()"
         
@@ -136,6 +138,7 @@ public class MapDAO: BaseDAO {
         for row in 0..<map.height {
             for col in 0..<map.width {
                 let tile = try map.tile(row: row, col: col)
+                
                 sqlite3_bind_int(mainStmt, 1, Int32(1))
                 sqlite3_bind_int(mainStmt, 2, Int32(1))
                 sqlite3_bind_int(mainStmt, 3, Int32(row))
@@ -146,8 +149,7 @@ public class MapDAO: BaseDAO {
                 if sqlite3_step(mainStmt) == SQLITE_DONE {
                     if sqlite3_step(rowIdStmt) == SQLITE_ROW {
                         tileId = getInt(stmt: rowIdStmt, colIndex: 0)
-//                        print("New tile id: \(tileId)")
-                        //                        newTiles.append(Tile()
+                        try returnMap.add(tile: Tile(id: tileId, row: row, col: col, terrain: tile.terrain))
                     }
                     else {
                         let errMsg = String(cString: sqlite3_errmsg(conn)!)
@@ -171,6 +173,6 @@ public class MapDAO: BaseDAO {
             print("Error!!!!")
         }
         
-        return Map(mapId: 1, width: map.width, height: map.height)
+        return returnMap
     }
 }
