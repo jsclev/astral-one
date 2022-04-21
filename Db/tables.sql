@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS tile;
 DROP TABLE IF EXISTS tech_command;
 DROP TABLE IF EXISTS settle_command;
 DROP TABLE IF EXISTS building_command;
@@ -93,11 +94,12 @@ CREATE TABLE terrain (
     defensive_bonus REAL NOT NULL
 );
 
-CREATE TABLE map (
-    map_id INTEGER PRIMARY KEY,
+CREATE TABLE tile (
+    tile_id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
-    x INTEGER NOT NULL,
-    y INTEGER NOT NULL,
+    map_id INTEGER NOT NULL,
+    row INTEGER NOT NULL,
+    col INTEGER NOT NULL,
     terrain_id INTEGER NOT NULL,
     has_river INTEGER NOT NULL
 );

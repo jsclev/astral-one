@@ -34,6 +34,6 @@ public class Terrain: Equatable {
     }
     
     public static func == (lhs: Terrain, rhs: Terrain) -> Bool {
-        return lhs.type == rhs.type && lhs.name == rhs.name
+        return lhs.id == rhs.id
     }
 }

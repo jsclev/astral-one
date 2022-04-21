@@ -73,7 +73,7 @@ class GridGraphTests: XCTestCase {
                               shields: 0.0,
                               trade: 0.0,
                               movementCost: 1.0)
-        let map = Map(width: 3, height: 3)
+        let map = Map(mapId: 1, width: 3, height: 3)
         
         // Add 25 nodes to the map, all nodes have a uniform traversal score
         for row in 0..<3 {

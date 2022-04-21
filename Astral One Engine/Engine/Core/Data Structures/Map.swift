@@ -2,12 +2,14 @@ import Foundation
 import GameplayKit
 
 public class Map {
+    public let mapId: Int
     public let width: Int
     public let height: Int
     private var grid: [[Tile]]
     private var movementCosts: [[Double]]
     
-    public init(width: Int, height: Int) {
+    public init(mapId: Int, width: Int, height: Int) {
+        self.mapId = mapId
         self.width = width
         self.height = height
         

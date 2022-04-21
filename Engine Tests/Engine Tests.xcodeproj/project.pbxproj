@@ -26,6 +26,8 @@
 		52AB073C280216200039B47D /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52AB073B280216200039B47D /* civitas.sqlite */; };
 		52AB073D280216200039B47D /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52AB073B280216200039B47D /* civitas.sqlite */; };
 		52AB0741280219660039B47D /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0740280219660039B47D /* NodeTests.swift */; };
+		52DE5F362810F5D70029EFE1 /* MapDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F352810F5D70029EFE1 /* MapDAOTests.swift */; };
+		52DE5F392811FCB20029EFE1 /* TerrainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F382811FCB20029EFE1 /* TerrainTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		52AB0735280213DA0039B47D /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB073B280216200039B47D /* civitas.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = civitas.sqlite; path = ../../Db/civitas.sqlite; sourceTree = "<group>"; };
 		52AB0740280219660039B47D /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
+		52DE5F352810F5D70029EFE1 /* MapDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDAOTests.swift; sourceTree = "<group>"; };
+		52DE5F382811FCB20029EFE1 /* TerrainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,7 @@
 			children = (
 				5293BC33280E32D4001DE2F3 /* Commands */,
 				5293BC34280E32E3001DE2F3 /* Map Features */,
+				52DE5F352810F5D70029EFE1 /* MapDAOTests.swift */,
 			);
 			path = "Data Access Objects";
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				521F21DB28069E3F00F1D61D /* Data Structures */,
+				52DE5F372811FC680029EFE1 /* Map Features */,
 				521F21C22804821D00F1D61D /* Units */,
 				52AB074228021D200039B47D /* Influence Maps */,
 				521F21EE2808BAA900F1D61D /* GameTests.swift */,
@@ -249,6 +255,14 @@
 				521F21EC2807E14000F1D61D /* UnitInfluenceMapCalculatorTests.swift */,
 			);
 			path = "Influence Maps";
+			sourceTree = "<group>";
+		};
+		52DE5F372811FC680029EFE1 /* Map Features */ = {
+			isa = PBXGroup;
+			children = (
+				52DE5F382811FCB20029EFE1 /* TerrainTests.swift */,
+			);
+			path = "Map Features";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +377,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				521F21EF2808BAA900F1D61D /* GameTests.swift in Sources */,
+				52DE5F392811FCB20029EFE1 /* TerrainTests.swift in Sources */,
+				52DE5F362810F5D70029EFE1 /* MapDAOTests.swift in Sources */,
 				5293BC36280E3315001DE2F3 /* TerrainDAOTests.swift in Sources */,
 				521F21F9280A17AD00F1D61D /* ValueNodeTests.swift in Sources */,
 				521F21ED2807E14000F1D61D /* UnitInfluenceMapCalculatorTests.swift in Sources */,

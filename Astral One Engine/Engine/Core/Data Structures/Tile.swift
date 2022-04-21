@@ -23,7 +23,7 @@ public class Tile: Hashable {
         return lhs.row == rhs.row && lhs.col == rhs.col
     }
     
-    public func addUnit(unit: Unit) {
+    public func add(unit: Unit) {
         units.append(unit)
     }
     

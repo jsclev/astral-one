@@ -8,7 +8,7 @@ class MapTests: XCTestCase {
     }
     
     func testGetMoveCostsExpectsMin() throws {
-        let map = Map(width: 10, height: 5)
+        let map = Map(mapId: 1, width: 10, height: 5)
         let movementCosts = map.getMovementCosts()
         
         XCTAssertEqual(movementCosts.count, 5)
@@ -23,7 +23,7 @@ class MapTests: XCTestCase {
     }
     
     func testGetMoveCostsBaseTerrain() throws {
-        let map = Map(width: 4, height: 4)
+        let map = Map(mapId: 1, width: 4, height: 4)
         try map.add(tile: Tile(row: 0, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Desert)))
         try map.add(tile: Tile(row: 0, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Forest)))
         try map.add(tile: Tile(row: 0, col: 2, terrain: TerrainFactory.create(terrainType: TerrainType.Glacier)))
@@ -44,21 +44,21 @@ class MapTests: XCTestCase {
         }
         
         // Make sure we got a movement cost for mountain
-        XCTAssertEqual(map.getMovementCosts()[0][0], 1.0)
-        XCTAssertEqual(map.getMovementCosts()[0][1], 2.0)
-        XCTAssertEqual(map.getMovementCosts()[0][2], 2.0)
-        XCTAssertEqual(map.getMovementCosts()[0][3], 1.0)
-        XCTAssertEqual(map.getMovementCosts()[1][0], 2.0)
-        XCTAssertEqual(map.getMovementCosts()[1][1], 2.0)
-        XCTAssertEqual(map.getMovementCosts()[1][2], 3.0)
-        XCTAssertEqual(map.getMovementCosts()[1][3], 1.0)
-        XCTAssertEqual(map.getMovementCosts()[2][0], 1.0)
-        XCTAssertEqual(map.getMovementCosts()[2][1], 2.0)
-        XCTAssertEqual(map.getMovementCosts()[2][2], 1.0)
+        XCTAssertEqual(map.getMovementCosts()[0][0], 1.0, accuracy: 0.001)
+        XCTAssertEqual(map.getMovementCosts()[0][1], 2.0, accuracy: 0.000001)
+        XCTAssertEqual(map.getMovementCosts()[0][2], 2.0, accuracy: 0.000001)
+        XCTAssertEqual(map.getMovementCosts()[0][3], 1.0, accuracy: 0.000001)
+        XCTAssertEqual(map.getMovementCosts()[1][0], 2.0, accuracy: 0.000001)
+        XCTAssertEqual(map.getMovementCosts()[1][1], 2.0, accuracy: 0.000001)
+        XCTAssertEqual(map.getMovementCosts()[1][2], 3.0, accuracy: 0.000001)
+        XCTAssertEqual(map.getMovementCosts()[1][3], 1.0, accuracy: 0.000001)
+        XCTAssertEqual(map.getMovementCosts()[2][0], 1.0, accuracy: 0.000001)
+        XCTAssertEqual(map.getMovementCosts()[2][1], 2.0, accuracy: 0.000001)
+        XCTAssertEqual(map.getMovementCosts()[2][2], 1.0, accuracy: 0.000001)
     }
     
     func testGetMoveCostTwoGrassNodes() throws {
-        let map = Map(width: 2, height: 1)
+        let map = Map(mapId: 1, width: 2, height: 1)
         try map.add(tile: Tile(row: 0, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
         try map.add(tile: Tile(row: 0, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
         
@@ -67,7 +67,7 @@ class MapTests: XCTestCase {
     }
     
     func testGetMoveCostsExpectsModifiers() throws {
-        let map = Map(width: 2, height: 2)
+        let map = Map(mapId: 1, width: 2, height: 2)
         let tile00 = Tile(row: 0,
                           col: 0,
                           terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
@@ -101,7 +101,7 @@ class MapTests: XCTestCase {
     }
     
     func testAddTileExpectsInvalidRow() throws {
-        let map = Map(width: 1, height: 1)
+        let map = Map(mapId: 1, width: 1, height: 1)
         let tile = Tile(row: -1,
                         col: 0,
                         terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
@@ -113,7 +113,7 @@ class MapTests: XCTestCase {
     }
     
     func testAddTileExpectsInvalidRow2() throws {
-        let map = Map(width: 2, height: 1)
+        let map = Map(mapId: 1, width: 2, height: 1)
         let tile = Tile(row: 2,
                         col: 0,
                         terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
@@ -125,7 +125,7 @@ class MapTests: XCTestCase {
     }
     
     func testAddTileExpectsInvalidCol() throws {
-        let map = Map(width: 1, height: 1)
+        let map = Map(mapId: 1, width: 1, height: 1)
         let tile = Tile(row: 0,
                         col: -1,
                         terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
@@ -137,7 +137,7 @@ class MapTests: XCTestCase {
     }
     
     func testAddTileExpectsInvalidCol2() throws {
-        let map = Map(width: 1, height: 2)
+        let map = Map(mapId: 1, width: 1, height: 2)
         let tile = Tile(row: 0,
                         col: 2,
                         terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
@@ -149,7 +149,7 @@ class MapTests: XCTestCase {
     }
     
     func testGetTileExpectsInvalidRow() throws {
-        let map = Map(width: 1, height: 1)
+        let map = Map(mapId: 1, width: 1, height: 1)
         
         XCTAssertThrowsError(try map.tile(row: -1, col: 0)) { error in
             let errorMsg = "Row must be greater than or equal to zero."
@@ -158,7 +158,7 @@ class MapTests: XCTestCase {
     }
     
     func testGetTileExpectsInvalidRow2() throws {
-        let map = Map(width: 2, height: 1)
+        let map = Map(mapId: 1, width: 2, height: 1)
         
         XCTAssertThrowsError(try map.tile(row: 10, col: 0)) { error in
             let errorMsg = "Row must be less than map height of 1."
@@ -167,7 +167,7 @@ class MapTests: XCTestCase {
     }
     
     func testGetTileExpectsInvalidCol() throws {
-        let map = Map(width: 1, height: 1)
+        let map = Map(mapId: 1, width: 1, height: 1)
         
         XCTAssertThrowsError(try map.tile(row: 0, col: -1)) { error in
             let errorMsg = "Column must be greater than or equal to zero."
@@ -176,7 +176,7 @@ class MapTests: XCTestCase {
     }
     
     func testGetTileExpectsInvalidCol2() throws {
-        let map = Map(width: 1, height: 2)
+        let map = Map(mapId: 1, width: 1, height: 2)
         
         XCTAssertThrowsError(try map.tile(row: 0, col: 2)) { error in
             let errorMsg = "Column must be less than map width of 1."

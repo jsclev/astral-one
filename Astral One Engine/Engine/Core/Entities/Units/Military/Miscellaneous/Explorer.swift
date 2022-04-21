@@ -148,7 +148,7 @@ public class Explorer: Unit {
 }
 
 public class ExplorerNode: GKGridGraphNode {
-    private var map: Map = Map(width: 0, height: 0)
+    private var map: Map = Map(mapId: 1, width: 0, height: 0)
     private var enemyHP: Float = 0.0
     private var enemyLandAttack: Float = 0.0
     private var enemyLandDefense: Float = 0.0

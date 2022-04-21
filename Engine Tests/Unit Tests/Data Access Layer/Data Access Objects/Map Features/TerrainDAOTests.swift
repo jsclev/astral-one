@@ -11,7 +11,7 @@ class TerrainDAOTests: XCTestCase {
     func testGetAll() throws {
         let terrains = try db.terrainDao.getTerrains()
         
-        XCTAssertEqual(terrains.count, 12)
+        XCTAssertEqual(terrains.count, 31)
         XCTAssertTrue(terrains.contains(Terrain(id: -1,
                                                 tiledId: 0,
                                                 name: "Desert",
@@ -38,7 +38,7 @@ class TerrainDAOTests: XCTestCase {
                                                 movementCost: 0.0)))
         XCTAssertTrue(terrains.contains(Terrain(id: -1,
                                                 tiledId: 0,
-                                                name: "Grassland",
+                                                name: "Grass",
                                                 type: TerrainType.Grassland,
                                                 food: 0.0,
                                                 shields: 0.0,
@@ -62,7 +62,7 @@ class TerrainDAOTests: XCTestCase {
                                                 movementCost: 0.0)))
         XCTAssertTrue(terrains.contains(Terrain(id: -1,
                                                 tiledId: 0,
-                                                name: "Mountains",
+                                                name: "Mountain",
                                                 type: TerrainType.Mountains,
                                                 food: 0.0,
                                                 shields: 0.0,
@@ -70,7 +70,7 @@ class TerrainDAOTests: XCTestCase {
                                                 movementCost: 0.0)))
         XCTAssertTrue(terrains.contains(Terrain(id: -1,
                                                 tiledId: 0,
-                                                name: "Ocean",
+                                                name: "Water",
                                                 type: TerrainType.Ocean,
                                                 food: 0.0,
                                                 shields: 0.0,

@@ -16,7 +16,7 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
     public init(tiledTileset: TiledTileset, filename: String) {
         self.filename = filename
         self.tiledTileset = tiledTileset
-        self.map = Map(width: self.mapWidth, height: self.mapHeight)
+        self.map = Map(mapId: 1, width: self.mapWidth, height: self.mapHeight)
     }
     
     public func parse() throws -> Map {
@@ -67,7 +67,7 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
     public func parser(_ parser: XMLParser, foundCharacters string: String) {
         if currentEl == "data" {
             if !mapInitialized {
-                map = Map(width: mapWidth, height: mapHeight)
+                map = Map(mapId: 1, width: mapWidth, height: mapHeight)
                 mapInitialized = true
             }
 
@@ -125,7 +125,7 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                                                                   row: mapRowIndex,
                                                                                   col: col)
                                                 let tile = try map.tile(row: mapRowIndex, col: col)
-                                                tile.addUnit(unit: unit)
+                                                tile.add(unit: unit)
                                             }
                                         }
                                     }

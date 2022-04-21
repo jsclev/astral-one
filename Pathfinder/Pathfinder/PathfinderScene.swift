@@ -149,10 +149,6 @@ class PathfinderScene: SKScene {
         }
         printDate(string: "Done rendering, now building Explorer-specific traversal graph: ")
         
-//        let explorer = Explorer(game: game, position: SIMD2<Int32>(1, 1))
-//        let path: [GKGraphNode] = explorer.getPath(to: SIMD2<Int32>(3, 3))
-        printDate(string: "Done building Explorer-specific traversal graph, rendering path: ")
-
         game.processCommands(commands: game.db.commandDao.getCommands(gameId: 1))
     }
     

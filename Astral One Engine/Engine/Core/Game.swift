@@ -4,7 +4,7 @@ import Combine
 public class Game: ObservableObject {
     @Published public var showFPS = false
 
-    private var map: Map = Map(width: 0, height: 0)
+    private var map: Map = Map(mapId: 1, width: 0, height: 0)
     public let db: Db
 
     public init(db: Db) {
@@ -20,7 +20,11 @@ public class Game: ObservableObject {
         let tileset = tilesetParser.parse()
         let mapParser = TiledMapParser(tiledTileset: tileset, filename: filename)
         
-        try map = mapParser.parse()
+        // Import the Tiled map into the database
+        let _ = try db.mapDao.insert(map: mapParser.parse())
+        
+        // Pull the map from the database
+        map = try db.mapDao.get(mapId: 1)
     }
     
     public func processCommands(commands: [Command]) {

@@ -6,7 +6,7 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         // Create a 3x3 map and place an agent in the lower-left
         // corner.  We'll create an enemy unit, but won't actually
         // add it to the map, and assert that the influence is zero.
-        let map = Map(width: 3, height: 3)
+        let map = Map(mapId: 1, width: 3, height: 3)
         let agent = Infantry1(playerId: 1, name: "Test", row: 0, col: 0)
         let enemyUnit = Infantry1(playerId: 2, name: "Test", row: 1, col: 1)
 
@@ -36,12 +36,12 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         // exact center.  We'll put an agent in the lower-left corner at
         // position (0, 0).  The influence map should show the highest
         // negative level at the enemy position, then spreading out.
-        let map = Map(width: 3, height: 3)
+        let map = Map(mapId: 1, width: 3, height: 3)
         let agent = Infantry1(playerId: 1, name: "Test", row: 0, col: 0)
         let enemyUnit = Infantry1(playerId: 2, name: "Test", row: 1, col: 1)
         
         let tile = Tile(row: 1, col: 1, terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
-        tile.addUnit(unit: enemyUnit)
+        tile.add(unit: enemyUnit)
         try map.add(tile: tile)
         
         let calculator = UnitInfluenceMapCalculator(map: map, unit: enemyUnit, agent: agent)
@@ -76,15 +76,15 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
          unit, and make sure the influence map from the more powerful enemy unit has a higher
          negative influence.
          */
-        let map = Map(width: 3, height: 3)
+        let map = Map(mapId: 1, width: 3, height: 3)
         let tile = Tile(row: 1, col: 1, terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
 
         let agent = Infantry1(playerId: 1, name: "Agent", row: 0, col: 0)
         let enemyUnit1 = Infantry1(playerId: 2, name: "Enemy1", row: 1, col: 1)
         let enemyUnit2 = Cavalry7(playerId: 2, name: "Enemy2", row: 1, col: 1)
 
-        tile.addUnit(unit: enemyUnit1)
-        tile.addUnit(unit: enemyUnit2)
+        tile.add(unit: enemyUnit1)
+        tile.add(unit: enemyUnit2)
         try map.add(tile: tile)
         
         let calculator1 = UnitInfluenceMapCalculator(map: map, unit: enemyUnit1, agent: agent)
@@ -114,15 +114,15 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
          unit, and make sure the influence map from the more powerful enemy unit has a higher
          negative influence.
          */
-        let mainMap = Map(width: 3, height: 3)
+        let mainMap = Map(mapId: 1, width: 3, height: 3)
         let tile = Tile(row: 1, col: 1, terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         
         let agent = Infantry1(playerId: 1, name: "Agent", row: 0, col: 0)
         let enemyUnit1 = Infantry1(playerId: 2, name: "Enemy1", row: 1, col: 1)
         let enemyUnit2 = Cavalry7(playerId: 2, name: "Enemy2", row: 1, col: 1)
         
-        tile.addUnit(unit: enemyUnit1)
-        tile.addUnit(unit: enemyUnit2)
+        tile.add(unit: enemyUnit1)
+        tile.add(unit: enemyUnit2)
         try mainMap.add(tile: tile)
         
         let calculator1 = UnitInfluenceMapCalculator(map: mainMap, unit: enemyUnit1, agent: agent)
