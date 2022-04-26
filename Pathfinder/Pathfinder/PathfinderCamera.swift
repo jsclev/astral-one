@@ -1,13 +1,20 @@
 import SpriteKit
 import SwiftUI
 import Engine
+import Combine
 
 class PathfinderCamera: SKCameraNode {
+    @ObservedObject var game: Game
+    
+    private var cancellable = Set<AnyCancellable>()
+    
     let startPositionIcon = SKSpriteNode(imageNamed: "square-wooden-button")
     let calculatePathIcon = SKSpriteNode(imageNamed: "square-wooden-button")
     let positionLabel = SKLabelNode(fontNamed: "Arial Bold")
     
-    init(_ entityManager: EntityManager) {
+    init(game: Game) {
+        self.game = game
+        
         startPositionIcon.size = CGSize(width: 40.0, height: 35.0)
         calculatePathIcon.size = CGSize(width: 40.0, height: 35.0)
         
@@ -24,6 +31,10 @@ class PathfinderCamera: SKCameraNode {
         super.init()
         
         name = "camera"
+        
+        game.$tapLocation.sink(receiveValue: { tapLocation in
+            self.updatePositionLabel(pos: tapLocation)
+        }).store(in: &cancellable)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,7 +42,7 @@ class PathfinderCamera: SKCameraNode {
     }
     
     func show() {
-        updatePositionLabel()
+        updatePositionLabel(pos: position)
         
         if let scene = self.scene {
             let topIconEdge: CGFloat = (scene.size.height / 2.0) - 25.0
@@ -48,9 +59,9 @@ class PathfinderCamera: SKCameraNode {
         addChild(positionLabel)
     }
     
-    func updatePositionLabel() {
-        let x = String(format: "%.0f", position.x)
-        let y = String(format: "%.0f", position.y)
+    func updatePositionLabel(pos: CGPoint) {
+        let x = String(format: "%.0f", pos.x)
+        let y = String(format: "%.0f", pos.y)
 
         positionLabel.text = "[\(x),\(y)]"
     }

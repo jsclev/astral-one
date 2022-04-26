@@ -56,7 +56,8 @@ CREATE TABLE game (
 
 CREATE TABLE game_setting (
     game_setting_id INTEGER PRIMARY KEY,
-    game_id INTEGER NOT NULL
+    game_id INTEGER NOT NULL,
+    FOREIGN KEY (game_id) REFERENCES game (game_id)
 );
 
 CREATE TABLE player (
@@ -101,27 +102,35 @@ CREATE TABLE tile (
     row INTEGER NOT NULL,
     col INTEGER NOT NULL,
     terrain_id INTEGER NOT NULL,
-    has_river INTEGER NOT NULL
+    has_river INTEGER NOT NULL,
+    FOREIGN KEY (game_id) REFERENCES game (game_id),
+    FOREIGN KEY (terrain_id) REFERENCES terrain (terrain_id)
 );
 
 CREATE TABLE unit (
     unit_id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
-    unit_type_id INTEGER NOT NULL
+    unit_type_id INTEGER NOT NULL,
+    tile_id INTEGER,
+    FOREIGN KEY (game_id) REFERENCES game (game_id),
+    FOREIGN KEY (unit_type_id) REFERENCES unit_type (unit_type_id),
+    FOREIGN KEY (tile_id) REFERENCES tile (tile_id)
 );
 
 CREATE TABLE city (
     city_id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
     player_id INTEGER NOT NULL,
-    name TEXT NOT NULL
+    name TEXT NOT NULL,
+    FOREIGN KEY (game_id) REFERENCES game (game_id)
 );
 
 CREATE TABLE building (
     building_id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
     player_id INTEGER NOT NULL,
-    building_type_id INTEGER NOT NULL
+    building_type_id INTEGER NOT NULL,
+    FOREIGN KEY (game_id) REFERENCES game (game_id)
 );
 
 CREATE TABLE command (
@@ -130,7 +139,8 @@ CREATE TABLE command (
     turn_id INTEGER NOT NULL,
     player_id INTEGER NOT NULL,
     command_type_id INTEGER NOT NULL,
-    ordinal INTEGER NOT NULL
+    ordinal INTEGER NOT NULL,
+    FOREIGN KEY (game_id) REFERENCES game (game_id)
 );
 
 CREATE TABLE tech_command (

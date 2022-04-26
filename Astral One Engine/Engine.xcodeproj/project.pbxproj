@@ -41,6 +41,8 @@
 		52AB0748280287580039B47D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0747280287580039B47D /* City.swift */; };
 		52DE5F32281086A40029EFE1 /* UnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F31281086A40029EFE1 /* UnitFactory.swift */; };
 		52DE5F342810DAB90029EFE1 /* MapDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F332810DAB90029EFE1 /* MapDAO.swift */; };
+		52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */; };
+		52DE5F3E281251930029EFE1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F3D281251930029EFE1 /* MapView.swift */; };
 		52E0B18A27E6D86A00607FBE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18927E6D86A00607FBE /* Constants.swift */; };
 		52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18C27E6D87600607FBE /* TiledTileset.swift */; };
 		52E0B19227E6D87600607FBE /* TiledMapParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18D27E6D87600607FBE /* TiledMapParser.swift */; };
@@ -133,6 +135,8 @@
 		52AB0747280287580039B47D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		52DE5F31281086A40029EFE1 /* UnitFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitFactory.swift; sourceTree = "<group>"; };
 		52DE5F332810DAB90029EFE1 /* MapDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDAO.swift; sourceTree = "<group>"; };
+		52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitDAO.swift; sourceTree = "<group>"; };
+		52DE5F3D281251930029EFE1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		52E0B18927E6D86A00607FBE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		52E0B18C27E6D87600607FBE /* TiledTileset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiledTileset.swift; sourceTree = "<group>"; };
 		52E0B18D27E6D87600607FBE /* TiledMapParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiledMapParser.swift; sourceTree = "<group>"; };
@@ -357,8 +361,17 @@
 		5293BC39280E77F2001DE2F3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				52DE5F3D281251930029EFE1 /* MapView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		52DE5F3A281249D40029EFE1 /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */,
+			);
+			path = Units;
 			sourceTree = "<group>";
 		};
 		52E0B18B27E6D87600607FBE /* IO */ = {
@@ -450,6 +463,7 @@
 		52F9042E27F6B56200D1AC97 /* Data Access Objects */ = {
 			isa = PBXGroup;
 			children = (
+				52DE5F3A281249D40029EFE1 /* Units */,
 				52F9046F27FC8B8800D1AC97 /* Commands */,
 				5293BC37280E3E2F001DE2F3 /* Map Features */,
 				52F9042F27F6B5B100D1AC97 /* BaseDAO.swift */,
@@ -605,6 +619,7 @@
 				52F9042627F4E1AC00D1AC97 /* Unit.swift in Sources */,
 				52AB0748280287580039B47D /* City.swift in Sources */,
 				52F9042827F4E27B00D1AC97 /* Infantry1.swift in Sources */,
+				52DE5F3E281251930029EFE1 /* MapView.swift in Sources */,
 				52F9042A27F4E3C600D1AC97 /* DefensiveInfantry1.swift in Sources */,
 				52F9044627F80B0500D1AC97 /* CommandDAO.swift in Sources */,
 				52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */,
@@ -616,6 +631,7 @@
 				52F9042D27F6B54D00D1AC97 /* Db.swift in Sources */,
 				52E0B1B427E6DFD100607FBE /* Pod.swift in Sources */,
 				521F21B528047F8000F1D61D /* Trade2.swift in Sources */,
+				52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */,
 				52E0B1B827E6DFD100607FBE /* RadarTower.swift in Sources */,
 				521F21A02803F88400F1D61D /* Infantry2.swift in Sources */,
 				5293BC28280B6A86001DE2F3 /* Cavalry7.swift in Sources */,

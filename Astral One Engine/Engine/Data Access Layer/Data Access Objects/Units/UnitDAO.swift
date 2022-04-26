@@ -1,12 +1,12 @@
 import Foundation
 import SQLite3
 
-public class MapDAO: BaseDAO {
+public class UnitDAO: BaseDAO {
     init(conn: OpaquePointer?) {
-        super.init(conn: conn, table: "tile", loggerName: String(describing: type(of: self)))
+        super.init(conn: conn, table: "unit", loggerName: String(describing: type(of: self)))
     }
     
-    public func get(gameId: Int) throws -> Map {
+    public func get(mapId: Int) throws -> Map {
         var tiles: [Tile] = []
         var maxRow = 0
         var maxCol = 0
@@ -94,7 +94,7 @@ public class MapDAO: BaseDAO {
         
         return returnMap
     }
-        
+    
     public func insert(map: Map) throws -> Map {
         var tileId = -1
         var mainStmt: OpaquePointer?
@@ -171,4 +171,57 @@ public class MapDAO: BaseDAO {
         
         return returnMap
     }
+    
+//    public func insert(unit: Unit) throws -> Unit {
+//        var commandId: Int = -1
+//
+//        var sql = "INSERT INTO unit (" +
+//        "game_id, turn_id, player_id, command_type_id, ordinal" +
+//        ") VALUES "
+//
+//        sql += "("
+//        sql += getSql(val: command.gameId, postfix: ", ")
+//        sql += getSql(val: command.turn.id, postfix: ", ")
+//        sql += getSql(val: command.playerId, postfix: ", ")
+//        sql += getSql(val: command.type.id, postfix: ", ")
+//        sql += getSql(val: command.ordinal, postfix: "")
+//        sql += "), "
+//
+//        sql = getCleanedSql(sql)
+//
+//        public let playerId: Int
+//        public let tiledId: Int
+//        public let name: String
+//        public let cost: Double
+//        public let maxHp: Double
+//        public var currentHp: Double
+//        public let attackRating: Double
+//        public let defenseRating: Double
+//        public let fp: Double
+//        public let maxMovementPoints: Double
+//        public var currentMovementPoints: Double
+//        public let row: Int
+//        public let col: Int
+//
+//        do {
+//            commandId = try insertOneRow(sql: sql)
+//        }
+//        catch SQLiteError.Prepare(let message) {
+//            var errMsg = "Failed to compile the SQL to insert rows into the \(table) table.  "
+//            errMsg += "SQLite error message: " + message
+//            throw DbError.Db(message: errMsg)
+//        }
+//        catch SQLiteError.Step(let message) {
+//            var errMsg = "Failed to execute the SQL to insert rows into the \(table) table.  "
+//            errMsg += "SQLite error message: " + message
+//            throw DbError.Db(message: errMsg)
+//        }
+//
+//        return Command(commandId: commandId,
+//                       gameId: command.gameId,
+//                       turn: command.turn,
+//                       playerId: command.playerId,
+//                       type: command.type,
+//                       ordinal: command.ordinal)
+//    }
 }

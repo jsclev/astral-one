@@ -2,6 +2,7 @@ import SpriteKit
 import AVFoundation
 import GameplayKit
 import Engine
+import SwiftUI
 
 enum PathfinderState {
     case initialized
@@ -11,6 +12,7 @@ enum PathfinderState {
 }
 
 class PathfinderScene: SKScene {
+    let game: Game
     var mapViewModel: MapViewModel
     var debug = true
     var gameCamera: PathfinderCamera!
@@ -22,25 +24,29 @@ class PathfinderScene: SKScene {
     let filename: String = "freeland"
     let mapIconsTilesetName: String = "Map Icons"
     let mapName = "terrain"
-    var tileset: SKTileSet!
+//    var tileset: SKTileSet!
     var mapIconsTileset: SKTileSet!
     var pathMap: SKTileMapNode
     var mapIcons: SKTileMapNode
     let tileSize: CGSize = CGSize(width: 96, height: 48)
-    let rows: Int = 100
-    let cols: Int = 100
     var state: PathfinderState = PathfinderState.initialized
-    var game: Game
     var startPosition = SIMD2<Int32>(0, 0)
     var endPosition = SIMD2<Int32>(0, 0)
+    var mapView: MapView
     
-    init(mapViewModel: MapViewModel) {
+    init(game: Game, mapViewModel: MapViewModel) {
+        self.game = game
         self.mapViewModel = mapViewModel
         
-        tileset = SKTileSet(named: tilesetName)
-        pathMap = SKTileMapNode(tileSet: tileset,
-                                columns: cols,
-                                rows: rows,
+
+        
+        let tileset = SKTileSet(named: tilesetName)
+
+        self.mapView = MapView(map: game.getMap(), tileset: tileset!)
+        
+        pathMap = SKTileMapNode(tileSet: tileset!,
+                                columns: game.getMap().width,
+                                rows: game.getMap().height,
                                 tileSize: tileSize)
         pathMap.name = "terrain"
         pathMap.zPosition = Layer.unitPath
@@ -49,17 +55,15 @@ class PathfinderScene: SKScene {
         
         mapIconsTileset = SKTileSet(named: mapIconsTilesetName)
         mapIcons = SKTileMapNode(tileSet: mapIconsTileset,
-                                 columns: cols,
-                                 rows: rows,
+                                 columns: game.getMap().width,
+                                 rows: game.getMap().height,
                                  tileSize: tileSize)
         mapIcons.name = "map-icons"
         mapIcons.zPosition = Layer.unitPath2
         mapIcons.position = CGPoint.zero
         mapIcons.enableAutomapping = true
         
-        let db = Db(fullRefresh: true)
-        game = Game(db: db)
-        
+
         super.init(size: UIScreen.main.bounds.size)
     }
     
@@ -74,6 +78,9 @@ class PathfinderScene: SKScene {
         
         let recognizorLocation = recognizer.location(in: recognizer.view!)
         let location = self.convertPoint(fromView: recognizorLocation)
+        print("New location: \(location.x)")
+        game.tapLocation = location
+        
         let touchedNodes = nodes(at: location)
         
         if !touchedNodes.isEmpty && touchedNodes[0].name == "set-start-position" {
@@ -84,7 +91,7 @@ class PathfinderScene: SKScene {
         else if !touchedNodes.isEmpty && touchedNodes[0].name == "calculate-path" {
             state = PathfinderState.calculatingPath
             let path: [GKGridGraphNode] = [] //game.getMap().findPath(from: startPosition, to: endPosition)
-            showAIPath(path: path)
+//            showAIPath(path: path)
             return
         }
         
@@ -123,7 +130,7 @@ class PathfinderScene: SKScene {
     
     override func didMove(to view: SKView) {
         entityManager = EntityManager(scene: self)
-        gameCamera = PathfinderCamera(entityManager)
+        gameCamera = PathfinderCamera(game: game)
         
         camera = gameCamera
         addChild(gameCamera)
@@ -138,16 +145,17 @@ class PathfinderScene: SKScene {
         view.addGestureRecognizer(tapGestureRecognizer)
 
         do {
-            printDate(string: "Starting to parse Tiled XML files, and build traversal grid graph: ")
             try game.importTiledMap(filename: filename)
-            printDate(string: "Done parsing Tile XML, main traversal grid graph is parsed, now rendering map: ")
+            try game.load(gameId: 1)
+            
+            let tileset = SKTileSet(named: tilesetName)
 
-            try renderMap()
+            mapView = MapView(map: game.getMap(), tileset: tileset!)
+            try mapView.setScene(scene: self)
         }
         catch {
             print(error)
         }
-        printDate(string: "Done rendering, now building Explorer-specific traversal graph: ")
         
         game.processCommands(commands: game.db.commandDao.getCommands(gameId: 1))
     }
@@ -170,112 +178,51 @@ class PathfinderScene: SKScene {
         }
     }
     
-    private func renderMap() throws {
-        var terrainMaps: [SKTileMapNode] = []
-
-        for layer in 0..<game.getMap().getNumLayers() {
-            let terrainMap = SKTileMapNode(tileSet: tileset,
-                                           columns: cols,
-                                           rows: rows,
-                                           tileSize: tileSize)
-            terrainMap.name = "terrain_\(layer)"
-            terrainMap.zPosition = Layer.terrain + CGFloat(layer)
-            terrainMap.position = CGPoint.zero
-            terrainMap.enableAutomapping = true
-
-            terrainMaps.append(terrainMap)
-        }
-        
-        let unitsMap = SKTileMapNode(tileSet: tileset,
-                                     columns: cols,
-                                     rows: rows,
-                                     tileSize: tileSize)
-        unitsMap.name = "units"
-        unitsMap.zPosition = Layer.units
-        unitsMap.position = CGPoint.zero
-        unitsMap.enableAutomapping = true
-        
-        for row in 0..<game.getMap().width {
-            for col in 0..<game.getMap().width {
-                let tile = try game.getMap().tile(row: row, col: col)
-                
-//                print(tile.terrain.description)
-                
-                if let tileGroup = tileset.tileGroups.first(where: { $0.name == tile.terrain.name }) {
-                    // Make sure we are setting the tile on the correct layered terrain map
-                    let terrainMap = terrainMaps[0]
-                    
-                    terrainMap.setTileGroup(tileGroup, forColumn: col, row: row)
-                }
-                else {
-                    fatalError("Unable to find tile group \(tile.terrain.name)")
-                }
-                
-                for unit in tile.getUnits() {
-                    print("Adding unit with name \(unit.name)")
-                    if let tileGroup = tileset.tileGroups.first(where: { $0.name == unit.name }) {
-                        unitsMap.setTileGroup(tileGroup, forColumn: col, row: row)
-                    }
-                    else {
-                        fatalError("Unable to find tile group \(unit.name)")
-                    }
-                }
-            }
-        }
-        
-        for terrainMap in terrainMaps {
-            addChild(terrainMap)
-        }
-        addChild(unitsMap)
-        addChild(pathMap)
-        addChild(mapIcons)
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
     }
     
-    func showAIPath(path: [GKGraphNode]) {
-        let tileGroupName = "Fog"
-        
-        for node in path {
-            let theNode: GKGridGraphNode = node as! GKGridGraphNode
-            
-            if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileGroupName }) {
-                print("[\(theNode.gridPosition.y),\(theNode.gridPosition.x)]")
-                pathMap.setTileGroup(tileGroup,
-                                     forColumn: Int(theNode.gridPosition.y),
-                                     row: Int(theNode.gridPosition.x))
-            }
-            else {
-                fatalError("\"\(tileGroupName)\" tile group not found in \"\(tilesetName)\" tile set.")
-            }
-        }
-    }
+//    func showAIPath(path: [GKGraphNode]) {
+//        let tileGroupName = "Fog"
+//
+//        for node in path {
+//            let theNode: GKGridGraphNode = node as! GKGridGraphNode
+//
+//            if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileGroupName }) {
+//                print("[\(theNode.gridPosition.y),\(theNode.gridPosition.x)]")
+//                pathMap.setTileGroup(tileGroup,
+//                                     forColumn: Int(theNode.gridPosition.y),
+//                                     row: Int(theNode.gridPosition.x))
+//            }
+//            else {
+//                fatalError("\"\(tileGroupName)\" tile group not found in \"\(tilesetName)\" tile set.")
+//            }
+//        }
+//    }
     
-    func showRandomAIPaths() {
-        //        print("About to calculate \(numPaths) paths: " + formatter.string(from: Date()))
-        let numPaths: Int = 1000
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss.SSSS"
-        
-        for _ in 0..<numPaths {
-            let from = SIMD2<Int32>(Int32.random(in: 0..<Int32(pathMap.numberOfRows)),
-                                    Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
-            let to = SIMD2<Int32>(Int32.random(in: 0..<Int32(pathMap.numberOfRows)),
-                                  Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
-            let path: [GKGridGraphNode] = [] //game.getMap().findPath(from: from, to: to)
-            
-            for node in path {
-                let theNode: GKGridGraphNode = node as! GKGridGraphNode
-                
-                if let tileGroup = tileset.tileGroups.first(where: { $0.name == "Fog"}) {
-                    pathMap.setTileGroup(tileGroup,
-                                         forColumn: Int(theNode.gridPosition.y),
-                                         row: Int(theNode.gridPosition.x))
-                }
-            }
-        }
-        //        print("Done calculating \(numPaths) paths: " + formatter.string(from: Date()))
-    }
+//    func showRandomAIPaths() {
+//        //        print("About to calculate \(numPaths) paths: " + formatter.string(from: Date()))
+//        let numPaths: Int = 1000
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "HH:mm:ss.SSSS"
+//
+//        for _ in 0..<numPaths {
+//            let from = SIMD2<Int32>(Int32.random(in: 0..<Int32(pathMap.numberOfRows)),
+//                                    Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
+//            let to = SIMD2<Int32>(Int32.random(in: 0..<Int32(pathMap.numberOfRows)),
+//                                  Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
+//            let path: [GKGridGraphNode] = [] //game.getMap().findPath(from: from, to: to)
+//
+//            for node in path {
+//                let theNode: GKGridGraphNode = node as! GKGridGraphNode
+//
+//                if let tileGroup = tileset.tileGroups.first(where: { $0.name == "Fog"}) {
+//                    pathMap.setTileGroup(tileGroup,
+//                                         forColumn: Int(theNode.gridPosition.y),
+//                                         row: Int(theNode.gridPosition.x))
+//                }
+//            }
+//        }
+//        //        print("Done calculating \(numPaths) paths: " + formatter.string(from: Date()))
+//    }
 }

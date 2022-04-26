@@ -50,7 +50,7 @@ class MapDAOTests: XCTestCase {
         _ = try db.mapDao.insert(map: map1)
         
         // Now get the map back out of the database
-        let map2 = try db.mapDao.get(mapId: 1)
+        let map2 = try db.mapDao.get(gameId: 1)
         
         XCTAssertEqual(map2.mapId, 1)
         XCTAssertEqual(map2.width, 2)

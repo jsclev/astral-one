@@ -3,7 +3,7 @@ import SwiftUI
 import Engine
 
 struct PathfinderView: View {
-    @EnvironmentObject var game: Game
+    var game: Game
     
     @State private var location: CGPoint = CGPoint(x: 0.0, y: 0.0)
     @GestureState private var fingerLocation: CGPoint? = nil
@@ -14,7 +14,8 @@ struct PathfinderView: View {
     var scene: PathfinderScene
     
     init() {
-        scene = PathfinderScene(mapViewModel: mapViewModel)
+        game = Game(refreshDb: true)
+        scene = PathfinderScene(game: game, mapViewModel: mapViewModel)
     }
     
     var simpleDrag: some Gesture {
@@ -29,7 +30,7 @@ struct PathfinderView: View {
                 mapViewModel.moveCamera(translation: CGSize(width: finalTranslationX,
                                                             height: finalTranslationY))
                 scene.gameCamera.position = mapViewModel.cameraPosition
-                scene.gameCamera.updatePositionLabel()
+                scene.gameCamera.updatePositionLabel(pos: scene.gameCamera.position)
             }.updating($startLocation) { (value, startLocation, transaction) in
                 startLocation = startLocation ?? location
             }.onEnded { value in

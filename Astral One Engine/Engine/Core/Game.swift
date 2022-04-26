@@ -1,14 +1,17 @@
 import Foundation
 import Combine
+import CoreGraphics
 
 public class Game: ObservableObject {
     @Published public var showFPS = false
+    @Published public var numTaps = 0
+    @Published public var tapLocation = CGPoint.zero
 
     private var map: Map = Map(mapId: 1, width: 0, height: 0)
     public let db: Db
 
-    public init(db: Db) {
-        self.db = db
+    public init(refreshDb: Bool) {
+        self.db = Db(fullRefresh: refreshDb)
     }
     
     public func getMap() -> Map {
@@ -23,8 +26,12 @@ public class Game: ObservableObject {
         // Import the Tiled map into the database
         let _ = try db.mapDao.insert(map: mapParser.parse())
         
+
+    }
+    
+    public func load(gameId: Int) throws {
         // Pull the map from the database
-        map = try db.mapDao.get(mapId: 1)
+        map = try db.mapDao.get(gameId: gameId)
     }
     
     public func processCommands(commands: [Command]) {

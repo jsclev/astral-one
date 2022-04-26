@@ -44,6 +44,10 @@ public class Map {
         self.movementCosts = Array(repeating: Array(repeating:0.0, count: width), count: height)
     }
     
+    public func load(mapId: Int) {
+        
+    }
+    
     public func add(tile: Tile) throws {
         if tile.row < 0 {
             let errorMsg = "Row must be greater than or equal to zero."

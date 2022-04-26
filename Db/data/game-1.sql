@@ -4,7 +4,7 @@ insert into player values (1, 1, 1, 'Mr. Caesar', 'Human');
 insert into player values (2, 1, 1, 'Mr. Big Stuff', 'AI');
 
 -- Turn 1: Build city
-insert into unit values (1, 1, (select unit_type_id from unit_type where name = 'Settler'));
+insert into unit values (1, 1, (select unit_type_id from unit_type where name = 'Settler'), NULL);
 insert into city values (1, 1, 1, 'Rome');
 insert into command values (1, 1, 1, 1, (select command_type_id from command_type where name = 'Build City'), 1);
 insert into settle_command values (1, 1, 1);
@@ -19,6 +19,6 @@ insert into command values (3, 1, 1, 1, (select command_type_id from command_typ
 insert into tech_command values (3, (select tech_id from tech where name = 'Alphabet'));
 
 -- Turn 1: Move Warriors
-insert into unit values (2, 1, (select unit_type_id from unit_type where name = 'Warrior'));
+insert into unit values (2, 1, (select unit_type_id from unit_type where name = 'Warrior'), NULL);
 insert into command values (4, 1, 1, 1, (select command_type_id from command_type where name = 'Move Unit'), 4);
 insert into move_command values (4, 2, 1, 2);

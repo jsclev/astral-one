@@ -93,7 +93,7 @@ public class Db {
         terrainDao = TerrainDAO(conn: dbPointer)
         gameDao = GameDAO(conn: dbPointer)
         commandDao = CommandDAO(conn: dbPointer)
-        mapDao = MapDAO(conn: dbPointer, terrainDao: terrainDao)
+        mapDao = MapDAO(conn: dbPointer)
     }
     
     deinit {

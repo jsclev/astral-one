@@ -1,5 +1,6 @@
 import SpriteKit
 import SwiftUI
+import Engine
 
 @main
 struct PathfinderApp: App {
