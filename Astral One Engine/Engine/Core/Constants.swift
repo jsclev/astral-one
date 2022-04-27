@@ -7,6 +7,8 @@ public enum Layer {
     public static let units: CGFloat = 300.0
     public static let unitPath: CGFloat = 400.0
     public static let unitPath2: CGFloat = 450.0
+    public static let contextMenu: CGFloat = 475.0
+    public static let contextMenuItem: CGFloat = 480.0
     public static let hud: CGFloat = 500.0
     public static let foreground: CGFloat = 600.0
 }

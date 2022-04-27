@@ -14,6 +14,7 @@ enum PathfinderState {
 class PathfinderScene: SKScene {
     let game: Game
     var mapViewModel: MapViewModel
+    var contextMenu: Engine.ContextMenu!
     var debug = true
     var gameCamera: PathfinderCamera!
     var cameraScale = 1.0
@@ -80,8 +81,13 @@ class PathfinderScene: SKScene {
         let location = self.convertPoint(fromView: recognizorLocation)
         print("New location: \(location.x)")
         game.tapLocation = location
+//        game.numTaps = Int(location.x)
         
         let touchedNodes = nodes(at: location)
+        
+        for touchedNode in touchedNodes {
+            print("Touched node: \(touchedNode.name)")
+        }
         
         if !touchedNodes.isEmpty && touchedNodes[0].name == "set-start-position" {
             clearMapIcons()
@@ -97,6 +103,8 @@ class PathfinderScene: SKScene {
         
         let tappedRow = mapIcons.tileRowIndex(fromPosition: location)
         let tappedCol = mapIcons.tileColumnIndex(fromPosition: location)
+        
+        game.selectMapPosition(mapPosition: MapPosition(row: tappedRow, col: tappedCol))
         
         if state == PathfinderState.settingStartPosition {
             let tileGroup = mapIconsTileset.tileGroups.first { $0.name == "Start Icon" }
@@ -129,6 +137,7 @@ class PathfinderScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        contextMenu = ContextMenu(game: game, scene: self, mapView: mapView)
         entityManager = EntityManager(scene: self)
         gameCamera = PathfinderCamera(game: game)
         

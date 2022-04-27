@@ -49,6 +49,10 @@ public class MapView {
         fatalError("init(coder:) is not supported.")
     }
     
+    public func getCenterPoint(row: Int, col: Int) -> CGPoint {
+        return mapIcons.centerOfTile(atColumn: col, row: row)
+    }
+    
     public func setScene(scene: SKScene) throws {
         self.scene = scene
         

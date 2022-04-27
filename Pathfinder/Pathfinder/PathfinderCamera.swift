@@ -32,9 +32,13 @@ class PathfinderCamera: SKCameraNode {
         
         name = "camera"
         
-        game.$tapLocation.sink(receiveValue: { tapLocation in
-            self.updatePositionLabel(pos: tapLocation)
-        }).store(in: &cancellable)
+        game.$selectedMapPosition
+            .dropFirst()
+            .sink(receiveValue: { mapPosition in
+                print("New map position \(mapPosition)")
+//                self.updatePositionLabel(pos: tapLocation)
+        })
+        .store(in: &cancellable)
     }
     
     required init?(coder aDecoder: NSCoder) {
