@@ -137,10 +137,10 @@ class PathfinderScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        contextMenu = ContextMenu(game: game, scene: self, mapView: mapView)
         entityManager = EntityManager(scene: self)
         gameCamera = PathfinderCamera(game: game)
-        
+        contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
+
         camera = gameCamera
         addChild(gameCamera)
         
@@ -183,7 +183,9 @@ class PathfinderScene: SKScene {
             if scale >= 4.4 {
                 scale = 4.4
             }
+            
             gameCamera.setScale(scale)
+            contextMenu.menu.setScale(scale)
         }
     }
     
