@@ -112,6 +112,7 @@ public class MapView {
             scene.addChild(terrainMap)
         }
         
+        
         //        scene.addChild(unitsMap)
         //        scene.addChild(pathMap)
         //        scene.addChild(mapIcons)

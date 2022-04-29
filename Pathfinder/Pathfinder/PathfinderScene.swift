@@ -38,9 +38,6 @@ class PathfinderScene: SKScene {
     init(game: Game, mapViewModel: MapViewModel) {
         self.game = game
         self.mapViewModel = mapViewModel
-        
-
-        
         let tileset = SKTileSet(named: tilesetName)
 
         self.mapView = MapView(map: game.getMap(), tileset: tileset!)
@@ -79,15 +76,12 @@ class PathfinderScene: SKScene {
         
         let recognizorLocation = recognizer.location(in: recognizer.view!)
         let location = self.convertPoint(fromView: recognizorLocation)
-        print("New location: \(location.x)")
-        game.tapLocation = location
-//        game.numTaps = Int(location.x)
         
         let touchedNodes = nodes(at: location)
         
-        for touchedNode in touchedNodes {
-            print("Touched node: \(touchedNode.name)")
-        }
+//        for touchedNode in touchedNodes {
+//            print("Touched node: \(touchedNode.name)")
+//        }
         
         if !touchedNodes.isEmpty && touchedNodes[0].name == "set-start-position" {
             clearMapIcons()
@@ -104,7 +98,6 @@ class PathfinderScene: SKScene {
         let tappedRow = mapIcons.tileRowIndex(fromPosition: location)
         let tappedCol = mapIcons.tileColumnIndex(fromPosition: location)
         
-        game.selectMapPosition(mapPosition: MapPosition(row: tappedRow, col: tappedCol))
         
         if state == PathfinderState.settingStartPosition {
             let tileGroup = mapIconsTileset.tileGroups.first { $0.name == "Start Icon" }
@@ -167,6 +160,12 @@ class PathfinderScene: SKScene {
         }
         
         game.processCommands(commands: game.db.commandDao.getCommands(gameId: 1))
+        
+        let settler = UnitNode(game: game, name: "Settler", imageNamed: "explorer-1")
+        settler.position = CGPoint.zero
+        settler.zPosition = Layer.contextMenu
+        addChild(settler)
+
     }
     
     func printDate(string: String) {
@@ -187,10 +186,6 @@ class PathfinderScene: SKScene {
             gameCamera.setScale(scale)
             contextMenu.menu.setScale(scale)
         }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
     }
     
 //    func showAIPath(path: [GKGraphNode]) {

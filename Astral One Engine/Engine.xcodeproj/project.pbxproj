@@ -45,6 +45,7 @@
 		52DE5F3E281251930029EFE1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F3D281251930029EFE1 /* MapView.swift */; };
 		52DE5F792818D7060029EFE1 /* MapPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F782818D7060029EFE1 /* MapPosition.swift */; };
 		52DE5F7B2818E40E0029EFE1 /* ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F7A2818E40E0029EFE1 /* ContextMenu.swift */; };
+		52DE5F7D281BA5750029EFE1 /* UnitNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F7C281BA5750029EFE1 /* UnitNode.swift */; };
 		52E0B18A27E6D86A00607FBE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18927E6D86A00607FBE /* Constants.swift */; };
 		52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18C27E6D87600607FBE /* TiledTileset.swift */; };
 		52E0B19227E6D87600607FBE /* TiledMapParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18D27E6D87600607FBE /* TiledMapParser.swift */; };
@@ -141,6 +142,7 @@
 		52DE5F3D281251930029EFE1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		52DE5F782818D7060029EFE1 /* MapPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPosition.swift; sourceTree = "<group>"; };
 		52DE5F7A2818E40E0029EFE1 /* ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenu.swift; sourceTree = "<group>"; };
+		52DE5F7C281BA5750029EFE1 /* UnitNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitNode.swift; sourceTree = "<group>"; };
 		52E0B18927E6D86A00607FBE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		52E0B18C27E6D87600607FBE /* TiledTileset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiledTileset.swift; sourceTree = "<group>"; };
 		52E0B18D27E6D87600607FBE /* TiledMapParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiledMapParser.swift; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 			children = (
 				52DE5F7A2818E40E0029EFE1 /* ContextMenu.swift */,
 				52DE5F3D281251930029EFE1 /* MapView.swift */,
+				52DE5F7C281BA5750029EFE1 /* UnitNode.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				521F21E32807115100F1D61D /* Terrain.swift in Sources */,
 				52DE5F7B2818E40E0029EFE1 /* ContextMenu.swift in Sources */,
 				52F9044B27F8E56200D1AC97 /* Turn.swift in Sources */,
+				52DE5F7D281BA5750029EFE1 /* UnitNode.swift in Sources */,
 				521F21BF2804811C00F1D61D /* Air4.swift in Sources */,
 				521F21AF2803F92F00F1D61D /* Artillery4.swift in Sources */,
 				52E0B1B527E6DFD100607FBE /* PowerPlant.swift in Sources */,
