@@ -5,6 +5,7 @@ public class Unit: GKEntity {
     public let playerId: Int
     public let tiledId: Int
     public let name: String
+    public let assetName: String
     public let cost: Double
     public let maxHp: Double
     public var currentHp: Double
@@ -19,6 +20,7 @@ public class Unit: GKEntity {
     public init(playerId: Int,
                 tiledId: Int,
                 name: String,
+                assetName: String,
                 cost: Double,
                 maxHp: Double,
                 attackRating: Double,
@@ -30,6 +32,7 @@ public class Unit: GKEntity {
         self.playerId = playerId
         self.tiledId = tiledId
         self.name = name
+        self.assetName = assetName
         self.cost = cost
         self.maxHp = maxHp
         self.currentHp = maxHp

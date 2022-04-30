@@ -65,9 +65,9 @@ public class CommandDAO: BaseDAO {
                                                         type: commandType,
                                                         ordinal: commandOrdinal,
                                                         unit: Infantry1(playerId: 1,
-                                                                          name: "Warrior",
-                                                                          row: 0,
-                                                                          col: 0),
+                                                                        name: "Warrior",
+                                                                        row: 0,
+                                                                        col: 0),
                                                         toPosition: "Hello"))
                         }
                         else if commandName == "Research Tech" {
@@ -78,9 +78,9 @@ public class CommandDAO: BaseDAO {
                                                         type: commandType,
                                                         ordinal: commandOrdinal,
                                                         unit: Infantry1(playerId: 1,
-                                                                          name: "Warrior",
-                                                                          row: 0,
-                                                                          col: 0),
+                                                                        name: "Warrior",
+                                                                        row: 0,
+                                                                        col: 0),
                                                         toPosition: "Hello"))
                         }
                         else if commandName == "Build Building" {
@@ -91,9 +91,9 @@ public class CommandDAO: BaseDAO {
                                                                  type: commandType,
                                                                  ordinal: commandOrdinal,
                                                                  unit: Infantry1(playerId: 1,
-                                                                                   name: "Warrior",
-                                                                                   row: 0,
-                                                                                   col: 0),
+                                                                                 name: "Warrior",
+                                                                                 row: 0,
+                                                                                 col: 0),
                                                                  toPosition: "Hello"))
                         }
                         else if commandName == "Build City" {
@@ -104,9 +104,9 @@ public class CommandDAO: BaseDAO {
                                                              type: commandType,
                                                              ordinal: commandOrdinal,
                                                              unit: Infantry1(playerId: 1,
-                                                                               name: "Warrior",
-                                                                               row: 0,
-                                                                               col: 0),
+                                                                             name: "Warrior",
+                                                                             row: 0,
+                                                                             col: 0),
                                                              toPosition: "Hello"))
                         }
                     }
@@ -166,10 +166,10 @@ public class CommandDAO: BaseDAO {
         var commandId = -1
         var cmdStmt: OpaquePointer?
         var rowIdStmt: OpaquePointer?
-
+        
         let cmdSql = "INSERT INTO command (" +
-            "game_id, turn_id, player_id, command_type_id, ordinal" +
-            ") VALUES (?, ?, ?, ?, ?);"
+        "game_id, turn_id, player_id, command_type_id, ordinal" +
+        ") VALUES (?, ?, ?, ?, ?);"
         let rowIdSql = "SELECT last_insert_rowid()"
         
         if sqlite3_exec(conn, "BEGIN TRANSACTION", nil, nil, nil) != SQLITE_OK {
@@ -271,14 +271,14 @@ public class CommandDAO: BaseDAO {
         //            throw DbError.Db(message: errMsg)
         //        }
         
-//        return MoveCommand(commandId: 0,
-//                           gameId: moveCommand.gameId,
-//                           turn: moveCommand.turn,
-//                           playerId: moveCommand.playerId,
-//                           type: moveCommand.type,
-//                           ordinal: moveCommand.ordinal,
-//                           unit: Unit(name: "Settler", maxHP: 10),
-//                           toPosition: "Hello")
+        //        return MoveCommand(commandId: 0,
+        //                           gameId: moveCommand.gameId,
+        //                           turn: moveCommand.turn,
+        //                           playerId: moveCommand.playerId,
+        //                           type: moveCommand.type,
+        //                           ordinal: moveCommand.ordinal,
+        //                           unit: Unit(name: "Settler", maxHP: 10),
+        //                           toPosition: "Hello")
     }
     
     //    func bulkInsert(values: String, objectID: String) -> Bool {

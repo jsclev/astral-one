@@ -50,6 +50,8 @@
 		52DE5F81281C6DB60029EFE1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F80281C6DB60029EFE1 /* Player.swift */; };
 		52DE5F83281C78450029EFE1 /* FounderContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F82281C78450029EFE1 /* FounderContextMenu.swift */; };
 		52DE5F85281CAD230029EFE1 /* FounderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F84281CAD230029EFE1 /* FounderNode.swift */; };
+		52DE5F89281CFF4E0029EFE1 /* Naval4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F88281CFF4E0029EFE1 /* Naval4.swift */; };
+		52DE5F8B281D01B40029EFE1 /* Cavalry3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F8A281D01B40029EFE1 /* Cavalry3.swift */; };
 		52E0B18A27E6D86A00607FBE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18927E6D86A00607FBE /* Constants.swift */; };
 		52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18C27E6D87600607FBE /* TiledTileset.swift */; };
 		52E0B19227E6D87600607FBE /* TiledMapParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18D27E6D87600607FBE /* TiledMapParser.swift */; };
@@ -150,6 +152,8 @@
 		52DE5F80281C6DB60029EFE1 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		52DE5F82281C78450029EFE1 /* FounderContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FounderContextMenu.swift; sourceTree = "<group>"; };
 		52DE5F84281CAD230029EFE1 /* FounderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FounderNode.swift; sourceTree = "<group>"; };
+		52DE5F88281CFF4E0029EFE1 /* Naval4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Naval4.swift; sourceTree = "<group>"; };
+		52DE5F8A281D01B40029EFE1 /* Cavalry3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cavalry3.swift; sourceTree = "<group>"; };
 		52E0B18927E6D86A00607FBE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		52E0B18C27E6D87600607FBE /* TiledTileset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiledTileset.swift; sourceTree = "<group>"; };
 		52E0B18D27E6D87600607FBE /* TiledMapParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiledMapParser.swift; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 		521F219B2803F71600F1D61D /* Cavalry */ = {
 			isa = PBXGroup;
 			children = (
+				52DE5F8A281D01B40029EFE1 /* Cavalry3.swift */,
 				5293BC27280B6A86001DE2F3 /* Cavalry7.swift */,
 			);
 			path = Cavalry;
@@ -253,6 +258,7 @@
 		521F219D2803F74B00F1D61D /* Naval */ = {
 			isa = PBXGroup;
 			children = (
+				52DE5F88281CFF4E0029EFE1 /* Naval4.swift */,
 			);
 			path = Naval;
 			sourceTree = "<group>";
@@ -625,6 +631,7 @@
 				52E0B1A227E6DFA100607FBE /* EntityManager.swift in Sources */,
 				52E0B19227E6D87600607FBE /* TiledMapParser.swift in Sources */,
 				52E0B1FE27F173A500607FBE /* Explorer.swift in Sources */,
+				52DE5F89281CFF4E0029EFE1 /* Naval4.swift in Sources */,
 				52E0B1BE27E6E1AC00607FBE /* DamageableComponent.swift in Sources */,
 				52DE5F81281C6DB60029EFE1 /* Player.swift in Sources */,
 				52F9042627F4E1AC00D1AC97 /* Unit.swift in Sources */,
@@ -655,6 +662,7 @@
 				52DE5F85281CAD230029EFE1 /* FounderNode.swift in Sources */,
 				52F9043927F6D02500D1AC97 /* SqliteError.swift in Sources */,
 				52F9045427F9F9C500D1AC97 /* MoveCommand.swift in Sources */,
+				52DE5F8B281D01B40029EFE1 /* Cavalry3.swift in Sources */,
 				52E0B1B927E6DFD100607FBE /* Barracks.swift in Sources */,
 				521F21AD2803F92300F1D61D /* Artillery3.swift in Sources */,
 				52DE5F792818D7060029EFE1 /* MapPosition.swift in Sources */,

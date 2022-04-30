@@ -9,7 +9,7 @@ public class FounderNode: SKSpriteNode {
         self.game = game
         self.founder = founder
         
-        let texture = SKTexture(imageNamed: "explorer-1")
+        let texture = SKTexture(imageNamed: founder.assetName)
         super.init(texture: texture, color: UIColor.systemPink, size: texture.size())
         
         isUserInteractionEnabled = true

@@ -10,11 +10,11 @@ public class UnitNode: SKSpriteNode {
         get { return true }
     }
     
-    public init(game: Game, unit: Unit, imageNamed: String) {
+    public init(game: Game, unit: Unit) {
         self.game = game
         self.unit = unit
         
-        let texture = SKTexture(imageNamed: imageNamed)
+        let texture = SKTexture(imageNamed: unit.assetName)
         super.init(texture: texture, color: UIColor.systemPink, size: texture.size())
         
         self.name = "\(unit.name)_"

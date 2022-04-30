@@ -168,11 +168,19 @@ class PathfinderScene: SKScene {
         let founder1 = Founder(playerId: 1, name: "Settler 1", row: 30, col: 30)
         let founder2 = Founder(playerId: 1, name: "Settler 2", row: 31, col: 31)
         let founder3 = Founder(playerId: 1, name: "Settler 3", row: 32, col: 32)
+        
+        let unit1 = Cavalry7(playerId: 1, name: "Tank", row: 28, col: 28)
+        let unit2 = Naval4(playerId: 1, name: "Battleship", row: 28, col: 29)
+        let unit3 = Cavalry3(playerId: 1, name: "Cavalry", row: 28, col: 30)
 
         player1.addFounder(founder: founder1)
         player1.addFounder(founder: founder2)
         player1.addFounder(founder: founder3)
-
+        
+        player1.addUnit(unit: unit1)
+        player1.addUnit(unit: unit2)
+        player1.addUnit(unit: unit3)
+        
         game.addPlayer(player: player1)
 
         for player in game.players {
@@ -182,7 +190,16 @@ class PathfinderScene: SKScene {
                 founderNode.zPosition = Layer.contextMenu
                 addChild(founderNode)
             }
+            
+            for unit in player.units {
+                let unitNode = UnitNode(game: game, unit: unit)
+                unitNode.position = mapView.getCenterPoint(row: unit.row, col: unit.col)
+                unitNode.zPosition = Layer.contextMenu
+                addChild(unitNode)
+            }
         }
+        
+        
     }
     
     func printDate(string: String) {

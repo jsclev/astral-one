@@ -1,6 +1,6 @@
 import Foundation
 
-public class Founder: Unit {
+public class Naval4: Unit {
     public init(playerId: Int,
                 name: String,
                 row: Int,
@@ -8,13 +8,13 @@ public class Founder: Unit {
         super.init(playerId: playerId,
                    tiledId: 100,
                    name: name,
-                   assetName: "explorer-1",
-                   cost: 10,
-                   maxHp: 10,
-                   attackRating: 1,
-                   defenseRating: 1,
-                   fp: 1,
-                   maxMovementPoints: 1.0,
+                   assetName: "battleship-1",
+                   cost: 160,
+                   maxHp: 40,
+                   attackRating: 12,
+                   defenseRating: 12,
+                   fp: 2,
+                   maxMovementPoints: 4.0,
                    row: row,
                    col: col)
     }

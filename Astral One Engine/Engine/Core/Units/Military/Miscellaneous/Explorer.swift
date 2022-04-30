@@ -12,6 +12,7 @@ public class Explorer: Unit {
         super.init(playerId: 1,
                    tiledId: 27,
                    name: "Explorer",
+                   assetName: "explorer-1",
                    cost: 10,
                    maxHp: 10,
                    attackRating: 1,

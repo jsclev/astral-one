@@ -8,6 +8,7 @@ public class Air1: Unit {
         super.init(playerId: playerId,
                    tiledId: 100,
                    name: name,
+                   assetName: "air-1",
                    cost: 10,
                    maxHp: 10,
                    attackRating: 1,

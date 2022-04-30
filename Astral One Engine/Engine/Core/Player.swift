@@ -12,4 +12,8 @@ public class Player {
     public func addFounder(founder: Founder) {
         founders.append(founder)
     }
+    
+    public func addUnit(unit: Unit) {
+        units.append(unit)
+    }
 }
