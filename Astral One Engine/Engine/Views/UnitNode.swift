@@ -3,23 +3,21 @@ import SpriteKit
 
 public class UnitNode: SKSpriteNode {
     private let game: Game
+    private let unit: Unit
     
     public override var isUserInteractionEnabled: Bool {
-        set {
-            // ignore
-        }
-        get {
-            return true
-        }
+        set { }
+        get { return true }
     }
     
-    public init(game: Game, name: String, imageNamed: String) {
+    public init(game: Game, unit: Unit, imageNamed: String) {
         self.game = game
+        self.unit = unit
         
         let texture = SKTexture(imageNamed: imageNamed)
         super.init(texture: texture, color: UIColor.systemPink, size: texture.size())
         
-        self.name = name
+        self.name = "\(unit.name)_"
     }
     
     required init?(coder aDecoder: NSCoder) {

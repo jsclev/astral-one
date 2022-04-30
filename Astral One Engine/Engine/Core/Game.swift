@@ -7,12 +7,19 @@ public class Game: ObservableObject {
     @Published public var numTaps = 0
     @Published public var tapLocation = CGPoint.zero
     @Published public var selectedMapPosition = MapPosition(row: -1, col: -1)
+    @Published public var selectedFounder: Founder?
+    
+    public var players: [Player] = []
 
     private var map: Map = Map(mapId: 1, width: 0, height: 0)
     public let db: Db
 
     public init(refreshDb: Bool) {
         self.db = Db(fullRefresh: refreshDb)
+    }
+    
+    public func addPlayer(player: Player) {
+        players.append(player)
     }
     
     public func getMap() -> Map {
@@ -46,21 +53,3 @@ public class Game: ObservableObject {
         self.selectedMapPosition = mapPosition
     }
 }
-
-//extension ObservableObject where Self.ObjectWillChangePublisher == ObservableObjectPublisher {
-//    func registerNestedObservableObject<Object: ObservableObject>(_ vm: Object,
-//                                                                  cancellables: inout [AnyCancellable]) {
-//        cancellables.append(
-//            vm.objectWillChange.sink { [weak self] _ in
-//                self?.objectWillChange.send()
-//            }
-//        )
-//    }
-//    func registerNestedObservableObject<Object: ObservableObject>(_ vm: Object,
-//                                                                  cancellable: inout AnyCancellable?) {
-//        cancellable = vm.objectWillChange.sink { [weak self] _ in
-//            self?.objectWillChange.send()
-//        }
-//    }
-//}
-

@@ -15,6 +15,7 @@ class PathfinderScene: SKScene {
     let game: Game
     var mapViewModel: MapViewModel
     var contextMenu: Engine.ContextMenu!
+    var founderContextMenu: FounderContextMenu!
     var debug = true
     var gameCamera: PathfinderCamera!
     var cameraScale = 1.0
@@ -133,6 +134,7 @@ class PathfinderScene: SKScene {
         entityManager = EntityManager(scene: self)
         gameCamera = PathfinderCamera(game: game)
         contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
+        founderContextMenu = FounderContextMenu(game: game, parent: self, mapView: mapView)
 
         camera = gameCamera
         addChild(gameCamera)
@@ -161,11 +163,26 @@ class PathfinderScene: SKScene {
         
         game.processCommands(commands: game.db.commandDao.getCommands(gameId: 1))
         
-        let settler = UnitNode(game: game, name: "Settler", imageNamed: "explorer-1")
-        settler.position = CGPoint.zero
-        settler.zPosition = Layer.contextMenu
-        addChild(settler)
+        let player1 = Player(playerId: 1)
 
+        let founder1 = Founder(playerId: 1, name: "Settler 1", row: 30, col: 30)
+        let founder2 = Founder(playerId: 1, name: "Settler 2", row: 31, col: 31)
+        let founder3 = Founder(playerId: 1, name: "Settler 3", row: 32, col: 32)
+
+        player1.addFounder(founder: founder1)
+        player1.addFounder(founder: founder2)
+        player1.addFounder(founder: founder3)
+
+        game.addPlayer(player: player1)
+
+        for player in game.players {
+            for founder in player.founders {
+                let founderNode = FounderNode(game: game, founder: founder)
+                founderNode.position = mapView.getCenterPoint(row: founder.row, col: founder.col)
+                founderNode.zPosition = Layer.contextMenu
+                addChild(founderNode)
+            }
+        }
     }
     
     func printDate(string: String) {
