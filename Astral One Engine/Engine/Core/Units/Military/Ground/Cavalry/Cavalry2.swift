@@ -1,20 +1,20 @@
 import Foundation
 
-public class BasicDefensiveGround: Unit {
+public class Cavalry2: Unit {
     public init(playerId: Int,
                 name: String,
                 row: Int,
                 col: Int) {
         super.init(playerId: playerId,
-                   tiledId: 101,
+                   tiledId: 100,
                    name: name,
-                   assetName: "defensive-infrantry-1",
-                   cost: 20,
-                   maxHp: 10,
-                   attackRating: 1,
-                   defenseRating: 2,
+                   assetName: "cavalry-2",
+                   cost: 80,
+                   maxHp: 30,
+                   attackRating: 10,
+                   defenseRating: 5,
                    fp: 1,
-                   maxMovementPoints: 1.0,
+                   maxMovementPoints: 3.0,
                    row: row,
                    col: col)
     }

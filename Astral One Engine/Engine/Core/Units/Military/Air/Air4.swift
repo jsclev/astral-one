@@ -3,13 +3,12 @@ import Foundation
 public class Air4: Unit {
     public init(playerId: Int,
                 name: String,
-                assetName: String,
                 row: Int,
                 col: Int) {
         super.init(playerId: playerId,
                    tiledId: 50,
                    name: name,
-                   assetName: assetName,
+                   assetName: "air-4",
                    cost: 10,
                    maxHp: 10,
                    attackRating: 1,
