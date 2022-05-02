@@ -16,6 +16,7 @@ public class Unit: GKEntity {
     public var currentMovementPoints: Double
     public let row: Int
     public let col: Int
+    public let tilesetName = "Freeland"
     
     public init(playerId: Int,
                 tiledId: Int,
@@ -32,7 +33,7 @@ public class Unit: GKEntity {
         self.playerId = playerId
         self.tiledId = tiledId
         self.name = name
-        self.assetName = assetName
+        self.assetName = self.tilesetName + "/" + assetName
         self.cost = cost
         self.maxHp = maxHp
         self.currentHp = maxHp

@@ -165,13 +165,9 @@ class PathfinderScene: SKScene {
         
         let player1 = Player(playerId: 1)
 
-        let founder1 = Founder(playerId: 1, name: "Settler 1", row: 30, col: 30)
-        let founder2 = Founder(playerId: 1, name: "Settler 2", row: 31, col: 31)
-        let founder3 = Founder(playerId: 1, name: "Settler 3", row: 32, col: 32)
-        
-        let unit1 = Cavalry7(playerId: 1, name: "Tank", row: 28, col: 28)
-        let unit2 = Naval4(playerId: 1, name: "Battleship", row: 28, col: 29)
-        let unit3 = Cavalry3(playerId: 1, name: "Cavalry", row: 28, col: 30)
+        let cityCreator1 = CityCreator(playerId: 1, name: "Settler 1", row: 30, col: 30)
+        let cityCreator2 = CityCreator(playerId: 1, name: "Settler 2", row: 31, col: 31)
+        let explorer = Explorer(playerId: 1, name: "Explorer", row: 32, col: 32)
         
         let unit21 = Naval1(playerId: 1, name: "Trireme", row: 39, col: 19)
         let unit22 = Naval2(playerId: 1, name: "Caravel", row: 39, col: 20)
@@ -193,18 +189,18 @@ class PathfinderScene: SKScene {
         let air5 = Air5(playerId: 1, name: "Helicopter", row: 36, col: 30)
 
         let artillery1 = Artillery1(playerId: 1, name: "Catapult", row: 30, col: 34)
-        let artillery2 = Artillery2(playerId: 1, name: "Cannon", row: 31, col: 34)
-        let artillery3 = Artillery3(playerId: 1, name: "Artillery", row: 32, col: 34)
-        let artillery4 = Artillery4(playerId: 1, name: "Howitzer", row: 33, col: 34)
+        let artillery2 = Artillery2(playerId: 1, name: "Cannon", row: 31, col: 36)
+        let artillery3 = Artillery3(playerId: 1, name: "Artillery", row: 32, col: 39)
+        let artillery4 = Artillery4(playerId: 1, name: "Howitzer", row: 33, col: 42)
         
-        let unit51 = Infantry1(playerId: 1, name: "Warrior", row: 41, col: 19)
-        let unit52 = Infantry2(playerId: 1, name: "Phalanx", row: 41, col: 20)
-        let unit53 = Infantry3(playerId: 1, name: "Pikeman", row: 41, col: 21)
-        let unit54 = Infantry4(playerId: 1, name: "Archer", row: 41, col: 22)
-        let unit55 = Infantry5(playerId: 1, name: "Legion", row: 41, col: 23)
-        let unit56 = Infantry6(playerId: 1, name: "Musketeer", row: 41, col: 24)
-        let unit57 = Infantry7(playerId: 1, name: "Rifleman", row: 41, col: 25)
-        let unit58 = Infantry8(playerId: 1, name: "Mechanized Infantry", row: 41, col: 26)
+        let unit51 = Infantry1(playerId: 1, name: "Warrior", row: 31, col: 39)
+        let unit52 = Infantry2(playerId: 1, name: "Phalanx", row: 31, col: 25)
+        let unit53 = Infantry3(playerId: 1, name: "Pikeman", row: 31, col: 21)
+        let unit54 = Infantry4(playerId: 1, name: "Archer", row: 31, col: 22)
+        let unit55 = Infantry5(playerId: 1, name: "Legion", row: 31, col: 23)
+        let unit56 = Infantry6(playerId: 1, name: "Musketeer", row: 31, col: 24)
+        let unit57 = Infantry7(playerId: 1, name: "Rifleman", row: 31, col: 25)
+        let unit58 = Infantry8(playerId: 1, name: "Mechanized Infantry", row: 31, col: 26)
 
         let unit61 = Cavalry1(playerId: 1, name: "Horseman", row: 32, col: 29)
         let unit62 = Cavalry2(playerId: 1, name: "Chariot", row: 33, col: 29)
@@ -215,14 +211,10 @@ class PathfinderScene: SKScene {
         let unit67 = Cavalry7(playerId: 1, name: "Cavalry", row: 38, col: 29)
         let unit68 = Cavalry8(playerId: 1, name: "Tank", row: 39, col: 29)
 
-        player1.addFounder(founder: founder1)
-        player1.addFounder(founder: founder2)
-        player1.addFounder(founder: founder3)
-        
-        player1.addUnit(unit: unit1)
-        player1.addUnit(unit: unit2)
-        player1.addUnit(unit: unit3)
-        
+        player1.add(cityCreator: cityCreator1)
+        player1.add(cityCreator: cityCreator2)
+        player1.addUnit(unit: explorer)
+
         player1.addUnit(unit: unit21)
         player1.addUnit(unit: unit22)
         player1.addUnit(unit: unit23)
@@ -255,7 +247,7 @@ class PathfinderScene: SKScene {
         player1.addUnit(unit: unit56)
         player1.addUnit(unit: unit57)
         player1.addUnit(unit: unit58)
-        
+
         player1.addUnit(unit: unit61)
         player1.addUnit(unit: unit62)
         player1.addUnit(unit: unit63)
@@ -268,11 +260,12 @@ class PathfinderScene: SKScene {
         game.addPlayer(player: player1)
 
         for player in game.players {
-            for founder in player.founders {
-                let founderNode = FounderNode(game: game, founder: founder)
-                founderNode.position = mapView.getCenterPoint(row: founder.row, col: founder.col)
-                founderNode.zPosition = Layer.contextMenu
-                addChild(founderNode)
+            for cityCreator in player.cityCreators {
+                let node = FounderNode(game: game, cityCreator: cityCreator)
+                node.position = mapView.getCenterPoint(row: cityCreator.row,
+                                                       col: cityCreator.col)
+                node.zPosition = Layer.contextMenu
+                addChild(node)
             }
             
             for unit in player.units {
@@ -282,8 +275,6 @@ class PathfinderScene: SKScene {
                 addChild(unitNode)
             }
         }
-        
-        
     }
     
     func printDate(string: String) {

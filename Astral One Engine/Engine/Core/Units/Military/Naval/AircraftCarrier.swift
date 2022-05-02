@@ -8,7 +8,7 @@ public class AircraftCarrier: Unit {
         super.init(playerId: playerId,
                    tiledId: 100,
                    name: name,
-                   assetName: "aircraft-carrier",
+                   assetName: "Units/Naval/aircraft-carrier",
                    cost: 160,
                    maxHp: 40,
                    attackRating: 12,

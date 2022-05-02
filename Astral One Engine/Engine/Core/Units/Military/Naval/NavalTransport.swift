@@ -8,7 +8,7 @@ public class NavalTransport: Unit {
         super.init(playerId: playerId,
                    tiledId: 100,
                    name: name,
-                   assetName: "naval-transport",
+                   assetName: "Units/Naval/naval-transport",
                    cost: 160,
                    maxHp: 40,
                    attackRating: 12,

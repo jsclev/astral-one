@@ -7,7 +7,8 @@ public class Game: ObservableObject {
     @Published public var numTaps = 0
     @Published public var tapLocation = CGPoint.zero
     @Published public var selectedMapPosition = MapPosition(row: -1, col: -1)
-    @Published public var selectedFounder: Founder?
+    @Published public var selectedCityCreator: CityCreator?
+//    @Published public let tilesetName: String
     
     public var players: [Player] = []
 
@@ -16,6 +17,7 @@ public class Game: ObservableObject {
 
     public init(refreshDb: Bool) {
         self.db = Db(fullRefresh: refreshDb)
+//        self.tilesetName = tilesetName
     }
     
     public func addPlayer(player: Player) {

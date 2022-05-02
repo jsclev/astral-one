@@ -8,7 +8,7 @@ public class Cavalry4: Unit {
         super.init(playerId: playerId,
                    tiledId: 100,
                    name: name,
-                   assetName: "cavalry-4",
+                   assetName: "Units/Cavalry/cavalry-4",
                    cost: 80,
                    maxHp: 30,
                    attackRating: 10,

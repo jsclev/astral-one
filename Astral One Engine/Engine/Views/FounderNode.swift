@@ -3,13 +3,13 @@ import SpriteKit
 
 public class FounderNode: SKSpriteNode {
     private let game: Game
-    private let founder: Founder
+    private let cityCreator: CityCreator
     
-    public init(game: Game, founder: Founder) {
+    public init(game: Game, cityCreator: CityCreator) {
         self.game = game
-        self.founder = founder
+        self.cityCreator = cityCreator
         
-        let texture = SKTexture(imageNamed: founder.assetName)
+        let texture = SKTexture(imageNamed: cityCreator.assetName)
         super.init(texture: texture, color: UIColor.systemPink, size: texture.size())
         
         isUserInteractionEnabled = true
@@ -20,6 +20,6 @@ public class FounderNode: SKSpriteNode {
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        game.selectedFounder = founder
+        game.selectedCityCreator = cityCreator
     }
 }

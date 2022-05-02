@@ -93,7 +93,7 @@ public class MapView {
                     terrainMap.setTileGroup(tileGroup, forColumn: col, row: row)
                 }
                 else {
-                    fatalError("Unable to find tile group \(tile.terrain.name)")
+                    fatalError("Unable to find tile group \"\(tile.terrain.name)\"")
                 }
                 
                 for unit in tile.getUnits() {

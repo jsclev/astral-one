@@ -46,7 +46,7 @@
 		52DE5F792818D7060029EFE1 /* MapPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F782818D7060029EFE1 /* MapPosition.swift */; };
 		52DE5F7B2818E40E0029EFE1 /* ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F7A2818E40E0029EFE1 /* ContextMenu.swift */; };
 		52DE5F7D281BA5750029EFE1 /* UnitNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F7C281BA5750029EFE1 /* UnitNode.swift */; };
-		52DE5F7F281C6A010029EFE1 /* Founder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F7E281C6A010029EFE1 /* Founder.swift */; };
+		52DE5F7F281C6A010029EFE1 /* CityCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F7E281C6A010029EFE1 /* CityCreator.swift */; };
 		52DE5F81281C6DB60029EFE1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F80281C6DB60029EFE1 /* Player.swift */; };
 		52DE5F83281C78450029EFE1 /* FounderContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F82281C78450029EFE1 /* FounderContextMenu.swift */; };
 		52DE5F85281CAD230029EFE1 /* FounderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F84281CAD230029EFE1 /* FounderNode.swift */; };
@@ -167,7 +167,7 @@
 		52DE5F782818D7060029EFE1 /* MapPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPosition.swift; sourceTree = "<group>"; };
 		52DE5F7A2818E40E0029EFE1 /* ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenu.swift; sourceTree = "<group>"; };
 		52DE5F7C281BA5750029EFE1 /* UnitNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitNode.swift; sourceTree = "<group>"; };
-		52DE5F7E281C6A010029EFE1 /* Founder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Founder.swift; sourceTree = "<group>"; };
+		52DE5F7E281C6A010029EFE1 /* CityCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCreator.swift; sourceTree = "<group>"; };
 		52DE5F80281C6DB60029EFE1 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		52DE5F82281C78450029EFE1 /* FounderContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FounderContextMenu.swift; sourceTree = "<group>"; };
 		52DE5F84281CAD230029EFE1 /* FounderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FounderNode.swift; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 				52E0B1FD27F173A500607FBE /* Explorer.swift */,
 				52012F5F2803A77A008388F6 /* Founder2.swift */,
 				521F21B6280480E600F1D61D /* Paratrooper.swift */,
-				52DE5F7E281C6A010029EFE1 /* Founder.swift */,
+				52DE5F7E281C6A010029EFE1 /* CityCreator.swift */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -712,7 +712,7 @@
 				52E0B1B427E6DFD100607FBE /* Pod.swift in Sources */,
 				52DE5F9F281E0F4F0029EFE1 /* Naval9.swift in Sources */,
 				521F21B528047F8000F1D61D /* Trade2.swift in Sources */,
-				52DE5F7F281C6A010029EFE1 /* Founder.swift in Sources */,
+				52DE5F7F281C6A010029EFE1 /* CityCreator.swift in Sources */,
 				52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */,
 				52DE5F97281E085A0029EFE1 /* Naval7.swift in Sources */,
 				52DE5F99281E093E0029EFE1 /* Submarine.swift in Sources */,

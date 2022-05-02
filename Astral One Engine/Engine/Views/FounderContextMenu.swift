@@ -52,14 +52,14 @@ public class FounderContextMenu {
         menu.isHidden = true
         parent.addChild(menu)
         
-        self.game.$selectedFounder
+        self.game.$selectedCityCreator
             .dropFirst()
             .sink(receiveValue: { founder in
                 if let f = founder {
                     print("\(f.name) touched!")
                 }
                 else {
-                    print("An unnamed founder node touched.")
+                    print("An unnamed city creator node touched.")
                 }
 //                self.menu.position = self.mapView.getCenterPoint(row: mapPosition.row,
 //                                                                 col: mapPosition.col)

@@ -1,6 +1,6 @@
 import Foundation
 
-public class Founder: Unit {
+public class CityCreator: Unit {
     public init(playerId: Int,
                 name: String,
                 row: Int,
@@ -8,7 +8,7 @@ public class Founder: Unit {
         super.init(playerId: playerId,
                    tiledId: 100,
                    name: name,
-                   assetName: "city-creator",
+                   assetName: "Units/Misc/city-creator",
                    cost: 10,
                    maxHp: 10,
                    attackRating: 1,

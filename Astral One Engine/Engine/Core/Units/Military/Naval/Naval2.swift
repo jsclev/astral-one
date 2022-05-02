@@ -8,7 +8,7 @@ public class Naval2: Unit {
         super.init(playerId: playerId,
                    tiledId: 100,
                    name: name,
-                   assetName: "naval-2",
+                   assetName: "Units/Naval/naval-2",
                    cost: 40,
                    maxHp: 10,
                    attackRating: 2,
