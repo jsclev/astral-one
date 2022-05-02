@@ -172,56 +172,94 @@ public class UnitDAO: BaseDAO {
         return returnMap
     }
     
-//    public func insert(unit: Unit) throws -> Unit {
-//        var commandId: Int = -1
-//
-//        var sql = "INSERT INTO unit (" +
-//        "game_id, turn_id, player_id, command_type_id, ordinal" +
-//        ") VALUES "
-//
-//        sql += "("
-//        sql += getSql(val: command.gameId, postfix: ", ")
-//        sql += getSql(val: command.turn.id, postfix: ", ")
-//        sql += getSql(val: command.playerId, postfix: ", ")
-//        sql += getSql(val: command.type.id, postfix: ", ")
-//        sql += getSql(val: command.ordinal, postfix: "")
-//        sql += "), "
-//
-//        sql = getCleanedSql(sql)
-//
-//        public let playerId: Int
-//        public let tiledId: Int
-//        public let name: String
-//        public let cost: Double
-//        public let maxHp: Double
-//        public var currentHp: Double
-//        public let attackRating: Double
-//        public let defenseRating: Double
-//        public let fp: Double
-//        public let maxMovementPoints: Double
-//        public var currentMovementPoints: Double
-//        public let row: Int
-//        public let col: Int
-//
-//        do {
-//            commandId = try insertOneRow(sql: sql)
-//        }
-//        catch SQLiteError.Prepare(let message) {
-//            var errMsg = "Failed to compile the SQL to insert rows into the \(table) table.  "
-//            errMsg += "SQLite error message: " + message
-//            throw DbError.Db(message: errMsg)
-//        }
-//        catch SQLiteError.Step(let message) {
-//            var errMsg = "Failed to execute the SQL to insert rows into the \(table) table.  "
-//            errMsg += "SQLite error message: " + message
-//            throw DbError.Db(message: errMsg)
-//        }
-//
-//        return Command(commandId: commandId,
-//                       gameId: command.gameId,
-//                       turn: command.turn,
-//                       playerId: command.playerId,
-//                       type: command.type,
-//                       ordinal: command.ordinal)
-//    }
+    public func getUnits(gameId: Int) throws -> [Unit] {
+        var units: [Unit] = []
+//        var maxRow = 0
+//        var maxCol = 0
+        
+        var stmt: OpaquePointer?
+        let sql = """
+            SELECT
+                u.unit_id,
+                u.game_id,
+                u.tile_id,
+                u.unit_type_id,
+                ut.name,
+                t.row,
+                t.col,
+                t.terrain_id
+            FROM
+                unit u
+            INNER JOIN
+                unit_type ut ON ut.unit_type_id = u.unit_type_id
+            LEFT OUTER JOIN
+                tile t ON t.tile_id = u.tile_id
+        """
+        
+        if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
+            while sqlite3_step(stmt) == SQLITE_ROW {
+//                let unitId = getInt(stmt: stmt, colIndex: 0)
+//                let gameId = getInt(stmt: stmt, colIndex: 1)
+//                let tileId = getInt(stmt: stmt, colIndex: 2)
+//                let unitTypeId = getInt(stmt: stmt, colIndex: 3)
+//                let row = getInt(stmt: stmt, colIndex: 4)
+//                let col = getInt(stmt: stmt, colIndex: 5)
+//                let terrainId = getInt(stmt: stmt, colIndex: 6)
+//                var terrainType = TerrainType.None
+                
+                if let unitName = try getString(stmt: stmt, colIndex: 4) {
+                    units.append(getUnit(name: unitName))
+                }
+            }
+        }
+        
+        sqlite3_finalize(stmt)
+        
+        return units
+    }
+    
+    private func getUnit(name: String) -> Unit {
+        switch name {
+        case "City Creator":
+            return CityCreator(playerId: 1,
+                               name: "MCV",
+                               row: 0,
+                               col: 0)
+        case "Infantry1":
+            return Infantry1(playerId: 1,
+                             name: "Basic Infantry",
+                             row: 0,
+                             col: 0)
+        case "Infantry2":
+            return Infantry2(playerId: 1,
+                             name: "Warrior",
+                             row: 0,
+                             col: 0)
+        case "Infantry3":
+            return Infantry3(playerId: 1,
+                             name: "Warrior",
+                             row: 0,
+                             col: 0)
+        case "Infantry4":
+            return Infantry4(playerId: 1,
+                             name: "Warrior",
+                             row: 0,
+                             col: 0)
+        case "Infantry5":
+            return Infantry5(playerId: 1,
+                             name: "Warrior",
+                             row: 0,
+                             col: 0)
+        case "Infantry6":
+            return Infantry6(playerId: 1,
+                             name: "Warrior",
+                             row: 0,
+                             col: 0)
+        default:
+            return Infantry1(playerId: 1,
+                             name: "Warrior",
+                             row: 0,
+                             col: 0)
+        }
+    }
 }

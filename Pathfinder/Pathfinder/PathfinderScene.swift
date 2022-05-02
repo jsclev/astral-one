@@ -22,7 +22,7 @@ class PathfinderScene: SKScene {
     var entityManager: EntityManager!
     var initialCameraScale = 1.0
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
-    let tilesetName: String = "Freeland Tile Set"
+    let tilesetName: String = "Sci-Fi Tile Set"
     let filename: String = "freeland"
     let mapIconsTilesetName: String = "Map Icons"
     let mapName = "terrain"
@@ -147,6 +147,8 @@ class PathfinderScene: SKScene {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         tapGestureRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(tapGestureRecognizer)
+        
+        var units: [Engine.Unit] = []
 
         do {
             try game.importTiledMap(filename: filename)
@@ -156,12 +158,15 @@ class PathfinderScene: SKScene {
 
             mapView = MapView(map: game.getMap(), tileset: tileset!)
             try mapView.setScene(scene: self)
+            
+            units = try game.db.unitDao.getUnits(gameId: 1)
         }
         catch {
             print(error)
         }
         
         game.processCommands(commands: game.db.commandDao.getCommands(gameId: 1))
+        
         
         let player1 = Player(playerId: 1)
 
@@ -211,51 +216,55 @@ class PathfinderScene: SKScene {
         let unit67 = Cavalry7(playerId: 1, name: "Cavalry", row: 38, col: 29)
         let unit68 = Cavalry8(playerId: 1, name: "Tank", row: 39, col: 29)
 
-        player1.add(cityCreator: cityCreator1)
-        player1.add(cityCreator: cityCreator2)
-        player1.addUnit(unit: explorer)
-
-        player1.addUnit(unit: unit21)
-        player1.addUnit(unit: unit22)
-        player1.addUnit(unit: unit23)
-        player1.addUnit(unit: unit24)
-        player1.addUnit(unit: unit25)
-        player1.addUnit(unit: unit26)
-        player1.addUnit(unit: unit27)
-        player1.addUnit(unit: unit28)
-        player1.addUnit(unit: unit29)
-        player1.addUnit(unit: submarine)
-        player1.addUnit(unit: transport)
-        player1.addUnit(unit: carrier)
+//        player1.add(cityCreator: cityCreator1)
+//        player1.add(cityCreator: cityCreator2)
+//        player1.addUnit(unit: explorer)
+//
+//        player1.addUnit(unit: unit21)
+//        player1.addUnit(unit: unit22)
+//        player1.addUnit(unit: unit23)
+//        player1.addUnit(unit: unit24)
+//        player1.addUnit(unit: unit25)
+//        player1.addUnit(unit: unit26)
+//        player1.addUnit(unit: unit27)
+//        player1.addUnit(unit: unit28)
+//        player1.addUnit(unit: unit29)
+//        player1.addUnit(unit: submarine)
+//        player1.addUnit(unit: transport)
+//        player1.addUnit(unit: carrier)
+//
+//        player1.addUnit(unit: air1)
+//        player1.addUnit(unit: air2)
+//        player1.addUnit(unit: air3)
+//        player1.addUnit(unit: air4)
+//        player1.addUnit(unit: air5)
+//
+//        player1.addUnit(unit: artillery1)
+//        player1.addUnit(unit: artillery2)
+//        player1.addUnit(unit: artillery3)
+//        player1.addUnit(unit: artillery4)
+//
+//        player1.addUnit(unit: unit51)
+//        player1.addUnit(unit: unit52)
+//        player1.addUnit(unit: unit53)
+//        player1.addUnit(unit: unit54)
+//        player1.addUnit(unit: unit55)
+//        player1.addUnit(unit: unit56)
+//        player1.addUnit(unit: unit57)
+//        player1.addUnit(unit: unit58)
+//
+//        player1.addUnit(unit: unit61)
+//        player1.addUnit(unit: unit62)
+//        player1.addUnit(unit: unit63)
+//        player1.addUnit(unit: unit64)
+//        player1.addUnit(unit: unit65)
+//        player1.addUnit(unit: unit66)
+//        player1.addUnit(unit: unit67)
+//        player1.addUnit(unit: unit68)
         
-        player1.addUnit(unit: air1)
-        player1.addUnit(unit: air2)
-        player1.addUnit(unit: air3)
-        player1.addUnit(unit: air4)
-        player1.addUnit(unit: air5)
-
-        player1.addUnit(unit: artillery1)
-        player1.addUnit(unit: artillery2)
-        player1.addUnit(unit: artillery3)
-        player1.addUnit(unit: artillery4)
-        
-        player1.addUnit(unit: unit51)
-        player1.addUnit(unit: unit52)
-        player1.addUnit(unit: unit53)
-        player1.addUnit(unit: unit54)
-        player1.addUnit(unit: unit55)
-        player1.addUnit(unit: unit56)
-        player1.addUnit(unit: unit57)
-        player1.addUnit(unit: unit58)
-
-        player1.addUnit(unit: unit61)
-        player1.addUnit(unit: unit62)
-        player1.addUnit(unit: unit63)
-        player1.addUnit(unit: unit64)
-        player1.addUnit(unit: unit65)
-        player1.addUnit(unit: unit66)
-        player1.addUnit(unit: unit67)
-        player1.addUnit(unit: unit68)
+        for unit in units {
+            player1.addUnit(unit: unit)
+        }
         
         game.addPlayer(player: player1)
 

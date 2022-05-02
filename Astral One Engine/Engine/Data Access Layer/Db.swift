@@ -10,8 +10,9 @@ public class Db {
     
     public let gameDao: GameDAO
     public let commandDao: CommandDAO
-    public let terrainDao: TerrainDAO
     public let mapDao: MapDAO
+    public let terrainDao: TerrainDAO
+    public let unitDao: UnitDAO
     
     public init(fullRefresh: Bool) {
         let dbBundlePath = dbFilename
@@ -90,10 +91,11 @@ public class Db {
         
         sqlite3_finalize(stmt)
         
-        terrainDao = TerrainDAO(conn: dbPointer)
-        gameDao = GameDAO(conn: dbPointer)
         commandDao = CommandDAO(conn: dbPointer)
+        gameDao = GameDAO(conn: dbPointer)
         mapDao = MapDAO(conn: dbPointer)
+        terrainDao = TerrainDAO(conn: dbPointer)
+        unitDao = UnitDAO(conn: dbPointer)
     }
     
     deinit {

@@ -16,7 +16,7 @@ public class Unit: GKEntity {
     public var currentMovementPoints: Double
     public let row: Int
     public let col: Int
-    public let tilesetName = "Freeland"
+    public let tilesetName = "Sci-Fi"
     
     public init(playerId: Int,
                 tiledId: Int,

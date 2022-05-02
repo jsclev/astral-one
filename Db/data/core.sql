@@ -17,11 +17,10 @@ insert into command_type values (5, 'Research Tech');
 insert into command_type values (6, 'Create Unit');
 
 -- Unit types
-insert into unit_type values (1, 27, 'Settler');
-insert into unit_type values (2, -1, 'Warrior');
-insert into unit_type values (3, 25, 'Tank');
-insert into unit_type values (4, 26, 'Battleship');
-
+insert into unit_type values (1, 27, 'City Creator');
+insert into unit_type values (2, -1, 'Infantry1');
+insert into unit_type values (3, 25, 'Cavalry7');
+insert into unit_type values (4, 26, 'Naval8');
 
 -- Building types
 insert into building_type values (1, 'Airport');

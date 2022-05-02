@@ -110,6 +110,7 @@ CREATE TABLE tile (
 CREATE TABLE unit (
     unit_id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
+    player_id INTEGER NOT NULL,
     unit_type_id INTEGER NOT NULL,
     tile_id INTEGER,
     FOREIGN KEY (game_id) REFERENCES game (game_id),
