@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52012F602803A77A008388F6 /* Founder2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52012F5F2803A77A008388F6 /* Founder2.swift */; };
+		52012F602803A77A008388F6 /* Founder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52012F5F2803A77A008388F6 /* Founder.swift */; };
 		521F21A02803F88400F1D61D /* Infantry2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F219F2803F88400F1D61D /* Infantry2.swift */; };
 		521F21A22803F89A00F1D61D /* Infantry3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21A12803F89A00F1D61D /* Infantry3.swift */; };
 		521F21A42803F8A900F1D61D /* Infantry4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21A32803F8A900F1D61D /* Infantry4.swift */; };
@@ -73,6 +73,7 @@
 		52DE5FB1281EEE3F0029EFE1 /* Cavalry8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5FB0281EEE3F0029EFE1 /* Cavalry8.swift */; };
 		52DE5FB52820EC570029EFE1 /* CityDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5FB42820EC570029EFE1 /* CityDAO.swift */; };
 		52DE5FB72820F1480029EFE1 /* CityNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5FB62820F1480029EFE1 /* CityNode.swift */; };
+		52DE5FB928217F070029EFE1 /* Engineer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5FB828217F070029EFE1 /* Engineer.swift */; };
 		52E0B18A27E6D86A00607FBE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18927E6D86A00607FBE /* Constants.swift */; };
 		52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18C27E6D87600607FBE /* TiledTileset.swift */; };
 		52E0B19227E6D87600607FBE /* TiledMapParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B18D27E6D87600607FBE /* TiledMapParser.swift */; };
@@ -130,7 +131,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		52012F5F2803A77A008388F6 /* Founder2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Founder2.swift; sourceTree = "<group>"; };
+		52012F5F2803A77A008388F6 /* Founder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Founder.swift; sourceTree = "<group>"; };
 		521F219F2803F88400F1D61D /* Infantry2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry2.swift; sourceTree = "<group>"; };
 		521F21A12803F89A00F1D61D /* Infantry3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry3.swift; sourceTree = "<group>"; };
 		521F21A32803F8A900F1D61D /* Infantry4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry4.swift; sourceTree = "<group>"; };
@@ -196,6 +197,7 @@
 		52DE5FB0281EEE3F0029EFE1 /* Cavalry8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cavalry8.swift; sourceTree = "<group>"; };
 		52DE5FB42820EC570029EFE1 /* CityDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDAO.swift; sourceTree = "<group>"; };
 		52DE5FB62820F1480029EFE1 /* CityNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNode.swift; sourceTree = "<group>"; };
+		52DE5FB828217F070029EFE1 /* Engineer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Engineer.swift; sourceTree = "<group>"; };
 		52E0B18927E6D86A00607FBE /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		52E0B18C27E6D87600607FBE /* TiledTileset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiledTileset.swift; sourceTree = "<group>"; };
 		52E0B18D27E6D87600607FBE /* TiledMapParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiledMapParser.swift; sourceTree = "<group>"; };
@@ -327,10 +329,11 @@
 		521F219E2803F82A00F1D61D /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
-				52E0B1FD27F173A500607FBE /* Explorer.swift */,
-				52012F5F2803A77A008388F6 /* Founder2.swift */,
-				521F21B6280480E600F1D61D /* Paratrooper.swift */,
 				52DE5F7E281C6A010029EFE1 /* CityCreator.swift */,
+				52DE5FB828217F070029EFE1 /* Engineer.swift */,
+				52E0B1FD27F173A500607FBE /* Explorer.swift */,
+				52012F5F2803A77A008388F6 /* Founder.swift */,
+				521F21B6280480E600F1D61D /* Paratrooper.swift */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -726,7 +729,7 @@
 				52DE5FB72820F1480029EFE1 /* CityNode.swift in Sources */,
 				521F21D42806985800F1D61D /* TerrainType.swift in Sources */,
 				521F21D72806996100F1D61D /* Tile.swift in Sources */,
-				52012F602803A77A008388F6 /* Founder2.swift in Sources */,
+				52012F602803A77A008388F6 /* Founder.swift in Sources */,
 				52E0B19E27E6DFA100607FBE /* Game.swift in Sources */,
 				52F9045227F9F92C00D1AC97 /* Command.swift in Sources */,
 				52DE5FA7281EEAB30029EFE1 /* Cavalry1.swift in Sources */,
@@ -781,6 +784,7 @@
 				52E0B1EB27EAB6B800607FBE /* GameNode.swift in Sources */,
 				52E0B1B627E6DFD100607FBE /* CommandCenter.swift in Sources */,
 				52DE5FAB281EEB130029EFE1 /* Cavalry4.swift in Sources */,
+				52DE5FB928217F070029EFE1 /* Engineer.swift in Sources */,
 				52E0B1AF27E6DFD100607FBE /* Gate.swift in Sources */,
 				52E0B18A27E6D86A00607FBE /* Constants.swift in Sources */,
 			);

@@ -313,6 +313,11 @@ public class UnitDAO: BaseDAO {
                                name: name,
                                row: row,
                                col: col)
+        case "Engineer":
+            return Engineer(playerId: 1,
+                            name: name,
+                            row: row,
+                            col: col)
         case "Infantry1":
             return Infantry1(playerId: 1,
                              name: name,

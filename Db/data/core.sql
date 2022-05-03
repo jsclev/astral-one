@@ -55,6 +55,7 @@ insert into unit_type (tiled_id, name, display_name) values (-1, 'NavalTransport
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Submarine', 'Submarine');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'AircraftCarrier', 'Carrier');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'City Creator', 'MCV');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Engineer', 'Engineer');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Explorer', 'Explorer Drone');
 
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry1', 'Basic Infantry');

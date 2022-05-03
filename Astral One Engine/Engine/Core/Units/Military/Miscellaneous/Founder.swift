@@ -1,7 +1,7 @@
 import Foundation
 import SpriteKit
 
-public class Founder2: SKSpriteNode {
+public class Founder: SKSpriteNode {
     private var walkTextures: [SKTexture]?
     private var unselectedWalkTextures: [SKTexture]?
     private var selectedWalkTextures: [SKTexture]?

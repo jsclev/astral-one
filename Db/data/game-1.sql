@@ -37,6 +37,7 @@ insert into tile values (34, 1, 1, 37, 29, 1, FALSE);
 insert into tile values (35, 1, 1, 38, 29, 1, FALSE);
 insert into tile values (36, 1, 1, 39, 29, 1, FALSE);
 insert into tile values (37, 1, 1, 29, 29, 1, FALSE);
+insert into tile values (38, 1, 1, 27, 27, 1, FALSE);
 
 insert into player values (1, 1, 1, 'Mr. Caesar', 'Human');
 insert into player values (2, 1, 1, 'Mr. Big Stuff', 'AI');
@@ -94,3 +95,4 @@ insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (sele
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Cavalry6'), 33);
 -- insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Cavalry7'), 34);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Cavalry8'), 35);
+insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Engineer'), 38);
