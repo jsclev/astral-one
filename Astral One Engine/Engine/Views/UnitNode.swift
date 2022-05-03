@@ -25,6 +25,7 @@ public class UnitNode: SKSpriteNode {
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("\(unit.name) touched.")
         game.selectMapPosition(mapPosition: MapPosition(row: 0, col: 0))
 
     }

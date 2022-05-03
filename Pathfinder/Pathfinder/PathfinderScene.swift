@@ -22,11 +22,10 @@ class PathfinderScene: SKScene {
     var entityManager: EntityManager!
     var initialCameraScale = 1.0
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
-    let tilesetName: String = "Sci-Fi Tile Set"
+    let tilesetName: String = Constants.theme + " Tile Set"
     let filename: String = "freeland"
     let mapIconsTilesetName: String = "Map Icons"
     let mapName = "terrain"
-//    var tileset: SKTileSet!
     var mapIconsTileset: SKTileSet!
     var pathMap: SKTileMapNode
     var mapIcons: SKTileMapNode
@@ -166,7 +165,6 @@ class PathfinderScene: SKScene {
         }
         
         game.processCommands(commands: game.db.commandDao.getCommands(gameId: 1))
-        
         
         let player1 = Player(playerId: 1)
 

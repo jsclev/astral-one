@@ -174,8 +174,6 @@ public class UnitDAO: BaseDAO {
     
     public func getUnits(gameId: Int) throws -> [Unit] {
         var units: [Unit] = []
-//        var maxRow = 0
-//        var maxCol = 0
         
         var stmt: OpaquePointer?
         let sql = """
@@ -185,6 +183,7 @@ public class UnitDAO: BaseDAO {
                 u.tile_id,
                 u.unit_type_id,
                 ut.name,
+                ut.display_name,
                 t.row,
                 t.col,
                 t.terrain_id
@@ -198,17 +197,21 @@ public class UnitDAO: BaseDAO {
         
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
             while sqlite3_step(stmt) == SQLITE_ROW {
-//                let unitId = getInt(stmt: stmt, colIndex: 0)
-//                let gameId = getInt(stmt: stmt, colIndex: 1)
-//                let tileId = getInt(stmt: stmt, colIndex: 2)
-//                let unitTypeId = getInt(stmt: stmt, colIndex: 3)
-//                let row = getInt(stmt: stmt, colIndex: 4)
-//                let col = getInt(stmt: stmt, colIndex: 5)
-//                let terrainId = getInt(stmt: stmt, colIndex: 6)
-//                var terrainType = TerrainType.None
+                //                let unitId = getInt(stmt: stmt, colIndex: 0)
+                //                let gameId = getInt(stmt: stmt, colIndex: 1)
+                //                let tileId = getInt(stmt: stmt, colIndex: 2)
+                //                let unitTypeId = getInt(stmt: stmt, colIndex: 3)
+                let row = getInt(stmt: stmt, colIndex: 6)
+                let col = getInt(stmt: stmt, colIndex: 7)
+                //                let terrainId = getInt(stmt: stmt, colIndex: 6)
+                //                var terrainType = TerrainType.None
                 
-                if let unitName = try getString(stmt: stmt, colIndex: 4) {
-                    units.append(getUnit(name: unitName))
+                if let unitTypeName = try getString(stmt: stmt, colIndex: 4),
+                   let unitTypeDisplayName = try getString(stmt: stmt, colIndex: 5) {
+                    units.append(getUnit(typeName: unitTypeName,
+                                         name: unitTypeDisplayName,
+                                         row: row,
+                                         col: col))
                 }
             }
         }
@@ -218,48 +221,183 @@ public class UnitDAO: BaseDAO {
         return units
     }
     
-    private func getUnit(name: String) -> Unit {
-        switch name {
+    private func getUnit(typeName: String, name: String, row: Int, col: Int) -> Unit {
+        switch typeName {
+        case "Air1":
+            return Air1(playerId: 1,
+                        name: name,
+                        row: row,
+                        col: col)
+        case "Air2":
+            return Air2(playerId: 1,
+                        name: name,
+                        row: row,
+                        col: col)
+        case "Air3":
+            return Air3(playerId: 1,
+                        name: name,
+                        row: row,
+                        col: col)
+        case "Air4":
+            return Air4(playerId: 1,
+                        name: name,
+                        row: row,
+                        col: col)
+        case "Air5":
+            return Air5(playerId: 1,
+                        name: name,
+                        row: row,
+                        col: col)
+        case "Cavalry1":
+            return Cavalry1(playerId: 1,
+                            name: name,
+                            row: row,
+                            col: col)
+        case "Cavalry2":
+            return Cavalry2(playerId: 1,
+                            name: name,
+                            row: row,
+                            col: col)
+        case "Cavalry3":
+            return Cavalry3(playerId: 1,
+                            name: name,
+                            row: row,
+                            col: col)
+        case "Cavalry4":
+            return Cavalry4(playerId: 1,
+                            name: name,
+                            row: row,
+                            col: col)
+        case "Cavalry5":
+            return Cavalry5(playerId: 1,
+                            name: name,
+                            row: row,
+                            col: col)
+        case "Cavalry6":
+            return Cavalry6(playerId: 1,
+                            name: name,
+                            row: row,
+                            col: col)
+        case "Cavalry7":
+            return Cavalry7(playerId: 1,
+                            name: name,
+                            row: row,
+                            col: col)
+        case "Cavalry8":
+            return Cavalry8(playerId: 1,
+                            name: name,
+                            row: row,
+                            col: col)
         case "City Creator":
             return CityCreator(playerId: 1,
-                               name: "MCV",
-                               row: 0,
-                               col: 0)
+                               name: name,
+                               row: row,
+                               col: col)
         case "Infantry1":
             return Infantry1(playerId: 1,
-                             name: "Basic Infantry",
-                             row: 0,
-                             col: 0)
+                             name: name,
+                             row: row,
+                             col: col)
         case "Infantry2":
             return Infantry2(playerId: 1,
-                             name: "Warrior",
-                             row: 0,
-                             col: 0)
+                             name: name,
+                             row: row,
+                             col: col)
         case "Infantry3":
             return Infantry3(playerId: 1,
-                             name: "Warrior",
-                             row: 0,
-                             col: 0)
+                             name: name,
+                             row: row,
+                             col: col)
         case "Infantry4":
             return Infantry4(playerId: 1,
-                             name: "Warrior",
-                             row: 0,
-                             col: 0)
+                             name: name,
+                             row: row,
+                             col: col)
         case "Infantry5":
             return Infantry5(playerId: 1,
-                             name: "Warrior",
-                             row: 0,
-                             col: 0)
+                             name: name,
+                             row: row,
+                             col: col)
         case "Infantry6":
             return Infantry6(playerId: 1,
-                             name: "Warrior",
-                             row: 0,
-                             col: 0)
+                             name: name,
+                             row: row,
+                             col: col)
+        case "Infantry7":
+            return Infantry7(playerId: 1,
+                             name: name,
+                             row: row,
+                             col: col)
+        case "Infantry8":
+            return Infantry8(playerId: 1,
+                             name: name,
+                             row: row,
+                             col: col)
+        case "Naval1":
+            return Naval1(playerId: 1,
+                          name: name,
+                          row: row,
+                          col: col)
+        case "Naval2":
+            return Naval2(playerId: 1,
+                          name: name,
+                          row: row,
+                          col: col)
+        case "Naval3":
+            return Naval3(playerId: 1,
+                          name: name,
+                          row: row,
+                          col: col)
+        case "Naval4":
+            return Naval4(playerId: 1,
+                          name: name,
+                          row: row,
+                          col: col)
+        case "Naval5":
+            return Naval5(playerId: 1,
+                          name: name,
+                          row: row,
+                          col: col)
+        case "Naval6":
+            return Naval6(playerId: 1,
+                          name: name,
+                          row: row,
+                          col: col)
+        case "Naval7":
+            return Naval7(playerId: 1,
+                          name: name,
+                          row: row,
+                          col: col)
+        case "Naval8":
+            return Naval8(playerId: 1,
+                          name: name,
+                          row: row,
+                          col: col)
+        case "Naval9":
+            return Naval9(playerId: 1,
+                          name: name,
+                          row: row,
+                          col: col)
+        case "AircraftCarrier":
+            return AircraftCarrier(playerId: 1,
+                                   name: name,
+                                   row: row,
+                                   col: col)
+        case "NavalTransport":
+            return NavalTransport(playerId: 1,
+                                  name: name,
+                                  row: row,
+                                  col: col)
+        case "Submarine":
+            return Submarine(playerId: 1,
+                             name: name,
+                             row: row,
+                             col: col)
         default:
             return Infantry1(playerId: 1,
-                             name: "Warrior",
-                             row: 0,
-                             col: 0)
+                             name: name,
+                             row: row,
+                             col: col)
         }
     }
 }

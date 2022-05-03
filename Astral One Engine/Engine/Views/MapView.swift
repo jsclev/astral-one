@@ -8,7 +8,7 @@ public class MapView {
     var debug = true
     var cameraScale = 1.0
     var initialCameraScale = 1.0
-    let tilesetName: String = "Sci-Fi Tile Set"
+    let tilesetName: String = Constants.theme + " Tile Set"
     let filename: String = "freeland"
     let mapIconsTilesetName: String = "Map Icons"
     let mapName = "terrain"
