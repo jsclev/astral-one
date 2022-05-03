@@ -8,8 +8,9 @@ public class Db {
     let dbFilename = "civitas"
     let dbExtension = "sqlite"
     
-    public let gameDao: GameDAO
+    public let cityDao: CityDAO
     public let commandDao: CommandDAO
+    public let gameDao: GameDAO
     public let mapDao: MapDAO
     public let terrainDao: TerrainDAO
     public let unitDao: UnitDAO
@@ -91,6 +92,7 @@ public class Db {
         
         sqlite3_finalize(stmt)
         
+        cityDao = CityDAO(conn: dbPointer)
         commandDao = CommandDAO(conn: dbPointer)
         gameDao = GameDAO(conn: dbPointer)
         mapDao = MapDAO(conn: dbPointer)

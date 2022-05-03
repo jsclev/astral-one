@@ -123,8 +123,10 @@ CREATE TABLE city (
     city_id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
     player_id INTEGER NOT NULL,
+    tile_id INTEGER NOT NULL,
     name TEXT NOT NULL,
-    FOREIGN KEY (game_id) REFERENCES game (game_id)
+    FOREIGN KEY (game_id) REFERENCES game (game_id),
+    FOREIGN KEY (tile_id) REFERENCES tile (tile_id)
 );
 
 CREATE TABLE building (

@@ -61,7 +61,6 @@ class PathfinderScene: SKScene {
         mapIcons.position = CGPoint.zero
         mapIcons.enableAutomapping = true
         
-
         super.init(size: UIScreen.main.bounds.size)
     }
     
@@ -89,8 +88,8 @@ class PathfinderScene: SKScene {
             return
         }
         else if !touchedNodes.isEmpty && touchedNodes[0].name == "calculate-path" {
-            state = PathfinderState.calculatingPath
-            let path: [GKGridGraphNode] = [] //game.getMap().findPath(from: startPosition, to: endPosition)
+//            state = PathfinderState.calculatingPath
+//            let path: [GKGridGraphNode] = [] //game.getMap().findPath(from: startPosition, to: endPosition)
 //            showAIPath(path: path)
             return
         }
@@ -147,6 +146,7 @@ class PathfinderScene: SKScene {
         tapGestureRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(tapGestureRecognizer)
         
+        var cities: [City] = []
         var units: [Engine.Unit] = []
 
         do {
@@ -158,6 +158,7 @@ class PathfinderScene: SKScene {
             mapView = MapView(map: game.getMap(), tileset: tileset!)
             try mapView.setScene(scene: self)
             
+            cities = try game.db.cityDao.getCities(gameId: 1)
             units = try game.db.unitDao.getUnits(gameId: 1)
         }
         catch {
@@ -168,109 +169,27 @@ class PathfinderScene: SKScene {
         
         let player1 = Player(playerId: 1)
 
-        let cityCreator1 = CityCreator(playerId: 1, name: "Settler 1", row: 30, col: 30)
-        let cityCreator2 = CityCreator(playerId: 1, name: "Settler 2", row: 31, col: 31)
-        let explorer = Explorer(playerId: 1, name: "Explorer", row: 32, col: 32)
-        
-        let unit21 = Naval1(playerId: 1, name: "Trireme", row: 39, col: 19)
-        let unit22 = Naval2(playerId: 1, name: "Caravel", row: 39, col: 20)
-        let unit23 = Naval3(playerId: 1, name: "Galleon", row: 39, col: 21)
-        let unit24 = Naval4(playerId: 1, name: "Frigate", row: 39, col: 22)
-        let unit25 = Naval5(playerId: 1, name: "Ironclad", row: 39, col: 23)
-        let unit26 = Naval6(playerId: 1, name: "Destroyer", row: 39, col: 24)
-        let unit27 = Naval7(playerId: 1, name: "Cruiser", row: 39, col: 25)
-        let unit28 = Naval8(playerId: 1, name: "Battleship", row: 39, col: 26)
-        let unit29 = Naval9(playerId: 1, name: "AEGIS Cruiser", row: 39, col: 27)
-        let transport = NavalTransport(playerId: 1, name: "Transport", row: 38, col: 19)
-        let submarine = Submarine(playerId: 1, name: "Submarine", row: 38, col: 20)
-        let carrier = AircraftCarrier(playerId: 1, name: "Carrier", row: 38, col: 21)
-        
-        let air1 = Air1(playerId: 1, name: "Bomber", row: 32, col: 30)
-        let air2 = Air2(playerId: 1, name: "Fighter", row: 33, col: 30)
-        let air3 = Air3(playerId: 1, name: "Stealth Figher", row: 34, col: 30)
-        let air4 = Air4(playerId: 1, name: "Stealth Bomber", row: 35, col: 30)
-        let air5 = Air5(playerId: 1, name: "Helicopter", row: 36, col: 30)
-
-        let artillery1 = Artillery1(playerId: 1, name: "Catapult", row: 30, col: 34)
-        let artillery2 = Artillery2(playerId: 1, name: "Cannon", row: 31, col: 36)
-        let artillery3 = Artillery3(playerId: 1, name: "Artillery", row: 32, col: 39)
-        let artillery4 = Artillery4(playerId: 1, name: "Howitzer", row: 33, col: 42)
-        
-        let unit51 = Infantry1(playerId: 1, name: "Warrior", row: 31, col: 39)
-        let unit52 = Infantry2(playerId: 1, name: "Phalanx", row: 31, col: 25)
-        let unit53 = Infantry3(playerId: 1, name: "Pikeman", row: 31, col: 21)
-        let unit54 = Infantry4(playerId: 1, name: "Archer", row: 31, col: 22)
-        let unit55 = Infantry5(playerId: 1, name: "Legion", row: 31, col: 23)
-        let unit56 = Infantry6(playerId: 1, name: "Musketeer", row: 31, col: 24)
-        let unit57 = Infantry7(playerId: 1, name: "Rifleman", row: 31, col: 25)
-        let unit58 = Infantry8(playerId: 1, name: "Mechanized Infantry", row: 31, col: 26)
-
-        let unit61 = Cavalry1(playerId: 1, name: "Horseman", row: 32, col: 29)
-        let unit62 = Cavalry2(playerId: 1, name: "Chariot", row: 33, col: 29)
-        let unit63 = Cavalry3(playerId: 1, name: "Elephant", row: 34, col: 29)
-        let unit64 = Cavalry4(playerId: 1, name: "Knight", row: 35, col: 29)
-        let unit65 = Cavalry5(playerId: 1, name: "Crusader", row: 36, col: 29)
-        let unit66 = Cavalry6(playerId: 1, name: "Dragoon", row: 37, col: 29)
-        let unit67 = Cavalry7(playerId: 1, name: "Cavalry", row: 38, col: 29)
-        let unit68 = Cavalry8(playerId: 1, name: "Tank", row: 39, col: 29)
-
-//        player1.add(cityCreator: cityCreator1)
-//        player1.add(cityCreator: cityCreator2)
-//        player1.addUnit(unit: explorer)
-//
-//        player1.addUnit(unit: unit21)
-//        player1.addUnit(unit: unit22)
-//        player1.addUnit(unit: unit23)
-//        player1.addUnit(unit: unit24)
-//        player1.addUnit(unit: unit25)
-//        player1.addUnit(unit: unit26)
-//        player1.addUnit(unit: unit27)
-//        player1.addUnit(unit: unit28)
-//        player1.addUnit(unit: unit29)
-//        player1.addUnit(unit: submarine)
-//        player1.addUnit(unit: transport)
-//        player1.addUnit(unit: carrier)
-//
-//        player1.addUnit(unit: air1)
-//        player1.addUnit(unit: air2)
-//        player1.addUnit(unit: air3)
-//        player1.addUnit(unit: air4)
-//        player1.addUnit(unit: air5)
-//
-//        player1.addUnit(unit: artillery1)
-//        player1.addUnit(unit: artillery2)
-//        player1.addUnit(unit: artillery3)
-//        player1.addUnit(unit: artillery4)
-//
-//        player1.addUnit(unit: unit51)
-//        player1.addUnit(unit: unit52)
-//        player1.addUnit(unit: unit53)
-//        player1.addUnit(unit: unit54)
-//        player1.addUnit(unit: unit55)
-//        player1.addUnit(unit: unit56)
-//        player1.addUnit(unit: unit57)
-//        player1.addUnit(unit: unit58)
-//
-//        player1.addUnit(unit: unit61)
-//        player1.addUnit(unit: unit62)
-//        player1.addUnit(unit: unit63)
-//        player1.addUnit(unit: unit64)
-//        player1.addUnit(unit: unit65)
-//        player1.addUnit(unit: unit66)
-//        player1.addUnit(unit: unit67)
-//        player1.addUnit(unit: unit68)
+        for city in cities {
+            player1.add(city: city)
+        }
         
         for unit in units {
-            player1.addUnit(unit: unit)
+            player1.add(unit: unit)
         }
         
         game.addPlayer(player: player1)
 
         for player in game.players {
-            for cityCreator in player.cityCreators {
-                let node = FounderNode(game: game, cityCreator: cityCreator)
-                node.position = mapView.getCenterPoint(row: cityCreator.row,
-                                                       col: cityCreator.col)
+            for city in player.cities {
+                let node = CityNode(game: game, city: city)
+                node.position = mapView.getCenterPoint(row: city.row, col: city.col)
+                node.zPosition = Layer.cities
+                addChild(node)
+            }
+            
+            for creator in player.cityCreators {
+                let node = FounderNode(game: game, cityCreator: creator)
+                node.position = mapView.getCenterPoint(row: creator.row, col: creator.col)
                 node.zPosition = Layer.contextMenu
                 addChild(node)
             }

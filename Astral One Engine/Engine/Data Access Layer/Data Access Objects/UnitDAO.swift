@@ -248,6 +248,26 @@ public class UnitDAO: BaseDAO {
                         name: name,
                         row: row,
                         col: col)
+        case "Artillery1":
+            return Artillery1(playerId: 1,
+                              name: name,
+                              row: row,
+                              col: col)
+        case "Artillery2":
+            return Artillery2(playerId: 1,
+                              name: name,
+                              row: row,
+                              col: col)
+        case "Artillery3":
+            return Artillery3(playerId: 1,
+                              name: name,
+                              row: row,
+                              col: col)
+        case "Artillery4":
+            return Artillery4(playerId: 1,
+                              name: name,
+                              row: row,
+                              col: col)
         case "Cavalry1":
             return Cavalry1(playerId: 1,
                             name: name,

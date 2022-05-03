@@ -31,7 +31,7 @@ public enum DiplomacyStatus {
 }
 
 public struct Constants {
-    public static let theme = "Freeland"
+    public static let theme = "Sci-Fi"
     public static let db = Db(fullRefresh: false)
     public static let minMovementCost: Double = 0.0
     public static let mapWidth: CGFloat = 1000.0 / 3.0

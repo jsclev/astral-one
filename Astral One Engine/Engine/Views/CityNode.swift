@@ -1,23 +1,23 @@
 import Foundation
 import SpriteKit
 
-public class UnitNode: SKSpriteNode {
+public class CityNode: SKSpriteNode {
     private let game: Game
-    private let unit: Unit
+    private let city: City
     
     public override var isUserInteractionEnabled: Bool {
         set { }
         get { return true }
     }
     
-    public init(game: Game, unit: Unit) {
+    public init(game: Game, city: City) {
         self.game = game
-        self.unit = unit
+        self.city = city
         
-        let texture = SKTexture(imageNamed: unit.assetName)
+        let texture = SKTexture(imageNamed: city.assetName)
         super.init(texture: texture, color: UIColor.systemPink, size: texture.size())
         
-        self.name = "\(unit.name)_"
+        self.name = "\(city.name)_"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,8 +25,8 @@ public class UnitNode: SKSpriteNode {
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("\(unit.name), position [\(unit.row),\(unit.col)]")
+        print("\(city.name), position [\(city.row),\(city.col)]")
         game.selectMapPosition(mapPosition: MapPosition(row: 0, col: 0))
-
+        
     }
 }

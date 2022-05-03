@@ -2,6 +2,7 @@ import Foundation
 
 public class Player {
     public let playerId: Int
+    public var cities: [City] = []
     public var cityCreators: [CityCreator] = []
     public var units: [Unit] = []
     
@@ -9,11 +10,15 @@ public class Player {
         self.playerId = playerId
     }
     
+    public func add(city: City) {
+        cities.append(city)
+    }
+    
     public func add(cityCreator: CityCreator) {
         cityCreators.append(cityCreator)
     }
     
-    public func addUnit(unit: Unit) {
+    public func add(unit: Unit) {
         units.append(unit)
     }
 }

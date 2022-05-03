@@ -36,12 +36,13 @@ insert into tile values (33, 1, 1, 36, 29, 1, FALSE);
 insert into tile values (34, 1, 1, 37, 29, 1, FALSE);
 insert into tile values (35, 1, 1, 38, 29, 1, FALSE);
 insert into tile values (36, 1, 1, 39, 29, 1, FALSE);
+insert into tile values (37, 1, 1, 29, 29, 1, FALSE);
 
 insert into player values (1, 1, 1, 'Mr. Caesar', 'Human');
 insert into player values (2, 1, 1, 'Mr. Big Stuff', 'AI');
 
 -- Turn 1: Build city
-insert into city values (1, 1, 1, 'Rome');
+insert into city values (1, 1, 1, 37, 'Rome');
 insert into command values (1, 1, 1, 1, (select command_type_id from command_type where name = 'Build City'), 1);
 insert into settle_command values (1, 1, 1);
 
@@ -91,5 +92,5 @@ insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (sele
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Cavalry4'), 31);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Cavalry5'), 32);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Cavalry6'), 33);
-insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Cavalry7'), 34);
+-- insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Cavalry7'), 34);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Cavalry8'), 35);
