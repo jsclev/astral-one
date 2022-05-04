@@ -50,6 +50,11 @@ insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1
 
 -- Tiles 41 - 50
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 56, 56, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 56, 57, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 56, 58, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 56, 59, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 56, 60, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 56, 61, 1, FALSE);
 
 insert into player (game_id, ordinal, name, type) values (1, 1, 'Mr. Caesar', 'Human');
 insert into player (game_id, ordinal, name, type) values (1, 1, 'Mr. Big Stuff', 'AI');
@@ -72,7 +77,7 @@ insert into tech_command values (3, (select tech_id from tech where name = 'Alph
 insert into command values (4, 1, 1, 1, (select command_type_id from command_type where name = 'Move Unit'), 4);
 insert into move_command values (4, 2, 1, 2);
 
-insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'City Creator'), 1);
+insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'CityCreator'), 1);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Naval1'), 2);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Naval2'), 3);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Naval3'), 4);
@@ -109,3 +114,8 @@ insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (sele
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Engineer'), 38);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Marine'), 39);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'ParaTrooper'), 40);
+insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'AlpineTroop'), 41);
+insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Trade1'), 42);
+insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Diplomat'), 43);
+insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Fanatic'), 44);
+insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Trade2'), 45);

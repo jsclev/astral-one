@@ -42,6 +42,26 @@ insert into unit_type (tiled_id, name, display_name) values (-1, 'Air2', 'Fighte
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Air3', 'Stealth Bomber');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Air4', 'Stealth Fighter');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Air5', 'Helicopter');
+
+insert into unit_type (tiled_id, name, display_name) values (-1, 'AircraftCarrier', 'Carrier');
+
+insert into unit_type (tiled_id, name, display_name) values (-1, 'AlpineTroop', 'Alpine Troop');
+
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Trade1', 'Caravan');
+
+insert into unit_type (tiled_id, name, display_name) values (-1, 'CityCreator', 'MCV');
+
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Diplomat', 'Diplomat');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Engineer', 'Engineer');
+
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Explorer', 'Explorer Drone');
+
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Fanatic', 'Fanatic');
+
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Trade2', 'Freight');
+
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Marine', 'Marine');
+
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Naval1', 'Ship 1');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Naval2', 'Ship 2');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Naval3', 'Ship 3');
@@ -52,13 +72,8 @@ insert into unit_type (tiled_id, name, display_name) values (-1, 'Naval7', 'Ship
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Naval8', 'Ship 8');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Naval9', 'Ship 9');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'NavalTransport', 'Transport');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Submarine', 'Submarine');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'AircraftCarrier', 'Carrier');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'City Creator', 'MCV');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Engineer', 'Engineer');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Explorer', 'Explorer Drone');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Marine', 'Marine');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'ParaTrooper', 'ParaTrooper');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Submarine', 'Submarine');
 
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry1', 'Basic Infantry');
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry2', 'Basic Infantry');
@@ -97,7 +112,7 @@ insert into unit_type (tiled_id, name, display_name) values (-1, 'ParaTrooper', 
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'NavalTransport', 'Transport');
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Submarine', 'Submarine');
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'AircraftCarrier', 'Basic Infantry');
--- insert into unit_type (tiled_id, name, display_name) values (-1, 'City Creator', 'MCV');
+-- insert into unit_type (tiled_id, name, display_name) values (-1, 'CityCreator', 'MCV');
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Explorer', 'Basic Infantry');
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Marine', 'Marine');
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'ParaTrooper', 'ParaTrooper');
