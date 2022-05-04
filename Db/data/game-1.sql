@@ -1,5 +1,6 @@
 insert into game values (1, 'Rome Was Built In A Day', '2022-03-31');
 
+-- Tiles 1 - 10
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 50, 50, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 51, 51, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 52, 52, 1, FALSE);
@@ -10,6 +11,8 @@ insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 45, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 44, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 45, 1, FALSE);
+
+-- Tiles 11 - 20
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 46, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 47, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 48, 1, FALSE);
@@ -20,6 +23,8 @@ insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 54, 50, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 55, 50, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 56, 50, 1, FALSE);
+
+-- Tiles 21 - 30
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 51, 54, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 51, 56, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 51, 59, 1, FALSE);
@@ -30,6 +35,8 @@ insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 51, 42, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 52, 45, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 55, 44, 1, FALSE);
+
+-- Tiles 31 - 40
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 54, 45, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 55, 46, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 56, 49, 1, FALSE);
@@ -39,9 +46,13 @@ insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 49, 49, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 47, 47, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 46, 46, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 55, 55, 1, FALSE);
 
-insert into player values (1, 1, 1, 'Mr. Caesar', 'Human');
-insert into player values (2, 1, 1, 'Mr. Big Stuff', 'AI');
+-- Tiles 41 - 50
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 56, 56, 1, FALSE);
+
+insert into player (game_id, ordinal, name, type) values (1, 1, 'Mr. Caesar', 'Human');
+insert into player (game_id, ordinal, name, type) values (1, 1, 'Mr. Big Stuff', 'AI');
 
 -- Turn 1: Build city
 insert into city values (1, 1, 1, 57, 'Rome');
@@ -97,3 +108,4 @@ insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (sele
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Cavalry8'), 35);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Engineer'), 38);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Marine'), 39);
+insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'ParaTrooper'), 40);

@@ -248,6 +248,11 @@ public class UnitDAO: BaseDAO {
                         name: name,
                         row: row,
                         col: col)
+        case "AircraftCarrier":
+            return AircraftCarrier(playerId: 1,
+                                   name: name,
+                                   row: row,
+                                   col: col)
         case "Artillery1":
             return Artillery1(playerId: 1,
                               name: name,
@@ -408,16 +413,16 @@ public class UnitDAO: BaseDAO {
                           name: name,
                           row: row,
                           col: col)
-        case "AircraftCarrier":
-            return AircraftCarrier(playerId: 1,
-                                   name: name,
-                                   row: row,
-                                   col: col)
         case "NavalTransport":
             return NavalTransport(playerId: 1,
                                   name: name,
                                   row: row,
                                   col: col)
+        case "ParaTrooper":
+            return ParaTrooper(playerId: 1,
+                               name: name,
+                               row: row,
+                               col: col)
         case "Submarine":
             return Submarine(playerId: 1,
                              name: name,

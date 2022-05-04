@@ -58,6 +58,7 @@ insert into unit_type (tiled_id, name, display_name) values (-1, 'City Creator',
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Engineer', 'Engineer');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Explorer', 'Explorer Drone');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Marine', 'Marine');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'ParaTrooper', 'ParaTrooper');
 
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry1', 'Basic Infantry');
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry2', 'Basic Infantry');
@@ -99,6 +100,7 @@ insert into unit_type (tiled_id, name, display_name) values (-1, 'Marine', 'Mari
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'City Creator', 'MCV');
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Explorer', 'Basic Infantry');
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Marine', 'Marine');
+-- insert into unit_type (tiled_id, name, display_name) values (-1, 'ParaTrooper', 'ParaTrooper');
 
 -- Building types
 insert into building_type values (1, 'Airport');
