@@ -40,7 +40,7 @@ class PathfinderScene: SKScene {
         self.mapViewModel = mapViewModel
         let tileset = SKTileSet(named: tilesetName)
 
-        self.mapView = MapView(map: game.getMap(), tileset: tileset!)
+        self.mapView = MapView(game: game, map: game.getMap(), tileset: tileset!)
         
         pathMap = SKTileMapNode(tileSet: tileset!,
                                 columns: game.getMap().width,
@@ -155,7 +155,7 @@ class PathfinderScene: SKScene {
             
             let tileset = SKTileSet(named: tilesetName)
 
-            mapView = MapView(map: game.getMap(), tileset: tileset!)
+            mapView = MapView(game: game, map: game.getMap(), tileset: tileset!)
             try mapView.setScene(scene: self)
             
             cities = try game.db.cityDao.getCities(gameId: 1)
@@ -178,29 +178,7 @@ class PathfinderScene: SKScene {
         }
         
         game.addPlayer(player: player1)
-
-        for player in game.players {
-            for city in player.cities {
-                let node = CityNode(game: game, city: city)
-                node.position = mapView.getCenterPoint(row: city.row, col: city.col)
-                node.zPosition = Layer.cities
-                addChild(node)
-            }
-            
-            for creator in player.cityCreators {
-                let node = FounderNode(game: game, cityCreator: creator)
-                node.position = mapView.getCenterPoint(row: creator.row, col: creator.col)
-                node.zPosition = Layer.contextMenu
-                addChild(node)
-            }
-            
-            for unit in player.units {
-                let unitNode = UnitNode(game: game, unit: unit)
-                unitNode.position = mapView.getCenterPoint(row: unit.row, col: unit.col)
-                unitNode.zPosition = Layer.contextMenu
-                addChild(unitNode)
-            }
-        }
+        mapView.renderPlayer()
     }
     
     func printDate(string: String) {
@@ -212,14 +190,9 @@ class PathfinderScene: SKScene {
     
     @objc func handleZoom(sender: UIPinchGestureRecognizer) {
         if (sender.state == .changed) {
-            var scale = initialCameraScale + (1/sender.scale - 1) * initialCameraScale
-            
-            if scale >= 4.4 {
-                scale = 4.4
-            }
-            
-            gameCamera.setScale(scale)
-            contextMenu.menu.setScale(scale)
+            mapViewModel.updateScale(newScale: sender.scale)
+            gameCamera.setScale(mapViewModel.scale)
+            contextMenu.menu.setScale(mapViewModel.scale)
         }
     }
     

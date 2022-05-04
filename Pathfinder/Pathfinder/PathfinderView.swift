@@ -21,20 +21,38 @@ struct PathfinderView: View {
     var simpleDrag: some Gesture {
         DragGesture()
             .onChanged { value in
+//                print(value.translation)
                 var newLocation = startLocation ?? location
                 let finalTranslationX = value.translation.width * scene.gameCamera.xScale
                 let finalTranslationY = value.translation.height * scene.gameCamera.yScale
                 newLocation.x += finalTranslationX
                 newLocation.y += finalTranslationY
-                self.location = newLocation
+                location = newLocation
                 mapViewModel.moveCamera(translation: CGSize(width: finalTranslationX,
                                                             height: finalTranslationY))
                 scene.gameCamera.position = mapViewModel.cameraPosition
                 scene.gameCamera.updatePositionLabel(pos: scene.gameCamera.position)
-            }.updating($startLocation) { (value, startLocation, transaction) in
+            }
+            .updating($startLocation) { (value, startLocation, transaction) in
                 startLocation = startLocation ?? location
-            }.onEnded { value in
+            }
+            .onEnded { value in
                 mapViewModel.resetCamera()
+                
+//                let velocity = CGSize(
+//                    width:  value.predictedEndLocation.x + value.location.x,
+//                    height: value.predictedEndLocation.y + value.location.y
+//                )
+//
+//                print(velocity)
+//
+//                let moveCamera = SKAction.move(to: CGPoint(x: value.predictedEndLocation.x - value.location.x,
+//                                                           y: value.predictedEndLocation.y - value.location.y), duration: 2.0)
+////                scene.gameCamera.run(moveCamera)
+//
+//                if velocity.height > 500.0 {
+//                    // Moving down fast
+//                }
             }
     }
     

@@ -138,14 +138,19 @@ class GameScene: SKScene {
         var anchorPoint: CGPoint = sender.location(in: sender.view)
         anchorPoint = convertPoint(fromView: anchorPoint)
         
-        if (sender.state == .began) {
-            self.initialCameraScale = gameCamera.xScale
-        }
-        else if (sender.state == .changed) {
+//        if (sender.state == .began) {
+//            self.initialCameraScale = gameCamera.xScale
+//        }
+        if (sender.state == .changed) {
             var scale = initialCameraScale + (1/sender.scale - 1) * initialCameraScale
             if scale < 0.4 {
                 scale = 0.4
             }
+            else if scale > 3.0 {
+                scale = 1.8
+            }
+            
+            print(scale)
             
             gameCamera.setScale(scale)
         }

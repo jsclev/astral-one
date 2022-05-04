@@ -3,24 +3,17 @@ import SpriteKit
 import SwiftUI
 
 public class MapViewModel {
-    public let texture0: SKTexture
-    public let texture1: SKTexture
-    public let texture2: SKTexture
-    public let texture3: SKTexture
     public var mapSize: CGSize
     public let cameraSize: CGSize
     public var startCameraPosition: CGPoint
     public var cameraPosition: CGPoint
+    public var scale = 1.0
     
     public init() {
-        texture0 = SKTexture(imageNamed: "background10")
-        texture1 = SKTexture(imageNamed: "background11")
-        texture2 = SKTexture(imageNamed: "background12")
-        texture3 = SKTexture(imageNamed: "background13")
-        
         cameraSize = CGSize(width: UIScreen.main.bounds.size.width,
                             height: UIScreen.main.bounds.size.height)
-        mapSize = CGSize(width: Constants.mapWidth, height: Constants.mapHeight)
+        mapSize = CGSize(width: Constants.mapWidth,
+                         height: Constants.mapHeight)
         
         // Start the initial camera position in the middle of the map
         cameraPosition = CGPoint(x: (mapSize.width - cameraSize.width) / 2,
@@ -33,20 +26,17 @@ public class MapViewModel {
 //                                              y: cameraPosition.y)
     }
     
+    public func updateScale(newScale: Double) {
+//        scale = 1.0 + (1/newScale - 1)
+//
+//        if scale >= 3.35 {
+//            scale = 3.35
+//        }
+//
+        print(scale)
+    }
+    
     public func changeMap(mapName: String) {
-        if (mapName == "zero") {
-            mapSize = texture0.size()
-        }
-        else if (mapName == "one") {
-            mapSize = texture1.size()
-        }
-        else if (mapName == "two") {
-            mapSize = texture2.size()
-        }
-        else {
-            mapSize = texture3.size()
-        }
-        
         // Start the initial camera position in the middle of the map
         cameraPosition = CGPoint(x: (cameraSize.width / 2) + (mapSize.width - cameraSize.width) / 2,
                                  y: (cameraSize.height / 2) + (mapSize.height - cameraSize.height) / 2)
@@ -57,6 +47,25 @@ public class MapViewModel {
     public func moveCamera(translation: CGSize) {
         cameraPosition.x = startCameraPosition.x - translation.width
         cameraPosition.y = startCameraPosition.y + translation.height
+        
+        print("[\(cameraPosition.x),\(cameraPosition.y),\(scale)]")
+        
+        let xThreshold = 2150.0
+        let yTheshold = 1150.0
+        
+        if scale * cameraPosition.x < -xThreshold {
+            cameraPosition.x = -xThreshold
+        }
+        else if scale * cameraPosition.x > xThreshold {
+            cameraPosition.x = xThreshold
+        }
+        
+        if scale * cameraPosition.y > yTheshold {
+            cameraPosition.y = yTheshold
+        }
+        else if scale * cameraPosition.y < -yTheshold {
+            cameraPosition.y = -yTheshold
+        }
         
         //        if (startCameraPosition.x - translation.width <= (mapSize.width / 2) - (mapSize.width - cameraSize.width) / 2) {
         //            cameraPosition.x = (mapSize.width / 2) - (mapSize.width - cameraSize.width) / 2

@@ -4,6 +4,7 @@ import GameplayKit
 
 public class MapView {
     var scene: SKScene!
+    let game: Game
     let map: Map
     var debug = true
     var cameraScale = 1.0
@@ -20,7 +21,8 @@ public class MapView {
     var startPosition = SIMD2<Int32>(0, 0)
     var endPosition = SIMD2<Int32>(0, 0)
     
-    public init(map: Map, tileset: SKTileSet) {
+    public init(game: Game, map: Map, tileset: SKTileSet) {
+        self.game = game
         self.map = map
         
         self.tileset = tileset
@@ -116,6 +118,31 @@ public class MapView {
         //        scene.addChild(unitsMap)
         //        scene.addChild(pathMap)
         //        scene.addChild(mapIcons)
+    }
+    
+    public func renderPlayer() {
+        for player in game.players {
+            for city in player.cities {
+                let node = CityNode(game: game, city: city)
+                node.position = getCenterPoint(row: city.row, col: city.col)
+                node.zPosition = Layer.cities
+                scene.addChild(node)
+            }
+            
+            for creator in player.cityCreators {
+                let node = FounderNode(game: game, cityCreator: creator)
+                node.position = getCenterPoint(row: creator.row, col: creator.col)
+                node.zPosition = Layer.contextMenu
+                scene.addChild(node)
+            }
+            
+            for unit in player.units {
+                let unitNode = UnitNode(game: game, unit: unit)
+                unitNode.position = getCenterPoint(row: unit.row, col: unit.col)
+                unitNode.zPosition = Layer.contextMenu
+                scene.addChild(unitNode)
+            }
+        }
     }
     
     func printDate(string: String) {
