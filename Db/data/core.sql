@@ -17,14 +17,17 @@ insert into command_type values (5, 'Research Tech');
 insert into command_type values (6, 'Create Unit');
 
 -- Unit types
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry1', 'Infantry 1');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry2', 'Infantry 2');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry3', 'Infantry 3');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry4', 'Infantry 4');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry5', 'Infantry 5');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry6', 'Infantry 6');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry7', 'Infantry 7');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry8', 'Mechanized Infantry');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Air1', 'Bomber');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Air2', 'Fighter');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Air3', 'Stealth Bomber');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Air4', 'Stealth Fighter');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Air5', 'Helicopter');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'AircraftCarrier', 'Carrier');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'AlpineTroop', 'Alpine Troop');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Artillery1', 'Light Cannon');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Artillery2', 'Cannon');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Artillery3', 'Heavy Cannon');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Artillery4', 'Howitzer');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Cavalry1', 'Tank 1');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Cavalry2', 'Tank 2');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Cavalry3', 'Tank 3');
@@ -33,35 +36,21 @@ insert into unit_type (tiled_id, name, display_name) values (-1, 'Cavalry5', 'Ta
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Cavalry6', 'Tank 6');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Cavalry7', 'Tank 7');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Cavalry8', 'Mechanized Tank');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Artillery1', 'Light Cannon');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Artillery2', 'Cannon');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Artillery3', 'Heavy Cannon');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Artillery4', 'Howitzer');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Air1', 'Bomber');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Air2', 'Fighter');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Air3', 'Stealth Bomber');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Air4', 'Stealth Fighter');
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Air5', 'Helicopter');
-
-insert into unit_type (tiled_id, name, display_name) values (-1, 'AircraftCarrier', 'Carrier');
-
-insert into unit_type (tiled_id, name, display_name) values (-1, 'AlpineTroop', 'Alpine Troop');
-
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Trade1', 'Caravan');
-
 insert into unit_type (tiled_id, name, display_name) values (-1, 'CityCreator', 'MCV');
-
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Crusader', 'Crusader');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Diplomat', 'Diplomat');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Engineer', 'Engineer');
-
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Explorer', 'Explorer Drone');
-
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Fanatic', 'Fanatic');
-
-insert into unit_type (tiled_id, name, display_name) values (-1, 'Trade2', 'Freight');
-
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry1', 'Infantry 1');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry2', 'Infantry 2');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry3', 'Infantry 3');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry4', 'Infantry 4');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry5', 'Infantry 5');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry6', 'Infantry 6');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry7', 'Infantry 7');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry8', 'Mechanized Infantry');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Marine', 'Marine');
-
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Naval1', 'Ship 1');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Naval2', 'Ship 2');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Naval3', 'Ship 3');
@@ -73,7 +62,11 @@ insert into unit_type (tiled_id, name, display_name) values (-1, 'Naval8', 'Ship
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Naval9', 'Ship 9');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'NavalTransport', 'Transport');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'ParaTrooper', 'ParaTrooper');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Partisan', 'Partisan');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Spy', 'Spy');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Submarine', 'Submarine');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Trade1', 'Caravan');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'Trade2', 'Freight');
 
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry1', 'Basic Infantry');
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry2', 'Basic Infantry');

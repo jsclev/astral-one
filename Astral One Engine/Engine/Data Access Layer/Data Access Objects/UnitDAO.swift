@@ -278,6 +278,11 @@ public class UnitDAO: BaseDAO {
                               name: name,
                               row: row,
                               col: col)
+        case "Crusader":
+            return Crusader(playerId: 1,
+                            name: name,
+                            row: row,
+                            col: col)
         case "Cavalry1":
             return Cavalry1(playerId: 1,
                             name: name,
@@ -438,6 +443,16 @@ public class UnitDAO: BaseDAO {
                                name: name,
                                row: row,
                                col: col)
+        case "Partisan":
+            return Partisan(playerId: 1,
+                            name: name,
+                            row: row,
+                            col: col)
+        case "Spy":
+            return Spy(playerId: 1,
+                       name: name,
+                       row: row,
+                       col: col)
         case "Submarine":
             return Submarine(playerId: 1,
                              name: name,
