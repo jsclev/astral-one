@@ -328,6 +328,11 @@ public class UnitDAO: BaseDAO {
                                name: name,
                                row: row,
                                col: col)
+        case "CruiseMissile":
+            return CruiseMissile(playerId: 1,
+                                 name: name,
+                                 row: row,
+                                 col: col)
         case "Diplomat":
             return Diplomat(playerId: 1,
                             name: name,
@@ -435,6 +440,11 @@ public class UnitDAO: BaseDAO {
                           col: col)
         case "NavalTransport":
             return NavalTransport(playerId: 1,
+                                  name: name,
+                                  row: row,
+                                  col: col)
+        case "NuclearMissile":
+            return NuclearMissile(playerId: 1,
                                   name: name,
                                   row: row,
                                   col: col)

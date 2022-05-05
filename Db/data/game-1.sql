@@ -60,6 +60,18 @@ insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 57, 58, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 57, 59, 1, FALSE);
 
+-- Tiles 51 - 60
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 58, 56, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 58, 57, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 58, 58, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 58, 59, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 58, 60, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 61, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 62, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 63, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 64, 1, FALSE);
+insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 65, 1, FALSE);
+
 insert into player (game_id, ordinal, name, type) values (1, 1, 'Mr. Caesar', 'Human');
 insert into player (game_id, ordinal, name, type) values (1, 1, 'Mr. Big Stuff', 'AI');
 
@@ -126,3 +138,5 @@ insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (sele
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Spy'), 46);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Crusader'), 47);
 insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Partisan'), 48);
+insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'CruiseMissile'), 49);
+insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'NuclearMissile'), 50);

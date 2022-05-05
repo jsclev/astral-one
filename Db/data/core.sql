@@ -67,6 +67,8 @@ insert into unit_type (tiled_id, name, display_name) values (-1, 'Spy', 'Spy');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Submarine', 'Submarine');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Trade1', 'Caravan');
 insert into unit_type (tiled_id, name, display_name) values (-1, 'Trade2', 'Freight');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'CruiseMissile', 'Cruise Missile');
+insert into unit_type (tiled_id, name, display_name) values (-1, 'NuclearMissile', 'Nuclear Missile');
 
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry1', 'Basic Infantry');
 -- insert into unit_type (tiled_id, name, display_name) values (-1, 'Infantry2', 'Basic Infantry');
