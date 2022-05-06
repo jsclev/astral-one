@@ -100,6 +100,29 @@ public class Db {
         unitDao = UnitDAO(conn: dbPointer)
     }
     
+    public func getGameBy(gameId: Int) throws -> Game {
+        let game = Game()
+        
+        game.map = try mapDao.get(gameId: gameId)
+
+        // Pull the map from the database
+        let player1 = Player(playerId: 1)
+        let cities = try cityDao.getCities(gameId: 1)
+        let units = try unitDao.getUnits(gameId: 1)
+
+        for city in cities {
+            player1.add(city: city)
+        }
+
+        for unit in units {
+            player1.add(unit: unit)
+        }
+
+        game.addPlayer(player: player1)
+        
+        return game
+    }
+    
     deinit {
         // let rc: Int32 = sqlite3_close_v2(dbPointer)
         

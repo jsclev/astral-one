@@ -3,8 +3,6 @@ import SwiftUI
 import Engine
 
 struct PathfinderView: View {
-    var game: Game
-    
     @State private var location: CGPoint = CGPoint(x: 0.0, y: 0.0)
     @GestureState private var fingerLocation: CGPoint? = nil
     @GestureState private var startLocation: CGPoint? = nil
@@ -14,8 +12,7 @@ struct PathfinderView: View {
     var scene: PathfinderScene
     
     init() {
-        game = Game(refreshDb: true)
-        scene = PathfinderScene(game: game, mapViewModel: mapViewModel)
+        scene = PathfinderScene(mapViewModel: mapViewModel)
     }
     
     var simpleDrag: some Gesture {

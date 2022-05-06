@@ -171,4 +171,13 @@ public class MapDAO: BaseDAO {
         
         return returnMap
     }
+    
+    public func importTiledMap(filename: String) throws {
+        let tilesetParser = TiledTilesetParser(filename)
+        let tileset = tilesetParser.parse()
+        let mapParser = TiledMapParser(tiledTileset: tileset, filename: filename)
+        
+        // Import the Tiled map into the database
+        let _ = try insert(map: mapParser.parse())
+    }
 }

@@ -89,6 +89,7 @@ public class MapView {
                 //                print(tile.terrain.description)
                 
                 if let tileGroup = tileset.tileGroups.first(where: { $0.name == tile.terrain.name }) {
+//                    if row ==
                     // Make sure we are setting the tile on the correct layered terrain map
                     let terrainMap = terrainMaps[0]
                     
@@ -145,11 +146,69 @@ public class MapView {
         }
     }
     
+    func clearMapIcons() {
+        for row in 0..<mapIcons.numberOfRows {
+            for col in 0..<mapIcons.numberOfColumns {
+                if let _ = mapIcons.tileGroup(atColumn: col, row: row) {
+                    mapIcons.setTileGroup(nil, forColumn: col, row: row)
+                }
+                
+                if let _ = pathMap.tileGroup(atColumn: col, row: row) {
+                    pathMap.setTileGroup(nil, forColumn: col, row: row)
+                }
+            }
+        }
+    }
+    
     func printDate(string: String) {
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "ss.SSS"
         print(string + formatter.string(from: date))
     }
+    
+    //    func showAIPath(path: [GKGraphNode]) {
+    //        let tileGroupName = "Fog"
+    //
+    //        for node in path {
+    //            let theNode: GKGridGraphNode = node as! GKGridGraphNode
+    //
+    //            if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileGroupName }) {
+    //                print("[\(theNode.gridPosition.y),\(theNode.gridPosition.x)]")
+    //                pathMap.setTileGroup(tileGroup,
+    //                                     forColumn: Int(theNode.gridPosition.y),
+    //                                     row: Int(theNode.gridPosition.x))
+    //            }
+    //            else {
+    //                fatalError("\"\(tileGroupName)\" tile group not found in \"\(tilesetName)\" tile set.")
+    //            }
+    //        }
+    //    }
+    
+    //    func showRandomAIPaths() {
+    //        //        print("About to calculate \(numPaths) paths: " + formatter.string(from: Date()))
+    //        let numPaths: Int = 1000
+    //        let formatter = DateFormatter()
+    //        formatter.dateFormat = "HH:mm:ss.SSSS"
+    //
+    //        for _ in 0..<numPaths {
+    //            let from = SIMD2<Int32>(Int32.random(in: 0..<Int32(pathMap.numberOfRows)),
+    //                                    Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
+    //            let to = SIMD2<Int32>(Int32.random(in: 0..<Int32(pathMap.numberOfRows)),
+    //                                  Int32.random(in: 0..<Int32(pathMap.numberOfColumns)))
+    //            let path: [GKGridGraphNode] = [] //game.getMap().findPath(from: from, to: to)
+    //
+    //            for node in path {
+    //                let theNode: GKGridGraphNode = node as! GKGridGraphNode
+    //
+    //                if let tileGroup = tileset.tileGroups.first(where: { $0.name == "Fog"}) {
+    //                    pathMap.setTileGroup(tileGroup,
+    //                                         forColumn: Int(theNode.gridPosition.y),
+    //                                         row: Int(theNode.gridPosition.x))
+    //                }
+    //            }
+    //        }
+    //        //        print("Done calculating \(numPaths) paths: " + formatter.string(from: Date()))
+    //    }
     
 }

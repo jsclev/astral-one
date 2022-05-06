@@ -110,7 +110,7 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                             if tiledId <= 24 {
                                                 if let terrain = getTerrain(tiledId: tiledId) {
                                                     // print("Adding tile [\(tile.id)] at position [\(mapRowIndex),\(0),\(layerOrdinal)]")
-                                                    try map.add(tile: Tile(row: mapRowIndex,
+                                                    try map.add(tile: Tile(row: 119 - mapRowIndex,
                                                                            col: col,
                                                                            terrain: terrain))
                                                 }
@@ -122,9 +122,9 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                                 print("Tiled ID: \(strLocalTileId), layerOrdinal: \(layerOrdinal)")
 
                                                 let unit = UnitFactory.createUnit(tiledId: tiledId,
-                                                                                  row: mapRowIndex,
+                                                                                  row: 119 - mapRowIndex,
                                                                                   col: col)
-                                                let tile = try map.tile(row: mapRowIndex, col: col)
+                                                let tile = try map.tile(row: 119 - mapRowIndex, col: col)
                                                 tile.add(unit: unit)
                                             }
                                         }

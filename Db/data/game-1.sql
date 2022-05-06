@@ -1,5 +1,10 @@
 insert into game values (1, 'Rome Was Built In A Day', '2022-03-31');
 
+insert into player values (1, 1, 1, 'King Tut', 'Human');
+insert into player values (2, 1, 2, 'Tha Pope', 'AI');
+insert into player values (3, 1, 3, 'Magic Mike', 'AI');
+insert into player values (4, 1, 4, 'Mr. Big Stuff', 'AI');
+
 -- Tiles 1 - 10
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 50, 50, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 51, 51, 1, FALSE);
@@ -71,9 +76,6 @@ insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 63, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 64, 1, FALSE);
 insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 59, 65, 1, FALSE);
-
-insert into player (game_id, ordinal, name, type) values (1, 1, 'Mr. Caesar', 'Human');
-insert into player (game_id, ordinal, name, type) values (1, 1, 'Mr. Big Stuff', 'AI');
 
 -- Turn 1: Build city
 insert into city values (1, 1, 1, 57, 'Rome');

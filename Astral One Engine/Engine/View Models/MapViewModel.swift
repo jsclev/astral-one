@@ -59,7 +59,7 @@ public class MapViewModel {
         else if scale * cameraPosition.x > xThreshold {
             cameraPosition.x = xThreshold
         }
-        
+
         if scale * cameraPosition.y > yTheshold {
             cameraPosition.y = yTheshold
         }
