@@ -2,11 +2,13 @@ import GameplayKit
 import SwiftUI
 
 public class Explorer: Unit {
-    public init(playerId: Int,
+    public init(theme: Theme,
+                playerId: Int,
                 name: String,
                 row: Int,
                 col: Int) {
-        super.init(playerId: playerId,
+        super.init(theme: theme,
+                   playerId: playerId,
                    tiledId: 100,
                    name: name,
                    assetName: "Units/Misc/explorer",
@@ -29,11 +31,14 @@ public class ExplorerOld: Unit {
     private let game: Game
     private var position: SIMD2<Int32>
     
-    public init(game: Game, position: SIMD2<Int32>) {
+    public init(theme: Theme,
+                game: Game,
+                position: SIMD2<Int32>) {
         self.game = game
         self.position = position
         
-        super.init(playerId: 1,
+        super.init(theme: theme,
+                   playerId: 1,
                    tiledId: 27,
                    name: "Explorer",
                    assetName: "explorer",

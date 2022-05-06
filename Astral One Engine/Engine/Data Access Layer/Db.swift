@@ -101,7 +101,8 @@ public class Db {
     }
     
     public func getGameBy(gameId: Int) throws -> Game {
-        let game = Game()
+        let theme = Theme(id: 2, name: "Sci-Fi")
+        let game = Game(theme: theme)
         
         game.map = try mapDao.get(gameId: gameId)
 

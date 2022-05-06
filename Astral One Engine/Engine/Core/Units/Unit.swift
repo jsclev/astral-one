@@ -2,6 +2,7 @@ import Foundation
 import GameplayKit
 
 public class Unit: GKEntity {
+    public let theme: Theme
     public let playerId: Int
     public let tiledId: Int
     public let name: String
@@ -17,7 +18,8 @@ public class Unit: GKEntity {
     public let row: Int
     public let col: Int
     
-    public init(playerId: Int,
+    public init(theme: Theme,
+                playerId: Int,
                 tiledId: Int,
                 name: String,
                 assetName: String,
@@ -29,10 +31,11 @@ public class Unit: GKEntity {
                 maxMovementPoints: Double,
                 row: Int,
                 col: Int) {
+        self.theme = theme
         self.playerId = playerId
         self.tiledId = tiledId
         self.name = name
-        self.assetName = Constants.theme + "/" + assetName
+        self.assetName = theme.name + "/" + assetName
         self.cost = cost
         self.maxHp = maxHp
         self.currentHp = maxHp

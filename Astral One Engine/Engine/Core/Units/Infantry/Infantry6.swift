@@ -1,11 +1,13 @@
 import Foundation
 
 public class Infantry6: Unit {
-    public init(playerId: Int,
+    public init(theme: Theme,
+                playerId: Int,
                 name: String,
                 row: Int,
                 col: Int) {
-        super.init(playerId: playerId,
+        super.init(theme: theme,
+                   playerId: playerId,
                    tiledId: 101,
                    name: name,
                    assetName: "Units/Infantry/infantry-6",

@@ -31,7 +31,8 @@ public class CityDAO: BaseDAO {
                 let col = getInt(stmt: stmt, colIndex: 6)
                 
                 if let cityName = try getString(stmt: stmt, colIndex: 4) {
-                    cities.append(City(playerId: 1,
+                    cities.append(City(theme: Theme(id: 1, name: "Standard"),
+                                       playerId: 1,
                                        name: cityName,
                                        assetName: "city-1",
                                        row: row,

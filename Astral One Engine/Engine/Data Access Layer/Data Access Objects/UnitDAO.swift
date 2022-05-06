@@ -178,21 +178,27 @@ public class UnitDAO: BaseDAO {
         var stmt: OpaquePointer?
         let sql = """
             SELECT
-                u.unit_id,
-                u.game_id,
-                u.tile_id,
-                u.unit_type_id,
-                ut.name,
-                ut.display_name,
-                t.row,
-                t.col,
-                t.terrain_id
+                unit.unit_id,
+                unit.game_id,
+                unit.tile_id,
+                unit.unit_type_id,
+                unit_type.name,
+                unit_type.display_name,
+                tile.row,
+                tile.col,
+                tile.terrain_id,
+                theme.theme_id,
+                theme.name
             FROM
-                unit u
+                unit
             INNER JOIN
-                unit_type ut ON ut.unit_type_id = u.unit_type_id
+                unit_type ON unit_type.unit_type_id = unit.unit_type_id
+            INNER JOIN
+                theme ON theme.theme_id = unit_type.theme_id
             LEFT OUTER JOIN
-                tile t ON t.tile_id = u.tile_id
+                tile ON tile.tile_id = unit.tile_id
+            WHERE
+                unit.game_id = \(gameId)
         """
         
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
@@ -203,12 +209,15 @@ public class UnitDAO: BaseDAO {
                 //                let unitTypeId = getInt(stmt: stmt, colIndex: 3)
                 let row = getInt(stmt: stmt, colIndex: 6)
                 let col = getInt(stmt: stmt, colIndex: 7)
-                //                let terrainId = getInt(stmt: stmt, colIndex: 6)
+                let themeId = getInt(stmt: stmt, colIndex: 9)
                 //                var terrainType = TerrainType.None
                 
                 if let unitTypeName = try getString(stmt: stmt, colIndex: 4),
-                   let unitTypeDisplayName = try getString(stmt: stmt, colIndex: 5) {
-                    units.append(getUnit(typeName: unitTypeName,
+                   let unitTypeDisplayName = try getString(stmt: stmt, colIndex: 5),
+                   let themeName = try getString(stmt: stmt, colIndex: 10) {
+                    let theme = Theme(id: themeId, name: themeName)
+                    units.append(getUnit(theme: theme,
+                                         typeName: unitTypeName,
                                          name: unitTypeDisplayName,
                                          row: row,
                                          col: col))
@@ -221,265 +230,321 @@ public class UnitDAO: BaseDAO {
         return units
     }
     
-    private func getUnit(typeName: String, name: String, row: Int, col: Int) -> Unit {
+    private func getUnit(theme: Theme,
+                         typeName: String,
+                         name: String,
+                         row: Int,
+                         col: Int) -> Unit {
         switch typeName {
         case "Air1":
-            return Air1(playerId: 1,
+            return Air1(theme: theme,
+                        playerId: 1,
                         name: name,
                         row: row,
                         col: col)
         case "Air2":
-            return Air2(playerId: 1,
+            return Air2(theme: theme,
+                        playerId: 1,
                         name: name,
                         row: row,
                         col: col)
         case "Air3":
-            return Air3(playerId: 1,
+            return Air3(theme: theme,
+                        playerId: 1,
                         name: name,
                         row: row,
                         col: col)
         case "Air4":
-            return Air4(playerId: 1,
+            return Air4(theme: theme,
+                        playerId: 1,
                         name: name,
                         row: row,
                         col: col)
         case "Air5":
-            return Air5(playerId: 1,
+            return Air5(theme: theme,
+                        playerId: 1,
                         name: name,
                         row: row,
                         col: col)
         case "AircraftCarrier":
-            return AircraftCarrier(playerId: 1,
+            return AircraftCarrier(theme: theme,
+                                   playerId: 1,
                                    name: name,
                                    row: row,
                                    col: col)
         case "AlpineTroop":
-            return AlpineTroop(playerId: 1,
+            return AlpineTroop(theme: theme,
+                               playerId: 1,
                                name: name,
                                row: row,
                                col: col)
         case "Artillery1":
-            return Artillery1(playerId: 1,
+            return Artillery1(theme: theme,
+                              playerId: 1,
                               name: name,
                               row: row,
                               col: col)
         case "Artillery2":
-            return Artillery2(playerId: 1,
+            return Artillery2(theme: theme,
+                              playerId: 1,
                               name: name,
                               row: row,
                               col: col)
         case "Artillery3":
-            return Artillery3(playerId: 1,
+            return Artillery3(theme: theme,
+                              playerId: 1,
                               name: name,
                               row: row,
                               col: col)
         case "Artillery4":
-            return Artillery4(playerId: 1,
+            return Artillery4(theme: theme,
+                              playerId: 1,
                               name: name,
                               row: row,
                               col: col)
         case "Crusader":
-            return Crusader(playerId: 1,
+            return Crusader(theme: theme,
+                            playerId: 1,
                             name: name,
                             row: row,
                             col: col)
         case "Cavalry1":
-            return Cavalry1(playerId: 1,
+            return Cavalry1(theme: theme,
+                            playerId: 1,
                             name: name,
                             row: row,
                             col: col)
         case "Cavalry2":
-            return Cavalry2(playerId: 1,
+            return Cavalry2(theme: theme,
+                            playerId: 1,
                             name: name,
                             row: row,
                             col: col)
         case "Cavalry3":
-            return Cavalry3(playerId: 1,
+            return Cavalry3(theme: theme,
+                            playerId: 1,
                             name: name,
                             row: row,
                             col: col)
         case "Cavalry4":
-            return Cavalry4(playerId: 1,
+            return Cavalry4(theme: theme,
+                            playerId: 1,
                             name: name,
                             row: row,
                             col: col)
         case "Cavalry5":
-            return Cavalry5(playerId: 1,
+            return Cavalry5(theme: theme,
+                            playerId: 1,
                             name: name,
                             row: row,
                             col: col)
         case "Cavalry6":
-            return Cavalry6(playerId: 1,
+            return Cavalry6(theme: theme,
+                            playerId: 1,
                             name: name,
                             row: row,
                             col: col)
         case "Cavalry7":
-            return Cavalry7(playerId: 1,
+            return Cavalry7(theme: theme,
+                            playerId: 1,
                             name: name,
                             row: row,
                             col: col)
         case "Cavalry8":
-            return Cavalry8(playerId: 1,
+            return Cavalry8(theme: theme,
+                            playerId: 1,
                             name: name,
                             row: row,
                             col: col)
         case "CityCreator":
-            return CityCreator(playerId: 1,
+            return CityCreator(theme: theme,
+                               playerId: 1,
                                name: name,
                                row: row,
                                col: col)
         case "CruiseMissile":
-            return CruiseMissile(playerId: 1,
+            return CruiseMissile(theme: theme,
+                                 playerId: 1,
                                  name: name,
                                  row: row,
                                  col: col)
         case "Diplomat":
-            return Diplomat(playerId: 1,
+            return Diplomat(theme: theme,
+                            playerId: 1,
                             name: name,
                             row: row,
                             col: col)
         case "Engineer":
-            return Engineer(playerId: 1,
+            return Engineer(theme: theme,
+                            playerId: 1,
                             name: name,
                             row: row,
                             col: col)
         case "Fanatic":
-            return Fanatic(playerId: 1,
+            return Fanatic(theme: theme,
+                           playerId: 1,
                            name: name,
                            row: row,
                            col: col)
         case "Infantry1":
-            return Infantry1(playerId: 1,
+            return Infantry1(theme: theme,
+                             playerId: 1,
                              name: name,
                              row: row,
                              col: col)
         case "Infantry2":
-            return Infantry2(playerId: 1,
+            return Infantry2(theme: theme,
+                             playerId: 1,
                              name: name,
                              row: row,
                              col: col)
         case "Infantry3":
-            return Infantry3(playerId: 1,
+            return Infantry3(theme: theme,
+                             playerId: 1,
                              name: name,
                              row: row,
                              col: col)
         case "Infantry4":
-            return Infantry4(playerId: 1,
+            return Infantry4(theme: theme,
+                             playerId: 1,
                              name: name,
                              row: row,
                              col: col)
         case "Infantry5":
-            return Infantry5(playerId: 1,
+            return Infantry5(theme: theme,
+                             playerId: 1,
                              name: name,
                              row: row,
                              col: col)
         case "Infantry6":
-            return Infantry6(playerId: 1,
+            return Infantry6(theme: theme,
+                             playerId: 1,
                              name: name,
                              row: row,
                              col: col)
         case "Infantry7":
-            return Infantry7(playerId: 1,
+            return Infantry7(theme: theme,
+                             playerId: 1,
                              name: name,
                              row: row,
                              col: col)
         case "Infantry8":
-            return Infantry8(playerId: 1,
+            return Infantry8(theme: theme,
+                             playerId: 1,
                              name: name,
                              row: row,
                              col: col)
         case "Marine":
-            return Marine(playerId: 1,
+            return Marine(theme: theme,
+                          playerId: 1,
                           name: name,
                           row: row,
                           col: col)
         case "Naval1":
-            return Naval1(playerId: 1,
+            return Naval1(theme: theme,
+                          playerId: 1,
                           name: name,
                           row: row,
                           col: col)
         case "Naval2":
-            return Naval2(playerId: 1,
+            return Naval2(theme: theme,
+                          playerId: 1,
                           name: name,
                           row: row,
                           col: col)
         case "Naval3":
-            return Naval3(playerId: 1,
+            return Naval3(theme: theme,
+                          playerId: 1,
                           name: name,
                           row: row,
                           col: col)
         case "Naval4":
-            return Naval4(playerId: 1,
+            return Naval4(theme: theme,
+                          playerId: 1,
                           name: name,
                           row: row,
                           col: col)
         case "Naval5":
-            return Naval5(playerId: 1,
+            return Naval5(theme: theme,
+                          playerId: 1,
                           name: name,
                           row: row,
                           col: col)
         case "Naval6":
-            return Naval6(playerId: 1,
+            return Naval6(theme: theme,
+                          playerId: 1,
                           name: name,
                           row: row,
                           col: col)
         case "Naval7":
-            return Naval7(playerId: 1,
+            return Naval7(theme: theme,
+                          playerId: 1,
                           name: name,
                           row: row,
                           col: col)
         case "Naval8":
-            return Naval8(playerId: 1,
+            return Naval8(theme: theme,
+                          playerId: 1,
                           name: name,
                           row: row,
                           col: col)
         case "Naval9":
-            return Naval9(playerId: 1,
+            return Naval9(theme: theme,
+                          playerId: 1,
                           name: name,
                           row: row,
                           col: col)
         case "NavalTransport":
-            return NavalTransport(playerId: 1,
+            return NavalTransport(theme: theme,
+                                  playerId: 1,
                                   name: name,
                                   row: row,
                                   col: col)
         case "NuclearMissile":
-            return NuclearMissile(playerId: 1,
+            return NuclearMissile(theme: theme,
+                                  playerId: 1,
                                   name: name,
                                   row: row,
                                   col: col)
         case "ParaTrooper":
-            return ParaTrooper(playerId: 1,
+            return ParaTrooper(theme: theme,
+                               playerId: 1,
                                name: name,
                                row: row,
                                col: col)
         case "Partisan":
-            return Partisan(playerId: 1,
+            return Partisan(theme: theme,
+                            playerId: 1,
                             name: name,
                             row: row,
                             col: col)
         case "Spy":
-            return Spy(playerId: 1,
+            return Spy(theme: theme,
+                       playerId: 1,
                        name: name,
                        row: row,
                        col: col)
         case "Submarine":
-            return Submarine(playerId: 1,
+            return Submarine(theme: theme,
+                             playerId: 1,
                              name: name,
                              row: row,
                              col: col)
         case "Trade1":
-            return Trade1(playerId: 1,
+            return Trade1(theme: theme,
+                          playerId: 1,
                           name: name,
                           row: row,
                           col: col)
         case "Trade2":
-            return Trade2(playerId: 1,
+            return Trade2(theme: theme,
+                          playerId: 1,
                           name: name,
                           row: row,
                           col: col)
         default:
-            return Infantry1(playerId: 1,
+            return Infantry1(theme: theme,
+                             playerId: 1,
                              name: name,
                              row: row,
                              col: col)

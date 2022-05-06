@@ -42,6 +42,7 @@
 		5266816E28233D0D0089D0DD /* CruiseMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266816D28233D0D0089D0DD /* CruiseMissile.swift */; };
 		5266817028233D600089D0DD /* NuclearMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266816F28233D600089D0DD /* NuclearMissile.swift */; };
 		5266817228242B030089D0DD /* TileCoordsMapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266817128242B030089D0DD /* TileCoordsMapLayer.swift */; };
+		526681742824E8D40089D0DD /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526681732824E8D40089D0DD /* Theme.swift */; };
 		527A0D85280F6884006B9D9F /* MapError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527A0D84280F6884006B9D9F /* MapError.swift */; };
 		5293BC26280A4947001DE2F3 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293BC25280A4947001DE2F3 /* Queue.swift */; };
 		5293BC28280B6A86001DE2F3 /* Cavalry7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293BC27280B6A86001DE2F3 /* Cavalry7.swift */; };
@@ -176,6 +177,7 @@
 		5266816D28233D0D0089D0DD /* CruiseMissile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CruiseMissile.swift; sourceTree = "<group>"; };
 		5266816F28233D600089D0DD /* NuclearMissile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NuclearMissile.swift; sourceTree = "<group>"; };
 		5266817128242B030089D0DD /* TileCoordsMapLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCoordsMapLayer.swift; sourceTree = "<group>"; };
+		526681732824E8D40089D0DD /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		527A0D84280F6884006B9D9F /* MapError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapError.swift; sourceTree = "<group>"; };
 		5293BC25280A4947001DE2F3 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		5293BC27280B6A86001DE2F3 /* Cavalry7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cavalry7.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				52E0B19927E6DFA000607FBE /* Game.swift */,
 				52E0B19D27E6DFA100607FBE /* EntityManager.swift */,
 				52DE5F80281C6DB60029EFE1 /* Player.swift */,
+				526681732824E8D40089D0DD /* Theme.swift */,
 				52F9044A27F8E56200D1AC97 /* Turn.swift */,
 			);
 			path = Core;
@@ -741,6 +744,7 @@
 				52DE5FBB2822E6CC0029EFE1 /* Marine.swift in Sources */,
 				521F21D42806985800F1D61D /* TerrainType.swift in Sources */,
 				521F21D72806996100F1D61D /* Tile.swift in Sources */,
+				526681742824E8D40089D0DD /* Theme.swift in Sources */,
 				52012F602803A77A008388F6 /* Founder.swift in Sources */,
 				52E0B19E27E6DFA100607FBE /* Game.swift in Sources */,
 				52F9045227F9F92C00D1AC97 /* Command.swift in Sources */,

@@ -1,11 +1,13 @@
 import Foundation
 
 public class Fanatic: Unit {
-    public init(playerId: Int,
+    public init(theme: Theme,
+                playerId: Int,
                 name: String,
                 row: Int,
                 col: Int) {
-        super.init(playerId: playerId,
+        super.init(theme: theme,
+                   playerId: playerId,
                    tiledId: 100,
                    name: name,
                    assetName: "Units/Misc/fanatic",

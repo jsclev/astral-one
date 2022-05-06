@@ -18,6 +18,14 @@ DROP TABLE IF EXISTS unit_type;
 DROP TABLE IF EXISTS tech;
 DROP TABLE IF EXISTS turn;
 
+CREATE TABLE theme (
+    theme_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT NOT NULL,
+    author TEXT,
+    source INTEGER NOT NULL
+);
+
 CREATE TABLE turn (
     turn_id INTEGER PRIMARY KEY,
     ordinal INTEGER NOT NULL,
@@ -34,7 +42,9 @@ CREATE TABLE unit_type (
     unit_type_id INTEGER PRIMARY KEY,
     tiled_id INTEGER NOT NULL,
     name TEXT NOT NULL,
-    display_name
+    display_name TEXT NOT NULL,
+    theme_id INTEGER NOT NULL,
+    FOREIGN KEY (theme_id) REFERENCES theme (theme_id)
 );
 
 CREATE TABLE building_type (
@@ -52,6 +62,7 @@ CREATE TABLE tech (
 CREATE TABLE game (
     game_id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
+    theme_id INTEGER NOT NULL,
     created_at TEXT
 );
 
@@ -113,7 +124,7 @@ CREATE TABLE unit (
     game_id INTEGER NOT NULL,
     player_id INTEGER NOT NULL,
     unit_type_id INTEGER NOT NULL,
-    tile_id INTEGER,
+    tile_id INTEGER NOT NULL,
     FOREIGN KEY (game_id) REFERENCES game (game_id),
     FOREIGN KEY (unit_type_id) REFERENCES unit_type (unit_type_id),
     FOREIGN KEY (tile_id) REFERENCES tile (tile_id)
@@ -123,8 +134,8 @@ CREATE TABLE city (
     city_id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
     player_id INTEGER NOT NULL,
-    tile_id INTEGER NOT NULL,
     name TEXT NOT NULL,
+    tile_id INTEGER NOT NULL,
     FOREIGN KEY (game_id) REFERENCES game (game_id),
     FOREIGN KEY (tile_id) REFERENCES tile (tile_id)
 );
@@ -171,3 +182,5 @@ CREATE TABLE building_command (
     command_id INTEGER NOT NULL,
     building_id INTEGER NOT NULL
 );
+
+

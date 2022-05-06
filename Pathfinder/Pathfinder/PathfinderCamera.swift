@@ -28,6 +28,7 @@ class PathfinderCamera: SKCameraNode {
         positionLabel.horizontalAlignmentMode = .left
         positionLabel.zPosition = Layer.hud
         
+        
         super.init()
         
         name = "camera"

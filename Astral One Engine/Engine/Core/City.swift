@@ -7,14 +7,15 @@ public class City {
     public let row: Int
     public let col: Int
     
-    public init(playerId: Int,
+    public init(theme: Theme,
+                playerId: Int,
                 name: String,
                 assetName: String,
                 row: Int,
                 col: Int) {
         self.playerId = playerId
         self.name = name
-        self.assetName = Constants.theme + "/Cities/" + assetName
+        self.assetName = theme.name + "/Cities/" + assetName
         self.row = row
         self.col = col
     }
