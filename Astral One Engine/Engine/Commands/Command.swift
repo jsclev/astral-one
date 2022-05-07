@@ -4,15 +4,15 @@ public class Command: CustomStringConvertible {
     public let commandId: Int
     public let gameId: Int
     public let turn: Turn
-    public let playerId: Int
+    public let player: Player
     public let type: CommandType
     public let ordinal: Int
     
-    init(commandId: Int, gameId: Int, turn: Turn, playerId: Int, type: CommandType, ordinal: Int) {
+    init(commandId: Int, gameId: Int, turn: Turn, player: Player, type: CommandType, ordinal: Int) {
         self.commandId = commandId
         self.gameId = gameId
         self.turn = turn
-        self.playerId = playerId
+        self.player = player
         self.type = type
         self.ordinal = ordinal
     }
@@ -23,7 +23,7 @@ public class Command: CustomStringConvertible {
     
     public var description: String {
         return "{id: \(commandId), game: \(gameId), turn: \(turn), " +
-        "playerId: \(playerId), type: \(type), ordinal: \(ordinal)}"
+        "player: \(player), type: \(type), ordinal: \(ordinal)}"
     }
     
     public func execute() {

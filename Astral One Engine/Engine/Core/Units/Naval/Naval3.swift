@@ -4,8 +4,7 @@ public class Naval3: Unit {
     public init(theme: Theme,
                 playerId: Int,
                 name: String,
-                row: Int,
-                col: Int) {
+                position: Position) {
         super.init(theme: theme,
                    playerId: playerId,
                    tiledId: 100,
@@ -17,8 +16,7 @@ public class Naval3: Unit {
                    defenseRating: 4,
                    fp: 1,
                    maxMovementPoints: 4.0,
-                   row: row,
-                   col: col)
+                   position: position)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -7,7 +7,7 @@ public class BuildBuildingCommand: Command {
     public init(commandId: Int,
                 gameId: Int,
                 turn: Turn,
-                playerId: Int,
+                player: Player,
                 type: CommandType,
                 ordinal: Int,
                 unit: Unit,
@@ -17,7 +17,7 @@ public class BuildBuildingCommand: Command {
         super.init(commandId: commandId,
                    gameId: gameId,
                    turn: turn,
-                   playerId: playerId,
+                   player: player,
                    type: type,
                    ordinal: ordinal)
     }

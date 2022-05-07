@@ -124,22 +124,22 @@ public class MapView {
     public func renderPlayer() {
         for player in game.players {
             for city in player.cities {
-                let node = CityNode(game: game, city: city)
-                node.position = getCenterPoint(row: city.row, col: city.col)
+                let node = CityNode(city: city)
+                node.position = getCenterPoint(row: city.position.row, col: city.position.col)
                 node.zPosition = Layer.cities
                 scene.addChild(node)
             }
             
             for creator in player.cityCreators {
                 let node = FounderNode(game: game, cityCreator: creator)
-                node.position = getCenterPoint(row: creator.row, col: creator.col)
+                node.position = getCenterPoint(row: creator.position.row, col: creator.position.col)
                 node.zPosition = Layer.contextMenu
                 scene.addChild(node)
             }
             
             for unit in player.units {
-                let unitNode = UnitNode(game: game, unit: unit)
-                unitNode.position = getCenterPoint(row: unit.row, col: unit.col)
+                let unitNode = UnitNode(game: game, unit: unit, mapView: self)
+                unitNode.position = getCenterPoint(row: unit.position.row, col: unit.position.col)
                 unitNode.zPosition = Layer.contextMenu
                 scene.addChild(unitNode)
             }

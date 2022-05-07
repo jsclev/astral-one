@@ -1,25 +1,24 @@
 import Foundation
+import SpriteKit
 
-public class TechCommand: Command {
-//    private let unit: Unit
-//    private let toPosition: String
+public class NextTurnCommand: Command {
+    private let game: Game
     
     public init(commandId: Int,
-                gameId: Int,
+                game: Game,
                 turn: Turn,
                 player: Player,
                 type: CommandType,
-                ordinal: Int,
-                unit: Unit,
-                toPosition: String) {
-        //        self.unit = unit
-        //        self.toPosition = toPosition
+                ordinal: Int) {
+        self.game = game
+        
         super.init(commandId: commandId,
-                   gameId: gameId,
+                   gameId: 1,
                    turn: turn,
                    player: player,
                    type: type,
                    ordinal: ordinal)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,6 +26,6 @@ public class TechCommand: Command {
     }
     
     public override func execute() {
-        print("Executing tech command")
+        game.nextTurn()
     }
 }

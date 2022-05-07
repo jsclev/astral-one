@@ -32,11 +32,10 @@ public class CityDAO: BaseDAO {
                 
                 if let cityName = try getString(stmt: stmt, colIndex: 4) {
                     cities.append(City(theme: Theme(id: 1, name: "Standard"),
-                                       playerId: 1,
+                                       player: Player(playerId: 1),
                                        name: cityName,
                                        assetName: "city-1",
-                                       row: row,
-                                       col: col))
+                                       position: Position(row: row, col: col)))
                 }
             }
         }

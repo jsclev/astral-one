@@ -1,24 +1,25 @@
 import Foundation
+import SpriteKit
 
 public class MoveCommand: Command {
     public let unit: Unit
-    public let toPosition: String
+    public let to: Position
     
     public init(commandId: Int,
                 gameId: Int,
                 turn: Turn,
-                playerId: Int,
+                player: Player,
                 type: CommandType,
                 ordinal: Int,
                 unit: Unit,
-                toPosition: String) {
+                to: Position) {
         self.unit = unit
-        self.toPosition = toPosition
+        self.to = to
         
         super.init(commandId: commandId,
                    gameId: gameId,
                    turn: turn,
-                   playerId: playerId,
+                   player: player,
                    type: type,
                    ordinal: ordinal)
 
@@ -29,6 +30,6 @@ public class MoveCommand: Command {
     }
 
     public override func execute() {
-        print("Executing move command")
+        unit.moveTo(position: to)
     }
 }

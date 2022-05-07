@@ -4,6 +4,7 @@ public enum Layer {
     public static let base: CGFloat = 0.0
     public static let terrain: CGFloat = 100.0
     public static let cities: CGFloat = 200.0
+    public static let cityNames: CGFloat = 250.0
     public static let units: CGFloat = 300.0
     public static let unitPath: CGFloat = 400.0
     public static let unitPath2: CGFloat = 450.0

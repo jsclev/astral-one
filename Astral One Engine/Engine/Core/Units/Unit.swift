@@ -1,7 +1,7 @@
 import Foundation
 import GameplayKit
 
-public class Unit: GKEntity {
+public class Unit: GKEntity, ObservableObject {
     public let theme: Theme
     public let playerId: Int
     public let tiledId: Int
@@ -15,8 +15,7 @@ public class Unit: GKEntity {
     public let fp: Double
     public let maxMovementPoints: Double
     public var currentMovementPoints: Double
-    public let row: Int
-    public let col: Int
+    @Published public var position: Position
     
     public init(theme: Theme,
                 playerId: Int,
@@ -29,8 +28,7 @@ public class Unit: GKEntity {
                 defenseRating: Double,
                 fp: Double,
                 maxMovementPoints: Double,
-                row: Int,
-                col: Int) {
+                position: Position) {
         self.theme = theme
         self.playerId = playerId
         self.tiledId = tiledId
@@ -44,8 +42,7 @@ public class Unit: GKEntity {
         self.fp = fp
         self.maxMovementPoints = maxMovementPoints
         self.currentMovementPoints = maxMovementPoints
-        self.row = row
-        self.col = col
+        self.position = position
         
         super.init()
     }
@@ -54,11 +51,15 @@ public class Unit: GKEntity {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func moveTo(position: Position) {
+        self.position = position
+    }
+    
     public func getChebyshevDistance(toRow: Int, toCol: Int) -> Int {
         // This is also known as the "Chessboard distance"
         // See https://towardsdatascience.com/3-distances-that-every-data-scientist-should-know-59d864e5030a
-        let xDistance = abs(toCol - col)
-        let yDistance = abs(toRow - row)
+        let xDistance = abs(toCol - position.col)
+        let yDistance = abs(toRow - position.row)
         
         return max(xDistance, yDistance)
     }
@@ -66,8 +67,8 @@ public class Unit: GKEntity {
     public func getChebyshevDistance(to: Unit) -> Int {
         // This is also known as the "Chessboard distance"
         // See https://towardsdatascience.com/3-distances-that-every-data-scientist-should-know-59d864e5030a
-        let xDistance = abs(to.col - col)
-        let yDistance = abs(to.row - row)
+        let xDistance = abs(to.position.col - position.col)
+        let yDistance = abs(to.position.row - position.row)
         
         return max(xDistance, yDistance)
     }
@@ -85,7 +86,7 @@ public class Unit: GKEntity {
 
         for mapRow in 0..<map.height {
             for mapCol in 0..<map.width {
-                if mapRow == row && mapCol == col {
+                if mapRow == position.row && mapCol == position.col {
                     graph.add(node: ValueNode(row: mapRow, col: mapCol, value: 1.0))
                     continue
                 }

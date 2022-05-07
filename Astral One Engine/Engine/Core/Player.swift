@@ -1,8 +1,9 @@
 import Foundation
+import Combine
 
-public class Player {
+public class Player: ObservableObject {
     public let playerId: Int
-    public var cities: [City] = []
+    @Published public var cities: [City] = []
     public var cityCreators: [CityCreator] = []
     public var units: [Unit] = []
     

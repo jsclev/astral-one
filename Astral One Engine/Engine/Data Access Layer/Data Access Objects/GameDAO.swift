@@ -28,7 +28,6 @@ public class GameDAO: BaseDAO {
         return Infantry1(theme: Theme(id: 1, name: "Standard"),
                          playerId: 1,
                          name: unitName,
-                         row: 0,
-                         col: 0)
+                         position: Position(row: 0, col: 0))
     }
 }

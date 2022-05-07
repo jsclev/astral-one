@@ -44,6 +44,7 @@ CREATE TABLE unit_type (
     name TEXT NOT NULL,
     display_name TEXT NOT NULL,
     theme_id INTEGER NOT NULL,
+    notes TEXT,
     FOREIGN KEY (theme_id) REFERENCES theme (theme_id)
 );
 

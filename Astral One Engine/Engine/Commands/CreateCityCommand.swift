@@ -1,23 +1,22 @@
 import Foundation
 
-public class BuildCityCommand: Command {
-    //    private let unit: Unit
-    //    private let toPosition: String
+public class CreateCityCommand: Command {
+    private let city: City
     
     public init(commandId: Int,
                 gameId: Int,
                 turn: Turn,
-                playerId: Int,
+                player: Player,
                 type: CommandType,
                 ordinal: Int,
-                unit: Unit,
-                toPosition: String) {
-        //        self.unit = unit
-        //        self.toPosition = toPosition
+                city: City,
+                position: Position) {
+        self.city = city
+        
         super.init(commandId: commandId,
                    gameId: gameId,
                    turn: turn,
-                   playerId: playerId,
+                   player: player,
                    type: type,
                    ordinal: ordinal)
     }
@@ -27,6 +26,6 @@ public class BuildCityCommand: Command {
     }
     
     public override func execute() {
-        print("Executing build city command")
+        player.add(city: city)
     }
 }

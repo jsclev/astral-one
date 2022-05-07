@@ -61,57 +61,54 @@ public class CommandDAO: BaseDAO {
                             commands.append(MoveCommand(commandId: commandId,
                                                         gameId: gameId,
                                                         turn: turn,
-                                                        playerId: playerId,
+                                                        player: Player(playerId: playerId),
                                                         type: commandType,
                                                         ordinal: commandOrdinal,
                                                         unit: Infantry1(theme: Theme(id: 1, name: "Standard"),
                                                                         playerId: 1,
                                                                         name: "Warrior",
-                                                                        row: 0,
-                                                                        col: 0),
-                                                        toPosition: "Hello"))
+                                                                        position: Position(row: 0, col: 0)),
+                                                        to: Position(row: 0, col: 0)))
                         }
                         else if commandName == "Research Tech" {
                             commands.append(TechCommand(commandId: commandId,
                                                         gameId: gameId,
                                                         turn: turn,
-                                                        playerId: playerId,
+                                                        player: Player(playerId: playerId),
                                                         type: commandType,
                                                         ordinal: commandOrdinal,
                                                         unit: Infantry1(theme: Theme(id: 1, name: "Standard"),
                                                                         playerId: 1,
                                                                         name: "Warrior",
-                                                                        row: 0,
-                                                                        col: 0),
+                                                                        position: Position(row: 0, col: 0)),
                                                         toPosition: "Hello"))
                         }
                         else if commandName == "Build Building" {
                             commands.append(BuildBuildingCommand(commandId: commandId,
                                                                  gameId: gameId,
                                                                  turn: turn,
-                                                                 playerId: playerId,
+                                                                 player: Player(playerId: playerId),
                                                                  type: commandType,
                                                                  ordinal: commandOrdinal,
                                                                  unit: Infantry1(theme: Theme(id: 1, name: "Standard"),
                                                                                  playerId: 1,
                                                                                  name: "Warrior",
-                                                                                 row: 0,
-                                                                                 col: 0),
+                                                                                 position: Position(row: 0, col: 0)),
                                                                  toPosition: "Hello"))
                         }
                         else if commandName == "Build City" {
-                            commands.append(BuildCityCommand(commandId: commandId,
+                            commands.append(CreateCityCommand(commandId: commandId,
                                                              gameId: gameId,
                                                              turn: turn,
-                                                             playerId: playerId,
+                                                             player: Player(playerId: playerId),
                                                              type: commandType,
                                                              ordinal: commandOrdinal,
-                                                             unit: Infantry1(theme: Theme(id: 1, name: "Standard"),
-                                                                             playerId: 1,
-                                                                             name: "Warrior",
-                                                                             row: 0,
-                                                                             col: 0),
-                                                             toPosition: "Hello"))
+                                                             city: City(theme: Theme(id: 1, name: "Standard"),
+                                                                        player: Player(playerId: playerId),
+                                                                        name: "New York",
+                                                                        assetName: "unknown",
+                                                                        position: Position(row: 0, col: 0)),
+                                                             position: Position(row: 0, col: 0)))
                         }
                     }
                 }
@@ -136,7 +133,7 @@ public class CommandDAO: BaseDAO {
         sql += "("
         sql += getSql(val: command.gameId, postfix: ", ")
         sql += getSql(val: command.turn.id, postfix: ", ")
-        sql += getSql(val: command.playerId, postfix: ", ")
+        sql += getSql(val: command.player.playerId, postfix: ", ")
         sql += getSql(val: command.type.id, postfix: ", ")
         sql += getSql(val: command.ordinal, postfix: "")
         sql += "), "
@@ -160,7 +157,7 @@ public class CommandDAO: BaseDAO {
         return Command(commandId: commandId,
                        gameId: command.gameId,
                        turn: command.turn,
-                       playerId: command.playerId,
+                       player: command.player,
                        type: command.type,
                        ordinal: command.ordinal)
     }
@@ -200,7 +197,7 @@ public class CommandDAO: BaseDAO {
         for moveCommand in moveCommands {
             sqlite3_bind_int(cmdStmt, 1, Int32(moveCommand.gameId))
             sqlite3_bind_int(cmdStmt, 2, Int32(moveCommand.turn.id))
-            sqlite3_bind_int(cmdStmt, 3, Int32(moveCommand.playerId))
+            sqlite3_bind_int(cmdStmt, 3, Int32(moveCommand.player.playerId))
             sqlite3_bind_int(cmdStmt, 4, Int32(moveCommand.type.id))
             sqlite3_bind_int(cmdStmt, 5, Int32(moveCommand.ordinal))
             
@@ -210,11 +207,11 @@ public class CommandDAO: BaseDAO {
                     newCommands.append(MoveCommand(commandId: commandId,
                                                    gameId: moveCommand.gameId,
                                                    turn: moveCommand.turn,
-                                                   playerId: moveCommand.playerId,
+                                                   player: moveCommand.player,
                                                    type: moveCommand.type,
                                                    ordinal: moveCommand.ordinal,
                                                    unit: moveCommand.unit,
-                                                   toPosition: moveCommand.toPosition))
+                                                   to: moveCommand.to))
                 }
                 else {
                     let errMsg = String(cString: sqlite3_errmsg(conn)!)

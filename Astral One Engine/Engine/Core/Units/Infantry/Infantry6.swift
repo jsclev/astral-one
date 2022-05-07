@@ -4,8 +4,7 @@ public class Infantry6: Unit {
     public init(theme: Theme,
                 playerId: Int,
                 name: String,
-                row: Int,
-                col: Int) {
+                position: Position) {
         super.init(theme: theme,
                    playerId: playerId,
                    tiledId: 101,
@@ -17,8 +16,7 @@ public class Infantry6: Unit {
                    defenseRating: 2,
                    fp: 1,
                    maxMovementPoints: 1.0,
-                   row: row,
-                   col: col)
+                   position: position)
     }
     
     required init?(coder aDecoder: NSCoder) {

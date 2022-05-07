@@ -7,26 +7,22 @@ public class UnitFactory {
             return Infantry1(theme: Theme(id: 1, name: "Standard"),
                              playerId: 1,
                              name: "Warrior",
-                             row: row,
-                             col: col)
+                             position: Position(row: row, col: col))
         case 25:
             return Cavalry7(theme: Theme(id: 1, name: "Standard"),
                             playerId: 1,
                             name: "Tank",
-                            row: row,
-                            col: col)
+                            position: Position(row: row, col: col))
         case 26:
             return Air1(theme: Theme(id: 1, name: "Standard"),
                         playerId: 1,
                         name: "Battleship",
-                        row: row,
-                        col: col)
+                        position: Position(row: row, col: col))
         case 27:
             return Infantry2(theme: Theme(id: 1, name: "Standard"),
                              playerId: 1,
                              name: "Explorer",
-                             row: row,
-                             col: col)
+                             position: Position(row: row, col: col))
         default:
             fatalError("Unable to create unit with Tiled Id \(tiledId).")
         }

@@ -215,6 +215,33 @@ class PathfinderScene: SKScene {
 //                                                 scene: self,
 //                                                 mapView: mapView,
 //                                                 layerIndex: 10000000)
+        let cityView = CityView(player: game.players[0], scene: self, mapView: mapView)
+        let turnView = TurnView(parent: gameCamera, game: game)
+        game.processCommands()
+        
+        for i in 0..<1000 {
+            let position = Position(row: Int.random(in: 0..<game.map.height),
+                                    col: Int.random(in: 0..<game.map.width))
+
+
+            let city = City(theme: Theme(id: 1, name: "Sci-Fi"),
+                            player: game.players[0],
+                            name: "City",
+                            assetName: "city-1",
+                            position: position)
+            let command = CreateCityCommand(commandId: i,
+                                            gameId: 1,
+                                            turn: game.getCurrentTurn(),
+                                            player: game.players[0],
+                                            type: CommandType(id: 1, name: "CreateCity"),
+                                            ordinal: i,
+                                            city: city,
+                                            position: position)
+            game.addCommand(command: command)
+        }
+        
+        game.processCommands()
+        
     }
     
     func printDate(string: String) {

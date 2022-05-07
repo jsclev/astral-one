@@ -42,14 +42,13 @@ public class MoveCommandDAO: BaseDAO {
         return MoveCommand(commandId: 1,
                            gameId: 1,
                            turn: turn,
-                           playerId: 1,
+                           player: moveCommand.player,
                            type: commandType,
                            ordinal: 1,
                            unit: Infantry1(theme: Theme(id: 1, name: "Standard"),
                                            playerId: 1,
                                            name: "Warrior",
-                                           row: 0,
-                                           col: 0),
-                           toPosition: "Hello")
+                                           position: Position(row: 0, col: 0)),
+                           to: Position(row: 0, col: 0))
     }
 }

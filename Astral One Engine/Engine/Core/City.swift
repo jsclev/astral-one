@@ -1,27 +1,24 @@
 import Foundation
 
 public class City {
-    public let playerId: Int
+    public let player: Player
     public let name: String
     public let assetName: String
-    public let row: Int
-    public let col: Int
+    public let position: Position
     
     public init(theme: Theme,
-                playerId: Int,
+                player: Player,
                 name: String,
                 assetName: String,
-                row: Int,
-                col: Int) {
-        self.playerId = playerId
+                position: Position) {
+        self.player = player
         self.name = name
         self.assetName = theme.name + "/Cities/" + assetName
-        self.row = row
-        self.col = col
+        self.position = position
     }
     
     public func getDiplomacyStatus(unit: Unit) -> DiplomacyStatus {
-        if playerId == unit.playerId {
+        if player.playerId == unit.playerId {
             return DiplomacyStatus.Same
         }
         
@@ -29,6 +26,6 @@ public class City {
     }
     
     public func getDistance(to: Unit) -> Int {
-        return abs(row - to.row) + abs(col - to.col) - 1
+        return abs(position.row - to.position.row) + abs(position.col - to.position.col) - 1
     }
 }

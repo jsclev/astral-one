@@ -171,6 +171,8 @@ insert into unit_type (tiled_id, name, display_name, theme_id) values (-1, 'Trad
 insert into unit_type (tiled_id, name, display_name, theme_id) values (-1, 'CruiseMissile', 'Cruise Missile', 3);
 insert into unit_type (tiled_id, name, display_name, theme_id) values (-1, 'NuclearMissile', 'Nuclear Missile', 3);
 
+insert into unit_type (tiled_id, name, display_name, theme_id) values (-1, 'Air1', 'Bomber', 3);
+
 -- Building types
 insert into building_type values (1, 'Airport');
 insert into building_type values (2, 'Aqueduct');
