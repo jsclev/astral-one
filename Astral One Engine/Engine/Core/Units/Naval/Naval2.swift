@@ -13,7 +13,7 @@ public class Naval2: Unit {
                    cost: 40,
                    maxHp: 10,
                    attackRating: 2,
-                   defenseRating: 1,
+                   defense: 1,
                    fp: 1,
                    maxMovementPoints: 3.0,
                    position: position)

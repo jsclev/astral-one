@@ -13,7 +13,7 @@ public class NavalTransport: Unit {
                    cost: 160,
                    maxHp: 40,
                    attackRating: 12,
-                   defenseRating: 12,
+                   defense: 12,
                    fp: 2,
                    maxMovementPoints: 4.0,
                    position: position)

@@ -1,10 +1,15 @@
 import Foundation
+import Combine
 
-public class City {
+public class City: ObservableObject {
     public let player: Player
     public let name: String
     public let assetName: String
     public let position: Position
+    private var barracks: Barracks?
+    
+    @Published var production: Int = 0
+    @Published var food: Int = 0
     
     public init(theme: Theme,
                 player: Player,
@@ -28,4 +33,9 @@ public class City {
     public func getDistance(to: Unit) -> Int {
         return abs(position.row - to.position.row) + abs(position.col - to.position.col) - 1
     }
+    
+    public func addBarracks() {
+        barracks = Barracks(imageName: "city-1")
+    }
+    
 }

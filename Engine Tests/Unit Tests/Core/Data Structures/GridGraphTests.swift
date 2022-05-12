@@ -64,7 +64,8 @@ class GridGraphTests: XCTestCase {
     }
 
     func testFindPathScenario1() throws {
-        let agent = Infantry1(playerId: 1, name: "Agent", row: 0, col: 0)
+        let theme = Theme(id: 1, name: "Test Theme")
+        let agent = Infantry1(theme: theme, playerId: 1, name: "Agent", position: Position(row: 0, col: 0))
         let terrain = Terrain(id: -1,
                               tiledId: 0,
                               name: "None",

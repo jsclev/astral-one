@@ -14,7 +14,7 @@ public class Explorer: Unit {
                    cost: 10,
                    maxHp: 10,
                    attackRating: 1,
-                   defenseRating: 1,
+                   defense: 1,
                    fp: 1,
                    maxMovementPoints: 1.0,
                    position: position)
@@ -43,7 +43,7 @@ public class Explorer: Unit {
 //                   cost: 10,
 //                   maxHp: 10,
 //                   attackRating: 1,
-//                   defenseRating: 1,
+//                   defense: 1,
 //                   fp: 1,
 //                   maxMovementPoints: 1.0,
 //                   row: Int(position.y),

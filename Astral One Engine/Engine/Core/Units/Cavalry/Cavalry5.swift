@@ -13,7 +13,7 @@ public class Cavalry5: Unit {
                    cost: 80,
                    maxHp: 30,
                    attackRating: 10,
-                   defenseRating: 5,
+                   defense: 5,
                    fp: 1,
                    maxMovementPoints: 3.0,
                    position: position)

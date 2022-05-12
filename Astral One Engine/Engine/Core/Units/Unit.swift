@@ -11,7 +11,7 @@ public class Unit: GKEntity, ObservableObject {
     public let maxHp: Double
     public var currentHp: Double
     public let attackRating: Double
-    public let defenseRating: Double
+    public let defense: Double
     public let fp: Double
     public let maxMovementPoints: Double
     public var currentMovementPoints: Double
@@ -25,7 +25,7 @@ public class Unit: GKEntity, ObservableObject {
                 cost: Double,
                 maxHp: Double,
                 attackRating: Double,
-                defenseRating: Double,
+                defense: Double,
                 fp: Double,
                 maxMovementPoints: Double,
                 position: Position) {
@@ -38,7 +38,7 @@ public class Unit: GKEntity, ObservableObject {
         self.maxHp = maxHp
         self.currentHp = maxHp
         self.attackRating = attackRating
-        self.defenseRating = defenseRating
+        self.defense = defense
         self.fp = fp
         self.maxMovementPoints = maxMovementPoints
         self.currentMovementPoints = maxMovementPoints

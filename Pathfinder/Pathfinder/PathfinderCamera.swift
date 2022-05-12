@@ -58,9 +58,9 @@ class PathfinderCamera: SKCameraNode {
             positionLabel.position = CGPoint(x: leftIconEdge, y: topIconEdge - 2 * verticalSpacer)
         }
         
-        addChild(startPositionIcon)
-        addChild(calculatePathIcon)
-        addChild(positionLabel)
+//        addChild(startPositionIcon)
+//        addChild(calculatePathIcon)
+//        addChild(positionLabel)
     }
     
     func updatePositionLabel(pos: CGPoint) {
