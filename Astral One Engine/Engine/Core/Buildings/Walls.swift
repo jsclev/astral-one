@@ -1,7 +1,7 @@
 import SpriteKit
 import GameplayKit
 
-public class Wall: GKEntity {
+public class Walls: GKEntity {
     public init(imageName: String) {
         super.init()
         

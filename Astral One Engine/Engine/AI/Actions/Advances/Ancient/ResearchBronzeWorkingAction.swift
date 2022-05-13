@@ -1,13 +1,13 @@
 import Foundation
 
-public class ResearchPotteryAction: Action {
-    public override init() {
-        super.init()
-        
+public class ResearchBronzeWorkingAction: Action {
+    public init() {
+        super.init(id: 1, name: "Research Bronze Working")
+
         preconditions = []
         
         effects = [
-            "unit_unlocked_cavalry1"
+            "unit_unlocked_infantry2"
         ]
         
         cost = 0
@@ -15,11 +15,11 @@ public class ResearchPotteryAction: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-        player.add(advance: Advance())
+        player.removeAvailable(action: self)
     }
     
     public override func clone() -> Action {
-        let copy = ResearchCeremonialBurialAction()
+        let copy = ResearchBronzeWorkingAction()
         
         copy.cost = self.cost
         copy.scienceCost = self.scienceCost

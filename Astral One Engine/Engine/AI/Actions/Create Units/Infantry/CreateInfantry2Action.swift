@@ -2,9 +2,9 @@ import Foundation
 
 public class CreateInfantry2Action: Action {
     
-    public override init() {
-        super.init()
-        
+    public init() {
+        super.init(id: 2, name: "Create Phalanx")
+
         preconditions = []
         effects = []
         cost = 20

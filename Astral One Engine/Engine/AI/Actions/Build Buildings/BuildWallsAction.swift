@@ -1,9 +1,9 @@
 import Foundation
 
 public class BuildWallsAction: Action {
-    public override init() {
-        super.init()
-        
+    public init() {
+        super.init(id: 2, name: "Build City Walls")
+
         preconditions = [
             "has_masonry_advance"
         ]
@@ -16,6 +16,10 @@ public class BuildWallsAction: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-//        player.add(advance: Advance())
+        if player.cities.count > 0 {
+            player.cities[0].addWalls()
+        }
+        
+        player.removeAvailable(action: BuildWallsAction())
     }
 }

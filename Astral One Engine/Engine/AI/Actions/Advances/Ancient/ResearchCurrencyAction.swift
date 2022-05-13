@@ -1,13 +1,13 @@
 import Foundation
 
-public class CreateInfantry1Action: Action {
+public class ResearchCurrencyAction: Action {
     
-    public override init() {
-        super.init()
+    public init() {
+        super.init(id: 2, name: "Create Horseman")
         
         preconditions = []
         effects = []
-        cost = 10
+        cost = 20
         scienceCost = 0
     }
     
@@ -19,14 +19,8 @@ public class CreateInfantry1Action: Action {
     }
     
     public override func clone() -> Action {
-        let copy = CreateInfantry1Action()
-        
-        copy.cost = self.cost
-        copy.scienceCost = self.scienceCost
-        copy.numTurns = self.numTurns
-        
-        copy.preconditions = self.preconditions
-        copy.effects = self.effects
+        let copy = CreateCavalry1Action()
+        copyProps(source: self, target: copy)
         
         return copy
     }

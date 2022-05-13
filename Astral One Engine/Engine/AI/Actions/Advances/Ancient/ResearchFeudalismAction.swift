@@ -1,9 +1,9 @@
 import Foundation
 
 public class ResearchFeudalismAction: Action {
-    public override init() {
-        super.init()
-        
+    public init() {
+        super.init(id: 2, name: "Research Feudalism")
+
         preconditions = [
             "advance_unlocked_warrior_code"
         ]
@@ -17,7 +17,9 @@ public class ResearchFeudalismAction: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-        player.add(advance: Advance())
+        player.removeAvailable(action: self)
+
+        player.addAvailable(action: ResearchChivalryAction())
     }
     
     

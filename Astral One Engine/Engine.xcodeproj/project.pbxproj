@@ -73,6 +73,24 @@
 		52A6463D282CCB5C0066B82D /* ActionSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6463C282CCB5C0066B82D /* ActionSequence.swift */; };
 		52A6463F282CDA0F0066B82D /* CreateInfantry3Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6463E282CDA0F0066B82D /* CreateInfantry3Action.swift */; };
 		52A64641282CDB720066B82D /* BuildBarracksAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64640282CDB720066B82D /* BuildBarracksAction.swift */; };
+		52A64643282D741E0066B82D /* RandomAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64642282D741E0066B82D /* RandomAI.swift */; };
+		52A64646282DB49C0066B82D /* ResearchMapMakingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64645282DB49C0066B82D /* ResearchMapMakingAction.swift */; };
+		52A64648282DB53A0066B82D /* ResearchWritingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64647282DB53A0066B82D /* ResearchWritingAction.swift */; };
+		52A6464E282DF8500066B82D /* ResearchCodeOfLawsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6464D282DF8500066B82D /* ResearchCodeOfLawsAction.swift */; };
+		52A64650282DF86E0066B82D /* ResearchMathematicsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6464F282DF86E0066B82D /* ResearchMathematicsAction.swift */; };
+		52A64652282DF8880066B82D /* ResearchIronWorkingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64651282DF8880066B82D /* ResearchIronWorkingAction.swift */; };
+		52A64654282DF8A30066B82D /* ResearchCurrencyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64653282DF8A30066B82D /* ResearchCurrencyAction.swift */; };
+		52A64656282DF8C30066B82D /* ResearchConstructionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64655282DF8C30066B82D /* ResearchConstructionAction.swift */; };
+		52A64658282DF8DE0066B82D /* ResearchMysticismAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64657282DF8DE0066B82D /* ResearchMysticismAction.swift */; };
+		52A6465A282DF8F70066B82D /* ResearchPolytheismAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64659282DF8F70066B82D /* ResearchPolytheismAction.swift */; };
+		52A6465C282DFC450066B82D /* ResearchSeafaringAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6465B282DFC450066B82D /* ResearchSeafaringAction.swift */; };
+		52A6465E282DFD350066B82D /* ResearchLiteracyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6465D282DFD350066B82D /* ResearchLiteracyAction.swift */; };
+		52A64660282DFD500066B82D /* ResearchMonarchyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6465F282DFD4F0066B82D /* ResearchMonarchyAction.swift */; };
+		52A64662282DFD6E0066B82D /* ResearchUniversityAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64661282DFD6E0066B82D /* ResearchUniversityAction.swift */; };
+		52A64664282DFEC70066B82D /* ResearchChivalryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64663282DFEC70066B82D /* ResearchChivalryAction.swift */; };
+		52A64666282DFFA40066B82D /* ResearchLeadershipAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64665282DFFA40066B82D /* ResearchLeadershipAction.swift */; };
+		52A64669282E156F0066B82D /* CreateNaval1Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64668282E156F0066B82D /* CreateNaval1Action.swift */; };
+		52A6466E282E18980066B82D /* CreateExplorerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6466D282E18980066B82D /* CreateExplorerAction.swift */; };
 		52AB06FB2801FB400039B47D /* UnitInfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB06FA2801FB400039B47D /* UnitInfluenceMapCalculator.swift */; };
 		52AB0748280287580039B47D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0747280287580039B47D /* City.swift */; };
 		52DE5F32281086A40029EFE1 /* UnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F31281086A40029EFE1 /* UnitFactory.swift */; };
@@ -122,7 +140,7 @@
 		52E0B1AF27E6DFD100607FBE /* Gate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1A427E6DFD000607FBE /* Gate.swift */; };
 		52E0B1B027E6DFD100607FBE /* EnergyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1A527E6DFD000607FBE /* EnergyStorage.swift */; };
 		52E0B1B127E6DFD100607FBE /* Shipyard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1A627E6DFD000607FBE /* Shipyard.swift */; };
-		52E0B1B227E6DFD100607FBE /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1A727E6DFD000607FBE /* Wall.swift */; };
+		52E0B1B227E6DFD100607FBE /* Walls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1A727E6DFD000607FBE /* Walls.swift */; };
 		52E0B1B327E6DFD100607FBE /* MineralStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1A827E6DFD000607FBE /* MineralStorage.swift */; };
 		52E0B1B427E6DFD100607FBE /* Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1A927E6DFD000607FBE /* Pod.swift */; };
 		52E0B1B527E6DFD100607FBE /* PowerPlant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1AA27E6DFD100607FBE /* PowerPlant.swift */; };
@@ -234,6 +252,24 @@
 		52A6463C282CCB5C0066B82D /* ActionSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSequence.swift; sourceTree = "<group>"; };
 		52A6463E282CDA0F0066B82D /* CreateInfantry3Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInfantry3Action.swift; sourceTree = "<group>"; };
 		52A64640282CDB720066B82D /* BuildBarracksAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildBarracksAction.swift; sourceTree = "<group>"; };
+		52A64642282D741E0066B82D /* RandomAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomAI.swift; sourceTree = "<group>"; };
+		52A64645282DB49C0066B82D /* ResearchMapMakingAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchMapMakingAction.swift; sourceTree = "<group>"; };
+		52A64647282DB53A0066B82D /* ResearchWritingAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchWritingAction.swift; sourceTree = "<group>"; };
+		52A6464D282DF8500066B82D /* ResearchCodeOfLawsAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchCodeOfLawsAction.swift; sourceTree = "<group>"; };
+		52A6464F282DF86E0066B82D /* ResearchMathematicsAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchMathematicsAction.swift; sourceTree = "<group>"; };
+		52A64651282DF8880066B82D /* ResearchIronWorkingAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchIronWorkingAction.swift; sourceTree = "<group>"; };
+		52A64653282DF8A30066B82D /* ResearchCurrencyAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchCurrencyAction.swift; sourceTree = "<group>"; };
+		52A64655282DF8C30066B82D /* ResearchConstructionAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchConstructionAction.swift; sourceTree = "<group>"; };
+		52A64657282DF8DE0066B82D /* ResearchMysticismAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchMysticismAction.swift; sourceTree = "<group>"; };
+		52A64659282DF8F70066B82D /* ResearchPolytheismAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchPolytheismAction.swift; sourceTree = "<group>"; };
+		52A6465B282DFC450066B82D /* ResearchSeafaringAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchSeafaringAction.swift; sourceTree = "<group>"; };
+		52A6465D282DFD350066B82D /* ResearchLiteracyAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchLiteracyAction.swift; sourceTree = "<group>"; };
+		52A6465F282DFD4F0066B82D /* ResearchMonarchyAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchMonarchyAction.swift; sourceTree = "<group>"; };
+		52A64661282DFD6E0066B82D /* ResearchUniversityAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchUniversityAction.swift; sourceTree = "<group>"; };
+		52A64663282DFEC70066B82D /* ResearchChivalryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchChivalryAction.swift; sourceTree = "<group>"; };
+		52A64665282DFFA40066B82D /* ResearchLeadershipAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchLeadershipAction.swift; sourceTree = "<group>"; };
+		52A64668282E156F0066B82D /* CreateNaval1Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNaval1Action.swift; sourceTree = "<group>"; };
+		52A6466D282E18980066B82D /* CreateExplorerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExplorerAction.swift; sourceTree = "<group>"; };
 		52AB06FA2801FB400039B47D /* UnitInfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitInfluenceMapCalculator.swift; sourceTree = "<group>"; };
 		52AB0747280287580039B47D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		52DE5F31281086A40029EFE1 /* UnitFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitFactory.swift; sourceTree = "<group>"; };
@@ -283,7 +319,7 @@
 		52E0B1A427E6DFD000607FBE /* Gate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gate.swift; sourceTree = "<group>"; };
 		52E0B1A527E6DFD000607FBE /* EnergyStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyStorage.swift; sourceTree = "<group>"; };
 		52E0B1A627E6DFD000607FBE /* Shipyard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shipyard.swift; sourceTree = "<group>"; };
-		52E0B1A727E6DFD000607FBE /* Wall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
+		52E0B1A727E6DFD000607FBE /* Walls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Walls.swift; sourceTree = "<group>"; };
 		52E0B1A827E6DFD000607FBE /* MineralStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineralStorage.swift; sourceTree = "<group>"; };
 		52E0B1A927E6DFD000607FBE /* Pod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pod.swift; sourceTree = "<group>"; };
 		52E0B1AA27E6DFD100607FBE /* PowerPlant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerPlant.swift; sourceTree = "<group>"; };
@@ -494,6 +530,7 @@
 				526681802826DE000089D0DD /* Actions */,
 				52A64636282C8D860066B82D /* Goals */,
 				5266819D282B795C0089D0DD /* Planner.swift */,
+				52A64642282D741E0066B82D /* RandomAI.swift */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -513,10 +550,10 @@
 		526681832826DE950089D0DD /* Create Units */ = {
 			isa = PBXGroup;
 			children = (
-				526681842826DEA70089D0DD /* CreateInfantry1Action.swift */,
-				526681A1282C21B60089D0DD /* CreateInfantry2Action.swift */,
-				52A6463E282CDA0F0066B82D /* CreateInfantry3Action.swift */,
-				5266819F282C20EF0089D0DD /* CreateCavalry1Action.swift */,
+				52A6466C282E18600066B82D /* Cavalry */,
+				52A6466B282E18420066B82D /* Infantry */,
+				52A6466A282E17D30066B82D /* Miscellaneous */,
+				52A64667282E15570066B82D /* Naval */,
 			);
 			path = "Create Units";
 			sourceTree = "<group>";
@@ -533,15 +570,10 @@
 		52668189282700400089D0DD /* Advances */ = {
 			isa = PBXGroup;
 			children = (
-				5266818E282B71DD0089D0DD /* ResearchAlphabetAction.swift */,
-				52668194282B728B0089D0DD /* ResearchBronzeWorkingAction.swift */,
-				52668196282B72AD0089D0DD /* ResearchCeremonialBurialAction.swift */,
-				52668198282B733C0089D0DD /* ResearchFeudalismAction.swift */,
-				52668192282B72590089D0DD /* ResearchHorsebackRidingAction.swift */,
-				5266818A282700C40089D0DD /* ResearchMasonryAction.swift */,
-				5266818C282B71860089D0DD /* ResearchPotteryAction.swift */,
-				5266819A282B73770089D0DD /* ResearchTheWheelAction.swift */,
-				52668190282B72280089D0DD /* ResearchWarriorCodeAction.swift */,
+				52A64649282DF2940066B82D /* Ancient */,
+				52A6464A282DF2A40066B82D /* Renaissance */,
+				52A6464B282DF2BF0066B82D /* Industrial Revolution */,
+				52A6464C282DF2D20066B82D /* Modern */,
 			);
 			path = Advances;
 			sourceTree = "<group>";
@@ -579,6 +611,92 @@
 			path = Goals;
 			sourceTree = "<group>";
 		};
+		52A64649282DF2940066B82D /* Ancient */ = {
+			isa = PBXGroup;
+			children = (
+				5266818E282B71DD0089D0DD /* ResearchAlphabetAction.swift */,
+				52668194282B728B0089D0DD /* ResearchBronzeWorkingAction.swift */,
+				52668196282B72AD0089D0DD /* ResearchCeremonialBurialAction.swift */,
+				52A6464D282DF8500066B82D /* ResearchCodeOfLawsAction.swift */,
+				52A64655282DF8C30066B82D /* ResearchConstructionAction.swift */,
+				52A64653282DF8A30066B82D /* ResearchCurrencyAction.swift */,
+				52668198282B733C0089D0DD /* ResearchFeudalismAction.swift */,
+				52668192282B72590089D0DD /* ResearchHorsebackRidingAction.swift */,
+				52A64651282DF8880066B82D /* ResearchIronWorkingAction.swift */,
+				52A6465D282DFD350066B82D /* ResearchLiteracyAction.swift */,
+				52A64645282DB49C0066B82D /* ResearchMapMakingAction.swift */,
+				5266818A282700C40089D0DD /* ResearchMasonryAction.swift */,
+				52A6464F282DF86E0066B82D /* ResearchMathematicsAction.swift */,
+				52A6465F282DFD4F0066B82D /* ResearchMonarchyAction.swift */,
+				52A64657282DF8DE0066B82D /* ResearchMysticismAction.swift */,
+				52A64659282DF8F70066B82D /* ResearchPolytheismAction.swift */,
+				5266818C282B71860089D0DD /* ResearchPotteryAction.swift */,
+				52A6465B282DFC450066B82D /* ResearchSeafaringAction.swift */,
+				5266819A282B73770089D0DD /* ResearchTheWheelAction.swift */,
+				52A64661282DFD6E0066B82D /* ResearchUniversityAction.swift */,
+				52668190282B72280089D0DD /* ResearchWarriorCodeAction.swift */,
+				52A64647282DB53A0066B82D /* ResearchWritingAction.swift */,
+			);
+			path = Ancient;
+			sourceTree = "<group>";
+		};
+		52A6464A282DF2A40066B82D /* Renaissance */ = {
+			isa = PBXGroup;
+			children = (
+				52A64663282DFEC70066B82D /* ResearchChivalryAction.swift */,
+				52A64665282DFFA40066B82D /* ResearchLeadershipAction.swift */,
+			);
+			path = Renaissance;
+			sourceTree = "<group>";
+		};
+		52A6464B282DF2BF0066B82D /* Industrial Revolution */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Industrial Revolution";
+			sourceTree = "<group>";
+		};
+		52A6464C282DF2D20066B82D /* Modern */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modern;
+			sourceTree = "<group>";
+		};
+		52A64667282E15570066B82D /* Naval */ = {
+			isa = PBXGroup;
+			children = (
+				52A64668282E156F0066B82D /* CreateNaval1Action.swift */,
+			);
+			path = Naval;
+			sourceTree = "<group>";
+		};
+		52A6466A282E17D30066B82D /* Miscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				52A6466D282E18980066B82D /* CreateExplorerAction.swift */,
+			);
+			path = Miscellaneous;
+			sourceTree = "<group>";
+		};
+		52A6466B282E18420066B82D /* Infantry */ = {
+			isa = PBXGroup;
+			children = (
+				526681842826DEA70089D0DD /* CreateInfantry1Action.swift */,
+				526681A1282C21B60089D0DD /* CreateInfantry2Action.swift */,
+				52A6463E282CDA0F0066B82D /* CreateInfantry3Action.swift */,
+			);
+			path = Infantry;
+			sourceTree = "<group>";
+		};
+		52A6466C282E18600066B82D /* Cavalry */ = {
+			isa = PBXGroup;
+			children = (
+				5266819F282C20EF0089D0DD /* CreateCavalry1Action.swift */,
+			);
+			path = Cavalry;
+			sourceTree = "<group>";
+		};
 		52E0B18B27E6D87600607FBE /* IO */ = {
 			isa = PBXGroup;
 			children = (
@@ -602,7 +720,7 @@
 				52E0B1AA27E6DFD100607FBE /* PowerPlant.swift */,
 				52E0B1AD27E6DFD100607FBE /* RadarTower.swift */,
 				52E0B1A627E6DFD000607FBE /* Shipyard.swift */,
-				52E0B1A727E6DFD000607FBE /* Wall.swift */,
+				52E0B1A727E6DFD000607FBE /* Walls.swift */,
 			);
 			path = Buildings;
 			sourceTree = "<group>";
@@ -824,19 +942,24 @@
 				5266817A2825C5CC0089D0DD /* CityMapLayer.swift in Sources */,
 				52DE5FA3281EE3DB0029EFE1 /* Infantry7.swift in Sources */,
 				52E0B1BE27E6E1AC00607FBE /* DamageableComponent.swift in Sources */,
+				52A64664282DFEC70066B82D /* ResearchChivalryAction.swift in Sources */,
 				52DE5F81281C6DB60029EFE1 /* Player.swift in Sources */,
+				52A64656282DF8C30066B82D /* ResearchConstructionAction.swift in Sources */,
 				526681782825BD780089D0DD /* CityView.swift in Sources */,
 				5266816A282315670089D0DD /* Partisan.swift in Sources */,
 				52F9042627F4E1AC00D1AC97 /* Unit.swift in Sources */,
 				52AB0748280287580039B47D /* City.swift in Sources */,
 				52F9042827F4E27B00D1AC97 /* Infantry1.swift in Sources */,
 				52DE5F83281C78450029EFE1 /* FounderContextMenu.swift in Sources */,
+				52A64648282DB53A0066B82D /* ResearchWritingAction.swift in Sources */,
+				52A64660282DFD500066B82D /* ResearchMonarchyAction.swift in Sources */,
 				52DE5F3E281251930029EFE1 /* MapView.swift in Sources */,
 				52F9042A27F4E3C600D1AC97 /* Infantry6.swift in Sources */,
 				52668168282315580089D0DD /* Spy.swift in Sources */,
 				52F9044627F80B0500D1AC97 /* CommandDAO.swift in Sources */,
 				52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */,
 				521F21A22803F89A00F1D61D /* Infantry3.swift in Sources */,
+				52A6466E282E18980066B82D /* CreateExplorerAction.swift in Sources */,
 				52AB06FB2801FB400039B47D /* UnitInfluenceMapCalculator.swift in Sources */,
 				52DE5F91281E075A0029EFE1 /* Naval3.swift in Sources */,
 				526681642823029E0089D0DD /* Diplomat.swift in Sources */,
@@ -853,29 +976,35 @@
 				52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */,
 				52DE5F97281E085A0029EFE1 /* Naval7.swift in Sources */,
 				526681662823043B0089D0DD /* AlpineTroop.swift in Sources */,
+				52A6465A282DF8F70066B82D /* ResearchPolytheismAction.swift in Sources */,
 				52DE5F99281E093E0029EFE1 /* Submarine.swift in Sources */,
 				52E0B1B827E6DFD100607FBE /* RadarTower.swift in Sources */,
 				52A6463F282CDA0F0066B82D /* CreateInfantry3Action.swift in Sources */,
 				521F21A02803F88400F1D61D /* Infantry2.swift in Sources */,
+				52A64666282DFFA40066B82D /* ResearchLeadershipAction.swift in Sources */,
 				5293BC28280B6A86001DE2F3 /* Cavalry7.swift in Sources */,
 				5293BC26280A4947001DE2F3 /* Queue.swift in Sources */,
 				52F9044D27F9325300D1AC97 /* CommandType.swift in Sources */,
 				521F21D12806980600F1D61D /* UnitType.swift in Sources */,
+				52A6465E282DFD350066B82D /* ResearchLiteracyAction.swift in Sources */,
 				52E0B1C127E6E25300607FBE /* SpriteNode.swift in Sources */,
 				5266817C2825ED1C0089D0DD /* TurnView.swift in Sources */,
 				52DE5F85281CAD230029EFE1 /* FounderNode.swift in Sources */,
 				52668176282595B10089D0DD /* Position.swift in Sources */,
 				52F9043927F6D02500D1AC97 /* SqliteError.swift in Sources */,
+				52A64652282DF8880066B82D /* ResearchIronWorkingAction.swift in Sources */,
 				52F9045427F9F9C500D1AC97 /* MoveCommand.swift in Sources */,
 				52A64633282C36030066B82D /* Advance.swift in Sources */,
 				52DE5F95281E08140029EFE1 /* Naval6.swift in Sources */,
 				526681A2282C21B60089D0DD /* CreateInfantry2Action.swift in Sources */,
+				52A64643282D741E0066B82D /* RandomAI.swift in Sources */,
 				52DE5F8B281D01B40029EFE1 /* Cavalry3.swift in Sources */,
 				52DE5FB1281EEE3F0029EFE1 /* Cavalry8.swift in Sources */,
 				5266818F282B71DD0089D0DD /* ResearchAlphabetAction.swift in Sources */,
 				52E0B1B927E6DFD100607FBE /* Barracks.swift in Sources */,
 				521F21AD2803F92300F1D61D /* Artillery3.swift in Sources */,
 				52DE5F792818D7060029EFE1 /* MapPosition.swift in Sources */,
+				52A64646282DB49C0066B82D /* ResearchMapMakingAction.swift in Sources */,
 				52668193282B72590089D0DD /* ResearchHorsebackRidingAction.swift in Sources */,
 				521F21A92803F8F100F1D61D /* Artillery1.swift in Sources */,
 				52DE5FB72820F1480029EFE1 /* CityNode.swift in Sources */,
@@ -894,7 +1023,7 @@
 				52E0B19527E6D87600607FBE /* Tile2.swift in Sources */,
 				52F9044427F6D68A00D1AC97 /* GameDAO.swift in Sources */,
 				52F9045627F9FF6A00D1AC97 /* TechCommand.swift in Sources */,
-				52E0B1B227E6DFD100607FBE /* Wall.swift in Sources */,
+				52E0B1B227E6DFD100607FBE /* Walls.swift in Sources */,
 				52E0B1B127E6DFD100607FBE /* Shipyard.swift in Sources */,
 				52DE5F342810DAB90029EFE1 /* MapDAO.swift in Sources */,
 				52E0B19327E6D87600607FBE /* TiledTilesetParser.swift in Sources */,
@@ -907,6 +1036,7 @@
 				52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */,
 				5266819E282B795C0089D0DD /* Planner.swift in Sources */,
 				521F21C12804812600F1D61D /* Air5.swift in Sources */,
+				52A64662282DFD6E0066B82D /* ResearchUniversityAction.swift in Sources */,
 				5266818B282700C40089D0DD /* ResearchMasonryAction.swift in Sources */,
 				52668197282B72AD0089D0DD /* ResearchCeremonialBurialAction.swift in Sources */,
 				52668191282B72280089D0DD /* ResearchWarriorCodeAction.swift in Sources */,
@@ -917,13 +1047,16 @@
 				527A0D85280F6884006B9D9F /* MapError.swift in Sources */,
 				521F21A42803F8A900F1D61D /* Infantry4.swift in Sources */,
 				5266816E28233D0D0089D0DD /* CruiseMissile.swift in Sources */,
+				52A6464E282DF8500066B82D /* ResearchCodeOfLawsAction.swift in Sources */,
 				52F9043027F6B5B100D1AC97 /* BaseDAO.swift in Sources */,
 				52E0B1B327E6DFD100607FBE /* MineralStorage.swift in Sources */,
 				52F9045827FA007400D1AC97 /* CreateCityCommand.swift in Sources */,
 				526681882826FA9D0089D0DD /* BuildWallsAction.swift in Sources */,
 				52DE5F8D281E06F50029EFE1 /* Naval1.swift in Sources */,
+				52A64658282DF8DE0066B82D /* ResearchMysticismAction.swift in Sources */,
 				52DE5FB52820EC570029EFE1 /* CityDAO.swift in Sources */,
 				526681852826DEA70089D0DD /* CreateInfantry1Action.swift in Sources */,
+				52A64650282DF86E0066B82D /* ResearchMathematicsAction.swift in Sources */,
 				52668195282B728B0089D0DD /* ResearchBronzeWorkingAction.swift in Sources */,
 				52E0B1B027E6DFD100607FBE /* EnergyStorage.swift in Sources */,
 				521F21A62803F8BB00F1D61D /* Infantry5.swift in Sources */,
@@ -936,6 +1069,7 @@
 				52DE5F8F281E072C0029EFE1 /* Naval2.swift in Sources */,
 				521F21E32807115100F1D61D /* Terrain.swift in Sources */,
 				52DE5F7B2818E40E0029EFE1 /* ContextMenu.swift in Sources */,
+				52A64654282DF8A30066B82D /* ResearchCurrencyAction.swift in Sources */,
 				52DE5FAD281EEB6B0029EFE1 /* Cavalry5.swift in Sources */,
 				52F9044B27F8E56200D1AC97 /* Turn.swift in Sources */,
 				526681822826DE440089D0DD /* Action.swift in Sources */,
@@ -955,8 +1089,10 @@
 				52E0B1EB27EAB6B800607FBE /* GameNode.swift in Sources */,
 				52E0B1B627E6DFD100607FBE /* CommandCenter.swift in Sources */,
 				52A6463A282C95CE0066B82D /* GoalScorer.swift in Sources */,
+				52A64669282E156F0066B82D /* CreateNaval1Action.swift in Sources */,
 				52DE5FAB281EEB130029EFE1 /* Cavalry4.swift in Sources */,
 				52DE5FB928217F070029EFE1 /* Engineer.swift in Sources */,
+				52A6465C282DFC450066B82D /* ResearchSeafaringAction.swift in Sources */,
 				52E0B1AF27E6DFD100607FBE /* Gate.swift in Sources */,
 				52E0B18A27E6D86A00607FBE /* Constants.swift in Sources */,
 			);

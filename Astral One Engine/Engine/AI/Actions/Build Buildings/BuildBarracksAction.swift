@@ -1,9 +1,9 @@
 import Foundation
 
 public class BuildBarracksAction: Action {
-    public override init() {
-        super.init()
-        
+    public init() {
+        super.init(id: 2, name: "Build Barracks")
+
         preconditions = []
         
         effects = [
@@ -18,5 +18,7 @@ public class BuildBarracksAction: Action {
         if player.cities.count > 0 {
             player.cities[0].addBarracks()
         }
+        
+        player.removeAvailable(action: BuildBarracksAction())
     }
 }

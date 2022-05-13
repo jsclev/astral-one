@@ -2,9 +2,9 @@ import Foundation
 
 public class ResearchMasonryAction: Action {
     
-    public override init() {
-        super.init()
-        
+    public init() {
+        super.init(id: 2, name: "Research Masonry")
+
         preconditions = [
             "has_barracks"
         ]
@@ -15,11 +15,13 @@ public class ResearchMasonryAction: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-        player.add(advance: Advance())
+        player.addAvailable(action: BuildWallsAction())
+        
+        player.removeAvailable(action: self)
     }
     
     public override func clone() -> Action {
-        let copy = ResearchCeremonialBurialAction()
+        let copy = ResearchMasonryAction()
         
         copy.cost = self.cost
         copy.scienceCost = self.scienceCost

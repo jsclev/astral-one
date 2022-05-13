@@ -2,9 +2,9 @@ import Foundation
 
 public class CreateInfantry3Action: Action {
     
-    public override init() {
-        super.init()
-        
+    public init() {
+        super.init(id: 2, name: "Create Archer")
+
         preconditions = []
         effects = []
         cost = 30

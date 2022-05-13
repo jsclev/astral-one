@@ -15,7 +15,8 @@ public class Player: ObservableObject {
     public var cityCreators: [CityCreator] = []
     public var units: [Unit] = []
     public var advances: [Advance] = []
-    public var availableActions: [Action] = []
+    private var availableActions: Set<Action> = []
+    private var researchedAdvances: Set<String> = []
     
     public var defense: Double {
         var sum = 0.0
@@ -48,18 +49,40 @@ public class Player: ObservableObject {
         units.append(unit)
     }
     
-    public func add(advance: Advance) {
-        advances.append(advance)
+    public func add(advanceName: String) {
+        researchedAdvances.insert(advanceName)
+    }
+    
+    public func getAvailableActions() -> [Action] {
+        return [Action](availableActions)
     }
     
     public func addAvailable(action: Action) {
-        availableActions.append(action)
+        availableActions.insert(action)
+    }
+    
+    public func removeAvailable(action: Action) {
+        availableActions.remove(action)
+    }
+    
+    public func getRandomAvailableAction() -> Action {
+        if let action = availableActions.randomElement() {
+            return action
+        }
+        
+        return BuildBarracksAction()
+    }
+    
+    public func updateAvailableActions() {
+        
+    }
+    
+    public func hasResearched(advanceName: String) -> Bool {
+        return researchedAdvances.contains(advanceName)
     }
     
     public func diff(other: Player) -> PlayerDiff {
-        var diff = PlayerDiff(defense: defense - other.defense)
-        
-        return diff
+        return PlayerDiff(defense: defense - other.defense)
     }
     
     public func clone() -> Player {

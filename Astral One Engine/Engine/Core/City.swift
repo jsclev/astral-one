@@ -7,6 +7,7 @@ public class City: ObservableObject {
     public let assetName: String
     public let position: Position
     private var barracks: Barracks?
+    private var walls: Walls?
     
     @Published var production: Int = 0
     @Published var food: Int = 0
@@ -36,6 +37,10 @@ public class City: ObservableObject {
     
     public func addBarracks() {
         barracks = Barracks(imageName: "city-1")
+    }
+    
+    public func addWalls() {
+        walls = Walls(imageName: "walls-1")
     }
     
 }
