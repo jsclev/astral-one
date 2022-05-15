@@ -1,18 +1,20 @@
 import Foundation
 
 public class Naval8: Unit {
-    public init(theme: Theme,
-                playerId: Int,
+    public init(game: Game,
+                player: Player,
+                theme: Theme,
                 name: String,
                 position: Position) {
-        super.init(theme: theme,
-                   playerId: playerId,
+        super.init(game: game,
+                   player: player,
+                   theme: theme,
                    tiledId: 100,
                    name: name,
                    assetName: "Units/Naval/naval-8",
                    cost: 160,
                    maxHp: 40,
-                   attackRating: 12,
+                   attack: 12,
                    defense: 12,
                    fp: 2,
                    maxMovementPoints: 4.0,

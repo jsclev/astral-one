@@ -1,6 +1,6 @@
 import Foundation
 
-public class ResearchAlphabetAction: Action {
+public class ResearchAlphabetAction: ResearchAction {
     public init() {
         super.init(id: 2, name: "Research Alphabet")
         
@@ -15,12 +15,12 @@ public class ResearchAlphabetAction: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-        player.removeAvailable(action: self)
+        player.removeAvailable(researchAction: self)
 
-        player.addAvailable(action: ResearchMapMakingAction())
-        player.addAvailable(action: ResearchWritingAction())
-        player.addAvailable(action: ResearchCodeOfLawsAction())
-        player.addAvailable(action: ResearchWritingAction())
+        player.addAvailable(researchAction: ResearchMapMakingAction())
+        player.addAvailable(researchAction: ResearchWritingAction())
+        player.addAvailable(researchAction: ResearchCodeOfLawsAction())
+        player.addAvailable(researchAction: ResearchWritingAction())
     }
     
     public override func clone() -> Action {

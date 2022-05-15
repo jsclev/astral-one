@@ -43,7 +43,8 @@ class PathfinderScene: SKScene {
     
     init(mapViewModel: MapViewModel) {
         self.db = Db(fullRefresh: true)
-        self.game = Game(theme: Theme(id: 1, name: "Standard"))
+        self.game = Game(theme: Theme(id: 1, name: "Standard"),
+                         map: Map(mapId: 1, width: 1, height: 1))
         self.mapViewModel = mapViewModel
         
         let theme = Theme(id: 2, name: "Sci-Fi")
@@ -219,28 +220,60 @@ class PathfinderScene: SKScene {
         let turnView = TurnView(parent: gameCamera, game: game)
         game.processCommands()
         
+        let player = game.players[0]
+        mapView.addPlayer(player: player)
+        
         for i in 0..<1000 {
-            let position = Position(row: Int.random(in: 0..<game.map.height),
-                                    col: Int.random(in: 0..<game.map.width))
+            let position1 = Position(row: Int.random(in: 0..<game.map.height),
+                                     col: Int.random(in: 0..<game.map.width))
+            let city1 = City(player: player,
+                             theme: game.theme,
+                             name: "New York",
+                             assetName: "city-1",
+                             position: position1)
+            player.add(city: city1)
+            
+            let createInfantry1Action = CreateInfantry5Action(city: city1)
+            let createInfantry2Action = CreateInfantry2Action(city: city1)
+            let createInfantry3Action = CreateInfantry3Action(city: city1)
+            let createInfantry4Action = CreateInfantry4Action(city: city1)
+            
+            createInfantry1Action.execute(game: game, player: player)
+//            createInfantry2Action.execute(game: game, player: player)
+//            createInfantry3Action.execute(game: game, player: player)
+//            createInfantry4Action.execute(game: game, player: player)
 
-
-            let city = City(theme: Theme(id: 1, name: "Sci-Fi"),
-                            player: game.players[0],
-                            name: "City",
-                            assetName: "city-1",
-                            position: position)
-            let command = CreateCityCommand(commandId: i,
-                                            gameId: 1,
-                                            turn: game.getCurrentTurn(),
-                                            player: game.players[0],
-                                            type: CommandType(id: 1, name: "CreateCity"),
-                                            ordinal: i,
-                                            city: city,
-                                            position: position)
-            game.addCommand(command: command)
+//            city1.addAvailable(action: CreateInfantry1Action(city: city1))
+            
+            
+            
+            print(position1)
         }
         
-        game.processCommands()
+//        for i in 0..<1000 {
+//            let position = Position(row: Int.random(in: 0..<game.map.height),
+//                                    col: Int.random(in: 0..<game.map.width))
+//
+//
+//
+//
+//            let city = City(player: game.players[0],
+//                            theme: Theme(id: 1, name: "Sci-Fi"),
+//                            name: "City",
+//                            assetName: "city-1",
+//                            position: position)
+//            let command = CreateCityCommand(commandId: i,
+//                                            gameId: 1,
+//                                            turn: game.getCurrentTurn(),
+//                                            player: game.players[0],
+//                                            type: CommandType(id: 1, name: "CreateCity"),
+//                                            ordinal: i,
+//                                            city: city,
+//                                            position: position)
+//            game.addCommand(command: command)
+//        }
+        
+//        game.processCommands()
         
     }
     

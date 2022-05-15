@@ -6,7 +6,7 @@ public class Tile: Hashable {
     public let col: Int
     public let terrain: Terrain
     
-    private var units: [Unit] = []
+//    private var units: [Unit] = []
     private var movementModifier: MovementModifier?
     
     public init(row: Int, col: Int, terrain: Terrain) {
@@ -32,17 +32,17 @@ public class Tile: Hashable {
         return lhs.row == rhs.row && lhs.col == rhs.col
     }
     
-    public func add(unit: Unit) {
-        units.append(unit)
-    }
+//    public func add(unit: Unit) {
+//        units.append(unit)
+//    }
     
     public func add(movementModifier: MovementModifier) {
         self.movementModifier = movementModifier
     }
     
-    public func getUnits() -> [Unit] {
-        return units
-    }
+//    public func getUnits() -> [Unit] {
+//        return units
+//    }
     
     public func getMovementCost() -> Double {
         var movementCost = terrain.movementCost

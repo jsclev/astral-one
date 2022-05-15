@@ -8,6 +8,10 @@ public class CommandDAO: BaseDAO {
     
     public func getCommands(gameId: Int) -> [Command] {
         var commands: [Command] = []
+        let theme = Theme(id: 1, name: "Standard")
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
+        let player = Player(playerId: 1, game: game)
         
         var stmt: OpaquePointer?
         let sql = """
@@ -44,7 +48,7 @@ public class CommandDAO: BaseDAO {
                 let turnId = getInt(stmt: stmt, colIndex: 2)
                 let turnOrdinal = getInt(stmt: stmt, colIndex: 3)
                 let year = getInt(stmt: stmt, colIndex: 4)
-                let playerId = getInt(stmt: stmt, colIndex: 6)
+                // let playerId = getInt(stmt: stmt, colIndex: 6)
                 let commandTypeId = getInt(stmt: stmt, colIndex: 7)
                 
                 do {
@@ -61,11 +65,12 @@ public class CommandDAO: BaseDAO {
                             commands.append(MoveCommand(commandId: commandId,
                                                         gameId: gameId,
                                                         turn: turn,
-                                                        player: Player(playerId: playerId),
+                                                        player: player,
                                                         type: commandType,
                                                         ordinal: commandOrdinal,
-                                                        unit: Infantry1(theme: Theme(id: 1, name: "Standard"),
-                                                                        playerId: 1,
+                                                        unit: Infantry1(game: game,
+                                                                        player: player,
+                                                                        theme: theme,
                                                                         name: "Warrior",
                                                                         position: Position(row: 0, col: 0)),
                                                         to: Position(row: 0, col: 0)))
@@ -74,11 +79,12 @@ public class CommandDAO: BaseDAO {
                             commands.append(TechCommand(commandId: commandId,
                                                         gameId: gameId,
                                                         turn: turn,
-                                                        player: Player(playerId: playerId),
+                                                        player: player,
                                                         type: commandType,
                                                         ordinal: commandOrdinal,
-                                                        unit: Infantry1(theme: Theme(id: 1, name: "Standard"),
-                                                                        playerId: 1,
+                                                        unit: Infantry1(game: game,
+                                                                        player: player,
+                                                                        theme: theme,
                                                                         name: "Warrior",
                                                                         position: Position(row: 0, col: 0)),
                                                         toPosition: "Hello"))
@@ -87,27 +93,28 @@ public class CommandDAO: BaseDAO {
                             commands.append(BuildBuildingCommand(commandId: commandId,
                                                                  gameId: gameId,
                                                                  turn: turn,
-                                                                 player: Player(playerId: playerId),
+                                                                 player: player,
                                                                  type: commandType,
                                                                  ordinal: commandOrdinal,
-                                                                 unit: Infantry1(theme: Theme(id: 1, name: "Standard"),
-                                                                                 playerId: 1,
+                                                                 unit: Infantry1(game: game,
+                                                                                 player: player,
+                                                                                 theme: theme,
                                                                                  name: "Warrior",
                                                                                  position: Position(row: 0, col: 0)),
                                                                  toPosition: "Hello"))
                         }
                         else if commandName == "Build City" {
                             commands.append(CreateCityCommand(commandId: commandId,
-                                                             gameId: gameId,
-                                                             turn: turn,
-                                                             player: Player(playerId: playerId),
-                                                             type: commandType,
-                                                             ordinal: commandOrdinal,
-                                                             city: City(theme: Theme(id: 1, name: "Standard"),
-                                                                        player: Player(playerId: playerId),
-                                                                        name: "New York",
-                                                                        assetName: "unknown",
-                                                                        position: Position(row: 0, col: 0)),
+                                                              gameId: gameId,
+                                                              turn: turn,
+                                                              player: player,
+                                                              type: commandType,
+                                                              ordinal: commandOrdinal,
+                                                              city: City(player: player,
+                                                                         theme: theme,
+                                                                         name: "New York",
+                                                                         assetName: "unknown",
+                                                                         position: Position(row: 0, col: 0)),
                                                              position: Position(row: 0, col: 0)))
                         }
                     }

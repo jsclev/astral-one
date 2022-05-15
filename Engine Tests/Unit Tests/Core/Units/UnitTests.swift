@@ -9,12 +9,18 @@ class UnitTests: XCTestCase {
     }
     
     func testGetChebyshevDistance1() throws {
-        let fromUnit = Infantry1(theme: Theme(id: 1, name: "Test Theme"),
-                                 playerId: 1,
+        let theme = Theme(id: 1, name: "Standard")
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
+        
+        let fromUnit = Infantry1(game: game,
+                                 player: Player(playerId: 1, game: game),
+                                 theme: theme,
                                  name: "Infantry",
                                  position: Position(row: 0, col: 0))
-        let toUnit = Infantry1(theme: Theme(id: 1, name: "Test Theme"),
-                               playerId: 1,
+        let toUnit = Infantry1(game: game,
+                               player: Player(playerId: 1, game: game),
+                               theme: theme,
                                name: "Infantry",
                                position: Position(row: 0, col: 0))
         
@@ -22,12 +28,18 @@ class UnitTests: XCTestCase {
     }
     
     func testGetChebyshevDistance2() throws {
-        let fromUnit = Infantry1(theme: Theme(id: 1, name: "Test Theme"),
-                                 playerId: 1,
+        let theme = Theme(id: 1, name: "Standard")
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
+        
+        let fromUnit = Infantry1(game: game,
+                                 player: Player(playerId: 1, game: game),
+                                 theme: theme,
                                  name: "Infantry",
                                  position: Position(row: 0, col: 0))
-        let toUnit = Infantry1(theme: Theme(id: 1, name: "Test Theme"),
-                               playerId: 1,
+        let toUnit = Infantry1(game: game,
+                               player: Player(playerId: 1, game: game),
+                               theme: theme,
                                name: "Infantry",
                                position: Position(row: 0, col: 0))
         
@@ -35,12 +47,18 @@ class UnitTests: XCTestCase {
     }
     
     func testGetChebyshevDistance3() throws {
-        let fromUnit = Infantry1(theme: Theme(id: 1, name: "Test Theme"),
-                                 playerId: 1,
+        let theme = Theme(id: 1, name: "Standard")
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
+
+        let fromUnit = Infantry1(game: game,
+                                 player: Player(playerId: 1, game: game),
+                                 theme: theme,
                                  name: "Infantry",
                                  position: Position(row: 0, col: 0))
-        let toUnit = Infantry1(theme: Theme(id: 1, name: "Test Theme"),
-                               playerId: 1,
+        let toUnit = Infantry1(game: game,
+                               player: Player(playerId: 1, game: game),
+                               theme: theme,
                                name: "Infantry",
                                position: Position(row: 0, col: 0))
         
@@ -48,12 +66,18 @@ class UnitTests: XCTestCase {
     }
     
     func testGetChebyshevDistance4() throws {
-        let fromUnit = Infantry1(theme: Theme(id: 1, name: "Test Theme"),
-                                 playerId: 1,
+        let theme = Theme(id: 1, name: "Standard")
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
+
+        let fromUnit = Infantry1(game: game,
+                                 player: Player(playerId: 1, game: game),
+                                 theme: theme,
                                  name: "Infantry",
                                  position: Position(row: 0, col: 0))
-        let toUnit = Infantry1(theme: Theme(id: 1, name: "Test Theme"),
-                               playerId: 1,
+        let toUnit = Infantry1(game: game,
+                               player: Player(playerId: 1, game: game),
+                               theme: theme,
                                name: "Infantry",
                                position: Position(row: 0, col: 0))
         

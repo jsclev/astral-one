@@ -1,8 +1,8 @@
 import Foundation
 
-public class ResearchPolytheismAction: Action {
+public class ResearchPolytheismAction: ResearchAction {
     public init() {
-        super.init(id: 2, name: "Research Alphabet")
+        super.init(id: 2, name: "Research Polytheism")
         
         preconditions = []
         
@@ -15,21 +15,15 @@ public class ResearchPolytheismAction: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-        player.addAvailable(action: ResearchMapMakingAction())
-        player.addAvailable(action: ResearchWritingAction())
+        player.addAvailable(researchAction: ResearchMapMakingAction())
+        player.addAvailable(researchAction: ResearchWritingAction())
         
-        player.removeAvailable(action: self)
+        player.removeAvailable(researchAction: self)
     }
     
     public override func clone() -> Action {
         let copy = ResearchAlphabetAction()
-        
-        copy.cost = self.cost
-        copy.scienceCost = self.scienceCost
-        copy.numTurns = self.numTurns
-        
-        copy.preconditions = self.preconditions
-        copy.effects = self.effects
+        copyProps(source: self, target: copy)
         
         return copy
     }

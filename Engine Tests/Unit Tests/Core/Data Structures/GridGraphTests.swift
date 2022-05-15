@@ -65,7 +65,14 @@ class GridGraphTests: XCTestCase {
 
     func testFindPathScenario1() throws {
         let theme = Theme(id: 1, name: "Test Theme")
-        let agent = Infantry1(theme: theme, playerId: 1, name: "Agent", position: Position(row: 0, col: 0))
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
+
+        let agent = Infantry1(game: game,
+                              player: Player(playerId: 1, game: game),
+                              theme: theme,
+                              name: "Agent",
+                              position: Position(row: 0, col: 0))
         let terrain = Terrain(id: -1,
                               tiledId: 0,
                               name: "None",
@@ -74,7 +81,6 @@ class GridGraphTests: XCTestCase {
                               shields: 0.0,
                               trade: 0.0,
                               movementCost: 1.0)
-        let map = Map(mapId: 1, width: 3, height: 3)
         
         // Add 25 nodes to the map, all nodes have a uniform traversal score
         for row in 0..<3 {

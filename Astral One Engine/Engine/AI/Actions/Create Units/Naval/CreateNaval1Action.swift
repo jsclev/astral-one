@@ -1,8 +1,10 @@
 import Foundation
 
 public class CreateNaval1Action: Action {
+    private let city: City
     
-    public init() {
+    public init(city: City) {
+        self.city = city
         super.init(id: 2, name: "Create Trireme")
         
         preconditions = []
@@ -12,14 +14,21 @@ public class CreateNaval1Action: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-        player.add(unit: Naval1(theme: game.theme,
-                                playerId: player.playerId,
-                                name: "Trireme",
-                                position: Position(row: 0, col: 0)))
+        let unit = Naval1(game: game,
+                          player: player,
+                          theme: game.theme,
+                          name: "Trireme",
+                          position: city.position)
+        
+//        if city.hasBarracks {
+//            unit.makeVeteran()
+//        }
+        
+        player.add(unit: unit)
     }
     
     public override func clone() -> Action {
-        let copy = CreateNaval1Action()
+        let copy = CreateNaval1Action(city: city)
         copyProps(source: self, target: copy)
         
         return copy

@@ -7,6 +7,9 @@ public class CityDAO: BaseDAO {
     }
     
     public func getCities(gameId: Int) throws -> [City] {
+        let theme = Theme(id: 1, name: "Standard")
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
         var cities: [City] = []
         
         var stmt: OpaquePointer?
@@ -31,8 +34,8 @@ public class CityDAO: BaseDAO {
                 let col = getInt(stmt: stmt, colIndex: 6)
                 
                 if let cityName = try getString(stmt: stmt, colIndex: 4) {
-                    cities.append(City(theme: Theme(id: 1, name: "Standard"),
-                                       player: Player(playerId: 1),
+                    cities.append(City(player: Player(playerId: 1, game: game),
+                                       theme: Theme(id: 1, name: "Standard"),
                                        name: cityName,
                                        assetName: "city-1",
                                        position: Position(row: row, col: col)))

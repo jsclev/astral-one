@@ -11,11 +11,14 @@ public struct PlayerDiff {
 
 public class Player: ObservableObject {
     public let playerId: Int
+    public let game: Game
+    public let skillLevel: SkillLevel
+    public let playStyle: PlayStyle
     @Published public var cities: [City] = []
     public var cityCreators: [CityCreator] = []
-    public var units: [Unit] = []
+    @Published public var units: [Unit] = []
     public var advances: [Advance] = []
-    private var availableActions: Set<Action> = []
+    private var availableResearchActions: Set<Action> = []
     private var researchedAdvances: Set<String> = []
     
     public var defense: Double {
@@ -33,8 +36,36 @@ public class Player: ObservableObject {
         }
     }
     
-    public init(playerId: Int) {
+    public var defenseAgainstGroundAttacks: Double {
+        var sum = 0.0
+        
+        for unit in units {
+            sum += unit.defenseAgainstGroundAttacks
+        }
+        
+        if sum < 0.01 {
+            return 0.001
+        }
+        else {
+            return sum
+        }
+    }
+    
+    public init(playerId: Int, game: Game) {
         self.playerId = playerId
+        self.game = game
+        self.skillLevel = SkillLevel.Prince
+        self.playStyle = PlayStyle(offense: 0.15, defense: 0.35)
+    }
+    
+    public init(playerId: Int,
+                game: Game,
+                skillLevel: SkillLevel,
+                playStyle: PlayStyle) {
+        self.playerId = playerId
+        self.game = game
+        self.skillLevel = skillLevel
+        self.playStyle = playStyle
     }
     
     public func add(city: City) {
@@ -47,30 +78,50 @@ public class Player: ObservableObject {
     
     public func add(unit: Unit) {
         units.append(unit)
+        
+//        do {
+//            try game.map.add(unit: unit)
+//        }
+//        catch {
+//            fatalError("\(error)")
+//        }
     }
     
     public func add(advanceName: String) {
         researchedAdvances.insert(advanceName)
     }
     
-    public func getAvailableActions() -> [Action] {
-        return [Action](availableActions)
+    public func getAvailableActions() -> Set<Action> {
+        var availableActions: Set<Action> = []
+        for action in availableResearchActions {
+            availableActions.insert(action)
+        }
+        
+        return availableActions
     }
     
-    public func addAvailable(action: Action) {
-        availableActions.insert(action)
+    public func addAvailable(researchAction: ResearchAction) {
+        availableResearchActions.insert(researchAction)
     }
     
-    public func removeAvailable(action: Action) {
-        availableActions.remove(action)
+    public func removeAvailable(researchAction: ResearchAction) {
+        availableResearchActions.remove(researchAction)
     }
     
-    public func getRandomAvailableAction() -> Action {
+    public func getRandomAvailableAction() -> Action? {
+        var availableActions: Set<Action> = []
+        
+        for city in cities {
+            availableActions = availableActions.union(city.getAvailableActions())
+        }
+        
+        availableActions = availableActions.union(availableResearchActions)
+        
         if let action = availableActions.randomElement() {
             return action
         }
         
-        return BuildBarracksAction()
+        return nil
     }
     
     public func updateAvailableActions() {
@@ -86,14 +137,21 @@ public class Player: ObservableObject {
     }
     
     public func clone() -> Player {
-        let copy = Player(playerId: self.playerId)
+        let copy = Player(playerId: playerId,
+                          game: game,
+                          skillLevel: skillLevel,
+                          playStyle: playStyle)
         
         for unit in units {
             copy.add(unit: unit)
         }
         
-        for action in availableActions {
-            copy.addAvailable(action: action.clone())
+        for city in cities {
+            copy.add(city: city.clone())
+        }
+        
+        for action in availableResearchActions {
+            copy.addAvailable(researchAction: action.clone() as! ResearchAction)
         }
         
         return copy

@@ -14,16 +14,16 @@ public class UnitInfluenceMapCalculator: InfluenceMapCalculator {
     public func getInfluenceMap() throws -> [[Double]] {
         var threatMap: [[Double]] = Array(repeating: Array(repeating: 0.0, count: map.width), count: map.height)
         
-        if try map.tile(row: unit.position.row, col: unit.position.col).getUnits().contains(unit) {
-            for row in 0..<map.height {
-                for col in 0..<map.width {
-                    if agent.getDiplomacyStatus(between: unit) == DiplomacyStatus.AtWar {
-                        let movementCost = unit.getChebyshevDistance(toRow: row, toCol: col)
-                        threatMap[row][col] = getThreat(distance: movementCost)
-                    }
-                }
-            }
-        }
+//        if try map.tile(row: unit.position.row, col: unit.position.col).getUnits().contains(unit) {
+//            for row in 0..<map.height {
+//                for col in 0..<map.width {
+//                    if agent.getDiplomacyStatus(between: unit) == DiplomacyStatus.AtWar {
+//                        let movementCost = unit.getChebyshevDistance(toRow: row, toCol: col)
+//                        threatMap[row][col] = getThreat(distance: movementCost)
+//                    }
+//                }
+//            }
+//        }
         
         return threatMap
     }
@@ -50,7 +50,7 @@ public class UnitInfluenceMapCalculator: InfluenceMapCalculator {
     private func getThreat(distance: Int) -> Double {
         let normalizedThreat = -1 / (1 + exp(3 * (1.8 * Double(distance) - 2.5)))
         
-        return (unit.attackRating / 3) * normalizedThreat
+        return (unit.attack / 3) * normalizedThreat
     }
     
     public func logInfluenceMap(theMap: [[Double]]) {

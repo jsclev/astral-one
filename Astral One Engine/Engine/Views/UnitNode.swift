@@ -39,7 +39,7 @@ public class UnitNode: SKSpriteNode {
                         self.game.addCommand(command: NextTurnCommand(commandId: 1,
                                                                       game: self.game,
                                                                       turn: turn,
-                                                                      player: Player(playerId: 1),
+                                                                      player: Player(playerId: 1, game: game),
                                                                       type: CommandType.init(id: 1, name: "NextTurn"),
                                                                       ordinal: 1))
                         self.game.processCommands()
@@ -60,17 +60,17 @@ public class UnitNode: SKSpriteNode {
         game.selectMapPosition(mapPosition: MapPosition(row: 0, col: 0))
         
         let moveCommand: Command = MoveCommand(commandId: 1,
-                                                 gameId: 1,
-                                                 turn: Turn(id: 1,
-                                                            year: 1900,
-                                                            ordinal: 25,
-                                                            displayText: "1900"),
-                                                 player: Player(playerId: 1),
-                                                 type: CommandType.init(id: 1, name: "Move"),
-                                                 ordinal: 1,
-                                                 unit: unit,
-                                                 to: Position(row: unit.position.row - 1,
-                                                              col: unit.position.col - 1))
+                                               gameId: 1,
+                                               turn: Turn(id: 1,
+                                                          year: 1900,
+                                                          ordinal: 25,
+                                                          displayText: "1900"),
+                                               player: Player(playerId: 1, game: self.game),
+                                               type: CommandType.init(id: 1, name: "Move"),
+                                               ordinal: 1,
+                                               unit: unit,
+                                               to: Position(row: unit.position.row - 1,
+                                                            col: unit.position.col - 1))
         game.addCommand(command: moveCommand)
         game.processCommands()
     }

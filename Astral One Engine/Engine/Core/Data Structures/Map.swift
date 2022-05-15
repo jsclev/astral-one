@@ -1,5 +1,6 @@
 import Foundation
 import GameplayKit
+import Combine
 
 public class Map {
     public let mapId: Int
@@ -7,6 +8,9 @@ public class Map {
     public let height: Int
     private var grid: [[Tile]]
     private var movementCosts: [[Double]]
+    private var players: [Player] = []
+    private var cancellable = Set<AnyCancellable>()
+
     
     public init(mapId: Int, width: Int, height: Int) {
         self.mapId = mapId
@@ -97,12 +101,36 @@ public class Map {
         return grid[row][col]
     }
     
+    public func add(player: Player) {
+        players.append(player)
+        
+//        player.$units
+//            .dropFirst()
+//            .sink(receiveValue: { units in
+//                if let newUnit = units.last {
+//                    do {
+//                        try self.tile(row: newUnit.position.row,
+//                                      col: newUnit.position.col).add(unit: newUnit)
+//                    }
+//                    catch {
+//                        fatalError("\(error)")
+//                    }
+//                }
+//            })
+//            .store(in: &cancellable)
+    }
+    
+//    public func add(unit: Unit) throws {
+//        try tile(row: unit.position.row, col: unit.position.col).add(unit: unit)
+//    }
+    
     public func getGrid() -> [[Tile]] {
         return grid
     }
     
     public func getUnits(row: Int, col: Int) -> [Unit] {
-        return grid[row][col].getUnits()
+        return []
+//        return grid[row][col].getUnits()
     }
     
     public func getMovementCosts() -> [[Double]] {
@@ -112,14 +140,14 @@ public class Map {
     public func getNumLayers() -> Int {
         var numLayers: Int = 1
         
-        for row in 0..<width {
-            for col in 0..<height {
-                let myLayerCount = grid[row][col].getUnits().count
-                if myLayerCount > numLayers {
-                    numLayers = myLayerCount
-                }
-            }
-        }
+//        for row in 0..<width {
+//            for col in 0..<height {
+//                let myLayerCount = grid[row][col].getUnits().count
+//                if myLayerCount > numLayers {
+//                    numLayers = myLayerCount
+//                }
+//            }
+//        }
 
         return numLayers
     }
@@ -131,7 +159,7 @@ public class Map {
         for row in 0..<width {
             for col in 0..<height {
                 let tile = grid[row][col]
-                print("Node [\(row),\(col)]: \(tile.getUnits().count) units.")
+//                print("Node [\(row),\(col)]: \(tile.getUnits().count) units.")
 //                    for tile in node.getTiles() {
 //                        if let tileType = Constants.tiles[tile.id] {
 //                            if let tileGroup = tileset.tileGroups.first(where: { $0.name == tileType }) {

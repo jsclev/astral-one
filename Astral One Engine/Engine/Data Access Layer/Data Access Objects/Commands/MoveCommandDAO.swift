@@ -7,6 +7,11 @@ public class MoveCommandDAO: BaseDAO {
     }
     
     public func insert(moveCommand: MoveCommand) throws -> MoveCommand {
+        let theme = Theme(id: 1, name: "Standard")
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
+        let player = Player(playerId: 1, game: game)
+        
         var sql = "INSERT INTO move_command (" +
         "command_id, unit_id, from_position, to_position)" +
         ") VALUES "
@@ -45,8 +50,9 @@ public class MoveCommandDAO: BaseDAO {
                            player: moveCommand.player,
                            type: commandType,
                            ordinal: 1,
-                           unit: Infantry1(theme: Theme(id: 1, name: "Standard"),
-                                           playerId: 1,
+                           unit: Infantry1(game: game,
+                                           player: player,
+                                           theme: theme,
                                            name: "Warrior",
                                            position: Position(row: 0, col: 0)),
                            to: Position(row: 0, col: 0))

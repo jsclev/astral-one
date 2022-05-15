@@ -118,15 +118,6 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                                     fatalError("Unable to find tile with Tiled ID \(strLocalTileId).")
                                                 }
                                             }
-                                            else {
-                                                print("Tiled ID: \(strLocalTileId), layerOrdinal: \(layerOrdinal)")
-
-                                                let unit = UnitFactory.createUnit(tiledId: tiledId,
-                                                                                  row: 119 - mapRowIndex,
-                                                                                  col: col)
-                                                let tile = try map.tile(row: 119 - mapRowIndex, col: col)
-                                                tile.add(unit: unit)
-                                            }
                                         }
                                     }
                                     catch {

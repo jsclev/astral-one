@@ -102,13 +102,12 @@ public class Db {
     
     public func getGameBy(gameId: Int) throws -> Game {
         let theme = Theme(id: 2, name: "Sci-Fi")
-        let game = Game(theme: theme)
+        let map = try mapDao.get(gameId: gameId)
+        let game = Game(theme: theme, map: map)
         let turn = Turn(id: 1, year: 1900, ordinal: 55, displayText: "1900")
-        
-        game.map = try mapDao.get(gameId: gameId)
 
         // Pull the map from the database
-        let player1 = Player(playerId: 1)
+        let player1 = Player(playerId: 1, game: game)
         let cities = try cityDao.getCities(gameId: 1)
         let units = try unitDao.getUnits(gameId: 1)
 
@@ -122,21 +121,21 @@ public class Db {
 
         game.addPlayer(player: player1)
         
-        let newYork = City(theme: theme,
-                           player: player1,
-                           name: "New York",
-                           assetName: "city-1",
-                           position: Position(row: 50, col: 50))
-        let createNewYork = CreateCityCommand(commandId: 1,
-                                              gameId: 1,
-                                              turn: turn,
-                                              player: player1,
-                                              type: CommandType.init(id: 1, name: "Create City"),
-                                              ordinal: 1,
-                                              city: newYork,
-                                              position: newYork.position)
-        
-        game.addCommand(command: createNewYork)
+//        let newYork = City(player: player1,
+//                           theme: theme,
+//                           name: "New York",
+//                           assetName: "city-1",
+//                           position: Position(row: 50, col: 50))
+//        let createNewYork = CreateCityCommand(commandId: 1,
+//                                              gameId: 1,
+//                                              turn: turn,
+//                                              player: player1,
+//                                              type: CommandType.init(id: 1, name: "Create City"),
+//                                              ordinal: 1,
+//                                              city: newYork,
+//                                              position: newYork.position)
+//
+//        game.addCommand(command: createNewYork)
         
         return game
     }

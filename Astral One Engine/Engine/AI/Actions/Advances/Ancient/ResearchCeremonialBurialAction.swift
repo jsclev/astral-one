@@ -1,6 +1,6 @@
 import Foundation
 
-public class ResearchCeremonialBurialAction: Action {
+public class ResearchCeremonialBurialAction: ResearchAction {
     public init() {
         super.init(id: 2, name: "Research Ceremonial Burial")
 
@@ -15,18 +15,12 @@ public class ResearchCeremonialBurialAction: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-        player.removeAvailable(action: self)
+        player.removeAvailable(researchAction: self)
     }
     
     public override func clone() -> Action {
         let copy = ResearchCeremonialBurialAction()
-        
-        copy.cost = self.cost
-        copy.scienceCost = self.scienceCost
-        copy.numTurns = self.numTurns
-        
-        copy.preconditions = self.preconditions
-        copy.effects = self.effects
+        copyProps(source: self, target: copy)
         
         return copy
     }

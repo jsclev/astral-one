@@ -1,21 +1,23 @@
 import Foundation
 
 public class Cavalry1: Unit {
-    public init(theme: Theme,
-                playerId: Int,
+    public init(game: Game,
+                player: Player,
+                theme: Theme,
                 name: String,
                 position: Position) {
-        super.init(theme: theme,
-                   playerId: playerId,
+        super.init(game: game,
+                   player: player,
+                   theme: theme,
                    tiledId: 100,
                    name: name,
                    assetName: "Units/Cavalry/cavalry-1",
-                   cost: 80,
-                   maxHp: 30,
-                   attackRating: 10,
-                   defense: 5,
+                   cost: 20,
+                   maxHp: 1,
+                   attack: 2,
+                   defense: 1,
                    fp: 1,
-                   maxMovementPoints: 3.0,
+                   maxMovementPoints: 2.0,
                    position: position)
     }
     

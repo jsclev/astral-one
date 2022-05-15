@@ -1,6 +1,6 @@
 import Foundation
 
-public class ResearchMapMakingAction: Action {
+public class ResearchMapMakingAction: ResearchAction {
     public init() {
         super.init(id: 2, name: "Research Map Making")
 
@@ -15,26 +15,26 @@ public class ResearchMapMakingAction: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-        player.removeAvailable(action: self)
+        player.removeAvailable(researchAction: self)
         player.add(advanceName: name)
         
-        if player.hasResearched(advanceName: ResearchAlphabetAction().name) {
-            player.addAvailable(action: ResearchSeafaringAction())
+        for city in player.cities {
+            if city.isCoastal {
+                city.addAvailable(action: CreateNaval1Action(city: city))
+            }
         }
         
-        player.addAvailable(action: ResearchSeafaringAction())
+        if player.hasResearched(advanceName: ResearchAlphabetAction().name) {
+            player.addAvailable(researchAction: ResearchSeafaringAction())
+        }
+        
+        player.addAvailable(researchAction: ResearchSeafaringAction())
 
     }
     
     public override func clone() -> Action {
         let copy = ResearchMapMakingAction()
-        
-        copy.cost = self.cost
-        copy.scienceCost = self.scienceCost
-        copy.numTurns = self.numTurns
-        
-        copy.preconditions = self.preconditions
-        copy.effects = self.effects
+        copyProps(source: self, target: copy)
         
         return copy
     }

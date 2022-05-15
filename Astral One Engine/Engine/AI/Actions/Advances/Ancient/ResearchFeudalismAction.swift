@@ -1,6 +1,6 @@
 import Foundation
 
-public class ResearchFeudalismAction: Action {
+public class ResearchFeudalismAction: ResearchAction {
     public init() {
         super.init(id: 2, name: "Research Feudalism")
 
@@ -17,10 +17,19 @@ public class ResearchFeudalismAction: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-        player.removeAvailable(action: self)
+        player.removeAvailable(researchAction: self)
+        
+        for city in player.cities {
+            city.addAvailable(action: CreateInfantry4Action(city: city))
+        }
 
-        player.addAvailable(action: ResearchChivalryAction())
+        player.addAvailable(researchAction: ResearchChivalryAction())
     }
     
-    
+    public override func clone() -> Action {
+        let copy = ResearchFeudalismAction()
+        copyProps(source: self, target: copy)
+        
+        return copy
+    }
 }

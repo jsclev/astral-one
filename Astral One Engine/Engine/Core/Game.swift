@@ -29,12 +29,13 @@ public class Game: ObservableObject {
     @Published public var turnIndex = 0
     
     public var players: [Player] = []
-    public var map: Map = Map(mapId: 1, width: 0, height: 0)
+    public let map: Map
     public let theme: Theme
     public var commands: [Command] = []
 
-    public init(theme: Theme) {
+    public init(theme: Theme, map: Map) {
         self.theme = theme
+        self.map = map
     }
     
     public func addPlayer(player: Player) {

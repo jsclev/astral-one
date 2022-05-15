@@ -7,12 +7,17 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         // corner.  We'll create an enemy unit, but won't actually
         // add it to the map, and assert that the influence is zero.
         let map = Map(mapId: 1, width: 3, height: 3)
-        let agent = Infantry1(theme: Theme(id: 1, name: "Test Theme"),
-                              playerId: 1,
+        let theme = Theme(id: 1, name: "Standard")
+        let game = Game(theme: theme, map: map)
+        
+        let agent = Infantry1(game: game,
+                              player: Player(playerId: 1, game: game),
+                              theme: theme,
                               name: "Test",
                               position: Position(row: 0, col: 0))
-        let enemyUnit = Infantry1(theme: Theme(id: 1, name: "Test Theme"),
-                                  playerId: 2,
+        let enemyUnit = Infantry1(game: game,
+                                  player: Player(playerId: 1, game: game),
+                                  theme: theme,
                                   name: "Test",
                                   position: Position(row: 1, col: 1))
 
@@ -44,12 +49,27 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         // negative level at the enemy position, then spreading out.
         let map = Map(mapId: 1, width: 3, height: 3)
         let theme = Theme(id: 1, name: "Test Theme")
+        let game = Game(theme: theme, map: map)
+        let player = Player(playerId: 1, game: game)
+        let enemyPlayer = Player(playerId: 2, game: game)
         
-        let agent = Infantry1(theme: theme, playerId: 1, name: "Test", position: Position(row: 0, col: 0))
-        let enemyUnit = Infantry1(theme: theme, playerId: 2, name: "Test", position: Position(row: 0, col: 0))
+        let agent = Infantry1(game: game,
+                              player: player,
+                              theme: theme,
+                              name: "Test",
+                              position: Position(row: 0, col: 0))
+        player.add(unit: agent)
         
-        let tile = Tile(row: 1, col: 1, terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
-        tile.add(unit: enemyUnit)
+        let enemyUnit = Infantry1(game: game,
+                                  player: enemyPlayer,
+                                  theme: theme,
+                                  name: "Test",
+                                  position: Position(row: 0, col: 0))
+        enemyPlayer.add(unit: enemyUnit)
+        
+        let tile = Tile(row: 1,
+                        col: 1,
+                        terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         try map.add(tile: tile)
         
         let calculator = UnitInfluenceMapCalculator(map: map, unit: enemyUnit, agent: agent)
@@ -85,16 +105,35 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
          negative influence.
          */
         let map = Map(mapId: 1, width: 3, height: 3)
-        let tile = Tile(row: 1, col: 1, terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         let theme = Theme(id: 1, name: "Test Theme")
+        let game = Game(theme: theme, map: map)
+        let player = Player(playerId: 1, game: game)
+        let enemyPlayer = Player(playerId: 2, game: game)
+
+        let agent = Infantry1(game: game,
+                              player: player,
+                              theme: theme,
+                              name: "Agent",
+                              position: Position(row: 0, col: 0))
+        player.add(unit: agent)
         
+        let enemyUnit1 = Infantry1(game: game,
+                                   player: enemyPlayer,
+                                   theme: theme,
+                                   name: "Enemy1",
+                                   position: Position(row: 1, col: 1))
+        enemyPlayer.add(unit: enemyUnit1)
+        
+        let enemyUnit2 = Cavalry7(game: game,
+                                  player: enemyPlayer,
+                                  theme: theme,
+                                  name: "Enemy2",
+                                  position: Position(row: 1, col: 1))
+        enemyPlayer.add(unit: enemyUnit2)
 
-        let agent = Infantry1(theme: theme, playerId: 1, name: "Agent", position: Position(row: 0, col: 0))
-        let enemyUnit1 = Infantry1(theme: theme, playerId: 2, name: "Enemy1", position: Position(row: 1, col: 1))
-        let enemyUnit2 = Cavalry7(theme: theme, playerId: 2, name: "Enemy2", position: Position(row: 1, col: 1))
-
-        tile.add(unit: enemyUnit1)
-        tile.add(unit: enemyUnit2)
+        let tile = Tile(row: 1,
+                        col: 1,
+                        terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         try map.add(tile: tile)
         
         let calculator1 = UnitInfluenceMapCalculator(map: map, unit: enemyUnit1, agent: agent)
@@ -125,15 +164,35 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
          negative influence.
          */
         let mainMap = Map(mapId: 1, width: 3, height: 3)
-        let tile = Tile(row: 1, col: 1, terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         let theme = Theme(id: 1, name: "Test Theme")
+        let game = Game(theme: theme, map: mainMap)
+        let player = Player(playerId: 1, game: game)
+        let enemyPlayer = Player(playerId: 2, game: game)
         
-        let agent = Infantry1(theme: theme, playerId: 1, name: "Agent", position: Position(row: 0, col: 0))
-        let enemyUnit1 = Infantry1(theme: theme, playerId: 2, name: "Enemy1", position: Position(row: 0, col: 0))
-        let enemyUnit2 = Cavalry7(theme: theme, playerId: 2, name: "Enemy2", position: Position(row: 0, col: 0))
+        let agent = Infantry1(game: game,
+                              player: Player(playerId: 1, game: game),
+                              theme: theme,
+                              name: "Agent",
+                              position: Position(row: 0, col: 0))
+        player.add(unit: agent)
         
-        tile.add(unit: enemyUnit1)
-        tile.add(unit: enemyUnit2)
+        let enemyUnit1 = Infantry1(game: game,
+                                   player: Player(playerId: 1, game: game),
+                                   theme: theme,
+                                   name: "Enemy1",
+                                   position: Position(row: 0, col: 0))
+        enemyPlayer.add(unit: enemyUnit1)
+        
+        let enemyUnit2 = Cavalry7(game: game,
+                                  player: Player(playerId: 1, game: game),
+                                  theme: theme,
+                                  name: "Enemy2",
+                                  position: Position(row: 0, col: 0))
+        enemyPlayer.add(unit: enemyUnit2)
+        
+        let tile = Tile(row: 1,
+                        col: 1,
+                        terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         try mainMap.add(tile: tile)
         
         let calculator1 = UnitInfluenceMapCalculator(map: mainMap, unit: enemyUnit1, agent: agent)

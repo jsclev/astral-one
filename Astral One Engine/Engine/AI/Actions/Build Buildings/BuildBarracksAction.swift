@@ -1,9 +1,12 @@
 import Foundation
 
 public class BuildBarracksAction: Action {
-    public init() {
-        super.init(id: 2, name: "Build Barracks")
-
+    private let city: City
+    
+    public init(city: City) {
+        self.city = city
+        super.init(id: 2, name: "Build Barracks_\(city.name)")
+        
         preconditions = []
         
         effects = [
@@ -15,10 +18,15 @@ public class BuildBarracksAction: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-        if player.cities.count > 0 {
-            player.cities[0].addBarracks()
-        }
+        city.removeAvailable(action: self)
+
+        city.addBarracks()
+    }
+    
+    public override func clone() -> Action {
+        let copy = BuildBarracksAction(city: city)
+        copyProps(source: self, target: copy)
         
-        player.removeAvailable(action: BuildBarracksAction())
+        return copy
     }
 }

@@ -9,18 +9,22 @@ class CommandDAOTests: XCTestCase {
     }
     
     func testInsertOneExpectsSuccess() throws {
-        let player = Player(playerId: 1)
+        let theme = Theme(id: 1, name: "Standard")
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
+        let player = Player(playerId: 1, game: game)
         let turn = Turn(id: 1, year: -4000, ordinal: 0, displayText: "4000 BCE")
         let commandType = CommandType(id: 1, name: "Move Unit")
 
-        let unit = Engine.Unit(theme: Theme(id: 1, name: "Test Theme"),
-                               playerId: 1,
+        let unit = Engine.Unit(game: game,
+                               player: player,
+                               theme: theme,
                                tiledId: 1,
                                name: "Test",
                                assetName: "Test Asset Name",
                                cost: 0.0,
                                maxHp: 0.0,
-                               attackRating: 0.0,
+                               attack: 0.0,
                                defense: 0.0,
                                fp: 0.0,
                                maxMovementPoints: 0.0,

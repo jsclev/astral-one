@@ -1,9 +1,9 @@
 import Foundation
 
-public class ResearchMathematicsAction: Action {
+public class ResearchMathematicsAction: ResearchAction {
     
     public init() {
-        super.init(id: 2, name: "Create Horseman")
+        super.init(id: 2, name: "Research Mathematics")
         
         preconditions = []
         effects = []
@@ -12,14 +12,11 @@ public class ResearchMathematicsAction: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-        player.add(unit: Infantry1(theme: game.theme,
-                                   playerId: player.playerId,
-                                   name: "Warrior",
-                                   position: Position(row: 0, col: 0)))
+
     }
     
     public override func clone() -> Action {
-        let copy = CreateCavalry1Action()
+        let copy = ResearchMathematicsAction()
         copyProps(source: self, target: copy)
         
         return copy

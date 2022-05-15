@@ -1,21 +1,6 @@
 import Foundation
 
-public class Planner {
-    private var actions = [
-        BuildWallsAction(),
-        CreateCavalry1Action(),
-        CreateInfantry2Action(),
-        ResearchAlphabetAction(),
-        ResearchBronzeWorkingAction(),
-        ResearchCeremonialBurialAction(),
-        ResearchFeudalismAction(),
-        ResearchHorsebackRidingAction(),
-        ResearchMasonryAction(),
-        ResearchPotteryAction(),
-        ResearchTheWheelAction(),
-        ResearchWarriorCodeAction()
-    ]
-    
+public class Planner {    
     public init() {
         
     }

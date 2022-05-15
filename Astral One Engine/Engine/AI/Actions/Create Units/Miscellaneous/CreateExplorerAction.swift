@@ -12,8 +12,9 @@ public class CreateExplorerAction: Action {
     }
     
     public override func execute(game: Game, player: Player) {
-        player.add(unit: Explorer(theme: game.theme,
-                                  playerId: player.playerId,
+        player.add(unit: Explorer(game: game,
+                                  player: player,
+                                  theme: game.theme,
                                   name: "Explorer",
                                   position: Position(row: 0, col: 0)))
     }
