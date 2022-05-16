@@ -589,7 +589,6 @@
 			children = (
 				52A646A928322A5A0066B82D /* Build */,
 				526681832826DE950089D0DD /* Create Units */,
-				52A6469B283219250066B82D /* Move Units */,
 				52668189282700400089D0DD /* Research Advances */,
 				526681812826DE440089D0DD /* Action.swift */,
 				52A6463C282CCB5C0066B82D /* ActionSequence.swift */,
@@ -607,21 +606,6 @@
 				52A64667282E15570066B82D /* Naval */,
 			);
 			path = "Create Units";
-			sourceTree = "<group>";
-		};
-		526681862826FA3E0089D0DD /* Build Buildings */ = {
-			isa = PBXGroup;
-			children = (
-				52A646A6283229030066B82D /* Build Cities */,
-				52A6469A283218C80066B82D /* Build Improvements */,
-				52A6468B2830BFEC0066B82D /* Wonders */,
-				52A64640282CDB720066B82D /* BuildBarracksAction.swift */,
-				52A646862830BB580066B82D /* BuildGranaryAction.swift */,
-				52A646822830A7F90066B82D /* BuildHarborAction.swift */,
-				52A6468E28317A2B0066B82D /* BuildTempleAction.swift */,
-				526681872826FA9D0089D0DD /* BuildCityWallsAction.swift */,
-			);
-			path = "Build Buildings";
 			sourceTree = "<group>";
 		};
 		52668189282700400089D0DD /* Research Advances */ = {
@@ -780,7 +764,26 @@
 			path = Wonders;
 			sourceTree = "<group>";
 		};
-		52A6468B2830BFEC0066B82D /* Wonders */ = {
+		52A646A928322A5A0066B82D /* Build */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Build;
+			sourceTree = "<group>";
+		};
+		52A646AA28322BB10066B82D /* Build Buildings */ = {
+			isa = PBXGroup;
+			children = (
+				52A64640282CDB720066B82D /* BuildBarracksAction.swift */,
+				52A646862830BB580066B82D /* BuildGranaryAction.swift */,
+				52A646822830A7F90066B82D /* BuildHarborAction.swift */,
+				52A6468E28317A2B0066B82D /* BuildTempleAction.swift */,
+				526681872826FA9D0089D0DD /* BuildCityWallsAction.swift */,
+			);
+			path = "Build Buildings";
+			sourceTree = "<group>";
+		};
+		52A646AB28322BF40066B82D /* Build Wonders */ = {
 			isa = PBXGroup;
 			children = (
 				52A646922831EC930066B82D /* BuildColossusAction.swift */,
@@ -789,10 +792,10 @@
 				52A64698283203970066B82D /* BuildPalaceAction.swift */,
 				52A64694283201920066B82D /* BuildPyramidsAction.swift */,
 			);
-			path = Wonders;
+			path = "Build Wonders";
 			sourceTree = "<group>";
 		};
-		52A6469A283218C80066B82D /* Build Improvements */ = {
+		52A646AC28322C130066B82D /* Build Improvements */ = {
 			isa = PBXGroup;
 			children = (
 				52A6469E28321AC40066B82D /* BuildAirbaseCommand.swift */,
@@ -804,27 +807,12 @@
 			path = "Build Improvements";
 			sourceTree = "<group>";
 		};
-		52A6469B283219250066B82D /* Move Units */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Move Units";
-			sourceTree = "<group>";
-		};
-		52A646A6283229030066B82D /* Build Cities */ = {
+		52A646AD28322C380066B82D /* Build Cities */ = {
 			isa = PBXGroup;
 			children = (
 				52A646A72832292F0066B82D /* BuildCityCommand.swift */,
 			);
 			path = "Build Cities";
-			sourceTree = "<group>";
-		};
-		52A646A928322A5A0066B82D /* Build */ = {
-			isa = PBXGroup;
-			children = (
-				526681862826FA3E0089D0DD /* Build Buildings */,
-			);
-			path = Build;
 			sourceTree = "<group>";
 		};
 		52E0B18B27E6D87600607FBE /* IO */ = {
@@ -946,6 +934,10 @@
 		52F9045027F9F8CF00D1AC97 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				52A646AD28322C380066B82D /* Build Cities */,
+				52A646AC28322C130066B82D /* Build Improvements */,
+				52A646AB28322BF40066B82D /* Build Wonders */,
+				52A646AA28322BB10066B82D /* Build Buildings */,
 				52F9045927FA009E00D1AC97 /* BuildBuildingCommand.swift */,
 				52F9045727FA007400D1AC97 /* CreateCityCommand.swift */,
 				52F9045127F9F92C00D1AC97 /* Command.swift */,
