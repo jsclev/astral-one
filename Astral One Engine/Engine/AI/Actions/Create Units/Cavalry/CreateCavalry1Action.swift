@@ -5,12 +5,11 @@ public class CreateCavalry1Action: Action {
     
     public init(city: City) {
         self.city = city
-        super.init(id: 2, name: "Create Horseman")
+        super.init(id: 2, name: "Create Cavalry1")
 
         preconditions = []
         effects = []
         cost = 20
-        scienceCost = 0
     }
     
     public override func execute(game: Game, player: Player) {
@@ -20,7 +19,7 @@ public class CreateCavalry1Action: Action {
                             name: "Horseman",
                             position: city.position)
         
-        if city.hasBarracks {
+        if city.has(building: BuildingType.Barracks) {
             unit.makeVeteran()
         }
         

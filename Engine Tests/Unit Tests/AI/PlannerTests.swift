@@ -158,7 +158,7 @@ class PlannerTests: XCTestCase {
                          position: Position(row: 0, col: 0))
         player1.add(city: city1)
         let actionSequence1 = ActionSequence(goalScorer: goalScorer)
-        actionSequence1.add(action: BuildBarracksAction(city: city1))
+        actionSequence1.add(action: BuildBarracksAction())
         actionSequence1.add(action: CreateInfantry2Action(city: city1))
         let score1 = actionSequence1.execute(game: game, player: player1)
         
@@ -170,7 +170,7 @@ class PlannerTests: XCTestCase {
                          position: Position(row: 0, col: 1))
         player2.add(city: city2)
         let actionSequence2 = ActionSequence(goalScorer: goalScorer)
-        actionSequence2.add(action: BuildBarracksAction(city: city2))
+        actionSequence2.add(action: BuildBarracksAction())
         actionSequence2.add(action: CreateCavalry1Action(city: city2))
         let score2 = actionSequence2.execute(game: game, player: player2)
         
@@ -193,7 +193,7 @@ class PlannerTests: XCTestCase {
                                assetName: "",
                                position: Position(row: 0, col: 0)))
         let actionSequence1 = ActionSequence(goalScorer: goalScorer)
-        actionSequence1.add(action: CreateInfantry1Action(city: player1.cities[0]))
+        actionSequence1.add(action: CreateInfantry1Action())
         let score1 = actionSequence1.execute(game: game, player: player1)
         
         let player2 = startState.clone()
@@ -203,8 +203,8 @@ class PlannerTests: XCTestCase {
                                assetName: "",
                                position: Position(row: 0, col: 1)))
         let actionSequence2 = ActionSequence(goalScorer: goalScorer)
-        actionSequence2.add(action: CreateInfantry1Action(city: player2.cities[0]))
-        actionSequence2.add(action: BuildWallsAction(city: player2.cities[0]))
+        actionSequence2.add(action: CreateInfantry1Action())
+        actionSequence2.add(action: BuildCityWallsAction(city: player2.cities[0]))
         let score2 = actionSequence2.execute(game: game, player: player2)
         
         XCTAssertGreaterThan(score1, 0)
@@ -222,20 +222,20 @@ class PlannerTests: XCTestCase {
                         name: "test city",
                         assetName: "city",
                         position: Position(row: 0, col: 0))
-        player.add(city: city)
         let ai = RandomAI(game: game, player: player)
-        
-        player.addAvailable(researchAction: ResearchPotteryAction())
-        player.addAvailable(researchAction: ResearchAlphabetAction())
-        player.addAvailable(researchAction: ResearchWarriorCodeAction())
-        player.addAvailable(researchAction: ResearchHorsebackRidingAction())
-        player.addAvailable(researchAction: ResearchBronzeWorkingAction())
-        player.addAvailable(researchAction: ResearchMasonryAction())
-        player.addAvailable(researchAction: ResearchCeremonialBurialAction())
-        city.addAvailable(action: BuildBarracksAction(city: city))
-        city.addAvailable(action: CreateInfantry1Action(city: city))
 
-        while player.defense < 100 {
+        player.add(city: city)
+        player.addAvailable(researchAction: ResearchPotteryAction())
+//        player.addAvailable(researchAction: ResearchAlphabetAction())
+//        player.addAvailable(researchAction: ResearchWarriorCodeAction())
+//        player.addAvailable(researchAction: ResearchHorsebackRidingAction())
+//        player.addAvailable(researchAction: ResearchBronzeWorkingAction())
+//        player.addAvailable(researchAction: ResearchMasonryAction())
+//        player.addAvailable(researchAction: ResearchCeremonialBurialAction())
+        city.addAvailable(action: BuildBarracksAction())
+        city.addAvailable(action: CreateInfantry1Action())
+
+        while player.defense < 300 {
             print("New action sequence:")
             for action in ai.nextActionSequence() {
                 action.execute(game: game, player: player)
@@ -292,5 +292,44 @@ class PlannerTests: XCTestCase {
 //            print("\(action.name) executed, player defense is now \(player.defense).")
 //        }
 //    }
+    
+    func testGetActions99() throws {
+        let theme = Theme(id: 1, name: "test theme")
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
+        let player = Player(playerId: 1, game: game)
+        let city = City(player: player,
+                        theme: theme,
+                        name: "test city",
+                        assetName: "city",
+                        position: Position(row: 0, col: 0))
+        let ai = RandomAI(game: game, player: player)
+        
+        player.add(city: city)
+        player.addAvailable(researchAction: ResearchPotteryAction())
+        player.addAvailable(researchAction: ResearchAlphabetAction())
+        player.addAvailable(researchAction: ResearchWarriorCodeAction())
+        player.addAvailable(researchAction: ResearchHorsebackRidingAction())
+        player.addAvailable(researchAction: ResearchBronzeWorkingAction())
+        player.addAvailable(researchAction: ResearchMasonryAction())
+        player.addAvailable(researchAction: ResearchCeremonialBurialAction())
+        city.addAvailable(action: BuildBarracksAction())
+        city.addAvailable(action: CreateInfantry1Action())
+        
+        let workingCopy = player.clone()
+        let workingCity = workingCopy.cities[0]
+        let cityActions = Array(workingCity.getAvailableActions())
+
+        Array(workingCopy.getAvailableActions())[0].execute(game: game, player: workingCopy)
+        cityActions[0].execute(game: game, player: workingCopy, city: workingCity)
+        cityActions[1].execute(game: game, player: workingCopy, city: workingCity)
+
+        XCTAssertFalse(city.has(building: BuildingType.Barracks))
+        XCTAssertEqual(player.units.count, 0)
+
+        XCTAssertTrue(workingCity.has(building: BuildingType.Barracks))
+        XCTAssertEqual(workingCopy.units.count, 1)
+
+    }
 
 }

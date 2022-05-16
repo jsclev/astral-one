@@ -61,8 +61,7 @@ public class FounderContextMenu {
                 else {
                     print("An unnamed city creator node touched.")
                 }
-//                self.menu.position = self.mapView.getCenterPoint(row: mapPosition.row,
-//                                                                 col: mapPosition.col)
+
                 self.menu.isHidden = !self.menu.isHidden
             })
             .store(in: &cancellable)

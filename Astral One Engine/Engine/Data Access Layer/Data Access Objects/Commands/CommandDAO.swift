@@ -63,7 +63,7 @@ public class CommandDAO: BaseDAO {
                         
                         if commandName == "Move Unit" {
                             commands.append(MoveCommand(commandId: commandId,
-                                                        gameId: gameId,
+                                                        game: game,
                                                         turn: turn,
                                                         player: player,
                                                         type: commandType,
@@ -77,7 +77,7 @@ public class CommandDAO: BaseDAO {
                         }
                         else if commandName == "Research Tech" {
                             commands.append(TechCommand(commandId: commandId,
-                                                        gameId: gameId,
+                                                        game: game,
                                                         turn: turn,
                                                         player: player,
                                                         type: commandType,
@@ -91,7 +91,7 @@ public class CommandDAO: BaseDAO {
                         }
                         else if commandName == "Build Building" {
                             commands.append(BuildBuildingCommand(commandId: commandId,
-                                                                 gameId: gameId,
+                                                                 game: game,
                                                                  turn: turn,
                                                                  player: player,
                                                                  type: commandType,
@@ -105,7 +105,7 @@ public class CommandDAO: BaseDAO {
                         }
                         else if commandName == "Build City" {
                             commands.append(CreateCityCommand(commandId: commandId,
-                                                              gameId: gameId,
+                                                              game: game,
                                                               turn: turn,
                                                               player: player,
                                                               type: commandType,
@@ -133,12 +133,17 @@ public class CommandDAO: BaseDAO {
     public func insertCommand(command: Command) throws -> Command {
         var commandId: Int = -1
         
+        let theme = Theme(id: 1, name: "Standard")
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
+        let player = Player(playerId: 1, game: game)
+        
         var sql = "INSERT INTO command (" +
         "game_id, turn_id, player_id, command_type_id, ordinal" +
         ") VALUES "
         
         sql += "("
-        sql += getSql(val: command.gameId, postfix: ", ")
+        sql += getSql(val: 1, postfix: ", ")
         sql += getSql(val: command.turn.id, postfix: ", ")
         sql += getSql(val: command.player.playerId, postfix: ", ")
         sql += getSql(val: command.type.id, postfix: ", ")
@@ -162,7 +167,7 @@ public class CommandDAO: BaseDAO {
         }
         
         return Command(commandId: commandId,
-                       gameId: command.gameId,
+                       game: game,
                        turn: command.turn,
                        player: command.player,
                        type: command.type,
@@ -174,6 +179,11 @@ public class CommandDAO: BaseDAO {
         var commandId = -1
         var cmdStmt: OpaquePointer?
         var rowIdStmt: OpaquePointer?
+        
+        let theme = Theme(id: 1, name: "Standard")
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
+        let player = Player(playerId: 1, game: game)
         
         let cmdSql = "INSERT INTO command (" +
         "game_id, turn_id, player_id, command_type_id, ordinal" +
@@ -202,7 +212,7 @@ public class CommandDAO: BaseDAO {
         }
         
         for moveCommand in moveCommands {
-            sqlite3_bind_int(cmdStmt, 1, Int32(moveCommand.gameId))
+            sqlite3_bind_int(cmdStmt, 1, Int32(1))
             sqlite3_bind_int(cmdStmt, 2, Int32(moveCommand.turn.id))
             sqlite3_bind_int(cmdStmt, 3, Int32(moveCommand.player.playerId))
             sqlite3_bind_int(cmdStmt, 4, Int32(moveCommand.type.id))
@@ -212,7 +222,7 @@ public class CommandDAO: BaseDAO {
                 if sqlite3_step(rowIdStmt) == SQLITE_ROW {
                     commandId = getInt(stmt: rowIdStmt, colIndex: 0)
                     newCommands.append(MoveCommand(commandId: commandId,
-                                                   gameId: moveCommand.gameId,
+                                                   game: game,
                                                    turn: moveCommand.turn,
                                                    player: moveCommand.player,
                                                    type: moveCommand.type,

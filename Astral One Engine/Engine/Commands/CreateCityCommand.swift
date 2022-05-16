@@ -4,7 +4,7 @@ public class CreateCityCommand: Command {
     private let city: City
     
     public init(commandId: Int,
-                gameId: Int,
+                game: Game,
                 turn: Turn,
                 player: Player,
                 type: CommandType,
@@ -14,7 +14,7 @@ public class CreateCityCommand: Command {
         self.city = city
         
         super.init(commandId: commandId,
-                   gameId: gameId,
+                   game: game,
                    turn: turn,
                    player: player,
                    type: type,

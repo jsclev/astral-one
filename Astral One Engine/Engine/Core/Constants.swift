@@ -42,6 +42,89 @@ public enum DiplomacyStatus {
     case AtWar
 }
 
+public enum BuildingType {
+    case Airport
+    case Aqueduct
+    case Bank
+    case Barracks
+    case Capitalization
+    case Cathedral
+    case CityWalls
+    case CoastalFortress
+    case Colosseum
+    case Courthouse
+    case Factory
+    case Granary
+    case Harbor
+    case HydroPlant
+    case Library
+    case ManufacturingPlant
+    case Marketplace
+    case MassTransit
+    case NuclearPlant
+    case OffshorePlatform
+    case Palace
+    case PoliceStation
+    case PortFacility
+    case PowerPlant
+    case RecyclingCenter
+    case ResearchLab
+    case SAMMissileBattery
+    case SDIDefense
+    case SSComponent
+    case SSModule
+    case SSStructural
+    case SewerSystem
+    case SolarPlant
+    case StockExchange
+    case Superhighways
+    case Supermarket
+    case Temple
+    case University
+}
+
+public enum WonderType {
+    case AdamSmithsTradingCo
+    case ApolloProgram
+    case Colossus
+    case CopernicusObservatory
+    case CureForCancer
+    case DarwinsVoyage
+    case EiffelTower
+    case GreatLibrary
+    case GreatWall
+    case HangingGardens
+    case HooverDam
+    case IsaacNewtonsCollege
+    case JSBachsCathedral
+    case KingRichardsCrusade
+    case LeonardosWorkshop
+    case Lighthouse
+    case MagellansExpedition
+    case ManhattenProject
+    case MarcoPolosEmbassy
+    case MichelangelosChapel
+    case Oracle
+    case Pyramids
+    case SETIProgram
+    case ShakespearesTheatre
+    case StatueOfLiberty
+    case SunTzusWarAcademy
+    case UnitedNations
+    case WomensSuffrage
+    
+}
+
+public enum ImprovementType {
+    case Airbase
+    case Farmland
+    case Fortress
+    case Mine
+    case Pollution
+    case Railroad
+    case Road
+}
+
 public struct Constants {
     public static let db = Db(fullRefresh: false)
     public static let minDefense: Double = 0.001

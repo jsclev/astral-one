@@ -13,7 +13,7 @@ public class CityView {
             .dropFirst()
             .sink(receiveValue: { cities in
                 if let city = cities.last {
-                    let point = mapView.getCenterPoint(row: city.position.row, col: city.position.col)
+                    let point = mapView.getCenterPointOf(position: city.position)
                     
                     let node = CityNode(city: city)
                     node.position = point

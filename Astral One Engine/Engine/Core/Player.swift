@@ -157,4 +157,40 @@ public class Player: ObservableObject {
         return copy
     }
     
+    public func canBuild(buildingType: BuildingType) -> Bool {
+        for city in cities {
+            if city.has(building: buildingType) {
+                return false
+            }
+        }
+            
+        return true
+    }
+    
+    public func canBuild(wonder: WonderType) -> Bool {
+        for city in cities {
+            if city.has(wonder: wonder) {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    public func has(buildingType: BuildingType, in: City) -> Bool {
+//        switch buildingType {
+//        case BuildingType.Barracks:
+//            return barracks != nil
+//        case BuildingType.CityWalls:
+//            return walls != nil
+//        case BuildingType.Granary:
+//            return granary != nil
+//        case BuildingType.Harbor:
+//            return harbor != nil
+//        default:
+//            return false
+//        }
+        return false
+    }
+    
 }

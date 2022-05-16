@@ -14,12 +14,12 @@ class CityTests: XCTestCase {
                         assetName: "city",
                         position: Position(row: 0, col: 0))
         
-        let buildBarracksAction = BuildBarracksAction(city: city)
+        let buildBarracksAction = BuildBarracksAction()
         let createUnitAction = CreateInfantry2Action(city: city)
         
-        // At this point, the player should have zero units
+        // At this point, the player should have zero units and no barracks
         XCTAssertEqual(player.units.count, 0)
-        XCTAssertFalse(city.hasBarracks)
+        XCTAssertFalse(city.has(building: BuildingType.Barracks))
 
         // Since the city has a Barracks, the unit should already have Veteran status.
         // The infantry2 (Phalanx) starts out by default with defense of 2, so Veteran

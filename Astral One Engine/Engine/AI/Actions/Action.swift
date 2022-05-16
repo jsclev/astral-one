@@ -19,6 +19,10 @@ public class Action: Hashable {
         fatalError("Need to implement in subclass")
     }
     
+    public func execute(game: Game, player: Player, city: City) {
+        fatalError("Need to implement in subclass")
+    }
+    
     public func clone() -> Action {
         fatalError("Need to implement in subclass")
     }

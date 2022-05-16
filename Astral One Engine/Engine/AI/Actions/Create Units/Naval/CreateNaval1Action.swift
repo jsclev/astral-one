@@ -5,12 +5,11 @@ public class CreateNaval1Action: Action {
     
     public init(city: City) {
         self.city = city
-        super.init(id: 2, name: "Create Trireme")
+        super.init(id: 2, name: "Create Naval1")
         
         preconditions = []
         effects = []
         cost = 10
-        scienceCost = 0
     }
     
     public override func execute(game: Game, player: Player) {
@@ -20,7 +19,7 @@ public class CreateNaval1Action: Action {
                           name: "Trireme",
                           position: city.position)
         
-//        if city.hasBarracks {
+//        if city.hasPortFacility {
 //            unit.makeVeteran()
 //        }
         

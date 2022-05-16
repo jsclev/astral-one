@@ -138,7 +138,8 @@ public class Map {
     }
     
     public func getNumLayers() -> Int {
-        var numLayers: Int = 1
+        return 1
+//        var numLayers: Int = 1
         
 //        for row in 0..<width {
 //            for col in 0..<height {
@@ -149,16 +150,16 @@ public class Map {
 //            }
 //        }
 
-        return numLayers
+//        return numLayers
     }
     
     public func log() {
-        print("****************************************************************")
-        print("Map dimensions: [\(width), \(height)]")
-        
-        for row in 0..<width {
-            for col in 0..<height {
-                let tile = grid[row][col]
+//        print("****************************************************************")
+//        print("Map dimensions: [\(width), \(height)]")
+//
+//        for row in 0..<width {
+//            for col in 0..<height {
+//                let tile = grid[row][col]
 //                print("Node [\(row),\(col)]: \(tile.getUnits().count) units.")
 //                    for tile in node.getTiles() {
 //                        if let tileType = Constants.tiles[tile.id] {
@@ -167,10 +168,10 @@ public class Map {
 //                            }
 //                        }
 //                    }
-            }
-        }
-        
-        print("****************************************************************")
+//            }
+//        }
+//
+//        print("****************************************************************")
     }
     
     public func getDistance(fromRow: Int, fromCol: Int, toRow: Int, toCol: Int) -> Int {

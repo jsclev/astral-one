@@ -5,12 +5,10 @@ public class SpawnInfantry1Action: Action {
     
     public init(goodieHut: GoodieHut) {
         self.goodieHut = goodieHut
-        super.init(id: 2, name: "Spawn Warrior")
+        super.init(id: 2, name: "Spawn Infantry1")
         
         preconditions = []
         effects = []
-        cost = 10
-        scienceCost = 0
     }
     
     public override func execute(game: Game, player: Player) {

@@ -210,20 +210,20 @@ class PathfinderScene: SKScene {
         
 //        game.processCommands(commands: game.db.commandDao.getCommands(gameId: 1))
         
-        mapView.renderPlayer()
+//        mapView.renderPlayer()
         
 //        let tileCoordsLayer = TileCoordsMapLayer(game: game,
 //                                                 scene: self,
 //                                                 mapView: mapView,
 //                                                 layerIndex: 10000000)
         let cityView = CityView(player: game.players[0], scene: self, mapView: mapView)
-        let turnView = TurnView(parent: gameCamera, game: game)
+        let _ = TurnView(parent: gameCamera, game: game)
         game.processCommands()
         
         let player = game.players[0]
         mapView.addPlayer(player: player)
         
-        for i in 0..<1000 {
+        for _ in 0..<1000 {
             let position1 = Position(row: Int.random(in: 0..<game.map.height),
                                      col: Int.random(in: 0..<game.map.width))
             let city1 = City(player: player,
@@ -233,21 +233,15 @@ class PathfinderScene: SKScene {
                              position: position1)
             player.add(city: city1)
             
-            let createInfantry1Action = CreateInfantry5Action(city: city1)
+            let createInfantry1Action = CreateInfantry1Action(city: city1)
             let createInfantry2Action = CreateInfantry2Action(city: city1)
             let createInfantry3Action = CreateInfantry3Action(city: city1)
             let createInfantry4Action = CreateInfantry4Action(city: city1)
             
             createInfantry1Action.execute(game: game, player: player)
-//            createInfantry2Action.execute(game: game, player: player)
-//            createInfantry3Action.execute(game: game, player: player)
-//            createInfantry4Action.execute(game: game, player: player)
-
-//            city1.addAvailable(action: CreateInfantry1Action(city: city1))
-            
-            
-            
-            print(position1)
+            createInfantry2Action.execute(game: game, player: player)
+            createInfantry3Action.execute(game: game, player: player)
+            createInfantry4Action.execute(game: game, player: player)
         }
         
 //        for i in 0..<1000 {

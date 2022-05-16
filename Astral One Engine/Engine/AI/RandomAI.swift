@@ -22,30 +22,36 @@ public class RandomAI {
     public func nextActionSequence() -> [Action] {
         var workingCopy = player.clone()
         let startDefense = player.defense
-        var defenseDiff: Double = 0.0
+        var diff: Double = 0.0
+        var randomNum: Int = 0
         var results: [DefenseDiff] = []
         
         for _ in 0..<100 {
             workingCopy = player.clone()
-            defenseDiff = 0
+            diff = 0.0
             var actions: [Action] = []
             
-            for _ in 0..<4 {
-                if let action = workingCopy.getRandomAvailableAction() {
-                    action.execute(game: game, player: workingCopy)
-                    defenseDiff += workingCopy.defense - startDefense
-                    actions.append(action)
-                }
+            let playerActions = Array(workingCopy.getAvailableActions())
+            randomNum = Int.random(in: 0..<playerActions.count)
+            let randomPlayerAction = playerActions[randomNum]
+            randomPlayerAction.execute(game: game, player: workingCopy)
+            actions.append(randomPlayerAction)
+            
+            for city in workingCopy.cities {
+                let availableCityActions = Array(city.getAvailableActions())
+                randomNum = Int.random(in: 0..<availableCityActions.count)
+                let randomCityAction = availableCityActions[randomNum]
+                randomCityAction.execute(game: game, player: workingCopy)
+                
+                actions.append(randomCityAction)
             }
             
-            results.append(DefenseDiff(value: defenseDiff, actions: actions))
+            diff += workingCopy.defense - startDefense
+            
+            results.append(DefenseDiff(value: diff, actions: actions))
         }
         
         results.sort {(lhs, rhs) in return lhs.value < rhs.value}
-        
-//        for diff in results {
-//            print("Defense diff: \(diff.value)")
-//        }
         
         if results.count > 0 {
             let index = Int(player.playStyle.defense * 100) - 1

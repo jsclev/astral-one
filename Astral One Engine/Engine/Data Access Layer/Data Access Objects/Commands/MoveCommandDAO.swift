@@ -45,7 +45,7 @@ public class MoveCommandDAO: BaseDAO {
         let commandType = CommandType(id: 1,
                                       name: "Move Unit")
         return MoveCommand(commandId: 1,
-                           gameId: 1,
+                           game: game,
                            turn: turn,
                            player: moveCommand.player,
                            type: commandType,

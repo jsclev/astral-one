@@ -5,7 +5,7 @@ public class BuildBuildingCommand: Command {
     //    private let toPosition: String
     
     public init(commandId: Int,
-                gameId: Int,
+                game: Game,
                 turn: Turn,
                 player: Player,
                 type: CommandType,
@@ -15,7 +15,7 @@ public class BuildBuildingCommand: Command {
 //        self.unit = unit
 //        self.toPosition = toPosition
         super.init(commandId: commandId,
-                   gameId: gameId,
+                   game: game,
                    turn: turn,
                    player: player,
                    type: type,

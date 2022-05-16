@@ -28,8 +28,7 @@ public class UnitNode: SKSpriteNode {
             .dropFirst()
             .sink(receiveValue: { position in
                 print("Moved unit [\(position.row),\(position.col)]")
-                let point = self.mapView.getCenterPoint(row: position.row,
-                                                        col: position.col)
+                let point = self.mapView.getCenterPointOf(position: position)
                 let moveAction = SKAction.move(to: point,
                                                duration: 0.60)
                 self.run(moveAction, completion: {
@@ -57,10 +56,10 @@ public class UnitNode: SKSpriteNode {
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("\(unit.name), position [\(unit.position.row),\(unit.position.col)]")
-        game.selectMapPosition(mapPosition: MapPosition(row: 0, col: 0))
+        game.select(mapPosition: Position(row: 0, col: 0))
         
         let moveCommand: Command = MoveCommand(commandId: 1,
-                                               gameId: 1,
+                                               game: game,
                                                turn: Turn(id: 1,
                                                           year: 1900,
                                                           ordinal: 25,

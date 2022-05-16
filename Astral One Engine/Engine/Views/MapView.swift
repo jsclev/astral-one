@@ -64,8 +64,7 @@ public class MapView {
                     let unitNode = UnitNode(game: self.game,
                                             unit: unit,
                                             mapView: self)
-                    unitNode.position = self.getCenterPoint(row: unit.position.row,
-                                                            col: unit.position.col)
+                    unitNode.position = self.getCenterPointOf(position: unit.position)
                     unitNode.zPosition = Layer.contextMenu
                     self.scene.addChild(unitNode)
                 }
@@ -73,8 +72,8 @@ public class MapView {
             .store(in: &cancellable)
     }
     
-    public func getCenterPoint(row: Int, col: Int) -> CGPoint {
-        return mapIcons.centerOfTile(atColumn: col, row: row)
+    public func getCenterPointOf(position: Position) -> CGPoint {
+        return mapIcons.centerOfTile(atColumn: position.col, row: position.row)
     }
     
     public func setScene(scene: SKScene) throws {

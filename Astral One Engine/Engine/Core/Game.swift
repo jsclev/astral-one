@@ -6,7 +6,7 @@ public class Game: ObservableObject {
     @Published public var showFPS = false
     @Published public var numTaps = 0
     @Published public var tapLocation = CGPoint.zero
-    @Published public var selectedMapPosition = MapPosition(row: -1, col: -1)
+    @Published public var selectedMapPosition = Position(row: -1, col: -1)
     @Published public var selectedCityCreator: CityCreator?
     @Published public var turns: [Turn] = [
         Turn(id: 1, year: -4000, ordinal: 1, displayText: "4000 BC"),
@@ -62,7 +62,7 @@ public class Game: ObservableObject {
         }
     }
     
-    public func selectMapPosition(mapPosition: MapPosition) {
+    public func select(mapPosition: Position) {
         self.selectedMapPosition = mapPosition
     }
 }

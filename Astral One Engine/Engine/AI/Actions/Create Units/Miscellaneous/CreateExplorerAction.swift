@@ -1,14 +1,15 @@
 import Foundation
 
 public class CreateExplorerAction: Action {
+    private let city: City
     
-    public init() {
+    public init(city: City) {
+        self.city = city
         super.init(id: 2, name: "Create Explorer")
         
         preconditions = []
         effects = []
-        cost = 10
-        scienceCost = 0
+        cost = 30
     }
     
     public override func execute(game: Game, player: Player) {
@@ -16,11 +17,11 @@ public class CreateExplorerAction: Action {
                                   player: player,
                                   theme: game.theme,
                                   name: "Explorer",
-                                  position: Position(row: 0, col: 0)))
+                                  position: city.position))
     }
     
     public override func clone() -> Action {
-        let copy = CreateExplorerAction()
+        let copy = CreateExplorerAction(city: city)
         copyProps(source: self, target: copy)
         
         return copy

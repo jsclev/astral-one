@@ -26,7 +26,7 @@ public class CityNode: SKSpriteNode {
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("\(city.name), position [\(city.position.row),\(city.position.col)]")
-//        game.selectMapPosition(mapPosition: MapPosition(row: 0, col: 0))
+//        game.select(mapPosition: Position(row: 0, col: 0))
         
     }
 }

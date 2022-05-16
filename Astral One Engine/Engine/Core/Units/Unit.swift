@@ -30,7 +30,7 @@ public class Unit: GKEntity, ObservableObject {
     
     public var defenseAgainstGroundAttacks: Double {
         if let city = city {
-            if city.hasWalls {
+            if city.has(building: BuildingType.CityWalls) {
                 return 3.0 * defense
             }
         }
@@ -114,7 +114,7 @@ public class Unit: GKEntity, ObservableObject {
                     continue
                 }
                 
-                let tile = try map.tile(row: mapRow, col: mapCol)
+//                let tile = try map.tile(row: mapRow, col: mapCol)
                 
 //                if tile.getUnits().count > 0 {
 //                    for unit in tile.getUnits() {

@@ -104,7 +104,7 @@ public class Db {
         let theme = Theme(id: 2, name: "Sci-Fi")
         let map = try mapDao.get(gameId: gameId)
         let game = Game(theme: theme, map: map)
-        let turn = Turn(id: 1, year: 1900, ordinal: 55, displayText: "1900")
+//        let turn = Turn(id: 1, year: 1900, ordinal: 55, displayText: "1900")
 
         // Pull the map from the database
         let player1 = Player(playerId: 1, game: game)

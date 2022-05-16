@@ -9,7 +9,7 @@ public class CityMapLayer {
                 let node = SKLabelNode(fontNamed: "Arial")
                 node.fontSize = 12
                 node.horizontalAlignmentMode = .center
-                node.position = mapView.getCenterPoint(row: row, col: col)
+                node.position = mapView.getCenterPointOf(position: Position(row: row, col: col))
                 node.text = "\(row),\(col)"
                 node.zPosition = layerIndex
                 

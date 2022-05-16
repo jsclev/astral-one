@@ -12,7 +12,7 @@ public class UnitInfluenceMapCalculator: InfluenceMapCalculator {
     }
     
     public func getInfluenceMap() throws -> [[Double]] {
-        var threatMap: [[Double]] = Array(repeating: Array(repeating: 0.0, count: map.width), count: map.height)
+        let threatMap: [[Double]] = Array(repeating: Array(repeating: 0.0, count: map.width), count: map.height)
         
 //        if try map.tile(row: unit.position.row, col: unit.position.col).getUnits().contains(unit) {
 //            for row in 0..<map.height {

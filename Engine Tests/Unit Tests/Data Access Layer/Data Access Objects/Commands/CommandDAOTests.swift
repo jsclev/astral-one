@@ -30,7 +30,7 @@ class CommandDAOTests: XCTestCase {
                                maxMovementPoints: 0.0,
                                position: Position(row: 0, col: 0))
         let fixture = MoveCommand(commandId: 1,
-                                  gameId: 1,
+                                  game: game,
                                   turn: turn,
                                   player: player,
                                   type: commandType,
@@ -41,7 +41,6 @@ class CommandDAOTests: XCTestCase {
         let insertedCommands = try db.commandDao.insertMoveCommands(moveCommands: [fixture])
         
         XCTAssertGreaterThan(insertedCommands[0].commandId, 0)
-        XCTAssertEqual(insertedCommands[0].gameId, 1)
         XCTAssertEqual(insertedCommands[0].turn.id, 1)
         XCTAssertEqual(insertedCommands[0].player.playerId, 1)
         XCTAssertEqual(insertedCommands[0].ordinal, 1)
