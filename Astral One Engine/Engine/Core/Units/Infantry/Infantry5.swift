@@ -1,6 +1,9 @@
 import Foundation
 
 public class Infantry5: Unit {
+    /*
+     In Civilization II this is equivalent to a Legion unit.
+     */
     public init(game: Game,
                 player: Player,
                 theme: Theme,
@@ -12,10 +15,10 @@ public class Infantry5: Unit {
                    tiledId: 100,
                    name: name,
                    assetName: "Units/Infantry/infantry-5",
-                   cost: 10,
+                   cost: 40,
                    maxHp: 10,
-                   attack: 1,
-                   defense: 1,
+                   attack: 4,
+                   defense: 2,
                    fp: 1,
                    maxMovementPoints: 1.0,
                    position: position)

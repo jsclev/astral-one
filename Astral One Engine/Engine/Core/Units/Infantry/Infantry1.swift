@@ -1,6 +1,9 @@
 import Foundation
 
 public class Infantry1: Unit {
+    /*
+     In Civilization II this is equivalent to a Warriors unit.
+     */
     public init(game: Game,
                 player: Player,
                 theme: Theme,

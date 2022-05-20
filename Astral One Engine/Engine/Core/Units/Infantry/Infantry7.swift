@@ -1,6 +1,9 @@
 import Foundation
 
 public class Infantry7: Unit {
+    /*
+     In Civilization II this is equivalent to a Riflemen unit.
+     */
     public init(game: Game,
                 player: Player,
                 theme: Theme,
@@ -12,10 +15,10 @@ public class Infantry7: Unit {
                    tiledId: 100,
                    name: name,
                    assetName: "Units/Infantry/infantry-7",
-                   cost: 10,
-                   maxHp: 10,
-                   attack: 1,
-                   defense: 1,
+                   cost: 40,
+                   maxHp: 20,
+                   attack: 5,
+                   defense: 4,
                    fp: 1,
                    maxMovementPoints: 1.0,
                    position: position)

@@ -1,6 +1,9 @@
 import Foundation
 
 public class Infantry2: Unit {
+    /*
+     In Civilization II this is equivalent to a Phalanx unit.
+     */
     public init(game: Game,
                 player: Player,
                 theme: Theme,

@@ -121,7 +121,7 @@ class UnitTests: XCTestCase {
         XCTAssertEqual(unit.defense(against: enemyUnit), 1)
     }
     
-    func testGetDefenseAgainstUsingMountain() throws {
+    func testGetDefenseAgainstUsingInfantryOnMountain() throws {
         let theme = Theme(id: 1, name: "Standard")
         let map = Map(mapId: 1, width: 1, height: 1)
         let game = Game(theme: theme, map: map)
@@ -149,15 +149,80 @@ class UnitTests: XCTestCase {
                         assetName: "test asset name",
                         position: position)
         player.add(city: city)
-        let unit = Infantry2(game: game,
-                             player: player,
-                             theme: theme,
-                             name: "test unit",
-                             position: position)
-        unit.makeVeteran()
-        player.add(unit: unit)
         
-        XCTAssertEqual(unit.defense(against: enemyUnit), 9)
+        let infantry1 = Infantry1(game: game,
+                                  player: player,
+                                  theme: theme,
+                                  name: "test unit",
+                                  position: position)
+        infantry1.makeVeteran()
+        player.add(unit: infantry1)
+        
+        let infantry2 = Infantry2(game: game,
+                                  player: player,
+                                  theme: theme,
+                                  name: "test unit",
+                                  position: position)
+        infantry2.makeVeteran()
+        player.add(unit: infantry2)
+        
+        let infantry3 = Infantry3(game: game,
+                                  player: player,
+                                  theme: theme,
+                                  name: "test unit",
+                                  position: position)
+        infantry3.makeVeteran()
+        player.add(unit: infantry3)
+        
+        let infantry4 = Infantry4(game: game,
+                                  player: player,
+                                  theme: theme,
+                                  name: "test unit",
+                                  position: position)
+        infantry4.makeVeteran()
+        player.add(unit: infantry4)
+        
+        let infantry5 = Infantry5(game: game,
+                                  player: player,
+                                  theme: theme,
+                                  name: "test unit",
+                                  position: position)
+        infantry5.makeVeteran()
+        player.add(unit: infantry5)
+        
+        let infantry6 = Infantry6(game: game,
+                                  player: player,
+                                  theme: theme,
+                                  name: "test unit",
+                                  position: position)
+        infantry6.makeVeteran()
+        player.add(unit: infantry6)
+        
+        let infantry7 = Infantry7(game: game,
+                                  player: player,
+                                  theme: theme,
+                                  name: "test unit",
+                                  position: position)
+        infantry7.makeVeteran()
+        player.add(unit: infantry7)
+        
+        let infantry8 = Infantry8(game: game,
+                                  player: player,
+                                  theme: theme,
+                                  name: "test unit",
+                                  position: position)
+        infantry8.makeVeteran()
+        player.add(unit: infantry8)
+        
+        XCTAssertEqual(infantry1.defense(against: enemyUnit), 4)
+        XCTAssertEqual(infantry2.defense(against: enemyUnit), 9)
+        XCTAssertEqual(infantry3.defense(against: enemyUnit), 9)
+        XCTAssertEqual(infantry4.defense(against: enemyUnit), 9)
+        XCTAssertEqual(infantry5.defense(against: enemyUnit), 9)
+        XCTAssertEqual(infantry6.defense(against: enemyUnit), 13)
+        XCTAssertEqual(infantry7.defense(against: enemyUnit), 18)
+        XCTAssertEqual(infantry8.defense(against: enemyUnit), 27)
+
     }
     
     func getGetDefenseAgainstUsingXYZ() throws {

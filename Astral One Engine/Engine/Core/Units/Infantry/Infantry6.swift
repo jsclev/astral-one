@@ -1,6 +1,9 @@
 import Foundation
 
 public class Infantry6: Unit {
+    /*
+     In Civilization II this is equivalent to a Musketeers unit.
+     */
     public init(game: Game,
                 player: Player,
                 theme: Theme,
@@ -12,10 +15,10 @@ public class Infantry6: Unit {
                    tiledId: 101,
                    name: name,
                    assetName: "Units/Infantry/infantry-6",
-                   cost: 20,
-                   maxHp: 10,
-                   attack: 1,
-                   defense: 2,
+                   cost: 30,
+                   maxHp: 20,
+                   attack: 3,
+                   defense: 3,
                    fp: 1,
                    maxMovementPoints: 1.0,
                    position: position)

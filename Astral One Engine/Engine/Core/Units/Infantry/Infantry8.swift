@@ -1,6 +1,9 @@
 import Foundation
 
 public class Infantry8: Unit {
+    /*
+     In Civilization II this is equivalent to a Mechanized Infantry unit.
+     */
     public init(game: Game,
                 player: Player,
                 theme: Theme,
@@ -12,12 +15,12 @@ public class Infantry8: Unit {
                    tiledId: 100,
                    name: name,
                    assetName: "Units/Infantry/infantry-8",
-                   cost: 10,
-                   maxHp: 10,
-                   attack: 1,
-                   defense: 1,
+                   cost: 50,
+                   maxHp: 30,
+                   attack: 6,
+                   defense: 6,
                    fp: 1,
-                   maxMovementPoints: 1.0,
+                   maxMovementPoints: 3.0,
                    position: position)
     }
     

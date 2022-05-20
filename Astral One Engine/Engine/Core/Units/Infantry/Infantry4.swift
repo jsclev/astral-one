@@ -1,6 +1,9 @@
 import Foundation
 
 public class Infantry4: Unit {
+    /*
+     In Civilization II this is equivalent to a Pikemen unit.
+     */
     public init(game: Game,
                 player: Player,
                 theme: Theme,
