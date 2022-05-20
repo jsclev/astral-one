@@ -1,6 +1,6 @@
 import Foundation
 
-public class Engineer: Unit {
+public class Engineer: CityBuilder {
     public init(game: Game,
                 player: Player,
                 theme: Theme,
@@ -12,7 +12,7 @@ public class Engineer: Unit {
                    tiledId: 100,
                    name: name,
                    assetName: "Units/Misc/engineer",
-                   cost: 10,
+                   cost: 20,
                    maxHp: 10,
                    attack: 1,
                    defense: 1,

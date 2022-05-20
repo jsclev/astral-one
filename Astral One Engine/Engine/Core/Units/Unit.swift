@@ -13,30 +13,13 @@ public class Unit: GKEntity, ObservableObject {
     public var currentHp: Double
     public private(set) var attack: Double
     public private(set) var defense: Double
+    public private(set) var isVeteran: Bool = false
+    public private(set) var isFortified: Bool = false
     public let fp: Double
     public let maxMovementPoints: Double
     public var currentMovementPoints: Double
     @Published public var position: Position
-    
-    public var city: City? {
-        for city in player.cities {
-            if position == city.position {
-                return city
-            }
-        }
-        
-        return nil
-    }
-    
-    public var defenseAgainstGroundAttacks: Double {
-        if let city = city {
-            if city.has(building: BuildingType.CityWalls) {
-                return 3.0 * defense
-            }
-        }
-        
-        return defense
-    }
+    @Published public var availableCommands: [Command] = []
     
     public init(game: Game,
                 player: Player,
@@ -74,8 +57,40 @@ public class Unit: GKEntity, ObservableObject {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func moveTo(position: Position) {
-        self.position = position
+    public var city: City? {
+        for city in player.cities {
+            if position == city.position {
+                return city
+            }
+        }
+        
+        return nil
+    }
+    
+    public var defenseAgainstGroundAttacks: Double {
+        if let city = city {
+            if city.has(building: BuildingType.CityWalls) {
+                return 3.0 * defense
+            }
+        }
+        
+        return defense
+    }
+    
+    public func defense(against: Unit) -> Double {
+        var calculatedDefense = defense
+        
+        if isVeteran {
+            calculatedDefense = defense * 1.5
+        }
+        
+        calculatedDefense *= game.map.tile(at: position).defenseBonus
+        
+        return floor(calculatedDefense)
+    }
+    
+    public func move(to: Position) {
+        fatalError("move(to:) must be implemented by a subclass.")
     }
     
     public func getChebyshevDistance(toRow: Int, toCol: Int) -> Int {
@@ -151,9 +166,27 @@ public class Unit: GKEntity, ObservableObject {
         return graph
     }
     
+    public func isInCity() -> Bool {
+        return true
+    }
+    
+    public var defenseVsGroundAttacks: Double {
+//        let groundUnits = ["Warrior", "Phalanx", "Horseman", "Archer", "Pikeman"]
+        if let city = player.getCity(at: position) {
+            if city.has(building: BuildingType.CityWalls) {
+                return 3.0 * defense
+            }
+        }
+        
+        return defense
+    }
+    
     public func makeVeteran() {
-        attack = Double(Int(attack * 1.5))
-        defense = Double(Int(defense * 1.5))
+        isVeteran = true
+    }
+    
+    public func clone() -> Unit {
+        fatalError("clone() must be implemented in subclasses.")
     }
     
 }

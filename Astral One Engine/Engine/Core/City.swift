@@ -7,12 +7,15 @@ public class City: ObservableObject, Equatable {
     public let name: String
     public let assetName: String
     public let position: Position
+    private var population: Int = 0
     private var availableActions: Set<Action> = []
     private var barracks: Barracks?
     private var colossus: Colossus?
     private var granary: Granary?
+    private var greatWall: GreatWall?
     private var hangingGardens: HangingGardens?
     private var harbor: Harbor?
+    private var palace: Palace?
     private var pyramids: Pyramids?
     private var temple: Temple?
     private var cityWalls: CityWalls?
@@ -42,6 +45,40 @@ public class City: ObservableObject, Equatable {
         }
         
         return DiplomacyStatus.AtWar
+    }
+    
+    public func getProductionPerTurn() -> Int {
+        var sum = 1
+        
+        if has(building: BuildingType.Barracks) {
+            sum += 1
+        }
+        
+        if has(building: BuildingType.Harbor) {
+            sum += 1
+        }
+        
+        if has(building: BuildingType.Palace) {
+            sum += 1
+        }
+        
+        if has(building: BuildingType.Temple) {
+            sum += 1
+        }
+        
+        if has(wonder: WonderType.Colossus) {
+            sum += 2
+        }
+        
+        if has(wonder: WonderType.HangingGardens) {
+            sum += 1
+        }
+        
+        if has(wonder: WonderType.Pyramids) {
+            sum += 1
+        }
+        
+        return sum
     }
     
     public func getDistance(to: Unit) -> Int {
@@ -91,7 +128,7 @@ public class City: ObservableObject, Equatable {
         case .OffshorePlatform:
             fatalError("Cannot build this building in a city.")
         case .Palace:
-            fatalError("Cannot build this building in a city.")
+            palace = Palace(imageName: "palace-1")
         case .PoliceStation:
             fatalError("Cannot build this building in a city.")
         case .PortFacility:
@@ -148,7 +185,7 @@ public class City: ObservableObject, Equatable {
         case .GreatLibrary:
             fatalError("Cannot build this wonder in a city.")
         case .GreatWall:
-            fatalError("Cannot build this wonder in a city.")
+            greatWall = GreatWall(imageName: "great-wall-1")
         case .HangingGardens:
             hangingGardens = HangingGardens(imageName: "hanging-gardens-1")
         case .HooverDam:
@@ -204,6 +241,10 @@ public class City: ObservableObject, Equatable {
     
     public func removeAvailable(action: Action) {
         availableActions.remove(action)
+    }
+    
+    public func addPopulation(amount: Int) {
+        population += amount
     }
     
     public func clone() -> City {
@@ -262,6 +303,8 @@ public class City: ObservableObject, Equatable {
             return granary != nil
         case BuildingType.Harbor:
             return harbor != nil
+        case BuildingType.Palace:
+            return palace != nil
         default:
             return false
         }
@@ -271,6 +314,8 @@ public class City: ObservableObject, Equatable {
         switch wonder {
         case WonderType.Colossus:
             return colossus != nil
+        case WonderType.GreatWall:
+            return greatWall != nil
         case WonderType.HangingGardens:
             return hangingGardens != nil
         case WonderType.Pyramids:

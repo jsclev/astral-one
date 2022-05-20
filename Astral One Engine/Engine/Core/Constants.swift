@@ -1,129 +1,6 @@
 import CoreGraphics
 
-public enum Layer {
-    public static let base: CGFloat = 0.0
-    public static let terrain: CGFloat = 100.0
-    public static let cities: CGFloat = 200.0
-    public static let cityNames: CGFloat = 250.0
-    public static let units: CGFloat = 300.0
-    public static let unitPath: CGFloat = 400.0
-    public static let unitPath2: CGFloat = 450.0
-    public static let contextMenu: CGFloat = 475.0
-    public static let contextMenuItem: CGFloat = 480.0
-    public static let hud: CGFloat = 500.0
-    public static let foreground: CGFloat = 600.0
-}
 
-public enum unitType {
-    case Explorer
-    case Settler
-    case Tank
-}
-
-public enum SkillLevel {
-    case Settler
-    case Chieftain
-    case Warlord
-    case Prince
-    case King
-    case Emperor
-    case Immortal
-    case Deity
-}
-
-public enum DiplomacyStatus {
-    case Same
-    case Ally
-    case DeclaredFriend
-    case Friendly
-    case Neutral
-    case Unfriendly
-    case Denounced
-    case AtWar
-}
-
-public enum BuildingType {
-    case Airport
-    case Aqueduct
-    case Bank
-    case Barracks
-    case Capitalization
-    case Cathedral
-    case CityWalls
-    case CoastalFortress
-    case Colosseum
-    case Courthouse
-    case Factory
-    case Granary
-    case Harbor
-    case HydroPlant
-    case Library
-    case ManufacturingPlant
-    case Marketplace
-    case MassTransit
-    case NuclearPlant
-    case OffshorePlatform
-    case Palace
-    case PoliceStation
-    case PortFacility
-    case PowerPlant
-    case RecyclingCenter
-    case ResearchLab
-    case SAMMissileBattery
-    case SDIDefense
-    case SSComponent
-    case SSModule
-    case SSStructural
-    case SewerSystem
-    case SolarPlant
-    case StockExchange
-    case Superhighways
-    case Supermarket
-    case Temple
-    case University
-}
-
-public enum WonderType {
-    case AdamSmithsTradingCo
-    case ApolloProgram
-    case Colossus
-    case CopernicusObservatory
-    case CureForCancer
-    case DarwinsVoyage
-    case EiffelTower
-    case GreatLibrary
-    case GreatWall
-    case HangingGardens
-    case HooverDam
-    case IsaacNewtonsCollege
-    case JSBachsCathedral
-    case KingRichardsCrusade
-    case LeonardosWorkshop
-    case Lighthouse
-    case MagellansExpedition
-    case ManhattenProject
-    case MarcoPolosEmbassy
-    case MichelangelosChapel
-    case Oracle
-    case Pyramids
-    case SETIProgram
-    case ShakespearesTheatre
-    case StatueOfLiberty
-    case SunTzusWarAcademy
-    case UnitedNations
-    case WomensSuffrage
-    
-}
-
-public enum ImprovementType {
-    case Airbase
-    case Farmland
-    case Fortress
-    case Mine
-    case Pollution
-    case Railroad
-    case Road
-}
 
 public struct Constants {
     public static let db = Db(fullRefresh: false)
@@ -203,19 +80,7 @@ public struct Constants {
                       unitType: UnitType.None),
         "23": TileDef(tileType: TileType.Terrain,
                       terrainType: TerrainType.Forest,
-                      unitType: UnitType.None),
-        "24": TileDef(tileType: TileType.Terrain,
-                      terrainType: TerrainType.Water,
-                      unitType: UnitType.None),
-        "25": TileDef(tileType: TileType.Unit,
-                      terrainType: TerrainType.None,
-                      unitType: UnitType.Tank),
-        "26": TileDef(tileType: TileType.Unit,
-                      terrainType: TerrainType.None,
-                      unitType: UnitType.Battleship),
-        "27": TileDef(tileType: TileType.Unit,
-                      terrainType: TerrainType.None,
-                      unitType: UnitType.Explorer)
+                      unitType: UnitType.None)
     ]
     
     public static let tiles: [String: String] = [
@@ -250,35 +115,5 @@ public struct Constants {
 //        "28": "Forest",
 //        "29": "Forest",
     ]
-    
-//    public static let terrainTypes: [String: TerrainType] = [
-//        "0": TerrainType.Water,
-//        "1": TerrainType.Tundra,
-//        "2": TerrainType.Water,
-//        "3": TerrainType.Water,
-//        "4": TerrainType.Swamp,
-//        "5": TerrainType.Glacier,
-//        "6": TerrainType.Desert,
-//        "7": TerrainType.Water,
-//        "8": TerrainType.Plains,
-//        "9": TerrainType.Jungle,
-//        "10": TerrainType.Grassland,
-//        "11": TerrainType.Water
-//    ]
-//
-//    public static let tiles: [String: String] = [
-//        "0": "Water",
-//        "1": "Tundra",
-//        "2": "Town",
-//        "3": "Tank",
-//        "4": "Swamp",
-//        "5": "Snow",
-//        "6": "Sand",
-//        "7": "Plane",
-//        "8": "Plains",
-//        "9": "Jungle",
-//        "10": "Grass",
-//        "11": "Fog"
-//    ]
 }
 

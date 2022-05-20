@@ -34,7 +34,7 @@ public class TerrainDAO: BaseDAO {
                 let shields = getDouble(stmt: stmt, colIndex: 4)
                 let trade = getDouble(stmt: stmt, colIndex: 5)
                 let movementCost = getDouble(stmt: stmt, colIndex: 6)
-                var terrainType = TerrainType.None
+                var terrainType = TerrainType.Grassland
                 
                 if let name = try getString(stmt: stmt, colIndex: 2) {
                     switch name {
@@ -72,7 +72,8 @@ public class TerrainDAO: BaseDAO {
                                             food: food,
                                             shields: shields,
                                             trade: trade,
-                                            movementCost: movementCost))
+                                            movementCost: movementCost,
+                                            defenseBonus: 1.0))
                 }
             }
         }

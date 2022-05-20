@@ -36,7 +36,7 @@ public class MapDAO: BaseDAO {
                 let shields = getDouble(stmt: stmt, colIndex: 10)
                 let trade = getDouble(stmt: stmt, colIndex: 11)
                 let movementCost = getDouble(stmt: stmt, colIndex: 12)
-                var terrainType = TerrainType.None
+                var terrainType = TerrainType.Grassland
                 
                 if let terrainTypeText = try getString(stmt: stmt, colIndex: 8) {
                     switch terrainTypeText {
@@ -70,8 +70,7 @@ public class MapDAO: BaseDAO {
                     maxRow = row > maxRow ? row : maxRow
                     maxCol = col > maxCol ? col : maxCol
                     tiles.append(Tile(id: tileId,
-                                      row: row,
-                                      col: col,
+                                      position: Position(row: row, col: col),
                                       terrain: Terrain(id: terrainId,
                                                        tiledId: tiledId,
                                                        name: terrainTypeText,
@@ -79,7 +78,8 @@ public class MapDAO: BaseDAO {
                                                        food: food,
                                                        shields: shields,
                                                        trade: trade,
-                                                       movementCost: movementCost)))
+                                                       movementCost: movementCost,
+                                                       defenseBonus: 1.0)))
                 }
             }
         }
@@ -133,7 +133,7 @@ public class MapDAO: BaseDAO {
         
         for row in 0..<map.height {
             for col in 0..<map.width {
-                let tile = try map.tile(row: row, col: col)
+                let tile = map.tile(at: Position(row: row, col: col))
                 
                 sqlite3_bind_int(mainStmt, 1, Int32(1))
                 sqlite3_bind_int(mainStmt, 2, Int32(1))
@@ -145,7 +145,9 @@ public class MapDAO: BaseDAO {
                 if sqlite3_step(mainStmt) == SQLITE_DONE {
                     if sqlite3_step(rowIdStmt) == SQLITE_ROW {
                         tileId = getInt(stmt: rowIdStmt, colIndex: 0)
-                        try returnMap.add(tile: Tile(id: tileId, row: row, col: col, terrain: tile.terrain))
+                        try returnMap.add(tile: Tile(id: tileId,
+                                                     position: Position(row: row, col: col),
+                                                     terrain: tile.terrain))
                     }
                     else {
                         let errMsg = String(cString: sqlite3_errmsg(conn)!)

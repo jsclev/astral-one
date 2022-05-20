@@ -24,4 +24,12 @@ public class Cavalry1: Unit {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    public override func clone() -> Unit {
+        return Cavalry1(game: game,
+                         player: player,
+                         theme: theme,
+                         name: name,
+                         position: position)
+    }
 }

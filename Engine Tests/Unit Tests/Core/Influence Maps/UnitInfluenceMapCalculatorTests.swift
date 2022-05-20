@@ -67,8 +67,7 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
                                   position: Position(row: 0, col: 0))
         enemyPlayer.add(unit: enemyUnit)
         
-        let tile = Tile(row: 1,
-                        col: 1,
+        let tile = Tile(position: Position(row: 1, col: 1),
                         terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         try map.add(tile: tile)
         
@@ -131,8 +130,7 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
                                   position: Position(row: 1, col: 1))
         enemyPlayer.add(unit: enemyUnit2)
 
-        let tile = Tile(row: 1,
-                        col: 1,
+        let tile = Tile(position: Position(row: 1, col: 1),
                         terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         try map.add(tile: tile)
         
@@ -190,8 +188,7 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
                                   position: Position(row: 0, col: 0))
         enemyPlayer.add(unit: enemyUnit2)
         
-        let tile = Tile(row: 1,
-                        col: 1,
+        let tile = Tile(position: Position(row: 1, col: 1),
                         terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         try mainMap.add(tile: tile)
         

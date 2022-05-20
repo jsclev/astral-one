@@ -12,10 +12,10 @@ class MapTests: XCTestCase {
         let movementCosts = map.getMovementCosts()
         
         XCTAssertEqual(movementCosts.count, 5)
-
+        
         for row in 0..<5 {
             XCTAssertEqual(movementCosts[row].count, 10)
-
+            
             for col in 0..<10 {
                 XCTAssertEqual(map.getMovementCosts()[row][col], Constants.minMovementCost)
             }
@@ -24,18 +24,30 @@ class MapTests: XCTestCase {
     
     func testGetMoveCostsBaseTerrain() throws {
         let map = Map(mapId: 1, width: 4, height: 4)
-        try map.add(tile: Tile(row: 0, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Desert)))
-        try map.add(tile: Tile(row: 0, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Forest)))
-        try map.add(tile: Tile(row: 0, col: 2, terrain: TerrainFactory.create(terrainType: TerrainType.Glacier)))
-        try map.add(tile: Tile(row: 0, col: 3, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
-        try map.add(tile: Tile(row: 1, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Hills)))
-        try map.add(tile: Tile(row: 1, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Jungle)))
-        try map.add(tile: Tile(row: 1, col: 2, terrain: TerrainFactory.create(terrainType: TerrainType.Mountains)))
-        try map.add(tile: Tile(row: 1, col: 3, terrain: TerrainFactory.create(terrainType: TerrainType.Ocean)))
-        try map.add(tile: Tile(row: 2, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Plains)))
-        try map.add(tile: Tile(row: 2, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Swamp)))
-        try map.add(tile: Tile(row: 2, col: 2, terrain: TerrainFactory.create(terrainType: TerrainType.Tundra)))
-        try map.add(tile: Tile(row: 2, col: 3, terrain: TerrainFactory.create(terrainType: TerrainType.Water)))
+        try map.add(tile: Tile(position: Position(row: 0, col: 0),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Desert)))
+        try map.add(tile: Tile(position: Position(row: 0, col: 1),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Forest)))
+        try map.add(tile: Tile(position: Position(row: 0, col: 2),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Glacier)))
+        try map.add(tile: Tile(position: Position(row: 0, col: 3),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
+        try map.add(tile: Tile(position: Position(row: 1, col: 0),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Hills)))
+        try map.add(tile: Tile(position: Position(row: 1, col: 1),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Jungle)))
+        try map.add(tile: Tile(position: Position(row: 1, col: 2),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Mountains)))
+        try map.add(tile: Tile(position: Position(row: 1, col: 3),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Ocean)))
+        try map.add(tile: Tile(position: Position(row: 2, col: 0),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Plains)))
+        try map.add(tile: Tile(position: Position(row: 2, col: 1),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Swamp)))
+        try map.add(tile: Tile(position: Position(row: 2, col: 2),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Tundra)))
+        try map.add(tile: Tile(position: Position(row: 2, col: 3),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Ocean)))
         
         // Make sure we have the correctly sized movement cost map
         XCTAssertEqual(map.getMovementCosts().count, 4)
@@ -59,8 +71,10 @@ class MapTests: XCTestCase {
     
     func testGetMoveCostTwoGrassNodes() throws {
         let map = Map(mapId: 1, width: 2, height: 1)
-        try map.add(tile: Tile(row: 0, col: 0, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
-        try map.add(tile: Tile(row: 0, col: 1, terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
+        try map.add(tile: Tile(position: Position(row: 0, col: 0),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
+        try map.add(tile: Tile(position: Position(row: 0, col: 1),
+                               terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
         
         XCTAssertEqual(map.getMovementCosts().count, 1)
         XCTAssertEqual(map.getMovementCosts()[0].count, 2)
@@ -68,23 +82,19 @@ class MapTests: XCTestCase {
     
     func testGetMoveCostsExpectsModifiers() throws {
         let map = Map(mapId: 1, width: 2, height: 2)
-        let tile00 = Tile(row: 0,
-                          col: 0,
+        let tile00 = Tile(position: Position(row: 0, col: 0),
                           terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         tile00.add(movementModifier: MovementModifier(name: "", movementCost: 100.0))
         
-        let tile01 = Tile(row: 0,
-                          col: 1,
+        let tile01 = Tile(position: Position(row: 0, col: 1),
                           terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         tile01.add(movementModifier: MovementModifier(name: "", movementCost: 200.0))
         
-        let tile10 = Tile(row: 1,
-                          col: 0,
+        let tile10 = Tile(position: Position(row: 1, col: 0),
                           terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         tile10.add(movementModifier: MovementModifier(name: "", movementCost: 300.0))
         
-        let tile11 = Tile(row: 1,
-                          col: 1,
+        let tile11 = Tile(position: Position(row: 1, col: 1),
                           terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         tile11.add(movementModifier: MovementModifier(name: "", movementCost: 400.0))
         
@@ -92,7 +102,7 @@ class MapTests: XCTestCase {
         try map.add(tile: tile01)
         try map.add(tile: tile10)
         try map.add(tile: tile11)
-
+        
         let movementCosts = map.getMovementCosts()
         XCTAssertEqual(movementCosts[0][0], 100.0)
         XCTAssertEqual(movementCosts[0][1], 200.0)
@@ -102,8 +112,7 @@ class MapTests: XCTestCase {
     
     func testAddTileExpectsInvalidRow() throws {
         let map = Map(mapId: 1, width: 1, height: 1)
-        let tile = Tile(row: -1,
-                        col: 0,
+        let tile = Tile(position: Position(row: -1, col: 0),
                         terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         
         XCTAssertThrowsError(try map.add(tile: tile)) { error in
@@ -114,8 +123,7 @@ class MapTests: XCTestCase {
     
     func testAddTileExpectsInvalidRow2() throws {
         let map = Map(mapId: 1, width: 2, height: 1)
-        let tile = Tile(row: 2,
-                        col: 0,
+        let tile = Tile(position: Position(row: 2, col: 0),
                         terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         
         XCTAssertThrowsError(try map.add(tile: tile)) { error in
@@ -126,8 +134,7 @@ class MapTests: XCTestCase {
     
     func testAddTileExpectsInvalidCol() throws {
         let map = Map(mapId: 1, width: 1, height: 1)
-        let tile = Tile(row: 0,
-                        col: -1,
+        let tile = Tile(position: Position(row: 0, col: -1),
                         terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         
         XCTAssertThrowsError(try map.add(tile: tile)) { error in
@@ -138,8 +145,7 @@ class MapTests: XCTestCase {
     
     func testAddTileExpectsInvalidCol2() throws {
         let map = Map(mapId: 1, width: 1, height: 2)
-        let tile = Tile(row: 0,
-                        col: 2,
+        let tile = Tile(position: Position(row: 0, col: 2),
                         terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         
         XCTAssertThrowsError(try map.add(tile: tile)) { error in
@@ -148,40 +154,4 @@ class MapTests: XCTestCase {
         }
     }
     
-    func testGetTileExpectsInvalidRow() throws {
-        let map = Map(mapId: 1, width: 1, height: 1)
-        
-        XCTAssertThrowsError(try map.tile(row: -1, col: 0)) { error in
-            let errorMsg = "Row must be greater than or equal to zero."
-            XCTAssertEqual(error as? MapError, MapError.invalidRow(message: errorMsg, row: -1))
-        }
-    }
-    
-    func testGetTileExpectsInvalidRow2() throws {
-        let map = Map(mapId: 1, width: 2, height: 1)
-        
-        XCTAssertThrowsError(try map.tile(row: 10, col: 0)) { error in
-            let errorMsg = "Row must be less than map height of 1."
-            XCTAssertEqual(error as? MapError, MapError.invalidRow(message: errorMsg, row: 10))
-        }
-    }
-    
-    func testGetTileExpectsInvalidCol() throws {
-        let map = Map(mapId: 1, width: 1, height: 1)
-        
-        XCTAssertThrowsError(try map.tile(row: 0, col: -1)) { error in
-            let errorMsg = "Column must be greater than or equal to zero."
-            XCTAssertEqual(error as? MapError, MapError.invalidCol(message: errorMsg, col: -1))
-        }
-    }
-    
-    func testGetTileExpectsInvalidCol2() throws {
-        let map = Map(mapId: 1, width: 1, height: 2)
-        
-        XCTAssertThrowsError(try map.tile(row: 0, col: 2)) { error in
-            let errorMsg = "Column must be less than map width of 1."
-            XCTAssertEqual(error as? MapError, MapError.invalidCol(message: errorMsg, col: 2))
-        }
-    }
-
 }

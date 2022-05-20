@@ -12,10 +12,10 @@ class MapDAOTests: XCTestCase {
         let map = Map(mapId: -1, width: 2, height: 2)
         let terrain = try TerrainFactory.create(terrainType: TerrainType.Grassland)
         
-        try map.add(tile: Tile(row: 0, col: 0, terrain: terrain))
-        try map.add(tile: Tile(row: 0, col: 1, terrain: terrain))
-        try map.add(tile: Tile(row: 1, col: 0, terrain: terrain))
-        try map.add(tile: Tile(row: 1, col: 1, terrain: terrain))
+        try map.add(tile: Tile(position: Position(row: 0, col: 0), terrain: terrain))
+        try map.add(tile: Tile(position: Position(row: 0, col: 1), terrain: terrain))
+        try map.add(tile: Tile(position: Position(row: 1, col: 0), terrain: terrain))
+        try map.add(tile: Tile(position: Position(row: 1, col: 1), terrain: terrain))
 
         let newMap = try db.mapDao.insert(map: map)
         
@@ -31,20 +31,20 @@ class MapDAOTests: XCTestCase {
         let terrain11 = try TerrainFactory.create(terrainType: TerrainType.Desert)
         
         let map1 = Map(mapId: -1, width: 2, height: 2)
-        try map1.add(tile: Tile(row: 0, col: 0, terrain: terrain00))
-        try map1.add(tile: Tile(row: 0, col: 1, terrain: terrain01))
-        try map1.add(tile: Tile(row: 1, col: 0, terrain: terrain10))
-        try map1.add(tile: Tile(row: 1, col: 1, terrain: terrain11))
+        try map1.add(tile: Tile(position: Position(row: 0, col: 0), terrain: terrain00))
+        try map1.add(tile: Tile(position: Position(row: 0, col: 1), terrain: terrain01))
+        try map1.add(tile: Tile(position: Position(row: 1, col: 0), terrain: terrain10))
+        try map1.add(tile: Tile(position: Position(row: 1, col: 1), terrain: terrain11))
         
         // Make sure our initial map has all the correct terrain positions
-        XCTAssertEqual(try map1.tile(row: 0, col: 0).id, -1)
-        XCTAssertEqual(try map1.tile(row: 0, col: 1).id, -1)
-        XCTAssertEqual(try map1.tile(row: 1, col: 0).id, -1)
-        XCTAssertEqual(try map1.tile(row: 1, col: 1).id, -1)
-        XCTAssertEqual(try map1.tile(row: 0, col: 0).terrain, terrain00)
-        XCTAssertEqual(try map1.tile(row: 0, col: 1).terrain, terrain01)
-        XCTAssertEqual(try map1.tile(row: 1, col: 0).terrain, terrain10)
-        XCTAssertEqual(try map1.tile(row: 1, col: 1).terrain, terrain11)
+        XCTAssertEqual(map1.tile(at: Position(row: 0, col: 0)).id, -1)
+        XCTAssertEqual(map1.tile(at: Position(row: 0, col: 1)).id, -1)
+        XCTAssertEqual(map1.tile(at: Position(row: 1, col: 0)).id, -1)
+        XCTAssertEqual(map1.tile(at: Position(row: 1, col: 1)).id, -1)
+        XCTAssertEqual(map1.tile(at: Position(row: 0, col: 0)).terrain, terrain00)
+        XCTAssertEqual(map1.tile(at: Position(row: 0, col: 1)).terrain, terrain01)
+        XCTAssertEqual(map1.tile(at: Position(row: 1, col: 0)).terrain, terrain10)
+        XCTAssertEqual(map1.tile(at: Position(row: 1, col: 1)).terrain, terrain11)
         
         // Save the map to the database
         _ = try db.mapDao.insert(map: map1)
@@ -56,15 +56,15 @@ class MapDAOTests: XCTestCase {
         XCTAssertEqual(map2.width, 2)
         XCTAssertEqual(map2.height, 2)
         
-        XCTAssertEqual(try map2.tile(row: 0, col: 0).id, 1)
-        XCTAssertEqual(try map2.tile(row: 0, col: 1).id, 2)
-        XCTAssertEqual(try map2.tile(row: 1, col: 0).id, 3)
-        XCTAssertEqual(try map2.tile(row: 1, col: 1).id, 4)
+        XCTAssertEqual(map2.tile(at: Position(row: 0, col: 0)).id, 1)
+        XCTAssertEqual(map2.tile(at: Position(row: 0, col: 1)).id, 2)
+        XCTAssertEqual(map2.tile(at: Position(row: 1, col: 0)).id, 3)
+        XCTAssertEqual(map2.tile(at: Position(row: 1, col: 1)).id, 4)
         
-        XCTAssertEqual(try map2.tile(row: 0, col: 0).terrain, terrain00)
-        XCTAssertEqual(try map2.tile(row: 0, col: 1).terrain, terrain01)
-        XCTAssertEqual(try map2.tile(row: 1, col: 0).terrain, terrain10)
-        XCTAssertEqual(try map2.tile(row: 1, col: 1).terrain, terrain11)
+        XCTAssertEqual(map2.tile(at: Position(row: 0, col: 0)).terrain, terrain00)
+        XCTAssertEqual(map2.tile(at: Position(row: 0, col: 1)).terrain, terrain01)
+        XCTAssertEqual(map2.tile(at: Position(row: 1, col: 0)).terrain, terrain10)
+        XCTAssertEqual(map2.tile(at: Position(row: 1, col: 1)).terrain, terrain11)
 
     }
     
@@ -75,16 +75,16 @@ class MapDAOTests: XCTestCase {
         let terrain11 = try TerrainFactory.create(terrainType: TerrainType.Desert)
         
         let map1 = Map(mapId: -1, width: 2, height: 2)
-        try map1.add(tile: Tile(row: 0, col: 0, terrain: terrain00))
-        try map1.add(tile: Tile(row: 0, col: 1, terrain: terrain01))
-        try map1.add(tile: Tile(row: 1, col: 0, terrain: terrain10))
-        try map1.add(tile: Tile(row: 1, col: 1, terrain: terrain11))
+        try map1.add(tile: Tile(position: Position(row: 0, col: 0), terrain: terrain00))
+        try map1.add(tile: Tile(position: Position(row: 0, col: 1), terrain: terrain01))
+        try map1.add(tile: Tile(position: Position(row: 1, col: 0), terrain: terrain10))
+        try map1.add(tile: Tile(position: Position(row: 1, col: 1), terrain: terrain11))
         
         // All tile ids will be -1 before being saved to the database
-        XCTAssertEqual(try map1.tile(row: 0, col: 0).id, -1)
-        XCTAssertEqual(try map1.tile(row: 0, col: 1).id, -1)
-        XCTAssertEqual(try map1.tile(row: 1, col: 0).id, -1)
-        XCTAssertEqual(try map1.tile(row: 1, col: 1).id, -1)
+        XCTAssertEqual(map1.tile(at: Position(row: 0, col: 0)).id, -1)
+        XCTAssertEqual(map1.tile(at: Position(row: 0, col: 1)).id, -1)
+        XCTAssertEqual(map1.tile(at: Position(row: 1, col: 0)).id, -1)
+        XCTAssertEqual(map1.tile(at: Position(row: 1, col: 1)).id, -1)
         
         // Save the map to the database
         let map2 = try db.mapDao.insert(map: map1)
@@ -92,10 +92,10 @@ class MapDAOTests: XCTestCase {
         XCTAssertEqual(map2.mapId, 1)
         XCTAssertEqual(map2.width, 2)
         XCTAssertEqual(map2.height, 2)
-        XCTAssertEqual(try map2.tile(row: 0, col: 0).id, 1)
-        XCTAssertEqual(try map2.tile(row: 0, col: 1).id, 2)
-        XCTAssertEqual(try map2.tile(row: 1, col: 0).id, 3)
-        XCTAssertEqual(try map2.tile(row: 1, col: 1).id, 4)
+        XCTAssertEqual(map2.tile(at: Position(row: 0, col: 0)).id, 1)
+        XCTAssertEqual(map2.tile(at: Position(row: 0, col: 1)).id, 2)
+        XCTAssertEqual(map2.tile(at: Position(row: 1, col: 0)).id, 3)
+        XCTAssertEqual(map2.tile(at: Position(row: 1, col: 1)).id, 4)
         
     }
 

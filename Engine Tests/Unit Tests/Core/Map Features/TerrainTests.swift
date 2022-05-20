@@ -16,7 +16,8 @@ class TerrainTests: XCTestCase {
                                food: 0.0,
                                shields: 0.0,
                                trade: 0.0,
-                               movementCost: 0.0)
+                               movementCost: 0.0,
+                               defenseBonus: 1.0)
         let terrain2 = Terrain(id: 1,
                                tiledId: 1,
                                name: "test2",
@@ -24,7 +25,8 @@ class TerrainTests: XCTestCase {
                                food: 1.0,
                                shields: 1.0,
                                trade: 1.0,
-                               movementCost: 1.0)
+                               movementCost: 1.0,
+                               defenseBonus: 1.0)
         
         XCTAssertEqual(terrain1, terrain2)
     }
@@ -38,7 +40,8 @@ class TerrainTests: XCTestCase {
                                food: 0.0,
                                shields: 0.0,
                                trade: 0.0,
-                               movementCost: 0.0)
+                               movementCost: 0.0,
+                               defenseBonus: 1.0)
         let terrain2 = Terrain(id: 2,
                                tiledId: 1,
                                name: "test1",
@@ -46,7 +49,8 @@ class TerrainTests: XCTestCase {
                                food: 0.0,
                                shields: 0.0,
                                trade: 0.0,
-                               movementCost: 0.0)
+                               movementCost: 0.0,
+                               defenseBonus: 1.0)
         
         XCTAssertNotEqual(terrain1, terrain2)
     }

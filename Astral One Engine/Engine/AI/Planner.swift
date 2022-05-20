@@ -31,7 +31,7 @@ public class Planner {
 //        }
         
 //        for action in actions {
-//            action.execute(game: game, player: player)
+//            action.execute()
 //        }
         return []
     }

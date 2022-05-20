@@ -1,13 +1,7 @@
 import Foundation
 import Combine
 
-public struct PlayerDiff {
-    public let defense: Double
-    
-    public init(defense: Double) {
-        self.defense = defense
-    }
-}
+
 
 public class Player: ObservableObject {
     public let playerId: Int
@@ -15,10 +9,12 @@ public class Player: ObservableObject {
     public let skillLevel: SkillLevel
     public let playStyle: PlayStyle
     @Published public var cities: [City] = []
-    public var cityCreators: [CityCreator] = []
+    public var cityBuilders: [CityBuilder] = []
     @Published public var units: [Unit] = []
     public var advances: [Advance] = []
     private var availableResearchActions: Set<Action> = []
+    private var availableCommands: [Command] = []
+    private var availableCityActions: [Action] = []
     private var researchedAdvances: Set<String> = []
     
     public var defense: Double {
@@ -28,12 +24,50 @@ public class Player: ObservableObject {
             sum += unit.defense
         }
         
+        if sum < 0.0001 {
+            return 0.0001
+        }
+        else {
+            return sum
+        }
+    }
+    
+    public func defense(against: Unit) -> Double {
+        var sum = 0.0
+        
+        for unit in units {
+            sum += unit.defense(against: against)
+        }
+        
+        if sum < 0.0001 {
+            return 0.0001
+        }
+        else {
+            return sum
+        }
+    }
+    
+    public var attack: Double {
+        var sum = 0.0
+        
+        for unit in units {
+            sum += unit.attack
+        }
+        
         if sum < 0.01 {
             return 0.001
         }
         else {
             return sum
         }
+    }
+    
+    public var sciencePerTurn: Double {
+        if units.count > 0 {
+            return Double(units.count) * 10.0
+        }
+        
+        return 1.0
     }
     
     public var defenseAgainstGroundAttacks: Double {
@@ -68,12 +102,72 @@ public class Player: ObservableObject {
         self.playStyle = playStyle
     }
     
+//    public func research(advance)
+    
+    public func getCity(at: Position) -> City? {
+        for city in cities {
+            if city.position == at {
+                return city
+            }
+        }
+        
+        return nil
+    }
+    
+    public func diff(other: Player) -> PlayerDiff {
+        let attack = other.attack - attack
+        let defense = other.defense - defense
+        let defAgainstGroundAttacks = other.defenseAgainstGroundAttacks - defenseAgainstGroundAttacks
+        
+        let diff = PlayerDiff(attack: attack,
+                              defense: defense,
+                              defenseAgainstGroundAttacks: defAgainstGroundAttacks)
+        
+        return diff
+    }
+    
+    public func build(city: City, using: CityBuilder) {
+        cities.append(city)
+        
+        for action in availableCityActions {
+            city.addAvailable(action: action)
+        }
+        
+        // City builders are consumed when the city is built
+        if let index = cityBuilders.lastIndex(of: using) {
+            cityBuilders.remove(at: index)
+        }
+        
+        if let index = units.lastIndex(of: using) {
+            units.remove(at: index)
+        }
+        
+        // City builders become the first population point of new cities
+        if let index = cities.lastIndex(of: city) {
+            cities[index].addPopulation(amount: 1)
+        }
+    }
+    
     public func add(city: City) {
         cities.append(city)
     }
     
-    public func add(cityCreator: CityCreator) {
-        cityCreators.append(cityCreator)
+    public func addAvailable(cityAction: Action) {
+        availableCityActions.append(cityAction)
+    }
+    
+    public func add(cityBuilder: CityBuilder) {
+        cityBuilders.append(cityBuilder)
+        
+        
+        
+//        availableCommands.append(BuildCityCommand(commandId: <#T##Int#>,
+//                                                  game: <#T##Game#>,
+//                                                  turn: <#T##Turn#>,
+//                                                  player: <#T##Player#>,
+//                                                  type: <#T##CommandType#>,
+//                                                  ordinal: 1,
+//                                                  cityBuilder: cityBuilder))
     }
     
     public func add(unit: Unit) {
@@ -85,6 +179,12 @@ public class Player: ObservableObject {
 //        catch {
 //            fatalError("\(error)")
 //        }
+    }
+    
+    public func remove(unit: Unit) {
+        if let index = units.firstIndex(where: {$0.name == unit.name}) {
+            units.remove(at: index)
+        }
     }
     
     public func add(advanceName: String) {
@@ -100,8 +200,20 @@ public class Player: ObservableObject {
         return availableActions
     }
     
+    public func getAvailableCityActions() -> [Action] {
+        return availableCityActions
+    }
+    
+    public func getAvailableCommands() -> [Command] {
+        return Array(availableCommands)
+    }
+    
     public func addAvailable(researchAction: ResearchAction) {
         availableResearchActions.insert(researchAction)
+    }
+    
+    public func addAvailable(command: Command) {
+        availableCommands.append(command)
     }
     
     public func removeAvailable(researchAction: ResearchAction) {
@@ -132,22 +244,23 @@ public class Player: ObservableObject {
         return researchedAdvances.contains(advanceName)
     }
     
-    public func diff(other: Player) -> PlayerDiff {
-        return PlayerDiff(defense: defense - other.defense)
-    }
-    
     public func clone() -> Player {
         let copy = Player(playerId: playerId,
                           game: game,
                           skillLevel: skillLevel,
                           playStyle: playStyle)
+//        copy.cities = []
+//        copy.units = []
+//        copy.availableCommands = []
+//        copy.cityBuilders = []
+//        copy.availableResearchActions = []
         
         for unit in units {
-            copy.add(unit: unit)
+            copy.units.append(unit.clone())
         }
         
         for city in cities {
-            copy.add(city: city.clone())
+            copy.cities.append(city.clone())
         }
         
         for action in availableResearchActions {

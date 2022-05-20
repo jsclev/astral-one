@@ -30,21 +30,16 @@ public class TerrainFactory {
             for terrain in terrains { if terrain.type == TerrainType.Swamp { return terrain} }
         case .Tundra:
             for terrain in terrains { if terrain.type == TerrainType.Tundra { return terrain} }
-        case .Water:
-            for terrain in terrains { if terrain.type == TerrainType.Water { return terrain} }
-        case .None:
-            for terrain in terrains { if terrain.type == TerrainType.None { return terrain} }
-        case .Tank:
-            for terrain in terrains { if terrain.type == TerrainType.None { return terrain} }
         }
         
         return Terrain(id: 0,
                        tiledId: 0,
                        name: "Hello",
-                       type: TerrainType.None,
+                       type: TerrainType.Grassland,
                        food: 0.0,
                        shields: 0.0,
                        trade: 0.0,
-                       movementCost: 0.0)
+                       movementCost: 0.0,
+                       defenseBonus: 1.0)
     }
 }

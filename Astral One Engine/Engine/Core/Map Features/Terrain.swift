@@ -9,6 +9,7 @@ public class Terrain: Equatable {
     public let shields: Double
     public let trade: Double
     public let movementCost: Double
+    private let defenseBonus: Double
     
     public init(id: Int,
                 tiledId: Int,
@@ -17,7 +18,8 @@ public class Terrain: Equatable {
                 food: Double,
                 shields: Double,
                 trade: Double,
-                movementCost: Double) {
+                movementCost: Double,
+                defenseBonus: Double) {
         self.id = id
         self.tiledId = tiledId
         self.name = name
@@ -26,6 +28,7 @@ public class Terrain: Equatable {
         self.shields = shields
         self.trade = trade
         self.movementCost = movementCost
+        self.defenseBonus = defenseBonus
     }
     
     public var description: String {

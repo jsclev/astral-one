@@ -3,9 +3,9 @@ import SpriteKit
 
 public class FounderNode: SKSpriteNode {
     private let game: Game
-    private let cityCreator: CityCreator
+    private let cityCreator: Settler
     
-    public init(game: Game, cityCreator: CityCreator) {
+    public init(game: Game, cityCreator: Settler) {
         self.game = game
         self.cityCreator = cityCreator
         

@@ -34,14 +34,14 @@ public class RandomAI {
             let playerActions = Array(workingCopy.getAvailableActions())
             randomNum = Int.random(in: 0..<playerActions.count)
             let randomPlayerAction = playerActions[randomNum]
-            randomPlayerAction.execute(game: game, player: workingCopy)
+            randomPlayerAction.execute()
             actions.append(randomPlayerAction)
             
             for city in workingCopy.cities {
                 let availableCityActions = Array(city.getAvailableActions())
                 randomNum = Int.random(in: 0..<availableCityActions.count)
                 let randomCityAction = availableCityActions[randomNum]
-                randomCityAction.execute(game: game, player: workingCopy)
+                randomCityAction.execute()
                 
                 actions.append(randomCityAction)
             }

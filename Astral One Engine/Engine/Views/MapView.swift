@@ -105,16 +105,11 @@ public class MapView {
         
         for row in 0..<map.height {
             for col in 0..<map.width {
-                let tile = try map.tile(row: row, col: col)
-                
-                //                print(tile.terrain.description)
+                let tile = map.tile(at: Position(row: row, col: col))
                 
                 if let tileGroup = tileset.tileGroups.first(where: { $0.name == tile.terrain.name }) {
-//                    if row ==
                     // Make sure we are setting the tile on the correct layered terrain map
-                    let terrainMap = terrainMaps[0]
-                    
-                    terrainMap.setTileGroup(tileGroup, forColumn: col, row: row)
+                    terrainMaps[0].setTileGroup(tileGroup, forColumn: col, row: row)
                 }
                 else {
                     fatalError("Unable to find tile group \"\(tile.terrain.name)\"")

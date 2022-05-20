@@ -48,9 +48,6 @@ public class GameNode: GKGridGraphNode {
             else if tile.spec.terrainType == TerrainType.River {
                 cost += 9999.0
             }
-            else if tile.spec.terrainType == TerrainType.Water {
-                cost += 9999.0
-            }
             else {
                 cost += 9999.0
             }
@@ -66,15 +63,6 @@ public class GameNode: GKGridGraphNode {
     public func addTile(tile: Tile2) {
         if tile.id == "" {
             fatalError("Cannot add tile with empty id.")
-        }
-        
-        let spec = tile.spec
-        if spec.tileType == TileType.Unit {
-            if tile.spec.terrainType == TerrainType.Tank {
-                enemyHP += 3.0
-                enemyLandAttack += 10.0
-                enemyLandDefense += 5.0
-            }
         }
         
         tiles.append(tile)

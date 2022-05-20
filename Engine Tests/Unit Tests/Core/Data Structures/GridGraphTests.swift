@@ -80,12 +80,14 @@ class GridGraphTests: XCTestCase {
                               food: 0.0,
                               shields: 0.0,
                               trade: 0.0,
-                              movementCost: 1.0)
+                              movementCost: 1.0,
+                              defenseBonus: 1.0)
         
         // Add 25 nodes to the map, all nodes have a uniform traversal score
         for row in 0..<3 {
             for col in 0..<3 {
-                try map.add(tile: Tile(row: row, col: col, terrain: terrain))
+                try map.add(tile: Tile(position: Position(row: row, col: col),
+                                       terrain: terrain))
             }
         }
         

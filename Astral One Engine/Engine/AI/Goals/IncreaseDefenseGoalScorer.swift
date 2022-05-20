@@ -14,3 +14,17 @@ public class IncreaseDefenseGoalScorer: GoalScorer {
         }
     }
 }
+
+public class IncreaseDefenseInsistence {
+    
+    public init(diff: PlayerDiff) {
+        
+    }
+    
+    public static func getScore(diff: PlayerDiff) -> Double {
+        let score = 10.0 * ((diff.defense + diff.defenseAgainstGroundAttacks) / diff.attack)
+        
+        return score
+        
+    }
+}
