@@ -1,7 +1,44 @@
-//import XCTest
-//import Engine
-//
-//class PlayerTests: XCTestCase {
+import XCTest
+import Engine
+
+class PlayerTests: XCTestCase {
+    func testTechTree() throws {
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: Theme(id: 1, name: "Test Theme"), map: map)
+        let player = Player(playerId: 1, game: game)
+        
+        XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).isResearching)
+        XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).completed)
+        
+        player.startResearching(advanceType: AdvanceType.Pottery)
+        
+        XCTAssertTrue(player.get(advanceType: AdvanceType.Pottery).isResearching)
+        XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).completed)
+        
+        player.completeResearch(advanceType: AdvanceType.Pottery)
+
+        XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).isResearching)
+        XCTAssertTrue(player.get(advanceType: AdvanceType.Pottery).completed)
+    }
+    
+    func testTechTree2() throws {
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: Theme(id: 1, name: "Test Theme"), map: map)
+        let player = Player(playerId: 1, game: game)
+        
+        XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).isResearching)
+        XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).completed)
+        
+        player.startResearching(advanceType: AdvanceType.Pottery)
+        
+        XCTAssertTrue(player.get(advanceType: AdvanceType.Pottery).isResearching)
+        XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).completed)
+        
+        player.completeResearch(advanceType: AdvanceType.Pottery)
+        
+        XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).isResearching)
+        XCTAssertTrue(player.get(advanceType: AdvanceType.Pottery).completed)
+    }
 //    func testAddAvailable1() throws {
 //        let map = Map(mapId: 1, width: 1, height: 1)
 //        let game = Game(theme: Theme(id: 1, name: "Test Theme"), map: map)
@@ -82,4 +119,4 @@
 ////        XCTAssertEqual(player.defenseAgainstGroundAttacks, 3.0)
 //    }
 //
-//}
+}

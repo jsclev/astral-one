@@ -40,6 +40,13 @@ public enum SkillLevel {
     case Deity
 }
 
+public enum DifficultyLevel {
+    case Easy
+    case Normal
+    case Hard
+    case Ludicrous
+}
+
 public enum DiplomacyStatus {
     case Same
     case Ally
@@ -169,4 +176,97 @@ public enum TerrainType {
     case River
     case Swamp
     case Tundra
+}
+
+public enum AdvanceType {
+    case AdvancedFlight
+    case Alphabet
+    case AmphibiousWarfare
+    case Astronomy
+    case AtomicTheory
+    case Automobile
+    case Banking
+    case BridgeBuilding
+    case BronzeWorking
+    case CeremonialBurial
+    case Chemistry
+    case Chivalry
+    case CodeOfLaws
+    case CombinedArms
+    case Combustion
+    case Communism
+    case Computers
+    case Conscription
+    case Construction
+    case Corporation
+    case Currency
+    case Democracy
+    case Economics
+    case Electricity
+    case Electronics
+    case Engineering
+    case Environmentalism
+    case Error
+    case Espionage
+    case Explosives
+    case Feudalism
+    case Flight
+    case Fundamentalism
+    case FusionPower
+    case FutureTechnology
+    case GeneticEngineering
+    case GuerrillaWarfare
+    case Gunpowder
+    case HorsebackRiding
+    case Industrialization
+    case Invention
+    case IronWorking
+    case LaborUnion
+    case Laser
+    case Leadership
+    case Literacy
+    case MachineTools
+    case Magnetism
+    case MapMaking
+    case Masonry
+    case MassProduction
+    case Mathematics
+    case Medicine
+    case Metallurgy
+    case Miniaturization
+    case MobileWarfare
+    case Monarchy
+    case Monotheism
+    case Mysticism
+    case Navigation
+    case NuclearFission
+    case NuclearPower
+    case Philosophy
+    case Physics
+    case Plastics
+    case Polytheism
+    case Pottery
+    case Radio
+    case Railroad
+    case Recycling
+    case Refining
+    case Refrigeration
+    case Republic
+    case Robotics
+    case Rocketry
+    case Sanitation
+    case Seafaring
+    case SpaceFlight
+    case Stealth
+    case SteamEngine
+    case Steel
+    case Superconductor
+    case Tactics
+    case Theology
+    case TheoryOfGravity
+    case Trade
+    case University
+    case WarriorCode
+    case Wheel
+    case Writing
 }

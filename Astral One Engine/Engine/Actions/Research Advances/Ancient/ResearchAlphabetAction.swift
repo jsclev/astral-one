@@ -16,10 +16,14 @@ public class ResearchAlphabetAction: ResearchAction {
     public override func execute() {
         player.removeAvailable(researchAction: self)
 
+        player.startResearching(advanceType: AdvanceType.Alphabet)
+        
         player.addAvailable(researchAction: ResearchMapMakingAction(game: game, player: player))
         player.addAvailable(researchAction: ResearchWritingAction(game: game, player: player))
         player.addAvailable(researchAction: ResearchCodeOfLawsAction(game: game, player: player))
         player.addAvailable(researchAction: ResearchWritingAction(game: game, player: player))
+        
+        player.completeResearch(advanceType: AdvanceType.Alphabet)
     }
     
     public override func clone() -> Action {

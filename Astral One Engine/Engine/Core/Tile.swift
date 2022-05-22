@@ -163,19 +163,56 @@ public class Tile: Hashable {
         
         switch terrain.type {
         case TerrainType.Desert:
-            food = 0
-            production = 1
-            trade = 0
+            if specialResource == SpecialResource.Oasis {
+                food = 3
+                production = 1
+                trade = 0
+            }
+            else if specialResource == SpecialResource.Oil {
+                food = 0
+                production = 4
+                trade = 0
+            }
+            else {
+                food = 0
+                production = 1
+                trade = 0
+            }
+
             defenseBonus = 1.0
         case TerrainType.Forest:
-            food = 1
-            production = 2
-            trade = 0
+            if specialResource == SpecialResource.Pheasant {
+                food = 3
+                production = 2
+                trade = 0
+            }
+            else if specialResource == SpecialResource.Silk {
+                food = 1
+                production = 2
+                trade = 3
+            }
+            else {
+                food = 1
+                production = 2
+                trade = 0
+            }
             defenseBonus = 1.5
         case TerrainType.Glacier:
-            food = 0
-            production = 0
-            trade = 0
+            if specialResource == SpecialResource.Ivory {
+                food = 1
+                production = 1
+                trade = 4
+            }
+            else if specialResource == SpecialResource.Oil {
+                food = 0
+                production = 4
+                trade = 0
+            }
+            else {
+                food = 0
+                production = 0
+                trade = 0
+            }
             defenseBonus = 1.0
         case TerrainType.Grassland:
             food = 2
@@ -183,9 +220,21 @@ public class Tile: Hashable {
             trade = 0
             defenseBonus = 1.0
         case TerrainType.Hills:
-            food = 1
-            production = 0
-            trade = 0
+            if specialResource == SpecialResource.Coal {
+                food = 1
+                production = 2
+                trade = 0
+            }
+            else if specialResource == SpecialResource.Wine {
+                food = 1
+                production = 0
+                trade = 4
+            }
+            else {
+                food = 1
+                production = 0
+                trade = 0
+            }
             defenseBonus = 2.0
         case TerrainType.Jungle:
             food = 1

@@ -349,6 +349,7 @@ class PlannerTests: XCTestCase {
         let map = Map(mapId: 1, width: 3, height: 3)
         let game = Game(theme: theme, map: map)
         let player = Player(playerId: 1, game: game)
+        let player2 = Player(playerId: 2, game: game)
         // let turn1 = Turn(id: 1, year: -4000, ordinal: 1, displayText: "4000 BC")
         // let createUnitType = CommandType(id: 1, name: "Create Unit")
         // let moveUnitType = CommandType(id: 1, name: "Move Unit")
@@ -452,13 +453,11 @@ class PlannerTests: XCTestCase {
                                                 trade: 0.0,
                                                 movementCost: 1.0,
                                                 defenseBonus: 1.0)))
-        
-
         var maxDefense = 0.0
         var actionPlan: [Action] = []
         var cityPosition = Position(row: 0, col: 0)
         let enemyUnit = Infantry1(game: game,
-                                  player: player,
+                                  player: player2,
                                   theme: theme,
                                   name: "Warrior",
                                   position: cityPosition)
@@ -477,14 +476,21 @@ class PlannerTests: XCTestCase {
                                                 player: playerCopy,
                                                 cityBuilder: settler)
                 buildCity.execute()
+                actionPlan = []
                 
                 if let city = playerCopy.getCity(at: position) {
+                    city.addAvailable(action: CreateSettlerAction(game: game,
+                                                                  player: playerCopy,
+                                                                  city: city))
                     city.addAvailable(action: CreateInfantry1Action(game: game,
                                                                     player: playerCopy,
                                                                     city: city))
                     city.addAvailable(action: BuildBarracksAction(game: game,
                                                                   player: playerCopy,
                                                                   city: city))
+                    city.addAvailable(action: BuildProductionAction(game: game,
+                                                                    player: playerCopy,
+                                                                    city: city))
                     
                     for action1 in city.getAvailableActions() {
                         action1.execute()
@@ -495,32 +501,41 @@ class PlannerTests: XCTestCase {
                             for action3 in city.getAvailableActions() {
                                 action3.execute()
                                 
-                                let defense = playerCopy.defense(against: enemyUnit)
+                                for action4 in city.getAvailableActions() {
+                                    action4.execute()
+                                    
+                                    actionPlan = [action1, action2, action3, action4]
                                 
-                                if defense > maxDefense {
-                                    maxDefense = defense
-                                    actionPlan = [action1, action2, action3]
-                                    cityPosition = Position(row: row, col: col)
+                                    let defense = playerCopy.defense(against: enemyUnit)
+                                    
+                                    if defense > maxDefense {
+                                        maxDefense = defense
+                                        cityPosition = Position(row: row, col: col)
+                                        
+
+                                    }
+                                    
+                                    let terrain = game.map.tile(at: position).terrain.name
+                                    var msg = "Evalutated \(position), defense: \(defense)"
+                                    msg += ", \(terrain): "
+                                    for action in actionPlan {
+                                        msg += "\(action.name), "
+                                    }
+                                    print(msg)
                                 }
-                                
-                                let terrain = game.map.tile(at: position).terrain.name
-                                var msg = "\(position) -- defense: \(defense) "
-                                msg += "-- terrain: \(terrain) -- "
-                                msg += "\(action1.name), \(action2.name), \(action3.name)"
-                                print(msg)
                             }
                         }
                     }
                 }
-
-                
             }
         }
         
         print("--------------------------------------------------------------------------------")
         print("Position: \(cityPosition)")
         var msg = "City defense: \(maxDefense), "
-        msg += "\(actionPlan[0].name), \(actionPlan[1].name), \(actionPlan[2].name)"
+        for action in actionPlan {
+            msg += "\(action.name), "
+        }
         print(msg)
         print("--------------------------------------------------------------------------------")
 

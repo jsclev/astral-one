@@ -32,6 +32,7 @@
 		52AB0741280219660039B47D /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0740280219660039B47D /* NodeTests.swift */; };
 		52DE5F362810F5D70029EFE1 /* MapDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F352810F5D70029EFE1 /* MapDAOTests.swift */; };
 		52DE5F392811FCB20029EFE1 /* TerrainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F382811FCB20029EFE1 /* TerrainTests.swift */; };
+		52F5595D28382AA900966F06 /* TileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F5595C28382AA900966F06 /* TileTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		52AB0740280219660039B47D /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
 		52DE5F352810F5D70029EFE1 /* MapDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDAOTests.swift; sourceTree = "<group>"; };
 		52DE5F382811FCB20029EFE1 /* TerrainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainTests.swift; sourceTree = "<group>"; };
+		52F5595C28382AA900966F06 /* TileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 				52A64673282F247C0066B82D /* CityTests.swift */,
 				521F21EE2808BAA900F1D61D /* GameTests.swift */,
 				52A64634282C4F7D0066B82D /* PlayerTests.swift */,
+				52F5595C28382AA900966F06 /* TileTests.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 			files = (
 				521F21EF2808BAA900F1D61D /* GameTests.swift in Sources */,
 				52DE5F392811FCB20029EFE1 /* TerrainTests.swift in Sources */,
+				52F5595D28382AA900966F06 /* TileTests.swift in Sources */,
 				52DE5F362810F5D70029EFE1 /* MapDAOTests.swift in Sources */,
 				5293BC36280E3315001DE2F3 /* TerrainDAOTests.swift in Sources */,
 				521F21F9280A17AD00F1D61D /* ValueNodeTests.swift in Sources */,

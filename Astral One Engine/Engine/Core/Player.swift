@@ -7,6 +7,7 @@ public class Player: ObservableObject {
     public let playerId: Int
     public let game: Game
     public let skillLevel: SkillLevel
+    public let difficultyLevel: DifficultyLevel
     public let playStyle: PlayStyle
     @Published public var cities: [City] = []
     public var cityBuilders: [CityBuilder] = []
@@ -16,6 +17,8 @@ public class Player: ObservableObject {
     private var availableCommands: [Command] = []
     private var availableCityActions: [Action] = []
     private var researchedAdvances: Set<String> = []
+    private let techTree = TechTree()
+    public var maxActionPlanLength = 4
     
     public var defense: Double {
         var sum = 0.0
@@ -29,6 +32,41 @@ public class Player: ObservableObject {
         }
         else {
             return sum
+        }
+    }
+    
+    public func get(advanceType: AdvanceType) -> Advance {
+        if let advance = techTree.advances[advanceType] {
+            return advance
+        }
+        
+        return Advance(type: AdvanceType.Error, parents: [])
+    }
+    
+//    public func getActions() -> [[Action]] {
+//        for action in availableResearchActions {
+//            var plan: [Action] = []
+//
+//            action.execute()
+//            plan.append(action)
+//
+//            while plan.count <= maxActionPlanLength {
+//
+//            }
+//
+//        }
+//    }
+    
+    public func startResearching(advanceType: AdvanceType) {
+        if let advance = techTree.advances[advanceType] {
+            advance.isResearching = true
+        }
+    }
+    
+    public func completeResearch(advanceType: AdvanceType) {
+        if let advance = techTree.advances[advanceType] {
+            advance.isResearching = false
+            advance.completed = true
         }
     }
     
@@ -89,16 +127,19 @@ public class Player: ObservableObject {
         self.playerId = playerId
         self.game = game
         self.skillLevel = SkillLevel.Prince
+        self.difficultyLevel = DifficultyLevel.Normal
         self.playStyle = PlayStyle(offense: 0.15, defense: 0.35)
     }
     
     public init(playerId: Int,
                 game: Game,
                 skillLevel: SkillLevel,
+                difficultyLevel: DifficultyLevel,
                 playStyle: PlayStyle) {
         self.playerId = playerId
         self.game = game
         self.skillLevel = skillLevel
+        self.difficultyLevel = difficultyLevel
         self.playStyle = playStyle
     }
     
@@ -248,6 +289,7 @@ public class Player: ObservableObject {
         let copy = Player(playerId: playerId,
                           game: game,
                           skillLevel: skillLevel,
+                          difficultyLevel: difficultyLevel,
                           playStyle: playStyle)
 //        copy.cities = []
 //        copy.units = []
