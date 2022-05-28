@@ -7,7 +7,8 @@ public class City: ObservableObject, Equatable {
     public let name: String
     public let assetName: String
     public let position: Position
-    private var population: Int = 0
+    public var cityRadius: [Tile] = []
+    public var population: Int = 0
     private var availableActions: Set<Action> = []
     private var barracks: Barracks?
     private var colossus: Colossus?
@@ -37,6 +38,75 @@ public class City: ObservableObject, Equatable {
         self.name = name
         self.assetName = theme.name + "/Cities/" + assetName
         self.position = position
+        
+        var startRow = position.row - 2
+        if startRow < 0 {
+            startRow = 0
+        }
+        
+        var endRow = position.row + 2
+        if endRow > player.game.map.height {
+            endRow = player.game.map.height - 1
+        }
+        
+        var startCol = position.col - 2
+        if startCol < 0 {
+            startCol = 0
+        }
+        
+        var endCol = position.col + 2
+        if endCol > player.game.map.width {
+            endCol = player.game.map.width - 1
+        }
+        
+        for row in startRow..<endRow {
+            for col in startCol..<endCol {
+                let tile = player.game.map.tile(at: Position(row: row, col: col))
+                cityRadius.append(tile)
+                production += tile.production
+            }
+        }
+    }
+    
+    public var trade: Int {
+        var sum = 0
+        
+        if has(wonder: WonderType.Colossus) {
+            // The Colossus adds +1 trade for each tile in the city radius
+            sum += cityRadius.count
+        }
+        
+        for tile in cityRadius {
+            sum += tile.trade
+        }
+        
+        return sum
+    }
+    
+    public var taxPerTurn: Int {
+        return 90
+    }
+    
+    public var science: Int {
+        var num = 0.0
+        
+        if has(building: BuildingType.Library) {
+            num *= 1.5
+        }
+        
+        return Int(num)
+    }
+    
+    public var taxRate: Int {
+        return 10
+    }
+    
+    public var scienceRate: Int {
+        return 90
+    }
+    
+    public var maxTaxRate: Int {
+        return 100
     }
     
     public func getDiplomacyStatus(unit: Unit) -> DiplomacyStatus {
@@ -49,6 +119,10 @@ public class City: ObservableObject, Equatable {
     
     public func getProductionPerTurn() -> Int {
         var sum = 1
+        
+        for tile in cityRadius {
+            sum += tile.production
+        }
         
         if has(building: BuildingType.Barracks) {
             sum += 1

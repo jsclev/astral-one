@@ -40,6 +40,7 @@ class PathfinderScene: SKScene {
     var mapView: MapView
     var previousCameraPoint = CGPoint.zero
     var startTouchPos = CGPoint.zero
+    let tileSet: SKTileSet
     
     init(mapViewModel: MapViewModel) {
         self.db = Db(fullRefresh: true)
@@ -49,9 +50,9 @@ class PathfinderScene: SKScene {
         
         let theme = Theme(id: 2, name: "Sci-Fi")
         self.tilesetName = theme.name + " Tile Set"
-        let tileset = SKTileSet(named: tilesetName)
+        tileSet = SKTileSet(named: tilesetName)!
 
-        self.mapView = MapView(game: game, map: game.map, tileset: tileset!)
+        self.mapView = MapView(game: game, map: game.map, tileset: tileSet)
         mapIconsTileset = SKTileSet(named: mapIconsTilesetName)
         
         super.init(size: UIScreen.main.bounds.size)
@@ -216,8 +217,10 @@ class PathfinderScene: SKScene {
 //                                                 scene: self,
 //                                                 mapView: mapView,
 //                                                 layerIndex: 10000000)
-        let cityView = CityView(player: game.players[0], scene: self, mapView: mapView)
+        let _ = CityView(player: game.players[0], scene: self, mapView: mapView)
         let _ = TurnView(parent: gameCamera, game: game)
+        let _ = SpecialResourceMapLayer(game: game, scene: self, mapView: mapView, tileSet: tileSet)
+        let _ = TileStatsMapLayer(game: game, scene: self, mapView: mapView)
         game.processCommands()
         
         let player = game.players[0]
@@ -231,17 +234,19 @@ class PathfinderScene: SKScene {
                              name: "New York",
                              assetName: "city-1",
                              position: position1)
+            city1.build(BuildingType.Barracks)
+            city1.build(BuildingType.CityWalls)
             player.add(city: city1)
             
-            let createInfantry1Action = CreateInfantry1Action(city: city1)
-            let createInfantry2Action = CreateInfantry2Action(city: city1)
-            let createInfantry3Action = CreateInfantry3Action(city: city1)
-            let createInfantry4Action = CreateInfantry4Action(city: city1)
+            let createInfantry1Action = CreateInfantry1Action(game: game, player: player, city: city1)
+            let createInfantry2Action = CreateInfantry2Action(game: game, player: player, city: city1)
+            let createInfantry3Action = CreateInfantry3Action(game: game, player: player, city: city1)
+            let createInfantry4Action = CreateInfantry4Action(game: game, player: player, city: city1)
             
-            createInfantry1Action.execute(game: game, player: player)
-            createInfantry2Action.execute(game: game, player: player)
-            createInfantry3Action.execute(game: game, player: player)
-            createInfantry4Action.execute(game: game, player: player)
+            createInfantry1Action.execute()
+            createInfantry2Action.execute()
+            createInfantry3Action.execute()
+            createInfantry4Action.execute()
         }
         
 //        for i in 0..<1000 {

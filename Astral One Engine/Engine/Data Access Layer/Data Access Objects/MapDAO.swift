@@ -69,17 +69,34 @@ public class MapDAO: BaseDAO {
                     
                     maxRow = row > maxRow ? row : maxRow
                     maxCol = col > maxCol ? col : maxCol
-                    tiles.append(Tile(id: tileId,
-                                      position: Position(row: row, col: col),
-                                      terrain: Terrain(id: terrainId,
-                                                       tiledId: tiledId,
-                                                       name: terrainTypeText,
-                                                       type: terrainType,
-                                                       food: food,
-                                                       shields: shields,
-                                                       trade: trade,
-                                                       movementCost: movementCost,
-                                                       defenseBonus: 1.0)))
+                    
+                    if let specialResource = getRandomResource(terrainType: terrainType) {
+                        tiles.append(Tile(id: tileId,
+                                          position: Position(row: row, col: col),
+                                          terrain: Terrain(id: terrainId,
+                                                           tiledId: tiledId,
+                                                           name: terrainTypeText,
+                                                           type: terrainType,
+                                                           food: food,
+                                                           shields: shields,
+                                                           trade: trade,
+                                                           movementCost: movementCost,
+                                                           defenseBonus: 1.0),
+                                         specialResource: specialResource))
+                    }
+                    else {
+                        tiles.append(Tile(id: tileId,
+                                          position: Position(row: row, col: col),
+                                          terrain: Terrain(id: terrainId,
+                                                           tiledId: tiledId,
+                                                           name: terrainTypeText,
+                                                           type: terrainType,
+                                                           food: food,
+                                                           shields: shields,
+                                                           trade: trade,
+                                                           movementCost: movementCost,
+                                                           defenseBonus: 1.0)))
+                    }
                 }
             }
         }
@@ -93,6 +110,81 @@ public class MapDAO: BaseDAO {
         }
         
         return returnMap
+    }
+    
+    private func getRandomResource(terrainType: TerrainType) -> SpecialResource? {
+        let randomNum = Int.random(in: 0..<2)
+        switch terrainType {
+        case .Desert:
+            if randomNum == 0 {
+                return SpecialResource.Oasis
+            }
+            else {
+                return SpecialResource.Oil
+            }
+        case .Forest:
+            if randomNum == 0 {
+                return SpecialResource.Pheasant
+            }
+            else {
+                return SpecialResource.Silk
+            }
+        case .Glacier:
+            if randomNum == 0 {
+                return SpecialResource.Ivory
+            }
+            else {
+                return SpecialResource.Oil
+            }
+        case .Grassland:
+            return nil
+        case .Hills:
+            if randomNum == 0 {
+                return SpecialResource.Coal
+            }
+            else {
+                return SpecialResource.Wine
+            }
+        case .Jungle:
+            if randomNum == 0 {
+                return SpecialResource.Gems
+            }
+            else {
+                return SpecialResource.Fruit
+            }
+        case .Mountains:
+            if randomNum == 0 {
+                return SpecialResource.Gold
+            }
+            else {
+                return SpecialResource.Iron
+            }
+        case .Ocean:
+            if randomNum == 0 {
+                return SpecialResource.Fish
+            }
+            else {
+                return SpecialResource.Whales
+            }
+        case .Plains:
+            if randomNum == 0 {
+                return SpecialResource.Buffalo
+            }
+            else {
+                return SpecialResource.Wheat
+            }
+        case .River:
+            return nil
+        case .Swamp:
+            if randomNum == 0 {
+                return SpecialResource.Peat
+            }
+            else {
+                return SpecialResource.Spice
+            }
+        case .Tundra:
+            return SpecialResource.Furs
+        }
     }
         
     public func insert(map: Map) throws -> Map {

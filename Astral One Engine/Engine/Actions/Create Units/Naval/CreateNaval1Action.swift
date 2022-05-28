@@ -22,6 +22,7 @@ public class CreateNaval1Action: Action {
                           theme: game.theme,
                           name: "Trireme",
                           position: city.position)
+        unit.homeCity = city
         
 //        if city.hasPortFacility {
 //            unit.makeVeteran()

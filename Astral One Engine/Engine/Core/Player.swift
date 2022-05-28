@@ -20,6 +20,36 @@ public class Player: ObservableObject {
     private let techTree = TechTree()
     public var maxActionPlanLength = 4
     
+    public init(playerId: Int, game: Game) {
+        self.playerId = playerId
+        self.game = game
+        self.skillLevel = SkillLevel.Prince
+        self.difficultyLevel = DifficultyLevel.Normal
+        self.playStyle = PlayStyle(offense: 0.15, defense: 0.35)
+    }
+    
+    public init(playerId: Int,
+                game: Game,
+                skillLevel: SkillLevel,
+                difficultyLevel: DifficultyLevel,
+                playStyle: PlayStyle) {
+        self.playerId = playerId
+        self.game = game
+        self.skillLevel = skillLevel
+        self.difficultyLevel = difficultyLevel
+        self.playStyle = playStyle
+    }
+    
+    public var population: Int {
+        var sum = 0
+        
+        for city in cities {
+            sum += city.population
+        }
+        
+        return sum
+    }
+    
     public var defense: Double {
         var sum = 0.0
         
@@ -33,6 +63,16 @@ public class Player: ObservableObject {
         else {
             return sum
         }
+    }
+    
+    public var score: Int {
+        var sum = 0
+        
+        for city in cities {
+            sum += city.science
+        }
+        
+        return sum
     }
     
     public func get(advanceType: AdvanceType) -> Advance {
@@ -122,28 +162,6 @@ public class Player: ObservableObject {
             return sum
         }
     }
-    
-    public init(playerId: Int, game: Game) {
-        self.playerId = playerId
-        self.game = game
-        self.skillLevel = SkillLevel.Prince
-        self.difficultyLevel = DifficultyLevel.Normal
-        self.playStyle = PlayStyle(offense: 0.15, defense: 0.35)
-    }
-    
-    public init(playerId: Int,
-                game: Game,
-                skillLevel: SkillLevel,
-                difficultyLevel: DifficultyLevel,
-                playStyle: PlayStyle) {
-        self.playerId = playerId
-        self.game = game
-        self.skillLevel = skillLevel
-        self.difficultyLevel = difficultyLevel
-        self.playStyle = playStyle
-    }
-    
-//    public func research(advance)
     
     public func getCity(at: Position) -> City? {
         for city in cities {

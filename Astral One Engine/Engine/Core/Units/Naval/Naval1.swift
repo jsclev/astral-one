@@ -1,6 +1,6 @@
 import Foundation
 
-public class Naval1: Unit {
+public class Naval1: BaseNavalTransport {
     public init(game: Game,
                 player: Player,
                 theme: Theme,
@@ -18,7 +18,8 @@ public class Naval1: Unit {
                    defense: 1,
                    fp: 1,
                    maxMovementPoints: 3.0,
-                   position: position)
+                   position: position,
+                   maxCapacity: 2)
     }
     
     required init?(coder aDecoder: NSCoder) {

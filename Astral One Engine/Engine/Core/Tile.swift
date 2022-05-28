@@ -161,9 +161,12 @@ public class Tile: Hashable {
         self.terrain = terrain
         self.specialResource = specialResource
         
+//        var stats: [Double] = [0.0, 0.0, 0.0, 0.0]
+        
         switch terrain.type {
         case TerrainType.Desert:
             if specialResource == SpecialResource.Oasis {
+//                stats = [3.0, 1.0, 0.0, 1.0]
                 food = 3
                 production = 1
                 trade = 0
@@ -174,9 +177,7 @@ public class Tile: Hashable {
                 trade = 0
             }
             else {
-                food = 0
-                production = 1
-                trade = 0
+                fatalError("Invalid special resource for terrain.")
             }
 
             defenseBonus = 1.0
@@ -192,10 +193,9 @@ public class Tile: Hashable {
                 trade = 3
             }
             else {
-                food = 1
-                production = 2
-                trade = 0
+                fatalError("Invalid special resource for terrain.")
             }
+            
             defenseBonus = 1.5
         case TerrainType.Glacier:
             if specialResource == SpecialResource.Ivory {
@@ -209,10 +209,9 @@ public class Tile: Hashable {
                 trade = 0
             }
             else {
-                food = 0
-                production = 0
-                trade = 0
+                fatalError("Invalid special resource for terrain.")
             }
+            
             defenseBonus = 1.0
         case TerrainType.Grassland:
             food = 2
@@ -231,25 +230,57 @@ public class Tile: Hashable {
                 trade = 4
             }
             else {
-                food = 1
-                production = 0
-                trade = 0
+                fatalError("Invalid special resource for terrain.")
             }
+            
             defenseBonus = 2.0
         case TerrainType.Jungle:
-            food = 1
-            production = 0
-            trade = 0
+            if specialResource == SpecialResource.Gems {
+                food = 1
+                production = 0
+                trade = 4
+            }
+            else if specialResource == SpecialResource.Fruit {
+                food = 4
+                production = 0
+                trade = 1
+            }
+            else {
+                fatalError("Invalid special resource for terrain.")
+            }
+
             defenseBonus = 1.5
         case TerrainType.Mountains:
-            food = 0
-            production = 1
-            trade = 0
+            if specialResource == SpecialResource.Gold {
+                food = 0
+                production = 1
+                trade = 6
+            }
+            else if specialResource == SpecialResource.Iron {
+                food = 0
+                production = 4
+                trade = 0
+            }
+            else {
+                fatalError("Invalid special resource for terrain.")
+            }
+            
             defenseBonus = 3.0
         case TerrainType.Ocean:
-            food = 1
-            production = 0
-            trade = 2
+            if specialResource == SpecialResource.Fish {
+                food = 3
+                production = 0
+                trade = 2
+            }
+            else if specialResource == SpecialResource.Whales {
+                food = 2
+                production = 2
+                trade = 3
+            }
+            else {
+                fatalError("Invalid special resource for terrain.")
+            }
+
             defenseBonus = 1.0
         case TerrainType.Plains:
             food = 1
@@ -272,6 +303,11 @@ public class Tile: Hashable {
             trade = 0
             defenseBonus = 1.0
         }
+        
+//        food = Int(stats[0])
+//        production = Int(stats[1])
+//        trade = Int(stats[2])
+//        defenseBonus = stats[3]
     }
     
     private func getFood(terrain: Terrain) -> Int {

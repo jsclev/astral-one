@@ -33,6 +33,10 @@
 		52DE5F362810F5D70029EFE1 /* MapDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F352810F5D70029EFE1 /* MapDAOTests.swift */; };
 		52DE5F392811FCB20029EFE1 /* TerrainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F382811FCB20029EFE1 /* TerrainTests.swift */; };
 		52F5595D28382AA900966F06 /* TileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F5595C28382AA900966F06 /* TileTests.swift */; };
+		52F559CE2839F3D400966F06 /* settler.lua in Resources */ = {isa = PBXBuildFile; fileRef = 52F559CD2839F3D400966F06 /* settler.lua */; };
+		52F559CF2839F3D400966F06 /* settler.lua in Resources */ = {isa = PBXBuildFile; fileRef = 52F559CD2839F3D400966F06 /* settler.lua */; };
+		52F559D5283A63AA00966F06 /* defensive_ai.lua in Resources */ = {isa = PBXBuildFile; fileRef = 52F559D4283A63AA00966F06 /* defensive_ai.lua */; };
+		52F559D6283A63AA00966F06 /* defensive_ai.lua in Resources */ = {isa = PBXBuildFile; fileRef = 52F559D4283A63AA00966F06 /* defensive_ai.lua */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +81,8 @@
 		52DE5F352810F5D70029EFE1 /* MapDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDAOTests.swift; sourceTree = "<group>"; };
 		52DE5F382811FCB20029EFE1 /* TerrainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainTests.swift; sourceTree = "<group>"; };
 		52F5595C28382AA900966F06 /* TileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileTests.swift; sourceTree = "<group>"; };
+		52F559CD2839F3D400966F06 /* settler.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = settler.lua; sourceTree = "<group>"; };
+		52F559D4283A63AA00966F06 /* defensive_ai.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = defensive_ai.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +266,7 @@
 		52AB073A2802157D0039B47D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				52F559D2283A60ED00966F06 /* Lua */,
 				52AB073B280216200039B47D /* civitas.sqlite */,
 			);
 			path = Resources;
@@ -294,6 +301,23 @@
 				52DE5F382811FCB20029EFE1 /* TerrainTests.swift */,
 			);
 			path = "Map Features";
+			sourceTree = "<group>";
+		};
+		52F559D2283A60ED00966F06 /* Lua */ = {
+			isa = PBXGroup;
+			children = (
+				52F559D3283A60FB00966F06 /* AI */,
+			);
+			path = Lua;
+			sourceTree = "<group>";
+		};
+		52F559D3283A60FB00966F06 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				52F559CD2839F3D400966F06 /* settler.lua */,
+				52F559D4283A63AA00966F06 /* defensive_ai.lua */,
+			);
+			path = AI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,7 +401,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F559D5283A63AA00966F06 /* defensive_ai.lua in Resources */,
 				52AB073C280216200039B47D /* civitas.sqlite in Resources */,
+				52F559CE2839F3D400966F06 /* settler.lua in Resources */,
 				52AB0710280200560039B47D /* Preview Assets.xcassets in Resources */,
 				52A646BC2835AA300066B82D /* Assets.xcassets in Resources */,
 				52AB070D280200560039B47D /* Assets.xcassets in Resources */,
@@ -388,7 +414,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F559D6283A63AA00966F06 /* defensive_ai.lua in Resources */,
 				52AB073D280216200039B47D /* civitas.sqlite in Resources */,
+				52F559CF2839F3D400966F06 /* settler.lua in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

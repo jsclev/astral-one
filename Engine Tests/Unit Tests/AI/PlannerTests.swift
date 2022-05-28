@@ -20,6 +20,31 @@ class PlannerTests: XCTestCase {
 
     }
     
+    func testGetActions100() throws {
+        let theme = Theme(id: 1, name: "Test Theme")
+        let map = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: map)
+        let player = Player(playerId: 1, game: game)
+        
+        let tile = Tile(id: 1,
+                        position: Position.zero,
+                        terrain: Terrain(id: 1,
+                                         tiledId: 1,
+                                         name: "Test Terrain",
+                                         type: TerrainType.Grassland,
+                                         food: 1.0,
+                                         shields: 2.0,
+                                         trade: 3.0,
+                                         movementCost: 1.0,
+                                         defenseBonus: 1.5))
+        
+        let luaUtil = LuaUtil()
+        let score = try luaUtil.getSettleCityScore(player: player, tile: tile)
+        let score2 = try luaUtil.getBuildScore(player: player, tile: tile)
+        
+        XCTAssertEqual(score, 1.0)
+    }
+    
 //    func testGetActions2() throws {
 //        let theme = Theme(id: 1, name: "test theme")
 //        let game = Game(theme: theme)

@@ -20,6 +20,7 @@ public class Unit: GKEntity, ObservableObject {
     public var currentMovementPoints: Double
     @Published public var position: Position
     @Published public var availableCommands: [Command] = []
+    @Published public var homeCity: City?
     
     public init(game: Game,
                 player: Player,

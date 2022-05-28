@@ -2,7 +2,6 @@ import Foundation
 import SpriteKit
 
 public class CityNode: SKSpriteNode {
-//    private let game: Game
     private let city: City
     
     public override var isUserInteractionEnabled: Bool {
@@ -11,7 +10,6 @@ public class CityNode: SKSpriteNode {
     }
     
     public init(city: City) {
-//        self.game = game
         self.city = city
         
         let texture = SKTexture(imageNamed: city.assetName)
@@ -25,8 +23,6 @@ public class CityNode: SKSpriteNode {
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("\(city.name), position [\(city.position.row),\(city.position.col)]")
-//        game.select(mapPosition: Position(row: 0, col: 0))
-        
+        print("\(city.name), position [\(city.position.row),\(city.position.col)]")        
     }
 }
