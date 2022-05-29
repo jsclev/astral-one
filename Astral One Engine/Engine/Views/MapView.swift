@@ -10,7 +10,6 @@ public class MapView {
     var debug = true
     var cameraScale = 1.0
     var initialCameraScale = 1.0
-//    let tilesetName: String = Constants.theme + " Tile Set"
     let filename: String = "freeland"
     let mapIconsTilesetName: String = "Map Icons"
     let mapName = "terrain"
@@ -48,6 +47,8 @@ public class MapView {
         mapIcons.position = CGPoint.zero
         mapIcons.enableAutomapping = true
         
+
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -56,6 +57,10 @@ public class MapView {
     
     public func addPlayer(player: Player) {
         players.append(player)
+        
+        let _ = CityMapLayer(game: game, player: player, scene: scene, mapView: self, tileSet: tileset)
+        let _ = SpecialResourceMapLayer(game: game, scene: scene, mapView: self, tileSet: tileset)
+        let _ = TileStatsMapLayer(game: game, scene: scene, mapView: self)
         
         player.$units
             .dropFirst()

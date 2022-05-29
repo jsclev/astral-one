@@ -41,18 +41,16 @@ class PathfinderScene: SKScene {
     var previousCameraPoint = CGPoint.zero
     var startTouchPos = CGPoint.zero
     let tileSet: SKTileSet
+    let theme = Theme(id: 2, name: "Sci-Fi")
     
     init(mapViewModel: MapViewModel) {
-        self.db = Db(fullRefresh: true)
-        self.game = Game(theme: Theme(id: 1, name: "Standard"),
-                         map: Map(mapId: 1, width: 1, height: 1))
         self.mapViewModel = mapViewModel
-        
-        let theme = Theme(id: 2, name: "Sci-Fi")
-        self.tilesetName = theme.name + " Tile Set"
-        tileSet = SKTileSet(named: tilesetName)!
 
-        self.mapView = MapView(game: game, map: game.map, tileset: tileSet)
+        db = Db(fullRefresh: true)
+        game = Game(theme: theme, map: Map(mapId: 1, width: 1, height: 1))
+        tilesetName = theme.name + " Tile Set"
+        tileSet = SKTileSet(named: tilesetName)!
+        mapView = MapView(game: game, map: game.map, tileset: tileSet)
         mapIconsTileset = SKTileSet(named: mapIconsTilesetName)
         
         super.init(size: UIScreen.main.bounds.size)
@@ -81,13 +79,8 @@ class PathfinderScene: SKScene {
         case .began:
             startTouchPos = location
             mapViewModel.resetCamera()
-
         case .changed:
             print("Current camera location \(gameCamera.position)")
-            
-
-            
-//            gameCamera.position = location
         case .cancelled, .ended, .failed, .possible:
 //            print("Last touch location \(location)")
 //            print("Pan velocity \(velocity)")
@@ -217,10 +210,7 @@ class PathfinderScene: SKScene {
 //                                                 scene: self,
 //                                                 mapView: mapView,
 //                                                 layerIndex: 10000000)
-        let _ = CityView(player: game.players[0], scene: self, mapView: mapView)
         let _ = TurnView(parent: gameCamera, game: game)
-        let _ = SpecialResourceMapLayer(game: game, scene: self, mapView: mapView, tileSet: tileSet)
-        let _ = TileStatsMapLayer(game: game, scene: self, mapView: mapView)
         game.processCommands()
         
         let player = game.players[0]
@@ -248,32 +238,6 @@ class PathfinderScene: SKScene {
             createInfantry3Action.execute()
             createInfantry4Action.execute()
         }
-        
-//        for i in 0..<1000 {
-//            let position = Position(row: Int.random(in: 0..<game.map.height),
-//                                    col: Int.random(in: 0..<game.map.width))
-//
-//
-//
-//
-//            let city = City(player: game.players[0],
-//                            theme: Theme(id: 1, name: "Sci-Fi"),
-//                            name: "City",
-//                            assetName: "city-1",
-//                            position: position)
-//            let command = CreateCityCommand(commandId: i,
-//                                            gameId: 1,
-//                                            turn: game.getCurrentTurn(),
-//                                            player: game.players[0],
-//                                            type: CommandType(id: 1, name: "CreateCity"),
-//                                            ordinal: i,
-//                                            city: city,
-//                                            position: position)
-//            game.addCommand(command: command)
-//        }
-        
-//        game.processCommands()
-        
     }
     
     func printDate(string: String) {

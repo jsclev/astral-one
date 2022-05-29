@@ -79,6 +79,7 @@ public class SpecialResourceMapLayer {
                     else if specialResource == SpecialResource.Wine {
                         assetName += "Wine"
                     }
+                    
                     if let tileGroup = tileSet.tileGroups.first(where: { $0.name == assetName }) {
                         // Make sure we are setting the tile on the correct layered terrain map
                         node.setTileGroup(tileGroup, forColumn: col, row: row)
