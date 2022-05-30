@@ -19,6 +19,7 @@ public class Player: ObservableObject {
     private var researchedAdvances: Set<String> = []
     private let techTree = TechTree()
     public var maxActionPlanLength = 4
+    @Published public var government = Government.Despotism
     
     public init(playerId: Int, game: Game) {
         self.playerId = playerId
@@ -231,13 +232,6 @@ public class Player: ObservableObject {
     
     public func add(unit: Unit) {
         units.append(unit)
-        
-//        do {
-//            try game.map.add(unit: unit)
-//        }
-//        catch {
-//            fatalError("\(error)")
-//        }
     }
     
     public func remove(unit: Unit) {

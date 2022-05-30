@@ -60,6 +60,16 @@ public enum DiplomacyStatus {
     case AtWar
 }
 
+public enum Government {
+    case Anarchy
+    case Despotism
+    case Monarchy
+    case Communism
+    case Fundamentalism
+    case Republic
+    case Democracy
+}
+
 public enum BuildingType {
     case Airport
     case Aqueduct

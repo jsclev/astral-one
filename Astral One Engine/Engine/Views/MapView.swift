@@ -47,8 +47,6 @@ public class MapView {
         mapIcons.position = CGPoint.zero
         mapIcons.enableAutomapping = true
         
-
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
