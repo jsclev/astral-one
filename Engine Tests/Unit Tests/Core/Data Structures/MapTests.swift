@@ -98,10 +98,10 @@ class MapTests: XCTestCase {
                           terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         tile11.add(movementModifier: MovementModifier(name: "", movementCost: 400.0))
         
-        try map.add(tile: tile00)
-        try map.add(tile: tile01)
-        try map.add(tile: tile10)
-        try map.add(tile: tile11)
+        map.add(tile: tile00)
+        map.add(tile: tile01)
+        map.add(tile: tile10)
+        map.add(tile: tile11)
         
         let movementCosts = map.getMovementCosts()
         XCTAssertEqual(movementCosts[0][0], 100.0)
@@ -115,7 +115,7 @@ class MapTests: XCTestCase {
         let tile = Tile(position: Position(row: -1, col: 0),
                         terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         
-        XCTAssertThrowsError(try map.add(tile: tile)) { error in
+        XCTAssertThrowsError(map.add(tile: tile)) { error in
             let errorMsg = "Row must be greater than or equal to zero."
             XCTAssertEqual(error as? MapError, MapError.invalidRow(message: errorMsg, row: -1))
         }

@@ -7,6 +7,20 @@ public struct PlayerStrategy {
     public let production: Double
     public let science: Double
     public let trade: Double
+    
+    public init(attack: Double,
+                groundDefense: Double,
+                navalDefense: Double,
+                production: Double,
+                science: Double,
+                trade: Double) {
+        self.attack = attack
+        self.groundDefense = groundDefense
+        self.navalDefense = navalDefense
+        self.production = production
+        self.science = science
+        self.trade = trade
+    }
 }
 
 public struct CityStrategy {

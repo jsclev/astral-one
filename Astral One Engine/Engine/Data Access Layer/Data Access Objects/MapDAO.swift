@@ -106,7 +106,7 @@ public class MapDAO: BaseDAO {
         let returnMap = Map(mapId: 1, width: maxCol + 1, height: maxRow + 1)
         
         for tile in tiles {
-            try returnMap.add(tile: tile)
+            returnMap.add(tile: tile)
         }
         
         return returnMap

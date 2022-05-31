@@ -1,5 +1,5 @@
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+//#import <Foundation/Foundation.h>
 
-#include "LuaWrapper.h"
+#include "src/lua.h"
+#include "src/lauxlib.h"
+#include "src/lualib.h"

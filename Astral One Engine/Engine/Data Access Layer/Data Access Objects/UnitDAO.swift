@@ -89,7 +89,7 @@ public class UnitDAO: BaseDAO {
         let returnMap = Map(mapId: 1, width: maxCol + 1, height: maxRow + 1)
         
         for tile in tiles {
-            try returnMap.add(tile: tile)
+            returnMap.add(tile: tile)
         }
         
         return returnMap
@@ -145,9 +145,9 @@ public class UnitDAO: BaseDAO {
                 if sqlite3_step(mainStmt) == SQLITE_DONE {
                     if sqlite3_step(rowIdStmt) == SQLITE_ROW {
                         tileId = getInt(stmt: rowIdStmt, colIndex: 0)
-                        try returnMap.add(tile: Tile(id: tileId,
-                                                     position: Position(row: row, col: col),
-                                                     terrain: tile.terrain))
+                        returnMap.add(tile: Tile(id: tileId,
+                                                 position: Position(row: row, col: col),
+                                                 terrain: tile.terrain))
                     }
                     else {
                         let errMsg = String(cString: sqlite3_errmsg(conn)!)
@@ -239,7 +239,7 @@ public class UnitDAO: BaseDAO {
                          col: Int) -> Unit {
         let map = Map(mapId: 1, width: 1, height: 1)
         let game = Game(theme: theme, map: map)
-        let player = Player(playerId: 1, game: game)
+        let player = Player(playerId: 1, game: game, map: map)
         
         switch typeName {
         case "Air1":

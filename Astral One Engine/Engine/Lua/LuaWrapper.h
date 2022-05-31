@@ -7,7 +7,7 @@
 #include "src/lauxlib.h"
 #include "src/lualib.h"
 
-@interface Lua : NSObject {
+@interface Lua: NSObject {
     lua_State * luaState;
 }
 

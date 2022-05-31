@@ -32,14 +32,14 @@ public enum UnitType {
 }
 
 public enum SkillLevel {
-    case Settler
-    case Chieftain
-    case Warlord
-    case Prince
-    case King
-    case Emperor
-    case Immortal
-    case Deity
+    case One
+    case Two
+    case Three
+    case Four
+    case Five
+    case Six
+    case Seven
+    case Eight
 }
 
 public enum DifficultyLevel {

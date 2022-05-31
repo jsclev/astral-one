@@ -14,12 +14,12 @@ class UnitTests: XCTestCase {
         let game = Game(theme: theme, map: map)
         
         let fromUnit = Infantry1(game: game,
-                                 player: Player(playerId: 1, game: game),
+                                 player: Player(playerId: 1, game: game, map: map),
                                  theme: theme,
                                  name: "Infantry",
                                  position: Position(row: 0, col: 0))
         let toUnit = Infantry1(game: game,
-                               player: Player(playerId: 1, game: game),
+                               player: Player(playerId: 1, game: game, map: map),
                                theme: theme,
                                name: "Infantry",
                                position: Position(row: 0, col: 0))
@@ -33,12 +33,12 @@ class UnitTests: XCTestCase {
         let game = Game(theme: theme, map: map)
         
         let fromUnit = Infantry1(game: game,
-                                 player: Player(playerId: 1, game: game),
+                                 player: Player(playerId: 1, game: game, map: map),
                                  theme: theme,
                                  name: "Infantry",
                                  position: Position(row: 0, col: 0))
         let toUnit = Infantry1(game: game,
-                               player: Player(playerId: 1, game: game),
+                               player: Player(playerId: 1, game: game, map: map),
                                theme: theme,
                                name: "Infantry",
                                position: Position(row: 0, col: 0))
@@ -52,12 +52,12 @@ class UnitTests: XCTestCase {
         let game = Game(theme: theme, map: map)
         
         let fromUnit = Infantry1(game: game,
-                                 player: Player(playerId: 1, game: game),
+                                 player: Player(playerId: 1, game: game, map: map),
                                  theme: theme,
                                  name: "Infantry",
                                  position: Position(row: 0, col: 0))
         let toUnit = Infantry1(game: game,
-                               player: Player(playerId: 1, game: game),
+                               player: Player(playerId: 1, game: game, map: map),
                                theme: theme,
                                name: "Infantry",
                                position: Position(row: 0, col: 0))
@@ -71,12 +71,12 @@ class UnitTests: XCTestCase {
         let game = Game(theme: theme, map: map)
         
         let fromUnit = Infantry1(game: game,
-                                 player: Player(playerId: 1, game: game),
+                                 player: Player(playerId: 1, game: game, map: map),
                                  theme: theme,
                                  name: "Infantry",
                                  position: Position(row: 0, col: 0))
         let toUnit = Infantry1(game: game,
-                               player: Player(playerId: 1, game: game),
+                               player: Player(playerId: 1, game: game, map: map),
                                theme: theme,
                                name: "Infantry",
                                position: Position(row: 0, col: 0))
@@ -88,7 +88,7 @@ class UnitTests: XCTestCase {
         let theme = Theme(id: 1, name: "Standard")
         let map = Map(mapId: 1, width: 1, height: 1)
         let game = Game(theme: theme, map: map)
-        let player = Player(playerId: 1, game: game)
+        let player = Player(playerId: 1, game: game, map: map)
         let position = Position(row: 0, col: 0)
         let enemyUnit = Infantry1(game: game,
                                   player: player,
@@ -125,7 +125,7 @@ class UnitTests: XCTestCase {
         let theme = Theme(id: 1, name: "Standard")
         let map = Map(mapId: 1, width: 1, height: 1)
         let game = Game(theme: theme, map: map)
-        let player = Player(playerId: 1, game: game)
+        let player = Player(playerId: 1, game: game, map: map)
         let position = Position(row: 0, col: 0)
         let enemyUnit = Infantry1(game: game,
                                   player: player,
@@ -229,7 +229,7 @@ class UnitTests: XCTestCase {
         let theme = Theme(id: 1, name: "Standard")
         let map = Map(mapId: 1, width: 3, height: 3)
         let game = Game(theme: theme, map: map)
-        let player = Player(playerId: 1, game: game)
+        let player = Player(playerId: 1, game: game, map: map)
         // let turn1 = Turn(id: 1, year: -4000, ordinal: 1, displayText: "4000 BC")
         // let createUnitType = CommandType(id: 1, name: "Create Unit")
         // let moveUnitType = CommandType(id: 1, name: "Move Unit")

@@ -2,6 +2,7 @@ import Foundation
 
 public class Tile: Hashable {
     public let id: Int
+    public var isRevealed = false
     public let position: Position
     public let terrain: Terrain
     public var specialResource: SpecialResource?
@@ -10,6 +11,7 @@ public class Tile: Hashable {
     public var trade: Int
     private var movementModifier: MovementModifier?
     public let defenseBonus: Double
+    public var owner: Player?
     
     public init(position: Position,
                 terrain: Terrain) {

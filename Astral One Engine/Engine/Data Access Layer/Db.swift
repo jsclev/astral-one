@@ -107,7 +107,7 @@ public class Db {
 //        let turn = Turn(id: 1, year: 1900, ordinal: 55, displayText: "1900")
 
         // Pull the map from the database
-        let player1 = Player(playerId: 1, game: game)
+        let player1 = Player(playerId: 1, game: game, map: map)
         let cities = try cityDao.getCities(gameId: 1)
         let units = try unitDao.getUnits(gameId: 1)
 

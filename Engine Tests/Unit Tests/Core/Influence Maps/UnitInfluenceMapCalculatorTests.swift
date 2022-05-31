@@ -11,12 +11,12 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         let game = Game(theme: theme, map: map)
         
         let agent = Infantry1(game: game,
-                              player: Player(playerId: 1, game: game),
+                              player: Player(playerId: 1, game: game, map: map),
                               theme: theme,
                               name: "Test",
                               position: Position(row: 0, col: 0))
         let enemyUnit = Infantry1(game: game,
-                                  player: Player(playerId: 1, game: game),
+                                  player: Player(playerId: 1, game: game, map: map),
                                   theme: theme,
                                   name: "Test",
                                   position: Position(row: 1, col: 1))
@@ -50,8 +50,8 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         let map = Map(mapId: 1, width: 3, height: 3)
         let theme = Theme(id: 1, name: "Test Theme")
         let game = Game(theme: theme, map: map)
-        let player = Player(playerId: 1, game: game)
-        let enemyPlayer = Player(playerId: 2, game: game)
+        let player = Player(playerId: 1, game: game, map: map)
+        let enemyPlayer = Player(playerId: 2, game: game, map: map)
         
         let agent = Infantry1(game: game,
                               player: player,
@@ -106,8 +106,8 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         let map = Map(mapId: 1, width: 3, height: 3)
         let theme = Theme(id: 1, name: "Test Theme")
         let game = Game(theme: theme, map: map)
-        let player = Player(playerId: 1, game: game)
-        let enemyPlayer = Player(playerId: 2, game: game)
+        let player = Player(playerId: 1, game: game, map: map)
+        let enemyPlayer = Player(playerId: 2, game: game, map: map)
 
         let agent = Infantry1(game: game,
                               player: player,
@@ -164,25 +164,25 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         let mainMap = Map(mapId: 1, width: 3, height: 3)
         let theme = Theme(id: 1, name: "Test Theme")
         let game = Game(theme: theme, map: mainMap)
-        let player = Player(playerId: 1, game: game)
-        let enemyPlayer = Player(playerId: 2, game: game)
+        let player = Player(playerId: 1, game: game, map: mainMap)
+        let enemyPlayer = Player(playerId: 2, game: game, map: mainMap)
         
         let agent = Infantry1(game: game,
-                              player: Player(playerId: 1, game: game),
+                              player: Player(playerId: 1, game: game, map: mainMap),
                               theme: theme,
                               name: "Agent",
                               position: Position(row: 0, col: 0))
         player.add(unit: agent)
         
         let enemyUnit1 = Infantry1(game: game,
-                                   player: Player(playerId: 1, game: game),
+                                   player: Player(playerId: 1, game: game, map: mainMap),
                                    theme: theme,
                                    name: "Enemy1",
                                    position: Position(row: 0, col: 0))
         enemyPlayer.add(unit: enemyUnit1)
         
         let enemyUnit2 = Cavalry7(game: game,
-                                  player: Player(playerId: 1, game: game),
+                                  player: Player(playerId: 1, game: game, map: mainMap),
                                   theme: theme,
                                   name: "Enemy2",
                                   position: Position(row: 0, col: 0))

@@ -8,7 +8,7 @@ function settle_score(n, s)
     local score = 0
 
     if n == 0 then
-        score = 10
+        score = 88877
     else if n == 1 then
         score = 11
     else

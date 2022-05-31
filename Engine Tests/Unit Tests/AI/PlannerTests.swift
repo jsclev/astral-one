@@ -7,7 +7,7 @@ class PlannerTests: XCTestCase {
         let theme = Theme(id: 1, name: "Test Theme")
         let map = Map(mapId: 1, width: 1, height: 1)
         let game = Game(theme: theme, map: map)
-        let startState = Player(playerId: 1, game: game)
+        let startState = Player(playerId: 1, game: game, map: map)
         let player = startState.clone()
         
         // Execute the sequence of actions that the planner constructed
@@ -22,27 +22,69 @@ class PlannerTests: XCTestCase {
     
     func testGetActions100() throws {
         let theme = Theme(id: 1, name: "Test Theme")
-        let map = Map(mapId: 1, width: 1, height: 1)
-        let game = Game(theme: theme, map: map)
-        let player = Player(playerId: 1, game: game)
+        let gameMap = Map(mapId: 1, width: 1, height: 1)
+        let game = Game(theme: theme, map: gameMap)
         
-        let tile = Tile(id: 1,
-                        position: Position.zero,
-                        terrain: Terrain(id: 1,
-                                         tiledId: 1,
-                                         name: "Test Terrain",
-                                         type: TerrainType.Grassland,
-                                         food: 1.0,
-                                         shields: 2.0,
-                                         trade: 3.0,
-                                         movementCost: 1.0,
-                                         defenseBonus: 1.5))
+        let position = Position.zero
+        let terrain = Terrain(id: 1,
+                              tiledId: 1,
+                              name: "Test Terrain",
+                              type: TerrainType.Grassland,
+                              food: 1.0,
+                              shields: 2.0,
+                              trade: 3.0,
+                              movementCost: 1.0,
+                              defenseBonus: 1.5)
         
-        let luaUtil = LuaUtil()
-        let score = try luaUtil.getSettleCityScore(player: player, tile: tile)
-        let score2 = try luaUtil.getBuildScore(player: player, tile: tile)
+        let gameTile = Tile(id: 1, position: position, terrain: terrain)
+        gameMap.add(tile: gameTile)
         
-        XCTAssertEqual(score, 1.0)
+        let player1Map = Map(mapId: 2, width: gameMap.width, height: gameMap.height)
+        let player1Tile = Tile(id: 2, position: position, terrain: terrain)
+        player1Tile.isRevealed = true
+        player1Map.add(tile: player1Tile)
+        let player1 = Player(playerId: 1,
+                             game: game,
+                             map: player1Map,
+                             skillLevel: SkillLevel.One,
+                             difficultyLevel: DifficultyLevel.Easy,
+                             playStyle: PlayStyle(offense: 0.0, defense: 0.0))
+        
+        let player2Map = Map(mapId: 3, width: gameMap.width, height: gameMap.height)
+        let player2Tile = Tile(id: 3, position: position, terrain: terrain)
+        player2Map.add(tile: player2Tile)
+        let player2 = Player(playerId: 2,
+                             game: game,
+                             map: player2Map,
+                             skillLevel: SkillLevel.One,
+                             difficultyLevel: DifficultyLevel.Easy,
+                             playStyle: PlayStyle(offense: 0.0, defense: 0.0))
+        
+        let strategy = PlayerStrategy(attack: 10.0,
+                                      groundDefense: 20.0,
+                                      navalDefense: 20.0,
+                                      production: 25.0,
+                                      science: 25.0,
+                                      trade: 25.0)
+        
+        let player1SettlerAI = try SettlerAI(player: player1, strategy: strategy)
+        let player1Settler = Settler(game: game,
+                              player: player1,
+                              theme: theme,
+                              name: "Settler",
+                              position: player1Tile.position)
+        let player1ScoreMap = try player1SettlerAI.getBuildCityScoreMap(by: player1Settler)
+        
+        let player2SettlerAI = try SettlerAI(player: player2, strategy: strategy)
+        let player2Settler = Settler(game: game,
+                                     player: player2,
+                                     theme: theme,
+                                     name: "Settler",
+                                     position: player2Tile.position)
+        let player2ScoreMap = try player2SettlerAI.getBuildCityScoreMap(by: player2Settler)
+
+        XCTAssertEqual(player1ScoreMap[0][0], 0.0)
+        XCTAssertEqual(player2ScoreMap[0][0], 1.0)
     }
     
 //    func testGetActions2() throws {
@@ -322,7 +364,7 @@ class PlannerTests: XCTestCase {
         let theme = Theme(id: 1, name: "test theme")
         let map = Map(mapId: 1, width: 1, height: 1)
         let game = Game(theme: theme, map: map)
-        let player = Player(playerId: 1, game: game)
+        let player = Player(playerId: 1, game: game, map: map)
         let city = City(player: player,
                         theme: theme,
                         name: "test city",
@@ -373,8 +415,8 @@ class PlannerTests: XCTestCase {
         let theme = Theme(id: 1, name: "Standard")
         let map = Map(mapId: 1, width: 3, height: 3)
         let game = Game(theme: theme, map: map)
-        let player = Player(playerId: 1, game: game)
-        let player2 = Player(playerId: 2, game: game)
+        let player = Player(playerId: 1, game: game, map: map)
+        let player2 = Player(playerId: 2, game: game, map: map)
         // let turn1 = Turn(id: 1, year: -4000, ordinal: 1, displayText: "4000 BC")
         // let createUnitType = CommandType(id: 1, name: "Create Unit")
         // let moveUnitType = CommandType(id: 1, name: "Move Unit")

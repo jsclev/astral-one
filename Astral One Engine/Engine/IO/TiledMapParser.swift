@@ -110,8 +110,8 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                             if tiledId <= 24 {
                                                 if let terrain = getTerrain(tiledId: tiledId) {
                                                     // print("Adding tile [\(tile.id)] at position [\(mapRowIndex),\(0),\(layerOrdinal)]")
-                                                    try map.add(tile: Tile(position: Position(row: 119 - mapRowIndex, col: col),
-                                                                           terrain: terrain))
+                                                    map.add(tile: Tile(position: Position(row: 119 - mapRowIndex, col: col),
+                                                                       terrain: terrain))
                                                 }
                                                 else {
                                                     fatalError("Unable to find tile with Tiled ID \(strLocalTileId).")

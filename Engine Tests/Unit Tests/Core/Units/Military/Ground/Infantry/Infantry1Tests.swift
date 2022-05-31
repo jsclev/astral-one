@@ -8,7 +8,7 @@ class Infantry1Tests: XCTestCase {
         let game = Game(theme: theme, map: map)
 
         let fixture = Infantry1(game: game,
-                                player: Player(playerId: 1, game: game),
+                                player: Player(playerId: 1, game: game, map: map),
                                 theme: theme,
                                 name: "Infantry",
                                 position: Position(row: 0, col: 0))

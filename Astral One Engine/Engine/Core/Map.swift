@@ -52,27 +52,7 @@ public class Map {
         
     }
     
-    public func add(tile: Tile) throws {
-        if tile.position.row < 0 {
-            let errorMsg = "Row must be greater than or equal to zero."
-            throw MapError.invalidRow(message: errorMsg, row: tile.position.row)
-        }
-        
-        if tile.position.row >= height {
-            let errorMsg = "Row must be less than map height of \(height)."
-            throw MapError.invalidRow(message: errorMsg, row: tile.position.row)
-        }
-        
-        if tile.position.col < 0 {
-            let errorMsg = "Column must be greater than or equal to zero."
-            throw MapError.invalidCol(message: errorMsg, col: tile.position.col)
-        }
-        
-        if tile.position.col >= width {
-            let errorMsg = "Column must be less than map width of \(width)."
-            throw MapError.invalidCol(message: errorMsg, col: tile.position.col)
-        }
-        
+    public func add(tile: Tile) {
         grid[tile.position.row][tile.position.col] = tile
         movementCosts[tile.position.row][tile.position.col] = tile.getMovementCost()
     }

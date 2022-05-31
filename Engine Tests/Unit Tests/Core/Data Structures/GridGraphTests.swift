@@ -69,7 +69,7 @@ class GridGraphTests: XCTestCase {
         let game = Game(theme: theme, map: map)
 
         let agent = Infantry1(game: game,
-                              player: Player(playerId: 1, game: game),
+                              player: Player(playerId: 1, game: game, map: map),
                               theme: theme,
                               name: "Agent",
                               position: Position(row: 0, col: 0))

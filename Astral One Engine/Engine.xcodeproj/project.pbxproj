@@ -30,6 +30,9 @@
 		521F21E7280740E000F1D61D /* MovementModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21E6280740E000F1D61D /* MovementModifier.swift */; };
 		521F21F12808F6DF00F1D61D /* GridGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21F02808F6DF00F1D61D /* GridGraph.swift */; };
 		521F21F32808F78C00F1D61D /* ValueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21F22808F78C00F1D61D /* ValueNode.swift */; };
+		5236B41328450C1C006DF7E6 /* SettlerAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B41228450C1C006DF7E6 /* SettlerAI.swift */; };
+		5236B41528451AEF006DF7E6 /* AISkillLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B41428451AEF006DF7E6 /* AISkillLevel.swift */; };
+		5236B4172845450B006DF7E6 /* LuaVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B4162845450B006DF7E6 /* LuaVM.swift */; };
 		52605C902801E3B00082C0DB /* InfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */; };
 		52668162282302790089D0DD /* Fanatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52668161282302790089D0DD /* Fanatic.swift */; };
 		526681642823029E0089D0DD /* Diplomat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526681632823029E0089D0DD /* Diplomat.swift */; };
@@ -218,7 +221,6 @@
 		52F559CA2839E65900966F06 /* llex.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559A42839E65800966F06 /* llex.c */; };
 		52F559CB2839E65900966F06 /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559A62839E65800966F06 /* ltm.c */; };
 		52F559CC2839E65900966F06 /* ldo.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559A82839E65800966F06 /* ldo.c */; };
-		52F559D1283A5FFA00966F06 /* LuaUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F559D0283A5FFA00966F06 /* LuaUtil.swift */; };
 		52F559D9283DE26600966F06 /* CreateNavalTransportAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F559D8283DE26600966F06 /* CreateNavalTransportAction.swift */; };
 		52F559DB283DE6E000966F06 /* BaseNavalTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F559DA283DE6E000966F06 /* BaseNavalTransport.swift */; };
 		52F559DD283F384F00966F06 /* SpecialResourceMapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F559DC283F384F00966F06 /* SpecialResourceMapLayer.swift */; };
@@ -275,6 +277,9 @@
 		521F21E6280740E000F1D61D /* MovementModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementModifier.swift; sourceTree = "<group>"; };
 		521F21F02808F6DF00F1D61D /* GridGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGraph.swift; sourceTree = "<group>"; };
 		521F21F22808F78C00F1D61D /* ValueNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueNode.swift; sourceTree = "<group>"; };
+		5236B41228450C1C006DF7E6 /* SettlerAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerAI.swift; sourceTree = "<group>"; };
+		5236B41428451AEF006DF7E6 /* AISkillLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISkillLevel.swift; sourceTree = "<group>"; };
+		5236B4162845450B006DF7E6 /* LuaVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuaVM.swift; sourceTree = "<group>"; };
 		52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceMapCalculator.swift; sourceTree = "<group>"; };
 		52668161282302790089D0DD /* Fanatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fanatic.swift; sourceTree = "<group>"; };
 		526681632823029E0089D0DD /* Diplomat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diplomat.swift; sourceTree = "<group>"; };
@@ -496,7 +501,6 @@
 		52F559A72839E65800966F06 /* lctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lctype.h; sourceTree = "<group>"; };
 		52F559A82839E65800966F06 /* ldo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldo.c; sourceTree = "<group>"; };
 		52F559A92839E65800966F06 /* lundump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lundump.h; sourceTree = "<group>"; };
-		52F559D0283A5FFA00966F06 /* LuaUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuaUtil.swift; sourceTree = "<group>"; };
 		52F559D7283A868A00966F06 /* SettlerWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettlerWrapper.h; sourceTree = "<group>"; };
 		52F559D8283DE26600966F06 /* CreateNavalTransportAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNavalTransportAction.swift; sourceTree = "<group>"; };
 		52F559DA283DE6E000966F06 /* BaseNavalTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavalTransport.swift; sourceTree = "<group>"; };
@@ -699,9 +703,11 @@
 			children = (
 				52A64636282C8D860066B82D /* Goals */,
 				52A6467F282F6DA10066B82D /* Personalities */,
+				5236B41428451AEF006DF7E6 /* AISkillLevel.swift */,
 				5266819D282B795C0089D0DD /* Planner.swift */,
 				52A64680282F70060066B82D /* PlayStyle.swift */,
 				52A64642282D741E0066B82D /* RandomAI.swift */,
+				5236B41228450C1C006DF7E6 /* SettlerAI.swift */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -1007,8 +1013,8 @@
 				52F559672839E4D800966F06 /* LuaWrapper.m */,
 				52F559662839E4D700966F06 /* Engine-Bridging-Header.h */,
 				52F559692839E50000966F06 /* LuaWrapper.h */,
-				52F559D0283A5FFA00966F06 /* LuaUtil.swift */,
 				52F559D7283A868A00966F06 /* SettlerWrapper.h */,
+				5236B4162845450B006DF7E6 /* LuaVM.swift */,
 			);
 			path = Lua;
 			sourceTree = "<group>";
@@ -1281,6 +1287,7 @@
 				52DE5FA3281EE3DB0029EFE1 /* Infantry7.swift in Sources */,
 				52E0B1BE27E6E1AC00607FBE /* DamageableComponent.swift in Sources */,
 				52A64664282DFEC70066B82D /* ResearchChivalryAction.swift in Sources */,
+				5236B4172845450B006DF7E6 /* LuaVM.swift in Sources */,
 				52DE5F81281C6DB60029EFE1 /* Player.swift in Sources */,
 				52A64656282DF8C30066B82D /* ResearchConstructionAction.swift in Sources */,
 				52F559BC2839E65800966F06 /* ldump.c in Sources */,
@@ -1291,6 +1298,7 @@
 				52AB0748280287580039B47D /* City.swift in Sources */,
 				52F559B42839E65800966F06 /* Makefile in Sources */,
 				52A6469128317ADD0066B82D /* Temple.swift in Sources */,
+				5236B41328450C1C006DF7E6 /* SettlerAI.swift in Sources */,
 				52F559C22839E65900966F06 /* lmem.c in Sources */,
 				52F9042827F4E27B00D1AC97 /* Infantry1.swift in Sources */,
 				52DE5F83281C78450029EFE1 /* FounderContextMenu.swift in Sources */,
@@ -1327,7 +1335,6 @@
 				52A64672282F01C30066B82D /* SpawnInfantry1Action.swift in Sources */,
 				52A64681282F70060066B82D /* PlayStyle.swift in Sources */,
 				521F21B528047F8000F1D61D /* Trade2.swift in Sources */,
-				52F559D1283A5FFA00966F06 /* LuaUtil.swift in Sources */,
 				52DE5F7F281C6A010029EFE1 /* Settler.swift in Sources */,
 				52F559B22839E65800966F06 /* lfunc.c in Sources */,
 				52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */,
@@ -1486,6 +1493,7 @@
 				52A646852830A8770066B82D /* Harbor.swift in Sources */,
 				5266818D282B71860089D0DD /* ResearchPotteryAction.swift in Sources */,
 				52F559BB2839E65800966F06 /* ltable.c in Sources */,
+				5236B41528451AEF006DF7E6 /* AISkillLevel.swift in Sources */,
 				52E0B1EB27EAB6B800607FBE /* GameNode.swift in Sources */,
 				52E0B1B627E6DFD100607FBE /* Palace.swift in Sources */,
 				52A6463A282C95CE0066B82D /* GoalScorer.swift in Sources */,

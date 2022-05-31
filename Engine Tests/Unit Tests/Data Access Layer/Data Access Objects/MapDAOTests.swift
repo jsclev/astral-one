@@ -12,10 +12,10 @@ class MapDAOTests: XCTestCase {
         let map = Map(mapId: -1, width: 2, height: 2)
         let terrain = try TerrainFactory.create(terrainType: TerrainType.Grassland)
         
-        try map.add(tile: Tile(position: Position(row: 0, col: 0), terrain: terrain))
-        try map.add(tile: Tile(position: Position(row: 0, col: 1), terrain: terrain))
-        try map.add(tile: Tile(position: Position(row: 1, col: 0), terrain: terrain))
-        try map.add(tile: Tile(position: Position(row: 1, col: 1), terrain: terrain))
+        map.add(tile: Tile(position: Position(row: 0, col: 0), terrain: terrain))
+        map.add(tile: Tile(position: Position(row: 0, col: 1), terrain: terrain))
+        map.add(tile: Tile(position: Position(row: 1, col: 0), terrain: terrain))
+        map.add(tile: Tile(position: Position(row: 1, col: 1), terrain: terrain))
 
         let newMap = try db.mapDao.insert(map: map)
         
@@ -31,10 +31,10 @@ class MapDAOTests: XCTestCase {
         let terrain11 = try TerrainFactory.create(terrainType: TerrainType.Desert)
         
         let map1 = Map(mapId: -1, width: 2, height: 2)
-        try map1.add(tile: Tile(position: Position(row: 0, col: 0), terrain: terrain00))
-        try map1.add(tile: Tile(position: Position(row: 0, col: 1), terrain: terrain01))
-        try map1.add(tile: Tile(position: Position(row: 1, col: 0), terrain: terrain10))
-        try map1.add(tile: Tile(position: Position(row: 1, col: 1), terrain: terrain11))
+        map1.add(tile: Tile(position: Position(row: 0, col: 0), terrain: terrain00))
+        map1.add(tile: Tile(position: Position(row: 0, col: 1), terrain: terrain01))
+        map1.add(tile: Tile(position: Position(row: 1, col: 0), terrain: terrain10))
+        map1.add(tile: Tile(position: Position(row: 1, col: 1), terrain: terrain11))
         
         // Make sure our initial map has all the correct terrain positions
         XCTAssertEqual(map1.tile(at: Position(row: 0, col: 0)).id, -1)

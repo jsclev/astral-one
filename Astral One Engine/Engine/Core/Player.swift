@@ -20,22 +20,26 @@ public class Player: ObservableObject {
     private let techTree = TechTree()
     public var maxActionPlanLength = 4
     @Published public var government = Government.Despotism
+    public let map: Map
     
-    public init(playerId: Int, game: Game) {
+    public init(playerId: Int, game: Game, map: Map) {
         self.playerId = playerId
         self.game = game
-        self.skillLevel = SkillLevel.Prince
+        self.map = map
+        self.skillLevel = SkillLevel.Four
         self.difficultyLevel = DifficultyLevel.Normal
         self.playStyle = PlayStyle(offense: 0.15, defense: 0.35)
     }
     
     public init(playerId: Int,
                 game: Game,
+                map: Map,
                 skillLevel: SkillLevel,
                 difficultyLevel: DifficultyLevel,
                 playStyle: PlayStyle) {
         self.playerId = playerId
         self.game = game
+        self.map = map
         self.skillLevel = skillLevel
         self.difficultyLevel = difficultyLevel
         self.playStyle = playStyle
@@ -300,6 +304,7 @@ public class Player: ObservableObject {
     public func clone() -> Player {
         let copy = Player(playerId: playerId,
                           game: game,
+                          map: map,
                           skillLevel: skillLevel,
                           difficultyLevel: difficultyLevel,
                           playStyle: playStyle)

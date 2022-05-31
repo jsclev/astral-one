@@ -5,7 +5,7 @@ class PlayerTests: XCTestCase {
     func testTechTree() throws {
         let map = Map(mapId: 1, width: 1, height: 1)
         let game = Game(theme: Theme(id: 1, name: "Test Theme"), map: map)
-        let player = Player(playerId: 1, game: game)
+        let player = Player(playerId: 1, game: game, map: map)
         
         XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).isResearching)
         XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).completed)
@@ -24,7 +24,7 @@ class PlayerTests: XCTestCase {
     func testTechTree2() throws {
         let map = Map(mapId: 1, width: 1, height: 1)
         let game = Game(theme: Theme(id: 1, name: "Test Theme"), map: map)
-        let player = Player(playerId: 1, game: game)
+        let player = Player(playerId: 1, game: game, map: map)
         
         XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).isResearching)
         XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).completed)

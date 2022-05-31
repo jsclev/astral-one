@@ -7,7 +7,6 @@ public class CityMapLayer {
     private var cancellable = Set<AnyCancellable>()
     private let tileSize = CGSize(width: 96, height: 48)
 
-
     public init(game: Game, player: Player, scene: SKScene, mapView: MapView, tileSet: SKTileSet) {
         self.player = player
         
