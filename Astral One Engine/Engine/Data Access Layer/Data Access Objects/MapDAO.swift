@@ -32,10 +32,6 @@ public class MapDAO: BaseDAO {
                 let col = getInt(stmt: stmt, colIndex: 4)
                 let terrainId = getInt(stmt: stmt, colIndex: 5)
                 let tiledId = getInt(stmt: stmt, colIndex: 7)
-                let food = getDouble(stmt: stmt, colIndex: 9)
-                let shields = getDouble(stmt: stmt, colIndex: 10)
-                let trade = getDouble(stmt: stmt, colIndex: 11)
-                let movementCost = getDouble(stmt: stmt, colIndex: 12)
                 var terrainType = TerrainType.Grassland
                 
                 if let terrainTypeText = try getString(stmt: stmt, colIndex: 8) {
@@ -76,12 +72,7 @@ public class MapDAO: BaseDAO {
                                           terrain: Terrain(id: terrainId,
                                                            tiledId: tiledId,
                                                            name: terrainTypeText,
-                                                           type: terrainType,
-                                                           food: food,
-                                                           shields: shields,
-                                                           trade: trade,
-                                                           movementCost: movementCost,
-                                                           defenseBonus: 1.0),
+                                                           type: terrainType),
                                          specialResource: specialResource))
                     }
                     else {
@@ -90,12 +81,7 @@ public class MapDAO: BaseDAO {
                                           terrain: Terrain(id: terrainId,
                                                            tiledId: tiledId,
                                                            name: terrainTypeText,
-                                                           type: terrainType,
-                                                           food: food,
-                                                           shields: shields,
-                                                           trade: trade,
-                                                           movementCost: movementCost,
-                                                           defenseBonus: 1.0)))
+                                                           type: terrainType)))
                     }
                 }
             }

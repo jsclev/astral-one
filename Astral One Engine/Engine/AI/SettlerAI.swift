@@ -137,7 +137,12 @@ public class SettlerAI {
                         score += Double(tile.trade)
                         score += tile.defenseBonus
                         
-                        scoreMap[row][col] = score
+                        if score < 0.0 {
+                            scoreMap[row][col] = 0.0
+                        }
+                        else {
+                            scoreMap[row][col] = score
+                        }
                     }
                 }
                 else {

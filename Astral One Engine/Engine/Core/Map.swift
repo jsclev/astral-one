@@ -20,13 +20,8 @@ public class Map {
         self.grid = Array(repeating: Array(repeating: Tile(position: Position(row: 0, col: 0),
                                                            terrain: Terrain(id: 0,
                                                                             tiledId: 0,
-                                                                            name: "None",
-                                                                            type: TerrainType.Grassland,
-                                                                            food: 0.0,
-                                                                            shields: 0.0,
-                                                                            trade: 0.0,
-                                                                            movementCost: Constants.minMovementCost,
-                                                                            defenseBonus: 1.0)),
+                                                                            name: "Grass",
+                                                                            type: TerrainType.Grassland)),
                                            count: width), count: height)
 
         
@@ -36,12 +31,7 @@ public class Map {
                                            terrain: Terrain(id: 0,
                                                             tiledId: 0,
                                                             name: "1",
-                                                            type: TerrainType.Grassland,
-                                                            food: 0.0,
-                                                            shields: 0.0,
-                                                            trade: 0.0,
-                                                            movementCost: Constants.minMovementCost,
-                                                            defenseBonus: 1.0))
+                                                            type: TerrainType.Grassland))
             }
         }
         

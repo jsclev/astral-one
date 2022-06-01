@@ -76,12 +76,7 @@ class GridGraphTests: XCTestCase {
         let terrain = Terrain(id: -1,
                               tiledId: 0,
                               name: "None",
-                              type: TerrainType.Grassland,
-                              food: 0.0,
-                              shields: 0.0,
-                              trade: 0.0,
-                              movementCost: 1.0,
-                              defenseBonus: 1.0)
+                              type: TerrainType.Grassland)
         
         // Add 25 nodes to the map, all nodes have a uniform traversal score
         for row in 0..<3 {

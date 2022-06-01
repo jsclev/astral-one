@@ -68,12 +68,7 @@ public class TerrainDAO: BaseDAO {
                     terrains.append(Terrain(id: terrainId,
                                             tiledId: tiledId,
                                             name: name,
-                                            type: terrainType,
-                                            food: food,
-                                            shields: shields,
-                                            trade: trade,
-                                            movementCost: movementCost,
-                                            defenseBonus: 1.0))
+                                            type: terrainType))
                 }
             }
         }

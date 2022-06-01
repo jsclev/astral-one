@@ -330,7 +330,7 @@ public class Tile: Hashable {
     }
     
     public func getMovementCost() -> Double {
-        var movementCost = terrain.movementCost
+        var movementCost = 0.0
         
         if let modifier = movementModifier {
             movementCost = modifier.movementCost

@@ -9,12 +9,7 @@ class TileTests: XCTestCase {
                         terrain: Terrain(id: 1,
                                          tiledId: 1,
                                          name: "Test Tile",
-                                         type: TerrainType.Desert,
-                                         food: 0.0,
-                                         shields: 0.0,
-                                         trade: 0.0,
-                                         movementCost: 0.0,
-                                         defenseBonus: 0.0))
+                                         type: TerrainType.Desert))
         XCTAssertEqual(tile.food, 0)
         XCTAssertEqual(tile.production, 1)
         XCTAssertEqual(tile.trade, 0)
@@ -25,12 +20,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Forest,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Forest))
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 2)
         XCTAssertEqual(tile.trade, 0)
@@ -41,12 +31,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Glacier,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Glacier))
         XCTAssertEqual(tile.food, 0)
         XCTAssertEqual(tile.production, 0)
         XCTAssertEqual(tile.trade, 0)
@@ -57,12 +42,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Grassland,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Grassland))
         XCTAssertEqual(tile.food, 2)
         XCTAssertEqual(tile.production, 0)
         XCTAssertEqual(tile.trade, 0)
@@ -73,12 +53,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Hills,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Hills))
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 0)
         XCTAssertEqual(tile.trade, 0)
@@ -89,12 +64,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Jungle,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Jungle))
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 0)
         XCTAssertEqual(tile.trade, 0)
@@ -105,12 +75,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Mountains,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Mountains))
         XCTAssertEqual(tile.food, 0)
         XCTAssertEqual(tile.production, 1)
         XCTAssertEqual(tile.trade, 0)
@@ -121,12 +86,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Ocean,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Ocean))
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 0)
         XCTAssertEqual(tile.trade, 2)
@@ -137,12 +97,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Plains,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Plains))
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 1)
         XCTAssertEqual(tile.trade, 0)
@@ -153,12 +108,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Swamp,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Swamp))
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 0)
         XCTAssertEqual(tile.trade, 0)
@@ -169,12 +119,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Tundra,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Tundra))
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 0)
         XCTAssertEqual(tile.trade, 0)
@@ -188,12 +133,7 @@ class TileTests: XCTestCase {
                         terrain: Terrain(id: 1,
                                          tiledId: 1,
                                          name: "Test Tile",
-                                         type: TerrainType.Desert,
-                                         food: 0.0,
-                                         shields: 0.0,
-                                         trade: 0.0,
-                                         movementCost: 0.0,
-                                         defenseBonus: 0.0),
+                                         type: TerrainType.Desert),
                         specialResource: SpecialResource.Oasis)
         XCTAssertEqual(tile.food, 3)
         XCTAssertEqual(tile.production, 1)
@@ -205,12 +145,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Desert,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0),
+                                     type: TerrainType.Desert),
                     specialResource: SpecialResource.Oil)
         XCTAssertEqual(tile.food, 0)
         XCTAssertEqual(tile.production, 4)
@@ -222,12 +157,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Forest,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0),
+                                     type: TerrainType.Forest),
                     specialResource: SpecialResource.Pheasant)
         XCTAssertEqual(tile.food, 3)
         XCTAssertEqual(tile.production, 2)
@@ -239,12 +169,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Forest,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0),
+                                     type: TerrainType.Forest),
                     specialResource: SpecialResource.Silk)
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 2)
@@ -256,12 +181,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Glacier,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0),
+                                     type: TerrainType.Glacier),
                     specialResource: SpecialResource.Ivory)
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 1)
@@ -273,12 +193,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Glacier,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0),
+                                     type: TerrainType.Glacier),
                     specialResource: SpecialResource.Oil)
         XCTAssertEqual(tile.food, 0)
         XCTAssertEqual(tile.production, 4)
@@ -290,12 +205,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Hills,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0),
+                                     type: TerrainType.Hills),
                     specialResource: SpecialResource.Coal)
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 2)
@@ -307,12 +217,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Hills,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0),
+                                     type: TerrainType.Hills),
                     specialResource: SpecialResource.Wine)
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 0)
@@ -324,12 +229,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Jungle,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Jungle))
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 0)
         XCTAssertEqual(tile.trade, 0)
@@ -340,12 +240,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Mountains,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Mountains))
         XCTAssertEqual(tile.food, 0)
         XCTAssertEqual(tile.production, 1)
         XCTAssertEqual(tile.trade, 0)
@@ -356,12 +251,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Ocean,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Ocean))
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 0)
         XCTAssertEqual(tile.trade, 2)
@@ -372,12 +262,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Plains,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Plains))
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 1)
         XCTAssertEqual(tile.trade, 0)
@@ -388,12 +273,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Swamp,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Swamp))
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 0)
         XCTAssertEqual(tile.trade, 0)
@@ -404,12 +284,7 @@ class TileTests: XCTestCase {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test Tile",
-                                     type: TerrainType.Tundra,
-                                     food: 0.0,
-                                     shields: 0.0,
-                                     trade: 0.0,
-                                     movementCost: 0.0,
-                                     defenseBonus: 0.0))
+                                     type: TerrainType.Tundra))
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 0)
         XCTAssertEqual(tile.trade, 0)

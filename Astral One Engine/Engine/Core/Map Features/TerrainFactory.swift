@@ -35,11 +35,6 @@ public class TerrainFactory {
         return Terrain(id: 0,
                        tiledId: 0,
                        name: "Hello",
-                       type: TerrainType.Grassland,
-                       food: 0.0,
-                       shields: 0.0,
-                       trade: 0.0,
-                       movementCost: 0.0,
-                       defenseBonus: 1.0)
+                       type: TerrainType.Grassland)
     }
 }
