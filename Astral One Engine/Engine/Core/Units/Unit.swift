@@ -59,13 +59,7 @@ public class Unit: GKEntity, ObservableObject {
     }
     
     public var city: City? {
-        for city in player.cities {
-            if position == city.position {
-                return city
-            }
-        }
-        
-        return nil
+        return player.map.tile(at: position).city
     }
     
     public var defenseAgainstGroundAttacks: Double {

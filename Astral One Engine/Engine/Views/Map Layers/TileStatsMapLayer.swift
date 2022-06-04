@@ -5,7 +5,7 @@ import SwiftUI
 
 public class TileStatsMapLayer {
     
-    public init(game: Game, scene: SKScene, mapView: MapView) {
+    public init(player: Player, scene: SKScene, mapView: MapView) {
 //        for row in 0..<game.map.width {
 //            for col in 0..<game.map.height {
 //                let position = Position(row: row, col: col)

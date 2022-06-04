@@ -2,16 +2,15 @@ import Foundation
 import GameplayKit
 import Combine
 
-public class Map {
+public class Map: ObservableObject {
     public let mapId: Int
     public let width: Int
     public let height: Int
     private var grid: [[Tile]]
     private var movementCosts: [[Double]]
-    private var players: [Player] = []
     private var cancellable = Set<AnyCancellable>()
+    @Published internal var cities: [City] = []
 
-    
     public init(mapId: Int, width: Int, height: Int) {
         self.mapId = mapId
         self.width = width
@@ -47,13 +46,64 @@ public class Map {
         movementCosts[tile.position.row][tile.position.col] = tile.getMovementCost()
     }
     
+    internal func add(city: City) {
+        tile(at: city.position).add(city: city)
+        cities.append(city)
+    }
+    
     public func tile(at: Position) -> Tile {       
         return grid[at.row][at.col]
     }
     
-    public func add(player: Player) {
-        players.append(player)
+    public func canBuildCity(at: Position) -> Bool {
+        let startRow = at.row - 1 >= 0 ? at.row - 1 : 0
+        let endRow = at.row + 1 <= height ? at.row + 1 : height
+        let startCol = at.col - 1 >= 0 ? at.col - 1 : 0
+        let endCol = at.col + 1 <= width ? at.col + 1 : width
         
+        if tile(at: at).terrain.type == TerrainType.Ocean {
+            return false
+        }
+        
+        // Players cannot build cities adjacent to another city
+        for row in startRow..<endRow {
+            for col in startCol..<endCol {
+                if tile(at: Position(row: row, col: col)).city != nil {
+                    return false
+                }
+            }
+        }
+        
+        return true
+    }
+    
+    public func getDistanceFromNearestCity(from: Position) -> Int {
+        var currDistance = 0
+        var maxDistance = 0
+        
+        
+        if cities.count == 0 {
+            return -1
+        }
+        
+        for city in cities {
+            if city.position == from {
+                return 0
+            }
+            
+            currDistance = abs(city.position.row - from.row) + abs(city.position.col - from.col) - 1
+            
+            if currDistance > maxDistance {
+                maxDistance = currDistance
+            }
+        }
+        
+        return maxDistance
+    }
+        
+//    public func add(player: Player) {
+//        players.append(player)
+//
 //        player.$units
 //            .dropFirst()
 //            .sink(receiveValue: { units in
@@ -68,8 +118,8 @@ public class Map {
 //                }
 //            })
 //            .store(in: &cancellable)
-
-    }
+//
+//    }
     
 //    public func add(unit: Unit) throws {
 //        try tile(row: unit.position.row, col: unit.position.col).add(unit: unit)

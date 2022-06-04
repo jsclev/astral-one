@@ -12,9 +12,9 @@ fileprivate struct DefenseDiff {
 
 public class RandomAI {
     private let game: Game
-    private let player: Player
+    private let player: AIPlayer
     
-    public init(game: Game, player: Player) {
+    public init(game: Game, player: AIPlayer) {
         self.game = game
         self.player = player
     }
@@ -37,7 +37,7 @@ public class RandomAI {
             randomPlayerAction.execute()
             actions.append(randomPlayerAction)
             
-            for city in workingCopy.cities {
+            for city in workingCopy.map.cities {
                 let availableCityActions = Array(city.getAvailableActions())
                 randomNum = Int.random(in: 0..<availableCityActions.count)
                 let randomCityAction = availableCityActions[randomNum]

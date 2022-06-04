@@ -2,8 +2,9 @@ import Foundation
 import Combine
 
 public class City: ObservableObject, Equatable {
+    public let id: Int
     public let theme: Theme
-    public let player: Player
+    public let owner: Player
     public let name: String
     public let assetName: String
     public let position: Position
@@ -20,6 +21,7 @@ public class City: ObservableObject, Equatable {
     private var pyramids: Pyramids?
     private var temple: Temple?
     private var cityWalls: CityWalls?
+    public var settlers: [Settler] = []
     
     @Published var production: Int = 0
     @Published var food: Int = 0
@@ -28,12 +30,14 @@ public class City: ObservableObject, Equatable {
         return position.row % 2 == 0
     }
     
-    public init(player: Player,
+    public init(id: Int,
+                owner: Player,
                 theme: Theme,
                 name: String,
                 assetName: String,
                 position: Position) {
-        self.player = player
+        self.id = id
+        self.owner = owner
         self.theme = theme
         self.name = name
         self.assetName = theme.name + "/Cities/" + assetName
@@ -45,8 +49,8 @@ public class City: ObservableObject, Equatable {
         }
         
         var endRow = position.row + 2
-        if endRow > player.game.map.height {
-            endRow = player.game.map.height - 1
+        if endRow > owner.map.height {
+            endRow = owner.map.height - 1
         }
         
         var startCol = position.col - 2
@@ -55,13 +59,13 @@ public class City: ObservableObject, Equatable {
         }
         
         var endCol = position.col + 2
-        if endCol > player.game.map.width {
-            endCol = player.game.map.width - 1
+        if endCol > owner.map.width {
+            endCol = owner.map.width - 1
         }
         
         for row in startRow..<endRow {
             for col in startCol..<endCol {
-                let tile = player.game.map.tile(at: Position(row: row, col: col))
+                let tile = owner.map.tile(at: Position(row: row, col: col))
                 cityRadius.append(tile)
                 production += tile.production
             }
@@ -110,7 +114,7 @@ public class City: ObservableObject, Equatable {
     }
     
     public func getDiplomacyStatus(unit: Unit) -> DiplomacyStatus {
-        if player.playerId == unit.player.playerId {
+        if owner.playerId == unit.player.playerId {
             return DiplomacyStatus.Same
         }
         
@@ -301,6 +305,10 @@ public class City: ObservableObject, Equatable {
         }
     }
     
+    public func create(settler: Settler) {
+        settlers.append(settler)
+    }
+    
     public func build(improvement: ImprovementType, position: Position) {
         print("Building \(improvement) at position \(position).")
     }
@@ -322,7 +330,8 @@ public class City: ObservableObject, Equatable {
     }
     
     public func clone() -> City {
-        let copy = City(player: player,
+        let copy = City(id: id,
+                        owner: owner,
                         theme: theme,
                         name: name,
                         assetName: assetName,
@@ -356,7 +365,7 @@ public class City: ObservableObject, Equatable {
     }
     
     public static func ==(lhs: City, rhs: City) -> Bool {
-        return lhs.name == rhs.name
+        return lhs.id == rhs.id
     }
     
     public func canBuild(building: BuildingType) -> Bool {

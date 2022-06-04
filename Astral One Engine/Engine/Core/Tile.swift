@@ -1,8 +1,9 @@
 import Foundation
+import Combine
 
-public class Tile: Hashable {
+public class Tile: Hashable, ObservableObject {
     public let id: Int
-    public var isRevealed = false
+    public private (set) var isRevealed = false
     public let position: Position
     public let terrain: Terrain
     public var specialResource: SpecialResource?
@@ -11,10 +12,10 @@ public class Tile: Hashable {
     public var trade: Int
     private var movementModifier: MovementModifier?
     public let defenseBonus: Double
-    public var owner: Player?
+//    public var owner: Player?
+    public var city: City? = nil
     
-    public init(position: Position,
-                terrain: Terrain) {
+    public init(position: Position, terrain: Terrain) {
         self.id = -1
         self.position = position
         self.terrain = terrain
@@ -83,9 +84,7 @@ public class Tile: Hashable {
         }
     }
     
-    public init(id: Int,
-                position: Position,
-                terrain: Terrain) {
+    public init(id: Int, position: Position, terrain: Terrain) {
         self.id = id
         self.position = position
         self.terrain = terrain
@@ -316,6 +315,14 @@ public class Tile: Hashable {
         return 0
     }
     
+    internal func add(city: City) {
+        self.city = city
+    }
+    
+    public func reveal() {
+        isRevealed = true
+    }
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(position.row)
         hasher.combine(position.col)

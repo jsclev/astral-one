@@ -30,11 +30,13 @@ public class CityDAO: BaseDAO {
         
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
             while sqlite3_step(stmt) == SQLITE_ROW {
+                let cityId = getInt(stmt: stmt, colIndex: 0)
                 let row = getInt(stmt: stmt, colIndex: 5)
                 let col = getInt(stmt: stmt, colIndex: 6)
                 
                 if let cityName = try getString(stmt: stmt, colIndex: 4) {
-                    cities.append(City(player: Player(playerId: 1, game: game, map: map),
+                    cities.append(City(id: cityId,
+                                       owner: Player(playerId: 1, game: game, map: map),
                                        theme: Theme(id: 1, name: "Standard"),
                                        name: cityName,
                                        assetName: "city-1",

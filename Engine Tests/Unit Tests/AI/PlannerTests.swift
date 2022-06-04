@@ -26,9 +26,9 @@ class PlannerTests: XCTestCase {
         let game = Game(theme: theme, map: gameMap)
         
         let terrain00 = Terrain(id: 1,
-                              tiledId: 1,
-                              name: "Terrain [0, 0]",
-                              type: TerrainType.Desert)
+                                tiledId: 1,
+                                name: "Terrain [0, 0]",
+                                type: TerrainType.Desert)
         let terrain01 = Terrain(id: 1,
                                 tiledId: 1,
                                 name: "Terrain [0, 1]",
@@ -71,40 +71,173 @@ class PlannerTests: XCTestCase {
         gameMap.add(tile: Tile(id: 1, position: Position(row: 2, col: 0), terrain: terrain20))
         gameMap.add(tile: Tile(id: 1, position: Position(row: 2, col: 1), terrain: terrain21))
         gameMap.add(tile: Tile(id: 1, position: Position(row: 2, col: 2), terrain: terrain22))
-
-        let player1Map = Map(mapId: 2, width: gameMap.width, height: gameMap.height)
-        let player2Map = Map(mapId: 3, width: gameMap.width, height: gameMap.height)
-
+        
+        let p1Map = Map(mapId: 2, width: gameMap.width, height: gameMap.height)
+        let p2Map = Map(mapId: 3, width: gameMap.width, height: gameMap.height)
+        
         for row in 0..<gameMap.height {
             for col in 0..<gameMap.width {
                 let position = Position(row: row, col: col)
                 let tile = gameMap.tile(at: position)
-                player1Map.add(tile: Tile(id: 100 + tile.id,
-                                          position: tile.position,
-                                          terrain: tile.terrain))
-                player1Map.tile(at: position).isRevealed = true
+                p1Map.add(tile: Tile(id: tile.id,
+                                     position: tile.position,
+                                     terrain: tile.terrain))
+                p1Map.tile(at: position).isRevealed = true
                 
-                player2Map.add(tile: Tile(id: 100 + tile.id,
-                                          position: tile.position,
-                                          terrain: tile.terrain))
-                
-                
+                p2Map.add(tile: Tile(id: 100 + tile.id,
+                                     position: tile.position,
+                                     terrain: tile.terrain))
             }
         }
-
-        let player1 = Player(playerId: 1,
-                             game: game,
-                             map: player1Map,
-                             skillLevel: SkillLevel.One,
-                             difficultyLevel: DifficultyLevel.Easy,
-                             playStyle: PlayStyle(offense: 0.0, defense: 0.0))
         
-        let player2 = Player(playerId: 2,
-                             game: game,
-                             map: player2Map,
-                             skillLevel: SkillLevel.One,
-                             difficultyLevel: DifficultyLevel.Easy,
-                             playStyle: PlayStyle(offense: 0.0, defense: 0.0))
+        let p1 = AIPlayer(playerId: 1,
+                          game: game,
+                          map: p1Map,
+                          skillLevel: SkillLevel.One,
+                          difficultyLevel: DifficultyLevel.Easy,
+                          playStyle: PlayStyle(offense: 0.0, defense: 0.0))
+        
+        let p1Settler = Settler(game: game,
+                                player: p1,
+                                theme: theme,
+                                name: "Settler",
+                                position: Position(row: 0, col: 0))
+        p1.add(cityBuilder: p1Settler)
+        let p1City = City(id: 1,
+                          owner: p1,
+                          theme: theme,
+                          name: "Player 1 City 1",
+                          assetName: "city-1",
+                          position: Position(row: 0, col: 0))
+        p1.build(city: p1City, using: p1Settler)
+        
+        p1City.create(settler: Settler(game: game,
+                                       player: p1,
+                                       theme: theme,
+                                       name: "Settler",
+                                       position: Position(row: 0, col: 0)))
+        
+        let p1Agent = try AIPlayerAgent(player: p1)
+        let p1ScoreMap = try p1Agent.settlerAgents[0].getBuildCityScoreMap()
+        
+        let p2 = AIPlayer(playerId: 2,
+                          game: game,
+                          map: p2Map,
+                          skillLevel: SkillLevel.One,
+                          difficultyLevel: DifficultyLevel.Easy,
+                          playStyle: PlayStyle(offense: 0.0, defense: 0.0))
+        let p2Settler = Settler(game: game,
+                                player: p2,
+                                theme: theme,
+                                name: "Settler",
+                                position: Position(row: 0, col: 0))
+        let p2SettlerAgent = try SettlerAgent(player: p2, settler: p2Settler)
+        let p2ScoreMap = try p2SettlerAgent.getBuildCityScoreMap()
+        
+        XCTAssertEqual(p1ScoreMap[0][0], 2.0)
+        XCTAssertEqual(p1ScoreMap[0][1], 4.5)
+        XCTAssertEqual(p1ScoreMap[0][2], 1.0)
+        XCTAssertEqual(p1ScoreMap[1][0], 3.0)
+        XCTAssertEqual(p1ScoreMap[1][1], 3.0)
+        XCTAssertEqual(p1ScoreMap[1][2], 2.5)
+        XCTAssertEqual(p1ScoreMap[2][0], 4.0)
+        XCTAssertEqual(p1ScoreMap[2][1], 3.0)
+        XCTAssertEqual(p1ScoreMap[2][2], 2.5)
+        
+        XCTAssertEqual(p2ScoreMap[0][0], 1.0)
+        XCTAssertEqual(p2ScoreMap[0][1], 1.0)
+        XCTAssertEqual(p2ScoreMap[0][2], 1.0)
+        XCTAssertEqual(p2ScoreMap[1][0], 1.0)
+        XCTAssertEqual(p2ScoreMap[1][1], 1.0)
+        XCTAssertEqual(p2ScoreMap[1][2], 1.0)
+        XCTAssertEqual(p2ScoreMap[2][0], 1.0)
+        XCTAssertEqual(p2ScoreMap[2][1], 1.0)
+        XCTAssertEqual(p2ScoreMap[2][2], 1.0)
+        
+    }
+    
+    func testGetActions101() throws {
+        let theme = Theme(id: 1, name: "Test Theme")
+        let gameMap = Map(mapId: 1, width: 3, height: 3)
+        let game = Game(theme: theme, map: gameMap)
+        
+        let terrain00 = Terrain(id: 1,
+                                tiledId: 1,
+                                name: "Terrain [0, 0]",
+                                type: TerrainType.Desert)
+        let terrain01 = Terrain(id: 1,
+                                tiledId: 1,
+                                name: "Terrain [0, 1]",
+                                type: TerrainType.Forest)
+        let terrain02 = Terrain(id: 1,
+                                tiledId: 1,
+                                name: "Terrain [0, 2]",
+                                type: TerrainType.Glacier)
+        let terrain10 = Terrain(id: 1,
+                                tiledId: 1,
+                                name: "Terrain [1, 0]",
+                                type: TerrainType.Grassland)
+        let terrain11 = Terrain(id: 1,
+                                tiledId: 1,
+                                name: "Terrain [1, 1]",
+                                type: TerrainType.Hills)
+        let terrain12 = Terrain(id: 1,
+                                tiledId: 1,
+                                name: "Terrain [1, 2]",
+                                type: TerrainType.Jungle)
+        let terrain20 = Terrain(id: 1,
+                                tiledId: 1,
+                                name: "Terrain [2, 0]",
+                                type: TerrainType.Mountains)
+        let terrain21 = Terrain(id: 1,
+                                tiledId: 1,
+                                name: "Terrain [2, 1]",
+                                type: TerrainType.Plains)
+        let terrain22 = Terrain(id: 1,
+                                tiledId: 1,
+                                name: "Terrain [2, 2]",
+                                type: TerrainType.Swamp)
+        
+        gameMap.add(tile: Tile(id: 1, position: Position(row: 0, col: 0), terrain: terrain00))
+        gameMap.add(tile: Tile(id: 1, position: Position(row: 0, col: 1), terrain: terrain01))
+        gameMap.add(tile: Tile(id: 1, position: Position(row: 0, col: 2), terrain: terrain02))
+        gameMap.add(tile: Tile(id: 1, position: Position(row: 1, col: 0), terrain: terrain10))
+        gameMap.add(tile: Tile(id: 1, position: Position(row: 1, col: 1), terrain: terrain11))
+        gameMap.add(tile: Tile(id: 1, position: Position(row: 1, col: 2), terrain: terrain12))
+        gameMap.add(tile: Tile(id: 1, position: Position(row: 2, col: 0), terrain: terrain20))
+        gameMap.add(tile: Tile(id: 1, position: Position(row: 2, col: 1), terrain: terrain21))
+        gameMap.add(tile: Tile(id: 1, position: Position(row: 2, col: 2), terrain: terrain22))
+        
+        let p1Map = Map(mapId: 2, width: gameMap.width, height: gameMap.height)
+        let p2Map = Map(mapId: 3, width: gameMap.width, height: gameMap.height)
+        
+        for row in 0..<gameMap.height {
+            for col in 0..<gameMap.width {
+                let position = Position(row: row, col: col)
+                let tile = gameMap.tile(at: position)
+                p1Map.add(tile: Tile(id: tile.id,
+                                     position: tile.position,
+                                     terrain: tile.terrain))
+                p1Map.tile(at: position).isRevealed = true
+                
+                p2Map.add(tile: Tile(id: 100 + tile.id,
+                                     position: tile.position,
+                                     terrain: tile.terrain))
+            }
+        }
+        
+        let p1 = AIPlayer(playerId: 1,
+                          game: game,
+                          map: p1Map,
+                          skillLevel: SkillLevel.Two,
+                          difficultyLevel: DifficultyLevel.Easy,
+                          playStyle: PlayStyle(offense: 0.0, defense: 0.0))
+        let p2 = AIPlayer(playerId: 2,
+                          game: game,
+                          map: p2Map,
+                          skillLevel: SkillLevel.Two,
+                          difficultyLevel: DifficultyLevel.Easy,
+                          playStyle: PlayStyle(offense: 0.0, defense: 0.0))
         
         let strategy = PlayerStrategy(attack: 10.0,
                                       groundDefense: 20.0,
@@ -113,42 +246,41 @@ class PlannerTests: XCTestCase {
                                       science: 25.0,
                                       trade: 25.0)
         
-        let player1SettlerAI = try SettlerAI(player: player1, strategy: strategy)
-        let player1Settler = Settler(game: game,
-                                     player: player1,
-                                     theme: theme,
-                                     name: "Settler",
-                                     position: Position(row: 0, col: 0))
-        let player1ScoreMap = try player1SettlerAI.getBuildCityScoreMap(by: player1Settler)
+        let p1Settler = Settler(game: game,
+                                player: p1,
+                                theme: theme,
+                                name: "Settler",
+                                position: Position(row: 0, col: 0))
+        let p1SettlerAgent = try SettlerAgent(player: p1, settler: p1Settler)
+        let p1ScoreMap = try p1SettlerAgent.getBuildCityScoreMap()
         
-        let player2SettlerAI = try SettlerAI(player: player2, strategy: strategy)
-        let player2Settler = Settler(game: game,
-                                     player: player2,
-                                     theme: theme,
-                                     name: "Settler",
-                                     position: Position(row: 0, col: 0))
-        let player2ScoreMap = try player2SettlerAI.getBuildCityScoreMap(by: player2Settler)
+        let p2Settler = Settler(game: game,
+                                player: p2,
+                                theme: theme,
+                                name: "Settler",
+                                position: Position(row: 0, col: 0))
+        let p2SettlerAgent = try SettlerAgent(player: p2, settler: p2Settler)
+        let p2ScoreMap = try p2SettlerAgent.getBuildCityScoreMap()
         
-        XCTAssertEqual(player1ScoreMap[0][0], 1.0)
-        XCTAssertEqual(player1ScoreMap[0][1], 3.5)
-        XCTAssertEqual(player1ScoreMap[0][2], 0.0)
-        XCTAssertEqual(player1ScoreMap[1][0], 2.0)
-        XCTAssertEqual(player1ScoreMap[1][1], 1.0)
-        XCTAssertEqual(player1ScoreMap[1][2], 1.0)
-        XCTAssertEqual(player1ScoreMap[2][0], 1.0)
-        XCTAssertEqual(player1ScoreMap[2][1], 1.0)
-        XCTAssertEqual(player1ScoreMap[2][2], 1.0)
-
-        XCTAssertEqual(player2ScoreMap[0][0], 1.0)
-        XCTAssertEqual(player2ScoreMap[0][1], 1.0)
-        XCTAssertEqual(player2ScoreMap[0][2], 1.0)
-        XCTAssertEqual(player2ScoreMap[1][0], 1.0)
-        XCTAssertEqual(player2ScoreMap[1][1], 1.0)
-        XCTAssertEqual(player2ScoreMap[1][2], 1.0)
-        XCTAssertEqual(player2ScoreMap[2][0], 1.0)
-        XCTAssertEqual(player2ScoreMap[2][1], 1.0)
-        XCTAssertEqual(player2ScoreMap[2][2], 1.0)
-
+        XCTAssertEqual(p1ScoreMap[0][0], 2.0)
+        XCTAssertEqual(p1ScoreMap[0][1], 4.5)
+        XCTAssertEqual(p1ScoreMap[0][2], 1.0)
+        XCTAssertEqual(p1ScoreMap[1][0], 3.0)
+        XCTAssertEqual(p1ScoreMap[1][1], 3.0)
+        XCTAssertEqual(p1ScoreMap[1][2], 2.5)
+        XCTAssertEqual(p1ScoreMap[2][0], 4.0)
+        XCTAssertEqual(p1ScoreMap[2][1], 3.0)
+        XCTAssertEqual(p1ScoreMap[2][2], 2.5)
+        
+        XCTAssertEqual(p2ScoreMap[0][0], 1.0)
+        XCTAssertEqual(p2ScoreMap[0][1], 1.0)
+        XCTAssertEqual(p2ScoreMap[0][2], 1.0)
+        XCTAssertEqual(p2ScoreMap[1][0], 1.0)
+        XCTAssertEqual(p2ScoreMap[1][1], 1.0)
+        XCTAssertEqual(p2ScoreMap[1][2], 1.0)
+        XCTAssertEqual(p2ScoreMap[2][0], 1.0)
+        XCTAssertEqual(p2ScoreMap[2][1], 1.0)
+        XCTAssertEqual(p2ScoreMap[2][2], 1.0)
     }
     
     //    func testGetActions2() throws {
@@ -429,11 +561,18 @@ class PlannerTests: XCTestCase {
         let map = Map(mapId: 1, width: 1, height: 1)
         let game = Game(theme: theme, map: map)
         let player = Player(playerId: 1, game: game, map: map)
-        let city = City(player: player,
+        let cityBuilder = Settler(game: game,
+                                  player: player,
+                                  theme: theme,
+                                  name: "Test Settler",
+                                  position: Position.zero)
+        let city = City(id: 1,
+                        owner: player,
                         theme: theme,
                         name: "test city",
                         assetName: "city",
-                        position: Position(row: 0, col: 0))
+                        position: Position.zero)
+        
         // let ai = RandomAI(game: game, player: player)
         
         // let createUnitType = CommandType(id: 1, name: "Create Unit")
@@ -441,7 +580,7 @@ class PlannerTests: XCTestCase {
         
         // let turn1 = Turn(id: 1, year: -4000, ordinal: 1, displayText: "4000 BC")
         
-        player.add(city: city)
+        player.build(city: city, using: cityBuilder)
         player.addAvailable(researchAction: ResearchPotteryAction(game: game, player: player))
         player.addAvailable(researchAction: ResearchAlphabetAction(game: game, player: player))
         player.addAvailable(researchAction: ResearchWarriorCodeAction(game: game, player: player))
@@ -459,19 +598,19 @@ class PlannerTests: XCTestCase {
         //        city.addAvailable(action: BuildBarracksCommand())
         //        city.addAvailable(action: CreateInfantry1Action())
         
-        let workingCopy = player.clone()
-        let workingCity = workingCopy.cities[0]
-        let cityActions = Array(workingCity.getAvailableActions())
-        
-        Array(workingCopy.getAvailableActions())[0].execute()
-        cityActions[0].execute()
-        cityActions[1].execute()
-        
-        XCTAssertFalse(city.has(building: BuildingType.Barracks))
-        XCTAssertEqual(player.units.count, 0)
-        
-        XCTAssertTrue(workingCity.has(building: BuildingType.Barracks))
-        XCTAssertEqual(workingCopy.units.count, 1)
+//        let workingCopy = player.clone()
+//        let workingCity = workingCopy.map.cities[0]
+//        let cityActions = Array(workingCity.getAvailableActions())
+//
+//        Array(workingCopy.getAvailableActions())[0].execute()
+//        cityActions[0].execute()
+//        cityActions[1].execute()
+//
+//        XCTAssertFalse(city.has(building: BuildingType.Barracks))
+//        XCTAssertEqual(player.units.count, 0)
+//
+//        XCTAssertTrue(workingCity.has(building: BuildingType.Barracks))
+//        XCTAssertEqual(workingCopy.units.count, 1)
         
     }
     

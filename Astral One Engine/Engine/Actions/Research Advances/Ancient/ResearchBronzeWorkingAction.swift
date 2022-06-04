@@ -16,7 +16,7 @@ public class ResearchBronzeWorkingAction: ResearchAction {
     public override func execute() {
         player.removeAvailable(researchAction: self)
         
-        for city in player.cities {
+        for city in player.map.cities {
             city.addAvailable(action: CreateInfantry2Action(game: game, player: player, city: city))
             city.addAvailable(action: BuildColossusAction(game: game, player: player, city: city))
         }

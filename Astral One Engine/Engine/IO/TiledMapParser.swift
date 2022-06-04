@@ -105,22 +105,17 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                     let intLocalTileId = intGlobalTileId - 1
                                     let strLocalTileId = String(intLocalTileId)
                                     
-                                    do {
-                                        if let tiledId = Int(strLocalTileId) {
-                                            if tiledId <= 24 {
-                                                if let terrain = getTerrain(tiledId: tiledId) {
-                                                    // print("Adding tile [\(tile.id)] at position [\(mapRowIndex),\(0),\(layerOrdinal)]")
-                                                    map.add(tile: Tile(position: Position(row: 119 - mapRowIndex, col: col),
-                                                                       terrain: terrain))
-                                                }
-                                                else {
-                                                    fatalError("Unable to find tile with Tiled ID \(strLocalTileId).")
-                                                }
+                                    if let tiledId = Int(strLocalTileId) {
+                                        if tiledId <= 24 {
+                                            if let terrain = getTerrain(tiledId: tiledId) {
+                                                // print("Adding tile [\(tile.id)] at position [\(mapRowIndex),\(0),\(layerOrdinal)]")
+                                                map.add(tile: Tile(position: Position(row: 119 - mapRowIndex, col: col),
+                                                                   terrain: terrain))
+                                            }
+                                            else {
+                                                fatalError("Unable to find tile with Tiled ID \(strLocalTileId).")
                                             }
                                         }
-                                    }
-                                    catch {
-                                        fatalError("\(error)")
                                     }
                                 }
                             }

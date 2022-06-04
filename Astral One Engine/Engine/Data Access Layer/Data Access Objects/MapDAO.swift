@@ -223,9 +223,9 @@ public class MapDAO: BaseDAO {
                 if sqlite3_step(mainStmt) == SQLITE_DONE {
                     if sqlite3_step(rowIdStmt) == SQLITE_ROW {
                         tileId = getInt(stmt: rowIdStmt, colIndex: 0)
-                        try returnMap.add(tile: Tile(id: tileId,
-                                                     position: Position(row: row, col: col),
-                                                     terrain: tile.terrain))
+                        returnMap.add(tile: Tile(id: tileId,
+                                                 position: Position(row: row, col: col),
+                                                 terrain: tile.terrain))
                     }
                     else {
                         let errMsg = String(cString: sqlite3_errmsg(conn)!)

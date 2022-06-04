@@ -6,49 +6,40 @@ import Combine
 public class Player: ObservableObject {
     public let playerId: Int
     public let game: Game
-    public let skillLevel: SkillLevel
-    public let difficultyLevel: DifficultyLevel
-    public let playStyle: PlayStyle
-    @Published public var cities: [City] = []
+    public let map: Map
     public var cityBuilders: [CityBuilder] = []
     @Published public var units: [Unit] = []
     public var advances: [Advance] = []
-    private var availableResearchActions: Set<Action> = []
+    public var availableResearchActions: Set<Action> = []
     private var availableCommands: [Command] = []
     private var availableCityActions: [Action] = []
     private var researchedAdvances: Set<String> = []
     private let techTree = TechTree()
     public var maxActionPlanLength = 4
     @Published public var government = Government.Despotism
-    public let map: Map
     
     public init(playerId: Int, game: Game, map: Map) {
         self.playerId = playerId
         self.game = game
         self.map = map
-        self.skillLevel = SkillLevel.Four
-        self.difficultyLevel = DifficultyLevel.Normal
-        self.playStyle = PlayStyle(offense: 0.15, defense: 0.35)
     }
     
-    public init(playerId: Int,
-                game: Game,
-                map: Map,
-                skillLevel: SkillLevel,
-                difficultyLevel: DifficultyLevel,
-                playStyle: PlayStyle) {
-        self.playerId = playerId
-        self.game = game
-        self.map = map
-        self.skillLevel = skillLevel
-        self.difficultyLevel = difficultyLevel
-        self.playStyle = playStyle
+    public var settlers: [Settler] {
+        var ret: [Settler] = []
+        
+        for city in map.cities {
+            for settler in city.settlers {
+                ret.append(settler)
+            }
+        }
+        
+        return ret
     }
     
     public var population: Int {
         var sum = 0
         
-        for city in cities {
+        for city in map.cities {
             sum += city.population
         }
         
@@ -73,7 +64,7 @@ public class Player: ObservableObject {
     public var score: Int {
         var sum = 0
         
-        for city in cities {
+        for city in map.cities {
             sum += city.science
         }
         
@@ -169,13 +160,7 @@ public class Player: ObservableObject {
     }
     
     public func getCity(at: Position) -> City? {
-        for city in cities {
-            if city.position == at {
-                return city
-            }
-        }
-        
-        return nil
+        return map.tile(at: at).city
     }
     
     public func diff(other: Player) -> PlayerDiff {
@@ -191,29 +176,24 @@ public class Player: ObservableObject {
     }
     
     public func build(city: City, using: CityBuilder) {
-        cities.append(city)
+        map.add(city: city)
+        city.addPopulation(amount: 1)
         
-        for action in availableCityActions {
-            city.addAvailable(action: action)
-        }
-        
+//        for action in availableCityActions {
+//            city.addAvailable(action: action)
+//        }
+
         // City builders are consumed when the city is built
         if let index = cityBuilders.lastIndex(of: using) {
             cityBuilders.remove(at: index)
         }
-        
-        if let index = units.lastIndex(of: using) {
-            units.remove(at: index)
-        }
-        
+
+//        if let index = units.lastIndex(of: using) {
+//            units.remove(at: index)
+//        }
+
         // City builders become the first population point of new cities
-        if let index = cities.lastIndex(of: city) {
-            cities[index].addPopulation(amount: 1)
-        }
-    }
-    
-    public func add(city: City) {
-        cities.append(city)
+        city.addPopulation(amount: 1)
     }
     
     public func addAvailable(cityAction: Action) {
@@ -222,9 +202,6 @@ public class Player: ObservableObject {
     
     public func add(cityBuilder: CityBuilder) {
         cityBuilders.append(cityBuilder)
-        
-        
-        
 //        availableCommands.append(BuildCityCommand(commandId: <#T##Int#>,
 //                                                  game: <#T##Game#>,
 //                                                  turn: <#T##Turn#>,
@@ -280,7 +257,7 @@ public class Player: ObservableObject {
     public func getRandomAvailableAction() -> Action? {
         var availableActions: Set<Action> = []
         
-        for city in cities {
+        for city in map.cities {
             availableActions = availableActions.union(city.getAvailableActions())
         }
         
@@ -304,10 +281,7 @@ public class Player: ObservableObject {
     public func clone() -> Player {
         let copy = Player(playerId: playerId,
                           game: game,
-                          map: map,
-                          skillLevel: skillLevel,
-                          difficultyLevel: difficultyLevel,
-                          playStyle: playStyle)
+                          map: map)
 //        copy.cities = []
 //        copy.units = []
 //        copy.availableCommands = []
@@ -318,9 +292,9 @@ public class Player: ObservableObject {
             copy.units.append(unit.clone())
         }
         
-        for city in cities {
-            copy.cities.append(city.clone())
-        }
+//        for city in cities {
+//            copy.cities.append(city.clone())
+//        }
         
         for action in availableResearchActions {
             copy.addAvailable(researchAction: action.clone() as! ResearchAction)
@@ -330,7 +304,7 @@ public class Player: ObservableObject {
     }
     
     public func canBuild(buildingType: BuildingType) -> Bool {
-        for city in cities {
+        for city in map.cities {
             if city.has(building: buildingType) {
                 return false
             }
@@ -340,7 +314,7 @@ public class Player: ObservableObject {
     }
     
     public func canBuild(wonder: WonderType) -> Bool {
-        for city in cities {
+        for city in map.cities {
             if city.has(wonder: wonder) {
                 return false
             }

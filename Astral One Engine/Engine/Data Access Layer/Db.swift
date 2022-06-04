@@ -102,17 +102,29 @@ public class Db {
     
     public func getGameBy(gameId: Int) throws -> Game {
         let theme = Theme(id: 2, name: "Sci-Fi")
-        let map = try mapDao.get(gameId: gameId)
-        let game = Game(theme: theme, map: map)
-//        let turn = Turn(id: 1, year: 1900, ordinal: 55, displayText: "1900")
+        
+        // Pull the maps from the database
+        let player1Map = try mapDao.get(gameId: gameId)
+        let player2Map = try mapDao.get(gameId: gameId)
+        let player3Map = try mapDao.get(gameId: gameId)
+        let player4Map = try mapDao.get(gameId: gameId)
+        let player5Map = try mapDao.get(gameId: gameId)
+        let player6Map = try mapDao.get(gameId: gameId)
 
-        // Pull the map from the database
-        let player1 = Player(playerId: 1, game: game, map: map)
+        let game = Game(theme: theme, map: player1Map)
+
+        let player1 = Player(playerId: 1, game: game, map: player1Map)
+        let player2 = Player(playerId: 1, game: game, map: player2Map)
+        let player3 = Player(playerId: 1, game: game, map: player3Map)
+        let player4 = Player(playerId: 1, game: game, map: player4Map)
+        let player5 = Player(playerId: 1, game: game, map: player5Map)
+        let player6 = Player(playerId: 1, game: game, map: player6Map)
+
         let cities = try cityDao.getCities(gameId: 1)
         let units = try unitDao.getUnits(gameId: 1)
 
         for city in cities {
-            player1.add(city: city)
+            player1.map.tile(at: city.position).add(city: city)
         }
 
         for unit in units {
@@ -120,7 +132,12 @@ public class Db {
         }
 
         game.addPlayer(player: player1)
-        
+        game.addPlayer(player: player2)
+        game.addPlayer(player: player3)
+        game.addPlayer(player: player4)
+        game.addPlayer(player: player5)
+        game.addPlayer(player: player6)
+
 //        let newYork = City(player: player1,
 //                           theme: theme,
 //                           name: "New York",

@@ -19,7 +19,7 @@ public class ResearchMasonryAction: ResearchAction {
     public override func execute() {
         player.removeAvailable(researchAction: self)
 
-        for city in player.cities {
+        for city in player.map.cities {
             city.addAvailable(action: BuildCityWallsAction(game: game, player: player, city: city))
             city.addAvailable(action: BuildPalaceAction(game: game, player: player, city: city))
             city.addAvailable(action: BuildPyramidsAction(game: game, player: player, city: city))

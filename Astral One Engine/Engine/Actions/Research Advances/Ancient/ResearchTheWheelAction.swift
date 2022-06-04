@@ -16,7 +16,7 @@ public class ResearchTheWheelAction: ResearchAction {
     public override func execute() {
         player.removeAvailable(researchAction: self)
         
-        for city in player.cities {
+        for city in player.map.cities {
             city.addAvailable(action: CreateCavalry2Action(game: game, player: player, city: city))
         }
         

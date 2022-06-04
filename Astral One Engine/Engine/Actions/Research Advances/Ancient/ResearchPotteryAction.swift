@@ -17,7 +17,7 @@ public class ResearchPotteryAction: ResearchAction {
         player.removeAvailable(researchAction: self)
         player.add(advanceName: name)
         
-        for city in player.cities {
+        for city in player.map.cities {
             city.addAvailable(action: BuildHangingGardensAction(game: game, player: player, city: city))
         }
         

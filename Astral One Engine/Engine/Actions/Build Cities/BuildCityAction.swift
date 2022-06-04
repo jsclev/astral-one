@@ -24,7 +24,10 @@ public class BuildCityAction: Action {
     
     public override func execute() {
         if cityBuilder.canBuildCity() {
-            let city = City(player: player,
+            
+            // FIXME: Need to add an id implementation
+            let city = City(id: -1,
+                            owner: player,
                             theme: game.theme,
                             name: "New City",
                             assetName: "city-1",

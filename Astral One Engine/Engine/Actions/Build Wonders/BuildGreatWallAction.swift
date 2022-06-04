@@ -24,7 +24,7 @@ public class BuildGreatWallAction: Action {
         if player.canBuild(wonder: WonderType.GreatWall) {
             city.removeAvailable(action: self)
             
-            for theCity in player.cities {
+            for theCity in player.map.cities {
                 if theCity.canBuild(building: BuildingType.CityWalls) {
                     theCity.build(BuildingType.CityWalls)
                 }

@@ -121,37 +121,4 @@ class MapTests: XCTestCase {
         }
     }
     
-    func testAddTileExpectsInvalidRow2() throws {
-        let map = Map(mapId: 1, width: 2, height: 1)
-        let tile = Tile(position: Position(row: 2, col: 0),
-                        terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
-        
-        XCTAssertThrowsError(try map.add(tile: tile)) { error in
-            let errorMsg = "Row must be less than map height of 1."
-            XCTAssertEqual(error as? MapError, MapError.invalidRow(message: errorMsg, row: 2))
-        }
-    }
-    
-    func testAddTileExpectsInvalidCol() throws {
-        let map = Map(mapId: 1, width: 1, height: 1)
-        let tile = Tile(position: Position(row: 0, col: -1),
-                        terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
-        
-        XCTAssertThrowsError(try map.add(tile: tile)) { error in
-            let errorMsg = "Column must be greater than or equal to zero."
-            XCTAssertEqual(error as? MapError, MapError.invalidCol(message: errorMsg, col: -1))
-        }
-    }
-    
-    func testAddTileExpectsInvalidCol2() throws {
-        let map = Map(mapId: 1, width: 1, height: 2)
-        let tile = Tile(position: Position(row: 0, col: 2),
-                        terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
-        
-        XCTAssertThrowsError(try map.add(tile: tile)) { error in
-            let errorMsg = "Column must be less than map width of 1."
-            XCTAssertEqual(error as? MapError, MapError.invalidCol(message: errorMsg, col: 2))
-        }
-    }
-    
 }

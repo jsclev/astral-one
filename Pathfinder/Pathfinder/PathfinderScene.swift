@@ -37,7 +37,6 @@ class PathfinderScene: SKScene {
     var state: PathfinderState = PathfinderState.initialized
     var startPosition = SIMD2<Int32>(0, 0)
     var endPosition = SIMD2<Int32>(0, 0)
-    var mapView: MapView
     var previousCameraPoint = CGPoint.zero
     var startTouchPos = CGPoint.zero
     let tileSet: SKTileSet
@@ -50,7 +49,6 @@ class PathfinderScene: SKScene {
         game = Game(theme: theme, map: Map(mapId: 1, width: 1, height: 1))
         tilesetName = theme.name + " Tile Set"
         tileSet = SKTileSet(named: tilesetName)!
-        mapView = MapView(game: game, map: game.map, tileset: tileSet)
         mapIconsTileset = SKTileSet(named: mapIconsTilesetName)
         
         super.init(size: UIScreen.main.bounds.size)
@@ -169,10 +167,8 @@ class PathfinderScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        entityManager = EntityManager(scene: self)
+        
         gameCamera = PathfinderCamera(game: game)
-        contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
-        founderContextMenu = FounderContextMenu(game: game, parent: self, mapView: mapView)
 
         camera = gameCamera
         addChild(gameCamera)
@@ -193,10 +189,8 @@ class PathfinderScene: SKScene {
             try db.mapDao.importTiledMap(filename: filename)
             game = try db.getGameBy(gameId: 1)
 
-            let tileset = SKTileSet(named: tilesetName)
             
-            mapView = MapView(game: game, map: game.map, tileset: tileset!)
-            try mapView.setScene(scene: self)
+
         }
         catch {
             print(error)
@@ -211,33 +205,53 @@ class PathfinderScene: SKScene {
 //                                                 mapView: mapView,
 //                                                 layerIndex: 10000000)
         let _ = TurnView(parent: gameCamera, game: game)
+        
         game.processCommands()
         
         let player = game.players[0]
-        mapView.addPlayer(player: player)
         
-        for _ in 0..<1000 {
-            let position1 = Position(row: Int.random(in: 0..<game.map.height),
-                                     col: Int.random(in: 0..<game.map.width))
-            let city1 = City(player: player,
-                             theme: game.theme,
-                             name: "New York",
-                             assetName: "city-1",
-                             position: position1)
-            city1.build(BuildingType.Barracks)
-            city1.build(BuildingType.CityWalls)
-            player.add(city: city1)
+        for cityId in 0..<1000 {
+            let position = Position(row: Int.random(in: 0..<game.map.height),
+                                    col: Int.random(in: 0..<game.map.width))
+            if position.row % 2 == 0 {
+                player.map.tile(at: position).reveal()
+            }
+            let cityBuilder = Settler(game: game,
+                                      player: player,
+                                      theme: game.theme,
+                                      name: "Settler",
+                                      position: position)
+            let city = City(id: cityId + 100,
+                            owner: player,
+                            theme: game.theme,
+                            name: "New York",
+                            assetName: "city-1",
+                            position: position)
+//            city1.build(BuildingType.Barracks)
+//            city1.build(BuildingType.CityWalls)
+//
+            player.add(cityBuilder: cityBuilder)
+            player.build(city: city, using: cityBuilder)
             
-            let createInfantry1Action = CreateInfantry1Action(game: game, player: player, city: city1)
-            let createInfantry2Action = CreateInfantry2Action(game: game, player: player, city: city1)
-            let createInfantry3Action = CreateInfantry3Action(game: game, player: player, city: city1)
-            let createInfantry4Action = CreateInfantry4Action(game: game, player: player, city: city1)
+            let createInfantry1Action = CreateInfantry1Action(game: game, player: player, city: city)
+            let createInfantry2Action = CreateInfantry2Action(game: game, player: player, city: city)
+            let createInfantry3Action = CreateInfantry3Action(game: game, player: player, city: city)
+            let createInfantry4Action = CreateInfantry4Action(game: game, player: player, city: city)
             
             createInfantry1Action.execute()
             createInfantry2Action.execute()
             createInfantry3Action.execute()
             createInfantry4Action.execute()
         }
+        
+        let tileset = SKTileSet(named: tilesetName)
+        
+        let mapView = MapView(player: player, scene: self, tileset: tileset!)
+        mapView.setScene(scene: self)
+        
+        entityManager = EntityManager(scene: self)
+        contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
+        founderContextMenu = FounderContextMenu(game: game, parent: self, mapView: mapView)
     }
     
     func printDate(string: String) {

@@ -14,7 +14,7 @@ public class ResearchSeafaringAction: ResearchAction {
     public override func execute() {
         player.removeAvailable(researchAction: self)
         
-        for city in player.cities {
+        for city in player.map.cities {
             city.addAvailable(action: CreateExplorerAction(game: game, player: player, city: city))
             
             if city.isCoastal {

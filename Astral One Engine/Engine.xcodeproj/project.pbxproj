@@ -30,7 +30,7 @@
 		521F21E7280740E000F1D61D /* MovementModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21E6280740E000F1D61D /* MovementModifier.swift */; };
 		521F21F12808F6DF00F1D61D /* GridGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21F02808F6DF00F1D61D /* GridGraph.swift */; };
 		521F21F32808F78C00F1D61D /* ValueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21F22808F78C00F1D61D /* ValueNode.swift */; };
-		5236B41328450C1C006DF7E6 /* SettlerAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B41228450C1C006DF7E6 /* SettlerAI.swift */; };
+		5236B41328450C1C006DF7E6 /* SettlerAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B41228450C1C006DF7E6 /* SettlerAgent.swift */; };
 		5236B41528451AEF006DF7E6 /* AISkillLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B41428451AEF006DF7E6 /* AISkillLevel.swift */; };
 		5236B4172845450B006DF7E6 /* LuaVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B4162845450B006DF7E6 /* LuaVM.swift */; };
 		52605C902801E3B00082C0DB /* InfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */; };
@@ -184,6 +184,13 @@
 		52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1C727E6E7A900607FBE /* MapViewModel.swift */; };
 		52E0B1EB27EAB6B800607FBE /* GameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1EA27EAB6B700607FBE /* GameNode.swift */; };
 		52E0B1FE27F173A500607FBE /* Explorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E0B1FD27F173A500607FBE /* Explorer.swift */; };
+		52EA0D6628480E74005E9AF8 /* AIPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA0D6528480E74005E9AF8 /* AIPlayer.swift */; };
+		52EA0D6828481C9F005E9AF8 /* AIPlayerAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA0D6728481C9F005E9AF8 /* AIPlayerAgent.swift */; };
+		52EA0D6A28484A06005E9AF8 /* CityAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA0D6928484A06005E9AF8 /* CityAgent.swift */; };
+		52EA0D6C28484B12005E9AF8 /* ScienceAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA0D6B28484B12005E9AF8 /* ScienceAgent.swift */; };
+		52EA0D6E28484BA1005E9AF8 /* DiplomacyAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA0D6D28484BA1005E9AF8 /* DiplomacyAgent.swift */; };
+		52EA0D7028484BDE005E9AF8 /* EngineerAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA0D6F28484BDE005E9AF8 /* EngineerAgent.swift */; };
+		52EA0D72284AE891005E9AF8 /* TileMapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EA0D71284AE891005E9AF8 /* TileMapLayer.swift */; };
 		52F5595B28375E4200966F06 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F5595A28375E4200966F06 /* Enums.swift */; };
 		52F5595F2838943900966F06 /* TechTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F5595E2838943900966F06 /* TechTree.swift */; };
 		52F55962283953F500966F06 /* BuildProductionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F55961283953F500966F06 /* BuildProductionAction.swift */; };
@@ -277,7 +284,7 @@
 		521F21E6280740E000F1D61D /* MovementModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementModifier.swift; sourceTree = "<group>"; };
 		521F21F02808F6DF00F1D61D /* GridGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGraph.swift; sourceTree = "<group>"; };
 		521F21F22808F78C00F1D61D /* ValueNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueNode.swift; sourceTree = "<group>"; };
-		5236B41228450C1C006DF7E6 /* SettlerAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerAI.swift; sourceTree = "<group>"; };
+		5236B41228450C1C006DF7E6 /* SettlerAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerAgent.swift; sourceTree = "<group>"; };
 		5236B41428451AEF006DF7E6 /* AISkillLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISkillLevel.swift; sourceTree = "<group>"; };
 		5236B4162845450B006DF7E6 /* LuaVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuaVM.swift; sourceTree = "<group>"; };
 		52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceMapCalculator.swift; sourceTree = "<group>"; };
@@ -431,6 +438,13 @@
 		52E0B1C727E6E7A900607FBE /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		52E0B1EA27EAB6B700607FBE /* GameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNode.swift; sourceTree = "<group>"; };
 		52E0B1FD27F173A500607FBE /* Explorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explorer.swift; sourceTree = "<group>"; };
+		52EA0D6528480E74005E9AF8 /* AIPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIPlayer.swift; sourceTree = "<group>"; };
+		52EA0D6728481C9F005E9AF8 /* AIPlayerAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIPlayerAgent.swift; sourceTree = "<group>"; };
+		52EA0D6928484A06005E9AF8 /* CityAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAgent.swift; sourceTree = "<group>"; };
+		52EA0D6B28484B12005E9AF8 /* ScienceAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScienceAgent.swift; sourceTree = "<group>"; };
+		52EA0D6D28484BA1005E9AF8 /* DiplomacyAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiplomacyAgent.swift; sourceTree = "<group>"; };
+		52EA0D6F28484BDE005E9AF8 /* EngineerAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineerAgent.swift; sourceTree = "<group>"; };
+		52EA0D71284AE891005E9AF8 /* TileMapLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileMapLayer.swift; sourceTree = "<group>"; };
 		52F5595A28375E4200966F06 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		52F5595E2838943900966F06 /* TechTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechTree.swift; sourceTree = "<group>"; };
 		52F55961283953F500966F06 /* BuildProductionAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildProductionAction.swift; sourceTree = "<group>"; };
@@ -669,6 +683,7 @@
 				52E0B1A327E6DFAB00607FBE /* Buildings */,
 				52605C8E2801E37E0082C0DB /* Influence Maps */,
 				521F21D22806984300F1D61D /* Map Features */,
+				52EA0D6428480E47005E9AF8 /* Players */,
 				52E0B1FC27F1734000607FBE /* Units */,
 				52A64632282C36030066B82D /* Advance.swift */,
 				52E0B18927E6D86A00607FBE /* Constants.swift */,
@@ -677,14 +692,12 @@
 				52F5595A28375E4200966F06 /* Enums.swift */,
 				52E0B19927E6DFA000607FBE /* Game.swift */,
 				52E0B18F27E6D87600607FBE /* Map.swift */,
-				52DE5F80281C6DB60029EFE1 /* Player.swift */,
-				52A646B9283571750066B82D /* PlayerDiff.swift */,
 				52668175282595B10089D0DD /* Position.swift */,
+				52F559632839584F00966F06 /* Strategy.swift */,
 				52F5595E2838943900966F06 /* TechTree.swift */,
 				526681732824E8D40089D0DD /* Theme.swift */,
 				521F21D62806996100F1D61D /* Tile.swift */,
 				52F9044A27F8E56200D1AC97 /* Turn.swift */,
-				52F559632839584F00966F06 /* Strategy.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -701,13 +714,13 @@
 		5266817F2826DDF80089D0DD /* AI */ = {
 			isa = PBXGroup;
 			children = (
+				52EA0D632847E414005E9AF8 /* Agents */,
 				52A64636282C8D860066B82D /* Goals */,
 				52A6467F282F6DA10066B82D /* Personalities */,
 				5236B41428451AEF006DF7E6 /* AISkillLevel.swift */,
 				5266819D282B795C0089D0DD /* Planner.swift */,
 				52A64680282F70060066B82D /* PlayStyle.swift */,
 				52A64642282D741E0066B82D /* RandomAI.swift */,
-				5236B41228450C1C006DF7E6 /* SettlerAI.swift */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -998,6 +1011,29 @@
 			path = Units;
 			sourceTree = "<group>";
 		};
+		52EA0D632847E414005E9AF8 /* Agents */ = {
+			isa = PBXGroup;
+			children = (
+				52EA0D6728481C9F005E9AF8 /* AIPlayerAgent.swift */,
+				52EA0D6928484A06005E9AF8 /* CityAgent.swift */,
+				52EA0D6D28484BA1005E9AF8 /* DiplomacyAgent.swift */,
+				52EA0D6B28484B12005E9AF8 /* ScienceAgent.swift */,
+				5236B41228450C1C006DF7E6 /* SettlerAgent.swift */,
+				52EA0D6F28484BDE005E9AF8 /* EngineerAgent.swift */,
+			);
+			path = Agents;
+			sourceTree = "<group>";
+		};
+		52EA0D6428480E47005E9AF8 /* Players */ = {
+			isa = PBXGroup;
+			children = (
+				52EA0D6528480E74005E9AF8 /* AIPlayer.swift */,
+				52DE5F80281C6DB60029EFE1 /* Player.swift */,
+				52A646B9283571750066B82D /* PlayerDiff.swift */,
+			);
+			path = Players;
+			sourceTree = "<group>";
+		};
 		52F559602839534D00966F06 /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
@@ -1097,6 +1133,7 @@
 				52F559DC283F384F00966F06 /* SpecialResourceMapLayer.swift */,
 				52F559DE283F391100966F06 /* SpecialResourceNode.swift */,
 				5266817128242B030089D0DD /* TileCoordsMapLayer.swift */,
+				52EA0D71284AE891005E9AF8 /* TileMapLayer.swift */,
 				52F559E12841D0B100966F06 /* TileStatsMapLayer.swift */,
 			);
 			path = "Map Layers";
@@ -1298,7 +1335,7 @@
 				52AB0748280287580039B47D /* City.swift in Sources */,
 				52F559B42839E65800966F06 /* Makefile in Sources */,
 				52A6469128317ADD0066B82D /* Temple.swift in Sources */,
-				5236B41328450C1C006DF7E6 /* SettlerAI.swift in Sources */,
+				5236B41328450C1C006DF7E6 /* SettlerAgent.swift in Sources */,
 				52F559C22839E65900966F06 /* lmem.c in Sources */,
 				52F9042827F4E27B00D1AC97 /* Infantry1.swift in Sources */,
 				52DE5F83281C78450029EFE1 /* FounderContextMenu.swift in Sources */,
@@ -1309,11 +1346,14 @@
 				52F9042A27F4E3C600D1AC97 /* Infantry6.swift in Sources */,
 				52668168282315580089D0DD /* Spy.swift in Sources */,
 				52F9044627F80B0500D1AC97 /* CommandDAO.swift in Sources */,
+				52EA0D6628480E74005E9AF8 /* AIPlayer.swift in Sources */,
 				52A646832830A7F90066B82D /* BuildHarborAction.swift in Sources */,
 				52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */,
 				521F21A22803F89A00F1D61D /* Infantry3.swift in Sources */,
 				52F55962283953F500966F06 /* BuildProductionAction.swift in Sources */,
+				52EA0D6C28484B12005E9AF8 /* ScienceAgent.swift in Sources */,
 				52A6466E282E18980066B82D /* CreateExplorerAction.swift in Sources */,
+				52EA0D7028484BDE005E9AF8 /* EngineerAgent.swift in Sources */,
 				52A646A328321B2E0066B82D /* BuildMineCommand.swift in Sources */,
 				52AB06FB2801FB400039B47D /* UnitInfluenceMapCalculator.swift in Sources */,
 				52A64697283202E30066B82D /* BuildGreatWallAction.swift in Sources */,
@@ -1349,6 +1389,7 @@
 				52A6468A2830BF790066B82D /* HangingGardens.swift in Sources */,
 				52A646A128321AEB0066B82D /* BuildIrrigationCommand.swift in Sources */,
 				52A6463F282CDA0F0066B82D /* CreateInfantry3Action.swift in Sources */,
+				52EA0D6828481C9F005E9AF8 /* AIPlayerAgent.swift in Sources */,
 				521F21A02803F88400F1D61D /* Infantry2.swift in Sources */,
 				52A64666282DFFA40066B82D /* ResearchLeadershipAction.swift in Sources */,
 				5293BC28280B6A86001DE2F3 /* Cavalry7.swift in Sources */,
@@ -1377,6 +1418,7 @@
 				5266818F282B71DD0089D0DD /* ResearchAlphabetAction.swift in Sources */,
 				52F559B92839E65800966F06 /* lctype.c in Sources */,
 				52E0B1B927E6DFD100607FBE /* Barracks.swift in Sources */,
+				52EA0D72284AE891005E9AF8 /* TileMapLayer.swift in Sources */,
 				521F21AD2803F92300F1D61D /* Artillery3.swift in Sources */,
 				52A64676282F30C70066B82D /* ResearchAction.swift in Sources */,
 				52F559B12839E65800966F06 /* lvm.c in Sources */,
@@ -1390,6 +1432,7 @@
 				521F21D72806996100F1D61D /* Tile.swift in Sources */,
 				52F559C82839E65900966F06 /* ldebug.c in Sources */,
 				52F559AD2839E65800966F06 /* lstate.c in Sources */,
+				52EA0D6E28484BA1005E9AF8 /* DiplomacyAgent.swift in Sources */,
 				526681742824E8D40089D0DD /* Theme.swift in Sources */,
 				52A6467C282F58B00066B82D /* CreateCavalry2Action.swift in Sources */,
 				52F559AC2839E65800966F06 /* lopcodes.c in Sources */,
@@ -1475,6 +1518,7 @@
 				52DE5FAD281EEB6B0029EFE1 /* Cavalry5.swift in Sources */,
 				52F9044B27F8E56200D1AC97 /* Turn.swift in Sources */,
 				526681822826DE440089D0DD /* Action.swift in Sources */,
+				52EA0D6A28484A06005E9AF8 /* CityAgent.swift in Sources */,
 				52DE5F7D281BA5750029EFE1 /* UnitNode.swift in Sources */,
 				52A64638282C94850066B82D /* IncreaseDefenseGoalScorer.swift in Sources */,
 				52F559BF2839E65900966F06 /* lzio.c in Sources */,

@@ -18,7 +18,7 @@ public class ResearchFeudalismAction: ResearchAction {
     public override func execute() {
         player.removeAvailable(researchAction: self)
         
-        for city in player.cities {
+        for city in player.map.cities {
             city.addAvailable(action: CreateInfantry4Action(game: game, player: player, city: city))
         }
 
