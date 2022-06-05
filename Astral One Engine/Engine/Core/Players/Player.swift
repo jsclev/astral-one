@@ -278,6 +278,13 @@ public class Player: ObservableObject {
         return researchedAdvances.contains(advanceName)
     }
     
+    public func revealTile(at: Position) {
+        let tile = game.map.tile(at: at)
+        tile.set(visibility: Visibility.FullyRevealed)
+        
+        map.add(tile: tile)
+    }
+    
     public func clone() -> Player {
         let copy = Player(playerId: playerId,
                           game: game,

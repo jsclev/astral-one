@@ -16,6 +16,7 @@ public class MapView {
     var mapIconsTileset: SKTileSet!
     var pathMap: SKTileMapNode
     let tileSize = CGSize(width: 96, height: 48)
+    private let terrainLayer: TileMapLayer
     var startPosition = SIMD2<Int32>(0, 0)
     var endPosition = SIMD2<Int32>(0, 0)
     private var cancellable = Set<AnyCancellable>()
@@ -34,7 +35,7 @@ public class MapView {
         pathMap.position = CGPoint.zero
         pathMap.enableAutomapping = true
         
-        let _ = TileMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
+        terrainLayer = TileMapLayer(player: player, scene: scene, tileSet: tileset)
         let _ = CityMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = SpecialResourceMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = TileStatsMapLayer(player: player, scene: scene, mapView: self)
@@ -113,6 +114,10 @@ public class MapView {
 //                }
 //            }
 //        }
+    }
+    
+    public func tap(location: CGPoint) {
+        terrainLayer.tap(location: location)
     }
     
     func printDate(string: String) {

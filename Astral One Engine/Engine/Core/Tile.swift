@@ -3,7 +3,7 @@ import Combine
 
 public class Tile: Hashable, ObservableObject {
     public let id: Int
-    public private (set) var isRevealed = false
+    public private (set) var visibility = Visibility.FogOfWar
     public let position: Position
     public let terrain: Terrain
     public var specialResource: SpecialResource?
@@ -12,7 +12,6 @@ public class Tile: Hashable, ObservableObject {
     public var trade: Int
     private var movementModifier: MovementModifier?
     public let defenseBonus: Double
-//    public var owner: Player?
     public var city: City? = nil
     
     public init(position: Position, terrain: Terrain) {
@@ -81,6 +80,11 @@ public class Tile: Hashable, ObservableObject {
             production = 0
             trade = 0
             defenseBonus = 1.0
+        case TerrainType.Unknown:
+            food = 0
+            production = 0
+            trade = 0
+            defenseBonus = 0.0
         }
     }
     
@@ -150,6 +154,11 @@ public class Tile: Hashable, ObservableObject {
             production = 0
             trade = 0
             defenseBonus = 1.0
+        case TerrainType.Unknown:
+            food = 0
+            production = 0
+            trade = 0
+            defenseBonus = 0.0
         }
     }
     
@@ -303,6 +312,11 @@ public class Tile: Hashable, ObservableObject {
             production = 0
             trade = 0
             defenseBonus = 1.0
+        case TerrainType.Unknown:
+            food = 0
+            production = 0
+            trade = 0
+            defenseBonus = 0.0
         }
         
 //        food = Int(stats[0])
@@ -319,8 +333,8 @@ public class Tile: Hashable, ObservableObject {
         self.city = city
     }
     
-    public func reveal() {
-        isRevealed = true
+    public func set(visibility: Visibility) {
+        self.visibility = visibility
     }
 
     public func hash(into hasher: inout Hasher) {

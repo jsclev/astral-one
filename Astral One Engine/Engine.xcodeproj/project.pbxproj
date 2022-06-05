@@ -196,38 +196,6 @@
 		52F55962283953F500966F06 /* BuildProductionAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F55961283953F500966F06 /* BuildProductionAction.swift */; };
 		52F559642839584F00966F06 /* Strategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F559632839584F00966F06 /* Strategy.swift */; };
 		52F559682839E4D800966F06 /* LuaWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F559672839E4D800966F06 /* LuaWrapper.m */; };
-		52F559AA2839E65800966F06 /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F5596B2839E65800966F06 /* lauxlib.c */; };
-		52F559AB2839E65800966F06 /* liolib.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559712839E65800966F06 /* liolib.c */; };
-		52F559AC2839E65800966F06 /* lopcodes.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559722839E65800966F06 /* lopcodes.c */; };
-		52F559AD2839E65800966F06 /* lstate.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559732839E65800966F06 /* lstate.c */; };
-		52F559AE2839E65800966F06 /* lobject.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559752839E65800966F06 /* lobject.c */; };
-		52F559AF2839E65800966F06 /* lmathlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559772839E65800966F06 /* lmathlib.c */; };
-		52F559B02839E65800966F06 /* loadlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559792839E65800966F06 /* loadlib.c */; };
-		52F559B12839E65800966F06 /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F5597A2839E65800966F06 /* lvm.c */; };
-		52F559B22839E65800966F06 /* lfunc.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F5597B2839E65800966F06 /* lfunc.c */; };
-		52F559B32839E65800966F06 /* lstrlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F5597C2839E65800966F06 /* lstrlib.c */; };
-		52F559B42839E65800966F06 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 52F5597D2839E65800966F06 /* Makefile */; };
-		52F559B62839E65800966F06 /* linit.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559802839E65800966F06 /* linit.c */; };
-		52F559B72839E65800966F06 /* lstring.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559832839E65800966F06 /* lstring.c */; };
-		52F559B82839E65800966F06 /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559852839E65800966F06 /* lundump.c */; };
-		52F559B92839E65800966F06 /* lctype.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559862839E65800966F06 /* lctype.c */; };
-		52F559BB2839E65800966F06 /* ltable.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F5598B2839E65800966F06 /* ltable.c */; };
-		52F559BC2839E65800966F06 /* ldump.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F5598D2839E65800966F06 /* ldump.c */; };
-		52F559BE2839E65900966F06 /* lgc.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559922839E65800966F06 /* lgc.c */; };
-		52F559BF2839E65900966F06 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559932839E65800966F06 /* lzio.c */; };
-		52F559C02839E65900966F06 /* ldblib.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559942839E65800966F06 /* ldblib.c */; };
-		52F559C12839E65900966F06 /* lutf8lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559952839E65800966F06 /* lutf8lib.c */; };
-		52F559C22839E65900966F06 /* lmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559962839E65800966F06 /* lmem.c */; };
-		52F559C32839E65900966F06 /* lcorolib.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559992839E65800966F06 /* lcorolib.c */; };
-		52F559C42839E65900966F06 /* lcode.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F5599B2839E65800966F06 /* lcode.c */; };
-		52F559C52839E65900966F06 /* ltablib.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F5599C2839E65800966F06 /* ltablib.c */; };
-		52F559C62839E65900966F06 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F5599D2839E65800966F06 /* lapi.c */; };
-		52F559C72839E65900966F06 /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F5599E2839E65800966F06 /* lbaselib.c */; };
-		52F559C82839E65900966F06 /* ldebug.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559A02839E65800966F06 /* ldebug.c */; };
-		52F559C92839E65900966F06 /* lparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559A32839E65800966F06 /* lparser.c */; };
-		52F559CA2839E65900966F06 /* llex.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559A42839E65800966F06 /* llex.c */; };
-		52F559CB2839E65900966F06 /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559A62839E65800966F06 /* ltm.c */; };
-		52F559CC2839E65900966F06 /* ldo.c in Sources */ = {isa = PBXBuildFile; fileRef = 52F559A82839E65800966F06 /* ldo.c */; };
 		52F559D9283DE26600966F06 /* CreateNavalTransportAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F559D8283DE26600966F06 /* CreateNavalTransportAction.swift */; };
 		52F559DB283DE6E000966F06 /* BaseNavalTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F559DA283DE6E000966F06 /* BaseNavalTransport.swift */; };
 		52F559DD283F384F00966F06 /* SpecialResourceMapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F559DC283F384F00966F06 /* SpecialResourceMapLayer.swift */; };
@@ -452,69 +420,6 @@
 		52F559662839E4D700966F06 /* Engine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Engine-Bridging-Header.h"; sourceTree = "<group>"; };
 		52F559672839E4D800966F06 /* LuaWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuaWrapper.m; sourceTree = "<group>"; };
 		52F559692839E50000966F06 /* LuaWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaWrapper.h; sourceTree = "<group>"; };
-		52F5596B2839E65800966F06 /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lauxlib.c; sourceTree = "<group>"; };
-		52F5596C2839E65800966F06 /* lmem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lmem.h; sourceTree = "<group>"; };
-		52F5596D2839E65800966F06 /* llimits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = llimits.h; sourceTree = "<group>"; };
-		52F5596E2839E65800966F06 /* luaconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luaconf.h; sourceTree = "<group>"; };
-		52F5596F2839E65800966F06 /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lzio.h; sourceTree = "<group>"; };
-		52F559702839E65800966F06 /* lgc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lgc.h; sourceTree = "<group>"; };
-		52F559712839E65800966F06 /* liolib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = liolib.c; sourceTree = "<group>"; };
-		52F559722839E65800966F06 /* lopcodes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lopcodes.c; sourceTree = "<group>"; };
-		52F559732839E65800966F06 /* lstate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lstate.c; sourceTree = "<group>"; };
-		52F559742839E65800966F06 /* lua.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lua.hpp; sourceTree = "<group>"; };
-		52F559752839E65800966F06 /* lobject.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lobject.c; sourceTree = "<group>"; };
-		52F559762839E65800966F06 /* lualib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lualib.h; sourceTree = "<group>"; };
-		52F559772839E65800966F06 /* lmathlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lmathlib.c; sourceTree = "<group>"; };
-		52F559782839E65800966F06 /* lopnames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lopnames.h; sourceTree = "<group>"; };
-		52F559792839E65800966F06 /* loadlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loadlib.c; sourceTree = "<group>"; };
-		52F5597A2839E65800966F06 /* lvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lvm.c; sourceTree = "<group>"; };
-		52F5597B2839E65800966F06 /* lfunc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lfunc.c; sourceTree = "<group>"; };
-		52F5597C2839E65800966F06 /* lstrlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lstrlib.c; sourceTree = "<group>"; };
-		52F5597D2839E65800966F06 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		52F5597E2839E65800966F06 /* lua.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lua.c; sourceTree = "<group>"; };
-		52F5597F2839E65800966F06 /* ldebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ldebug.h; sourceTree = "<group>"; };
-		52F559802839E65800966F06 /* linit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = linit.c; sourceTree = "<group>"; };
-		52F559812839E65800966F06 /* lcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lcode.h; sourceTree = "<group>"; };
-		52F559822839E65800966F06 /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lapi.h; sourceTree = "<group>"; };
-		52F559832839E65800966F06 /* lstring.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lstring.c; sourceTree = "<group>"; };
-		52F559842839E65800966F06 /* ldo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ldo.h; sourceTree = "<group>"; };
-		52F559852839E65800966F06 /* lundump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lundump.c; sourceTree = "<group>"; };
-		52F559862839E65800966F06 /* lctype.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lctype.c; sourceTree = "<group>"; };
-		52F559872839E65800966F06 /* ljumptab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ljumptab.h; sourceTree = "<group>"; };
-		52F559882839E65800966F06 /* llex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = llex.h; sourceTree = "<group>"; };
-		52F559892839E65800966F06 /* luac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = luac.c; sourceTree = "<group>"; };
-		52F5598A2839E65800966F06 /* ltm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltm.h; sourceTree = "<group>"; };
-		52F5598B2839E65800966F06 /* ltable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltable.c; sourceTree = "<group>"; };
-		52F5598C2839E65800966F06 /* lparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lparser.h; sourceTree = "<group>"; };
-		52F5598D2839E65800966F06 /* ldump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldump.c; sourceTree = "<group>"; };
-		52F5598E2839E65800966F06 /* lobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lobject.h; sourceTree = "<group>"; };
-		52F5598F2839E65800966F06 /* lstate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lstate.h; sourceTree = "<group>"; };
-		52F559902839E65800966F06 /* lopcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lopcodes.h; sourceTree = "<group>"; };
-		52F559912839E65800966F06 /* loslib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loslib.c; sourceTree = "<group>"; };
-		52F559922839E65800966F06 /* lgc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lgc.c; sourceTree = "<group>"; };
-		52F559932839E65800966F06 /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lzio.c; sourceTree = "<group>"; };
-		52F559942839E65800966F06 /* ldblib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldblib.c; sourceTree = "<group>"; };
-		52F559952839E65800966F06 /* lutf8lib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lutf8lib.c; sourceTree = "<group>"; };
-		52F559962839E65800966F06 /* lmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lmem.c; sourceTree = "<group>"; };
-		52F559972839E65800966F06 /* lauxlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lauxlib.h; sourceTree = "<group>"; };
-		52F559982839E65800966F06 /* lvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lvm.h; sourceTree = "<group>"; };
-		52F559992839E65800966F06 /* lcorolib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lcorolib.c; sourceTree = "<group>"; };
-		52F5599A2839E65800966F06 /* lstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lstring.h; sourceTree = "<group>"; };
-		52F5599B2839E65800966F06 /* lcode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lcode.c; sourceTree = "<group>"; };
-		52F5599C2839E65800966F06 /* ltablib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltablib.c; sourceTree = "<group>"; };
-		52F5599D2839E65800966F06 /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
-		52F5599E2839E65800966F06 /* lbaselib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lbaselib.c; sourceTree = "<group>"; };
-		52F5599F2839E65800966F06 /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
-		52F559A02839E65800966F06 /* ldebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldebug.c; sourceTree = "<group>"; };
-		52F559A12839E65800966F06 /* lfunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lfunc.h; sourceTree = "<group>"; };
-		52F559A22839E65800966F06 /* lprefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lprefix.h; sourceTree = "<group>"; };
-		52F559A32839E65800966F06 /* lparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lparser.c; sourceTree = "<group>"; };
-		52F559A42839E65800966F06 /* llex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = llex.c; sourceTree = "<group>"; };
-		52F559A52839E65800966F06 /* ltable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltable.h; sourceTree = "<group>"; };
-		52F559A62839E65800966F06 /* ltm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltm.c; sourceTree = "<group>"; };
-		52F559A72839E65800966F06 /* lctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lctype.h; sourceTree = "<group>"; };
-		52F559A82839E65800966F06 /* ldo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ldo.c; sourceTree = "<group>"; };
-		52F559A92839E65800966F06 /* lundump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lundump.h; sourceTree = "<group>"; };
 		52F559D7283A868A00966F06 /* SettlerWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettlerWrapper.h; sourceTree = "<group>"; };
 		52F559D8283DE26600966F06 /* CreateNavalTransportAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNavalTransportAction.swift; sourceTree = "<group>"; };
 		52F559DA283DE6E000966F06 /* BaseNavalTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavalTransport.swift; sourceTree = "<group>"; };
@@ -711,6 +616,16 @@
 			path = "Influence Maps";
 			sourceTree = "<group>";
 		};
+		5261478B284B158500CFF9CA /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				52DE5FB62820F1480029EFE1 /* CityNode.swift */,
+				52DE5F84281CAD230029EFE1 /* FounderNode.swift */,
+				52DE5F7C281BA5750029EFE1 /* UnitNode.swift */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
 		5266817F2826DDF80089D0DD /* AI */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,13 +673,12 @@
 		5293BC39280E77F2001DE2F3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5261478B284B158500CFF9CA /* Nodes */,
 				52F559E02841CFF400966F06 /* Map Layers */,
 				52DE5F7A2818E40E0029EFE1 /* ContextMenu.swift */,
 				52DE5F82281C78450029EFE1 /* FounderContextMenu.swift */,
-				52DE5F84281CAD230029EFE1 /* FounderNode.swift */,
 				52DE5F3D281251930029EFE1 /* MapView.swift */,
 				5266817B2825ED1C0089D0DD /* TurnView.swift */,
-				52DE5F7C281BA5750029EFE1 /* UnitNode.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1045,7 +959,6 @@
 		52F559652839E40B00966F06 /* Lua */ = {
 			isa = PBXGroup;
 			children = (
-				52F5596A2839E65800966F06 /* src */,
 				52F559672839E4D800966F06 /* LuaWrapper.m */,
 				52F559662839E4D700966F06 /* Engine-Bridging-Header.h */,
 				52F559692839E50000966F06 /* LuaWrapper.h */,
@@ -1055,80 +968,9 @@
 			path = Lua;
 			sourceTree = "<group>";
 		};
-		52F5596A2839E65800966F06 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				52F5599D2839E65800966F06 /* lapi.c */,
-				52F559822839E65800966F06 /* lapi.h */,
-				52F5596B2839E65800966F06 /* lauxlib.c */,
-				52F559972839E65800966F06 /* lauxlib.h */,
-				52F5599E2839E65800966F06 /* lbaselib.c */,
-				52F5599B2839E65800966F06 /* lcode.c */,
-				52F559812839E65800966F06 /* lcode.h */,
-				52F559992839E65800966F06 /* lcorolib.c */,
-				52F559862839E65800966F06 /* lctype.c */,
-				52F559A72839E65800966F06 /* lctype.h */,
-				52F559942839E65800966F06 /* ldblib.c */,
-				52F559A02839E65800966F06 /* ldebug.c */,
-				52F5597F2839E65800966F06 /* ldebug.h */,
-				52F559A82839E65800966F06 /* ldo.c */,
-				52F559842839E65800966F06 /* ldo.h */,
-				52F5598D2839E65800966F06 /* ldump.c */,
-				52F5597B2839E65800966F06 /* lfunc.c */,
-				52F559A12839E65800966F06 /* lfunc.h */,
-				52F559922839E65800966F06 /* lgc.c */,
-				52F559702839E65800966F06 /* lgc.h */,
-				52F559802839E65800966F06 /* linit.c */,
-				52F559712839E65800966F06 /* liolib.c */,
-				52F559872839E65800966F06 /* ljumptab.h */,
-				52F559A42839E65800966F06 /* llex.c */,
-				52F559882839E65800966F06 /* llex.h */,
-				52F5596D2839E65800966F06 /* llimits.h */,
-				52F559772839E65800966F06 /* lmathlib.c */,
-				52F559962839E65800966F06 /* lmem.c */,
-				52F5596C2839E65800966F06 /* lmem.h */,
-				52F559792839E65800966F06 /* loadlib.c */,
-				52F559752839E65800966F06 /* lobject.c */,
-				52F5598E2839E65800966F06 /* lobject.h */,
-				52F559722839E65800966F06 /* lopcodes.c */,
-				52F559902839E65800966F06 /* lopcodes.h */,
-				52F559782839E65800966F06 /* lopnames.h */,
-				52F559912839E65800966F06 /* loslib.c */,
-				52F559A32839E65800966F06 /* lparser.c */,
-				52F5598C2839E65800966F06 /* lparser.h */,
-				52F559A22839E65800966F06 /* lprefix.h */,
-				52F559732839E65800966F06 /* lstate.c */,
-				52F5598F2839E65800966F06 /* lstate.h */,
-				52F559832839E65800966F06 /* lstring.c */,
-				52F5599A2839E65800966F06 /* lstring.h */,
-				52F5597C2839E65800966F06 /* lstrlib.c */,
-				52F5598B2839E65800966F06 /* ltable.c */,
-				52F559A52839E65800966F06 /* ltable.h */,
-				52F5599C2839E65800966F06 /* ltablib.c */,
-				52F559A62839E65800966F06 /* ltm.c */,
-				52F5598A2839E65800966F06 /* ltm.h */,
-				52F5597E2839E65800966F06 /* lua.c */,
-				52F5599F2839E65800966F06 /* lua.h */,
-				52F559742839E65800966F06 /* lua.hpp */,
-				52F559892839E65800966F06 /* luac.c */,
-				52F5596E2839E65800966F06 /* luaconf.h */,
-				52F559762839E65800966F06 /* lualib.h */,
-				52F559852839E65800966F06 /* lundump.c */,
-				52F559A92839E65800966F06 /* lundump.h */,
-				52F559952839E65800966F06 /* lutf8lib.c */,
-				52F5597A2839E65800966F06 /* lvm.c */,
-				52F559982839E65800966F06 /* lvm.h */,
-				52F559932839E65800966F06 /* lzio.c */,
-				52F5596F2839E65800966F06 /* lzio.h */,
-				52F5597D2839E65800966F06 /* Makefile */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
 		52F559E02841CFF400966F06 /* Map Layers */ = {
 			isa = PBXGroup;
 			children = (
-				52DE5FB62820F1480029EFE1 /* CityNode.swift */,
 				526681772825BD780089D0DD /* CityMapLayer.swift */,
 				52F559DC283F384F00966F06 /* SpecialResourceMapLayer.swift */,
 				52F559DE283F391100966F06 /* SpecialResourceNode.swift */,
@@ -1327,19 +1169,14 @@
 				5236B4172845450B006DF7E6 /* LuaVM.swift in Sources */,
 				52DE5F81281C6DB60029EFE1 /* Player.swift in Sources */,
 				52A64656282DF8C30066B82D /* ResearchConstructionAction.swift in Sources */,
-				52F559BC2839E65800966F06 /* ldump.c in Sources */,
 				526681782825BD780089D0DD /* CityMapLayer.swift in Sources */,
 				5266816A282315670089D0DD /* Partisan.swift in Sources */,
 				52F9042627F4E1AC00D1AC97 /* Unit.swift in Sources */,
-				52F559C02839E65900966F06 /* ldblib.c in Sources */,
 				52AB0748280287580039B47D /* City.swift in Sources */,
-				52F559B42839E65800966F06 /* Makefile in Sources */,
 				52A6469128317ADD0066B82D /* Temple.swift in Sources */,
 				5236B41328450C1C006DF7E6 /* SettlerAgent.swift in Sources */,
-				52F559C22839E65900966F06 /* lmem.c in Sources */,
 				52F9042827F4E27B00D1AC97 /* Infantry1.swift in Sources */,
 				52DE5F83281C78450029EFE1 /* FounderContextMenu.swift in Sources */,
-				52F559C62839E65900966F06 /* lapi.c in Sources */,
 				52A64648282DB53A0066B82D /* ResearchWritingAction.swift in Sources */,
 				52A64660282DFD500066B82D /* ResearchMonarchyAction.swift in Sources */,
 				52DE5F3E281251930029EFE1 /* MapView.swift in Sources */,
@@ -1366,8 +1203,6 @@
 				5293BC2C280DD55A001DE2F3 /* TerrainDAO.swift in Sources */,
 				521F21F32808F78C00F1D61D /* ValueNode.swift in Sources */,
 				52F9042D27F6B54D00D1AC97 /* Db.swift in Sources */,
-				52F559C52839E65900966F06 /* ltablib.c in Sources */,
-				52F559C92839E65900966F06 /* lparser.c in Sources */,
 				52E0B1B427E6DFD100607FBE /* Pod.swift in Sources */,
 				52A64641282CDB720066B82D /* BuildBarracksAction.swift in Sources */,
 				52A646BA283571750066B82D /* PlayerDiff.swift in Sources */,
@@ -1376,12 +1211,10 @@
 				52A64681282F70060066B82D /* PlayStyle.swift in Sources */,
 				521F21B528047F8000F1D61D /* Trade2.swift in Sources */,
 				52DE5F7F281C6A010029EFE1 /* Settler.swift in Sources */,
-				52F559B22839E65800966F06 /* lfunc.c in Sources */,
 				52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */,
 				52DE5F97281E085A0029EFE1 /* Naval7.swift in Sources */,
 				526681662823043B0089D0DD /* AlpineTroop.swift in Sources */,
 				52A6465A282DF8F70066B82D /* ResearchPolytheismAction.swift in Sources */,
-				52F559AB2839E65800966F06 /* liolib.c in Sources */,
 				52A646B128330BC00066B82D /* CreateEngineerAction.swift in Sources */,
 				52DE5F99281E093E0029EFE1 /* Submarine.swift in Sources */,
 				52A6469F28321AC40066B82D /* BuildAirbaseCommand.swift in Sources */,
@@ -1398,9 +1231,7 @@
 				52F9044D27F9325300D1AC97 /* CommandType.swift in Sources */,
 				52A6465E282DFD350066B82D /* ResearchLiteracyAction.swift in Sources */,
 				52E0B1C127E6E25300607FBE /* SpriteNode.swift in Sources */,
-				52F559B32839E65800966F06 /* lstrlib.c in Sources */,
 				5266817C2825ED1C0089D0DD /* TurnView.swift in Sources */,
-				52F559C42839E65900966F06 /* lcode.c in Sources */,
 				52A646872830BB580066B82D /* BuildGranaryAction.swift in Sources */,
 				52DE5F85281CAD230029EFE1 /* FounderNode.swift in Sources */,
 				52668176282595B10089D0DD /* Position.swift in Sources */,
@@ -1408,34 +1239,26 @@
 				52A64652282DF8880066B82D /* ResearchIronWorkingAction.swift in Sources */,
 				52A64633282C36030066B82D /* Advance.swift in Sources */,
 				52DE5F95281E08140029EFE1 /* Naval6.swift in Sources */,
-				52F559CA2839E65900966F06 /* llex.c in Sources */,
 				526681A2282C21B60089D0DD /* CreateInfantry2Action.swift in Sources */,
 				52A64643282D741E0066B82D /* RandomAI.swift in Sources */,
 				52DE5F8B281D01B40029EFE1 /* Cavalry3.swift in Sources */,
-				52F559C72839E65900966F06 /* lbaselib.c in Sources */,
 				52DE5FB1281EEE3F0029EFE1 /* Cavalry8.swift in Sources */,
 				52A646B628337AC90066B82D /* CityBuilder.swift in Sources */,
 				5266818F282B71DD0089D0DD /* ResearchAlphabetAction.swift in Sources */,
-				52F559B92839E65800966F06 /* lctype.c in Sources */,
 				52E0B1B927E6DFD100607FBE /* Barracks.swift in Sources */,
 				52EA0D72284AE891005E9AF8 /* TileMapLayer.swift in Sources */,
 				521F21AD2803F92300F1D61D /* Artillery3.swift in Sources */,
 				52A64676282F30C70066B82D /* ResearchAction.swift in Sources */,
-				52F559B12839E65800966F06 /* lvm.c in Sources */,
 				52A64646282DB49C0066B82D /* ResearchMapMakingAction.swift in Sources */,
 				52A646B82834C36D0066B82D /* Plan.swift in Sources */,
-				52F559CC2839E65900966F06 /* ldo.c in Sources */,
 				52668193282B72590089D0DD /* ResearchHorsebackRidingAction.swift in Sources */,
 				521F21A92803F8F100F1D61D /* Artillery1.swift in Sources */,
 				52DE5FB72820F1480029EFE1 /* CityNode.swift in Sources */,
 				52DE5FBB2822E6CC0029EFE1 /* Marine.swift in Sources */,
 				521F21D72806996100F1D61D /* Tile.swift in Sources */,
-				52F559C82839E65900966F06 /* ldebug.c in Sources */,
-				52F559AD2839E65800966F06 /* lstate.c in Sources */,
 				52EA0D6E28484BA1005E9AF8 /* DiplomacyAgent.swift in Sources */,
 				526681742824E8D40089D0DD /* Theme.swift in Sources */,
 				52A6467C282F58B00066B82D /* CreateCavalry2Action.swift in Sources */,
-				52F559AC2839E65800966F06 /* lopcodes.c in Sources */,
 				52012F602803A77A008388F6 /* Founder.swift in Sources */,
 				52E0B19E27E6DFA100607FBE /* Game.swift in Sources */,
 				52A6463D282CCB5C0066B82D /* ActionSequence.swift in Sources */,
@@ -1445,9 +1268,7 @@
 				521F21B9280480FC00F1D61D /* Air1.swift in Sources */,
 				52DE5FA5281EE3EB0029EFE1 /* Infantry8.swift in Sources */,
 				52E0B19527E6D87600607FBE /* Tile2.swift in Sources */,
-				52F559C12839E65900966F06 /* lutf8lib.c in Sources */,
 				52F9044427F6D68A00D1AC97 /* GameDAO.swift in Sources */,
-				52F559CB2839E65900966F06 /* ltm.c in Sources */,
 				52A646932831EC930066B82D /* BuildColossusAction.swift in Sources */,
 				52E0B1B227E6DFD100607FBE /* CityWalls.swift in Sources */,
 				52A64678282F56590066B82D /* CreateInfantry4Action.swift in Sources */,
@@ -1462,7 +1283,6 @@
 				52F9046E27FC8B7D00D1AC97 /* MoveCommandDAO.swift in Sources */,
 				5266817228242B030089D0DD /* TileCoordsMapLayer.swift in Sources */,
 				52F9043727F6CF8900D1AC97 /* DbError.swift in Sources */,
-				52F559B82839E65800966F06 /* lundump.c in Sources */,
 				52E0B1C827E6E7A900607FBE /* MapViewModel.swift in Sources */,
 				5266819E282B795C0089D0DD /* Planner.swift in Sources */,
 				521F21C12804812600F1D61D /* Air5.swift in Sources */,
@@ -1471,16 +1291,13 @@
 				5266818B282700C40089D0DD /* ResearchMasonryAction.swift in Sources */,
 				52668197282B72AD0089D0DD /* ResearchCeremonialBurialAction.swift in Sources */,
 				52668191282B72280089D0DD /* ResearchWarriorCodeAction.swift in Sources */,
-				52F559AA2839E65800966F06 /* lauxlib.c in Sources */,
 				52DE5FAF281EEC360029EFE1 /* Cavalry6.swift in Sources */,
 				52F559DF283F391100966F06 /* SpecialResourceNode.swift in Sources */,
 				52A646B428334C8E0066B82D /* MoveUnitCommand.swift in Sources */,
 				52A6467E282F680F0066B82D /* ResearchBridgeBuildingAction.swift in Sources */,
-				52F559BE2839E65900966F06 /* lgc.c in Sources */,
 				521F21E52807123D00F1D61D /* TerrainFactory.swift in Sources */,
 				52DE5FA1281E32AC0029EFE1 /* AircraftCarrier.swift in Sources */,
 				527A0D85280F6884006B9D9F /* MapError.swift in Sources */,
-				52F559B02839E65800966F06 /* loadlib.c in Sources */,
 				521F21A42803F8A900F1D61D /* Infantry4.swift in Sources */,
 				5266816E28233D0D0089D0DD /* CruiseMissile.swift in Sources */,
 				52F559DD283F384F00966F06 /* SpecialResourceMapLayer.swift in Sources */,
@@ -1498,16 +1315,13 @@
 				52E0B1B027E6DFD100607FBE /* GreatWall.swift in Sources */,
 				521F21A62803F8BB00F1D61D /* Infantry5.swift in Sources */,
 				52A64695283201920066B82D /* BuildPyramidsAction.swift in Sources */,
-				52F559C32839E65900966F06 /* lcorolib.c in Sources */,
 				52DE5F93281E07F60029EFE1 /* Naval5.swift in Sources */,
 				52605C902801E3B00082C0DB /* InfluenceMapCalculator.swift in Sources */,
 				52F559D9283DE26600966F06 /* CreateNavalTransportAction.swift in Sources */,
-				52F559AF2839E65800966F06 /* lmathlib.c in Sources */,
 				521F21AB2803F91200F1D61D /* Artillery2.swift in Sources */,
 				521F21B328047F7600F1D61D /* Trade1.swift in Sources */,
 				5266816C282315760089D0DD /* Crusader.swift in Sources */,
 				5266817E282610680089D0DD /* NextTurnCommand.swift in Sources */,
-				52F559B72839E65800966F06 /* lstring.c in Sources */,
 				52DE5F8F281E072C0029EFE1 /* Naval2.swift in Sources */,
 				521F21E32807115100F1D61D /* Terrain.swift in Sources */,
 				52DE5F7B2818E40E0029EFE1 /* ContextMenu.swift in Sources */,
@@ -1521,7 +1335,6 @@
 				52EA0D6A28484A06005E9AF8 /* CityAgent.swift in Sources */,
 				52DE5F7D281BA5750029EFE1 /* UnitNode.swift in Sources */,
 				52A64638282C94850066B82D /* IncreaseDefenseGoalScorer.swift in Sources */,
-				52F559BF2839E65900966F06 /* lzio.c in Sources */,
 				52A64670282F01500066B82D /* GoodieHut.swift in Sources */,
 				521F21BF2804811C00F1D61D /* Air4.swift in Sources */,
 				521F21AF2803F92F00F1D61D /* Artillery4.swift in Sources */,
@@ -1536,7 +1349,6 @@
 				52A6468D2830C0030066B82D /* BuildHangingGardensAction.swift in Sources */,
 				52A646852830A8770066B82D /* Harbor.swift in Sources */,
 				5266818D282B71860089D0DD /* ResearchPotteryAction.swift in Sources */,
-				52F559BB2839E65800966F06 /* ltable.c in Sources */,
 				5236B41528451AEF006DF7E6 /* AISkillLevel.swift in Sources */,
 				52E0B1EB27EAB6B800607FBE /* GameNode.swift in Sources */,
 				52E0B1B627E6DFD100607FBE /* Palace.swift in Sources */,
@@ -1546,8 +1358,6 @@
 				52DE5FB928217F070029EFE1 /* Engineer.swift in Sources */,
 				52A6465C282DFC450066B82D /* ResearchSeafaringAction.swift in Sources */,
 				52E0B1AF27E6DFD100607FBE /* Gate.swift in Sources */,
-				52F559B62839E65800966F06 /* linit.c in Sources */,
-				52F559AE2839E65800966F06 /* lobject.c in Sources */,
 				52F559642839584F00966F06 /* Strategy.swift in Sources */,
 				52A646AF283303540066B82D /* CreateSettlerAction.swift in Sources */,
 				52A6468F28317A2B0066B82D /* BuildTempleAction.swift in Sources */,

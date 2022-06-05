@@ -170,6 +170,8 @@ public class MapDAO: BaseDAO {
             }
         case .Tundra:
             return SpecialResource.Furs
+        case .Unknown:
+            return nil
         }
     }
         

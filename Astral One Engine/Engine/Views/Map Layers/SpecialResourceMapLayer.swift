@@ -19,7 +19,7 @@ public class SpecialResourceMapLayer {
             for col in 0..<player.map.width {
                 let tile = player.map.tile(at: Position(row: row, col: col))
                 
-                if tile.isRevealed {
+                if tile.visibility == Visibility.FullyRevealed {
                     if let specialResource = tile.specialResource {
                         var assetName = ""
                         

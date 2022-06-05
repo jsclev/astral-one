@@ -188,6 +188,13 @@ public enum TerrainType {
     case River
     case Swamp
     case Tundra
+    case Unknown
+}
+
+public enum Visibility {
+    case FogOfWar
+    case SemiRevealed
+    case FullyRevealed
 }
 
 public enum AdvanceType {

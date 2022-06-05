@@ -119,7 +119,7 @@ public class SettlerAgent {
                 let position = Position(row: row, col: col)
                 let tile = player.map.tile(at: Position(row: row, col: col))
                 
-                if tile.isRevealed {
+                if tile.visibility == Visibility.FullyRevealed {
                     if player.map.canBuildCity(at: position) {
                         let distance = player.map.getDistanceFromNearestCity(from: position)
                         let score = 100 - distance
@@ -158,7 +158,7 @@ public class SettlerAgent {
                 let position = Position(row: row, col: col)
                 let tile = player.map.tile(at: position)
                 
-                if tile.isRevealed {
+                if tile.visibility == Visibility.FullyRevealed {
                     if player.map.canBuildCity(at: position) {
                         var score = Double(tile.food)
                         score += Double(tile.production)

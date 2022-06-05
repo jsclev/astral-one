@@ -10,11 +10,11 @@ public class BuildCityAction: Action {
         
         cost = 0
         
-        self.cityBuilder.$position
-            .dropFirst()
-            .sink(receiveValue: { newPosition in
-                print("Unit moved to \(newPosition).")
-            })
+//        self.cityBuilder.$position
+//            .dropFirst()
+//            .sink(receiveValue: { newPosition in
+//                print("Unit moved to \(newPosition).")
+//            })
         
     }
     

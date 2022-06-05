@@ -41,6 +41,7 @@ class PathfinderScene: SKScene {
     var startTouchPos = CGPoint.zero
     let tileSet: SKTileSet
     let theme = Theme(id: 2, name: "Sci-Fi")
+    var mapView: MapView!
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
@@ -129,11 +130,15 @@ class PathfinderScene: SKScene {
         let recognizorLocation = recognizer.location(in: recognizer.view!)
         let location = convertPoint(fromView: recognizorLocation)
         
+        if let mv = mapView {
+            mv.tap(location: location)
+        }
+        
         let touchedNodes = nodes(at: location)
         
-//        for touchedNode in touchedNodes {
-//            print("Touched node: \(touchedNode.name)")
-//        }
+        for touchedNode in touchedNodes {
+            print("Touched node: \(touchedNode)")
+        }
         
         if !touchedNodes.isEmpty && touchedNodes[0].name == "set-start-position" {
 //            clearMapIcons()
@@ -149,25 +154,10 @@ class PathfinderScene: SKScene {
         
 //        let tappedRow = mapIcons.tileRowIndex(fromPosition: location)
 //        let tappedCol = mapIcons.tileColumnIndex(fromPosition: location)
-//
-//        if state == PathfinderState.settingStartPosition {
-//            let tileGroup = mapIconsTileset.tileGroups.first { $0.name == "Start Icon" }
-//            startPosition.y = Int32(tappedCol)
-//            startPosition.x = Int32(tappedRow)
-//            mapIcons.setTileGroup(tileGroup, forColumn: tappedCol, row: tappedRow)
-//            state = PathfinderState.settingStopPosition
-//        }
-//        else if state == PathfinderState.settingStopPosition {
-//            let tileGroup = mapIconsTileset.tileGroups.first { $0.name == "Stop Icon" }
-//            endPosition.y = Int32(tappedCol)
-//            endPosition.x = Int32(tappedRow)
-//            mapIcons.setTileGroup(tileGroup, forColumn: tappedCol, row: tappedRow)
-//            state = PathfinderState.calculatingPath
-//        }
+
     }
     
     override func didMove(to view: SKView) {
-        
         gameCamera = PathfinderCamera(game: game)
 
         camera = gameCamera
@@ -188,9 +178,6 @@ class PathfinderScene: SKScene {
         do {
             try db.mapDao.importTiledMap(filename: filename)
             game = try db.getGameBy(gameId: 1)
-
-            
-
         }
         catch {
             print(error)
@@ -213,9 +200,11 @@ class PathfinderScene: SKScene {
         for cityId in 0..<1000 {
             let position = Position(row: Int.random(in: 0..<game.map.height),
                                     col: Int.random(in: 0..<game.map.width))
+            
             if position.row % 2 == 0 {
-                player.map.tile(at: position).reveal()
+                player.map.tile(at: position).set(visibility: Visibility.FullyRevealed)
             }
+            
             let cityBuilder = Settler(game: game,
                                       player: player,
                                       theme: game.theme,
@@ -231,7 +220,7 @@ class PathfinderScene: SKScene {
 //            city1.build(BuildingType.CityWalls)
 //
             player.add(cityBuilder: cityBuilder)
-            player.build(city: city, using: cityBuilder)
+//            player.build(city: city, using: cityBuilder)
             
             let createInfantry1Action = CreateInfantry1Action(game: game, player: player, city: city)
             let createInfantry2Action = CreateInfantry2Action(game: game, player: player, city: city)
@@ -246,7 +235,7 @@ class PathfinderScene: SKScene {
         
         let tileset = SKTileSet(named: tilesetName)
         
-        let mapView = MapView(player: player, scene: self, tileset: tileset!)
+        mapView = MapView(player: player, scene: self, tileset: tileset!)
         mapView.setScene(scene: self)
         
         entityManager = EntityManager(scene: self)

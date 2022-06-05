@@ -30,10 +30,10 @@ public class TerrainDAO: BaseDAO {
             while sqlite3_step(stmt) == SQLITE_ROW {
                 let terrainId = getInt(stmt: stmt, colIndex: 0)
                 let tiledId = getInt(stmt: stmt, colIndex: 1)
-                let food = getDouble(stmt: stmt, colIndex: 3)
-                let shields = getDouble(stmt: stmt, colIndex: 4)
-                let trade = getDouble(stmt: stmt, colIndex: 5)
-                let movementCost = getDouble(stmt: stmt, colIndex: 6)
+                // let food = getDouble(stmt: stmt, colIndex: 3)
+                // let shields = getDouble(stmt: stmt, colIndex: 4)
+                // let trade = getDouble(stmt: stmt, colIndex: 5)
+                // let movementCost = getDouble(stmt: stmt, colIndex: 6)
                 var terrainType = TerrainType.Grassland
                 
                 if let name = try getString(stmt: stmt, colIndex: 2) {
