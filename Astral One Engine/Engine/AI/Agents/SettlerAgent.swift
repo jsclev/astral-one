@@ -3,42 +3,42 @@ import Foundation
 public class SettlerAgent {
     private let player: AIPlayer
     private let settler: Settler
-    private let luaState: OpaquePointer!
+//    private let luaState: OpaquePointer!
     
     public init(player: AIPlayer, settler: Settler) throws {
         self.player = player
         self.settler = settler
         
-        luaState = luaL_newstate()
-        luaL_openlibs(luaState);
-        
-        var scriptName = "level"
-        switch player.skillLevel {
-        case .One:
-            scriptName += "1"
-        case .Two:
-            scriptName += "2"
-        case .Three:
-            scriptName += "3"
-        case .Four:
-            scriptName += "4"
-        case .Five:
-            scriptName += "5"
-        case .Six:
-            scriptName += "6"
-        case .Seven:
-            scriptName += "7"
-        case .Eight:
-            scriptName += "8"
-        }
-        
-        scriptName += "_settler"
-        
-        let filename = Bundle.main.path(forResource: scriptName, ofType: "lua")!
-        let luaScript = try String(contentsOfFile: filename)
-        let ptrScript = strdup(luaScript)
-        luaL_loadstring(luaState, ptrScript)
-        free(ptrScript)
+//        luaState = luaL_newstate()
+//        luaL_openlibs(luaState);
+//
+//        var scriptName = "level"
+//        switch player.skillLevel {
+//        case .One:
+//            scriptName += "1"
+//        case .Two:
+//            scriptName += "2"
+//        case .Three:
+//            scriptName += "3"
+//        case .Four:
+//            scriptName += "4"
+//        case .Five:
+//            scriptName += "5"
+//        case .Six:
+//            scriptName += "6"
+//        case .Seven:
+//            scriptName += "7"
+//        case .Eight:
+//            scriptName += "8"
+//        }
+//
+//        scriptName += "_settler"
+//
+//        let filename = Bundle.main.path(forResource: scriptName, ofType: "lua")!
+//        let luaScript = try String(contentsOfFile: filename)
+//        let ptrScript = strdup(luaScript)
+//        luaL_loadstring(luaState, ptrScript)
+//        free(ptrScript)
     }
     
 //    deinit {
@@ -51,17 +51,17 @@ public class SettlerAgent {
 //        let value2 = lua_Number(33)
 //        let result = lua.call(nil, method: ptrFname, p1: value, p2: value2)
         
-        var luaStateEx: OpaquePointer!
-
-        if (luaState != nil) {
-            luaStateEx = luaState
-        }
-
-        lua_getglobal(luaStateEx, "settle_score");
-        lua_pushnumber(luaStateEx, 1.0);
-        lua_pushnumber(luaStateEx, 5.0);
-
-        lua_pcallk(luaStateEx, 2, 1, 0, 0, nil);
+//        var luaStateEx: OpaquePointer!
+//
+//        if (luaState != nil) {
+//            luaStateEx = luaState
+//        }
+//
+//        lua_getglobal(luaStateEx, "settle_score");
+//        lua_pushnumber(luaStateEx, 1.0);
+//        lua_pushnumber(luaStateEx, 5.0);
+//
+//        lua_pcallk(luaStateEx, 2, 1, 0, 0, nil);
 
 //        let result = lua_tonumber(luaStateEx, -1);
 //        lua_pop(luaStateEx, 1);
@@ -107,6 +107,40 @@ public class SettlerAgent {
         free(ptrFname)
         
         return Double(0.0)
+    }
+    
+    public func getCityRadiusScores() -> [Position:Double] {
+        var scores: [Position: Double] = [:]
+
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
+                let position = Position(row: row, col: col)
+                let tile = player.map.tile(at: position)
+                
+                if tile.visibility == Visibility.FullyRevealed ||
+                    tile.visibility == Visibility.SemiRevealed {
+
+                    if tile.canBuildCity() {
+                        let cityRadiusTiles = player.getTilesWithinCityRadius(from: position)
+                        
+                        var sum = 0.0
+                        for tile in cityRadiusTiles {
+                            sum += tile.getScore()
+                        }
+                        
+                        scores[position] = sum
+                    }
+                    else {
+                        scores[position] = 0.0
+                    }
+                }
+                else {
+                    scores[position] = 1.0
+                }
+            }
+        }
+        
+        return scores
     }
     
     private func levelOneGetBuildCityScoreMap() throws -> [[Double]] {

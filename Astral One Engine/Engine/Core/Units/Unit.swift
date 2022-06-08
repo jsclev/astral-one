@@ -84,7 +84,7 @@ public class Unit: GKEntity, ObservableObject {
         return floor(calculatedDefense)
     }
     
-    public func move(to: Position) {
+    internal func move(to: Position) {
         fatalError("move(to:) must be implemented by a subclass.")
     }
     

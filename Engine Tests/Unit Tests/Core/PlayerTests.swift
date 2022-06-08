@@ -4,7 +4,7 @@ import Engine
 class PlayerTests: XCTestCase {
     func testTechTree() throws {
         let map = Map(mapId: 1, width: 1, height: 1)
-        let game = Game(theme: Theme(id: 1, name: "Test Theme"), map: map)
+        let game = Game(theme: Theme(id: 1, name: "Test Theme"), map: map, db: TestUtils.getDb())
         let player = Player(playerId: 1, game: game, map: map)
         
         XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).isResearching)
@@ -23,7 +23,7 @@ class PlayerTests: XCTestCase {
     
     func testTechTree2() throws {
         let map = Map(mapId: 1, width: 1, height: 1)
-        let game = Game(theme: Theme(id: 1, name: "Test Theme"), map: map)
+        let game = Game(theme: Theme(id: 1, name: "Test Theme"), map: map, db: TestUtils.getDb())
         let player = Player(playerId: 1, game: game, map: map)
         
         XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).isResearching)

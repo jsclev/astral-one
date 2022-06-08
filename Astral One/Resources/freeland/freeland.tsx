@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.8" tiledversion="1.8.2" name="freeland" tilewidth="128" tileheight="88" tilecount="28" columns="0">
+<tileset version="1.8" tiledversion="1.8.2" name="freeland" tilewidth="128" tileheight="88" tilecount="45" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <image width="128" height="88" source="terrains/grass/grass-001.png"/>
@@ -76,13 +76,64 @@
  <tile id="24">
   <image width="128" height="88" source="terrains/water/water-001.png"/>
  </tile>
- <tile id="25">
-  <image width="128" height="88" source="units/tank-001.png"/>
- </tile>
- <tile id="26">
-  <image width="128" height="88" source="units/battleship-001.png"/>
- </tile>
  <tile id="27">
   <image width="128" height="88" source="units/explorer-001.png"/>
+ </tile>
+ <tile id="28">
+  <image width="128" height="88" source="terrains/wine.png"/>
+ </tile>
+ <tile id="29">
+  <image width="128" height="88" source="terrains/wheat.png"/>
+ </tile>
+ <tile id="30">
+  <image width="128" height="88" source="terrains/whales.png"/>
+ </tile>
+ <tile id="31">
+  <image width="128" height="88" source="terrains/spice.png"/>
+ </tile>
+ <tile id="32">
+  <image width="128" height="88" source="terrains/silk.png"/>
+ </tile>
+ <tile id="33">
+  <image width="128" height="88" source="terrains/pheasant.png"/>
+ </tile>
+ <tile id="34">
+  <image width="128" height="88" source="terrains/peat.png"/>
+ </tile>
+ <tile id="35">
+  <image width="128" height="88" source="terrains/oil.png"/>
+ </tile>
+ <tile id="36">
+  <image width="128" height="88" source="terrains/oasis.png"/>
+ </tile>
+ <tile id="37">
+  <image width="128" height="88" source="terrains/ivory.png"/>
+ </tile>
+ <tile id="38">
+  <image width="128" height="88" source="terrains/iron.png"/>
+ </tile>
+ <tile id="39">
+  <image width="128" height="88" source="terrains/gold.png"/>
+ </tile>
+ <tile id="40">
+  <image width="128" height="88" source="terrains/gems.png"/>
+ </tile>
+ <tile id="41">
+  <image width="128" height="88" source="terrains/game.png"/>
+ </tile>
+ <tile id="42">
+  <image width="128" height="88" source="terrains/furs.png"/>
+ </tile>
+ <tile id="43">
+  <image width="128" height="88" source="terrains/fruit.png"/>
+ </tile>
+ <tile id="44">
+  <image width="128" height="88" source="terrains/fish.png"/>
+ </tile>
+ <tile id="45">
+  <image width="128" height="88" source="terrains/coal.png"/>
+ </tile>
+ <tile id="46">
+  <image width="128" height="88" source="terrains/buffalo.png"/>
  </tile>
 </tileset>

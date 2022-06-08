@@ -1,19 +1,19 @@
 import Foundation
 
-public class CityBuilder: Unit {
+public class CityCreator: Unit {
     public override init(game: Game,
-                player: Player,
-                theme: Theme,
-                tiledId: Int,
-                name: String,
-                assetName: String,
-                cost: Double,
-                maxHp: Double,
-                attack: Double,
-                defense: Double,
-                fp: Double,
-                maxMovementPoints: Double,
-                position: Position) {
+                         player: Player,
+                         theme: Theme,
+                         tiledId: Int,
+                         name: String,
+                         assetName: String,
+                         cost: Double,
+                         maxHp: Double,
+                         attack: Double,
+                         defense: Double,
+                         fp: Double,
+                         maxMovementPoints: Double,
+                         position: Position) {
         super.init(game: game,
                    player: player,
                    theme: theme,
@@ -44,18 +44,18 @@ public class CityBuilder: Unit {
         }
     }
     
-    public func canBuildCity() -> Bool {
+    public func canCreateCity() -> Bool {
         return true
     }
     
     public func buildNewCity(city: City) {
-        if canBuildCity() {
+        if canCreateCity() {
             player.build(city: city, using: self)
         }
     }
     
     public override func clone() -> Unit {
-        let copy = CityBuilder(game: game,
+        let copy = CityCreator(game: game,
                                player: player,
                                theme: theme,
                                tiledId: tiledId,
@@ -72,5 +72,5 @@ public class CityBuilder: Unit {
         return copy
     }
     
-
+    
 }

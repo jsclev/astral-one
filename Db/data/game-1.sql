@@ -80,7 +80,7 @@ insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1
 -- Turn 1: Build city
 insert into city values (1, 1, 1, 57, 'Rome');
 insert into command values (1, 1, 1, 1, (select command_type_id from command_type where name = 'Build City'), 1);
-insert into settle_command values (1, 1, 1);
+insert into create_city_command values (1, 1, 1);
 
 -- Turn 1: Create barracks
 insert into building values (1, 1, 1, (select building_type_id from building_type where name = 'Barracks'));

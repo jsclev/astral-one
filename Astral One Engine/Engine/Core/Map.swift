@@ -55,6 +55,16 @@ public class Map: ObservableObject {
         return grid[at.row][at.col]
     }
     
+    public func revealAllTiles() {
+        for row in 0..<height {
+            for col in 0..<width {
+                grid[row][col].set(visibility: Visibility.FullyRevealed)
+            }
+        }
+    }
+    
+    
+    
     public func canBuildCity(at: Position) -> Bool {
         let startRow = at.row - 1 >= 0 ? at.row - 1 : 0
         let endRow = at.row + 1 <= height ? at.row + 1 : height

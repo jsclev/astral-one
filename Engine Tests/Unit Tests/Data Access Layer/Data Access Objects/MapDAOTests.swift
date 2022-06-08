@@ -2,10 +2,10 @@ import XCTest
 import Engine
 
 class MapDAOTests: XCTestCase {
-    private var db = TestUtil.getDb()
+    private var db = TestUtils.getDb()
     
     override func setUpWithError() throws {
-        db = TestUtil.getDb()
+        db = TestUtils.getDb()
     }
 
     func testInsertFourTilesExpectsSuccess() throws {

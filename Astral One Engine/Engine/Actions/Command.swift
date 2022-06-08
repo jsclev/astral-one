@@ -1,26 +1,36 @@
 import Foundation
 
 public class Command: CustomStringConvertible {
-    public let commandId: Int
-    public let game: Game
-    public let turn: Turn
+    public internal(set) var commandId: Int
     public let player: Player
     public let type: CommandType
+    public let turn: Turn
     public let ordinal: Int
     public let cost: Int
     
-    init(commandId: Int,
-         game: Game,
+    init(player: Player,
+         type: CommandType,
          turn: Turn,
+         ordinal: Int,
+         cost: Int) {
+        self.commandId = Constants.noId
+        self.player = player
+        self.type = type
+        self.turn = turn
+        self.ordinal = ordinal
+        self.cost = cost
+    }
+    
+    init(commandId: Int,
          player: Player,
          type: CommandType,
+         turn: Turn,
          ordinal: Int,
          cost: Int) {
         self.commandId = commandId
-        self.game = game
-        self.turn = turn
         self.player = player
         self.type = type
+        self.turn = turn
         self.ordinal = ordinal
         self.cost = cost
     }
@@ -30,11 +40,11 @@ public class Command: CustomStringConvertible {
     }
     
     public var description: String {
-        return "{id: \(commandId), game: \(game), turn: \(turn), " +
+        return "{id: \(commandId), game: \(player.game), turn: \(turn), " +
         "player: \(player), type: \(type), ordinal: \(ordinal)}"
     }
     
     public func execute() {
-        fatalError("execute() has not been implemented")
+        fatalError("execute() must be implemented in subclasses.")
     }
 }

@@ -3,6 +3,7 @@ import CoreGraphics
 
 
 public struct Constants {
+    public static let noId = 1
     public static let db = Db(fullRefresh: false)
     public static let minDefense: Double = 0.001
     public static let minMovementCost: Double = 0.0

@@ -36,10 +36,12 @@ public class UnitNode: SKSpriteNode {
                     
                     if let turn = self.game.turns.last {
                         self.game.addCommand(command: NextTurnCommand(commandId: 1,
-                                                                      game: self.game,
+                                                                      player: Player(playerId: 1,
+                                                                                     game: game,
+                                                                                     map: game.map),
+                                                                      type: CommandType.init(id: 1,
+                                                                                             name: "NextTurn"),
                                                                       turn: turn,
-                                                                      player: Player(playerId: 1, game: game, map: game.map),
-                                                                      type: CommandType.init(id: 1, name: "NextTurn"),
                                                                       ordinal: 1))
                         self.game.processCommands()
                 

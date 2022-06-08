@@ -2,7 +2,11 @@ import Foundation
 import SQLite3
 
 public class CommandDAO: BaseDAO {
-    init(conn: OpaquePointer?) {
+    private let cityDao: CityDAO
+    
+    init(conn: OpaquePointer?, cityDao: CityDAO) {
+        self.cityDao = cityDao
+        
         super.init(conn: conn, table: "command", loggerName: String(describing: type(of: self)))
     }
     
@@ -130,50 +134,44 @@ public class CommandDAO: BaseDAO {
         return []
     }
     
-//    public func insertCommand(command: Command) throws -> Command {
-//        var commandId: Int = -1
-//
-//        let theme = Theme(id: 1, name: "Standard")
-//        let map = Map(mapId: 1, width: 1, height: 1)
-//        let game = Game(theme: theme, map: map)
-//        let player = Player(playerId: 1, game: game)
-//
-//        var sql = "INSERT INTO command (" +
-//        "game_id, turn_id, player_id, command_type_id, ordinal" +
-//        ") VALUES "
-//
-//        sql += "("
-//        sql += getSql(val: 1, postfix: ", ")
-//        sql += getSql(val: command.turn.id, postfix: ", ")
-//        sql += getSql(val: command.player.playerId, postfix: ", ")
-//        sql += getSql(val: command.type.id, postfix: ", ")
-//        sql += getSql(val: command.ordinal, postfix: "")
-//        sql += "), "
-//
-//        sql = getCleanedSql(sql)
-//
-//        do {
-//            commandId = try insertOneRow(sql: sql)
-//        }
-//        catch SQLiteError.Prepare(let message) {
-//            var errMsg = "Failed to compile the SQL to insert rows into the \(table) table.  "
-//            errMsg += "SQLite error message: " + message
-//            throw DbError.Db(message: errMsg)
-//        }
-//        catch SQLiteError.Step(let message) {
-//            var errMsg = "Failed to execute the SQL to insert rows into the \(table) table.  "
-//            errMsg += "SQLite error message: " + message
-//            throw DbError.Db(message: errMsg)
-//        }
-        
-//        return Command(commandId: commandId,
-//                       game: game,
-//                       turn: command.turn,
-//                       player: command.player,
-//                       type: command.type,
-//                       ordinal: command.ordinal,
-//                       cost: 0)
-//    }
+    public func insert(command: Command) throws -> Command {
+        var commandId: Int = -1
+
+        var sql = "INSERT INTO command (" +
+        "game_id, turn_id, player_id, command_type_id, ordinal" +
+        ") VALUES "
+
+        sql += "("
+        sql += getSql(val: 1, postfix: ", ")
+        sql += getSql(val: command.turn.id, postfix: ", ")
+        sql += getSql(val: command.player.playerId, postfix: ", ")
+        sql += getSql(val: command.type.id, postfix: ", ")
+        sql += getSql(val: command.ordinal, postfix: "")
+        sql += "), "
+
+        sql = getCleanedSql(sql)
+
+        do {
+            commandId = try insertOneRow(sql: sql)
+        }
+        catch SQLiteError.Prepare(let message) {
+            var errMsg = "Failed to compile the SQL to insert rows into the \(table) table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        catch SQLiteError.Step(let message) {
+            var errMsg = "Failed to execute the SQL to insert rows into the \(table) table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+
+        return Command(commandId: commandId,
+                       player: command.player,
+                       type: command.type,
+                       turn: command.turn,
+                       ordinal: command.ordinal,
+                       cost: command.cost)
+    }
     
 //    public func insertMoveCommands(moveCommands: [MoveCommand]) throws -> [MoveCommand] {
 //        var newCommands: [MoveCommand] = []

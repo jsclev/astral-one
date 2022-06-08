@@ -8,7 +8,7 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         // add it to the map, and assert that the influence is zero.
         let map = Map(mapId: 1, width: 3, height: 3)
         let theme = Theme(id: 1, name: "Standard")
-        let game = Game(theme: theme, map: map)
+        let game = Game(theme: theme, map: map, db: TestUtils.getDb())
         
         let agent = Infantry1(game: game,
                               player: Player(playerId: 1, game: game, map: map),
@@ -49,7 +49,7 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
         // negative level at the enemy position, then spreading out.
         let map = Map(mapId: 1, width: 3, height: 3)
         let theme = Theme(id: 1, name: "Test Theme")
-        let game = Game(theme: theme, map: map)
+        let game = Game(theme: theme, map: map, db: TestUtils.getDb())
         let player = Player(playerId: 1, game: game, map: map)
         let enemyPlayer = Player(playerId: 2, game: game, map: map)
         
@@ -105,7 +105,7 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
          */
         let map = Map(mapId: 1, width: 3, height: 3)
         let theme = Theme(id: 1, name: "Test Theme")
-        let game = Game(theme: theme, map: map)
+        let game = Game(theme: theme, map: map, db: TestUtils.getDb())
         let player = Player(playerId: 1, game: game, map: map)
         let enemyPlayer = Player(playerId: 2, game: game, map: map)
 
@@ -163,7 +163,7 @@ class UnitInfluenceMapCalculatorTests: XCTestCase {
          */
         let mainMap = Map(mapId: 1, width: 3, height: 3)
         let theme = Theme(id: 1, name: "Test Theme")
-        let game = Game(theme: theme, map: mainMap)
+        let game = Game(theme: theme, map: mainMap, db: TestUtils.getDb())
         let player = Player(playerId: 1, game: game, map: mainMap)
         let enemyPlayer = Player(playerId: 2, game: game, map: mainMap)
         

@@ -203,7 +203,7 @@ public class Tile: Hashable, ObservableObject {
                 trade = 3
             }
             else {
-                fatalError("Invalid special resource for terrain.")
+                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
             }
             
             defenseBonus = 1.5
@@ -325,18 +325,6 @@ public class Tile: Hashable, ObservableObject {
 //        defenseBonus = stats[3]
     }
     
-    private func getFood(terrain: Terrain) -> Int {
-        return 0
-    }
-    
-    internal func add(city: City) {
-        self.city = city
-    }
-    
-    public func set(visibility: Visibility) {
-        self.visibility = visibility
-    }
-
     public func hash(into hasher: inout Hasher) {
         hasher.combine(position.row)
         hasher.combine(position.col)
@@ -345,6 +333,50 @@ public class Tile: Hashable, ObservableObject {
     public static func == (lhs: Tile, rhs: Tile) -> Bool {
         return lhs.position.row == rhs.position.row && lhs.position.col == rhs.position.col
     }
+    
+    public func clone() -> Tile {
+        if let sp = specialResource {
+            return Tile(id: id,
+                        position: position,
+                        terrain: terrain,
+                        specialResource: sp)
+        }
+        else {
+            return Tile(id: id,
+                        position: position,
+                        terrain: terrain)
+        }
+    }
+    
+    public func getScore() -> Double {
+        return Double(food) + Double(production) + Double(trade) + defenseBonus
+    }
+    
+    private func getFood(terrain: Terrain) -> Int {
+        return 0
+    }
+    
+    internal func add(city: City) {
+        self.city = city
+    }
+    
+    public func canBuildCity() -> Bool {
+        if terrain.type == TerrainType.Ocean {
+            return false
+        }
+        
+        if city != nil {
+            return false
+        }
+        
+        return true
+    }
+    
+    public func set(visibility: Visibility) {
+        self.visibility = visibility
+    }
+
+
     
     public func add(movementModifier: MovementModifier) {
         self.movementModifier = movementModifier

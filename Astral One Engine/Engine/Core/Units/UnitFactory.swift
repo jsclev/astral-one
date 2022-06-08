@@ -1,10 +1,9 @@
 import Foundation
 
 public class UnitFactory {
-    public static func createUnit(tiledId: Int, row: Int, col: Int) -> Unit {
+    public static func createUnit(game: Game, tiledId: Int, row: Int, col: Int) -> Unit {
         let theme = Theme(id: 1, name: "Standard")
         let map = Map(mapId: 1, width: 1, height: 1)
-        let game = Game(theme: theme, map: map)
         
         switch tiledId {
         case 1:

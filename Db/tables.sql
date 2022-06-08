@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS tile;
 DROP TABLE IF EXISTS tech_command;
-DROP TABLE IF EXISTS settle_command;
+DROP TABLE IF EXISTS create_city_command;
 DROP TABLE IF EXISTS building_command;
 DROP TABLE IF EXISTS move_command;
 DROP TABLE IF EXISTS game_setting;
@@ -149,6 +149,9 @@ CREATE TABLE building (
     FOREIGN KEY (game_id) REFERENCES game (game_id)
 );
 
+-------------------------------------------------------------------------------
+-- Command tables
+-------------------------------------------------------------------------------
 CREATE TABLE command (
     command_id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
@@ -173,10 +176,12 @@ CREATE TABLE move_command (
     to_position INTEGER NOT NULL
 );
 
-CREATE TABLE settle_command (
+CREATE TABLE create_city_command (
     command_id INTEGER NOT NULL,
-    unit_type_id INTEGER NOT NULL,
-    city_id INTEGER NOT NULL
+    unit_id INTEGER NOT NULL,
+    city_id INTEGER NOT NULL,
+    FOREIGN KEY (command_id) REFERENCES command (command_id),
+    FOREIGN KEY (unit_id) REFERENCES unit (unit_id)
 );
 
 CREATE TABLE building_command (

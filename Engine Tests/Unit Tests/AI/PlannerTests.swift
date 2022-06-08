@@ -6,7 +6,7 @@ class PlannerTests: XCTestCase {
     func testGetActions1() throws {
         let theme = Theme(id: 1, name: "Test Theme")
         let map = Map(mapId: 1, width: 1, height: 1)
-        let game = Game(theme: theme, map: map)
+        let game = Game(theme: theme, map: map, db: TestUtils.getDb())
         let startState = Player(playerId: 1, game: game, map: map)
         let player = startState.clone()
         
@@ -23,7 +23,7 @@ class PlannerTests: XCTestCase {
     func testGetActions100() throws {
         let theme = Theme(id: 1, name: "Test Theme")
         let gameMap = Map(mapId: 1, width: 3, height: 3)
-        let game = Game(theme: theme, map: gameMap)
+        let game = Game(theme: theme, map: gameMap, db: TestUtils.getDb())
         
         let terrain00 = Terrain(id: 1,
                                 tiledId: 1,
@@ -82,7 +82,7 @@ class PlannerTests: XCTestCase {
                 p1Map.add(tile: Tile(id: tile.id,
                                      position: tile.position,
                                      terrain: tile.terrain))
-                p1Map.tile(at: position).isRevealed = true
+                p1Map.tile(at: position).set(visibility: Visibility.FullyRevealed)
                 
                 p2Map.add(tile: Tile(id: 100 + tile.id,
                                      position: tile.position,
@@ -102,14 +102,25 @@ class PlannerTests: XCTestCase {
                                 theme: theme,
                                 name: "Settler",
                                 position: Position(row: 0, col: 0))
-        p1.add(cityBuilder: p1Settler)
+        p1.add(cityCreator: p1Settler)
         let p1City = City(id: 1,
                           owner: p1,
                           theme: theme,
                           name: "Player 1 City 1",
                           assetName: "city-1",
                           position: Position(row: 0, col: 0))
-        p1.build(city: p1City, using: p1Settler)
+        
+        let createCityCmd = CreateCityCommand(player: p1,
+                                              type: CommandType(id: 1, name: ""),
+                                              turn: Turn(id: 1,
+                                                         year: 1,
+                                                         ordinal: 1,
+                                                         displayText: ""),
+                                              ordinal: 0,
+                                              cost: 0,
+                                              cityCreator: p1Settler,
+                                              cityName: "Test City")
+        createCityCmd.execute()
         
         p1City.create(settler: Settler(game: game,
                                        player: p1,
@@ -159,7 +170,7 @@ class PlannerTests: XCTestCase {
     func testGetActions101() throws {
         let theme = Theme(id: 1, name: "Test Theme")
         let gameMap = Map(mapId: 1, width: 3, height: 3)
-        let game = Game(theme: theme, map: gameMap)
+        let game = Game(theme: theme, map: gameMap, db: TestUtils.getDb())
         
         let terrain00 = Terrain(id: 1,
                                 tiledId: 1,
@@ -218,7 +229,7 @@ class PlannerTests: XCTestCase {
                 p1Map.add(tile: Tile(id: tile.id,
                                      position: tile.position,
                                      terrain: tile.terrain))
-                p1Map.tile(at: position).isRevealed = true
+                p1Map.tile(at: position).set(visibility: Visibility.FullyRevealed)
                 
                 p2Map.add(tile: Tile(id: 100 + tile.id,
                                      position: tile.position,
@@ -239,12 +250,12 @@ class PlannerTests: XCTestCase {
                           difficultyLevel: DifficultyLevel.Easy,
                           playStyle: PlayStyle(offense: 0.0, defense: 0.0))
         
-        let strategy = PlayerStrategy(attack: 10.0,
-                                      groundDefense: 20.0,
-                                      navalDefense: 20.0,
-                                      production: 25.0,
-                                      science: 25.0,
-                                      trade: 25.0)
+        //        let strategy = PlayerStrategy(attack: 10.0,
+        //                                      groundDefense: 20.0,
+        //                                      navalDefense: 20.0,
+        //                                      production: 25.0,
+        //                                      science: 25.0,
+        //                                      trade: 25.0)
         
         let p1Settler = Settler(game: game,
                                 player: p1,
@@ -556,128 +567,159 @@ class PlannerTests: XCTestCase {
     //        }
     //    }
     
-    func testGetActions99() throws {
-        let theme = Theme(id: 1, name: "test theme")
-        let map = Map(mapId: 1, width: 1, height: 1)
-        let game = Game(theme: theme, map: map)
-        let player = Player(playerId: 1, game: game, map: map)
-        let cityBuilder = Settler(game: game,
-                                  player: player,
-                                  theme: theme,
-                                  name: "Test Settler",
-                                  position: Position.zero)
-        let city = City(id: 1,
-                        owner: player,
-                        theme: theme,
-                        name: "test city",
-                        assetName: "city",
-                        position: Position.zero)
+    func testGetActions198() throws {
+        let theme = Theme(id: 1, name: "Standard")
+        let map = Map(mapId: 1, width: 8, height: 8)
+        let game = Game(theme: theme, map: map, db: TestUtils.getDb())
         
-        // let ai = RandomAI(game: game, player: player)
+        map.add(tile: TestUtils.makeTile(0, 0, TerrainType.Forest, SpecialResource.Pheasant))
+        map.add(tile: TestUtils.makeTile(1, 0, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 0, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 0, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 0, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(5, 0, TerrainType.Ocean))
+        map.add(tile: TestUtils.makeTile(6, 0, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(7, 0, TerrainType.Grassland))
         
-        // let createUnitType = CommandType(id: 1, name: "Create Unit")
-        // let moveUnitType = CommandType(id: 1, name: "Move Unit")
+        map.add(tile: TestUtils.makeTile(0, 1, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(1, 1, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 1, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 1, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 1, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(5, 1, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(6, 1, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(7, 1, TerrainType.Grassland))
         
-        // let turn1 = Turn(id: 1, year: -4000, ordinal: 1, displayText: "4000 BC")
+        map.add(tile: TestUtils.makeTile(0, 2, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(1, 2, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 2, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 2, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 2, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(5, 2, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(6, 2, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(7, 2, TerrainType.Grassland))
         
-        player.build(city: city, using: cityBuilder)
-        player.addAvailable(researchAction: ResearchPotteryAction(game: game, player: player))
-        player.addAvailable(researchAction: ResearchAlphabetAction(game: game, player: player))
-        player.addAvailable(researchAction: ResearchWarriorCodeAction(game: game, player: player))
-        player.addAvailable(researchAction: ResearchHorsebackRidingAction(game: game, player: player))
-        player.addAvailable(researchAction: ResearchBronzeWorkingAction(game: game, player: player))
-        player.addAvailable(researchAction: ResearchMasonryAction(game: game, player: player))
-        player.addAvailable(researchAction: ResearchCeremonialBurialAction(game: game, player: player))
-        //        city.addAvailable(action: CreateSettlerCommand(commandId: 1,
-        //                                                       game: game,
-        //                                                       turn: turn1,
-        //                                                       player: player,
-        //                                                       type: createUnitType,
-        //                                                       ordinal: 0,
-        //                                                       city: city))
-        //        city.addAvailable(action: BuildBarracksCommand())
-        //        city.addAvailable(action: CreateInfantry1Action())
+        map.add(tile: TestUtils.makeTile(0, 3, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(1, 3, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 3, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 3, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 3, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(5, 3, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(6, 3, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(7, 3, TerrainType.Grassland))
         
-//        let workingCopy = player.clone()
-//        let workingCity = workingCopy.map.cities[0]
-//        let cityActions = Array(workingCity.getAvailableActions())
-//
-//        Array(workingCopy.getAvailableActions())[0].execute()
-//        cityActions[0].execute()
-//        cityActions[1].execute()
-//
-//        XCTAssertFalse(city.has(building: BuildingType.Barracks))
-//        XCTAssertEqual(player.units.count, 0)
-//
-//        XCTAssertTrue(workingCity.has(building: BuildingType.Barracks))
-//        XCTAssertEqual(workingCopy.units.count, 1)
+        map.add(tile: TestUtils.makeTile(0, 4, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(1, 4, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 4, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 4, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 4, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(5, 4, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(6, 4, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(7, 4, TerrainType.Grassland))
+        
+        map.add(tile: TestUtils.makeTile(0, 5, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(1, 5, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 5, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 5, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 5, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(5, 5, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(6, 5, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(7, 5, TerrainType.Grassland))
+        
+        map.add(tile: TestUtils.makeTile(0, 6, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(1, 6, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 6, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 6, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 6, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(5, 6, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(6, 6, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(7, 6, TerrainType.Grassland))
+        
+        map.add(tile: TestUtils.makeTile(0, 7, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(1, 7, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 7, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 7, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 7, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(5, 7, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(6, 7, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(7, 7, TerrainType.Grassland))
+        
+        map.revealAllTiles()
+        
+        let aiPlayer = AIPlayer(playerId: 1,
+                                game: game,
+                                map: map,
+                                skillLevel: SkillLevel.One,
+                                difficultyLevel: DifficultyLevel.Easy,
+                                playStyle: PlayStyle.init(offense: 0.5, defense: 0.5))
+        let aiSettler = Settler(game: game,
+                                player: aiPlayer,
+                                theme: theme,
+                                name: "Settler",
+                                position: Position(row: 1, col: 1))
+        XCTAssertNil(aiPlayer.map.tile(at: Position(row: 2, col: 2)).city)
+
+        let moveCmd = MoveUnitCommand(player: aiPlayer,
+                                      type: CommandType(id: 1, name: ""),
+                                      turn: Turn(id: 1,
+                                                 year: 1,
+                                                 ordinal: 1,
+                                                 displayText: "Move command"),
+                                      ordinal: 1,
+                                      unit: aiSettler,
+                                      to: Position(row: 2, col: 2))
+        let createCityCmd = CreateCityCommand(player: aiPlayer,
+                                              type: CommandType(id: 1, name: ""),
+                                              turn: Turn(id: 1,
+                                                         year: 1,
+                                                         ordinal: 1,
+                                                         displayText: "Move command"),
+                                              ordinal: 2,
+                                              cost: 0,
+                                              cityCreator: aiSettler,
+                                              cityName: "New York City")
+        moveCmd.execute()
+        createCityCmd.execute()
+        
+        XCTAssertNotNil(aiPlayer.map.tile(at: Position(row: 2, col: 2)).city)
+        
+        let agent = try SettlerAgent(player: aiPlayer, settler: aiSettler)
+        let cityRadiusScores = agent.getCityRadiusScores()
+        
+        for (key, value) in cityRadiusScores {
+            print("[\(key.row), \(key.col)]: \(value)")
+        }
+        
+        print(cityRadiusScores)
+        
+        let commands = game.db.commandDao.getCommands(gameId: 1)
+        
+        for command in commands {
+            command.execute()
+        }
         
     }
     
     func testGetActions98() throws {
         let theme = Theme(id: 1, name: "Standard")
         let map = Map(mapId: 1, width: 3, height: 3)
-        let game = Game(theme: theme, map: map)
+        let game = Game(theme: theme, map: map, db: TestUtils.getDb())
         let player = Player(playerId: 1, game: game, map: map)
         let player2 = Player(playerId: 2, game: game, map: map)
         // let turn1 = Turn(id: 1, year: -4000, ordinal: 1, displayText: "4000 BC")
         // let createUnitType = CommandType(id: 1, name: "Create Unit")
         // let moveUnitType = CommandType(id: 1, name: "Move Unit")
         
-        map.add(tile: Tile(id: 1,
-                           position: Position(row: 0, col: 0),
-                           terrain: Terrain(id: 1,
-                                            tiledId: 1,
-                                            name: "Grass",
-                                            type: TerrainType.Grassland)))
-        map.add(tile: Tile(id: 1,
-                           position: Position(row: 0, col: 1),
-                           terrain: Terrain(id: 1,
-                                            tiledId: 1,
-                                            name: "Forest",
-                                            type: TerrainType.Forest)))
-        map.add(tile: Tile(id: 1,
-                           position: Position(row: 0, col: 2),
-                           terrain: Terrain(id: 1,
-                                            tiledId: 1,
-                                            name: "Hills",
-                                            type: TerrainType.Hills)))
-        map.add(tile: Tile(id: 1,
-                           position: Position(row: 1, col: 0),
-                           terrain: Terrain(id: 1,
-                                            tiledId: 1,
-                                            name: "Mountain",
-                                            type: TerrainType.Mountains)))
-        map.add(tile: Tile(id: 1,
-                           position: Position(row: 1, col: 1),
-                           terrain: Terrain(id: 1,
-                                            tiledId: 1,
-                                            name: "Jungle",
-                                            type: TerrainType.Jungle)))
-        map.add(tile: Tile(id: 1,
-                           position: Position(row: 1, col: 2),
-                           terrain: Terrain(id: 1,
-                                            tiledId: 1,
-                                            name: "Swamp",
-                                            type: TerrainType.Swamp)))
-        map.add(tile: Tile(id: 1,
-                           position: Position(row: 2, col: 0),
-                           terrain: Terrain(id: 1,
-                                            tiledId: 1,
-                                            name: "Desert",
-                                            type: TerrainType.Desert)))
-        map.add(tile: Tile(id: 1,
-                           position: Position(row: 2, col: 1),
-                           terrain: Terrain(id: 1,
-                                            tiledId: 1,
-                                            name: "Plains",
-                                            type: TerrainType.Plains)))
-        map.add(tile: Tile(id: 1,
-                           position: Position(row: 2, col: 2),
-                           terrain: Terrain(id: 1,
-                                            tiledId: 1,
-                                            name: "Tundra",
-                                            type: TerrainType.Tundra)))
+        map.add(tile: TestUtils.makeTile(0, 0, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(0, 1, TerrainType.Forest))
+        map.add(tile: TestUtils.makeTile(0, 2, TerrainType.Hills))
+        map.add(tile: TestUtils.makeTile(1, 0, TerrainType.Mountains))
+        map.add(tile: TestUtils.makeTile(1, 1, TerrainType.Jungle))
+        map.add(tile: TestUtils.makeTile(1, 2, TerrainType.Swamp))
+        map.add(tile: TestUtils.makeTile(2, 0, TerrainType.Desert))
+        map.add(tile: TestUtils.makeTile(2, 1, TerrainType.Plains))
+        map.add(tile: TestUtils.makeTile(2, 2, TerrainType.Tundra))
+        
         var maxDefense = 0.0
         var actionPlan: [Action] = []
         var cityPosition = Position(row: 0, col: 0)
@@ -689,6 +731,7 @@ class PlannerTests: XCTestCase {
         
         for row in 0..<3 {
             for col in 0..<3 {
+                let turn = Turn(id: -1, year: 0, ordinal: 0, displayText: "test turn")
                 let playerCopy = player.clone()
                 let position = Position(row: row, col: col)
                 
@@ -697,11 +740,23 @@ class PlannerTests: XCTestCase {
                                       theme: theme,
                                       name: "Settler",
                                       position: position)
-                let buildCity = BuildCityAction(game: game,
-                                                player: playerCopy,
-                                                cityBuilder: settler)
-                buildCity.execute()
+                let city = City(id: Constants.noId,
+                                owner: playerCopy,
+                                theme: game.theme,
+                                name: "test city",
+                                assetName: "test asset name",
+                                position: settler.position)
+                let createCity = CreateCityCommand(player: playerCopy,
+                                                   type: CommandType.init(id: 1, name: "test"),
+                                                   turn: turn,
+                                                   ordinal: 1,
+                                                   cost: 0,
+                                                   cityCreator: settler,
+                                                   cityName: "Test city")
+                createCity.execute()
                 actionPlan = []
+                
+                XCTAssertNotNil(playerCopy.map.tile(at: position).city)
                 
                 if let city = playerCopy.getCity(at: position) {
                     city.addAvailable(action: CreateSettlerAction(game: game,
@@ -829,12 +884,6 @@ class PlannerTests: XCTestCase {
         //                              name: "Settler",
         //                              position: Position(row: 1, col: 1))
         //        workingCopy.add(cityBuilder: settler)
-        //
-        //        let buildCityAction = BuildCityAction(game: game,
-        //                                              player: workingCopy,
-        //                                              cityBuilder: settler)
-        //
-        //        XCTAssertEqual(buildCityAction.cost, 0)
         //
         //        XCTAssertEqual(player.cities.count, 0)
         //        XCTAssertEqual(workingCopy.cities.count, 0)

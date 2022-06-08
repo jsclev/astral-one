@@ -47,7 +47,7 @@ class PathfinderScene: SKScene {
         self.mapViewModel = mapViewModel
 
         db = Db(fullRefresh: true)
-        game = Game(theme: theme, map: Map(mapId: 1, width: 1, height: 1))
+        game = Game(theme: theme, map: Map(mapId: 1, width: 1, height: 1), db: db)
         tilesetName = theme.name + " Tile Set"
         tileSet = SKTileSet(named: tilesetName)!
         mapIconsTileset = SKTileSet(named: mapIconsTilesetName)
@@ -201,11 +201,11 @@ class PathfinderScene: SKScene {
             let position = Position(row: Int.random(in: 0..<game.map.height),
                                     col: Int.random(in: 0..<game.map.width))
             
-            if position.row % 2 == 0 {
-                player.map.tile(at: position).set(visibility: Visibility.FullyRevealed)
-            }
+//            if position.row % 2 == 0 {
+//                player.map.tile(at: position).set(visibility: Visibility.FullyRevealed)
+//            }
             
-            let cityBuilder = Settler(game: game,
+            let settler = Settler(game: game,
                                       player: player,
                                       theme: game.theme,
                                       name: "Settler",
@@ -218,8 +218,7 @@ class PathfinderScene: SKScene {
                             position: position)
 //            city1.build(BuildingType.Barracks)
 //            city1.build(BuildingType.CityWalls)
-//
-            player.add(cityBuilder: cityBuilder)
+            player.add(cityCreator: settler)
 //            player.build(city: city, using: cityBuilder)
             
             let createInfantry1Action = CreateInfantry1Action(game: game, player: player, city: city)
@@ -232,6 +231,9 @@ class PathfinderScene: SKScene {
             createInfantry3Action.execute()
             createInfantry4Action.execute()
         }
+        
+        let fowGenerator = FogOfWarGenerator(player: player)
+        fowGenerator.generate()
         
         let tileset = SKTileSet(named: tilesetName)
         

@@ -4,11 +4,27 @@ public class MoveUnitCommand: Command {
     private let unit: Unit
     private let to: Position
     
-    public init(commandId: Int,
-                game: Game,
+    public init(player: Player,
+                type: CommandType,
                 turn: Turn,
+                ordinal: Int,
+                unit: Unit,
+                to: Position) {
+        self.unit = unit
+        self.to = to
+        
+        super.init(commandId: Constants.noId,
+                   player: player,
+                   type: type,
+                   turn: turn,
+                   ordinal: ordinal,
+                   cost: 10)
+    }
+    
+    public init(commandId: Int,
                 player: Player,
                 type: CommandType,
+                turn: Turn,
                 ordinal: Int,
                 unit: Unit,
                 to: Position) {
@@ -16,10 +32,9 @@ public class MoveUnitCommand: Command {
         self.to = to
         
         super.init(commandId: commandId,
-                   game: game,
-                   turn: turn,
                    player: player,
                    type: type,
+                   turn: turn,
                    ordinal: ordinal,
                    cost: 10)
     }
@@ -31,13 +46,5 @@ public class MoveUnitCommand: Command {
     public override func execute() {
         unit.move(to: to)
         
-//        player.addAvailable(command: MoveUnitCommand(commandId: -1,
-//                                                     game: game,
-//                                                     turn: turn,
-//                                                     player: player,
-//                                                     type: nil,
-//                                                     ordinal: ordinal + 1,
-//                                                     unit: unit,
-//                                                     to: Position(row: to.row - 1, col: to.col)))
     }
 }

@@ -165,7 +165,7 @@ public class UnitDAO: BaseDAO {
         return returnMap
     }
     
-    public func getUnits(gameId: Int) throws -> [Unit] {
+    public func getUnits(game: Game) throws -> [Unit] {
         var units: [Unit] = []
         
         var stmt: OpaquePointer?
@@ -191,7 +191,7 @@ public class UnitDAO: BaseDAO {
             LEFT OUTER JOIN
                 tile ON tile.tile_id = unit.tile_id
             WHERE
-                unit.game_id = \(gameId)
+                unit.game_id = 1
         """
         
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
@@ -209,7 +209,8 @@ public class UnitDAO: BaseDAO {
                    let unitTypeDisplayName = try getString(stmt: stmt, colIndex: 5),
                    let themeName = try getString(stmt: stmt, colIndex: 10) {
                     let theme = Theme(id: themeId, name: themeName)
-                    units.append(getUnit(theme: theme,
+                    units.append(getUnit(game: game,
+                                         theme: theme,
                                          typeName: unitTypeName,
                                          name: unitTypeDisplayName,
                                          row: row,
@@ -223,13 +224,13 @@ public class UnitDAO: BaseDAO {
         return units
     }
     
-    private func getUnit(theme: Theme,
+    private func getUnit(game: Game,
+                         theme: Theme,
                          typeName: String,
                          name: String,
                          row: Int,
                          col: Int) -> Unit {
         let map = Map(mapId: 1, width: 1, height: 1)
-        let game = Game(theme: theme, map: map)
         let player = Player(playerId: 1, game: game, map: map)
         
         switch typeName {

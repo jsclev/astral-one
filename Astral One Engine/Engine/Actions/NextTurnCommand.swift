@@ -4,17 +4,15 @@ import SpriteKit
 public class NextTurnCommand: Command {
     
     public init(commandId: Int,
-                game: Game,
-                turn: Turn,
                 player: Player,
                 type: CommandType,
+                turn: Turn,
                 ordinal: Int) {
         
         super.init(commandId: commandId,
-                   game: game,
-                   turn: turn,
                    player: player,
                    type: type,
+                   turn: turn,
                    ordinal: ordinal,
                    cost: 0)
     }
@@ -24,6 +22,6 @@ public class NextTurnCommand: Command {
     }
     
     public override func execute() {
-        game.nextTurn()
+        player.game.nextTurn()
     }
 }

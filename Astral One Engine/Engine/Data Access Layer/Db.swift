@@ -4,12 +4,13 @@ import SQLite3
 
 public class Db {
     //    let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Db")
-    var dbPointer: OpaquePointer?
+    var db: OpaquePointer?
     let dbFilename = "civitas"
     let dbExtension = "sqlite"
     
     public let cityDao: CityDAO
     public let commandDao: CommandDAO
+    public let buildCityCommandDao: BuildCityCommandDAO
     public let gameDao: GameDAO
     public let mapDao: MapDAO
     public let terrainDao: TerrainDAO
@@ -64,10 +65,10 @@ public class Db {
         let dbPath = documentsUrl.appendingPathComponent("\(dbFilename).\(dbExtension)").path
         
         var rc: Int32
-        rc = sqlite3_open_v2(dbPath, &dbPointer, SQLITE_OPEN_READWRITE, nil)
+        rc = sqlite3_open_v2(dbPath, &db, SQLITE_OPEN_READWRITE, nil)
         
         if (rc != SQLITE_OK) {
-            let sqliteMsg = String(cString: sqlite3_errmsg(dbPointer))
+            let sqliteMsg = String(cString: sqlite3_errmsg(db))
             let errMsg = "Failed to open database connection to " + dbPath + ".  " + sqliteMsg
             print(errMsg)
             // throw SQLiteError.OpenDatabase(message: errMsg)
@@ -76,28 +77,29 @@ public class Db {
         // Enable foreign keys (they are off by default in SQLite as of version 3.34)
         let pragma = "PRAGMA foreign_keys = ON;"
         var stmt: OpaquePointer?
-        if sqlite3_prepare_v2(dbPointer, pragma, -1, &stmt, nil) == SQLITE_OK {
+        if sqlite3_prepare_v2(db, pragma, -1, &stmt, nil) == SQLITE_OK {
             if sqlite3_step(stmt) == SQLITE_DONE {
                 // logger.debug("Turned on foreign keys using command \"\(pragma, privacy: .public)\"")
             } else {
-                let errMsg = String(cString: sqlite3_errmsg(dbPointer)!)
+                let errMsg = String(cString: sqlite3_errmsg(db)!)
                 print(errMsg)
                 // throw SQLiteError.OpenDatabase(message: errMsg)
             }
         } else {
-            let errMsg = String(cString: sqlite3_errmsg(dbPointer)!)
+            let errMsg = String(cString: sqlite3_errmsg(db)!)
             print(errMsg)
             // throw SQLiteError.OpenDatabase(message: errMsg)
         }
         
         sqlite3_finalize(stmt)
         
-        cityDao = CityDAO(conn: dbPointer)
-        commandDao = CommandDAO(conn: dbPointer)
-        gameDao = GameDAO(conn: dbPointer)
-        mapDao = MapDAO(conn: dbPointer)
-        terrainDao = TerrainDAO(conn: dbPointer)
-        unitDao = UnitDAO(conn: dbPointer)
+        cityDao = CityDAO(conn: db)
+        commandDao = CommandDAO(conn: db, cityDao: cityDao)
+        buildCityCommandDao = BuildCityCommandDAO(conn: db, commandDao: commandDao, cityDao: cityDao)
+        gameDao = GameDAO(conn: db)
+        mapDao = MapDAO(conn: db)
+        terrainDao = TerrainDAO(conn: db)
+        unitDao = UnitDAO(conn: db)
     }
     
     public func getGameBy(gameId: Int) throws -> Game {
@@ -111,7 +113,7 @@ public class Db {
         let player5Map = try mapDao.get(gameId: gameId)
         let player6Map = try mapDao.get(gameId: gameId)
 
-        let game = Game(theme: theme, map: player1Map)
+        let game = Game(theme: theme, map: player1Map, db: self)
 
         let player1 = Player(playerId: 1, game: game, map: player1Map)
         let player2 = Player(playerId: 1, game: game, map: player2Map)
@@ -120,8 +122,8 @@ public class Db {
         let player5 = Player(playerId: 1, game: game, map: player5Map)
         let player6 = Player(playerId: 1, game: game, map: player6Map)
 
-        let cities = try cityDao.getCities(gameId: 1)
-        let units = try unitDao.getUnits(gameId: 1)
+        let cities = try cityDao.getCities(game: game)
+        let units = try unitDao.getUnits(game: game)
 
         for city in cities {
             player1.map.tile(at: city.position).add(city: city)

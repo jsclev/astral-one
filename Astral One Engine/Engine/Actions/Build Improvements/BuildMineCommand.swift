@@ -19,10 +19,9 @@ public class BuildMineCommand: Command {
         self.position = position
         
         super.init(commandId: commandId,
-                   game: game,
-                   turn: turn,
                    player: player,
                    type: type,
+                   turn: turn,
                    ordinal: ordinal,
                    cost: 25)
     }

@@ -32,10 +32,12 @@ public class Game: ObservableObject {
     public let map: Map
     public let theme: Theme
     public var commands: [Command] = []
+    public let db: Db
 
-    public init(theme: Theme, map: Map) {
+    public init(theme: Theme, map: Map, db: Db) {
         self.theme = theme
         self.map = map
+        self.db = db
     }
     
     public func addPlayer(player: Player) {

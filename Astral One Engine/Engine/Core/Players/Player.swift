@@ -7,7 +7,7 @@ public class Player: ObservableObject {
     public let playerId: Int
     public let game: Game
     public let map: Map
-    public var cityBuilders: [CityBuilder] = []
+    public var cityBuilders: [CityCreator] = []
     @Published public var units: [Unit] = []
     public var advances: [Advance] = []
     public var availableResearchActions: Set<Action> = []
@@ -175,7 +175,7 @@ public class Player: ObservableObject {
         return diff
     }
     
-    public func build(city: City, using: CityBuilder) {
+    internal func build(city: City, using: CityCreator) {
         map.add(city: city)
         city.addPopulation(amount: 1)
         
@@ -200,8 +200,8 @@ public class Player: ObservableObject {
         availableCityActions.append(cityAction)
     }
     
-    public func add(cityBuilder: CityBuilder) {
-        cityBuilders.append(cityBuilder)
+    public func add(cityCreator: CityCreator) {
+        cityBuilders.append(cityCreator)
 //        availableCommands.append(BuildCityCommand(commandId: <#T##Int#>,
 //                                                  game: <#T##Game#>,
 //                                                  turn: <#T##Turn#>,
@@ -283,6 +283,44 @@ public class Player: ObservableObject {
         tile.set(visibility: Visibility.FullyRevealed)
         
         map.add(tile: tile)
+    }
+    
+    public func getTilesWithinCityRadius(from: Position) -> [Tile] {
+        var cityRadiusTiles: [Tile] = []
+        var positions: [Position] = []
+        
+        let startRow = from.row - 2
+        let endRow = from.row + 2
+        let startCol = from.col - 2
+        let endCol = from.col + 2
+        
+        for row in startRow...endRow {
+            for col in startCol...endCol {
+                // We don't add the outer corners in the city radius
+                if row == startRow && col == startCol ||
+                    row == endRow && col == startCol ||
+                    row == startRow && col == endCol ||
+                    row == endRow && col == endCol {
+                    continue
+                }
+                else {
+                    positions.append(Position(row: row, col: col))
+                }
+            }
+        }
+        
+        positions = positions.filter{
+            $0.row >= 0 &&
+            $0.row < map.height &&
+            $0.col >= 0 &&
+            $0.col < map.width
+        }
+        
+        for position in positions {
+            cityRadiusTiles.append(map.tile(at: position))
+        }
+        
+        return cityRadiusTiles
     }
     
     public func clone() -> Player {
