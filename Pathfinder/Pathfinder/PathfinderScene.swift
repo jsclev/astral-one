@@ -29,7 +29,6 @@ class PathfinderScene: SKScene {
     var initialCameraScale = 1.0
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
     var tilesetName: String
-    let filename: String = "freeland"
     let mapIconsTilesetName: String = "Map Icons"
     let mapName = "terrain"
     var mapIconsTileset: SKTileSet!
@@ -40,7 +39,7 @@ class PathfinderScene: SKScene {
     var previousCameraPoint = CGPoint.zero
     var startTouchPos = CGPoint.zero
     let tileSet: SKTileSet
-    let theme = Theme(id: 2, name: "Sci-Fi")
+    let theme = Theme(id: 2, name: Constants.themeName)
     var mapView: MapView!
     
     init(mapViewModel: MapViewModel) {
@@ -49,7 +48,14 @@ class PathfinderScene: SKScene {
         db = Db(fullRefresh: true)
         game = Game(theme: theme, map: Map(mapId: 1, width: 1, height: 1), db: db)
         tilesetName = theme.name + " Tile Set"
-        tileSet = SKTileSet(named: tilesetName)!
+        
+        if let ts = SKTileSet(named: tilesetName) {
+            tileSet = ts
+        }
+        else {
+            fatalError("Unable to find \"\(tilesetName)\" tile set.")
+        }
+        
         mapIconsTileset = SKTileSet(named: mapIconsTilesetName)
         
         super.init(size: UIScreen.main.bounds.size)
@@ -65,9 +71,6 @@ class PathfinderScene: SKScene {
         let translation = sender.translation(in: sender.view)
         let magnitude = sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y))
         
-        print("Touch location \(location), translation \(translation), velocity \(velocity), magnitude \(magnitude)")
-
-
         mapViewModel.moveCamera(translation: CGSize(width: translation.x,
                                                     height: translation.y))
         gameCamera.position = mapViewModel.cameraPosition
@@ -78,8 +81,8 @@ class PathfinderScene: SKScene {
         case .began:
             startTouchPos = location
             mapViewModel.resetCamera()
-        case .changed:
-            print("Current camera location \(gameCamera.position)")
+//        case .changed:
+//            print("Current camera location \(gameCamera.position)")
         case .cancelled, .ended, .failed, .possible:
 //            print("Last touch location \(location)")
 //            print("Pan velocity \(velocity)")
@@ -114,11 +117,8 @@ class PathfinderScene: SKScene {
 //            dynamicAnimator.removeBehavior(attachment)
 //            dynamicAnimator.addBehavior(push)
             mapViewModel.resetCamera()
-
         default:
-            print("Drag")
-//            print("Last touch location \(location)")
-//            print("Pan velocity \(velocity)")
+            let hello = ""
         }
     }
     
@@ -137,7 +137,7 @@ class PathfinderScene: SKScene {
         let touchedNodes = nodes(at: location)
         
         for touchedNode in touchedNodes {
-            print("Touched node: \(touchedNode)")
+            print(touchedNode.name)
         }
         
         if !touchedNodes.isEmpty && touchedNodes[0].name == "set-start-position" {
@@ -176,7 +176,7 @@ class PathfinderScene: SKScene {
         view.addGestureRecognizer(panGesture)
         
         do {
-            try db.mapDao.importTiledMap(filename: filename)
+            try db.mapDao.importTiledMap(filename: Constants.mapFilename)
             game = try db.getGameBy(gameId: 1)
         }
         catch {
@@ -232,10 +232,16 @@ class PathfinderScene: SKScene {
             createInfantry4Action.execute()
         }
         
-        let fowGenerator = FogOfWarGenerator(player: player)
-        fowGenerator.generate()
-        
+//        let fowGenerator = FogOfWarGenerator(player: player)
+//        fowGenerator.generate()
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
+                player.map.tile(at: Position(row: row, col: col)).set(visibility: Visibility.FullyRevealed)
+            }
+        }
         let tileset = SKTileSet(named: tilesetName)
+        
+//        addInitialSettler(player: player)
         
         mapView = MapView(player: player, scene: self, tileset: tileset!)
         mapView.setScene(scene: self)
@@ -243,6 +249,52 @@ class PathfinderScene: SKScene {
         entityManager = EntityManager(scene: self)
         contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
         founderContextMenu = FounderContextMenu(game: game, parent: self, mapView: mapView)
+        
+    }
+    
+    private func addInitialSettler(player: Player) {
+        let minRow = 0
+        let maxRow = player.map.height
+        let minCol = 0
+        let maxCol = player.map.width
+        
+        var foundTile = false
+        var tile = player.map.tile(at: Position(row: 0, col: 0))
+        
+        while !foundTile {
+            let randomRow = Int.random(in: minRow...maxRow)
+            let randomCol = Int.random(in: minCol...maxCol)
+            
+            tile = player.map.tile(at: Position(row: randomRow, col: randomCol))
+            
+            if tile.canBuildCity() {
+                foundTile = true
+                print("Adding Settler to [\(randomRow), \(randomCol)]")
+            }
+        }
+        
+        let settler1 = Settler(game: game,
+                              player: player,
+                              theme: game.theme,
+                              name: "Settler",
+                              position: tile.position)
+        let settler2 = Settler(game: game,
+                               player: player,
+                               theme: game.theme,
+                               name: "Settler2",
+                               position: tile.position)
+        
+        player.add(cityCreator: settler1)
+//        player.add(cityCreator: settler2)
+        
+        let createCityCmd = CreateCityCommand(player: player,
+                                              type: CommandType(id: 1, name: ""),
+                                              turn: player.game.getCurrentTurn(),
+                                              ordinal: 1,
+                                              cost: 0,
+                                              cityCreator: settler1,
+                                              cityName: "New York")
+        // createCityCmd.execute()
     }
     
     func printDate(string: String) {

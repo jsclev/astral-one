@@ -7,7 +7,7 @@ public class Player: ObservableObject {
     public let playerId: Int
     public let game: Game
     public let map: Map
-    public var cityBuilders: [CityCreator] = []
+    @Published public var cityCreators: [CityCreator] = []
     @Published public var units: [Unit] = []
     public var advances: [Advance] = []
     public var availableResearchActions: Set<Action> = []
@@ -177,15 +177,14 @@ public class Player: ObservableObject {
     
     internal func build(city: City, using: CityCreator) {
         map.add(city: city)
-        city.addPopulation(amount: 1)
         
 //        for action in availableCityActions {
 //            city.addAvailable(action: action)
 //        }
 
         // City builders are consumed when the city is built
-        if let index = cityBuilders.lastIndex(of: using) {
-            cityBuilders.remove(at: index)
+        if let index = cityCreators.lastIndex(of: using) {
+            cityCreators.remove(at: index)
         }
 
 //        if let index = units.lastIndex(of: using) {
@@ -201,7 +200,7 @@ public class Player: ObservableObject {
     }
     
     public func add(cityCreator: CityCreator) {
-        cityBuilders.append(cityCreator)
+        cityCreators.append(cityCreator)
 //        availableCommands.append(BuildCityCommand(commandId: <#T##Int#>,
 //                                                  game: <#T##Game#>,
 //                                                  turn: <#T##Turn#>,

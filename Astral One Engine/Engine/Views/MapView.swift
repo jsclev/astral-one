@@ -9,13 +9,11 @@ public class MapView {
     var debug = true
     var cameraScale = 1.0
     var initialCameraScale = 1.0
-    let filename: String = "freeland"
     let mapIconsTilesetName: String = "Map Icons"
     let mapName = "terrain"
     let tileset: SKTileSet
     var mapIconsTileset: SKTileSet!
     var pathMap: SKTileMapNode
-    let tileSize = CGSize(width: 96, height: 48)
     private let terrainLayer: TileMapLayer
     var startPosition = SIMD2<Int32>(0, 0)
     var endPosition = SIMD2<Int32>(0, 0)
@@ -29,7 +27,7 @@ public class MapView {
         pathMap = SKTileMapNode(tileSet: tileset,
                                 columns: player.map.width,
                                 rows: player.map.height,
-                                tileSize: tileSize)
+                                tileSize: Constants.tileSize)
         pathMap.name = "terrain"
         pathMap.zPosition = Layer.unitPath
         pathMap.position = CGPoint.zero
@@ -40,19 +38,32 @@ public class MapView {
         let _ = SpecialResourceMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = TileStatsMapLayer(player: player, scene: scene, mapView: self)
         
-//        player.$units
-//            .dropFirst()
-//            .sink(receiveValue: { units in
-//                if let unit = units.last {
-//                    let unitNode = UnitNode(game: self.game,
-//                                            unit: unit,
-//                                            mapView: self)
-//                    unitNode.position = self.getCenterPointOf(position: unit.position)
-//                    unitNode.zPosition = Layer.contextMenu
-//                    self.scene.addChild(unitNode)
-//                }
-//            })
-//            .store(in: &cancellable)
+        player.$units
+            .dropFirst()
+            .sink(receiveValue: { units in
+                if let unit = units.last {
+                    let unitNode = UnitNode(player: self.player,
+                                            unit: unit,
+                                            mapView: self)
+                    unitNode.position = self.getCenterPointOf(position: unit.position)
+                    unitNode.zPosition = Layer.contextMenu
+                    self.scene.addChild(unitNode)
+                }
+            })
+            .store(in: &cancellable)
+        
+        player.$cityCreators
+            .sink(receiveValue: { cityCreators in
+                if let cityCreator = cityCreators.last {
+                    let unitNode = UnitNode(player: self.player,
+                                            unit: cityCreator,
+                                            mapView: self)
+                    unitNode.position = self.getCenterPointOf(position: cityCreator.position)
+                    unitNode.zPosition = Layer.contextMenu
+                    self.scene.addChild(unitNode)
+                }
+            })
+            .store(in: &cancellable)
     }
     
     required init?(coder aDecoder: NSCoder) {

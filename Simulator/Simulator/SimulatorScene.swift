@@ -47,7 +47,7 @@ class GameScene: SKScene {
                                attributes: [FileAttributeKey.creationDate: Date()])
         
         let gridGraph = GridGraph(width: 0, height: 0)
-        gridGraph.add(node: Node(row: 0, col: 0))
+        // gridGraph.add(node: Node(row: 0, col: 0))
         
 //        let db = Db(fullRefresh: true)
 //        let game = Game(db: db)
@@ -61,18 +61,16 @@ class GameScene: SKScene {
         
         
         printDate(string: "Starting: ")
-        var moveCommands: [MoveCommand] = []
+        var moveCommands: [MoveUnitCommand] = []
 //        let newCommands: [MoveCommand] = []
 
         //        if let fileHandle = try? FileHandle(forWritingTo: fileUrl) {
         for _ in 0..<1000000 {
-            moveCommands.append(MoveCommand(commandId: -1,
-                                            gameId: 1,
-                                            turn: turn,
-                                            playerId: 1,
-                                            type: commandType,
-                                            ordinal: 1,
-                                            unit: Infantry1(playerId: 1,
+            moveCommands.append(MoveUnitCommand(player: player,
+                                                type: commandType,
+                                                turn: turn,
+                                                ordinal: 1,
+                                                unit: Infantry1(playerId: 1,
                                                             name: "Warrior",
                                                             row: 0,
                                                             col: 0),

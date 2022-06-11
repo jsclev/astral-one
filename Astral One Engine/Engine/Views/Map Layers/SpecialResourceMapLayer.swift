@@ -3,13 +3,12 @@ import Combine
 import SpriteKit
 
 public class SpecialResourceMapLayer {
-    let tileSize = CGSize(width: 96, height: 48)
 
     public init(player: Player, scene: SKScene, mapView: MapView, tileSet: SKTileSet) {
         let node = SKTileMapNode(tileSet: tileSet,
                                  columns: player.map.width,
                                  rows: player.map.height,
-                                 tileSize: tileSize)
+                                 tileSize: Constants.tileSize)
         node.name = "tile stats"
         node.zPosition = Layer.tileStats
         node.position = CGPoint.zero

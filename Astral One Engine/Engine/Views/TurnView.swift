@@ -15,8 +15,10 @@ public class TurnView {
         yearNode.fontSize = 20
         yearNode.horizontalAlignmentMode = .right
         yearNode.zPosition = Layer.hud
-        yearNode.position = CGPoint(x: 310, y: 160)
+        yearNode.position = CGPoint(x: 490, y: 340)
         parent.addChild(yearNode)
+        
+        print(parent.frame.width)
         
         self.game.$turnIndex
             .sink(receiveValue: { _ in

@@ -33,7 +33,6 @@ public class MapViewModel {
 //            scale = 3.35
 //        }
 //
-        print(scale)
     }
     
     public func changeMap(mapName: String) {
@@ -47,8 +46,6 @@ public class MapViewModel {
     public func moveCamera(translation: CGSize) {
         cameraPosition.x = startCameraPosition.x - translation.width
         cameraPosition.y = startCameraPosition.y + translation.height
-        
-        print("[\(cameraPosition.x),\(cameraPosition.y),\(scale)]")
         
         let xThreshold = 2150.0
         let yTheshold = 1150.0

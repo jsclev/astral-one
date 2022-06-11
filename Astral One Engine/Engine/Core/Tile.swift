@@ -293,9 +293,20 @@ public class Tile: Hashable, ObservableObject {
 
             defenseBonus = 1.0
         case TerrainType.Plains:
-            food = 1
-            production = 1
-            trade = 0
+            if specialResource == SpecialResource.Buffalo {
+                food = 1
+                production = 3
+                trade = 0
+            }
+            else if specialResource == SpecialResource.Wheat {
+                food = 3
+                production = 1
+                trade = 0
+            }
+            else {
+                fatalError("Invalid special resource for terrain.")
+            }
+            
             defenseBonus = 1.0
         case TerrainType.River:
             food = 0
@@ -303,9 +314,20 @@ public class Tile: Hashable, ObservableObject {
             trade = 1
             defenseBonus = 1.0
         case TerrainType.Swamp:
-            food = 1
-            production = 0
-            trade = 0
+            if specialResource == SpecialResource.Peat {
+                food = 1
+                production = 4
+                trade = 0
+            }
+            else if specialResource == SpecialResource.Spice {
+                food = 3
+                production = 0
+                trade = 4
+            }
+            else {
+                fatalError("Invalid special resource for terrain.")
+            }
+            
             defenseBonus = 1.5
         case TerrainType.Tundra:
             food = 1
@@ -376,8 +398,6 @@ public class Tile: Hashable, ObservableObject {
         self.visibility = visibility
     }
 
-
-    
     public func add(movementModifier: MovementModifier) {
         self.movementModifier = movementModifier
     }

@@ -22,18 +22,18 @@ class GameScene: SKScene {
     var cameraScale = 1.0
     var entityManager: EntityManager!
     var initialCameraScale = 1.0
-    let builder = Settler()
+//    let builder = Settler()
     
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
         
-        background = SKSpriteNode(texture: mapViewModel.texture3)
-        background.name = "background"
-        background.anchorPoint = CGPoint(x: 0, y: 0)
-        background.position = CGPoint(x: 0, y: 0)
-        background.zPosition = Layer.base
+//        background = SKSpriteNode(texture: mapViewModel.texture3)
+//        background.name = "background"
+//        background.anchorPoint = CGPoint(x: 0, y: 0)
+//        background.position = CGPoint(x: 0, y: 0)
+//        background.zPosition = Layer.base
         
         super.init(size: UIScreen.main.bounds.size)
         self.scaleMode = .fill
@@ -87,7 +87,6 @@ class GameScene: SKScene {
         pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
         view.addGestureRecognizer(pinchGestureRecognizer)
         
-//        let filename: String = "freeland"
 //        let tilesetParser = TiledTilesetParser(filename)
 //        let tileset = tilesetParser.parse()
         

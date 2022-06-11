@@ -16,21 +16,23 @@ public class Map: ObservableObject {
         self.width = width
         self.height = height
         
-        self.grid = Array(repeating: Array(repeating: Tile(position: Position(row: 0, col: 0),
-                                                           terrain: Terrain(id: 0,
-                                                                            tiledId: 0,
-                                                                            name: "Grass",
-                                                                            type: TerrainType.Grassland)),
-                                           count: width), count: height)
+        let nullPosition = Position(row: 0, col: 0)
+        let nullTerrain = Terrain(id: Constants.noId,
+                                  tiledId: Constants.noId,
+                                  name: "",
+                                  type: TerrainType.Unknown)
+        self.grid = Array(repeating: Array(repeating: Tile(position: nullPosition,
+                                                           terrain: nullTerrain),
+                                           count: width),
+                          count: height)
 
-        
         for row in 0..<height {
             for col in 0..<width {
                 self.grid[row][col] = Tile(position: Position(row: row, col: col),
-                                           terrain: Terrain(id: 0,
-                                                            tiledId: 0,
-                                                            name: "1",
-                                                            type: TerrainType.Grassland))
+                                           terrain: Terrain(id: Constants.noId,
+                                                            tiledId: Constants.noId,
+                                                            name: "Null",
+                                                            type: TerrainType.Unknown))
             }
         }
         
@@ -63,17 +65,19 @@ public class Map: ObservableObject {
         }
     }
     
-    
-    
     public func canBuildCity(at: Position) -> Bool {
+        if tile(at: at).terrain.type == TerrainType.Ocean {
+            return false
+        }
+        
+        if tile(at: at).visibility == Visibility.FogOfWar {
+            return false
+        }
+        
         let startRow = at.row - 1 >= 0 ? at.row - 1 : 0
         let endRow = at.row + 1 <= height ? at.row + 1 : height
         let startCol = at.col - 1 >= 0 ? at.col - 1 : 0
         let endCol = at.col + 1 <= width ? at.col + 1 : width
-        
-        if tile(at: at).terrain.type == TerrainType.Ocean {
-            return false
-        }
         
         // Players cannot build cities adjacent to another city
         for row in startRow..<endRow {

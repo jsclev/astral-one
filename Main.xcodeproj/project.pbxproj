@@ -91,13 +91,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		52D1218827CC92C00047C2CA /* View Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "View Models";
-			sourceTree = "<group>";
-		};
 		52F9B61127E6AB02005D55E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,13 +160,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AFEF961A231A0239006025E5 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		D2A5F1F71F4A9143005CD714 = {
 			isa = PBXGroup;
 			children = (
@@ -198,8 +184,6 @@
 			children = (
 				AFEF9619231A0231006025E5 /* Supporting Files */,
 				AFEF9609231A016D006025E5 /* Resources */,
-				AFEF961A231A0239006025E5 /* Classes */,
-				52D1218827CC92C00047C2CA /* View Models */,
 				52D1218327CC7A4A0047C2CA /* Views */,
 				5394F02321864DF4006E754C /* LaunchScreen.storyboard */,
 				D2A5F20A1F4A9144005CD714 /* Assets.xcassets */,

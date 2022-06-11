@@ -148,7 +148,7 @@ public class UnitDAO: BaseDAO {
                     }
                 }
                 else {
-                    print("\nCould not insert row.")
+                    print("\nCould not insert row into \(table) table.")
                 }
                 
                 sqlite3_reset(mainStmt)

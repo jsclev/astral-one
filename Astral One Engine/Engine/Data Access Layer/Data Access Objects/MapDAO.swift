@@ -237,7 +237,7 @@ public class MapDAO: BaseDAO {
                     }
                 }
                 else {
-                    print("\nCould not insert row.")
+                    print("\nCould not insert row into \(table) table.")
                 }
                 
                 sqlite3_reset(mainStmt)
@@ -255,7 +255,7 @@ public class MapDAO: BaseDAO {
     }
     
     public func importTiledMap(filename: String) throws {
-        let tilesetParser = TiledTilesetParser(filename)
+        let tilesetParser = TiledTilesetParser()
         let tileset = tilesetParser.parse()
         let mapParser = TiledMapParser(tiledTileset: tileset, filename: filename)
         

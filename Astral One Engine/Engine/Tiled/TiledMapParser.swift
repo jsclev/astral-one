@@ -16,7 +16,7 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
     public init(tiledTileset: TiledTileset, filename: String) {
         self.filename = filename
         self.tiledTileset = tiledTileset
-        self.map = Map(mapId: 1, width: self.mapWidth, height: self.mapHeight)
+        self.map = Map(mapId: 1, width: mapWidth, height: mapHeight)
     }
     
     public func parse() throws -> Map {
@@ -108,8 +108,12 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                     if let tiledId = Int(strLocalTileId) {
                                         if tiledId <= 24 {
                                             if let terrain = getTerrain(tiledId: tiledId) {
+                                                if terrain.name == "1" {
+                                                    print(terrain)
+                                                }
                                                 // print("Adding tile [\(tile.id)] at position [\(mapRowIndex),\(0),\(layerOrdinal)]")
-                                                map.add(tile: Tile(position: Position(row: 119 - mapRowIndex, col: col),
+                                                let row = Constants.mapNumTilesHeight - 1 - mapRowIndex
+                                                map.add(tile: Tile(position: Position(row: row, col: col),
                                                                    terrain: terrain))
                                             }
                                             else {

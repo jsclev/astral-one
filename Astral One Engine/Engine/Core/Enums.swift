@@ -16,21 +16,6 @@ public enum Layer {
     public static let foreground = 600.0
 }
 
-public enum unitType {
-    case Explorer
-    case Settler
-    case Tank
-}
-
-public enum UnitType {
-    case None
-    case Battleship
-    case Bomber
-    case Chariot
-    case Explorer
-    case Tank
-}
-
 public enum SkillLevel {
     case One
     case Two

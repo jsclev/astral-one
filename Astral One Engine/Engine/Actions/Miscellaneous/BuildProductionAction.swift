@@ -27,7 +27,6 @@ public class BuildProductionAction: Action {
     
     public override func execute() {
         city.removeAvailable(action: self)
-        //print("Building production every turn")
     }
     
     public override func clone() -> Action {

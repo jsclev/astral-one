@@ -1,8 +1,8 @@
 import Foundation
 
 public class SettlerAgent {
-    private let player: AIPlayer
-    private let settler: Settler
+    internal let player: AIPlayer
+    internal let settler: Settler
 //    private let luaState: OpaquePointer!
     
     public init(player: AIPlayer, settler: Settler) throws {
@@ -45,6 +45,31 @@ public class SettlerAgent {
 //        lua.destruct()
 //    }
     
+    public static func getAgent(aiPlayer: AIPlayer, settler: Settler) throws -> SettlerAgent {
+        switch aiPlayer.skillLevel {
+        case .One:
+            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
+        case .Two:
+            return try SettlerLevel2Agent(player: aiPlayer, settler: settler)
+        case .Three:
+            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
+        case .Four:
+            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
+        case .Five:
+            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
+        case .Six:
+            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
+        case .Seven:
+            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
+        case .Eight:
+            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
+        }
+    }
+    
+    public func getSettleCityPosition() throws -> Position? {
+        fatalError("Must be implemented in subclasses.")
+    }
+    
     private func getSettleCityScore(tile: Tile) throws -> Double {
 //        let ptrFname = strdup("settle_score")
 //        let value = lua_Number(0)
@@ -68,28 +93,7 @@ public class SettlerAgent {
 //        return result;
 //        free(ptrFname)
         
-        return Double(0.0)
-    }
-    
-    public func getBuildCityScoreMap() throws -> [[Double]] {
-        switch player.skillLevel {
-        case .One:
-            return try levelOneGetBuildCityScoreMap()
-        case .Two:
-            return try levelTwoGetBuildCityScoreMap()
-        case .Three:
-            fatalError("Not implemented yet")
-        case .Four:
-            fatalError("Not implemented yet")
-        case .Five:
-            fatalError("Not implemented yet")
-        case .Six:
-            fatalError("Not implemented yet")
-        case .Seven:
-            fatalError("Not implemented yet")
-        case .Eight:
-            fatalError("Not implemented yet")
-        }
+        fatalError("Must be implemented in subclasses.")
     }
     
     public func getBuildScore(player: Player, tile: Tile) throws -> Double {
@@ -109,7 +113,7 @@ public class SettlerAgent {
         return Double(0.0)
     }
     
-    public func getCityRadiusScores() -> [Position:Double] {
+    internal func getCityRadiusScores() -> [Position:Double] {
         var scores: [Position: Double] = [:]
 
         for row in 0..<player.map.height {
@@ -143,80 +147,26 @@ public class SettlerAgent {
         return scores
     }
     
-    private func levelOneGetBuildCityScoreMap() throws -> [[Double]] {
-        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
-                                                          count: player.map.width),
-                                         count: player.map.height)
+    internal func getBestPositions(scoreMap: [[Double]]) -> [Position] {
+        var maxScore = -1.0
+        var currScore = -1.0
+        var positions: [Position] = []
         
-        for row in 0..<player.map.height {
-            for col in 0..<player.map.width {
-                let position = Position(row: row, col: col)
-                let tile = player.map.tile(at: Position(row: row, col: col))
+        for i in 0..<scoreMap.count {
+            for j in 0..<scoreMap[i].count {
+                currScore = scoreMap[i][j]
                 
-                if tile.visibility == Visibility.FullyRevealed {
-                    if player.map.canBuildCity(at: position) {
-                        let distance = player.map.getDistanceFromNearestCity(from: position)
-                        let score = 100 - distance
-                        
-                        if score < 0 {
-                            scoreMap[row][col] = 0.0
-                        }
-                        else if score > 100 {
-                            scoreMap[row][col] = 100.0
-                        }
-                        else {
-                            scoreMap[row][col] = Double(score)
-                        }
-                    }
-                    else {
-                        scoreMap[row][col] = 0.0
-                    }
+                if currScore > maxScore {
+                    maxScore = scoreMap[i][j]
+                    positions = [Position(row: i, col: j)]
                 }
-                else {
-                    scoreMap[row][col] = 1.0
+                else if currScore == maxScore {
+                    positions.append(Position(row: i, col: j))
                 }
-                
             }
         }
         
-        return scoreMap
+        return positions
     }
     
-    private func levelTwoGetBuildCityScoreMap() throws -> [[Double]] {
-        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
-                                                          count: player.map.width),
-                                         count: player.map.height)
-        
-        for row in 0..<player.map.height {
-            for col in 0..<player.map.width {
-                let position = Position(row: row, col: col)
-                let tile = player.map.tile(at: position)
-                
-                if tile.visibility == Visibility.FullyRevealed {
-                    if player.map.canBuildCity(at: position) {
-                        var score = Double(tile.food)
-                        score += Double(tile.production)
-                        score += Double(tile.trade)
-                        score += tile.defenseBonus
-                        
-                        if score < 0.0 {
-                            scoreMap[row][col] = 0.0
-                        }
-                        else {
-                            scoreMap[row][col] = score
-                        }
-                    }
-                    else {
-                        scoreMap[row][col] = 0.0
-                    }
-                }
-                else {
-                    scoreMap[row][col] = 1.0
-                }
-                
-            }
-        }
-        
-        return scoreMap
-    }
 }

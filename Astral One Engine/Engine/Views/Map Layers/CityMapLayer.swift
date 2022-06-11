@@ -8,7 +8,6 @@ public class CityMapLayer {
     private let citiesNode: SKTileMapNode
     private var cancellable = Set<AnyCancellable>()
     private let tileSet: SKTileSet
-    private let tileSize = CGSize(width: 96, height: 48)
 
     public init(player: Player, scene: SKScene, mapView: MapView, tileSet: SKTileSet) {
         self.player = player
@@ -18,7 +17,7 @@ public class CityMapLayer {
         citiesNode = SKTileMapNode(tileSet: tileSet,
                                    columns: player.map.width,
                                    rows: player.map.height,
-                                   tileSize: tileSize)
+                                   tileSize: Constants.tileSize)
         citiesNode.name = "cities"
         citiesNode.zPosition = Layer.cities
         citiesNode.position = CGPoint.zero
@@ -31,7 +30,6 @@ public class CityMapLayer {
         }
         
         self.player.map.$cities
-            .dropFirst()
             .sink(receiveValue: { cities in
                 if let city = cities.last {
                     self.render(city: city)

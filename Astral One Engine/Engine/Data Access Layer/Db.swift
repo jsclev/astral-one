@@ -103,7 +103,7 @@ public class Db {
     }
     
     public func getGameBy(gameId: Int) throws -> Game {
-        let theme = Theme(id: 2, name: "Sci-Fi")
+        let theme = Theme(id: 2, name: Constants.themeName)
         
         // Pull the maps from the database
         let player1Map = try mapDao.get(gameId: gameId)
@@ -115,12 +115,42 @@ public class Db {
 
         let game = Game(theme: theme, map: player1Map, db: self)
 
-        let player1 = Player(playerId: 1, game: game, map: player1Map)
-        let player2 = Player(playerId: 1, game: game, map: player2Map)
-        let player3 = Player(playerId: 1, game: game, map: player3Map)
-        let player4 = Player(playerId: 1, game: game, map: player4Map)
-        let player5 = Player(playerId: 1, game: game, map: player5Map)
-        let player6 = Player(playerId: 1, game: game, map: player6Map)
+        let player1 = AIPlayer(playerId: 1,
+                               game: game,
+                               map: player1Map,
+                               skillLevel: SkillLevel.One,
+                               difficultyLevel: DifficultyLevel.Easy,
+                               playStyle: PlayStyle(offense: 0.5, defense: 0.5))
+        let player2 = AIPlayer(playerId: 2,
+                               game: game,
+                               map: player2Map,
+                               skillLevel: SkillLevel.Two,
+                               difficultyLevel: DifficultyLevel.Easy,
+                               playStyle: PlayStyle(offense: 0.5, defense: 0.5))
+        let player3 = AIPlayer(playerId: 3,
+                               game: game,
+                               map: player3Map,
+                               skillLevel: SkillLevel.Three,
+                               difficultyLevel: DifficultyLevel.Easy,
+                               playStyle: PlayStyle(offense: 0.5, defense: 0.5))
+        let player4 = AIPlayer(playerId: 4,
+                               game: game,
+                               map: player4Map,
+                               skillLevel: SkillLevel.Four,
+                               difficultyLevel: DifficultyLevel.Easy,
+                               playStyle: PlayStyle(offense: 0.5, defense: 0.5))
+        let player5 = AIPlayer(playerId: 5,
+                               game: game,
+                               map: player5Map,
+                               skillLevel: SkillLevel.Five,
+                               difficultyLevel: DifficultyLevel.Easy,
+                               playStyle: PlayStyle(offense: 0.5, defense: 0.5))
+        let player6 = AIPlayer(playerId: 6,
+                               game: game,
+                               map: player6Map,
+                               skillLevel: SkillLevel.Six,
+                               difficultyLevel: DifficultyLevel.Easy,
+                               playStyle: PlayStyle(offense: 0.5, defense: 0.5))
 
         let cities = try cityDao.getCities(game: game)
         let units = try unitDao.getUnits(game: game)

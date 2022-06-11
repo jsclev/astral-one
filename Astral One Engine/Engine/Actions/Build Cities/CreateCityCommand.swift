@@ -56,19 +56,15 @@ public class CreateCityCommand: Command {
             
             if commandId == Constants.noId {
                 do {
-                    let persisted = try player.game.db.buildCityCommandDao.insert(command: self)
-                    
-                    commandId = persisted.commandId
-                    cityCreator = persisted.cityCreator
-                    // city = persisted.city
+                    city = try player.game.db.buildCityCommandDao.insert(command: self)
                 }
                 catch {
                     print(error)
                 }
             }
         
-            if let c = city {
-                player.build(city: c, using: cityCreator)
+            if let newCity = city {
+                player.build(city: newCity, using: cityCreator)
             }
         }
     }
