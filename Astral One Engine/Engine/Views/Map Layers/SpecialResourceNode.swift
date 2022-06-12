@@ -2,68 +2,68 @@ import Foundation
 import SpriteKit
 
 public class SpecialResourceNode: SKSpriteNode {
-    private let specialResource: SpecialResource
+    private let specialResource: SpecialResourceType
     
-    public init(game: Game, specialResource: SpecialResource) {
+    public init(game: Game, specialResource: SpecialResourceType) {
         self.specialResource = specialResource
         
         var assetName = game.theme.name + "/Resources/"
         
-        if specialResource == SpecialResource.Buffalo {
+        if specialResource == SpecialResourceType.Buffalo {
             assetName += "buffalo"
         }
-        else if specialResource == SpecialResource.Coal {
+        else if specialResource == SpecialResourceType.Coal {
             assetName += "coal"
         }
-        else if specialResource == SpecialResource.Fish {
+        else if specialResource == SpecialResourceType.Fish {
             assetName += "fish"
         }
-        else if specialResource == SpecialResource.Fruit {
+        else if specialResource == SpecialResourceType.Fruit {
             assetName += "fruit"
         }
-        else if specialResource == SpecialResource.Furs {
+        else if specialResource == SpecialResourceType.Furs {
             assetName += "furs"
         }
-        else if specialResource == SpecialResource.Game {
+        else if specialResource == SpecialResourceType.Game {
             assetName += "game"
         }
-        else if specialResource == SpecialResource.Gems {
+        else if specialResource == SpecialResourceType.Gems {
             assetName += "gems"
         }
-        else if specialResource == SpecialResource.Gold {
+        else if specialResource == SpecialResourceType.Gold {
             assetName += "gold"
         }
-        else if specialResource == SpecialResource.Iron {
+        else if specialResource == SpecialResourceType.Iron {
             assetName += "iron"
         }
-        else if specialResource == SpecialResource.Ivory {
+        else if specialResource == SpecialResourceType.Ivory {
             assetName += "ivory"
         }
-        else if specialResource == SpecialResource.Oasis {
+        else if specialResource == SpecialResourceType.Oasis {
             assetName += "oasis"
         }
-        else if specialResource == SpecialResource.Oil {
+        else if specialResource == SpecialResourceType.Oil {
             assetName += "oil"
         }
-        else if specialResource == SpecialResource.Peat {
+        else if specialResource == SpecialResourceType.Peat {
             assetName += "peat"
         }
-        else if specialResource == SpecialResource.Pheasant {
+        else if specialResource == SpecialResourceType.Pheasant {
             assetName += "pheasant"
         }
-        else if specialResource == SpecialResource.Silk {
+        else if specialResource == SpecialResourceType.Silk {
             assetName += "silk"
         }
-        else if specialResource == SpecialResource.Spice {
+        else if specialResource == SpecialResourceType.Spice {
             assetName += "spice"
         }
-        else if specialResource == SpecialResource.Whales {
+        else if specialResource == SpecialResourceType.Whales {
             assetName += "whales"
         }
-        else if specialResource == SpecialResource.Wheat {
+        else if specialResource == SpecialResourceType.Wheat {
             assetName += "wheat"
         }
-        else if specialResource == SpecialResource.Wine {
+        else if specialResource == SpecialResourceType.Wine {
             assetName += "wine"
         }
         

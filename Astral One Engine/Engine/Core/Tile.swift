@@ -6,7 +6,7 @@ public class Tile: Hashable, ObservableObject {
     public private (set) var visibility = Visibility.FogOfWar
     public let position: Position
     public let terrain: Terrain
-    public var specialResource: SpecialResource?
+    public var specialResource: SpecialResourceType?
     public var food: Int
     public var production: Int
     public var trade: Int
@@ -165,7 +165,7 @@ public class Tile: Hashable, ObservableObject {
     public init(id: Int,
                 position: Position,
                 terrain: Terrain,
-                specialResource: SpecialResource) {
+                specialResource: SpecialResourceType) {
         self.id = id
         self.position = position
         self.terrain = terrain
@@ -175,29 +175,29 @@ public class Tile: Hashable, ObservableObject {
         
         switch terrain.type {
         case TerrainType.Desert:
-            if specialResource == SpecialResource.Oasis {
+            if specialResource == SpecialResourceType.Oasis {
 //                stats = [3.0, 1.0, 0.0, 1.0]
                 food = 3
                 production = 1
                 trade = 0
             }
-            else if specialResource == SpecialResource.Oil {
+            else if specialResource == SpecialResourceType.Oil {
                 food = 0
                 production = 4
                 trade = 0
             }
             else {
-                fatalError("Invalid special resource for terrain.")
+                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
             }
 
             defenseBonus = 1.0
         case TerrainType.Forest:
-            if specialResource == SpecialResource.Pheasant {
+            if specialResource == SpecialResourceType.Pheasant {
                 food = 3
                 production = 2
                 trade = 0
             }
-            else if specialResource == SpecialResource.Silk {
+            else if specialResource == SpecialResourceType.Silk {
                 food = 1
                 production = 2
                 trade = 3
@@ -208,18 +208,18 @@ public class Tile: Hashable, ObservableObject {
             
             defenseBonus = 1.5
         case TerrainType.Glacier:
-            if specialResource == SpecialResource.Ivory {
+            if specialResource == SpecialResourceType.Ivory {
                 food = 1
                 production = 1
                 trade = 4
             }
-            else if specialResource == SpecialResource.Oil {
+            else if specialResource == SpecialResourceType.Oil {
                 food = 0
                 production = 4
                 trade = 0
             }
             else {
-                fatalError("Invalid special resource for terrain.")
+                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
             }
             
             defenseBonus = 1.0
@@ -229,82 +229,82 @@ public class Tile: Hashable, ObservableObject {
             trade = 0
             defenseBonus = 1.0
         case TerrainType.Hills:
-            if specialResource == SpecialResource.Coal {
+            if specialResource == SpecialResourceType.Coal {
                 food = 1
                 production = 2
                 trade = 0
             }
-            else if specialResource == SpecialResource.Wine {
+            else if specialResource == SpecialResourceType.Wine {
                 food = 1
                 production = 0
                 trade = 4
             }
             else {
-                fatalError("Invalid special resource for terrain.")
+                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
             }
             
             defenseBonus = 2.0
         case TerrainType.Jungle:
-            if specialResource == SpecialResource.Gems {
+            if specialResource == SpecialResourceType.Gems {
                 food = 1
                 production = 0
                 trade = 4
             }
-            else if specialResource == SpecialResource.Fruit {
+            else if specialResource == SpecialResourceType.Fruit {
                 food = 4
                 production = 0
                 trade = 1
             }
             else {
-                fatalError("Invalid special resource for terrain.")
+                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
             }
 
             defenseBonus = 1.5
         case TerrainType.Mountains:
-            if specialResource == SpecialResource.Gold {
+            if specialResource == SpecialResourceType.Gold {
                 food = 0
                 production = 1
                 trade = 6
             }
-            else if specialResource == SpecialResource.Iron {
+            else if specialResource == SpecialResourceType.Iron {
                 food = 0
                 production = 4
                 trade = 0
             }
             else {
-                fatalError("Invalid special resource for terrain.")
+                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
             }
             
             defenseBonus = 3.0
         case TerrainType.Ocean:
-            if specialResource == SpecialResource.Fish {
+            if specialResource == SpecialResourceType.Fish {
                 food = 3
                 production = 0
                 trade = 2
             }
-            else if specialResource == SpecialResource.Whales {
+            else if specialResource == SpecialResourceType.Whales {
                 food = 2
                 production = 2
                 trade = 3
             }
             else {
-                fatalError("Invalid special resource for terrain.")
+                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
             }
 
             defenseBonus = 1.0
         case TerrainType.Plains:
-            if specialResource == SpecialResource.Buffalo {
+            if specialResource == SpecialResourceType.Buffalo {
                 food = 1
                 production = 3
                 trade = 0
             }
-            else if specialResource == SpecialResource.Wheat {
+            else if specialResource == SpecialResourceType.Wheat {
                 food = 3
                 production = 1
                 trade = 0
             }
             else {
-                fatalError("Invalid special resource for terrain.")
+                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
             }
             
             defenseBonus = 1.0
@@ -314,18 +314,18 @@ public class Tile: Hashable, ObservableObject {
             trade = 1
             defenseBonus = 1.0
         case TerrainType.Swamp:
-            if specialResource == SpecialResource.Peat {
+            if specialResource == SpecialResourceType.Peat {
                 food = 1
                 production = 4
                 trade = 0
             }
-            else if specialResource == SpecialResource.Spice {
+            else if specialResource == SpecialResourceType.Spice {
                 food = 3
                 production = 0
                 trade = 4
             }
             else {
-                fatalError("Invalid special resource for terrain.")
+                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
             }
             
             defenseBonus = 1.5

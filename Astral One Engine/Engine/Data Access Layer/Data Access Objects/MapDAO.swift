@@ -14,13 +14,27 @@ public class MapDAO: BaseDAO {
         var stmt: OpaquePointer?
         let sql = """
             SELECT
-                t.tile_id, t.game_id, t.map_id, t.row, t.col, t.terrain_id, t.has_river,
-                te.tiled_id, te.terrain_type, te.food, te.shields, te.trade, te.movement_cost,
+                t.tile_id,
+                t.game_id,
+                t.map_id,
+                t.row,
+                t.col,
+                t.terrain_id,
+                t.has_river,
+                t.special_resource,
+                te.tiled_id,
+                te.terrain_type,
+                te.food,
+                te.shields,
+                te.trade,
+                te.movement_cost,
                 te.defensive_bonus
             FROM
                 tile t
             INNER JOIN
                 terrain te ON te.terrain_id = t.terrain_id
+            WHERE
+                t.game_id = 1
         """
         
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
@@ -31,49 +45,24 @@ public class MapDAO: BaseDAO {
                 let row = getInt(stmt: stmt, colIndex: 3)
                 let col = getInt(stmt: stmt, colIndex: 4)
                 let terrainId = getInt(stmt: stmt, colIndex: 5)
-                let tiledId = getInt(stmt: stmt, colIndex: 7)
-                var terrainType = TerrainType.Grassland
+                let tiledId = getInt(stmt: stmt, colIndex: 8)
                 
-                if let terrainTypeText = try getString(stmt: stmt, colIndex: 8) {
-                    switch terrainTypeText {
-                    case "Desert":
-                        terrainType = TerrainType.Desert
-                    case "Forest":
-                        terrainType = TerrainType.Forest
-                    case "Glacier":
-                        terrainType = TerrainType.Glacier
-                    case "Grass":
-                        terrainType = TerrainType.Grassland
-                    case "Hills":
-                        terrainType = TerrainType.Hills
-                    case "Jungle":
-                        terrainType = TerrainType.Jungle
-                    case "Mountain":
-                        terrainType = TerrainType.Mountains
-                    case "Water":
-                        terrainType = TerrainType.Ocean
-                    case "Plains":
-                        terrainType = TerrainType.Plains
-                    case "River":
-                        terrainType = TerrainType.River
-                    case "Swamp":
-                        terrainType = TerrainType.Swamp
-                    case "Tundra":
-                        terrainType = TerrainType.Tundra
-                    default: break
-                    }
+                if let terrainTypeText = try getString(stmt: stmt, colIndex: 9) {
+                    let terrainType = getTerrainType(terrainTypeText: terrainTypeText)
                     
                     maxRow = row > maxRow ? row : maxRow
                     maxCol = col > maxCol ? col : maxCol
                     
-                    if let specialResource = getRandomResource(terrainType: terrainType) {
+                    if let specialResourceText = try getString(stmt: stmt, colIndex: 7) {
+                        let srType = getSpecialResource(specialResourceText: specialResourceText)
+                        
                         tiles.append(Tile(id: tileId,
                                           position: Position(row: row, col: col),
                                           terrain: Terrain(id: terrainId,
                                                            tiledId: tiledId,
                                                            name: terrainTypeText,
                                                            type: terrainType),
-                                         specialResource: specialResource))
+                                          specialResource: srType))
                     }
                     else {
                         tiles.append(Tile(id: tileId,
@@ -83,6 +72,9 @@ public class MapDAO: BaseDAO {
                                                            name: terrainTypeText,
                                                            type: terrainType)))
                     }
+                }
+                else {
+                    fatalError("Terrain cannot be NULL.")
                 }
             }
         }
@@ -98,94 +90,169 @@ public class MapDAO: BaseDAO {
         return returnMap
     }
     
-    private func getRandomResource(terrainType: TerrainType) -> SpecialResource? {
+    private func getTerrainType(terrainTypeText: String) -> TerrainType {
+        switch terrainTypeText {
+        case "Desert":
+            return TerrainType.Desert
+        case "Forest":
+            return TerrainType.Forest
+        case "Glacier":
+            return TerrainType.Glacier
+        case "Grass":
+            return TerrainType.Grassland
+        case "Hills":
+            return TerrainType.Hills
+        case "Jungle":
+            return TerrainType.Jungle
+        case "Mountain":
+            return TerrainType.Mountains
+        case "Water":
+            return TerrainType.Ocean
+        case "Plains":
+            return TerrainType.Plains
+        case "River":
+            return TerrainType.River
+        case "Swamp":
+            return TerrainType.Swamp
+        case "Tundra":
+            return TerrainType.Tundra
+        default:
+            fatalError("Should not have gotten here.")
+        }
+    }
+    
+    private func getSpecialResource(specialResourceText: String) -> SpecialResourceType {
+        switch specialResourceText {
+        case "Buffalo":
+            return SpecialResourceType.Buffalo
+        case "Coal":
+            return SpecialResourceType.Coal
+        case "Fish":
+            return SpecialResourceType.Fish
+        case "Fruit":
+            return SpecialResourceType.Fruit
+        case "Furs":
+            return SpecialResourceType.Furs
+        case "Game":
+            return SpecialResourceType.Game
+        case "Gems":
+            return SpecialResourceType.Gems
+        case "Gold":
+            return SpecialResourceType.Gold
+        case "Iron":
+            return SpecialResourceType.Iron
+        case "Ivory":
+            return SpecialResourceType.Ivory
+        case "Oasis":
+            return SpecialResourceType.Oasis
+        case "Oil":
+            return SpecialResourceType.Oil
+        case "Peat":
+            return SpecialResourceType.Peat
+        case "Pheasant":
+            return SpecialResourceType.Pheasant
+        case "Silk":
+            return SpecialResourceType.Silk
+        case "Spice":
+            return SpecialResourceType.Spice
+        case "Whales":
+            return SpecialResourceType.Whales
+        case "Wheat":
+            return SpecialResourceType.Wheat
+        case "Wine":
+            return SpecialResourceType.Wine
+        default:
+            fatalError("Should not have gotten here.")
+        }
+    }
+    
+    private func getRandomResource(terrainType: TerrainType) -> SpecialResourceType? {
+        return nil
         let randomNum = Int.random(in: 0..<2)
         switch terrainType {
         case .Desert:
             if randomNum == 0 {
-                return SpecialResource.Oasis
+                return SpecialResourceType.Oasis
             }
             else {
-                return SpecialResource.Oil
+                return SpecialResourceType.Oil
             }
         case .Forest:
             if randomNum == 0 {
-                return SpecialResource.Pheasant
+                return SpecialResourceType.Pheasant
             }
             else {
-                return SpecialResource.Silk
+                return SpecialResourceType.Silk
             }
         case .Glacier:
             if randomNum == 0 {
-                return SpecialResource.Ivory
+                return SpecialResourceType.Ivory
             }
             else {
-                return SpecialResource.Oil
+                return SpecialResourceType.Oil
             }
         case .Grassland:
             return nil
         case .Hills:
             if randomNum == 0 {
-                return SpecialResource.Coal
+                return SpecialResourceType.Coal
             }
             else {
-                return SpecialResource.Wine
+                return SpecialResourceType.Wine
             }
         case .Jungle:
             if randomNum == 0 {
-                return SpecialResource.Gems
+                return SpecialResourceType.Gems
             }
             else {
-                return SpecialResource.Fruit
+                return SpecialResourceType.Fruit
             }
         case .Mountains:
             if randomNum == 0 {
-                return SpecialResource.Gold
+                return SpecialResourceType.Gold
             }
             else {
-                return SpecialResource.Iron
+                return SpecialResourceType.Iron
             }
         case .Ocean:
             if randomNum == 0 {
-                return SpecialResource.Fish
+                return SpecialResourceType.Fish
             }
             else {
-                return SpecialResource.Whales
+                return SpecialResourceType.Whales
             }
         case .Plains:
             if randomNum == 0 {
-                return SpecialResource.Buffalo
+                return SpecialResourceType.Buffalo
             }
             else {
-                return SpecialResource.Wheat
+                return SpecialResourceType.Wheat
             }
         case .River:
             return nil
         case .Swamp:
             if randomNum == 0 {
-                return SpecialResource.Peat
+                return SpecialResourceType.Peat
             }
             else {
-                return SpecialResource.Spice
+                return SpecialResourceType.Spice
             }
         case .Tundra:
-            return SpecialResource.Furs
+            return SpecialResourceType.Furs
         case .Unknown:
             return nil
         }
     }
         
     public func insert(map: Map) throws -> Map {
-        var tileId = -1
         var mainStmt: OpaquePointer?
         var rowIdStmt: OpaquePointer?
-        let returnMap = Map(mapId: 1, width: map.width, height: map.height)
         
         let mainSql =
             """
             INSERT INTO \(table)
-            (game_id, map_id, row, col, terrain_id, has_river)
-            VALUES (?, ?, ?, ?, ?, ?);
+            (game_id, map_id, row, col, terrain_id, has_river, special_resource)
+            VALUES (?, ?, ?, ?, ?, ?, ?);
             """
         
         let rowIdSql = "SELECT last_insert_rowid()"
@@ -222,12 +289,16 @@ public class MapDAO: BaseDAO {
                 sqlite3_bind_int(mainStmt, 5, Int32(tile.terrain.id))
                 sqlite3_bind_int(mainStmt, 6, Int32(0))
                 
+                if let sr = tile.specialResource {
+                    sqlite3_bind_text(mainStmt, 7, sr.description, -1, SQLITE_TRANSIENT)
+                }
+                else {
+                    sqlite3_bind_text(mainStmt, 7, nil, -1, SQLITE_TRANSIENT)
+                }
+                
                 if sqlite3_step(mainStmt) == SQLITE_DONE {
                     if sqlite3_step(rowIdStmt) == SQLITE_ROW {
-                        tileId = getInt(stmt: rowIdStmt, colIndex: 0)
-                        returnMap.add(tile: Tile(id: tileId,
-                                                 position: Position(row: row, col: col),
-                                                 terrain: tile.terrain))
+                        //returnMap.add(tile: tile.clone())
                     }
                     else {
                         let errMsg = String(cString: sqlite3_errmsg(conn)!)
@@ -251,7 +322,7 @@ public class MapDAO: BaseDAO {
             print("Error!!!!")
         }
         
-        return returnMap
+        return try get(gameId: 1)
     }
     
     public func importTiledMap(filename: String) throws {

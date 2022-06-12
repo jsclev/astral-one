@@ -510,7 +510,6 @@ class PlannerTests: XCTestCase {
     //        city.addAvailable(action: CreateInfantry1Action())
     //
     //        while player.defense < 300 {
-    //            print("New action sequence:")
     //            for action in ai.nextActionSequence() {
     //                action.execute(game: game, player: player)
     //                print("\(action.name) executed, player defense is now \(player.defense).")
@@ -572,7 +571,7 @@ class PlannerTests: XCTestCase {
         let map = Map(mapId: 1, width: 8, height: 8)
         let game = Game(theme: theme, map: map, db: TestUtils.getDb())
         
-        map.add(tile: TestUtils.makeTile(0, 0, TerrainType.Forest, SpecialResource.Pheasant))
+        map.add(tile: TestUtils.makeTile(0, 0, TerrainType.Forest, SpecialResourceType.Pheasant))
         map.add(tile: TestUtils.makeTile(1, 0, TerrainType.Grassland))
         map.add(tile: TestUtils.makeTile(2, 0, TerrainType.Grassland))
         map.add(tile: TestUtils.makeTile(3, 0, TerrainType.Grassland))

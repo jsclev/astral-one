@@ -134,7 +134,7 @@ class TileTests: XCTestCase {
                                          tiledId: 1,
                                          name: "Test Tile",
                                          type: TerrainType.Desert),
-                        specialResource: SpecialResource.Oasis)
+                        specialResource: SpecialResourceType.Oasis)
         XCTAssertEqual(tile.food, 3)
         XCTAssertEqual(tile.production, 1)
         XCTAssertEqual(tile.trade, 0)
@@ -146,7 +146,7 @@ class TileTests: XCTestCase {
                                      tiledId: 1,
                                      name: "Test Tile",
                                      type: TerrainType.Desert),
-                    specialResource: SpecialResource.Oil)
+                    specialResource: SpecialResourceType.Oil)
         XCTAssertEqual(tile.food, 0)
         XCTAssertEqual(tile.production, 4)
         XCTAssertEqual(tile.trade, 0)
@@ -158,7 +158,7 @@ class TileTests: XCTestCase {
                                      tiledId: 1,
                                      name: "Test Tile",
                                      type: TerrainType.Forest),
-                    specialResource: SpecialResource.Pheasant)
+                    specialResource: SpecialResourceType.Pheasant)
         XCTAssertEqual(tile.food, 3)
         XCTAssertEqual(tile.production, 2)
         XCTAssertEqual(tile.trade, 0)
@@ -170,7 +170,7 @@ class TileTests: XCTestCase {
                                      tiledId: 1,
                                      name: "Test Tile",
                                      type: TerrainType.Forest),
-                    specialResource: SpecialResource.Silk)
+                    specialResource: SpecialResourceType.Silk)
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 2)
         XCTAssertEqual(tile.trade, 3)
@@ -182,7 +182,7 @@ class TileTests: XCTestCase {
                                      tiledId: 1,
                                      name: "Test Tile",
                                      type: TerrainType.Glacier),
-                    specialResource: SpecialResource.Ivory)
+                    specialResource: SpecialResourceType.Ivory)
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 1)
         XCTAssertEqual(tile.trade, 4)
@@ -194,7 +194,7 @@ class TileTests: XCTestCase {
                                      tiledId: 1,
                                      name: "Test Tile",
                                      type: TerrainType.Glacier),
-                    specialResource: SpecialResource.Oil)
+                    specialResource: SpecialResourceType.Oil)
         XCTAssertEqual(tile.food, 0)
         XCTAssertEqual(tile.production, 4)
         XCTAssertEqual(tile.trade, 0)
@@ -206,7 +206,7 @@ class TileTests: XCTestCase {
                                      tiledId: 1,
                                      name: "Test Tile",
                                      type: TerrainType.Hills),
-                    specialResource: SpecialResource.Coal)
+                    specialResource: SpecialResourceType.Coal)
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 2)
         XCTAssertEqual(tile.trade, 0)
@@ -218,7 +218,7 @@ class TileTests: XCTestCase {
                                      tiledId: 1,
                                      name: "Test Tile",
                                      type: TerrainType.Hills),
-                    specialResource: SpecialResource.Wine)
+                    specialResource: SpecialResourceType.Wine)
         XCTAssertEqual(tile.food, 1)
         XCTAssertEqual(tile.production, 0)
         XCTAssertEqual(tile.trade, 4)

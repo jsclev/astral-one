@@ -9,8 +9,8 @@ public class SpecialResourceMapLayer {
                                  columns: player.map.width,
                                  rows: player.map.height,
                                  tileSize: Constants.tileSize)
-        node.name = "tile stats"
-        node.zPosition = Layer.tileStats
+        node.name = "special resources"
+        node.zPosition = Layer.specialResources
         node.position = CGPoint.zero
         node.enableAutomapping = true
         
@@ -22,70 +22,69 @@ public class SpecialResourceMapLayer {
                     if let specialResource = tile.specialResource {
                         var assetName = ""
                         
-                        if specialResource == SpecialResource.Buffalo {
+                        if specialResource == SpecialResourceType.Buffalo {
                             assetName += "Buffalo"
                         }
-                        else if specialResource == SpecialResource.Coal {
+                        else if specialResource == SpecialResourceType.Coal {
                             assetName += "Coal"
                         }
-                        else if specialResource == SpecialResource.Fish {
+                        else if specialResource == SpecialResourceType.Fish {
                             assetName += "Fish"
                         }
-                        else if specialResource == SpecialResource.Fruit {
+                        else if specialResource == SpecialResourceType.Fruit {
                             assetName += "Fruit"
                         }
-                        else if specialResource == SpecialResource.Furs {
+                        else if specialResource == SpecialResourceType.Furs {
                             assetName += "Furs"
                         }
-                        else if specialResource == SpecialResource.Game {
+                        else if specialResource == SpecialResourceType.Game {
                             assetName += "Game"
                         }
-                        else if specialResource == SpecialResource.Gems {
+                        else if specialResource == SpecialResourceType.Gems {
                             assetName += "Gems"
                         }
-                        else if specialResource == SpecialResource.Gold {
+                        else if specialResource == SpecialResourceType.Gold {
                             assetName += "Gold"
                         }
-                        else if specialResource == SpecialResource.Iron {
+                        else if specialResource == SpecialResourceType.Iron {
                             assetName += "Iron"
                         }
-                        else if specialResource == SpecialResource.Ivory {
+                        else if specialResource == SpecialResourceType.Ivory {
                             assetName += "Ivory"
                         }
-                        else if specialResource == SpecialResource.Oasis {
+                        else if specialResource == SpecialResourceType.Oasis {
                             assetName += "Oasis"
                         }
-                        else if specialResource == SpecialResource.Oil {
+                        else if specialResource == SpecialResourceType.Oil {
                             assetName += "Oil"
                         }
-                        else if specialResource == SpecialResource.Peat {
+                        else if specialResource == SpecialResourceType.Peat {
                             assetName += "Peat"
                         }
-                        else if specialResource == SpecialResource.Pheasant {
+                        else if specialResource == SpecialResourceType.Pheasant {
                             assetName += "Pheasant"
                         }
-                        else if specialResource == SpecialResource.Silk {
+                        else if specialResource == SpecialResourceType.Silk {
                             assetName += "Silk"
                         }
-                        else if specialResource == SpecialResource.Spice {
+                        else if specialResource == SpecialResourceType.Spice {
                             assetName += "Spice"
                         }
-                        else if specialResource == SpecialResource.Whales {
+                        else if specialResource == SpecialResourceType.Whales {
                             assetName += "Whales"
                         }
-                        else if specialResource == SpecialResource.Wheat {
+                        else if specialResource == SpecialResourceType.Wheat {
                             assetName += "Wheat"
                         }
-                        else if specialResource == SpecialResource.Wine {
+                        else if specialResource == SpecialResourceType.Wine {
                             assetName += "Wine"
                         }
                         
                         if let tileGroup = tileSet.tileGroups.first(where: { $0.name == assetName }) {
-                            // Make sure we are setting the tile on the correct layered terrain map
                             node.setTileGroup(tileGroup, forColumn: col, row: row)
                         }
                         else {
-                            print("Unable to find special resource \"\(assetName)\"")
+                            fatalError("Unable to find special resource \"\(assetName)\"")
                         }
                     }
                 }

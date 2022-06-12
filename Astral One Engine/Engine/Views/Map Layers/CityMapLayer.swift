@@ -60,8 +60,7 @@ public class CityMapLayer {
                                         row: city.position.row)
             }
             else {
-                print("Unable to find special resource \"City\"")
-                // fatalError("Unable to find special resource \"\(assetName)\"")
+                print("Unable to find tile group named \"City\"")
             }
             
             let label = SKLabelNode(fontNamed: "Arial")

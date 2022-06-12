@@ -128,6 +128,7 @@
 		52AB0748280287580039B47D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0747280287580039B47D /* City.swift */; };
 		52D1A3D82852D4990046B219 /* SettlerLevel1Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3D72852D4990046B219 /* SettlerLevel1Agent.swift */; };
 		52D1A3DA2852DA5B0046B219 /* SettlerLevel2Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3D92852DA5B0046B219 /* SettlerLevel2Agent.swift */; };
+		52D1A3DF2854E96F0046B219 /* SpecialResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3DE2854E96F0046B219 /* SpecialResource.swift */; };
 		52DE5F32281086A40029EFE1 /* UnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F31281086A40029EFE1 /* UnitFactory.swift */; };
 		52DE5F342810DAB90029EFE1 /* MapDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F332810DAB90029EFE1 /* MapDAO.swift */; };
 		52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */; };
@@ -353,6 +354,7 @@
 		52AB0747280287580039B47D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		52D1A3D72852D4990046B219 /* SettlerLevel1Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerLevel1Agent.swift; sourceTree = "<group>"; };
 		52D1A3D92852DA5B0046B219 /* SettlerLevel2Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerLevel2Agent.swift; sourceTree = "<group>"; };
+		52D1A3DE2854E96F0046B219 /* SpecialResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialResource.swift; sourceTree = "<group>"; };
 		52DE5F31281086A40029EFE1 /* UnitFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitFactory.swift; sourceTree = "<group>"; };
 		52DE5F332810DAB90029EFE1 /* MapDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDAO.swift; sourceTree = "<group>"; };
 		52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitDAO.swift; sourceTree = "<group>"; };
@@ -560,10 +562,11 @@
 		521F21D22806984300F1D61D /* Map Features */ = {
 			isa = PBXGroup;
 			children = (
+				5261478C284D8CA600CFF9CA /* FogOfWarGenerator.swift */,
 				521F21E6280740E000F1D61D /* MovementModifier.swift */,
+				52D1A3DE2854E96F0046B219 /* SpecialResource.swift */,
 				521F21E22807115100F1D61D /* Terrain.swift */,
 				521F21E42807123D00F1D61D /* TerrainFactory.swift */,
-				5261478C284D8CA600CFF9CA /* FogOfWarGenerator.swift */,
 			);
 			path = "Map Features";
 			sourceTree = "<group>";
@@ -1232,6 +1235,7 @@
 				52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */,
 				52DE5F97281E085A0029EFE1 /* Naval7.swift in Sources */,
 				526681662823043B0089D0DD /* AlpineTroop.swift in Sources */,
+				52D1A3DF2854E96F0046B219 /* SpecialResource.swift in Sources */,
 				52A6465A282DF8F70066B82D /* ResearchPolytheismAction.swift in Sources */,
 				52A646B128330BC00066B82D /* CreateEngineerAction.swift in Sources */,
 				52DE5F99281E093E0029EFE1 /* Submarine.swift in Sources */,

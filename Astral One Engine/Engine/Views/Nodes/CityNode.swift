@@ -50,7 +50,6 @@ internal class CityTileMapNode: SKTileMapNode {
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touchedasfasefasef")
 //        print("\(city.name), position [\(city.position.row),\(city.position.col)]")
     }
 }

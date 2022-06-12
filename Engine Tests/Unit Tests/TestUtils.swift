@@ -21,7 +21,7 @@ public class TestUtils {
     internal static func makeTile(_ row: Int,
                                   _ col: Int,
                                   _ terrainType: TerrainType,
-                                  _ specialResource: SpecialResource) -> Tile {
+                                  _ specialResource: SpecialResourceType) -> Tile {
         return Tile(id: 1,
                     position: Position(row: row, col: col),
                     terrain: Terrain(id: 1,

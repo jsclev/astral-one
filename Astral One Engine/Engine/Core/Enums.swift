@@ -138,7 +138,7 @@ public enum ImprovementType {
     case Road
 }
 
-public enum SpecialResource {
+public enum SpecialResourceType: CustomStringConvertible {
     case Buffalo
     case Coal
     case Fish
@@ -158,6 +158,30 @@ public enum SpecialResource {
     case Whales
     case Wheat
     case Wine
+    
+    public var description : String {
+        switch self {
+        case .Buffalo: return "Buffalo"
+        case .Coal: return "Coal"
+        case .Fish: return "Fish"
+        case .Fruit: return "Fruit"
+        case .Furs: return "Furs"
+        case .Game: return "Game"
+        case .Gems: return "Gems"
+        case .Gold: return "Gold"
+        case .Iron: return "Iron"
+        case .Ivory: return "Ivory"
+        case .Oasis: return "Oasis"
+        case .Oil: return "Oil"
+        case .Peat: return "Peat"
+        case .Pheasant: return "Pheasant"
+        case .Silk: return "Silk"
+        case .Spice: return "Spice"
+        case .Whales: return "Whales"
+        case .Wheat: return "Wheat"
+        case .Wine: return "Wine"
+        }
+    }
 }
 
 public enum TerrainType {

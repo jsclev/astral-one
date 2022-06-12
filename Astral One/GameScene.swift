@@ -163,7 +163,7 @@ class GameScene: SKScene {
     }
     
     private func renderMap(map: Map) {
-        let tilesetName = "Freeland Tile Set"
+        let tilesetName = "Sci-Fi Tile Set"
         guard let tileSet = SKTileSet(named: tilesetName) else {
             fatalError("Tileset \"\(tilesetName)\" was not found in app bundle.")
         }

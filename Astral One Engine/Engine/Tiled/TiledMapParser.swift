@@ -92,39 +92,40 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                         .trimmingCharacters(in: .punctuationCharacters)
 
                     if trimmedRowData.count > 0 {
-                        let tileIds = trimmedRowData.components(separatedBy: ",")
+                        let tiledIds = trimmedRowData.components(separatedBy: ",")
 
-                        for (col, strGlobalTileId) in tileIds.enumerated() {
-                            if let intGlobalTileId = Int(strGlobalTileId) {
+                        for (col, strGlobalTiledId) in tiledIds.enumerated() {
+                            if let intGlobalTiledId = Int(strGlobalTiledId) {
                                 // Tiled uses Global Tile IDs with a value of 0 (zero)
                                 // to specify that there is no tile at this position,
                                 // so we don't want to import those. See the Tiled online
                                 // documentation for more information.
-                                if intGlobalTileId > 0 {
+                                if intGlobalTiledId > 0 {
                                     // Convert the Tiled global tile id to the local tileset id
-                                    let intLocalTileId = intGlobalTileId - 1
-                                    let strLocalTileId = String(intLocalTileId)
-                                    
-                                    if let tiledId = Int(strLocalTileId) {
-                                        if tiledId <= 24 {
-                                            if let terrain = getTerrain(tiledId: tiledId) {
-                                                if terrain.name == "1" {
-                                                    print(terrain)
-                                                }
-                                                // print("Adding tile [\(tile.id)] at position [\(mapRowIndex),\(0),\(layerOrdinal)]")
-                                                let row = Constants.mapNumTilesHeight - 1 - mapRowIndex
-                                                map.add(tile: Tile(position: Position(row: row, col: col),
-                                                                   terrain: terrain))
-                                            }
-                                            else {
-                                                fatalError("Unable to find tile with Tiled ID \(strLocalTileId).")
-                                            }
+                                    let intLocalTiledId = intGlobalTiledId - 1
+                                    let strLocalTiledId = String(intLocalTiledId)
+                                    let row = Constants.mapNumTilesHeight - 1 - mapRowIndex
+                                    let position = Position(row: row, col: col)
+
+                                    if let tiledId = Int(strLocalTiledId) {
+                                        if let terrain = getTerrain(tiledId: tiledId) {
+                                            map.add(tile: Tile(position: position, terrain: terrain))
+                                        }
+                                        else if let specialResource = Constants.specialResources[strLocalTiledId] {
+                                            let tile = map.tile(at: position)
+                                            map.add(tile: Tile(id: Constants.noId,
+                                                               position: position,
+                                                               terrain: tile.terrain,
+                                                               specialResource: specialResource))
+                                        }
+                                        else {
+                                            fatalError("Unable to find tile with Tiled ID \(strLocalTiledId).")
                                         }
                                     }
                                 }
                             }
                             else {
-                                fatalError("Unable to convert the Global Tile ID \"\(strGlobalTileId)\" to an Int.")
+                                fatalError("Unable to convert the Global Tile ID \"\(strGlobalTiledId)\" to an Int.")
                             }
                         }
 

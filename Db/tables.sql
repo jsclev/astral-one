@@ -116,6 +116,7 @@ CREATE TABLE tile (
     col INTEGER NOT NULL,
     terrain_id INTEGER NOT NULL,
     has_river INTEGER NOT NULL,
+    special_resource TEXT,
     FOREIGN KEY (game_id) REFERENCES game (game_id),
     FOREIGN KEY (terrain_id) REFERENCES terrain (terrain_id)
 );

@@ -12,9 +12,9 @@ public class TiledTerrain {
 
 public class TiledSpecialResource {
     public let id: String
-    public let specialResource: SpecialResource
+    public let specialResource: SpecialResourceType
     
-    public init(id: String, specialResource: SpecialResource) {
+    public init(id: String, specialResource: SpecialResourceType) {
         self.id = id
         self.specialResource = specialResource
     }
