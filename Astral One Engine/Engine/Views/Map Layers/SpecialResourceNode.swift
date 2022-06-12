@@ -69,6 +69,9 @@ public class SpecialResourceNode: SKSpriteNode {
         
         let texture = SKTexture(imageNamed: assetName)
         super.init(texture: texture, color: UIColor.systemPink, size: texture.size())
+        
+        self.isUserInteractionEnabled = false
+
     }
     
     required init?(coder aDecoder: NSCoder) {

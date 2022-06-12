@@ -54,6 +54,10 @@ public class Game: ObservableObject {
         }
     }
     
+    public func getCurrentPlayer() -> Player {
+        return players[0]
+    }
+    
     public func getCurrentTurn() -> Turn {
         return turns[turnIndex]
     }

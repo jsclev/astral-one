@@ -19,6 +19,7 @@ struct TouchInfo {
 class PathfinderScene: SKScene {
     var game: Game
     let db: Db
+    var eventBus: EventBus?
     var mapViewModel: MapViewModel
     var contextMenu: Engine.ContextMenu!
     var founderContextMenu: FounderContextMenu!
@@ -44,7 +45,7 @@ class PathfinderScene: SKScene {
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
-
+        
         db = Db(fullRefresh: true)
         game = Game(theme: theme, map: Map(mapId: 1, width: 1, height: 1), db: db)
         tilesetName = theme.name + " Tile Set"
@@ -82,7 +83,6 @@ class PathfinderScene: SKScene {
             startTouchPos = location
             mapViewModel.resetCamera()
 //        case .changed:
-//            print("Current camera location \(gameCamera.position)")
         case .cancelled, .ended, .failed, .possible:
 //            print("Last touch location \(location)")
 //            print("Pan velocity \(velocity)")
@@ -118,42 +118,14 @@ class PathfinderScene: SKScene {
 //            dynamicAnimator.addBehavior(push)
             mapViewModel.resetCamera()
         default:
-            let hello = ""
+            break
         }
     }
     
     @objc func tap(recognizer: UITapGestureRecognizer){
-        if recognizer.state != .ended {
-            return
+        if let bus = eventBus {
+            bus.tap(recognizer: recognizer)
         }
-        
-        let recognizorLocation = recognizer.location(in: recognizer.view!)
-        let location = convertPoint(fromView: recognizorLocation)
-        
-        if let mv = mapView {
-            mv.tap(location: location)
-        }
-        
-        let touchedNodes = nodes(at: location)
-        
-        for touchedNode in touchedNodes {
-            print(touchedNode.name)
-        }
-        
-        if !touchedNodes.isEmpty && touchedNodes[0].name == "set-start-position" {
-//            clearMapIcons()
-            state = PathfinderState.settingStartPosition
-            return
-        }
-        else if !touchedNodes.isEmpty && touchedNodes[0].name == "calculate-path" {
-//            state = PathfinderState.calculatingPath
-//            let path: [GKGridGraphNode] = [] //game.getMap().findPath(from: startPosition, to: endPosition)
-//            showAIPath(path: path)
-            return
-        }
-        
-//        let tappedRow = mapIcons.tileRowIndex(fromPosition: location)
-//        let tappedCol = mapIcons.tileColumnIndex(fromPosition: location)
 
     }
     
@@ -165,12 +137,11 @@ class PathfinderScene: SKScene {
         
         gameCamera.show()
         
+        
         pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
         view.addGestureRecognizer(pinchGestureRecognizer)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
-        tapGesture.numberOfTapsRequired = 1
-        view.addGestureRecognizer(tapGesture)
+
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(pan))
         view.addGestureRecognizer(panGesture)
@@ -183,54 +154,38 @@ class PathfinderScene: SKScene {
             print(error)
         }
         
-//        game.processCommands(commands: game.db.commandDao.getCommands(gameId: 1))
-        
-//        mapView.renderPlayer()
-        
-//        let tileCoordsLayer = TileCoordsMapLayer(game: game,
-//                                                 scene: self,
-//                                                 mapView: mapView,
-//                                                 layerIndex: 10000000)
         let _ = TurnView(parent: gameCamera, game: game)
         
         game.processCommands()
         
-        let player = game.players[0]
+        let player = game.getCurrentPlayer()
         
-        for cityId in 0..<1000 {
-            let position = Position(row: Int.random(in: 0..<game.map.height),
-                                    col: Int.random(in: 0..<game.map.width))
-            
-//            if position.row % 2 == 0 {
-//                player.map.tile(at: position).set(visibility: Visibility.FullyRevealed)
-//            }
-            
-            let settler = Settler(game: game,
-                                      player: player,
-                                      theme: game.theme,
-                                      name: "Settler",
-                                      position: position)
-            let city = City(id: cityId + 100,
-                            owner: player,
-                            theme: game.theme,
-                            name: "New York",
-                            assetName: "city-1",
-                            position: position)
-//            city1.build(BuildingType.Barracks)
-//            city1.build(BuildingType.CityWalls)
-            player.add(cityCreator: settler)
-//            player.build(city: city, using: cityBuilder)
-            
-            let createInfantry1Action = CreateInfantry1Action(game: game, player: player, city: city)
-            let createInfantry2Action = CreateInfantry2Action(game: game, player: player, city: city)
-            let createInfantry3Action = CreateInfantry3Action(game: game, player: player, city: city)
-            let createInfantry4Action = CreateInfantry4Action(game: game, player: player, city: city)
-            
-            createInfantry1Action.execute()
-            createInfantry2Action.execute()
-            createInfantry3Action.execute()
-            createInfantry4Action.execute()
-        }
+//        for cityId in 0..<1000 {
+//            let position = Position(row: Int.random(in: 0..<game.map.height),
+//                                    col: Int.random(in: 0..<game.map.width))
+//            let settler = Settler(game: game,
+//                                      player: player,
+//                                      theme: game.theme,
+//                                      name: "Settler",
+//                                      position: position)
+//            let city = City(id: cityId + 100,
+//                            owner: player,
+//                            theme: game.theme,
+//                            name: "New York",
+//                            assetName: "city-1",
+//                            position: position)
+//            player.add(cityCreator: settler)
+//
+//            let createInfantry1Action = CreateInfantry1Action(game: game, player: player, city: city)
+//            let createInfantry2Action = CreateInfantry2Action(game: game, player: player, city: city)
+//            let createInfantry3Action = CreateInfantry3Action(game: game, player: player, city: city)
+//            let createInfantry4Action = CreateInfantry4Action(game: game, player: player, city: city)
+//
+//            createInfantry1Action.execute()
+//            createInfantry2Action.execute()
+//            createInfantry3Action.execute()
+//            createInfantry4Action.execute()
+//        }
         
 //        let fowGenerator = FogOfWarGenerator(player: player)
 //        fowGenerator.generate()
@@ -241,22 +196,29 @@ class PathfinderScene: SKScene {
         }
         let tileset = SKTileSet(named: tilesetName)
         
-//        addInitialSettler(player: player)
+        // addInitialSettler(player: player)
         
         mapView = MapView(player: player, scene: self, tileset: tileset!)
-        mapView.setScene(scene: self)
         
         entityManager = EntityManager(scene: self)
         contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
         founderContextMenu = FounderContextMenu(game: game, parent: self, mapView: mapView)
         
+//        let eventBus = EventBus(game: game, scene: self, mapView: mapView)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
+        tapGesture.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tapGesture)
+        
+        self.eventBus = EventBus(game: game, scene: self, mapView: mapView)
+
+
     }
     
     private func addInitialSettler(player: Player) {
-        let minRow = 0
-        let maxRow = player.map.height
-        let minCol = 0
-        let maxCol = player.map.width
+        let minRow = 2
+        let maxRow = player.map.height - 2
+        let minCol = 2
+        let maxCol = player.map.width - 2
         
         var foundTile = false
         var tile = player.map.tile(at: Position(row: 0, col: 0))
@@ -278,22 +240,22 @@ class PathfinderScene: SKScene {
                               theme: game.theme,
                               name: "Settler",
                               position: tile.position)
-        let settler2 = Settler(game: game,
-                               player: player,
-                               theme: game.theme,
-                               name: "Settler2",
-                               position: tile.position)
+//        let settler2 = Settler(game: game,
+//                               player: player,
+//                               theme: game.theme,
+//                               name: "Settler2",
+//                               position: tile.position)
         
         player.add(cityCreator: settler1)
 //        player.add(cityCreator: settler2)
         
-        let createCityCmd = CreateCityCommand(player: player,
-                                              type: CommandType(id: 1, name: ""),
-                                              turn: player.game.getCurrentTurn(),
-                                              ordinal: 1,
-                                              cost: 0,
-                                              cityCreator: settler1,
-                                              cityName: "New York")
+//        let createCityCmd = CreateCityCommand(player: player,
+//                                              type: CommandType(id: 1, name: ""),
+//                                              turn: player.game.getCurrentTurn(),
+//                                              ordinal: 1,
+//                                              cost: 0,
+//                                              cityCreator: settler1,
+//                                              cityName: "New York")
         // createCityCmd.execute()
     }
     

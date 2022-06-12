@@ -2,6 +2,7 @@ import Foundation
 import GameplayKit
 
 public class Unit: GKEntity, ObservableObject {
+    public let id: Int
     public let game: Game
     public let player: Player
     public let theme: Theme
@@ -50,6 +51,8 @@ public class Unit: GKEntity, ObservableObject {
         self.maxMovementPoints = maxMovementPoints
         self.currentMovementPoints = maxMovementPoints
         self.position = position
+        
+        self.id = Int.random(in: 0..<500)
         
         super.init()
     }

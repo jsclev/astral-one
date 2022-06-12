@@ -16,11 +16,22 @@ public class SettlerLevel1Agent: SettlerAgent {
             settler.position.distance(from: $0) < settler.position.distance(from: $1)
         }
         
-        if positions.count == 1 {
-            return positions[0]
-        }
-        else if positions.count >= 10 {
-            return positions[Int.random(in: 0..<10)]
+        print("Found \(positions.count) potential city locations.")
+        
+        if positions.count > 0 {
+            if positions.count == 1 {
+                return positions[0]
+            }
+            else {
+                let tenPercent = Int(0.1 * Double(positions.count))
+                var random = 0
+                
+                if tenPercent > 0 {
+                    random = Int.random(in: 0..<tenPercent)
+                }
+                
+                return positions[random]
+            }
         }
         
         return nil

@@ -129,6 +129,8 @@
 		52D1A3D82852D4990046B219 /* SettlerLevel1Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3D72852D4990046B219 /* SettlerLevel1Agent.swift */; };
 		52D1A3DA2852DA5B0046B219 /* SettlerLevel2Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3D92852DA5B0046B219 /* SettlerLevel2Agent.swift */; };
 		52D1A3DF2854E96F0046B219 /* SpecialResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3DE2854E96F0046B219 /* SpecialResource.swift */; };
+		52D1A3E128565A4D0046B219 /* TileMapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3E028565A4D0046B219 /* TileMapNode.swift */; };
+		52D1A3E3285662DE0046B219 /* EventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3E2285662DE0046B219 /* EventBus.swift */; };
 		52DE5F32281086A40029EFE1 /* UnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F31281086A40029EFE1 /* UnitFactory.swift */; };
 		52DE5F342810DAB90029EFE1 /* MapDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F332810DAB90029EFE1 /* MapDAO.swift */; };
 		52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */; };
@@ -355,6 +357,8 @@
 		52D1A3D72852D4990046B219 /* SettlerLevel1Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerLevel1Agent.swift; sourceTree = "<group>"; };
 		52D1A3D92852DA5B0046B219 /* SettlerLevel2Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerLevel2Agent.swift; sourceTree = "<group>"; };
 		52D1A3DE2854E96F0046B219 /* SpecialResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialResource.swift; sourceTree = "<group>"; };
+		52D1A3E028565A4D0046B219 /* TileMapNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileMapNode.swift; sourceTree = "<group>"; };
+		52D1A3E2285662DE0046B219 /* EventBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBus.swift; sourceTree = "<group>"; };
 		52DE5F31281086A40029EFE1 /* UnitFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitFactory.swift; sourceTree = "<group>"; };
 		52DE5F332810DAB90029EFE1 /* MapDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDAO.swift; sourceTree = "<group>"; };
 		52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitDAO.swift; sourceTree = "<group>"; };
@@ -596,6 +600,7 @@
 				52AB0747280287580039B47D /* City.swift */,
 				52E0B19D27E6DFA100607FBE /* EntityManager.swift */,
 				52F5595A28375E4200966F06 /* Enums.swift */,
+				52D1A3E2285662DE0046B219 /* EventBus.swift */,
 				52E0B19927E6DFA000607FBE /* Game.swift */,
 				52E0B18F27E6D87600607FBE /* Map.swift */,
 				52668175282595B10089D0DD /* Position.swift */,
@@ -622,6 +627,7 @@
 			children = (
 				52DE5FB62820F1480029EFE1 /* CityNode.swift */,
 				52DE5F84281CAD230029EFE1 /* FounderNode.swift */,
+				52D1A3E028565A4D0046B219 /* TileMapNode.swift */,
 				52DE5F7C281BA5750029EFE1 /* UnitNode.swift */,
 			);
 			path = Nodes;
@@ -1248,6 +1254,7 @@
 				521F21A02803F88400F1D61D /* Infantry2.swift in Sources */,
 				52A64666282DFFA40066B82D /* ResearchLeadershipAction.swift in Sources */,
 				5293BC28280B6A86001DE2F3 /* Cavalry7.swift in Sources */,
+				52D1A3E3285662DE0046B219 /* EventBus.swift in Sources */,
 				52A6469D28321AAD0066B82D /* BuildRoadCommand.swift in Sources */,
 				5293BC26280A4947001DE2F3 /* Queue.swift in Sources */,
 				52F9044D27F9325300D1AC97 /* CommandType.swift in Sources */,
@@ -1317,6 +1324,7 @@
 				52DE5FAF281EEC360029EFE1 /* Cavalry6.swift in Sources */,
 				52F559DF283F391100966F06 /* SpecialResourceNode.swift in Sources */,
 				52A646B428334C8E0066B82D /* MoveUnitCommand.swift in Sources */,
+				52D1A3E128565A4D0046B219 /* TileMapNode.swift in Sources */,
 				52A6467E282F680F0066B82D /* ResearchBridgeBuildingAction.swift in Sources */,
 				521F21E52807123D00F1D61D /* TerrainFactory.swift in Sources */,
 				52DE5FA1281E32AC0029EFE1 /* AircraftCarrier.swift in Sources */,

@@ -152,17 +152,6 @@ public class Db {
                                difficultyLevel: DifficultyLevel.Easy,
                                playStyle: PlayStyle(offense: 0.5, defense: 0.5))
 
-        let cities = try cityDao.getCities(game: game)
-        let units = try unitDao.getUnits(game: game)
-
-        for city in cities {
-            player1.map.tile(at: city.position).add(city: city)
-        }
-
-        for unit in units {
-            player1.add(unit: unit)
-        }
-
         game.addPlayer(player: player1)
         game.addPlayer(player: player2)
         game.addPlayer(player: player3)

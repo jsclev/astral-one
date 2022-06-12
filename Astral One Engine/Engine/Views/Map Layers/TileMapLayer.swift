@@ -14,10 +14,11 @@ public class TileMapLayer {
         self.scene = scene
         self.tileSet = tileSet
         
-        layer1Terrain = SKTileMapNode(tileSet: tileSet,
-                                    columns: player.map.width,
-                                    rows: player.map.height,
-                                    tileSize: Constants.tileSize)
+        layer1Terrain = TileMapNode(player: player,
+                                    tileSet: tileSet,
+                                      columns: player.map.width,
+                                      rows: player.map.height,
+                                      tileSize: Constants.tileSize)
         layer1Terrain.name = "base terrain"
         layer1Terrain.zPosition = Layer.base
         layer1Terrain.position = CGPoint.zero
@@ -31,6 +32,7 @@ public class TileMapLayer {
         layer2Terrain.zPosition = Layer.terrain
         layer2Terrain.position = CGPoint.zero
         layer2Terrain.enableAutomapping = true
+        layer2Terrain.isUserInteractionEnabled = false
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
@@ -44,12 +46,11 @@ public class TileMapLayer {
         scene.addChild(layer2Terrain)
     }
     
-    public func tap(location: CGPoint) {
-//        let row = layer1Terrain.tileRowIndex(fromPosition: location)
-//        let col = layer1Terrain.tileColumnIndex(fromPosition: location)
-//
-//        print("Tapped [\(row), \(col)]")
-//
+    public func tap(location: CGPoint) -> Tile {
+        let row = layer1Terrain.tileRowIndex(fromPosition: location)
+        let col = layer1Terrain.tileColumnIndex(fromPosition: location)
+        
+        return player.map.tile(at: Position(row: row, col: col))
 //        player.revealTile(at: Position(row: row, col: col))
 //        set(tile: player.map.tile(at: Position(row: row, col: col)))
     }
@@ -77,5 +78,9 @@ public class TileMapLayer {
                 fatalError("Unable to find tile group \"\(tile.terrain.name)\"")
             }
         }
+    }
+    
+    @objc private func tap(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("I tapped the map")
     }
 }

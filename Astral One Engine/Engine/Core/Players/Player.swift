@@ -201,6 +201,7 @@ public class Player: ObservableObject {
     
     public func add(cityCreator: CityCreator) {
         cityCreators.append(cityCreator)
+        
 //        availableCommands.append(BuildCityCommand(commandId: <#T##Int#>,
 //                                                  game: <#T##Game#>,
 //                                                  turn: <#T##Turn#>,

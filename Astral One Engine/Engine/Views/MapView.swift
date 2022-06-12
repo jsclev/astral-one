@@ -39,15 +39,9 @@ public class MapView {
         let _ = TileStatsMapLayer(player: player, scene: scene, mapView: self)
         
         player.$units
-            .dropFirst()
             .sink(receiveValue: { units in
                 if let unit = units.last {
-                    let unitNode = UnitNode(player: self.player,
-                                            unit: unit,
-                                            mapView: self)
-                    unitNode.position = self.getCenterPointOf(position: unit.position)
-                    unitNode.zPosition = Layer.contextMenu
-                    self.scene.addChild(unitNode)
+                    self.renderUnit(unit: unit)
                 }
             })
             .store(in: &cancellable)
@@ -55,12 +49,7 @@ public class MapView {
         player.$cityCreators
             .sink(receiveValue: { cityCreators in
                 if let cityCreator = cityCreators.last {
-                    let unitNode = UnitNode(player: self.player,
-                                            unit: cityCreator,
-                                            mapView: self)
-                    unitNode.position = self.getCenterPointOf(position: cityCreator.position)
-                    unitNode.zPosition = Layer.contextMenu
-                    self.scene.addChild(unitNode)
+                    self.renderUnit(unit: cityCreator)
                 }
             })
             .store(in: &cancellable)
@@ -74,43 +63,14 @@ public class MapView {
         return pathMap.centerOfTile(atColumn: position.col, row: position.row)
     }
     
-    public func setScene(scene: SKScene) {
-//        self.scene = scene
-//
-//        var terrainMaps: [SKTileMapNode] = []
-//
-//        for layer in 0..<map.getNumLayers() {
-//            let terrainMap = SKTileMapNode(tileSet: tileset,
-//                                           columns: player.map.width,
-//                                           rows: player.map.height,
-//                                           tileSize: tileSize)
-//            terrainMap.name = "terrain_\(layer)"
-//            terrainMap.zPosition = Layer.terrain + CGFloat(layer)
-//            terrainMap.position = CGPoint.zero
-//            terrainMap.enableAutomapping = true
-//
-//            terrainMaps.append(terrainMap)
-//        }
-//
-//        let unitsMap = SKTileMapNode(tileSet: tileset,
-//                                     columns: map.width,
-//                                     rows: map.height,
-//                                     tileSize: tileSize)
-//        unitsMap.name = "units"
-//        unitsMap.zPosition = Layer.units
-//        unitsMap.position = CGPoint.zero
-//        unitsMap.enableAutomapping = true
+    private func renderUnit(unit: Unit) {
+        let unitNode = UnitNode(player: self.player,
+                                unit: unit,
+                                mapView: self)
+        unitNode.position = self.getCenterPointOf(position: unit.position)
+        unitNode.zPosition = Layer.units
         
-        
-        
-//        for terrainMap in terrainMaps {
-//            scene.addChild(terrainMap)
-//        }
-        
-        
-        //        scene.addChild(unitsMap)
-        //        scene.addChild(pathMap)
-        //        scene.addChild(mapIcons)
+        self.scene.addChild(unitNode)
     }
     
     func clearMapIcons() {
@@ -127,8 +87,8 @@ public class MapView {
 //        }
     }
     
-    public func tap(location: CGPoint) {
-        terrainLayer.tap(location: location)
+    public func tap(location: CGPoint) -> Tile {
+        return terrainLayer.tap(location: location)
     }
     
     func printDate(string: String) {

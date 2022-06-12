@@ -22,6 +22,7 @@ public class CityMapLayer {
         citiesNode.zPosition = Layer.cities
         citiesNode.position = CGPoint.zero
         citiesNode.enableAutomapping = true
+        citiesNode.isUserInteractionEnabled = false
         
         scene.addChild(citiesNode)
         

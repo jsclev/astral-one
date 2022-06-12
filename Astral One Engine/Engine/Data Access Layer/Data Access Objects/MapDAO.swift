@@ -167,8 +167,8 @@ public class MapDAO: BaseDAO {
     }
     
     private func getRandomResource(terrainType: TerrainType) -> SpecialResourceType? {
-        return nil
         let randomNum = Int.random(in: 0..<2)
+        
         switch terrainType {
         case .Desert:
             if randomNum == 0 {
