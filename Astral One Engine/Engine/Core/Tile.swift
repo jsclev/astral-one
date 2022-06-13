@@ -171,7 +171,7 @@ public class Tile: Hashable, ObservableObject {
         self.terrain = terrain
         self.specialResource = specialResource
         
-        let errorMsg = errorMsg
+        let errorMsg = "\(specialResource) cannot be added to a \(terrain.type) tile."
         
 //        var stats: [Double] = [0.0, 0.0, 0.0, 0.0]
         
