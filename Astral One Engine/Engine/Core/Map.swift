@@ -168,6 +168,30 @@ public class Map: ObservableObject {
 //        return numLayers
     }
     
+    public func getFoodScoreMap() -> [[Double]] {
+        var scoreMap = Array(repeating: Array(repeating: 0.0, count: width), count: height)
+        
+        for row in 0..<height {
+            for col in 0..<width {
+                scoreMap[row][col] = Double(grid[row][col].food)
+            }
+        }
+        
+        return scoreMap
+    }
+    
+    public func getProductionScoreMap() -> [[Double]] {
+        var scoreMap = Array(repeating: Array(repeating: 0.0, count: width), count: height)
+        
+        for row in 0..<height {
+            for col in 0..<width {
+                scoreMap[row][col] = Double(grid[row][col].production)
+            }
+        }
+        
+        return scoreMap
+    }
+    
     public func log() {
 //        print("****************************************************************")
 //        print("Map dimensions: [\(width), \(height)]")

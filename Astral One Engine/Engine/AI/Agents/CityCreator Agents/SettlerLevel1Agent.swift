@@ -23,13 +23,7 @@ public class SettlerLevel1Agent: SettlerAgent {
                 return positions[0]
             }
             else {
-                let tenPercent = Int(0.1 * Double(positions.count))
-                var random = 0
-                
-                if tenPercent > 0 {
-                    random = Int.random(in: 0..<tenPercent)
-                }
-                
+                let random = Int.random(in: 0..<positions.count)
                 return positions[random]
             }
         }

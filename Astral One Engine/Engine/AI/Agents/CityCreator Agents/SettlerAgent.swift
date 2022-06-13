@@ -62,7 +62,7 @@ public class SettlerAgent {
         case .Seven:
             return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
         case .Eight:
-            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
+            return try SettlerLevel8Agent(player: aiPlayer, settler: settler)
         }
     }
     
@@ -148,25 +148,120 @@ public class SettlerAgent {
     }
     
     internal func getBestPositions(scoreMap: [[Double]]) -> [Position] {
-        var maxScore = -1.0
-        var currScore = -1.0
+//        var maxScore = -1.0
+//        var currScore = -1.0
         var positions: [Position] = []
         
         for i in 0..<scoreMap.count {
             for j in 0..<scoreMap[i].count {
-                currScore = scoreMap[i][j]
-                
-                if currScore > maxScore {
-                    maxScore = scoreMap[i][j]
-                    positions = [Position(row: i, col: j)]
-                }
-                else if currScore == maxScore {
+                if scoreMap[i][j] > 0.0 {
                     positions.append(Position(row: i, col: j))
                 }
+//                currScore = scoreMap[i][j]
+//
+//                if currScore > maxScore {
+//                    maxScore = scoreMap[i][j]
+//                    positions = [Position(row: i, col: j)]
+//                }
+//                else if currScore == maxScore {
+//                    positions.append(Position(row: i, col: j))
+//                }
             }
         }
         
         return positions
+    }
+    
+    internal func log(scoreMap: [[Double]]) {
+        var line1 = "-"
+        var line2 = ""
+        var line3 = ""
+        var line4 = ""
+        var line5 = ""
+        
+        let reversedScoreMap: [[Double]] = scoreMap.reversed()
+        
+        for i in 0..<reversedScoreMap.count {
+            line2 = "|"
+            line3 = "|"
+            
+            for j in 0..<reversedScoreMap[i].count {
+                let formattedNum = String(format: "%.0f", reversedScoreMap[i][j])
+                
+                line2 += "     |"
+
+                if formattedNum.count == 1 {
+                    line3 += "  " + formattedNum + " |"
+                }
+                else if formattedNum.count == 2 {
+                    line3 += " " + formattedNum + " |"
+                }
+                
+                line4 += "     |"
+                line5 += "-------"
+
+            }
+            
+            line5 += "-"
+            
+//            print(line2)
+            print(line3)
+//            print(line4)
+            print(line5)
+            
+            line1 = ""
+            line2 = ""
+            line3 = ""
+            line4 = ""
+            line5 = ""
+        }
+        
+//        if scoreMap.count > 0 {
+//            for _ in 0..<scoreMap.count {
+//                line1 += "----------------"
+//
+//
+//            }
+//
+//            print(line1)
+//            line1 = ""
+//
+//            for i in 0..<scoreMap {
+//                line2 = "|"
+//                line3 = "|"
+//                line4 = "|"
+//                line5 = "-"
+//
+//                for j in 0..<width {
+//                    if let node = self.node(row: i, col: j) {
+//                        let formattedNum = String(format: "%.7f", scoreMap[i][j])
+//
+//                        line2 += "               |"
+//
+//                        if formattedNum.count == 9 {
+//                            line3 += "  " + formattedNum + "    |"
+//                        }
+//                        else if formattedNum.count == 10 {
+//                            line3 += "  " + formattedNum + "   |"
+//                        }
+//
+//                        line4 += "               |"
+//                        line5 += "----------------"
+//                    }
+//                }
+//
+//                print(line2)
+//                print(line3)
+//                print(line4)
+//                print(line5)
+//
+//                line1 = ""
+//                line2 = ""
+//                line3 = ""
+//                line4 = ""
+//                line5 = ""
+//            }
+//        }
     }
     
 }

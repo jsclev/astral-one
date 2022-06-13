@@ -171,6 +171,8 @@ public class Tile: Hashable, ObservableObject {
         self.terrain = terrain
         self.specialResource = specialResource
         
+        let errorMsg = errorMsg
+        
 //        var stats: [Double] = [0.0, 0.0, 0.0, 0.0]
         
         switch terrain.type {
@@ -187,7 +189,7 @@ public class Tile: Hashable, ObservableObject {
                 trade = 0
             }
             else {
-                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
+                fatalError(errorMsg)
             }
 
             defenseBonus = 1.0
@@ -203,7 +205,7 @@ public class Tile: Hashable, ObservableObject {
                 trade = 3
             }
             else {
-                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
+                fatalError(errorMsg)
             }
             
             defenseBonus = 1.5
@@ -219,7 +221,7 @@ public class Tile: Hashable, ObservableObject {
                 trade = 0
             }
             else {
-                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
+                fatalError(errorMsg)
             }
             
             defenseBonus = 1.0
@@ -240,7 +242,7 @@ public class Tile: Hashable, ObservableObject {
                 trade = 4
             }
             else {
-                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
+                fatalError(errorMsg)
             }
             
             defenseBonus = 2.0
@@ -256,7 +258,7 @@ public class Tile: Hashable, ObservableObject {
                 trade = 1
             }
             else {
-                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
+                fatalError(errorMsg)
             }
 
             defenseBonus = 1.5
@@ -272,7 +274,7 @@ public class Tile: Hashable, ObservableObject {
                 trade = 0
             }
             else {
-                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
+                fatalError(errorMsg)
             }
             
             defenseBonus = 3.0
@@ -288,7 +290,7 @@ public class Tile: Hashable, ObservableObject {
                 trade = 3
             }
             else {
-                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
+                fatalError(errorMsg)
             }
 
             defenseBonus = 1.0
@@ -304,7 +306,7 @@ public class Tile: Hashable, ObservableObject {
                 trade = 0
             }
             else {
-                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
+                fatalError(errorMsg)
             }
             
             defenseBonus = 1.0
@@ -325,14 +327,25 @@ public class Tile: Hashable, ObservableObject {
                 trade = 4
             }
             else {
-                fatalError("\(specialResource) cannot be added to a \(terrain.type) tile.")
+                fatalError(errorMsg)
             }
             
             defenseBonus = 1.5
         case TerrainType.Tundra:
-            food = 1
-            production = 0
-            trade = 0
+            if specialResource == SpecialResourceType.Furs {
+                food = 2
+                production = 0
+                trade = 3
+            }
+            else if specialResource == SpecialResourceType.Game {
+                food = 3
+                production = 1
+                trade = 0
+            }
+            else {
+                fatalError(errorMsg)
+            }
+
             defenseBonus = 1.0
         case TerrainType.Unknown:
             food = 0
