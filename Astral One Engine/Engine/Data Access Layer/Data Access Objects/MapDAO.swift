@@ -45,6 +45,7 @@ public class MapDAO: BaseDAO {
                 let row = getInt(stmt: stmt, colIndex: 3)
                 let col = getInt(stmt: stmt, colIndex: 4)
                 let terrainId = getInt(stmt: stmt, colIndex: 5)
+                let hasRiver = getInt(stmt: stmt, colIndex: 6) == 1 ? true : false
                 let tiledId = getInt(stmt: stmt, colIndex: 8)
                 
                 if let terrainTypeText = try getString(stmt: stmt, colIndex: 9) {
@@ -62,7 +63,8 @@ public class MapDAO: BaseDAO {
                                                            tiledId: tiledId,
                                                            name: terrainTypeText,
                                                            type: terrainType),
-                                          specialResource: srType))
+                                          specialResource: srType,
+                                          hasRiver: hasRiver))
                     }
                     else {
                         tiles.append(Tile(id: tileId,
@@ -70,7 +72,8 @@ public class MapDAO: BaseDAO {
                                           terrain: Terrain(id: terrainId,
                                                            tiledId: tiledId,
                                                            name: terrainTypeText,
-                                                           type: terrainType)))
+                                                           type: terrainType),
+                                          hasRiver: hasRiver))
                     }
                 }
                 else {
@@ -110,8 +113,6 @@ public class MapDAO: BaseDAO {
             return TerrainType.Ocean
         case "Plains":
             return TerrainType.Plains
-        case "River":
-            return TerrainType.River
         case "Swamp":
             return TerrainType.Swamp
         case "Tundra":
@@ -165,84 +166,6 @@ public class MapDAO: BaseDAO {
             fatalError("Should not have gotten here.")
         }
     }
-    
-    private func getRandomResource(terrainType: TerrainType) -> SpecialResourceType? {
-        let randomNum = Int.random(in: 0..<2)
-        
-        switch terrainType {
-        case .Desert:
-            if randomNum == 0 {
-                return SpecialResourceType.Oasis
-            }
-            else {
-                return SpecialResourceType.Oil
-            }
-        case .Forest:
-            if randomNum == 0 {
-                return SpecialResourceType.Pheasant
-            }
-            else {
-                return SpecialResourceType.Silk
-            }
-        case .Glacier:
-            if randomNum == 0 {
-                return SpecialResourceType.Ivory
-            }
-            else {
-                return SpecialResourceType.Oil
-            }
-        case .Grassland:
-            return nil
-        case .Hills:
-            if randomNum == 0 {
-                return SpecialResourceType.Coal
-            }
-            else {
-                return SpecialResourceType.Wine
-            }
-        case .Jungle:
-            if randomNum == 0 {
-                return SpecialResourceType.Gems
-            }
-            else {
-                return SpecialResourceType.Fruit
-            }
-        case .Mountains:
-            if randomNum == 0 {
-                return SpecialResourceType.Gold
-            }
-            else {
-                return SpecialResourceType.Iron
-            }
-        case .Ocean:
-            if randomNum == 0 {
-                return SpecialResourceType.Fish
-            }
-            else {
-                return SpecialResourceType.Whales
-            }
-        case .Plains:
-            if randomNum == 0 {
-                return SpecialResourceType.Buffalo
-            }
-            else {
-                return SpecialResourceType.Wheat
-            }
-        case .River:
-            return nil
-        case .Swamp:
-            if randomNum == 0 {
-                return SpecialResourceType.Peat
-            }
-            else {
-                return SpecialResourceType.Spice
-            }
-        case .Tundra:
-            return SpecialResourceType.Furs
-        case .Unknown:
-            return nil
-        }
-    }
         
     public func insert(map: Map) throws -> Map {
         var mainStmt: OpaquePointer?
@@ -255,6 +178,13 @@ public class MapDAO: BaseDAO {
             VALUES (?, ?, ?, ?, ?, ?, ?);
             """
         
+        let gameIdCol: Int32 = 1
+        let mapIdCol: Int32 = 2
+        let rowCol: Int32 = 3
+        let colCol: Int32 = 4
+        let terrainIdCol: Int32 = 5
+        let hasRiverCol: Int32 = 6
+        let spResourceCol: Int32 = 7
         let rowIdSql = "SELECT last_insert_rowid()"
         
         if sqlite3_exec(conn, "BEGIN TRANSACTION", nil, nil, nil) != SQLITE_OK {
@@ -282,18 +212,24 @@ public class MapDAO: BaseDAO {
             for col in 0..<map.width {
                 let tile = map.tile(at: Position(row: row, col: col))
                 
-                sqlite3_bind_int(mainStmt, 1, Int32(1))
-                sqlite3_bind_int(mainStmt, 2, Int32(1))
-                sqlite3_bind_int(mainStmt, 3, Int32(row))
-                sqlite3_bind_int(mainStmt, 4, Int32(col))
-                sqlite3_bind_int(mainStmt, 5, Int32(tile.terrain.id))
-                sqlite3_bind_int(mainStmt, 6, Int32(0))
+                sqlite3_bind_int(mainStmt, gameIdCol, Int32(1))
+                sqlite3_bind_int(mainStmt, mapIdCol, Int32(1))
+                sqlite3_bind_int(mainStmt, rowCol, Int32(row))
+                sqlite3_bind_int(mainStmt, colCol, Int32(col))
+                sqlite3_bind_int(mainStmt, terrainIdCol, Int32(tile.terrain.id))
                 
-                if let sr = tile.specialResource {
-                    sqlite3_bind_text(mainStmt, 7, sr.description, -1, SQLITE_TRANSIENT)
+                if tile.hasRiver {
+                    sqlite3_bind_int(mainStmt, hasRiverCol, Int32(1))
                 }
                 else {
-                    sqlite3_bind_text(mainStmt, 7, nil, -1, SQLITE_TRANSIENT)
+                    sqlite3_bind_int(mainStmt, hasRiverCol, Int32(0))
+                }
+                
+                if let sr = tile.specialResource {
+                    sqlite3_bind_text(mainStmt, spResourceCol, sr.description, -1, SQLITE_TRANSIENT)
+                }
+                else {
+                    sqlite3_bind_text(mainStmt, spResourceCol, nil, -1, SQLITE_TRANSIENT)
                 }
                 
                 if sqlite3_step(mainStmt) == SQLITE_DONE {

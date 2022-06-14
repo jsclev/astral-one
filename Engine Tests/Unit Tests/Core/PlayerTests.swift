@@ -39,6 +39,119 @@ class PlayerTests: XCTestCase {
         XCTAssertFalse(player.get(advanceType: AdvanceType.Pottery).isResearching)
         XCTAssertTrue(player.get(advanceType: AdvanceType.Pottery).completed)
     }
+    
+    func testGetTilesWithinCityRadius() throws {
+        let theme = Theme(id: 1, name: "Standard")
+        let map = Map(mapId: 1, width: 5, height: 5)
+        let game = Game(theme: theme, map: map, db: TestUtils.getDb())
+        
+        map.add(tile: TestUtils.makeTile(0, 0, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(1, 0, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 0, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 0, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 0, TerrainType.Grassland))
+        
+        map.add(tile: TestUtils.makeTile(0, 1, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(1, 1, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 1, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 1, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 1, TerrainType.Grassland))
+        
+        map.add(tile: TestUtils.makeTile(0, 2, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(1, 2, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 2, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 2, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 2, TerrainType.Grassland))
+        
+        map.add(tile: TestUtils.makeTile(0, 3, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(1, 3, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 3, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 3, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 3, TerrainType.Grassland))
+        
+        map.add(tile: TestUtils.makeTile(0, 4, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(1, 4, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(2, 4, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(3, 4, TerrainType.Grassland))
+        map.add(tile: TestUtils.makeTile(4, 4, TerrainType.Grassland))
+        
+        map.revealAllTiles()
+        
+        let player = AIPlayer(playerId: 1,
+                                game: game,
+                                map: map,
+                                skillLevel: SkillLevel.One,
+                                difficultyLevel: DifficultyLevel.Easy,
+                                playStyle: PlayStyle.init(offense: 0.5, defense: 0.5))
+        
+        // City radius from [0, 0]
+        var cityRadius = player.getTilesInCityRadius(from: Position(row: 0, col: 0))
+        XCTAssertEqual(8, cityRadius.count)
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 0, col: 0))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 0, col: 1))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 0, col: 2))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 1, col: 0))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 1, col: 1))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 1, col: 2))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 0))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 1))))
+        
+        // City radius from [1, 1]
+        cityRadius = player.getTilesInCityRadius(from: Position(row: 1, col: 1))
+        XCTAssertEqual(15, cityRadius.count)
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 0, col: 0))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 0, col: 1))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 0, col: 2))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 0, col: 3))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 1, col: 0))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 1, col: 1))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 1, col: 2))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 1, col: 3))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 0))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 1))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 2))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 3))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 3, col: 0))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 3, col: 1))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 3, col: 2))))
+        
+        // City radius from [4, 4]
+        cityRadius = player.getTilesInCityRadius(from: Position(row: 4, col: 4))
+        XCTAssertEqual(8, cityRadius.count)
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 4, col: 4))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 4, col: 3))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 4, col: 2))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 3, col: 4))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 3, col: 3))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 3, col: 2))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 4))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 3))))
+        
+        // City radius from [2, 2]
+        cityRadius = player.getTilesInCityRadius(from: Position(row: 2, col: 2))
+        XCTAssertEqual(21, cityRadius.count)
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 0, col: 1))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 0, col: 2))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 0, col: 3))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 1, col: 0))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 1, col: 1))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 1, col: 2))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 1, col: 3))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 1, col: 4))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 0))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 1))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 2))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 3))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 2, col: 4))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 3, col: 0))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 3, col: 1))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 3, col: 2))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 3, col: 3))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 3, col: 4))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 4, col: 1))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 4, col: 2))))
+        XCTAssertTrue(cityRadius.contains(map.tile(at: Position(row: 4, col: 3))))
+    }
 //    func testAddAvailable1() throws {
 //        let map = Map(mapId: 1, width: 1, height: 1)
 //        let game = Game(theme: Theme(id: 1, name: "Test Theme"), map: map)

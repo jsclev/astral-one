@@ -2,12 +2,14 @@ import Foundation
 
 public class TiledTilesetParser: NSObject, XMLParserDelegate {
     var terrains: [TiledTerrain] = []
+//    var hasRivers = [Position: Bool]()
     var specialResources: [TiledSpecialResource] = []
     var elementName = ""
     var tileId = ""
     
     public func parse() -> TiledTileset {
         terrains = []
+//        hasRivers = [Position: Bool]()
         specialResources = []
         elementName = ""
         tileId = ""
@@ -49,6 +51,9 @@ public class TiledTilesetParser: NSObject, XMLParserDelegate {
             if let terrainType = Constants.terrainTypes[tileId] {
                 terrains.append(TiledTerrain(id: tileId,
                                              terrainType: terrainType))
+            }
+            else if tileId == String(Constants.riverTiledId) {
+                print("Found has river")
             }
             else if let specialResource = Constants.specialResources[tileId] {
                 specialResources.append(TiledSpecialResource(id: tileId,

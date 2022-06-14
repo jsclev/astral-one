@@ -24,8 +24,6 @@ public class TerrainFactory {
             for terrain in terrains { if terrain.type == TerrainType.Ocean { return terrain} }
         case .Plains:
             for terrain in terrains { if terrain.type == TerrainType.Plains { return terrain} }
-        case .River:
-            for terrain in terrains { if terrain.type == TerrainType.River { return terrain} }
         case .Swamp:
             for terrain in terrains { if terrain.type == TerrainType.Swamp { return terrain} }
         case .Tundra:

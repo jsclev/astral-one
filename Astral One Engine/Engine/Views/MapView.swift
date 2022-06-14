@@ -14,7 +14,7 @@ public class MapView {
     let tileset: SKTileSet
     var mapIconsTileset: SKTileSet!
     var pathMap: SKTileMapNode
-    private let terrainLayer: TileMapLayer
+    private let terrainLayer: TerrainMapLayer
     var startPosition = SIMD2<Int32>(0, 0)
     var endPosition = SIMD2<Int32>(0, 0)
     private var cancellable = Set<AnyCancellable>()
@@ -33,7 +33,8 @@ public class MapView {
         pathMap.position = CGPoint.zero
         pathMap.enableAutomapping = true
         
-        terrainLayer = TileMapLayer(player: player, scene: scene, tileSet: tileset)
+        terrainLayer = TerrainMapLayer(player: player, scene: scene, tileSet: tileset)
+        let _ = RiverMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = CityMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = SpecialResourceMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = TileStatsMapLayer(player: player, scene: scene, mapView: self)

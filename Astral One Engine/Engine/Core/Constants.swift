@@ -13,6 +13,7 @@ public struct Constants {
     public static let mapWidth: CGFloat = 1000.0 / 3.0
     public static let mapHeight: CGFloat = 1000.0 / 3.0
     public static let noScore = 0.0
+    public static let riverTiledId = 50
     public static let terrainTypes: [String: TerrainType] = [
         "0": TerrainType.Grassland,
         "1": TerrainType.Forest,

@@ -62,7 +62,7 @@ public class EventBus {
                                                                              displayText: "4000 B.C."),
                                                                   ordinal: 1,
                                                                   cost: 0,
-                                                                  cityCreator: unit as! CityCreator,
+                                                                  cityCreator: unit,
                                                                   cityName: "New York-\(unit.id)")
                             createCityCmd.execute()
                             print("Build this city on rock and roll.")

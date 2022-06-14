@@ -113,19 +113,22 @@ public class SettlerAgent {
         return Double(0.0)
     }
     
-    internal func getCityRadiusScores() -> [Position:Double] {
+    public func getCityRadiusScores() -> [Position:Double] {
         var scores: [Position: Double] = [:]
 
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
+                if row == 0 && col == 2 {
+                    print("")
+                }
                 let position = Position(row: row, col: col)
                 let tile = player.map.tile(at: position)
                 
                 if tile.visibility == Visibility.FullyRevealed ||
-                    tile.visibility == Visibility.SemiRevealed {
+                   tile.visibility == Visibility.SemiRevealed {
 
                     if tile.canBuildCity() {
-                        let cityRadiusTiles = player.getTilesWithinCityRadius(from: position)
+                        let cityRadiusTiles = player.getTilesInCityRadius(from: position)
                         
                         var sum = 0.0
                         for tile in cityRadiusTiles {
@@ -173,7 +176,7 @@ public class SettlerAgent {
     }
     
     internal func log(scoreMap: [[Double]]) {
-        var line1 = "-"
+        // var line1 = "-"
         var line2 = ""
         var line3 = ""
         var line4 = ""
@@ -181,6 +184,7 @@ public class SettlerAgent {
         
         let reversedScoreMap: [[Double]] = scoreMap.reversed()
         
+        print("---------------------------------------------------")
         for i in 0..<reversedScoreMap.count {
             line2 = "|"
             line3 = "|"
@@ -198,7 +202,7 @@ public class SettlerAgent {
                 }
                 
                 line4 += "     |"
-                line5 += "-------"
+                line5 += "-----"
 
             }
             
@@ -209,7 +213,7 @@ public class SettlerAgent {
 //            print(line4)
             print(line5)
             
-            line1 = ""
+//            line1 = ""
             line2 = ""
             line3 = ""
             line4 = ""

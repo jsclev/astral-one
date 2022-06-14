@@ -22,7 +22,8 @@ public class Map: ObservableObject {
                                   name: "",
                                   type: TerrainType.Unknown)
         self.grid = Array(repeating: Array(repeating: Tile(position: nullPosition,
-                                                           terrain: nullTerrain),
+                                                           terrain: nullTerrain,
+                                                           hasRiver: false),
                                            count: width),
                           count: height)
 
@@ -32,7 +33,8 @@ public class Map: ObservableObject {
                                            terrain: Terrain(id: Constants.noId,
                                                             tiledId: Constants.noId,
                                                             name: "Null",
-                                                            type: TerrainType.Unknown))
+                                                            type: TerrainType.Unknown),
+                                                            hasRiver: false)
             }
         }
         
@@ -91,7 +93,7 @@ public class Map: ObservableObject {
         return true
     }
     
-    public func getDistanceFromNearestCity(from: Position) -> Int {
+    public func getDistanceToNearestCity(from: Position) -> Int {
         var currDistance = 0
         var maxDistance = 0
         

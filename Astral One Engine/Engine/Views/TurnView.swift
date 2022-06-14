@@ -18,8 +18,6 @@ public class TurnView {
         yearNode.position = CGPoint(x: 490, y: 340)
         parent.addChild(yearNode)
         
-        print(parent.frame.width)
-        
         self.game.$turnIndex
             .sink(receiveValue: { _ in
                 self.refresh()

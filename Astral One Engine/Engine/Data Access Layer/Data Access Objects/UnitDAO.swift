@@ -54,8 +54,6 @@ public class UnitDAO: BaseDAO {
                         terrainType = TerrainType.Ocean
                     case "Plains":
                         terrainType = TerrainType.Plains
-                    case "River":
-                        terrainType = TerrainType.River
                     case "Swamp":
                         terrainType = TerrainType.Swamp
                     case "Tundra":
@@ -70,7 +68,8 @@ public class UnitDAO: BaseDAO {
                                       terrain: Terrain(id: terrainId,
                                                        tiledId: tiledId,
                                                        name: terrainTypeText,
-                                                       type: terrainType)))
+                                                       type: terrainType),
+                                      hasRiver: false))
                 }
             }
         }
@@ -138,7 +137,8 @@ public class UnitDAO: BaseDAO {
                         tileId = getInt(stmt: rowIdStmt, colIndex: 0)
                         returnMap.add(tile: Tile(id: tileId,
                                                  position: Position(row: row, col: col),
-                                                 terrain: tile.terrain))
+                                                 terrain: tile.terrain,
+                                                 hasRiver: false))
                     }
                     else {
                         let errMsg = String(cString: sqlite3_errmsg(conn)!)

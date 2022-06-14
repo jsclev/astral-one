@@ -3,10 +3,11 @@ import Combine
 
 public class Tile: Hashable, ObservableObject {
     public let id: Int
-    public private (set) var visibility = Visibility.FogOfWar
     public let position: Position
     public let terrain: Terrain
     public var specialResource: SpecialResourceType?
+    public let hasRiver: Bool
+    public private (set) var visibility = Visibility.FogOfWar
     public var food: Int
     public var production: Int
     public var trade: Int
@@ -14,84 +15,15 @@ public class Tile: Hashable, ObservableObject {
     public let defenseBonus: Double
     public var city: City? = nil
     
-    public init(position: Position, terrain: Terrain) {
-        self.id = -1
-        self.position = position
-        self.terrain = terrain
-        
-        switch terrain.type {
-        case TerrainType.Desert:
-            food = 0
-            production = 1
-            trade = 0
-            defenseBonus = 1.0
-        case TerrainType.Forest:
-            food = 1
-            production = 2
-            trade = 0
-            defenseBonus = 1.5
-        case TerrainType.Glacier:
-            food = 0
-            production = 0
-            trade = 0
-            defenseBonus = 1.0
-        case TerrainType.Grassland:
-            food = 2
-            production = 0
-            trade = 0
-            defenseBonus = 1.0
-        case TerrainType.Hills:
-            food = 1
-            production = 0
-            trade = 0
-            defenseBonus = 2.0
-        case TerrainType.Jungle:
-            food = 1
-            production = 0
-            trade = 0
-            defenseBonus = 1.5
-        case TerrainType.Mountains:
-            food = 0
-            production = 1
-            trade = 0
-            defenseBonus = 3.0
-        case TerrainType.Ocean:
-            food = 1
-            production = 0
-            trade = 2
-            defenseBonus = 1.0
-        case TerrainType.Plains:
-            food = 1
-            production = 1
-            trade = 0
-            defenseBonus = 1.0
-        case TerrainType.River:
-            food = 0
-            production = 0
-            trade = 1
-            defenseBonus = 1.0
-        case TerrainType.Swamp:
-            food = 1
-            production = 0
-            trade = 0
-            defenseBonus = 1.5
-        case TerrainType.Tundra:
-            food = 1
-            production = 0
-            trade = 0
-            defenseBonus = 1.0
-        case TerrainType.Unknown:
-            food = 0
-            production = 0
-            trade = 0
-            defenseBonus = 0.0
-        }
+    public convenience init(position: Position, terrain: Terrain, hasRiver: Bool) {
+        self.init(id: Constants.noId, position: position, terrain: terrain, hasRiver: hasRiver)
     }
     
-    public init(id: Int, position: Position, terrain: Terrain) {
+    public init(id: Int, position: Position, terrain: Terrain, hasRiver: Bool) {
         self.id = id
         self.position = position
         self.terrain = terrain
+        self.hasRiver = hasRiver
         
         switch terrain.type {
         case TerrainType.Desert:
@@ -138,11 +70,6 @@ public class Tile: Hashable, ObservableObject {
             food = 1
             production = 1
             trade = 0
-            defenseBonus = 1.0
-        case TerrainType.River:
-            food = 0
-            production = 0
-            trade = 1
             defenseBonus = 1.0
         case TerrainType.Swamp:
             food = 1
@@ -165,20 +92,19 @@ public class Tile: Hashable, ObservableObject {
     public init(id: Int,
                 position: Position,
                 terrain: Terrain,
-                specialResource: SpecialResourceType) {
+                specialResource: SpecialResourceType,
+                hasRiver: Bool) {
         self.id = id
         self.position = position
         self.terrain = terrain
         self.specialResource = specialResource
+        self.hasRiver = hasRiver
         
         let errorMsg = "\(specialResource) cannot be added to a \(terrain.type) tile."
-        
-//        var stats: [Double] = [0.0, 0.0, 0.0, 0.0]
         
         switch terrain.type {
         case TerrainType.Desert:
             if specialResource == SpecialResourceType.Oasis {
-//                stats = [3.0, 1.0, 0.0, 1.0]
                 food = 3
                 production = 1
                 trade = 0
@@ -310,11 +236,6 @@ public class Tile: Hashable, ObservableObject {
             }
             
             defenseBonus = 1.0
-        case TerrainType.River:
-            food = 0
-            production = 0
-            trade = 1
-            defenseBonus = 1.0
         case TerrainType.Swamp:
             if specialResource == SpecialResourceType.Peat {
                 food = 1
@@ -354,10 +275,6 @@ public class Tile: Hashable, ObservableObject {
             defenseBonus = 0.0
         }
         
-//        food = Int(stats[0])
-//        production = Int(stats[1])
-//        trade = Int(stats[2])
-//        defenseBonus = stats[3]
     }
     
     public func hash(into hasher: inout Hasher) {
@@ -374,12 +291,14 @@ public class Tile: Hashable, ObservableObject {
             return Tile(id: id,
                         position: position,
                         terrain: terrain,
-                        specialResource: sp)
+                        specialResource: sp,
+                        hasRiver: false)
         }
         else {
             return Tile(id: id,
                         position: position,
-                        terrain: terrain)
+                        terrain: terrain,
+                        hasRiver: false)
         }
     }
     

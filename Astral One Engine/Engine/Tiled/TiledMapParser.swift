@@ -12,17 +12,20 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
     var firstGId: Int = 1
     var layerOrdinal: Int = 0
     var terrains: [Terrain] = []
+    var hasRivers: [Position: Bool]
     
     public init(tiledTileset: TiledTileset, filename: String) {
         self.filename = filename
         self.tiledTileset = tiledTileset
         self.map = Map(mapId: 1, width: mapWidth, height: mapHeight)
+        self.hasRivers = [Position: Bool]()
     }
     
     public func parse() throws -> Map {
         layerOrdinal = 0
         mapInitialized = false
         currentEl = ""
+        hasRivers = [Position: Bool]()
         try terrains = Constants.db.terrainDao.getTerrains()
         
         if let path = Bundle.main.url(forResource: filename, withExtension: ".tmx") {
@@ -109,14 +112,23 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
 
                                     if let tiledId = Int(strLocalTiledId) {
                                         if let terrain = getTerrain(tiledId: tiledId) {
-                                            map.add(tile: Tile(position: position, terrain: terrain))
+                                            map.add(tile: Tile(position: position,
+                                                               terrain: terrain,
+                                                               hasRiver: false))
+                                        }
+                                        else if tiledId == Constants.riverTiledId {
+                                            let tile = map.tile(at: position)
+                                            map.add(tile: Tile(position: position,
+                                                               terrain: tile.terrain,
+                                                               hasRiver: true))
                                         }
                                         else if let specialResource = Constants.specialResources[strLocalTiledId] {
                                             let tile = map.tile(at: position)
                                             map.add(tile: Tile(id: Constants.noId,
                                                                position: position,
                                                                terrain: tile.terrain,
-                                                               specialResource: specialResource))
+                                                               specialResource: specialResource,
+                                                               hasRiver: tile.hasRiver))
                                         }
                                         else {
                                             fatalError("Unable to find tile with Tiled ID \(strLocalTiledId).")

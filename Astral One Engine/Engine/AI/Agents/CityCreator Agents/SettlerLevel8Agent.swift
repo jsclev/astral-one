@@ -39,16 +39,27 @@ public class SettlerLevel8Agent: SettlerAgent {
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tiles = player.getTilesWithinCityRadius(from: position)
                 
-                for tile in tiles {
-                    if player.map.canBuildCity(at: position) {
-                        var score = Double(tile.food)
-                        score += Double(tile.production)
-                        score += Double(tile.trade)
-                        score += tile.defenseBonus
+                if player.map.canBuildCity(at: position) {
+                    let tiles = player.getTilesInCityRadius(from: position)
+                    
+                    if position.row == 1 && position.col == 1 {
+                        print("Rendering stats for Joshua\'s city")
+                    }
+                    
+                    for tile in tiles {
+                        if position.row == 1 && position.col == 1 {
+                            var msg = "City tile [\(tile.position.row), \(tile.position.col)], "
+                            msg += "\(tile.terrain.name), "
+                            msg += "total: \(tile.getScore()), "
+                            msg += "production: \(tile.production), "
+                            msg += "food: \(tile.food), "
+                            msg += "trade: \(tile.trade), "
+                            msg += "defenseBonus: \(tile.defenseBonus)"
+                            print(msg)
+                        }
                         
-                        scoreMap[row][col] = score
+                        scoreMap[row][col] += tile.getScore()
                     }
                 }
             }

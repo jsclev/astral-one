@@ -285,7 +285,7 @@ public class Player: ObservableObject {
         map.add(tile: tile)
     }
     
-    public func getTilesWithinCityRadius(from: Position) -> [Tile] {
+    public func getTilesInCityRadius(from: Position) -> [Tile] {
         var cityRadiusTiles: [Tile] = []
         var positions: [Position] = []
         

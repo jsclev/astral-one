@@ -81,7 +81,6 @@ struct PathfinderView: View {
         HStack {
 #if DEBUG
             if #available(iOS 15.0, *) {
-                Text("hello")
                 SpriteView(scene: scene, debugOptions: [.showsFPS,
                                                         .showsNodeCount,
                                                         .showsDrawCount])

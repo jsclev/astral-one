@@ -56,8 +56,6 @@ public class TerrainDAO: BaseDAO {
                         terrainType = TerrainType.Ocean
                     case "Plains":
                         terrainType = TerrainType.Plains
-                    case "River":
-                        terrainType = TerrainType.River
                     case "Swamp":
                         terrainType = TerrainType.Swamp
                     case "Tundra":

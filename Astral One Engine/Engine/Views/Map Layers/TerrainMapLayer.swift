@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import SpriteKit
 
-public class TileMapLayer {
+public class TerrainMapLayer {
     let player: Player
     let scene: SKScene
     let tileSet: SKTileSet
