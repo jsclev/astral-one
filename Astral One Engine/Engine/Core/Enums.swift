@@ -3,7 +3,7 @@ import CoreGraphics
 public enum Layer {
     public static let base = 0.0
     public static let terrain = 100.0
-    public static let rivers = 1150.0
+    public static let rivers = 150.0
     public static let cities = 200.0
     public static let cityNames = 250.0
     public static let specialResources = 275.0

@@ -25,6 +25,13 @@ public class Tile: Hashable, ObservableObject {
         self.terrain = terrain
         self.hasRiver = hasRiver
         
+        if (hasRiver && terrain.type == TerrainType.Mountains) ||
+            (hasRiver && terrain.type == TerrainType.Ocean) {
+            var msg = "Rivers cannot be on ocean or mountain tiles.  "
+            msg += "Problematic tile is at [\(position.row), \(position.col)]."
+            fatalError(msg)
+        }
+        
         switch terrain.type {
         case TerrainType.Desert:
             food = 0
@@ -99,6 +106,13 @@ public class Tile: Hashable, ObservableObject {
         self.terrain = terrain
         self.specialResource = specialResource
         self.hasRiver = hasRiver
+        
+        if (hasRiver && terrain.type == TerrainType.Mountains) ||
+            (hasRiver && terrain.type == TerrainType.Ocean) {
+            var msg = "Rivers cannot be on ocean or mountain tiles.  "
+            msg += "Problematic tile is at [\(position.row), \(position.col)]."
+            fatalError(msg)
+        }
         
         let errorMsg = "\(specialResource) cannot be added to a \(terrain.type) tile."
         
