@@ -8,6 +8,7 @@ public class Tile: Hashable, ObservableObject {
     public var specialResource: SpecialResourceType?
     public let hasRiver: Bool
     public private (set) var visibility = Visibility.FogOfWar
+    public let baseMovementCost: Double
     public var food: Int
     public var production: Int
     public var trade: Int
@@ -38,6 +39,7 @@ public class Tile: Hashable, ObservableObject {
             production = 1
             trade = 0
             defenseBonus = 1.0
+            baseMovementCost = 1.0
         case TerrainType.Forest:
             food = 1
             production = 2
@@ -328,7 +330,7 @@ public class Tile: Hashable, ObservableObject {
         self.city = city
     }
     
-    public func canBuildCity() -> Bool {
+    public var canCreateCity: Bool {
         if terrain.type == TerrainType.Ocean {
             return false
         }
@@ -348,7 +350,9 @@ public class Tile: Hashable, ObservableObject {
         self.movementModifier = movementModifier
     }
     
-    public func getMovementCost() -> Double {
+    public var movementCost: Double {
+        // FIXME: Need to add railroad makes movement cost zero
+        //        Roads make movement cost be 0.333
         var movementCost = 0.0
         
         if let modifier = movementModifier {

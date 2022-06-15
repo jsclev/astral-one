@@ -30,9 +30,12 @@ public class EventBus {
             print("\(city.name) tapped")
         }
         
-        let player = game.getCurrentPlayer()
+        // let player = game.players[Int.random(in: 0..<game.players.count)]
+        let player = game.players[1]
         let units = player.cityCreators
         var foundUnitsAtLocation = false
+        
+
         
         for unit in units {
             if unit.position == tile.position {
@@ -63,23 +66,21 @@ public class EventBus {
                                                                   ordinal: 1,
                                                                   cost: 0,
                                                                   cityCreator: unit,
-                                                                  cityName: "New York-\(unit.id)")
+                                                                  cityName: "New York-\(player.playerId)")
                             createCityCmd.execute()
-                            print("Build this city on rock and roll.")
                         }
                         else {
                             print("No where to settle city")
                         }
                     }
                     catch {
-                        print("hello")
                         print(error)
                     }
                 }
             }
         }
         
-        if !foundUnitsAtLocation && tile.canBuildCity() {
+        if !foundUnitsAtLocation && tile.canCreateCity {
             let settler = Settler(game: game,
                                   player: player,
                                   theme: game.theme,
@@ -87,6 +88,10 @@ public class EventBus {
                                   position: tile.position)
             
             player.add(cityCreator: settler)
+        }
+        
+        for p in game.players {
+            p.map.revealAllTiles()
         }
         
     }

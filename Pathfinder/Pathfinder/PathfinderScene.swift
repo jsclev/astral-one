@@ -187,13 +187,9 @@ class PathfinderScene: SKScene {
 //            createInfantry4Action.execute()
 //        }
         
-//        let fowGenerator = FogOfWarGenerator(player: player)
-//        fowGenerator.generate()
-        for row in 0..<player.map.height {
-            for col in 0..<player.map.width {
-                player.map.tile(at: Position(row: row, col: col)).set(visibility: Visibility.FullyRevealed)
-            }
-        }
+        let fowGenerator = FogOfWarGenerator(player: player)
+        fowGenerator.generate()
+
         let tileset = SKTileSet(named: tilesetName)
         
         // addInitialSettler(player: player)
@@ -229,7 +225,7 @@ class PathfinderScene: SKScene {
             
             tile = player.map.tile(at: Position(row: randomRow, col: randomCol))
             
-            if tile.canBuildCity() {
+            if tile.canCreateCity {
                 foundTile = true
                 print("Adding Settler to [\(randomRow), \(randomCol)]")
             }

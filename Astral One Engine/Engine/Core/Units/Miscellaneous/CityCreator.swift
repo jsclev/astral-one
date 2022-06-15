@@ -27,7 +27,6 @@ public class CityCreator: Unit {
                    fp: fp,
                    maxMovementPoints: maxMovementPoints,
                    position: position)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +49,7 @@ public class CityCreator: Unit {
     
     public func buildNewCity(city: City) {
         if canCreateCity() {
-            player.build(city: city, using: self)
+            player.create(city: city, using: self)
         }
     }
     

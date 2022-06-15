@@ -64,7 +64,7 @@ public class CreateCityCommand: Command {
             }
         
             if let newCity = city {
-                player.build(city: newCity, using: cityCreator)
+                player.create(city: newCity, using: cityCreator)
             }
         }
     }

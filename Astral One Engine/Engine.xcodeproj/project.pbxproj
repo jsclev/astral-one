@@ -36,7 +36,7 @@
 		52605C902801E3B00082C0DB /* InfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */; };
 		5261478D284D8CA600CFF9CA /* FogOfWarGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261478C284D8CA600CFF9CA /* FogOfWarGenerator.swift */; };
 		52614793284FC40F00CFF9CA /* CreateCityCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52614792284FC40F00CFF9CA /* CreateCityCommand.swift */; };
-		52614795284FFDE200CFF9CA /* BuildCityCommandDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52614794284FFDE200CFF9CA /* BuildCityCommandDAO.swift */; };
+		52614795284FFDE200CFF9CA /* CreateCityCommandDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52614794284FFDE200CFF9CA /* CreateCityCommandDAO.swift */; };
 		52668162282302790089D0DD /* Fanatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52668161282302790089D0DD /* Fanatic.swift */; };
 		526681642823029E0089D0DD /* Diplomat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526681632823029E0089D0DD /* Diplomat.swift */; };
 		526681662823043B0089D0DD /* AlpineTroop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526681652823043B0089D0DD /* AlpineTroop.swift */; };
@@ -266,7 +266,7 @@
 		52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceMapCalculator.swift; sourceTree = "<group>"; };
 		5261478C284D8CA600CFF9CA /* FogOfWarGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FogOfWarGenerator.swift; sourceTree = "<group>"; };
 		52614792284FC40F00CFF9CA /* CreateCityCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCityCommand.swift; sourceTree = "<group>"; };
-		52614794284FFDE200CFF9CA /* BuildCityCommandDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildCityCommandDAO.swift; sourceTree = "<group>"; };
+		52614794284FFDE200CFF9CA /* CreateCityCommandDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCityCommandDAO.swift; sourceTree = "<group>"; };
 		52668161282302790089D0DD /* Fanatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fanatic.swift; sourceTree = "<group>"; };
 		526681632823029E0089D0DD /* Diplomat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diplomat.swift; sourceTree = "<group>"; };
 		526681652823043B0089D0DD /* AlpineTroop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineTroop.swift; sourceTree = "<group>"; };
@@ -1086,7 +1086,7 @@
 			isa = PBXGroup;
 			children = (
 				52F9044527F80B0500D1AC97 /* CommandDAO.swift */,
-				52614794284FFDE200CFF9CA /* BuildCityCommandDAO.swift */,
+				52614794284FFDE200CFF9CA /* CreateCityCommandDAO.swift */,
 				52F9046D27FC8B7D00D1AC97 /* MoveCommandDAO.swift */,
 			);
 			path = Commands;
@@ -1374,7 +1374,7 @@
 				526681822826DE440089D0DD /* Action.swift in Sources */,
 				52EA0D6A28484A06005E9AF8 /* CityAgent.swift in Sources */,
 				52DE5F7D281BA5750029EFE1 /* UnitNode.swift in Sources */,
-				52614795284FFDE200CFF9CA /* BuildCityCommandDAO.swift in Sources */,
+				52614795284FFDE200CFF9CA /* CreateCityCommandDAO.swift in Sources */,
 				52A64638282C94850066B82D /* IncreaseDefenseGoalScorer.swift in Sources */,
 				52A64670282F01500066B82D /* GoodieHut.swift in Sources */,
 				521F21BF2804811C00F1D61D /* Air4.swift in Sources */,

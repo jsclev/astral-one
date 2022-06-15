@@ -1,7 +1,7 @@
 import Foundation
 import SQLite3
 
-public class BuildCityCommandDAO: BaseDAO {
+public class CreateCityCommandDAO: BaseDAO {
     private let commandDao: CommandDAO
     private let cityDao: CityDAO
     

@@ -9,12 +9,12 @@ public class FogOfWarGenerator {
     }
     
     public func generate() {
-        let size = vector2(Double(player.map.width), Double(player.map.height))
+        let size = vector2(Double(8 * player.map.width), Double(8 * player.map.height))
         let noise = GKNoise(GKPerlinNoiseSource())
         let noiseMap = GKNoiseMap.init(noise,
                                        size: size,
                                        origin: vector2(0, 0),
-                                       sampleCount: vector2(700, 700), seamless: true)
+                                       sampleCount: vector2(100, 100), seamless: true)
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {

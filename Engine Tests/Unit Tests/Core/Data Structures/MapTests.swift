@@ -8,7 +8,7 @@ class MapTests: XCTestCase {
     }
     
     func testGetMoveCostsExpectsMin() throws {
-        let map = Map(mapId: 1, width: 10, height: 5)
+        let map = Map(width: 10, height: 5)
         let movementCosts = map.getMovementCosts()
         
         XCTAssertEqual(movementCosts.count, 5)
@@ -23,7 +23,7 @@ class MapTests: XCTestCase {
     }
     
     func testGetMoveCostsBaseTerrain() throws {
-        let map = Map(mapId: 1, width: 4, height: 4)
+        let map = Map(width: 4, height: 4)
         try map.add(tile: Tile(position: Position(row: 0, col: 0),
                                terrain: TerrainFactory.create(terrainType: TerrainType.Desert)))
         try map.add(tile: Tile(position: Position(row: 0, col: 1),
@@ -70,7 +70,7 @@ class MapTests: XCTestCase {
     }
     
     func testGetMoveCostTwoGrassNodes() throws {
-        let map = Map(mapId: 1, width: 2, height: 1)
+        let map = Map(width: 2, height: 1)
         try map.add(tile: Tile(position: Position(row: 0, col: 0),
                                terrain: TerrainFactory.create(terrainType: TerrainType.Grassland)))
         try map.add(tile: Tile(position: Position(row: 0, col: 1),
@@ -81,7 +81,7 @@ class MapTests: XCTestCase {
     }
     
     func testGetMoveCostsExpectsModifiers() throws {
-        let map = Map(mapId: 1, width: 2, height: 2)
+        let map = Map(width: 2, height: 2)
         let tile00 = Tile(position: Position(row: 0, col: 0),
                           terrain: try TerrainFactory.create(terrainType: TerrainType.Grassland))
         tile00.add(movementModifier: MovementModifier(name: "", movementCost: 100.0))

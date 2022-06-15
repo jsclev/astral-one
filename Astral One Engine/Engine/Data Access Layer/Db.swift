@@ -10,7 +10,7 @@ public class Db {
     
     public let cityDao: CityDAO
     public let commandDao: CommandDAO
-    public let buildCityCommandDao: BuildCityCommandDAO
+    public let buildCityCommandDao: CreateCityCommandDAO
     public let gameDao: GameDAO
     public let mapDao: MapDAO
     public let terrainDao: TerrainDAO
@@ -95,7 +95,7 @@ public class Db {
         
         cityDao = CityDAO(conn: db)
         commandDao = CommandDAO(conn: db, cityDao: cityDao)
-        buildCityCommandDao = BuildCityCommandDAO(conn: db, commandDao: commandDao, cityDao: cityDao)
+        buildCityCommandDao = CreateCityCommandDAO(conn: db, commandDao: commandDao, cityDao: cityDao)
         gameDao = GameDAO(conn: db)
         mapDao = MapDAO(conn: db)
         terrainDao = TerrainDAO(conn: db)
@@ -130,25 +130,25 @@ public class Db {
         let player3 = AIPlayer(playerId: 3,
                                game: game,
                                map: player3Map,
-                               skillLevel: SkillLevel.Three,
+                               skillLevel: SkillLevel.One,
                                difficultyLevel: DifficultyLevel.Easy,
                                playStyle: PlayStyle(offense: 0.5, defense: 0.5))
         let player4 = AIPlayer(playerId: 4,
                                game: game,
                                map: player4Map,
-                               skillLevel: SkillLevel.Four,
+                               skillLevel: SkillLevel.One,
                                difficultyLevel: DifficultyLevel.Easy,
                                playStyle: PlayStyle(offense: 0.5, defense: 0.5))
         let player5 = AIPlayer(playerId: 5,
                                game: game,
                                map: player5Map,
-                               skillLevel: SkillLevel.Five,
+                               skillLevel: SkillLevel.One,
                                difficultyLevel: DifficultyLevel.Easy,
                                playStyle: PlayStyle(offense: 0.5, defense: 0.5))
         let player6 = AIPlayer(playerId: 6,
                                game: game,
                                map: player6Map,
-                               skillLevel: SkillLevel.Six,
+                               skillLevel: SkillLevel.One,
                                difficultyLevel: DifficultyLevel.Easy,
                                playStyle: PlayStyle(offense: 0.5, defense: 0.5))
 

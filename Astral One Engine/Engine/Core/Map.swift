@@ -10,6 +10,10 @@ public class Map: ObservableObject {
     private var movementCosts: [[Double]]
     private var cancellable = Set<AnyCancellable>()
     @Published internal var cities: [City] = []
+    
+    public convenience init(width: Int, height: Int) {
+        self.init(mapId: Constants.noId, width: width, height: height)
+    }
 
     public init(mapId: Int, width: Int, height: Int) {
         self.mapId = mapId
@@ -41,6 +45,24 @@ public class Map: ObservableObject {
         self.movementCosts = Array(repeating: Array(repeating:0.0, count: width), count: height)
     }
     
+    public var visibleTiles: [Tile] {
+        var tiles: [Tile] = []
+        
+        for row in 0..<height {
+            for col in 0..<width {
+                if grid[row][col].visibility != Visibility.FogOfWar {
+                    tiles.append(grid[row][col])
+                }
+            }
+        }
+        
+        return tiles
+    }
+    
+    public func isFullyVisible(position: Position) -> Bool {
+        return tile(at: position).visibility == Visibility.FullyRevealed
+    }
+    
     public func load(mapId: Int) {
         
     }
@@ -67,7 +89,7 @@ public class Map: ObservableObject {
         }
     }
     
-    public func canBuildCity(at: Position) -> Bool {
+    public func canCreateCity(at: Position) -> Bool {
         if tile(at: at).terrain.type == TerrainType.Ocean {
             return false
         }

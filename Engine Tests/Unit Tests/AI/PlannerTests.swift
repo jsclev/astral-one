@@ -568,7 +568,7 @@ class PlannerTests: XCTestCase {
     
     func testGetActions198() throws {
         let theme = Theme(id: 1, name: "Standard")
-        let map = Map(mapId: 1, width: 8, height: 8)
+        let map = Map(width: 8, height: 8)
         let game = Game(theme: theme, map: map, db: TestUtils.getDb())
         
         map.add(tile: TestUtils.makeTile(0, 0, TerrainType.Forest, SpecialResourceType.Pheasant))

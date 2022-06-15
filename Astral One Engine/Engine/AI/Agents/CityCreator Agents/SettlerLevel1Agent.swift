@@ -42,7 +42,7 @@ public class SettlerLevel1Agent: SettlerAgent {
                 let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if player.map.canBuildCity(at: position) {
+                    if player.map.canCreateCity(at: position) {
                         let distance = player.map.getDistanceToNearestCity(from: position)
                         let score = 100 - distance
                         

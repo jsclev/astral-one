@@ -40,12 +40,8 @@ public class SettlerLevel8Agent: SettlerAgent {
             for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
                 
-                if player.map.canBuildCity(at: position) {
+                if player.map.canCreateCity(at: position) {
                     let tiles = player.getTilesInCityRadius(from: position)
-                    
-                    if position.row == 1 && position.col == 1 {
-                        print("Rendering stats for Joshua\'s city")
-                    }
                     
                     for tile in tiles {
                         if position.row == 1 && position.col == 1 {

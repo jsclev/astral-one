@@ -20,7 +20,7 @@ public class SettlerLevel2Agent: SettlerAgent {
                 let tile = player.map.tile(at: position)
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if player.map.canBuildCity(at: position) {
+                    if player.map.canCreateCity(at: position) {
                         var score = Double(tile.food)
                         score += Double(tile.production)
                         score += Double(tile.trade)

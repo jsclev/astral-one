@@ -2,6 +2,9 @@ import Foundation
 import Combine
 
 public class City: ObservableObject, Equatable {
+    // TODO: When a player gets the railroad advance, city tiles are
+    //       automatically upgraded to have railroads, which means they
+    //       now have a zero movement cost.
     public let id: Int
     public let theme: Theme
     public let owner: Player

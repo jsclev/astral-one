@@ -3,7 +3,7 @@ import Combine
 
 
 
-public class Player: ObservableObject {
+public class Player: ObservableObject, Equatable {
     public let playerId: Int
     public let game: Game
     public let map: Map
@@ -17,11 +17,38 @@ public class Player: ObservableObject {
     private let techTree = TechTree()
     public var maxActionPlanLength = 4
     @Published public var government = Government.Despotism
+    private var cancellable = Set<AnyCancellable>()
     
     public init(playerId: Int, game: Game, map: Map) {
         self.playerId = playerId
         self.game = game
         self.map = map
+        
+        game.map.$cities
+            .sink(receiveValue: { cities in
+                if let city = cities.last {
+                    print("----------------------------------------------")
+                    if city.owner == self {
+                        print("I own \(city.name)")
+                    }
+                    else {
+                        print("I do not own \(city.name)")
+                    }
+                    
+                    if map.isFullyVisible(position: city.position) {
+                        print("I can see \(city.name)")
+                    }
+                    else {
+                        print("I can not see \(city.name)")
+                    }
+                    
+                    if city.owner != self && map.isFullyVisible(position: city.position) {
+                        map.add(city: city)
+                        print("Added \"\(city.name)\" to my map. Owned by \(city.owner.playerId).")
+                    }
+                }
+            })
+            .store(in: &cancellable)
     }
     
     public var settlers: [Settler] {
@@ -175,7 +202,7 @@ public class Player: ObservableObject {
         return diff
     }
     
-    internal func build(city: City, using: CityCreator) {
+    internal func create(city: City, using: CityCreator) {
         map.add(city: city)
         
 //        for action in availableCityActions {
@@ -382,6 +409,10 @@ public class Player: ObservableObject {
 //            return false
 //        }
         return false
+    }
+    
+    public static func == (lhs: Player, rhs: Player) -> Bool {
+        return lhs.playerId == rhs.playerId
     }
     
 }

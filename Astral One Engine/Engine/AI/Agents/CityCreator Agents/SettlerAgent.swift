@@ -127,7 +127,7 @@ public class SettlerAgent {
                 if tile.visibility == Visibility.FullyRevealed ||
                    tile.visibility == Visibility.SemiRevealed {
 
-                    if tile.canBuildCity() {
+                    if tile.canCreateCity {
                         let cityRadiusTiles = player.getTilesInCityRadius(from: position)
                         
                         var sum = 0.0

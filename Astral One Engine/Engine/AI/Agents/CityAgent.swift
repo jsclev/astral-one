@@ -116,7 +116,7 @@ public class CityAgent {
                 let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if player.map.canBuildCity(at: position) {
+                    if player.map.canCreateCity(at: position) {
                         let distance = player.map.getDistanceToNearestCity(from: position)
                         let score = 100 - distance
                         
@@ -155,7 +155,7 @@ public class CityAgent {
                 let tile = player.map.tile(at: position)
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if player.map.canBuildCity(at: position) {
+                    if player.map.canCreateCity(at: position) {
                         var score = Double(tile.food)
                         score += Double(tile.production)
                         score += Double(tile.trade)

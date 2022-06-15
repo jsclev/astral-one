@@ -9,7 +9,7 @@ class MapDAOTests: XCTestCase {
     }
 
     func testInsertFourTilesExpectsSuccess() throws {
-        let map = Map(mapId: -1, width: 2, height: 2)
+        let map = Map(width: 2, height: 2)
         let terrain = try TerrainFactory.create(terrainType: TerrainType.Grassland)
         
         map.add(tile: Tile(position: Position(row: 0, col: 0), terrain: terrain))
