@@ -24,14 +24,16 @@ public class EventBus {
         
         let tile = mapView.tap(location: location)
         
+        tile.addRoad()
+        
         print("Tapped [\(tile.position.row), \(tile.position.col)]")
         
         if let city = tile.city {
             print("\(city.name) tapped")
         }
         
-        // let player = game.players[Int.random(in: 0..<game.players.count)]
-        let player = game.players[1]
+        let player = game.getCurrentPlayer()
+//        let player = game.players[1]
         let units = player.cityCreators
         var foundUnitsAtLocation = false
         

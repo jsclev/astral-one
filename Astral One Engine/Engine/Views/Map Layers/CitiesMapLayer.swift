@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import SpriteKit
 
-public class CityMapLayer {
+public class CitiesMapLayer {
     private let player: Player
     private let mapView: MapView
     private let citiesNode: SKTileMapNode

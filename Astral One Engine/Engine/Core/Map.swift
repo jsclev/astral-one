@@ -69,7 +69,7 @@ public class Map: ObservableObject {
     
     public func add(tile: Tile) {
         grid[tile.position.row][tile.position.col] = tile
-        movementCosts[tile.position.row][tile.position.col] = tile.getMovementCost()
+        movementCosts[tile.position.row][tile.position.col] = tile.movementCost
     }
     
     internal func add(city: City) {

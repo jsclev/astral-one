@@ -47,7 +47,7 @@ public class SettlerLevel8Agent: SettlerAgent {
                         if position.row == 1 && position.col == 1 {
                             var msg = "City tile [\(tile.position.row), \(tile.position.col)], "
                             msg += "\(tile.terrain.name), "
-                            msg += "total: \(tile.getScore()), "
+                            msg += "total: \(tile.score), "
                             msg += "production: \(tile.production), "
                             msg += "food: \(tile.food), "
                             msg += "trade: \(tile.trade), "
@@ -55,7 +55,7 @@ public class SettlerLevel8Agent: SettlerAgent {
                             print(msg)
                         }
                         
-                        scoreMap[row][col] += tile.getScore()
+                        scoreMap[row][col] += tile.score + tile.movementCost
                     }
                 }
             }

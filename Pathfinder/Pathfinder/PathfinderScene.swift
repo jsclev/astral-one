@@ -187,9 +187,9 @@ class PathfinderScene: SKScene {
 //            createInfantry4Action.execute()
 //        }
         
-        let fowGenerator = FogOfWarGenerator(player: player)
-        fowGenerator.generate()
-
+//        let fowGenerator = FogOfWarGenerator(player: player)
+//        fowGenerator.generate()
+        player.map.revealAllTiles()
         let tileset = SKTileSet(named: tilesetName)
         
         // addInitialSettler(player: player)

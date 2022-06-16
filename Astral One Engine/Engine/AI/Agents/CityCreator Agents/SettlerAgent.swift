@@ -118,9 +118,6 @@ public class SettlerAgent {
 
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
-                if row == 0 && col == 2 {
-                    print("")
-                }
                 let position = Position(row: row, col: col)
                 let tile = player.map.tile(at: position)
                 
@@ -132,7 +129,7 @@ public class SettlerAgent {
                         
                         var sum = 0.0
                         for tile in cityRadiusTiles {
-                            sum += tile.getScore()
+                            sum += tile.score + tile.movementCost
                         }
                         
                         scores[position] = sum
@@ -199,6 +196,9 @@ public class SettlerAgent {
                 }
                 else if formattedNum.count == 2 {
                     line3 += " " + formattedNum + " |"
+                }
+                else if formattedNum.count == 3 {
+                    line3 += "" + formattedNum + " |"
                 }
                 
                 line4 += "     |"

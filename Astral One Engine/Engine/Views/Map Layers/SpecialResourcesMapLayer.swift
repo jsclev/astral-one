@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import SpriteKit
 
-public class SpecialResourceMapLayer {
+public class SpecialResourcesMapLayer {
 
     public init(player: Player, scene: SKScene, mapView: MapView, tileSet: SKTileSet) {
         let node = SKTileMapNode(tileSet: tileSet,

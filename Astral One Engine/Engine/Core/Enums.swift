@@ -139,6 +139,12 @@ public enum ImprovementType {
     case Road
 }
 
+public enum RoadType {
+    case None
+    case Road
+    case Railroad
+}
+
 public enum SpecialResourceType: CustomStringConvertible {
     case Buffalo
     case Coal

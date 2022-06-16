@@ -124,7 +124,7 @@ public class Db {
         let player2 = AIPlayer(playerId: 2,
                                game: game,
                                map: player2Map,
-                               skillLevel: SkillLevel.Two,
+                               skillLevel: SkillLevel.Eight,
                                difficultyLevel: DifficultyLevel.Easy,
                                playStyle: PlayStyle(offense: 0.5, defense: 0.5))
         let player3 = AIPlayer(playerId: 3,

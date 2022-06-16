@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import SpriteKit
 
-public class TerrainMapLayer {
+public class BaseTerrainsMapLayer {
     let player: Player
     let scene: SKScene
     let tileSet: SKTileSet
@@ -71,7 +71,6 @@ public class TerrainMapLayer {
         }
         else {
             if let tileGroup = tileSet.tileGroups.first(where: { $0.name == "Fog" }) {
-                // Make sure we are setting the tile on the correct layered terrain map
                 layer2Terrain.setTileGroup(tileGroup, forColumn: col, row: row)
             }
             else {

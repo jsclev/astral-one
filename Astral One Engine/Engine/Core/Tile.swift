@@ -8,13 +8,13 @@ public class Tile: Hashable, ObservableObject {
     public var specialResource: SpecialResourceType?
     public let hasRiver: Bool
     public private (set) var visibility = Visibility.FogOfWar
-    public let baseMovementCost: Double
+    private let baseMovementCost: Double
     public var food: Int
     public var production: Int
     public var trade: Int
-    private var movementModifier: MovementModifier?
     public let defenseBonus: Double
     public var city: City? = nil
+    @Published public private (set) var roadType = RoadType.None
     
     public convenience init(position: Position, terrain: Terrain, hasRiver: Bool) {
         self.init(id: Constants.noId, position: position, terrain: terrain, hasRiver: hasRiver)
@@ -45,56 +45,67 @@ public class Tile: Hashable, ObservableObject {
             production = 2
             trade = 0
             defenseBonus = 1.5
+            baseMovementCost = 1.0
         case TerrainType.Glacier:
             food = 0
             production = 0
             trade = 0
             defenseBonus = 1.0
+            baseMovementCost = 1.0
         case TerrainType.Grassland:
             food = 2
             production = 0
             trade = 0
             defenseBonus = 1.0
+            baseMovementCost = 1.0
         case TerrainType.Hills:
             food = 1
             production = 0
             trade = 0
             defenseBonus = 2.0
+            baseMovementCost = 1.0
         case TerrainType.Jungle:
             food = 1
             production = 0
             trade = 0
             defenseBonus = 1.5
+            baseMovementCost = 1.0
         case TerrainType.Mountains:
             food = 0
             production = 1
             trade = 0
             defenseBonus = 3.0
+            baseMovementCost = 1.0
         case TerrainType.Ocean:
             food = 1
             production = 0
             trade = 2
             defenseBonus = 1.0
+            baseMovementCost = 1.0
         case TerrainType.Plains:
             food = 1
             production = 1
             trade = 0
             defenseBonus = 1.0
+            baseMovementCost = 1.0
         case TerrainType.Swamp:
             food = 1
             production = 0
             trade = 0
             defenseBonus = 1.5
+            baseMovementCost = 1.0
         case TerrainType.Tundra:
             food = 1
             production = 0
             trade = 0
             defenseBonus = 1.0
+            baseMovementCost = 1.0
         case TerrainType.Unknown:
             food = 0
             production = 0
             trade = 0
             defenseBonus = 0.0
+            baseMovementCost = 1.0
         }
     }
     
@@ -135,6 +146,7 @@ public class Tile: Hashable, ObservableObject {
             }
 
             defenseBonus = 1.0
+            baseMovementCost = 1.0
         case TerrainType.Forest:
             if specialResource == SpecialResourceType.Pheasant {
                 food = 3
@@ -151,6 +163,7 @@ public class Tile: Hashable, ObservableObject {
             }
             
             defenseBonus = 1.5
+            baseMovementCost = 1.0
         case TerrainType.Glacier:
             if specialResource == SpecialResourceType.Ivory {
                 food = 1
@@ -167,11 +180,13 @@ public class Tile: Hashable, ObservableObject {
             }
             
             defenseBonus = 1.0
+            baseMovementCost = 1.0
         case TerrainType.Grassland:
             food = 2
             production = 0
             trade = 0
             defenseBonus = 1.0
+            baseMovementCost = 1.0
         case TerrainType.Hills:
             if specialResource == SpecialResourceType.Coal {
                 food = 1
@@ -188,6 +203,7 @@ public class Tile: Hashable, ObservableObject {
             }
             
             defenseBonus = 2.0
+            baseMovementCost = 1.0
         case TerrainType.Jungle:
             if specialResource == SpecialResourceType.Gems {
                 food = 1
@@ -204,6 +220,7 @@ public class Tile: Hashable, ObservableObject {
             }
 
             defenseBonus = 1.5
+            baseMovementCost = 1.0
         case TerrainType.Mountains:
             if specialResource == SpecialResourceType.Gold {
                 food = 0
@@ -220,6 +237,7 @@ public class Tile: Hashable, ObservableObject {
             }
             
             defenseBonus = 3.0
+            baseMovementCost = 1.0
         case TerrainType.Ocean:
             if specialResource == SpecialResourceType.Fish {
                 food = 3
@@ -236,6 +254,7 @@ public class Tile: Hashable, ObservableObject {
             }
 
             defenseBonus = 1.0
+            baseMovementCost = 1.0
         case TerrainType.Plains:
             if specialResource == SpecialResourceType.Buffalo {
                 food = 1
@@ -252,6 +271,7 @@ public class Tile: Hashable, ObservableObject {
             }
             
             defenseBonus = 1.0
+            baseMovementCost = 1.0
         case TerrainType.Swamp:
             if specialResource == SpecialResourceType.Peat {
                 food = 1
@@ -268,6 +288,7 @@ public class Tile: Hashable, ObservableObject {
             }
             
             defenseBonus = 1.5
+            baseMovementCost = 1.0
         case TerrainType.Tundra:
             if specialResource == SpecialResourceType.Furs {
                 food = 2
@@ -284,11 +305,13 @@ public class Tile: Hashable, ObservableObject {
             }
 
             defenseBonus = 1.0
+            baseMovementCost = 1.0
         case TerrainType.Unknown:
             food = 0
             production = 0
             trade = 0
             defenseBonus = 0.0
+            baseMovementCost = 1.0
         }
         
     }
@@ -303,11 +326,11 @@ public class Tile: Hashable, ObservableObject {
     }
     
     public func clone() -> Tile {
-        if let sp = specialResource {
+        if let sr = specialResource {
             return Tile(id: id,
                         position: position,
                         terrain: terrain,
-                        specialResource: sp,
+                        specialResource: sr,
                         hasRiver: false)
         }
         else {
@@ -318,7 +341,7 @@ public class Tile: Hashable, ObservableObject {
         }
     }
     
-    public func getScore() -> Double {
+    public var score: Double {
         return Double(food) + Double(production) + Double(trade) + defenseBonus
     }
     
@@ -328,6 +351,14 @@ public class Tile: Hashable, ObservableObject {
     
     internal func add(city: City) {
         self.city = city
+    }
+    
+    public func addRoad() {
+        roadType = RoadType.Road
+    }
+    
+    public func addRailroad() {
+        roadType = RoadType.Railroad
     }
     
     public var canCreateCity: Bool {
@@ -345,21 +376,16 @@ public class Tile: Hashable, ObservableObject {
     public func set(visibility: Visibility) {
         self.visibility = visibility
     }
-
-    public func add(movementModifier: MovementModifier) {
-        self.movementModifier = movementModifier
-    }
     
     public var movementCost: Double {
-        // FIXME: Need to add railroad makes movement cost zero
-        //        Roads make movement cost be 0.333
-        var movementCost = 0.0
-        
-        if let modifier = movementModifier {
-            movementCost = modifier.movementCost
+        if roadType == RoadType.Railroad {
+            return 0.0
+        }
+        else if roadType == RoadType.Road {
+            return 1.0 / 3.0
         }
         
-        return movementCost <= 0.0 ? Constants.minMovementCost : movementCost
+        return baseMovementCost
     }
 
 }
