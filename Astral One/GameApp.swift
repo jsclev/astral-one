@@ -20,6 +20,7 @@ struct GameApp: App {
                 GameView()
                     .environmentObject(game)
             }
+            .statusBar(hidden: true)
         }
     }
 }

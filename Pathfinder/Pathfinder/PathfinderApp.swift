@@ -11,6 +11,7 @@ struct PathfinderApp: App {
                     .ignoresSafeArea()
                 PathfinderView()
             }
+            .statusBar(hidden: true)
         }
     }
 }
