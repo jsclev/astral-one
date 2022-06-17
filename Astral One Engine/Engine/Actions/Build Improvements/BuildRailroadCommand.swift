@@ -1,29 +1,35 @@
 import Foundation
 
 public class BuildRailroadCommand: Command {
-    private let city: City
-    private let unit: Unit
-    private let position: Position
+    public private(set) var builder: Builder
+    
+    public convenience init(player: Player,
+                            turn: Turn,
+                            ordinal: Int,
+                            cost: Int,
+                            builder: Builder) {
+        self.init(commandId: Constants.noId,
+                  player: player,
+                  turn: turn,
+                  ordinal: ordinal,
+                  cost: cost,
+                  builder: builder)
+    }
     
     public init(commandId: Int,
-                game: Game,
-                turn: Turn,
                 player: Player,
-                type: CommandType,
+                turn: Turn,
                 ordinal: Int,
-                city: City,
-                unit: Unit,
-                position: Position) {
-        self.city = city
-        self.unit = unit
-        self.position = position
+                cost: Int,
+                builder: Builder) {
+        self.builder = builder
         
         super.init(commandId: commandId,
                    player: player,
-                   type: type,
+                   type: CommandType(id: Constants.noId, name: ""),
                    turn: turn,
                    ordinal: ordinal,
-                   cost: 25)
+                   cost: cost)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,6 +37,6 @@ public class BuildRailroadCommand: Command {
     }
     
     public override func execute() {
-        city.build(improvement: ImprovementType.Railroad, position: position)
+        builder.buildRailroad()
     }
 }

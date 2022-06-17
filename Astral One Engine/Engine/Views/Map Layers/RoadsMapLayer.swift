@@ -55,11 +55,11 @@ public class RoadsMapLayer {
             }
         }
         else if roadType == RoadType.Railroad {
-            if let tileGroup = tileSet.tileGroups.first(where: { $0.name == "Road" }) {
+            if let tileGroup = tileSet.tileGroups.first(where: { $0.name == "Railroad" }) {
                 tileMapNode.setTileGroup(tileGroup, forColumn: at.col, row: at.row)
             }
             else {
-                fatalError("Unable to find tile group \"Road\"")
+                fatalError("Unable to find tile group \"Railroad\"")
             }
         }
     }

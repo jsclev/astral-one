@@ -129,20 +129,30 @@ public class EventBus {
                 let builder = unit as! Builder
                 
                 let move1 = MoveUnitCommand(player: player,
-                                              type: CommandType(id: 1, name: ""),
-                                              turn: game.getCurrentTurn(),
-                                              ordinal: 1,
-                                              unit: builder,
-                                              to: Position(row: unit.position.row + 1,
-                                                           col: unit.position.col + 1))
+                                            type: CommandType(id: 1, name: ""),
+                                            turn: game.getCurrentTurn(),
+                                            ordinal: 1,
+                                            unit: builder,
+                                            to: Position(row: unit.position.row + 1,
+                                                         col: unit.position.col + 1))
                 move1.execute()
                 
-                let createRoad = BuildRoadCommand(player: player,
-                                                  turn: game.getCurrentTurn(),
-                                                  ordinal: 1,
-                                                  cost: 0,
-                                                  builder: builder)
-                createRoad.execute()
+                if Int.random(in: 0..<10) % 2 == 0 {
+                    let createRoad = BuildRoadCommand(player: player,
+                                                      turn: game.getCurrentTurn(),
+                                                      ordinal: 1,
+                                                      cost: 0,
+                                                      builder: builder)
+                    createRoad.execute()
+                }
+                else {
+                    let createRailroad = BuildRailroadCommand(player: player,
+                                                              turn: game.getCurrentTurn(),
+                                                              ordinal: 1,
+                                                              cost: 0,
+                                                              builder: builder)
+                    createRailroad.execute()
+                }
                 
                 let move2 = MoveUnitCommand(player: player,
                                             type: CommandType(id: 1, name: ""),
