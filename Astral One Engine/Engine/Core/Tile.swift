@@ -14,6 +14,7 @@ public class Tile: Hashable, ObservableObject {
     public var trade: Int
     public let defenseBonus: Double
     public var city: City? = nil
+    @Published public private (set) var hasFortress = false
     @Published public private (set) var roadType = RoadType.None
     
     public convenience init(position: Position, terrain: Terrain, hasRiver: Bool) {
@@ -359,6 +360,10 @@ public class Tile: Hashable, ObservableObject {
     
     internal func addRailroad() {
         roadType = RoadType.Railroad
+    }
+    
+    internal func addFortress() {
+        hasFortress = true
     }
     
     public var canCreateCity: Bool {

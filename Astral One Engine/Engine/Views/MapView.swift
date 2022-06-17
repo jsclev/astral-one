@@ -36,6 +36,7 @@ public class MapView {
         terrainLayer = BaseTerrainsMapLayer(player: player, scene: scene, tileSet: tileset)
         let _ = RiversMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = RoadsMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
+        let _ = FortressesMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = CitiesMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = SpecialResourcesMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = TileStatsMapLayer(player: player, scene: scene, mapView: self)

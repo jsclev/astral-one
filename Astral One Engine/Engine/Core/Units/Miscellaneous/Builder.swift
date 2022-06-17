@@ -47,8 +47,18 @@ public class Builder: Unit {
         return true
     }
     
+    public var canBuildFortress: Bool {
+        return true
+    }
+    
     public var canBuildRoad: Bool {
         return true
+    }
+    
+    internal func buildFortress() {
+        if canBuildFortress {
+            player.map.tile(at: position).addFortress()
+        }
     }
     
     internal func buildRoad() {

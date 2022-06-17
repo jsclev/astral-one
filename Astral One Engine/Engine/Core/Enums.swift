@@ -5,6 +5,7 @@ public enum Layer {
     public static let terrain = 100.0
     public static let rivers = 150.0
     public static let roads = 190.0
+    public static let fortresses = 195.0
     public static let cities = 200.0
     public static let cityNames = 250.0
     public static let specialResources = 275.0

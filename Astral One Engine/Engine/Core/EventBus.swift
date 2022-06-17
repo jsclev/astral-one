@@ -137,7 +137,8 @@ public class EventBus {
                                                          col: unit.position.col + 1))
                 move1.execute()
                 
-                if Int.random(in: 0..<10) % 2 == 0 {
+                let randNum = Int.random(in: 3..<4)
+                if randNum == 1 {
                     let createRoad = BuildRoadCommand(player: player,
                                                       turn: game.getCurrentTurn(),
                                                       ordinal: 1,
@@ -145,13 +146,21 @@ public class EventBus {
                                                       builder: builder)
                     createRoad.execute()
                 }
-                else {
+                else if randNum == 2 {
                     let createRailroad = BuildRailroadCommand(player: player,
                                                               turn: game.getCurrentTurn(),
                                                               ordinal: 1,
                                                               cost: 0,
                                                               builder: builder)
                     createRailroad.execute()
+                }
+                else if randNum == 3 {
+                    let createFortress = BuildFortressCommand(player: player,
+                                                              turn: game.getCurrentTurn(),
+                                                              ordinal: 1,
+                                                              cost: 0,
+                                                              builder: builder)
+                    createFortress.execute()
                 }
                 
                 let move2 = MoveUnitCommand(player: player,
