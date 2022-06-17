@@ -185,6 +185,14 @@ CREATE TABLE create_city_command (
     FOREIGN KEY (unit_id) REFERENCES unit (unit_id)
 );
 
+CREATE TABLE create_unit_command (
+    command_id INTEGER NOT NULL,
+    unit_id INTEGER NOT NULL,
+    city_id INTEGER NOT NULL,
+    FOREIGN KEY (command_id) REFERENCES command (command_id),
+    FOREIGN KEY (unit_id) REFERENCES unit (unit_id)
+);
+
 CREATE TABLE building_command (
     command_id INTEGER NOT NULL,
     building_id INTEGER NOT NULL

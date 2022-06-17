@@ -1,6 +1,6 @@
 import Foundation
 
-public class Settler: CityCreator {
+public class Settler: Builder {
     public init(game: Game,
                 player: Player,
                 theme: Theme,

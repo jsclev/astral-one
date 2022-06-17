@@ -18,52 +18,48 @@ public class RoadsMapLayer {
                                     columns: player.map.width,
                                     rows: player.map.height,
                                     tileSize: Constants.tileSize)
-        tileMapNode.name = "roads"
+        tileMapNode.name = "Roads"
         tileMapNode.position = CGPoint.zero
-        tileMapNode.zPosition = Layer.rivers
+        tileMapNode.zPosition = Layer.roads
         tileMapNode.enableAutomapping = true
         tileMapNode.isUserInteractionEnabled = false
+        scene.addChild(tileMapNode)
         
+        attachSubscribers()
+    }
+    
+    private func attachSubscribers() {
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
                 let tile = player.map.tile(at: Position(row: row, col: col))
                 
-                for row in 0..<player.map.height {
-                    for col in 0..<player.map.width {
-                        let tile = player.map.tile(at: Position(row: row, col: col))
-                        
-                        tile.$roadType
-                            .sink(receiveValue: { roadType in
-                                self.renderRoad(tile: tile)
-                                print(roadType)
-                            })
-                            .store(in: &cancellable)
-                    }
-                }
+                tile.$roadType
+                    .dropFirst()
+                    .sink(receiveValue: { roadType in
+                        self.updateImprovement(at: tile.position, roadType: roadType)
+                    })
+                    .store(in: &cancellable)
             }
         }
-        
-        scene.addChild(tileMapNode)
     }
     
-    private func renderRoad(tile: Tile) {
-        let row = tile.position.row
-        let col = tile.position.col
+    private func updateImprovement(at: Position, roadType: RoadType) {
+        print(roadType)
         
-        if tile.roadType == RoadType.Road {
-            if let tileGroup = tileSet.tileGroups.first(where: { $0.name == "River" }) {
-                tileMapNode.setTileGroup(tileGroup, forColumn: col, row: row)
+        if roadType == RoadType.Road {
+            if let tileGroup = tileSet.tileGroups.first(where: { $0.name == "Road" }) {
+                tileMapNode.setTileGroup(tileGroup, forColumn: at.col, row: at.row)
             }
             else {
-                fatalError("Unable to find tile group \"River\"")
+                fatalError("Unable to find tile group \"Road\"")
             }
         }
-        else if tile.roadType == RoadType.Railroad {
-            if let tileGroup = tileSet.tileGroups.first(where: { $0.name == "River" }) {
-                tileMapNode.setTileGroup(tileGroup, forColumn: col, row: row)
+        else if roadType == RoadType.Railroad {
+            if let tileGroup = tileSet.tileGroups.first(where: { $0.name == "Road" }) {
+                tileMapNode.setTileGroup(tileGroup, forColumn: at.col, row: at.row)
             }
             else {
-                fatalError("Unable to find tile group \"River\"")
+                fatalError("Unable to find tile group \"Road\"")
             }
         }
     }

@@ -1,41 +1,38 @@
 import Foundation
 
 public class CreateCityCommand: Command {
-    public private(set) var cityCreator: CityCreator
+    public private(set) var cityCreator: Builder
     private var cityName: String
     public private(set) var city: City?
     
-    public init(player: Player,
-         type: CommandType,
-         turn: Turn,
-         ordinal: Int,
-         cost: Int,
-         cityCreator: CityCreator,
-         cityName: String) {
-        self.cityCreator = cityCreator
-        self.cityName = cityName
-        
-        super.init(player: player,
-                   type: type,
-                   turn: turn,
-                   ordinal: ordinal,
-                   cost: cost)
+    public convenience init(player: Player,
+                            turn: Turn,
+                            ordinal: Int,
+                            cost: Int,
+                            cityCreator: Builder,
+                            cityName: String) {
+        self.init(commandId: Constants.noId,
+                  player: player,
+                  turn: turn,
+                  ordinal: ordinal,
+                  cost: cost,
+                  cityCreator: cityCreator,
+                  cityName: cityName)
     }
     
     public init(commandId: Int,
-         player: Player,
-         type: CommandType,
-         turn: Turn,
-         ordinal: Int,
-         cost: Int,
-         cityCreator: CityCreator,
-         cityName: String) {
+                player: Player,
+                turn: Turn,
+                ordinal: Int,
+                cost: Int,
+                cityCreator: Builder,
+                cityName: String) {
         self.cityCreator = cityCreator
         self.cityName = cityName
         
         super.init(commandId: commandId,
                    player: player,
-                   type: type,
+                   type: CommandType(id: Constants.noId, name: ""),
                    turn: turn,
                    ordinal: ordinal,
                    cost: cost)
@@ -46,7 +43,7 @@ public class CreateCityCommand: Command {
     }
     
     public override func execute() {
-        if cityCreator.canCreateCity() {
+        if cityCreator.canCreateCity {
             city = City(id: Constants.noId,
                         owner: player,
                         theme: player.game.theme,
@@ -56,13 +53,13 @@ public class CreateCityCommand: Command {
             
             if commandId == Constants.noId {
                 do {
-                    city = try player.game.db.buildCityCommandDao.insert(command: self)
+                    city = try player.game.db.createCityCommandDao.insert(command: self)
                 }
                 catch {
                     print(error)
                 }
             }
-        
+            
             if let newCity = city {
                 player.create(city: newCity, using: cityCreator)
             }

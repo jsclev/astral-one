@@ -353,11 +353,11 @@ public class Tile: Hashable, ObservableObject {
         self.city = city
     }
     
-    public func addRoad() {
+    internal func addRoad() {
         roadType = RoadType.Road
     }
     
-    public func addRailroad() {
+    internal func addRailroad() {
         roadType = RoadType.Railroad
     }
     

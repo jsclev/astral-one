@@ -1,19 +1,20 @@
 import Foundation
 
-public class BuildRoadCommand: Command {
-    public private(set) var builder: Builder
-    
+public class CreateEngineerCommand: Command {
+    private let city: City
+    public private(set) var engineer: Engineer?
+
     public convenience init(player: Player,
                             turn: Turn,
                             ordinal: Int,
                             cost: Int,
-                            builder: Builder) {
+                            city: City) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
                   ordinal: ordinal,
                   cost: cost,
-                  builder: builder)
+                  city: city)
     }
     
     public init(commandId: Int,
@@ -21,8 +22,8 @@ public class BuildRoadCommand: Command {
                 turn: Turn,
                 ordinal: Int,
                 cost: Int,
-                builder: Builder) {
-        self.builder = builder
+                city: City) {
+        self.city = city
         
         super.init(commandId: commandId,
                    player: player,
@@ -37,6 +38,23 @@ public class BuildRoadCommand: Command {
     }
     
     public override func execute() {
-        builder.buildRoad()
+        engineer = Engineer(game: player.game,
+                            player: player,
+                            theme: player.game.theme,
+                            name: "Engineer",
+                            position: city.position)
+        
+        if commandId == Constants.noId {
+            do {
+                engineer = try player.game.db.createUnitCommandDao.insert(command: self)
+            }
+            catch {
+                print(error)
+            }
+        }
+        
+        if let e = engineer {
+            player.add(unit: e)
+        }
     }
 }

@@ -118,14 +118,15 @@
 		52A646A328321B2E0066B82D /* BuildMineCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A646A228321B2E0066B82D /* BuildMineCommand.swift */; };
 		52A646A528321B600066B82D /* BuildRailroadCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A646A428321B600066B82D /* BuildRailroadCommand.swift */; };
 		52A646AF283303540066B82D /* CreateSettlerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A646AE283303540066B82D /* CreateSettlerAction.swift */; };
-		52A646B128330BC00066B82D /* CreateEngineerAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A646B028330BC00066B82D /* CreateEngineerAction.swift */; };
+		52A646B128330BC00066B82D /* CreateEngineerCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A646B028330BC00066B82D /* CreateEngineerCommand.swift */; };
 		52A646B428334C8E0066B82D /* MoveUnitCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A646B328334C8D0066B82D /* MoveUnitCommand.swift */; };
-		52A646B628337AC90066B82D /* CityCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A646B528337AC90066B82D /* CityCreator.swift */; };
+		52A646B628337AC90066B82D /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A646B528337AC90066B82D /* Builder.swift */; };
 		52A646B82834C36D0066B82D /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A646B72834C36D0066B82D /* Plan.swift */; };
 		52A646BA283571750066B82D /* PlayerDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A646B9283571750066B82D /* PlayerDiff.swift */; };
 		52AB06FB2801FB400039B47D /* UnitInfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB06FA2801FB400039B47D /* UnitInfluenceMapCalculator.swift */; };
 		52AB0748280287580039B47D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0747280287580039B47D /* City.swift */; };
 		52BD35AC285B84DE00B0BBD4 /* RoadsMapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD35AB285B84DE00B0BBD4 /* RoadsMapLayer.swift */; };
+		52BD35AE285C305500B0BBD4 /* CreateUnitCommandDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD35AD285C305500B0BBD4 /* CreateUnitCommandDAO.swift */; };
 		52D1A3D82852D4990046B219 /* SettlerLevel1Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3D72852D4990046B219 /* SettlerLevel1Agent.swift */; };
 		52D1A3DA2852DA5B0046B219 /* SettlerLevel2Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3D92852DA5B0046B219 /* SettlerLevel2Agent.swift */; };
 		52D1A3DF2854E96F0046B219 /* SpecialResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3DE2854E96F0046B219 /* SpecialResource.swift */; };
@@ -348,14 +349,15 @@
 		52A646A228321B2E0066B82D /* BuildMineCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildMineCommand.swift; sourceTree = "<group>"; };
 		52A646A428321B600066B82D /* BuildRailroadCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildRailroadCommand.swift; sourceTree = "<group>"; };
 		52A646AE283303540066B82D /* CreateSettlerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSettlerAction.swift; sourceTree = "<group>"; };
-		52A646B028330BC00066B82D /* CreateEngineerAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEngineerAction.swift; sourceTree = "<group>"; };
+		52A646B028330BC00066B82D /* CreateEngineerCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEngineerCommand.swift; sourceTree = "<group>"; };
 		52A646B328334C8D0066B82D /* MoveUnitCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveUnitCommand.swift; sourceTree = "<group>"; };
-		52A646B528337AC90066B82D /* CityCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCreator.swift; sourceTree = "<group>"; };
+		52A646B528337AC90066B82D /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		52A646B72834C36D0066B82D /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		52A646B9283571750066B82D /* PlayerDiff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDiff.swift; sourceTree = "<group>"; };
 		52AB06FA2801FB400039B47D /* UnitInfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitInfluenceMapCalculator.swift; sourceTree = "<group>"; };
 		52AB0747280287580039B47D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		52BD35AB285B84DE00B0BBD4 /* RoadsMapLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadsMapLayer.swift; sourceTree = "<group>"; };
+		52BD35AD285C305500B0BBD4 /* CreateUnitCommandDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUnitCommandDAO.swift; sourceTree = "<group>"; };
 		52D1A3D72852D4990046B219 /* SettlerLevel1Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerLevel1Agent.swift; sourceTree = "<group>"; };
 		52D1A3D92852DA5B0046B219 /* SettlerLevel2Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerLevel2Agent.swift; sourceTree = "<group>"; };
 		52D1A3DE2854E96F0046B219 /* SpecialResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialResource.swift; sourceTree = "<group>"; };
@@ -537,7 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				526681652823043B0089D0DD /* AlpineTroop.swift */,
-				52A646B528337AC90066B82D /* CityCreator.swift */,
+				52A646B528337AC90066B82D /* Builder.swift */,
 				5266816B282315760089D0DD /* Crusader.swift */,
 				5266816D28233D0D0089D0DD /* CruiseMissile.swift */,
 				526681632823029E0089D0DD /* Diplomat.swift */,
@@ -769,7 +771,7 @@
 		52A6466A282E17D30066B82D /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
-				52A646B028330BC00066B82D /* CreateEngineerAction.swift */,
+				52A646B028330BC00066B82D /* CreateEngineerCommand.swift */,
 				52A6466D282E18980066B82D /* CreateExplorerAction.swift */,
 				52A646AE283303540066B82D /* CreateSettlerAction.swift */,
 			);
@@ -1088,6 +1090,7 @@
 				52F9044527F80B0500D1AC97 /* CommandDAO.swift */,
 				52614794284FFDE200CFF9CA /* CreateCityCommandDAO.swift */,
 				52F9046D27FC8B7D00D1AC97 /* MoveCommandDAO.swift */,
+				52BD35AD285C305500B0BBD4 /* CreateUnitCommandDAO.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -1251,7 +1254,7 @@
 				526681662823043B0089D0DD /* AlpineTroop.swift in Sources */,
 				52D1A3DF2854E96F0046B219 /* SpecialResource.swift in Sources */,
 				52A6465A282DF8F70066B82D /* ResearchPolytheismAction.swift in Sources */,
-				52A646B128330BC00066B82D /* CreateEngineerAction.swift in Sources */,
+				52A646B128330BC00066B82D /* CreateEngineerCommand.swift in Sources */,
 				52DE5F99281E093E0029EFE1 /* Submarine.swift in Sources */,
 				52A6469F28321AC40066B82D /* BuildAirbaseCommand.swift in Sources */,
 				52E0B1B827E6DFD100607FBE /* Granary.swift in Sources */,
@@ -1281,7 +1284,7 @@
 				52A64643282D741E0066B82D /* RandomAI.swift in Sources */,
 				52DE5F8B281D01B40029EFE1 /* Cavalry3.swift in Sources */,
 				52DE5FB1281EEE3F0029EFE1 /* Cavalry8.swift in Sources */,
-				52A646B628337AC90066B82D /* CityCreator.swift in Sources */,
+				52A646B628337AC90066B82D /* Builder.swift in Sources */,
 				5266818F282B71DD0089D0DD /* ResearchAlphabetAction.swift in Sources */,
 				52E0B1B927E6DFD100607FBE /* Barracks.swift in Sources */,
 				52EA0D72284AE891005E9AF8 /* BaseTerrainsMapLayer.swift in Sources */,
@@ -1359,6 +1362,7 @@
 				52DE5F93281E07F60029EFE1 /* Naval5.swift in Sources */,
 				52605C902801E3B00082C0DB /* InfluenceMapCalculator.swift in Sources */,
 				52F559D9283DE26600966F06 /* CreateNavalTransportAction.swift in Sources */,
+				52BD35AE285C305500B0BBD4 /* CreateUnitCommandDAO.swift in Sources */,
 				521F21AB2803F91200F1D61D /* Artillery2.swift in Sources */,
 				521F21B328047F7600F1D61D /* Trade1.swift in Sources */,
 				5266816C282315760089D0DD /* Crusader.swift in Sources */,

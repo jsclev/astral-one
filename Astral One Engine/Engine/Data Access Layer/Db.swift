@@ -10,7 +10,8 @@ public class Db {
     
     public let cityDao: CityDAO
     public let commandDao: CommandDAO
-    public let buildCityCommandDao: CreateCityCommandDAO
+    public let createCityCommandDao: CreateCityCommandDAO
+    public let createUnitCommandDao: CreateUnitCommandDAO
     public let gameDao: GameDAO
     public let mapDao: MapDAO
     public let terrainDao: TerrainDAO
@@ -94,12 +95,13 @@ public class Db {
         sqlite3_finalize(stmt)
         
         cityDao = CityDAO(conn: db)
+        unitDao = UnitDAO(conn: db)
         commandDao = CommandDAO(conn: db, cityDao: cityDao)
-        buildCityCommandDao = CreateCityCommandDAO(conn: db, commandDao: commandDao, cityDao: cityDao)
+        createCityCommandDao = CreateCityCommandDAO(conn: db, commandDao: commandDao, cityDao: cityDao)
+        createUnitCommandDao = CreateUnitCommandDAO(conn: db, commandDao: commandDao, unitDao: unitDao)
         gameDao = GameDAO(conn: db)
         mapDao = MapDAO(conn: db)
         terrainDao = TerrainDAO(conn: db)
-        unitDao = UnitDAO(conn: db)
     }
     
     public func getGameBy(gameId: Int) throws -> Game {

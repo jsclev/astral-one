@@ -85,6 +85,44 @@ public class UnitDAO: BaseDAO {
         return returnMap
     }
     
+    public func insert(engineer: Engineer) throws -> Engineer {
+        var unitId = Constants.noId
+        
+        var sql = "INSERT INTO unit (" +
+        "game_id, player_id, unit_type_id, tile_id" +
+        ") VALUES "
+        
+        sql += "("
+        sql += getSql(val: 1, postfix: ", ")
+        sql += getSql(val: engineer.player.playerId, postfix: ", ")
+        sql += getSql(val: 1, postfix: ", ")
+        sql += getSql(val: 1, postfix: "")
+        sql += "), "
+        
+        sql = getCleanedSql(sql)
+        
+        do {
+            unitId = try insertOneRow(sql: sql)
+        }
+        catch SQLiteError.Prepare(let message) {
+            var errMsg = "Failed to compile SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        catch SQLiteError.Step(let message) {
+            var errMsg = "Failed to execute SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        
+        return Engineer(unitId: unitId,
+                        game: engineer.game,
+                        player: engineer.player,
+                        theme: engineer.theme,
+                        name: engineer.name,
+                        position: engineer.position)
+    }
+    
     public func insert(map: Map) throws -> Map {
         var tileId = -1
         var mainStmt: OpaquePointer?

@@ -1,6 +1,6 @@
 import Foundation
 
-public class CityCreator: Unit {
+public class Builder: Unit {
     public override init(game: Game,
                          player: Player,
                          theme: Theme,
@@ -43,18 +43,28 @@ public class CityCreator: Unit {
         }
     }
     
-    public func canCreateCity() -> Bool {
+    public var canCreateCity: Bool {
         return true
     }
     
-    public func buildNewCity(city: City) {
-        if canCreateCity() {
-            player.create(city: city, using: self)
+    public var canBuildRoad: Bool {
+        return true
+    }
+    
+    internal func buildRoad() {
+        if canBuildRoad {
+            player.map.tile(at: position).addRoad()
+        }
+    }
+    
+    internal func buildRailroad() {
+        if canBuildRoad {
+            player.map.tile(at: position).addRailroad()
         }
     }
     
     public override func clone() -> Unit {
-        let copy = CityCreator(game: game,
+        let copy = Builder(game: game,
                                player: player,
                                theme: theme,
                                tiledId: tiledId,

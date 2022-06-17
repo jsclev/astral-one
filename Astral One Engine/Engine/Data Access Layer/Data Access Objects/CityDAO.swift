@@ -14,6 +14,7 @@ public class CityDAO: BaseDAO {
                     assetName: city.assetName,
                     position: city.position)
     }
+    
     public func getCities(game: Game) throws -> [City] {
         var cities: [City] = []
         

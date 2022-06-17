@@ -7,6 +7,7 @@ public class EventBus {
     private let game: Game
     private let scene: SKScene
     private let mapView: MapView
+    private var tapCounter = 0
     
     public init(game: Game, scene: SKScene, mapView: MapView) {
         self.game = game
@@ -22,27 +23,68 @@ public class EventBus {
         let recognizorLocation = recognizer.location(in: recognizer.view!)
         let location = scene.convertPoint(fromView: recognizorLocation)
         
-        let tile = mapView.tap(location: location)
+        for p in game.players {
+            p.map.revealAllTiles()
+        }
         
-        tile.addRoad()
+        let tile = mapView.tap(location: location)
         
         print("Tapped [\(tile.position.row), \(tile.position.col)]")
         
-        if let city = tile.city {
-            print("\(city.name) tapped")
+        
+        switch tapCounter {
+        case 0: addSettler(tile: tile)
+            break
+        case 1: addCity(tile: tile)
+            break
+        case 2: addEngineer(tile: tile)
+            break
+        case 3: addRoad(tile: tile)
+            break
+        default:
+            print("Should not have gotten here: \(tapCounter)")
         }
         
+        if tapCounter == 3 {
+            tapCounter = 0
+        }
+        else {
+            tapCounter += 1
+        }
+    }
+    
+    private func addSettler(tile: Tile) {
         let player = game.getCurrentPlayer()
-//        let player = game.players[1]
-        let units = player.cityCreators
-        var foundUnitsAtLocation = false
         
-
+        let settler = Settler(game: game,
+                              player: player,
+                              theme: game.theme,
+                              name: "Settler",
+                              position: tile.position)
+        
+        player.add(cityCreator: settler)
+    }
+    
+    private func addEngineer(tile: Tile) {
+        let player = game.getCurrentPlayer()
+        
+        if let city = player.getCity(at: tile.position) {
+            let cmd = CreateEngineerCommand(player: player,
+                                            turn: game.getCurrentTurn(),
+                                            ordinal: 1,
+                                            cost: 1,
+                                            city: city)
+            cmd.execute()
+        }
+    }
+    
+    private func addCity(tile: Tile) {
+        let player = game.getCurrentPlayer()
+        
+        let units = player.cityCreators
         
         for unit in units {
             if unit.position == tile.position {
-                foundUnitsAtLocation = true
-                
                 print("Found unit {id: \(unit.id), \"\(unit.name)\"} at [\(unit.position.row), \(unit.position.col)]")
                 
                 if unit.name == "Settler" {
@@ -53,18 +95,14 @@ public class EventBus {
                             print("Moving Settler to position [\(position.row), \(position.col)]")
                             let moveCmd = MoveUnitCommand(player: player,
                                                           type: CommandType(id: 1, name: ""),
-                                                          turn: player.game.getCurrentTurn(),
+                                                          turn: game.getCurrentTurn(),
                                                           ordinal: 1,
                                                           unit: unit,
                                                           to: position)
                             moveCmd.execute()
                             
                             let createCityCmd = CreateCityCommand(player: player,
-                                                                  type: CommandType(id: 0, name: ""),
-                                                                  turn: Turn(id: 1,
-                                                                             year: -4000,
-                                                                             ordinal: 1,
-                                                                             displayText: "4000 B.C."),
+                                                                  turn: game.getCurrentTurn(),
                                                                   ordinal: 1,
                                                                   cost: 0,
                                                                   cityCreator: unit,
@@ -81,20 +119,40 @@ public class EventBus {
                 }
             }
         }
+    }
+    
+    private func addRoad(tile: Tile) {
+        let player = game.getCurrentPlayer()
         
-        if !foundUnitsAtLocation && tile.canCreateCity {
-            let settler = Settler(game: game,
-                                  player: player,
-                                  theme: game.theme,
-                                  name: "Settler",
-                                  position: tile.position)
-            
-            player.add(cityCreator: settler)
+        for unit in player.units {
+            if unit.position == tile.position && unit.name == "Engineer" {
+                let builder = unit as! Builder
+                
+                let move1 = MoveUnitCommand(player: player,
+                                              type: CommandType(id: 1, name: ""),
+                                              turn: game.getCurrentTurn(),
+                                              ordinal: 1,
+                                              unit: builder,
+                                              to: Position(row: unit.position.row + 1,
+                                                           col: unit.position.col + 1))
+                move1.execute()
+                
+                let createRoad = BuildRoadCommand(player: player,
+                                                  turn: game.getCurrentTurn(),
+                                                  ordinal: 1,
+                                                  cost: 0,
+                                                  builder: builder)
+                createRoad.execute()
+                
+                let move2 = MoveUnitCommand(player: player,
+                                            type: CommandType(id: 1, name: ""),
+                                            turn: game.getCurrentTurn(),
+                                            ordinal: 1,
+                                            unit: builder,
+                                            to: Position(row: Int.random(in: 0..<player.map.height),
+                                                         col: Int.random(in: 0..<player.map.width)))
+                move2.execute()
+            }
         }
-        
-        for p in game.players {
-            p.map.revealAllTiles()
-        }
-        
     }
 }

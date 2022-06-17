@@ -7,7 +7,7 @@ public class Player: ObservableObject, Equatable {
     public let playerId: Int
     public let game: Game
     public let map: Map
-    @Published public var cityCreators: [CityCreator] = []
+    @Published public var cityCreators: [Builder] = []
     @Published public var units: [Unit] = []
     public var advances: [Advance] = []
     public var availableResearchActions: Set<Action> = []
@@ -202,7 +202,7 @@ public class Player: ObservableObject, Equatable {
         return diff
     }
     
-    internal func create(city: City, using: CityCreator) {
+    internal func create(city: City, using: Builder) {
         map.add(city: city)
         
 //        for action in availableCityActions {
@@ -226,7 +226,7 @@ public class Player: ObservableObject, Equatable {
         availableCityActions.append(cityAction)
     }
     
-    public func add(cityCreator: CityCreator) {
+    public func add(cityCreator: Builder) {
         cityCreators.append(cityCreator)
         
 //        availableCommands.append(BuildCityCommand(commandId: <#T##Int#>,
