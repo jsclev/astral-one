@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import SpriteKit
 
-public class BaseTerrainsMapLayer {
+public class TerrainMapLayer {
     let player: Player
     let scene: SKScene
     let tileSet: SKTileSet
@@ -18,16 +18,17 @@ public class BaseTerrainsMapLayer {
                                       columns: player.map.width,
                                       rows: player.map.height,
                                       tileSize: Constants.tileSize)
-        layer1Terrain.name = "base terrain"
+        layer1Terrain.name = "Base terrain map layer"
         layer1Terrain.zPosition = Layer.base
         layer1Terrain.position = CGPoint.zero
         layer1Terrain.enableAutomapping = true
+        layer1Terrain.isUserInteractionEnabled = false
         
         layer2Terrain = SKTileMapNode(tileSet: tileSet,
                                       columns: player.map.width,
                                       rows: player.map.height,
                                       tileSize: Constants.tileSize)
-        layer2Terrain.name = "layer 2 terrain"
+        layer2Terrain.name = "Second terrain map layer"
         layer2Terrain.zPosition = Layer.terrain
         layer2Terrain.position = CGPoint.zero
         layer2Terrain.enableAutomapping = true
@@ -50,8 +51,10 @@ public class BaseTerrainsMapLayer {
         let col = layer1Terrain.tileColumnIndex(fromPosition: location)
         
         return player.map.tile(at: Position(row: row, col: col))
-//        player.revealTile(at: Position(row: row, col: col))
-//        set(tile: player.map.tile(at: Position(row: row, col: col)))
+    }
+    
+    public func getCenterPointOf(position: Position) -> CGPoint {
+        return layer1Terrain.centerOfTile(atColumn: position.col, row: position.row)
     }
     
     private func set(tile: Tile, grassTile: SKTileGroup) {

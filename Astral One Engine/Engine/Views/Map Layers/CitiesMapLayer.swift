@@ -4,12 +4,12 @@ import SpriteKit
 
 public class CitiesMapLayer {
     private let player: Player
-    private let mapView: MapView
+    private let mapView: MapManager
     private let citiesNode: SKTileMapNode
     private var cancellable = Set<AnyCancellable>()
     private let tileSet: SKTileSet
 
-    public init(player: Player, scene: SKScene, mapView: MapView, tileSet: SKTileSet) {
+    public init(player: Player, scene: SKScene, mapView: MapManager, tileSet: SKTileSet) {
         self.player = player
         self.mapView = mapView
         self.tileSet = tileSet
@@ -18,7 +18,7 @@ public class CitiesMapLayer {
                                    columns: player.map.width,
                                    rows: player.map.height,
                                    tileSize: Constants.tileSize)
-        citiesNode.name = "cities"
+        citiesNode.name = "Cities map layer"
         citiesNode.zPosition = Layer.cities
         citiesNode.position = CGPoint.zero
         citiesNode.enableAutomapping = true

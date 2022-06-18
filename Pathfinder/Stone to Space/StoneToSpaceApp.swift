@@ -3,13 +3,13 @@ import SwiftUI
 import Engine
 
 @main
-struct PathfinderApp: App {
+struct StoneToSpaceApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
                 Color.black
                     .ignoresSafeArea()
-                PathfinderView()
+                StoneToSpaceView()
             }
             .statusBar(hidden: true)
         }

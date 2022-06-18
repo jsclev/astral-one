@@ -6,13 +6,13 @@ import SpriteKit
 public class EventBus {
     private let game: Game
     private let scene: SKScene
-    private let mapView: MapView
+    private let mapManager: MapManager
     private var tapCounter = 0
     
-    public init(game: Game, scene: SKScene, mapView: MapView) {
+    public init(game: Game, scene: SKScene, mapManager: MapManager) {
         self.game = game
         self.scene = scene
-        self.mapView = mapView
+        self.mapManager = mapManager
     }
     
     public func tap(recognizer: UITapGestureRecognizer){
@@ -27,30 +27,50 @@ public class EventBus {
             p.map.revealAllTiles()
         }
         
-        let tile = mapView.tap(location: location)
-        
-        print("Tapped [\(tile.position.row), \(tile.position.col)]")
-        
-        
-        switch tapCounter {
-        case 0: addSettler(tile: tile)
-            break
-        case 1: addCity(tile: tile)
-            break
-        case 2: addEngineer(tile: tile)
-            break
-        case 3: addRoad(tile: tile)
-            break
-        default:
-            print("Should not have gotten here: \(tapCounter)")
-        }
-        
-        if tapCounter == 3 {
-            tapCounter = 0
+//        let touchedNodes = scene.nodes(at: location)
+//
+//        for node in touchedNodes {
+//            if let name = node.name {
+//                print("Touched \(name)")
+//            }
+//            else {
+//                print("Touched unnamed node")
+//            }
+//        }
+        let tile = mapManager.getTile(at: location)
+
+        if let unit = mapManager.getSelectedUnit(location: location) {
+            print("Tapped \(unit.name)(\(unit.id))")
+            addCity(settler: unit as! Settler, tile: tile)
+
         }
         else {
-            tapCounter += 1
+
+        
+            print("Tapped [\(tile.position.row), \(tile.position.col)]")
+        
+            addSettler(tile: tile)
         }
+        
+//        switch tapCounter {
+//        case 0: addSettler(tile: tile)
+//            break
+//        case 1: addCity(tile: tile)
+//            break
+//        case 2: addEngineer(tile: tile)
+//            break
+//        case 3: addRoad(tile: tile)
+//            break
+//        default:
+//            print("Should not have gotten here: \(tapCounter)")
+//        }
+//
+//        if tapCounter == 3 {
+//            tapCounter = 0
+//        }
+//        else {
+//            tapCounter += 1
+//        }
     }
     
     private func addSettler(tile: Tile) {
@@ -59,7 +79,7 @@ public class EventBus {
         let settler = Settler(game: game,
                               player: player,
                               theme: game.theme,
-                              name: "Settler",
+                              name: "Settler-\(Int.random(in: 0..<500))",
                               position: tile.position)
         
         player.add(cityCreator: settler)
@@ -78,47 +98,45 @@ public class EventBus {
         }
     }
     
-    private func addCity(tile: Tile) {
+    private func addCity(settler: Settler, tile: Tile) {
         let player = game.getCurrentPlayer()
         
-        let units = player.cityCreators
+        let createCityCmd = CreateCityCommand(player: player,
+                                              turn: game.getCurrentTurn(),
+                                              ordinal: 1,
+                                              cost: 0,
+                                              cityCreator: settler,
+                                              cityName: "New York-\(player.playerId)")
+        createCityCmd.execute()
         
-        for unit in units {
-            if unit.position == tile.position {
-                print("Found unit {id: \(unit.id), \"\(unit.name)\"} at [\(unit.position.row), \(unit.position.col)]")
-                
-                if unit.name == "Settler" {
-                    do {
-                        let agent = try SettlerAgent.getAgent(aiPlayer: player as! AIPlayer,
-                                                              settler: unit as! Settler)
-                        if let position = try agent.getSettleCityPosition() {
-                            print("Moving Settler to position [\(position.row), \(position.col)]")
-                            let moveCmd = MoveUnitCommand(player: player,
-                                                          type: CommandType(id: 1, name: ""),
-                                                          turn: game.getCurrentTurn(),
-                                                          ordinal: 1,
-                                                          unit: unit,
-                                                          to: position)
-                            moveCmd.execute()
-                            
-                            let createCityCmd = CreateCityCommand(player: player,
-                                                                  turn: game.getCurrentTurn(),
-                                                                  ordinal: 1,
-                                                                  cost: 0,
-                                                                  cityCreator: unit,
-                                                                  cityName: "New York-\(player.playerId)")
-                            createCityCmd.execute()
-                        }
-                        else {
-                            print("No where to settle city")
-                        }
-                    }
-                    catch {
-                        print(error)
-                    }
-                }
-            }
-        }
+//        do {
+//            let agent = try SettlerAgent.getAgent(aiPlayer: player as! AIPlayer,
+//                                                  settler: settler)
+//            if let position = try agent.getSettleCityPosition() {
+//                print("Moving Settler to position [\(position.row), \(position.col)]")
+//                let moveCmd = MoveUnitCommand(player: player,
+//                                              type: CommandType(id: 1, name: ""),
+//                                              turn: game.getCurrentTurn(),
+//                                              ordinal: 1,
+//                                              unit: settler,
+//                                              to: position)
+//                moveCmd.execute()
+//
+//                let createCityCmd = CreateCityCommand(player: player,
+//                                                      turn: game.getCurrentTurn(),
+//                                                      ordinal: 1,
+//                                                      cost: 0,
+//                                                      cityCreator: settler,
+//                                                      cityName: "New York-\(player.playerId)")
+//                createCityCmd.execute()
+//            }
+//            else {
+//                print("No where to settle city")
+//            }
+//        }
+//        catch {
+//            print(error)
+//        }
     }
     
     private func addRoad(tile: Tile) {

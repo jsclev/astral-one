@@ -3,17 +3,17 @@ import SpriteKit
 import SwiftUI
 import Engine
 
-struct PathfinderView: View {
+struct StoneToSpaceView: View {
     @State private var location: CGPoint = CGPoint(x: 0.0, y: 0.0)
     @GestureState private var fingerLocation: CGPoint? = nil
     @GestureState private var startLocation: CGPoint? = nil
     @GestureState private var cameraPosition = CGPoint.zero
 
     var mapViewModel = MapViewModel()
-    var scene: PathfinderScene
+    var scene: StoneToSpaceScene
     
     init() {
-        scene = PathfinderScene(mapViewModel: mapViewModel)
+        scene = StoneToSpaceScene(mapViewModel: mapViewModel)
     }
     
     var simpleDrag: some Gesture {

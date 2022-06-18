@@ -16,7 +16,7 @@ struct TouchInfo {
     var time: TimeInterval
 }
 
-class PathfinderScene: SKScene {
+class StoneToSpaceScene: SKScene {
     var game: Game
     let db: Db
     var eventBus: EventBus?
@@ -24,7 +24,7 @@ class PathfinderScene: SKScene {
     var contextMenu: Engine.ContextMenu!
     var founderContextMenu: FounderContextMenu!
     var debug = true
-    var gameCamera: PathfinderCamera!
+    var gameCamera: StoneToSpaceCamera!
     var cameraScale = 1.0
     var entityManager: EntityManager!
     var initialCameraScale = 1.0
@@ -41,7 +41,7 @@ class PathfinderScene: SKScene {
     var startTouchPos = CGPoint.zero
     let tileSet: SKTileSet
     let theme = Theme(id: 2, name: Constants.themeName)
-    var mapView: MapView!
+    var mapView: MapManager!
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
@@ -130,7 +130,7 @@ class PathfinderScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        gameCamera = PathfinderCamera(game: game)
+        gameCamera = StoneToSpaceCamera(game: game)
 
         camera = gameCamera
         addChild(gameCamera)
@@ -194,7 +194,7 @@ class PathfinderScene: SKScene {
         
         // addInitialSettler(player: player)
         
-        mapView = MapView(player: player, scene: self, tileset: tileset!)
+        mapView = MapManager(player: player, scene: self, tileset: tileset!)
         
         entityManager = EntityManager(scene: self)
         contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
@@ -205,7 +205,7 @@ class PathfinderScene: SKScene {
         tapGesture.numberOfTapsRequired = 1
         view.addGestureRecognizer(tapGesture)
         
-        self.eventBus = EventBus(game: game, scene: self, mapView: mapView)
+        self.eventBus = EventBus(game: game, scene: self, mapManager: mapView)
 
 
     }

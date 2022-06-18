@@ -3,7 +3,7 @@ import SwiftUI
 import Engine
 import Combine
 
-class PathfinderCamera: SKCameraNode {
+class StoneToSpaceCamera: SKCameraNode {
     @ObservedObject var game: Game
     
     private var cancellable = Set<AnyCancellable>()

@@ -4,12 +4,12 @@ import SpriteKit
 
 public class RoadsMapLayer {
     private let player: Player
-    private let mapView: MapView
+    private let mapView: MapManager
     private let tileMapNode: SKTileMapNode
     private var cancellable = Set<AnyCancellable>()
     private let tileSet: SKTileSet
     
-    public init(player: Player, scene: SKScene, mapView: MapView, tileSet: SKTileSet) {
+    public init(player: Player, scene: SKScene, mapView: MapManager, tileSet: SKTileSet) {
         self.player = player
         self.mapView = mapView
         self.tileSet = tileSet
@@ -18,7 +18,7 @@ public class RoadsMapLayer {
                                     columns: player.map.width,
                                     rows: player.map.height,
                                     tileSize: Constants.tileSize)
-        tileMapNode.name = "Roads"
+        tileMapNode.name = "Roads map layer"
         tileMapNode.position = CGPoint.zero
         tileMapNode.zPosition = Layer.roads
         tileMapNode.enableAutomapping = true

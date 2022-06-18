@@ -4,12 +4,12 @@ import SpriteKit
 
 public class RiversMapLayer {
     private let player: Player
-    private let mapView: MapView
+    private let mapView: MapManager
     private let tileMapNode: SKTileMapNode
     private var cancellable = Set<AnyCancellable>()
     private let tileSet: SKTileSet
     
-    public init(player: Player, scene: SKScene, mapView: MapView, tileSet: SKTileSet) {
+    public init(player: Player, scene: SKScene, mapView: MapManager, tileSet: SKTileSet) {
         self.player = player
         self.mapView = mapView
         self.tileSet = tileSet
@@ -18,7 +18,7 @@ public class RiversMapLayer {
                                     columns: player.map.width,
                                     rows: player.map.height,
                                     tileSize: Constants.tileSize)
-        tileMapNode.name = "rivers"
+        tileMapNode.name = "Rivers map layer"
         tileMapNode.position = CGPoint.zero
         tileMapNode.zPosition = Layer.rivers
         tileMapNode.enableAutomapping = true

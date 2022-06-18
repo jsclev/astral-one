@@ -53,7 +53,7 @@ public class TiledTilesetParser: NSObject, XMLParserDelegate {
                                              terrainType: terrainType))
             }
             else if tileId == String(Constants.riverTiledId) {
-                print("Found has river")
+                // print("Found has river")
             }
             else if let specialResource = Constants.specialResources[tileId] {
                 specialResources.append(TiledSpecialResource(id: tileId,

@@ -4,15 +4,16 @@ import SpriteKit
 
 public class SpecialResourcesMapLayer {
 
-    public init(player: Player, scene: SKScene, mapView: MapView, tileSet: SKTileSet) {
+    public init(player: Player, scene: SKScene, mapView: MapManager, tileSet: SKTileSet) {
         let node = SKTileMapNode(tileSet: tileSet,
                                  columns: player.map.width,
                                  rows: player.map.height,
                                  tileSize: Constants.tileSize)
-        node.name = "special resources"
+        node.name = "Special resources map layer"
         node.zPosition = Layer.specialResources
         node.position = CGPoint.zero
         node.enableAutomapping = true
+        node.isUserInteractionEnabled = false
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {

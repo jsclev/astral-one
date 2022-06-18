@@ -3,7 +3,7 @@ import SpriteKit
 
 public class TileCoordsMapLayer {
     
-    public init(game: Game, scene: SKScene, mapView: MapView, layerIndex: CGFloat) {
+    public init(game: Game, scene: SKScene, mapView: MapManager, layerIndex: CGFloat) {
         for row in 0..<game.map.height {
             for col in 0..<game.map.width {
                 let node = SKLabelNode(fontNamed: "Arial")

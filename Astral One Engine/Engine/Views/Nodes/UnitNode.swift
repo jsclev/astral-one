@@ -5,7 +5,7 @@ import SpriteKit
 public class UnitNode: SKSpriteNode {
     private let player: Player
     private let unit: Unit
-    private let mapView: MapView
+    private let mapView: MapManager
     private let prevPosition: Position
     
     private var cancellable = Set<AnyCancellable>()
@@ -15,7 +15,7 @@ public class UnitNode: SKSpriteNode {
 //        get { return true }
 //    }
     
-    public init(player: Player, unit: Unit, mapView: MapView) {
+    public init(player: Player, unit: Unit, mapView: MapManager) {
         self.player = player
         self.unit = unit
         self.mapView = mapView

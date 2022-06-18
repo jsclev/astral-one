@@ -5,7 +5,7 @@ import Combine
 public class ContextMenu {
     private let parent: SKNode
     private let game: Game
-    private let mapView: MapView
+    private let mapView: MapManager
     private var cancellable = Set<AnyCancellable>()
 
     public let menu = SKSpriteNode(imageNamed: "context-menu")
@@ -21,7 +21,7 @@ public class ContextMenu {
     
     let iconSize = 58.0
 
-    public init(game: Game, parent: SKNode, mapView: MapView) {
+    public init(game: Game, parent: SKNode, mapView: MapManager) {
         self.parent = parent
         self.game = game
         self.mapView = mapView
