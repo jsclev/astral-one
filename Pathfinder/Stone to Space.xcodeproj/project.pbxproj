@@ -47,7 +47,7 @@
 		52E0B1F827ED8F7C00607FBE /* freeland.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = freeland.tmx; path = "../../../../Astral One/Resources/freeland/freeland.tmx"; sourceTree = "<group>"; };
 		52F559E328430CCD00966F06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		52F9048E27FD061700D1AC97 /* civitas.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = civitas.sqlite; sourceTree = "<group>"; };
-		52F9B5CB27E6A4EF005D55E6 /* Pathfinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pathfinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F9B5CB27E6A4EF005D55E6 /* Stone to Space.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stone to Space.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F9B5D427E6A4EF005D55E6 /* PathfinderScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathfinderScene.swift; sourceTree = "<group>"; };
 		52F9B5D927E6A4EF005D55E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52F9B5DB27E6A4F0005D55E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		52F9B5C227E6A4EF005D55E6 = {
 			isa = PBXGroup;
 			children = (
-				52F9B5CD27E6A4EF005D55E6 /* Pathfinder */,
+				52F9B5CD27E6A4EF005D55E6 /* Stone to Space */,
 				52F9B5CC27E6A4EF005D55E6 /* Products */,
 				52E0B1CB27E6E95700607FBE /* Frameworks */,
 			);
@@ -111,12 +111,12 @@
 		52F9B5CC27E6A4EF005D55E6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				52F9B5CB27E6A4EF005D55E6 /* Pathfinder.app */,
+				52F9B5CB27E6A4EF005D55E6 /* Stone to Space.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		52F9B5CD27E6A4EF005D55E6 /* Pathfinder */ = {
+		52F9B5CD27E6A4EF005D55E6 /* Stone to Space */ = {
 			isa = PBXGroup;
 			children = (
 				526147DF28514EDB00CFF9CA /* launch-screen3 */,
@@ -130,15 +130,15 @@
 				52F9B5D427E6A4EF005D55E6 /* PathfinderScene.swift */,
 				52E0B1C227E6E66E00607FBE /* PathfinderView.swift */,
 			);
-			path = Pathfinder;
+			path = "Stone to Space";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		52F9B5CA27E6A4EF005D55E6 /* Pathfinder */ = {
+		52F9B5CA27E6A4EF005D55E6 /* Stone to Space */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52F9B5E227E6A4F0005D55E6 /* Build configuration list for PBXNativeTarget "Pathfinder" */;
+			buildConfigurationList = 52F9B5E227E6A4F0005D55E6 /* Build configuration list for PBXNativeTarget "Stone to Space" */;
 			buildPhases = (
 				52F9B5C727E6A4EF005D55E6 /* Sources */,
 				52F9B5C827E6A4EF005D55E6 /* Frameworks */,
@@ -148,9 +148,9 @@
 			);
 			dependencies = (
 			);
-			name = Pathfinder;
+			name = "Stone to Space";
 			productName = Pathfinder;
-			productReference = 52F9B5CB27E6A4EF005D55E6 /* Pathfinder.app */;
+			productReference = 52F9B5CB27E6A4EF005D55E6 /* Stone to Space.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -168,7 +168,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 52F9B5C627E6A4EF005D55E6 /* Build configuration list for PBXProject "Pathfinder" */;
+			buildConfigurationList = 52F9B5C627E6A4EF005D55E6 /* Build configuration list for PBXProject "Stone to Space" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -181,7 +181,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				52F9B5CA27E6A4EF005D55E6 /* Pathfinder */,
+				52F9B5CA27E6A4EF005D55E6 /* Stone to Space */,
 			);
 		};
 /* End PBXProject section */
@@ -361,7 +361,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SNJW4KBXLV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Pathfinder/Info.plist;
+				INFOPLIST_FILE = "Stone to Space/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = MyLaunch;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -391,7 +391,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SNJW4KBXLV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Pathfinder/Info.plist;
+				INFOPLIST_FILE = "Stone to Space/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = MyLaunch;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -415,7 +415,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		52F9B5C627E6A4EF005D55E6 /* Build configuration list for PBXProject "Pathfinder" */ = {
+		52F9B5C627E6A4EF005D55E6 /* Build configuration list for PBXProject "Stone to Space" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52F9B5E027E6A4F0005D55E6 /* Debug */,
@@ -424,7 +424,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52F9B5E227E6A4F0005D55E6 /* Build configuration list for PBXNativeTarget "Pathfinder" */ = {
+		52F9B5E227E6A4F0005D55E6 /* Build configuration list for PBXNativeTarget "Stone to Space" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52F9B5E327E6A4F0005D55E6 /* Debug */,
