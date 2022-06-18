@@ -31,6 +31,7 @@
 		521F21F32808F78C00F1D61D /* ValueNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21F22808F78C00F1D61D /* ValueNode.swift */; };
 		5234D522285CE6770051172E /* BuildFortressCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D521285CE6770051172E /* BuildFortressCommand.swift */; };
 		5234D524285CE7BE0051172E /* FortressesMapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D523285CE7BE0051172E /* FortressesMapLayer.swift */; };
+		5234D526285D62230051172E /* UnitsMapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D525285D62230051172E /* UnitsMapLayer.swift */; };
 		5236B41328450C1C006DF7E6 /* SettlerAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B41228450C1C006DF7E6 /* SettlerAgent.swift */; };
 		5236B41528451AEF006DF7E6 /* AISkillLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B41428451AEF006DF7E6 /* AISkillLevel.swift */; };
 		5236B4172845450B006DF7E6 /* LuaVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B4162845450B006DF7E6 /* LuaVM.swift */; };
@@ -132,7 +133,6 @@
 		52D1A3D82852D4990046B219 /* SettlerLevel1Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3D72852D4990046B219 /* SettlerLevel1Agent.swift */; };
 		52D1A3DA2852DA5B0046B219 /* SettlerLevel2Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3D92852DA5B0046B219 /* SettlerLevel2Agent.swift */; };
 		52D1A3DF2854E96F0046B219 /* SpecialResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3DE2854E96F0046B219 /* SpecialResource.swift */; };
-		52D1A3E128565A4D0046B219 /* TileMapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3E028565A4D0046B219 /* TileMapNode.swift */; };
 		52D1A3E3285662DE0046B219 /* EventBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3E2285662DE0046B219 /* EventBus.swift */; };
 		52D1A3E52856CB100046B219 /* SettlerLevel8Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3E42856CB100046B219 /* SettlerLevel8Agent.swift */; };
 		52D1A3E72858F1870046B219 /* RiversMapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3E62858F1870046B219 /* RiversMapLayer.swift */; };
@@ -264,6 +264,7 @@
 		521F21F22808F78C00F1D61D /* ValueNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueNode.swift; sourceTree = "<group>"; };
 		5234D521285CE6770051172E /* BuildFortressCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildFortressCommand.swift; sourceTree = "<group>"; };
 		5234D523285CE7BE0051172E /* FortressesMapLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortressesMapLayer.swift; sourceTree = "<group>"; };
+		5234D525285D62230051172E /* UnitsMapLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsMapLayer.swift; sourceTree = "<group>"; };
 		5236B41228450C1C006DF7E6 /* SettlerAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerAgent.swift; sourceTree = "<group>"; };
 		5236B41428451AEF006DF7E6 /* AISkillLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISkillLevel.swift; sourceTree = "<group>"; };
 		5236B4162845450B006DF7E6 /* LuaVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuaVM.swift; sourceTree = "<group>"; };
@@ -365,7 +366,6 @@
 		52D1A3D72852D4990046B219 /* SettlerLevel1Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerLevel1Agent.swift; sourceTree = "<group>"; };
 		52D1A3D92852DA5B0046B219 /* SettlerLevel2Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerLevel2Agent.swift; sourceTree = "<group>"; };
 		52D1A3DE2854E96F0046B219 /* SpecialResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialResource.swift; sourceTree = "<group>"; };
-		52D1A3E028565A4D0046B219 /* TileMapNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileMapNode.swift; sourceTree = "<group>"; };
 		52D1A3E2285662DE0046B219 /* EventBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventBus.swift; sourceTree = "<group>"; };
 		52D1A3E42856CB100046B219 /* SettlerLevel8Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerLevel8Agent.swift; sourceTree = "<group>"; };
 		52D1A3E62858F1870046B219 /* RiversMapLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiversMapLayer.swift; sourceTree = "<group>"; };
@@ -637,7 +637,6 @@
 				52DE5FB62820F1480029EFE1 /* CityNode.swift */,
 				52DE5F84281CAD230029EFE1 /* FounderNode.swift */,
 				52F559DE283F391100966F06 /* SpecialResourceNode.swift */,
-				52D1A3E028565A4D0046B219 /* TileMapNode.swift */,
 				52DE5F7C281BA5750029EFE1 /* UnitNode.swift */,
 			);
 			path = Nodes;
@@ -1016,6 +1015,7 @@
 				5266817128242B030089D0DD /* TileCoordsMapLayer.swift */,
 				52F559E12841D0B100966F06 /* TileStatsMapLayer.swift */,
 				52BD35AB285B84DE00B0BBD4 /* RoadsMapLayer.swift */,
+				5234D525285D62230051172E /* UnitsMapLayer.swift */,
 			);
 			path = "Map Layers";
 			sourceTree = "<group>";
@@ -1264,6 +1264,7 @@
 				52DE5F99281E093E0029EFE1 /* Submarine.swift in Sources */,
 				52A6469F28321AC40066B82D /* BuildAirbaseCommand.swift in Sources */,
 				52E0B1B827E6DFD100607FBE /* Granary.swift in Sources */,
+				5234D526285D62230051172E /* UnitsMapLayer.swift in Sources */,
 				52A6468A2830BF790066B82D /* HangingGardens.swift in Sources */,
 				52A646A128321AEB0066B82D /* BuildIrrigationCommand.swift in Sources */,
 				52A6463F282CDA0F0066B82D /* CreateInfantry3Action.swift in Sources */,
@@ -1344,7 +1345,6 @@
 				52BD35AC285B84DE00B0BBD4 /* RoadsMapLayer.swift in Sources */,
 				52F559DF283F391100966F06 /* SpecialResourceNode.swift in Sources */,
 				52A646B428334C8E0066B82D /* MoveUnitCommand.swift in Sources */,
-				52D1A3E128565A4D0046B219 /* TileMapNode.swift in Sources */,
 				52A6467E282F680F0066B82D /* ResearchBridgeBuildingAction.swift in Sources */,
 				521F21E52807123D00F1D61D /* TerrainFactory.swift in Sources */,
 				52DE5FA1281E32AC0029EFE1 /* AircraftCarrier.swift in Sources */,

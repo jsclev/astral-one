@@ -14,8 +14,7 @@ public class BaseTerrainsMapLayer {
         self.scene = scene
         self.tileSet = tileSet
         
-        layer1Terrain = TileMapNode(player: player,
-                                    tileSet: tileSet,
+        layer1Terrain = SKTileMapNode(tileSet: tileSet,
                                       columns: player.map.width,
                                       rows: player.map.height,
                                       tileSize: Constants.tileSize)
