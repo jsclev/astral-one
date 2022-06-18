@@ -14,8 +14,8 @@ public class Unit: GKEntity, ObservableObject {
     public var currentHp: Double
     public private(set) var attack: Double
     public private(set) var defense: Double
-    public private(set) var isVeteran: Bool = false
-    public private(set) var isFortified: Bool = false
+    public private(set) var isVeteran = false
+    public private(set) var isFortified = false
     public let fp: Double
     public let maxMovementPoints: Double
     public var currentMovementPoints: Double

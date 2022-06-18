@@ -4,13 +4,6 @@ import GameplayKit
 import Engine
 import SwiftUI
 
-enum PathfinderState {
-    case initialized
-    case settingStartPosition
-    case settingStopPosition
-    case calculatingPath
-}
-
 struct TouchInfo {
     var location: CGPoint
     var time: TimeInterval
@@ -23,10 +16,8 @@ class StoneToSpaceScene: SKScene {
     var mapViewModel: MapViewModel
     var contextMenu: Engine.ContextMenu!
     var founderContextMenu: FounderContextMenu!
-    var debug = true
     var gameCamera: StoneToSpaceCamera!
     var cameraScale = 1.0
-    var entityManager: EntityManager!
     var initialCameraScale = 1.0
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
     var tilesetName: String
@@ -34,9 +25,6 @@ class StoneToSpaceScene: SKScene {
     let mapName = "terrain"
     var mapIconsTileset: SKTileSet!
     let tileSize: CGSize = CGSize(width: 96, height: 48)
-    var state: PathfinderState = PathfinderState.initialized
-    var startPosition = SIMD2<Int32>(0, 0)
-    var endPosition = SIMD2<Int32>(0, 0)
     var previousCameraPoint = CGPoint.zero
     var startTouchPos = CGPoint.zero
     let tileSet: SKTileSet
@@ -126,7 +114,6 @@ class StoneToSpaceScene: SKScene {
         if let bus = eventBus {
             bus.tap(recognizer: recognizer)
         }
-
     }
     
     override func didMove(to view: SKView) {
@@ -137,11 +124,8 @@ class StoneToSpaceScene: SKScene {
         
         gameCamera.show()
         
-        
         pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
         view.addGestureRecognizer(pinchGestureRecognizer)
-        
-
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(pan))
         view.addGestureRecognizer(panGesture)
@@ -196,17 +180,14 @@ class StoneToSpaceScene: SKScene {
         
         mapView = MapManager(player: player, scene: self, tileset: tileset!)
         
-        entityManager = EntityManager(scene: self)
         contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
         founderContextMenu = FounderContextMenu(game: game, parent: self, mapView: mapView)
         
-//        let eventBus = EventBus(game: game, scene: self, mapView: mapView)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
         tapGesture.numberOfTapsRequired = 1
         view.addGestureRecognizer(tapGesture)
         
         self.eventBus = EventBus(game: game, scene: self, mapManager: mapView)
-
 
     }
     
@@ -231,18 +212,18 @@ class StoneToSpaceScene: SKScene {
             }
         }
         
-        let settler1 = Settler(game: game,
-                              player: player,
-                              theme: game.theme,
-                              name: "Settler",
-                              position: tile.position)
+//        let settler1 = Settler(game: game,
+//                              player: player,
+//                              theme: game.theme,
+//                              name: "Settler",
+//                              position: tile.position)
 //        let settler2 = Settler(game: game,
 //                               player: player,
 //                               theme: game.theme,
 //                               name: "Settler2",
 //                               position: tile.position)
         
-        player.add(cityCreator: settler1)
+//        player.add(cityCreator: settler1)
 //        player.add(cityCreator: settler2)
         
 //        let createCityCmd = CreateCityCommand(player: player,

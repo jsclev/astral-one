@@ -5,17 +5,17 @@ import SpriteKit
 public class UnitsMapLayer {
     private let player: Player
     private let scene: SKScene
-    private let mapView: MapManager
+    private let mapManager: MapManager
     private let tileMapNode: SKTileMapNode
     private var cancellable = Set<AnyCancellable>()
     private let tileSet: SKTileSet
     private var localSettlers: [Settler] = []
     private var unitNodes: [UnitNode] = []
     
-    public init(player: Player, scene: SKScene, mapView: MapManager, tileSet: SKTileSet) {
+    public init(player: Player, scene: SKScene, mapManager: MapManager, tileSet: SKTileSet) {
         self.player = player
         self.scene = scene
-        self.mapView = mapView
+        self.mapManager = mapManager
         self.tileSet = tileSet
         
         tileMapNode = SKTileMapNode(tileSet: tileSet,
@@ -76,8 +76,8 @@ public class UnitsMapLayer {
     }
     
     private func renderUnit(unit: Unit) {
-        let unitNode = UnitNode(player: player, unit: unit, mapView: mapView)
-        unitNode.position = mapView.getCenterPointOf(position: unit.position)
+        let unitNode = UnitNode(player: player, unit: unit, mapManager: mapManager)
+        unitNode.position = mapManager.getCenterPointOf(position: unit.position)
         unitNode.zPosition = Layer.units
         unitNode.name = unit.name
         

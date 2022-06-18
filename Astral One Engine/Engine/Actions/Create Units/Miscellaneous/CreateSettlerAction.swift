@@ -41,3 +41,51 @@ public class CreateSettlerAction: Action {
         return copy
     }
 }
+
+public class CreateSettlerCommand: Command {
+    public private(set) var settler: Settler?
+    public let tile: Tile
+    
+    public convenience init(player: Player,
+                            turn: Turn,
+                            ordinal: Int,
+                            cost: Int,
+                            tile: Tile) {
+        self.init(commandId: Constants.noId,
+                  player: player,
+                  turn: turn,
+                  ordinal: ordinal,
+                  cost: cost,
+                  tile: tile)
+    }
+    
+    public init(commandId: Int,
+                player: Player,
+                turn: Turn,
+                ordinal: Int,
+                cost: Int,
+                tile: Tile) {
+        self.tile = tile
+        
+        super.init(commandId: commandId,
+                   player: player,
+                   type: CommandType(id: Constants.noId, name: ""),
+                   turn: turn,
+                   ordinal: ordinal,
+                   cost: cost)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override func execute() {
+        let settler = Settler(game: player.game,
+                              player: player,
+                              theme: player.game.theme,
+                              name: "Settler-\(Int.random(in: 0..<500))",
+                              position: tile.position)
+        
+        player.add(cityCreator: settler)
+    }
+}

@@ -10,6 +10,7 @@ public enum Layer {
     public static let cityNames = 250.0
     public static let specialResources = 275.0
     public static let tileStats = 285.0
+    public static let unitSelection = 299.0
     public static let units = 300.0
     public static let unitPath = 400.0
     public static let hud = 500.0

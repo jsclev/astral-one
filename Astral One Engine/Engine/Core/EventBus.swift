@@ -7,7 +7,6 @@ public class EventBus {
     private let game: Game
     private let scene: SKScene
     private let mapManager: MapManager
-    private var tapCounter = 0
     
     public init(game: Game, scene: SKScene, mapManager: MapManager) {
         self.game = game
@@ -41,8 +40,8 @@ public class EventBus {
 
         if let unit = mapManager.getSelectedUnit(location: location) {
             print("Tapped \(unit.name)(\(unit.id))")
-            addCity(settler: unit as! Settler, tile: tile)
-
+            game.getCurrentPlayer().set(selectedUnit: unit)
+//            addCity(settler: unit as! Settler, tile: tile)
         }
         else {
 
@@ -51,38 +50,15 @@ public class EventBus {
         
             addSettler(tile: tile)
         }
-        
-//        switch tapCounter {
-//        case 0: addSettler(tile: tile)
-//            break
-//        case 1: addCity(tile: tile)
-//            break
-//        case 2: addEngineer(tile: tile)
-//            break
-//        case 3: addRoad(tile: tile)
-//            break
-//        default:
-//            print("Should not have gotten here: \(tapCounter)")
-//        }
-//
-//        if tapCounter == 3 {
-//            tapCounter = 0
-//        }
-//        else {
-//            tapCounter += 1
-//        }
     }
     
     private func addSettler(tile: Tile) {
-        let player = game.getCurrentPlayer()
-        
-        let settler = Settler(game: game,
-                              player: player,
-                              theme: game.theme,
-                              name: "Settler-\(Int.random(in: 0..<500))",
-                              position: tile.position)
-        
-        player.add(cityCreator: settler)
+        let cmd = CreateSettlerCommand(player: game.getCurrentPlayer(),
+                                       turn: game.getCurrentTurn(),
+                                       ordinal: 1,
+                                       cost: 1,
+                                       tile: tile)
+        cmd.execute()
     }
     
     private func addEngineer(tile: Tile) {

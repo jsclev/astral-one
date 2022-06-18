@@ -5,8 +5,9 @@ import SpriteKit
 public class UnitNode: SKSpriteNode {
     private let player: Player
     private let unit: Unit
-    private let mapView: MapManager
+    private let mapManager: MapManager
     private let prevPosition: Position
+    private let selectedNode: SKSpriteNode
     
     private var cancellable = Set<AnyCancellable>()
     
@@ -15,21 +16,39 @@ public class UnitNode: SKSpriteNode {
 //        get { return true }
 //    }
     
-    public init(player: Player, unit: Unit, mapView: MapManager) {
+    public init(player: Player, unit: Unit, mapManager: MapManager) {
         self.player = player
         self.unit = unit
-        self.mapView = mapView
+        self.mapManager = mapManager
         self.prevPosition = unit.position
+        
+        let selectedTexture = SKTexture(imageNamed: "select-single")
+        selectedNode = SKSpriteNode(texture: selectedTexture,
+                                    color: UIColor.systemPink,
+                                    size: selectedTexture.size())
+        selectedNode.position = mapManager.getCenterPointOf(position: unit.position)
+        selectedNode.zPosition = Layer.unitSelection
+        selectedNode.name = unit.name + "-selected"
+        selectedNode.isHidden = true
+        self.mapManager.scene.addChild(selectedNode)
         
         let texture = SKTexture(imageNamed: unit.assetName)
         super.init(texture: texture, color: UIColor.systemPink, size: texture.size())
         
         self.name = "\(unit.name)_"
         
+        attachSubscribers()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func attachSubscribers() {
         self.unit.$position
             .sink(receiveValue: { position in
                 if self.prevPosition != position {
-                    let point = self.mapView.getCenterPointOf(position: position)
+                    let point = self.mapManager.getCenterPointOf(position: position)
                     let moveAction = SKAction.move(to: point, duration: 0.60)
                     
                     self.run(moveAction, completion: {
@@ -50,10 +69,26 @@ public class UnitNode: SKSpriteNode {
                 }
             })
             .store(in: &cancellable)
+        
+        self.player.$selectedUnit
+            .sink(receiveValue: { selectedUnit in
+                if let selected = selectedUnit {
+                    self.selectedNode.isHidden = !(selected.name == self.unit.name)
+                }
+            })
+            .store(in: &cancellable)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private func toggleSelectedIndicator(value: Bool) {
+        print("Unit selected value: \(value)")
+        
+        if value {
+//            selectedNode.isHidden
+            mapManager.scene.addChild(selectedNode)
+        }
+        else {
+            selectedNode.removeFromParent()
+        }
     }
     
 //    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -17,6 +17,7 @@ public class Player: ObservableObject, Equatable {
     private let techTree = TechTree()
     public var maxActionPlanLength = 4
     @Published public var government = Government.Despotism
+    @Published public private (set) var selectedUnit: Unit?
     private var cancellable = Set<AnyCancellable>()
     
     public init(playerId: Int, game: Game, map: Map) {
@@ -226,19 +227,11 @@ public class Player: ObservableObject, Equatable {
         availableCityActions.append(cityAction)
     }
     
-    public func add(cityCreator: Builder) {
+    internal func add(cityCreator: Builder) {
         cityCreators.append(cityCreator)
-        
-//        availableCommands.append(BuildCityCommand(commandId: <#T##Int#>,
-//                                                  game: <#T##Game#>,
-//                                                  turn: <#T##Turn#>,
-//                                                  player: <#T##Player#>,
-//                                                  type: <#T##CommandType#>,
-//                                                  ordinal: 1,
-//                                                  cityBuilder: cityBuilder))
     }
     
-    public func add(unit: Unit) {
+    internal func add(unit: Unit) {
         units.append(unit)
     }
     
@@ -250,6 +243,10 @@ public class Player: ObservableObject, Equatable {
     
     public func add(advanceName: String) {
         researchedAdvances.insert(advanceName)
+    }
+    
+    public func set(selectedUnit: Unit) {
+        self.selectedUnit = selectedUnit
     }
     
     public func getAvailableActions() -> Set<Action> {
