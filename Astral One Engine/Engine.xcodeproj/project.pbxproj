@@ -604,6 +604,7 @@
 			children = (
 				5234D532285F6F7E0051172E /* Camera.swift */,
 				5234D530285F6F380051172E /* NextTurnButton.swift */,
+				5266817B2825ED1C0089D0DD /* TurnView.swift */,
 			);
 			path = HUD;
 			sourceTree = "<group>";
@@ -706,7 +707,6 @@
 				52F559E02841CFF400966F06 /* Map Layers */,
 				52DE5F7A2818E40E0029EFE1 /* ContextMenu.swift */,
 				52DE5F82281C78450029EFE1 /* FounderContextMenu.swift */,
-				5266817B2825ED1C0089D0DD /* TurnView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

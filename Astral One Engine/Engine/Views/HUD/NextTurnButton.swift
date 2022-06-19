@@ -6,10 +6,13 @@ internal class NextTurnButton: SKNode {
     private let game: Game
     private let buttonNode: SKSpriteNode
     private let selectedIndicator: SKSpriteNode
-    public let size: CGSize
     private var cancellable = Set<AnyCancellable>()
+    private let uiScaleFactor = 0.18
+    private let minButtonSize = 40.0
+    private let maxButtonSize = 125.0
+    public let size: CGSize
     
-    internal init(game: Game, screenSize: CGSize) {
+    internal init(game: Game) {
         self.game = game
         
         let texture = SKTexture(imageNamed: "next-turn-button")
@@ -18,14 +21,19 @@ internal class NextTurnButton: SKNode {
                                   size: texture.size())
         buttonNode.position = CGPoint.zero
         
-        let tempSize = screenSize.width / 10
-        if tempSize < 40.0 {
-            size = CGSize(width: 40.0, height: 40.0)
+        var size = CGSize(width: game.canvasSize.height * uiScaleFactor,
+                          height: game.canvasSize.height * uiScaleFactor)
+        
+        if size.width < minButtonSize {
+            size = CGSize(width: minButtonSize, height: minButtonSize)
         }
-        else {
-            size = CGSize(width: tempSize, height: tempSize)
+        else if size.width > maxButtonSize {
+            size = CGSize(width: maxButtonSize, height: maxButtonSize)
         }
-        buttonNode.size = CGSize(width: size.width, height: size.height)
+
+        buttonNode.size = size
+        self.size = size
+        
         print("Next turn button size is \(buttonNode.size)")
         
         let selectedTexture = SKTexture(imageNamed: "next-turn-button")
@@ -38,10 +46,7 @@ internal class NextTurnButton: SKNode {
         
         super.init()
         
-        if let parent = self.parent {
-            let size = parent.frame.size
-            print("Camera size: \(size)")
-        }
+        name = "Next Turn"
         
         isUserInteractionEnabled = true
 //        position = mapManager.getCenterOf(position: unit.position)

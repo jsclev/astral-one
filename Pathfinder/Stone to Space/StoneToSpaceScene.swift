@@ -120,7 +120,8 @@ class StoneToSpaceScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        gameCamera = Camera(game: game, size: size)
+        game.canvasSize = frame.size
+        gameCamera = Camera(game: game)
 
         camera = gameCamera
         addChild(gameCamera)

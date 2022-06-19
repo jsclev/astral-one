@@ -37,7 +37,8 @@ public class Game: ObservableObject {
     public let theme: Theme
     public var commands: [Command] = []
     public let db: Db
-
+    public var canvasSize = CGSize.zero
+    
     public init(theme: Theme, map: Map, db: Db) {
         self.theme = theme
         self.map = map

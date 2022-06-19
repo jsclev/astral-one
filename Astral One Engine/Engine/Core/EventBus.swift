@@ -26,16 +26,17 @@ public class EventBus {
             p.map.revealAllTiles()
         }
         
-//        let touchedNodes = scene.nodes(at: location)
-//
-//        for node in touchedNodes {
-//            if let name = node.name {
-//                print("Touched \(name)")
-//            }
-//            else {
-//                print("Touched unnamed node")
-//            }
-//        }
+        let touchedNodes = scene.nodes(at: location)
+
+        for node in touchedNodes {
+            if let name = node.name {
+                if name == "Next Turn" {
+                    game.nextTurn()
+                    return
+                }
+            }
+        }
+        
         let tile = mapManager.getTile(at: location)
 
         if let unit = mapManager.getUnit(on: tile) {

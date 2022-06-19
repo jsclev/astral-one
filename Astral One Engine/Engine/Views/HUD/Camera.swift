@@ -12,16 +12,19 @@ public class Camera: SKCameraNode {
     let calculatePathIcon = SKSpriteNode(imageNamed: "square-wooden-button")
     let positionLabel = SKLabelNode(fontNamed: "Arial Bold")
     
-    //private let horizontalPadding: CGFloat
-    //private let verticalPadding: CGFloat
+    private let padding: CGFloat
     
-    public init(game: Game, size: CGSize) {
+    public init(game: Game) {
         self.game = game
         
+        padding = game.canvasSize.width * 0.015
         
-        nextTurnButton = NextTurnButton(game: game, screenSize: size)
-        nextTurnButton.position = CGPoint(x: (size.width / 2) - nextTurnButton.size.width / 2,
-                                          y: -(size.height / 2) + nextTurnButton.size.height / 2)
+        nextTurnButton = NextTurnButton(game: game)
+        nextTurnButton.position = CGPoint.zero
+        print(game.canvasSize)
+        nextTurnButton.position = CGPoint(x: (game.canvasSize.width / 2) - nextTurnButton.size.width / 2 - padding,
+                                          y: -(game.canvasSize.height / 2) + nextTurnButton.size.height / 2 + padding)
+        print(nextTurnButton.position)
 //        nextTurnButton.size = CGSize(width: 100.0, height: 100.0)
         startPositionIcon.size = CGSize(width: 40.0, height: 35.0)
         calculatePathIcon.size = CGSize(width: 40.0, height: 35.0)
@@ -40,8 +43,6 @@ public class Camera: SKCameraNode {
         super.init()
         
         name = "camera"
-        
-        print("\(size)")
         
         game.$selectedMapPosition
             .dropFirst()
