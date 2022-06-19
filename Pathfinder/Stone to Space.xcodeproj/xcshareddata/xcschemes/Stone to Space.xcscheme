@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52F9B5CA27E6A4EF005D55E6"
-               BuildableName = "Pathfinder.app"
+               BuildableName = "Stone to Space.app"
                BlueprintName = "Stone to Space"
                ReferencedContainer = "container:Stone to Space.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52F9B5CA27E6A4EF005D55E6"
-            BuildableName = "Pathfinder.app"
+            BuildableName = "Stone to Space.app"
             BlueprintName = "Stone to Space"
             ReferencedContainer = "container:Stone to Space.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52F9B5CA27E6A4EF005D55E6"
-            BuildableName = "Pathfinder.app"
+            BuildableName = "Stone to Space.app"
             BlueprintName = "Stone to Space"
             ReferencedContainer = "container:Stone to Space.xcodeproj">
          </BuildableReference>

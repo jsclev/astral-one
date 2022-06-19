@@ -1,91 +1,109 @@
 {
   "images" : [
     {
+      "filename" : "earth40.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "earth60.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
+      "filename" : "earth58.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
+      "filename" : "earth87.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
+      "filename" : "earth80.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "earth120.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
+      "filename" : "earth120-1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
+      "filename" : "earth180.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
+      "filename" : "earth20.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
+      "filename" : "earth40-1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "earth29.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
+      "filename" : "earth58-1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
+      "filename" : "earth40-2.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
+      "filename" : "earth80-1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "earth76.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
+      "filename" : "earth152.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
+      "filename" : "earth167.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
+      "filename" : "earth1024.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
