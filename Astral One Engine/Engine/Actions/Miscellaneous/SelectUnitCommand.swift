@@ -1,36 +1,37 @@
 import Foundation
 import SpriteKit
 
-public class MoveUnitCommand: Command {
+public class SelectUnitCommand: Command {
+    private let node: SKNode
     private let mapManager: MapManager
     private let unit: Unit
-    private let to: Position
-    
+    private let selectSound = SKAction.playSoundFileNamed("select-unit2",
+                                                          waitForCompletion: false)
     public convenience init(player: Player,
                             turn: Turn,
                             ordinal: Int,
+                            node: SKNode,
                             mapManager: MapManager,
-                            unit: Unit,
-                            to: Position) {
+                            unit: Unit) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
                   ordinal: ordinal,
+                  node: node,
                   mapManager: mapManager,
-                  unit: unit,
-                  to: to)
+                  unit: unit)
     }
     
     public init(commandId: Int,
                 player: Player,
                 turn: Turn,
                 ordinal: Int,
+                node: SKNode,
                 mapManager: MapManager,
-                unit: Unit,
-                to: Position) {
+                unit: Unit) {
+        self.node = node
         self.mapManager = mapManager
         self.unit = unit
-        self.to = to
         
         super.init(commandId: commandId,
                    player: player,
@@ -45,18 +46,18 @@ public class MoveUnitCommand: Command {
     }
     
     public override func execute() {
-        if to != unit.position {
-            player.deselectUnit()
-            
-            let point = mapManager.getCenterOf(position: to)
-            let moveAction = SKAction.move(to: point, duration: 0.60)
-            
-            if let node = unit.node {
-                node.run(moveAction, completion: {
-                    self.unit.move(to: self.to)
-                    self.player.set(selectedUnit: self.unit)
-                })
+        if let selectedUnit = player.selectedUnit {
+            if selectedUnit.position == unit.position {
+                player.deselectUnit()
+            }
+            else {
+                player.set(selectedUnit: unit)
             }
         }
+        else {
+            player.set(selectedUnit: unit)
+        }
+        
+        node.run(selectSound)
     }
 }

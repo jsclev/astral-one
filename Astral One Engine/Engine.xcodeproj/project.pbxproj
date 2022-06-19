@@ -32,6 +32,7 @@
 		5234D522285CE6770051172E /* BuildFortressCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D521285CE6770051172E /* BuildFortressCommand.swift */; };
 		5234D524285CE7BE0051172E /* FortressesMapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D523285CE7BE0051172E /* FortressesMapLayer.swift */; };
 		5234D526285D62230051172E /* UnitsMapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D525285D62230051172E /* UnitsMapLayer.swift */; };
+		5234D529285EEDF90051172E /* SelectUnitCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D528285EEDF90051172E /* SelectUnitCommand.swift */; };
 		5236B41328450C1C006DF7E6 /* SettlerAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B41228450C1C006DF7E6 /* SettlerAgent.swift */; };
 		5236B41528451AEF006DF7E6 /* AISkillLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B41428451AEF006DF7E6 /* AISkillLevel.swift */; };
 		5236B4172845450B006DF7E6 /* LuaVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B4162845450B006DF7E6 /* LuaVM.swift */; };
@@ -264,6 +265,7 @@
 		5234D521285CE6770051172E /* BuildFortressCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildFortressCommand.swift; sourceTree = "<group>"; };
 		5234D523285CE7BE0051172E /* FortressesMapLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortressesMapLayer.swift; sourceTree = "<group>"; };
 		5234D525285D62230051172E /* UnitsMapLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitsMapLayer.swift; sourceTree = "<group>"; };
+		5234D528285EEDF90051172E /* SelectUnitCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUnitCommand.swift; sourceTree = "<group>"; };
 		5236B41228450C1C006DF7E6 /* SettlerAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerAgent.swift; sourceTree = "<group>"; };
 		5236B41428451AEF006DF7E6 /* AISkillLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISkillLevel.swift; sourceTree = "<group>"; };
 		5236B4162845450B006DF7E6 /* LuaVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuaVM.swift; sourceTree = "<group>"; };
@@ -984,6 +986,7 @@
 			isa = PBXGroup;
 			children = (
 				52F55961283953F500966F06 /* BuildProductionAction.swift */,
+				5234D528285EEDF90051172E /* SelectUnitCommand.swift */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -1300,6 +1303,7 @@
 				52DE5FB72820F1480029EFE1 /* CityNode.swift in Sources */,
 				52DE5FBB2822E6CC0029EFE1 /* Marine.swift in Sources */,
 				52D1A3DA2852DA5B0046B219 /* SettlerLevel2Agent.swift in Sources */,
+				5234D529285EEDF90051172E /* SelectUnitCommand.swift in Sources */,
 				521F21D72806996100F1D61D /* Tile.swift in Sources */,
 				52EA0D6E28484BA1005E9AF8 /* DiplomacyAgent.swift in Sources */,
 				526681742824E8D40089D0DD /* Theme.swift in Sources */,

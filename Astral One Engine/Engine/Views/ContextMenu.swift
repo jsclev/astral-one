@@ -80,7 +80,7 @@ public class ContextMenu {
         self.game.$selectedMapPosition
             .dropFirst()
             .sink(receiveValue: { position in
-                self.menu.position = self.mapView.getCenterPointOf(position: position)
+                self.menu.position = self.mapView.getCenterOf(position: position)
                 self.menu.isHidden = !self.menu.isHidden
             })
             .store(in: &cancellable)

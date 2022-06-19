@@ -27,19 +27,29 @@ public class MapManager {
         fatalError("init(coder:) is not supported.")
     }
     
-    public func getCenterPointOf(position: Position) -> CGPoint {
-        return terrainLayer.getCenterPointOf(position: position)
+    public func getCenterOf(position: Position) -> CGPoint {
+        return terrainLayer.getCenterOf(position: position)
     }
     
     public func getTile(at: CGPoint) -> Tile {
         return terrainLayer.tap(location: at)
     }
     
-    public func getSelectedUnit(location: CGPoint) -> Unit? {
-        let tile = getTile(at: location)
+    public func getUnit(at: CGPoint) -> Unit? {
+        let tile = getTile(at: at)
         
         for unit in player.cityCreators {
             if unit.position == tile.position {
+                return unit
+            }
+        }
+        
+        return nil
+    }
+    
+    public func getUnit(on: Tile) -> Unit? {
+        for unit in player.cityCreators {
+            if unit.position == on.position {
                 return unit
             }
         }

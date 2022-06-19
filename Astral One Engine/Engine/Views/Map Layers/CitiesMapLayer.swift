@@ -52,7 +52,7 @@ public class CitiesMapLayer {
     
     private func render(city: City) {
         if player.map.tile(at: city.position).visibility == Visibility.FullyRevealed {
-            let point = mapView.getCenterPointOf(position: city.position)
+            let point = mapView.getCenterOf(position: city.position)
             
             if let tileGroup = tileSet.tileGroups.first(where: { $0.name == "City" }) {
                 // Make sure we are setting the tile on the correct layered terrain map

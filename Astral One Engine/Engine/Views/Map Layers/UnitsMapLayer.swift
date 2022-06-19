@@ -6,7 +6,6 @@ public class UnitsMapLayer {
     private let player: Player
     private let scene: SKScene
     private let mapManager: MapManager
-    private let tileMapNode: SKTileMapNode
     private var cancellable = Set<AnyCancellable>()
     private let tileSet: SKTileSet
     private var localSettlers: [Settler] = []
@@ -17,17 +16,6 @@ public class UnitsMapLayer {
         self.scene = scene
         self.mapManager = mapManager
         self.tileSet = tileSet
-        
-        tileMapNode = SKTileMapNode(tileSet: tileSet,
-                                    columns: player.map.width,
-                                    rows: player.map.height,
-                                    tileSize: Constants.tileSize)
-        tileMapNode.name = "Units map layer"
-        tileMapNode.position = CGPoint.zero
-        tileMapNode.zPosition = Layer.units
-        tileMapNode.enableAutomapping = true
-        tileMapNode.isUserInteractionEnabled = false
-        scene.addChild(tileMapNode)
         
         attachSubscribers()
     }
@@ -77,10 +65,11 @@ public class UnitsMapLayer {
     
     private func renderUnit(unit: Unit) {
         let unitNode = UnitNode(player: player, unit: unit, mapManager: mapManager)
-        unitNode.position = mapManager.getCenterPointOf(position: unit.position)
+        unitNode.position = mapManager.getCenterOf(position: unit.position)
         unitNode.zPosition = Layer.units
         unitNode.name = unit.name
         
-        self.scene.addChild(unitNode)
+        scene.addChild(unitNode)
+        unit.node = unitNode
     }
 }

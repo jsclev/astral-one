@@ -53,7 +53,7 @@ public class TerrainMapLayer {
         return player.map.tile(at: Position(row: row, col: col))
     }
     
-    public func getCenterPointOf(position: Position) -> CGPoint {
+    public func getCenterOf(position: Position) -> CGPoint {
         return layer1Terrain.centerOfTile(atColumn: position.col, row: position.row)
     }
     

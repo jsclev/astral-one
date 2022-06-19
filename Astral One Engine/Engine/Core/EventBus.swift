@@ -38,17 +38,30 @@ public class EventBus {
 //        }
         let tile = mapManager.getTile(at: location)
 
-        if let unit = mapManager.getSelectedUnit(location: location) {
-            print("Tapped \(unit.name)(\(unit.id))")
-            game.getCurrentPlayer().set(selectedUnit: unit)
+        if let unit = mapManager.getUnit(on: tile) {
+            let selectUnitCmd = SelectUnitCommand(player: game.getCurrentPlayer(),
+                                                  turn: game.getCurrentTurn(),
+                                                  ordinal: 1,
+                                                  node: scene,
+                                                  mapManager: mapManager,
+                                                  unit: unit)
+            selectUnitCmd.execute()
 //            addCity(settler: unit as! Settler, tile: tile)
         }
         else {
-
-        
-            print("Tapped [\(tile.position.row), \(tile.position.col)]")
-        
-            addSettler(tile: tile)
+            // print("Tapped [\(tile.position.row), \(tile.position.col)]")
+            if let selectedUnit = game.getCurrentPlayer().selectedUnit {
+                let moveCmd = MoveUnitCommand(player: game.getCurrentPlayer(),
+                                              turn: game.getCurrentTurn(),
+                                              ordinal: 1,
+                                              mapManager: mapManager,
+                                              unit: selectedUnit,
+                                              to: tile.position)
+                moveCmd.execute()
+            }
+            else {
+                addSettler(tile: tile)
+            }
         }
     }
     
@@ -115,57 +128,55 @@ public class EventBus {
 //        }
     }
     
-    private func addRoad(tile: Tile) {
-        let player = game.getCurrentPlayer()
-        
-        for unit in player.units {
-            if unit.position == tile.position && unit.name == "Engineer" {
-                let builder = unit as! Builder
-                
-                let move1 = MoveUnitCommand(player: player,
-                                            type: CommandType(id: 1, name: ""),
-                                            turn: game.getCurrentTurn(),
-                                            ordinal: 1,
-                                            unit: builder,
-                                            to: Position(row: unit.position.row + 1,
-                                                         col: unit.position.col + 1))
-                move1.execute()
-                
-                let randNum = Int.random(in: 3..<4)
-                if randNum == 1 {
-                    let createRoad = BuildRoadCommand(player: player,
-                                                      turn: game.getCurrentTurn(),
-                                                      ordinal: 1,
-                                                      cost: 0,
-                                                      builder: builder)
-                    createRoad.execute()
-                }
-                else if randNum == 2 {
-                    let createRailroad = BuildRailroadCommand(player: player,
-                                                              turn: game.getCurrentTurn(),
-                                                              ordinal: 1,
-                                                              cost: 0,
-                                                              builder: builder)
-                    createRailroad.execute()
-                }
-                else if randNum == 3 {
-                    let createFortress = BuildFortressCommand(player: player,
-                                                              turn: game.getCurrentTurn(),
-                                                              ordinal: 1,
-                                                              cost: 0,
-                                                              builder: builder)
-                    createFortress.execute()
-                }
-                
-                let move2 = MoveUnitCommand(player: player,
-                                            type: CommandType(id: 1, name: ""),
-                                            turn: game.getCurrentTurn(),
-                                            ordinal: 1,
-                                            unit: builder,
-                                            to: Position(row: Int.random(in: 0..<player.map.height),
-                                                         col: Int.random(in: 0..<player.map.width)))
-                move2.execute()
-            }
-        }
-    }
+//    private func addRoad(tile: Tile) {
+//        let player = game.getCurrentPlayer()
+//
+//        for unit in player.units {
+//            if unit.position == tile.position && unit.name == "Engineer" {
+//                let builder = unit as! Builder
+//
+//                let move1 = MoveUnitCommand(player: player,
+//                                            turn: game.getCurrentTurn(),
+//                                            ordinal: 1,
+//                                            unit: builder,
+//                                            to: Position(row: unit.position.row + 1,
+//                                                         col: unit.position.col + 1))
+//                move1.execute()
+//
+//                let randNum = Int.random(in: 3..<4)
+//                if randNum == 1 {
+//                    let createRoad = BuildRoadCommand(player: player,
+//                                                      turn: game.getCurrentTurn(),
+//                                                      ordinal: 1,
+//                                                      cost: 0,
+//                                                      builder: builder)
+//                    createRoad.execute()
+//                }
+//                else if randNum == 2 {
+//                    let createRailroad = BuildRailroadCommand(player: player,
+//                                                              turn: game.getCurrentTurn(),
+//                                                              ordinal: 1,
+//                                                              cost: 0,
+//                                                              builder: builder)
+//                    createRailroad.execute()
+//                }
+//                else if randNum == 3 {
+//                    let createFortress = BuildFortressCommand(player: player,
+//                                                              turn: game.getCurrentTurn(),
+//                                                              ordinal: 1,
+//                                                              cost: 0,
+//                                                              builder: builder)
+//                    createFortress.execute()
+//                }
+//
+//                let move2 = MoveUnitCommand(player: player,
+//                                            turn: game.getCurrentTurn(),
+//                                            ordinal: 1,
+//                                            unit: builder,
+//                                            to: Position(row: Int.random(in: 0..<player.map.height),
+//                                                         col: Int.random(in: 0..<player.map.width)))
+//                move2.execute()
+//            }
+//        }
+//    }
 }

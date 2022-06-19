@@ -249,6 +249,10 @@ public class Player: ObservableObject, Equatable {
         self.selectedUnit = selectedUnit
     }
     
+    public func deselectUnit() {
+        selectedUnit = nil
+    }
+    
     public func getAvailableActions() -> Set<Action> {
         var availableActions: Set<Action> = []
         for action in availableResearchActions {

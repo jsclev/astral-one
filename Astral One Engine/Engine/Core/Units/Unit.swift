@@ -1,5 +1,6 @@
 import Foundation
 import GameplayKit
+import SpriteKit
 
 public class Unit: GKEntity, ObservableObject {
     public let id: Int
@@ -22,6 +23,7 @@ public class Unit: GKEntity, ObservableObject {
     @Published public var position: Position
     @Published public var availableCommands: [Command] = []
     @Published public var homeCity: City?
+    public var node: SKNode?
     
     public init(game: Game,
                 player: Player,

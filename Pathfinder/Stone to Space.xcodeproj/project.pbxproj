@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5234D52C285EF83B0051172E /* select-unit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5234D52B285EF83B0051172E /* select-unit.wav */; };
+		5234D52E285F04C20051172E /* select-unit2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5234D52D285F04C20051172E /* select-unit2.wav */; };
 		526147DE28514A5700CFF9CA /* MyLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526147DD28514A5700CFF9CA /* MyLaunch.storyboard */; };
 		526147E028514EDB00CFF9CA /* launch-screen3 in Resources */ = {isa = PBXBuildFile; fileRef = 526147DF28514EDB00CFF9CA /* launch-screen3 */; };
 		5293BC2A280BBA8B001DE2F3 /* libEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5293BC29280BBA8B001DE2F3 /* libEngine.a */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5234D52B285EF83B0051172E /* select-unit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "select-unit.wav"; sourceTree = "<group>"; };
+		5234D52D285F04C20051172E /* select-unit2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "select-unit2.wav"; sourceTree = "<group>"; };
 		526147DD28514A5700CFF9CA /* MyLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyLaunch.storyboard; sourceTree = "<group>"; };
 		526147DF28514EDB00CFF9CA /* launch-screen3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "launch-screen3"; sourceTree = "<group>"; };
 		5293BC29280BBA8B001DE2F3 /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +69,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5234D52A285EF83B0051172E /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				5234D52D285F04C20051172E /* select-unit2.wav */,
+				5234D52B285EF83B0051172E /* select-unit.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		52E0B1CB27E6E95700607FBE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +90,7 @@
 		52E0B1CE27E6E9A300607FBE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5234D52A285EF83B0051172E /* Sounds */,
 				52E0B1CF27E6E9CB00607FBE /* Data */,
 				52E0B1D427E6EC4400607FBE /* Civ 2.sks */,
 				52E0B1D627E7AEC900607FBE /* Map Icons.sks */,
@@ -193,6 +207,7 @@
 			files = (
 				52DE5FB3281F785F0029EFE1 /* Sci-Fi.sks in Resources */,
 				52E0B1F927ED8F7C00607FBE /* freeland.tmx in Resources */,
+				5234D52C285EF83B0051172E /* select-unit.wav in Resources */,
 				526147E028514EDB00CFF9CA /* launch-screen3 in Resources */,
 				52E0B1E927E95FBF00607FBE /* civ2.tmx in Resources */,
 				52F9B5DA27E6A4EF005D55E6 /* Main.storyboard in Resources */,
@@ -201,6 +216,7 @@
 				52E0B1DF27E80FD500607FBE /* civ2.tsx in Resources */,
 				52E0B1F127ED54C700607FBE /* freeland.tsx in Resources */,
 				52D1A3DC285408700046B219 /* freeland-10x10.tmx in Resources */,
+				5234D52E285F04C20051172E /* select-unit2.wav in Resources */,
 				52E0B1ED27ED393400607FBE /* Freeland.sks in Resources */,
 				52E0B1D727E7AEC900607FBE /* Map Icons.sks in Resources */,
 				52E0B1D527E6EC4400607FBE /* Civ 2.sks in Resources */,
