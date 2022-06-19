@@ -16,7 +16,7 @@ class StoneToSpaceScene: SKScene {
     var mapViewModel: MapViewModel
     var contextMenu: Engine.ContextMenu!
     var founderContextMenu: FounderContextMenu!
-    var gameCamera: StoneToSpaceCamera!
+    var gameCamera: Camera!
     var cameraScale = 1.0
     var initialCameraScale = 1.0
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
@@ -48,6 +48,9 @@ class StoneToSpaceScene: SKScene {
         mapIconsTileset = SKTileSet(named: mapIconsTilesetName)
         
         super.init(size: UIScreen.main.bounds.size)
+        
+//        self.scaleMode = .aspectFit
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -117,7 +120,7 @@ class StoneToSpaceScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        gameCamera = StoneToSpaceCamera(game: game)
+        gameCamera = Camera(game: game, size: size)
 
         camera = gameCamera
         addChild(gameCamera)

@@ -1,25 +1,34 @@
 import SpriteKit
 import SwiftUI
-import Engine
 import Combine
 
-class StoneToSpaceCamera: SKCameraNode {
+public class Camera: SKCameraNode {
     @ObservedObject var game: Game
     
     private var cancellable = Set<AnyCancellable>()
     
+    private let nextTurnButton: NextTurnButton
     let startPositionIcon = SKSpriteNode(imageNamed: "square-wooden-button")
     let calculatePathIcon = SKSpriteNode(imageNamed: "square-wooden-button")
     let positionLabel = SKLabelNode(fontNamed: "Arial Bold")
     
-    init(game: Game) {
+    //private let horizontalPadding: CGFloat
+    //private let verticalPadding: CGFloat
+    
+    public init(game: Game, size: CGSize) {
         self.game = game
         
+        
+        nextTurnButton = NextTurnButton(game: game, screenSize: size)
+        nextTurnButton.position = CGPoint(x: (size.width / 2) - nextTurnButton.size.width / 2,
+                                          y: -(size.height / 2) + nextTurnButton.size.height / 2)
+//        nextTurnButton.size = CGSize(width: 100.0, height: 100.0)
         startPositionIcon.size = CGSize(width: 40.0, height: 35.0)
         calculatePathIcon.size = CGSize(width: 40.0, height: 35.0)
         
         startPositionIcon.zPosition = Layer.hud
         calculatePathIcon.zPosition = Layer.hud
+        nextTurnButton.zPosition = Layer.hud
         
         startPositionIcon.name = "set-start-position"
         calculatePathIcon.name = "calculate-path"
@@ -28,24 +37,25 @@ class StoneToSpaceCamera: SKCameraNode {
         positionLabel.horizontalAlignmentMode = .left
         positionLabel.zPosition = Layer.hud
         
-        
         super.init()
         
         name = "camera"
         
+        print("\(size)")
+        
         game.$selectedMapPosition
             .dropFirst()
             .sink(receiveValue: { mapPosition in
-//                self.updatePositionLabel(pos: tapLocation)
-        })
-        .store(in: &cancellable)
+                //                self.updatePositionLabel(pos: tapLocation)
+            })
+            .store(in: &cancellable)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func show() {
+    public func show() {
         updatePositionLabel(pos: position)
         
         if let scene = self.scene {
@@ -58,15 +68,18 @@ class StoneToSpaceCamera: SKCameraNode {
             positionLabel.position = CGPoint(x: leftIconEdge, y: topIconEdge - 2 * verticalSpacer)
         }
         
-//        addChild(startPositionIcon)
-//        addChild(calculatePathIcon)
-//        addChild(positionLabel)
+        //        addChild(startPositionIcon)
+        //        addChild(calculatePathIcon)
+        //        addChild(positionLabel)
+        addChild(nextTurnButton)
+        
+        print("Camera size: \(self.frame.size)")
     }
     
-    func updatePositionLabel(pos: CGPoint) {
+    public func updatePositionLabel(pos: CGPoint) {
         let x = String(format: "%.0f", pos.x)
         let y = String(format: "%.0f", pos.y)
-
+        
         positionLabel.text = "[\(x),\(y)]"
     }
     
