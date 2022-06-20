@@ -35,7 +35,13 @@ class StoneToSpaceScene: SKScene {
         self.mapViewModel = mapViewModel
         
         db = Db(fullRefresh: true)
-        game = Game(theme: theme, map: Map(mapId: 1, width: 1, height: 1), db: db)
+        
+        do {
+            game = try db.getGameBy(gameId: 1)
+        }
+        catch {
+            fatalError("Unable to initialize game object")
+        }
         tilesetName = theme.name + " Tile Set"
         
         if let ts = SKTileSet(named: tilesetName) {
@@ -120,6 +126,15 @@ class StoneToSpaceScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        
+        do {
+            try db.mapDao.importTiledMap(filename: Constants.mapFilename)
+            game = try db.getGameBy(gameId: 1)
+        }
+        catch {
+            print(error)
+        }
+        
         game.canvasSize = frame.size
         gameCamera = Camera(game: game)
 
@@ -133,17 +148,7 @@ class StoneToSpaceScene: SKScene {
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(pan))
         view.addGestureRecognizer(panGesture)
-        
-        do {
-            try db.mapDao.importTiledMap(filename: Constants.mapFilename)
-            game = try db.getGameBy(gameId: 1)
-        }
-        catch {
-            print(error)
-        }
-        
-        let _ = TurnView(parent: gameCamera, game: game)
-        
+                
         game.processCommands()
         
         let player = game.getCurrentPlayer()
@@ -183,7 +188,6 @@ class StoneToSpaceScene: SKScene {
         // addInitialSettler(player: player)
         
         mapView = MapManager(player: player, scene: self, tileset: tileset!)
-        
         contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
         founderContextMenu = FounderContextMenu(game: game, parent: self, mapView: mapView)
         
@@ -192,6 +196,7 @@ class StoneToSpaceScene: SKScene {
         view.addGestureRecognizer(tapGesture)
         
         self.eventBus = EventBus(game: game, scene: self, mapManager: mapView)
+        
 
     }
     

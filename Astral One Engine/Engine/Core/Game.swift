@@ -8,7 +8,9 @@ public class Game: ObservableObject {
     @Published public var tapLocation = CGPoint.zero
     @Published public var selectedMapPosition = Position(row: -1, col: -1)
     @Published public var selectedCityCreator: Settler?
-    @Published public var turns: [Turn] = [
+    @Published public var turnIndex = 0
+
+    public var turns: [Turn] = [
         Turn(id: 1, year: -4000, ordinal: 1, displayText: "4000 BC"),
         Turn(id: 2, year: -3990, ordinal: 2, displayText: "3990 BC"),
         Turn(id: 3, year: -3980, ordinal: 3, displayText: "3980 BC"),
@@ -29,9 +31,7 @@ public class Game: ObservableObject {
         Turn(id: 18, year: -3830, ordinal: 18, displayText: "3830 BC")
 
     ]
-    
-    @Published public var turnIndex = 0
-    
+        
     public var players: [Player] = []
     public let map: Map
     public let theme: Theme

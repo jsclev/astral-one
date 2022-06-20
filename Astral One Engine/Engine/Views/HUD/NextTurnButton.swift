@@ -34,8 +34,6 @@ internal class NextTurnButton: SKNode {
         buttonNode.size = size
         self.size = size
         
-        print("Next turn button size is \(buttonNode.size)")
-        
         let selectedTexture = SKTexture(imageNamed: "next-turn-button")
         selectedIndicator = SKSpriteNode(texture: selectedTexture,
                                          color: UIColor.systemPink,
@@ -47,11 +45,8 @@ internal class NextTurnButton: SKNode {
         super.init()
         
         name = "Next Turn"
-        
         isUserInteractionEnabled = true
-//        position = mapManager.getCenterOf(position: unit.position)
-//        zPosition = Layer.units
-        
+
         addChild(buttonNode)
         addChild(selectedIndicator)
         
@@ -63,15 +58,6 @@ internal class NextTurnButton: SKNode {
     }
     
     private func attachSubscribers() {
-//        self.player.$selectedUnit
-//            .sink(receiveValue: { updatedUnit in
-//                if let selectedUnit = updatedUnit {
-//                    self.selectedIndicator.isHidden = !(selectedUnit.name == self.unit.name)
-//                }
-//                else {
-//                    self.selectedIndicator.isHidden = true
-//                }
-//            })
-//            .store(in: &cancellable)
+
     }
 }

@@ -3,7 +3,7 @@ import SwiftUI
 import Combine
 
 public class Camera: SKCameraNode {
-    @ObservedObject var game: Game
+    private let game: Game
     
     private var cancellable = Set<AnyCancellable>()
     
@@ -11,21 +11,20 @@ public class Camera: SKCameraNode {
     let startPositionIcon = SKSpriteNode(imageNamed: "square-wooden-button")
     let calculatePathIcon = SKSpriteNode(imageNamed: "square-wooden-button")
     let positionLabel = SKLabelNode(fontNamed: "Arial Bold")
-    
     private let padding: CGFloat
     
     public init(game: Game) {
         self.game = game
-        
         padding = game.canvasSize.width * 0.015
         
         nextTurnButton = NextTurnButton(game: game)
-        nextTurnButton.position = CGPoint.zero
-        print(game.canvasSize)
-        nextTurnButton.position = CGPoint(x: (game.canvasSize.width / 2) - nextTurnButton.size.width / 2 - padding,
-                                          y: -(game.canvasSize.height / 2) + nextTurnButton.size.height / 2 + padding)
-        print(nextTurnButton.position)
-//        nextTurnButton.size = CGSize(width: 100.0, height: 100.0)
+        nextTurnButton.position = CGPoint(x: (game.canvasSize.width / 2) - (nextTurnButton.size.width / 2) - padding,
+                                          y: -(game.canvasSize.height / 2) + (nextTurnButton.size.height / 2) + padding)
+
+        let turnIndicator = TurnView(game: game)
+        turnIndicator.position = CGPoint(x: (game.canvasSize.width / 2) - (turnIndicator.size.width / 2) - padding,
+                                         y: (game.canvasSize.height / 2) - (turnIndicator.size.height) - 1.5*padding)
+        
         startPositionIcon.size = CGSize(width: 40.0, height: 35.0)
         calculatePathIcon.size = CGSize(width: 40.0, height: 35.0)
         
@@ -44,12 +43,7 @@ public class Camera: SKCameraNode {
         
         name = "camera"
         
-        game.$selectedMapPosition
-            .dropFirst()
-            .sink(receiveValue: { mapPosition in
-                //                self.updatePositionLabel(pos: tapLocation)
-            })
-            .store(in: &cancellable)
+        addChild(turnIndicator)
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -69,12 +63,7 @@ public class Camera: SKCameraNode {
             positionLabel.position = CGPoint(x: leftIconEdge, y: topIconEdge - 2 * verticalSpacer)
         }
         
-        //        addChild(startPositionIcon)
-        //        addChild(calculatePathIcon)
-        //        addChild(positionLabel)
         addChild(nextTurnButton)
-        
-        print("Camera size: \(self.frame.size)")
     }
     
     public func updatePositionLabel(pos: CGPoint) {

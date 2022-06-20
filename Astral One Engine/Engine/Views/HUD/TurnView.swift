@@ -3,45 +3,39 @@ import SpriteKit
 import Combine
 
 public class TurnView: SKNode {
-    public let yearNode: SKLabelNode
+    private let yearNode: SKLabelNode
     private let game: Game
-    
+    internal let size: CGSize
     private var cancellable = Set<AnyCancellable>()
 
-    public init(parent: SKNode, game: Game) {
+    public init(game: Game) {
         self.game = game
         
         yearNode = SKLabelNode(fontNamed: "Arial Bold")
         yearNode.fontSize = 20
         yearNode.horizontalAlignmentMode = .right
         yearNode.zPosition = Layer.hud
-//        yearNode.position = CGPoint(x: game.canvasSize.width / 2 - 100.0,
-//                                    y: game.canvasSize.height / 2 - 50)
+        
+        size = yearNode.frame.size
         super.init()
 
         addChild(yearNode)
-        parent.addChild(self)
         
-        
-        self.position = CGPoint(x: game.canvasSize.width / 2 - 100.0,
-                                y: game.canvasSize.height / 2 - 50)
-        
-        print("Turn: \(self.position)")
-
-        
-        
-        self.game.$turnIndex
-            .sink(receiveValue: { turnIndex in
-                self.render(turn: game.turns[turnIndex])
-            })
-            .store(in: &cancellable)
+        attachSubscribers()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func render(turn: Turn) {
-        yearNode.text = "Turn \(turn.ordinal): \(turn.displayText)"
+    private func attachSubscribers() {
+        self.game.$turnIndex
+            .sink(receiveValue: { newValue in
+                let turn = self.game.turns[newValue]
+                self.yearNode.text = "Turn \(turn.ordinal): \(turn.displayText)"
+
+            })
+            .store(in: &cancellable)
     }
+ 
 }
