@@ -15,7 +15,7 @@ class StoneToSpaceScene: SKScene {
     var eventBus: EventBus?
     var mapViewModel: MapViewModel
     var contextMenu: Engine.ContextMenu!
-    var founderContextMenu: FounderContextMenu!
+    var cityCreatorMenu: CityCreatorMenu!
     var gameCamera: Camera!
     var cameraScale = 1.0
     var initialCameraScale = 1.0
@@ -189,7 +189,7 @@ class StoneToSpaceScene: SKScene {
         
         mapView = MapManager(player: player, scene: self, tileset: tileset!)
         contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
-        founderContextMenu = FounderContextMenu(game: game, parent: self, mapView: mapView)
+        cityCreatorMenu = CityCreatorMenu(player: player, parent: self, mapManager: mapView)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
         tapGesture.numberOfTapsRequired = 1

@@ -2,27 +2,25 @@ import Foundation
 import SpriteKit
 import Combine
 
-public class FounderContextMenu {
+public class CityCreatorMenu {
     private let parent: SKNode
-    private let game: Game
-    private let mapView: MapManager
-    private var cancellable = Set<AnyCancellable>()
-    
-    public let menu = SKSpriteNode(imageNamed: "context-menu")
-    private let menuItem1Node = SKSpriteNode(imageNamed: "context-menu-item-1")
+    private let player: Player
+    private let mapManager: MapManager
+    private let menu = SKSpriteNode(imageNamed: "context-menu")
+    private let menuItem1Node = SKSpriteNode(imageNamed: "create-city-icon")
     private let menuItem2Node = SKSpriteNode(imageNamed: "context-menu-item-2")
     private let menuItem3Node = SKSpriteNode(imageNamed: "context-menu-item-3")
     private let menuItem4Node = SKSpriteNode(imageNamed: "context-menu-item-4")
+    private var cancellable = Set<AnyCancellable>()
+    private let iconSize = 58.0
     
-    let iconSize = 58.0
-    
-    public init(game: Game, parent: SKNode, mapView: MapManager) {
+    public init(player: Player, parent: SKNode, mapManager: MapManager) {
+        self.player = player
         self.parent = parent
-        self.game = game
-        self.mapView = mapView
+        self.mapManager = mapManager
         
         menu.name = "Context Menu"
-        menuItem1Node.name = "Context Menu Item 1"
+        menuItem1Node.name = "Found City Button"
         menuItem2Node.name = "Context Menu Item 2"
         menuItem3Node.name = "Context Menu Item 3"
         menuItem4Node.name = "Context Menu Item 4"
@@ -33,7 +31,7 @@ public class FounderContextMenu {
         menuItem3Node.zPosition = Layer.contextMenuItem
         menuItem4Node.zPosition = Layer.contextMenuItem
         
-        menu.position = CGPoint(x: 0, y: 0)
+        menu.position = CGPoint.zero
         menuItem1Node.position = CGPoint(x: 55, y: 55)
         menuItem2Node.position = CGPoint(x: 55, y: -55)
         menuItem3Node.position = CGPoint(x: -55, y: -55)
@@ -49,20 +47,26 @@ public class FounderContextMenu {
         menu.addChild(menuItem3Node)
         menu.addChild(menuItem4Node)
         
-        menu.isHidden = true
-        parent.addChild(menu)
+        menuItem1Node.isUserInteractionEnabled = true
+        menu.isUserInteractionEnabled = true
         
-        self.game.$selectedCityCreator
-            .dropFirst()
-            .sink(receiveValue: { founder in
-                if let f = founder {
-                    print("\(f.name) touched!")
+        attachSubscribers()
+        
+        parent.addChild(menu)
+    }
+    
+    private func attachSubscribers() {
+        self.player.$selectedUnit
+            .sink(receiveValue: { selectedUnit in
+                if let unit = selectedUnit {
+                    let unitPosition = self.mapManager.getCenterOf(position: unit.position)
+                    self.menu.position = CGPoint(x: unitPosition.x - 1.0,
+                                                 y: unitPosition.y + 3.0)
+                    self.menu.isHidden = false
                 }
                 else {
-                    print("An unnamed city creator node touched.")
+                    self.menu.isHidden = true
                 }
-
-                self.menu.isHidden = !self.menu.isHidden
             })
             .store(in: &cancellable)
     }

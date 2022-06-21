@@ -62,15 +62,15 @@ public class UnitNode: SKNode {
         self.player.$selectedUnit
             .sink(receiveValue: { updatedUnit in
                 if let selectedUnit = updatedUnit {
-                    self.selectedIndicator.isHidden = !(selectedUnit.name == self.unit.name)
-                    self.selectedSkyIndicator.isHidden = !(selectedUnit.name == self.unit.name)
+//                    self.selectedIndicator.isHidden = !(selectedUnit.name == self.unit.name)
+//                    self.selectedSkyIndicator.isHidden = !(selectedUnit.name == self.unit.name)
                 }
                 else {
-                    self.selectedIndicator.isHidden = true
-                    self.selectedSkyIndicator.isHidden = true
+//                    self.selectedIndicator.isHidden = true
+//                    self.selectedSkyIndicator.isHidden = true
                 }
                 
-                self.selectedSkyIndicator.size.height = (self.player.game.canvasSize.height / 2) - self.position.y - (self.player.game.canvasSize.height * 0.1)
+//                self.selectedSkyIndicator.size.height = (self.player.game.canvasSize.height / 2) - self.position.y - (self.player.game.canvasSize.height * 0.1)
             })
             .store(in: &cancellable)
     }

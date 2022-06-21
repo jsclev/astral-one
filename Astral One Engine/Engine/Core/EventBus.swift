@@ -15,21 +15,6 @@ public class EventBus {
         self.game = game
         self.scene = scene
         self.mapManager = mapManager
-        
-//        let turnIndicator = TurnView(game: game)
-//        turnIndicator.position = CGPoint(x: (game.canvasSize.width / 2) - (turnIndicator.size.width / 2) - 5,
-//                                         y: (game.canvasSize.height / 2) - (turnIndicator.size.height) - 10)
-//        print("\(turnIndicator.position)")
-//        if let camera = scene.camera {
-//            camera.addChild(turnIndicator)
-//            
-//            game.$turnIndex
-//                .sink(receiveValue: { turnIndex in
-//                    print("turn index subscriber got updated turnIndex \(turnIndex)")
-//                    //                self.updatePositionLabel(pos: tapLocation)
-//                })
-//                .store(in: &cancellable)
-//        }
     }
     
     public func tap(recognizer: UITapGestureRecognizer){
@@ -48,11 +33,23 @@ public class EventBus {
 
         for node in touchedNodes {
             if let name = node.name {
+                print("Name of node: \(name)")
                 if name == "Next Turn" {
-                    
                     game.nextTurn()
-                    
-                    
+                    return
+                }
+                else if name == "Found City Button" {
+                    if let unit = game.getCurrentPlayer().selectedUnit {
+                        let tile = game.getCurrentPlayer().map.tile(at: unit.position)
+                        let selectUnitCmd = SelectUnitCommand(player: game.getCurrentPlayer(),
+                                                              turn: game.getCurrentTurn(),
+                                                              ordinal: 1,
+                                                              node: scene,
+                                                              mapManager: mapManager,
+                                                              unit: unit)
+                        selectUnitCmd.execute()
+                        addCity(settler: unit as! Settler, tile: tile)
+                    }
                     
                     return
                 }
@@ -69,10 +66,8 @@ public class EventBus {
                                                   mapManager: mapManager,
                                                   unit: unit)
             selectUnitCmd.execute()
-//            addCity(settler: unit as! Settler, tile: tile)
         }
         else {
-            // print("Tapped [\(tile.position.row), \(tile.position.col)]")
             if let selectedUnit = game.getCurrentPlayer().selectedUnit {
                 let moveCmd = MoveUnitCommand(player: game.getCurrentPlayer(),
                                               turn: game.getCurrentTurn(),
