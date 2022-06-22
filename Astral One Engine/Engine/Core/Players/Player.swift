@@ -18,6 +18,7 @@ public class Player: ObservableObject, Equatable {
     public var maxActionPlanLength = 4
     @Published public var government = Government.Despotism
     @Published public private (set) var selectedUnit: Unit?
+    @Published public private (set) var notificationMsg: String?
     private var cancellable = Set<AnyCancellable>()
     
     public init(playerId: Int, game: Game, map: Map) {
@@ -27,29 +28,37 @@ public class Player: ObservableObject, Equatable {
         
         game.map.$cities
             .sink(receiveValue: { cities in
-                if let city = cities.last {
-                    print("----------------------------------------------")
-                    if city.owner == self {
-                        print("I own \(city.name)")
-                    }
-                    else {
-                        print("I do not own \(city.name)")
-                    }
-                    
-                    if map.isFullyVisible(position: city.position) {
-                        print("I can see \(city.name)")
-                    }
-                    else {
-                        print("I can not see \(city.name)")
-                    }
-                    
-                    if city.owner != self && map.isFullyVisible(position: city.position) {
-                        map.add(city: city)
-                        print("Added \"\(city.name)\" to my map. Owned by \(city.owner.playerId).")
-                    }
-                }
+//                if let city = cities.last {
+//                    print("----------------------------------------------")
+//                    if city.owner == self {
+//                        print("I own \(city.name)")
+//                    }
+//                    else {
+//                        print("I do not own \(city.name)")
+//                    }
+//
+//                    if map.isFullyVisible(position: city.position) {
+//                        print("I can see \(city.name)")
+//                    }
+//                    else {
+//                        print("I can not see \(city.name)")
+//                    }
+//
+//                    if city.owner != self && map.isFullyVisible(position: city.position) {
+//                        map.add(city: city)
+//                        print("Added \"\(city.name)\" to my map. Owned by \(city.owner.playerId).")
+//                    }
+//                }
             })
             .store(in: &cancellable)
+    }
+    
+    public func setNotification(notification: String) {
+        notificationMsg = notification
+    }
+    
+    public func clearNotification() {
+        notificationMsg = ""
     }
     
     public var settlers: [Settler] {

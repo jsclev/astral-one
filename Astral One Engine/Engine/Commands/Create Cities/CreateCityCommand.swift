@@ -42,8 +42,10 @@ public class CreateCityCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() {
-        if cityCreator.canCreateCity {
+    public override func execute() -> CommandResult {
+        let canCreateCity = cityCreator.canCreateCity
+        
+        if canCreateCity.value {
             city = City(id: Constants.noId,
                         owner: player,
                         theme: player.game.theme,
@@ -63,6 +65,12 @@ public class CreateCityCommand: Command {
             if let newCity = city {
                 player.create(city: newCity, using: cityCreator)
             }
+            
+            return CommandResult(status: CommandStatus.Ok, message: "Success")
+        }
+        else {
+            return CommandResult(status: CommandStatus.Invalid,
+                                 message: canCreateCity.message)
         }
     }
 }

@@ -44,7 +44,7 @@ public class Command: CustomStringConvertible {
         "player: \(player), type: \(type), ordinal: \(ordinal)}"
     }
     
-    public func execute() {
+    public func execute() -> CommandResult {
         fatalError("execute() must be implemented in subclasses.")
     }
 }

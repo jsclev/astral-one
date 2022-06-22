@@ -1,6 +1,6 @@
 import Foundation
 
-public class BuildRailroadCommand: Command {
+public class BuildRoadCommand: Command {
     public private(set) var builder: Builder
     
     public convenience init(player: Player,
@@ -36,7 +36,9 @@ public class BuildRailroadCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() {
-        builder.buildRailroad()
+    public override func execute() -> CommandResult {
+        builder.buildRoad()
+        
+        return CommandResult(status: CommandStatus.Ok, message: "Success")
     }
 }

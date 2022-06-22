@@ -79,7 +79,7 @@ public class CreateSettlerCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() {
+    public override func execute() -> CommandResult {
         let settler = Settler(game: player.game,
                               player: player,
                               theme: player.game.theme,
@@ -87,5 +87,7 @@ public class CreateSettlerCommand: Command {
                               position: tile.position)
         
         player.add(cityCreator: settler)
+        
+        return CommandResult(status: CommandStatus.Ok, message: "Success")
     }
 }

@@ -59,7 +59,7 @@ public class Game: ObservableObject {
         }
     }
     
-    public func getCurrentPlayer() -> Player {
+    public var currentPlayer: Player {
         return players[0]
     }
     
@@ -69,7 +69,7 @@ public class Game: ObservableObject {
     
     public func processCommands() {
         while !commands.isEmpty {
-            commands.removeLast().execute()
+            let _ = commands.removeLast().execute()
         }
     }
     

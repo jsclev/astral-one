@@ -21,7 +21,9 @@ public class NextTurnCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() {
+    public override func execute() -> CommandResult {
         player.game.nextTurn()
+        
+        return CommandResult(status: CommandStatus.Ok, message: "Success")
     }
 }

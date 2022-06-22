@@ -1,6 +1,6 @@
 import Foundation
 
-public class BuildAirbaseCommand: Command {
+public class BuildFarmlandCommand: Command {
     private let city: City
     private let unit: Unit
     private let position: Position
@@ -30,7 +30,9 @@ public class BuildAirbaseCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() {
-        city.build(improvement: ImprovementType.Airbase, position: position)
+    public override func execute() -> CommandResult {
+        city.build(improvement: ImprovementType.Farmland, position: position)
+        
+        return CommandResult(status: CommandStatus.Ok, message: "Success")
     }
 }

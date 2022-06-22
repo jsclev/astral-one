@@ -136,7 +136,7 @@ class StoneToSpaceScene: SKScene {
         }
         
         game.canvasSize = frame.size
-        gameCamera = Camera(game: game)
+        gameCamera = Camera(game: game, player: game.currentPlayer)
 
         camera = gameCamera
         addChild(gameCamera)
@@ -150,8 +150,6 @@ class StoneToSpaceScene: SKScene {
         view.addGestureRecognizer(panGesture)
                 
         game.processCommands()
-        
-        let player = game.getCurrentPlayer()
         
 //        for cityId in 0..<1000 {
 //            let position = Position(row: Int.random(in: 0..<game.map.height),
@@ -182,14 +180,14 @@ class StoneToSpaceScene: SKScene {
         
 //        let fowGenerator = FogOfWarGenerator(player: player)
 //        fowGenerator.generate()
-        player.map.revealAllTiles()
+        game.currentPlayer.map.revealAllTiles()
         let tileset = SKTileSet(named: tilesetName)
         
         // addInitialSettler(player: player)
         
-        mapView = MapManager(player: player, scene: self, tileset: tileset!)
+        mapView = MapManager(player: game.currentPlayer, scene: self, tileset: tileset!)
         contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
-        cityCreatorMenu = CityCreatorMenu(player: player, parent: self, mapManager: mapView)
+        cityCreatorMenu = CityCreatorMenu(player: game.currentPlayer, parent: self, mapManager: mapView)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
         tapGesture.numberOfTapsRequired = 1

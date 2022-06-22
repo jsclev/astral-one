@@ -36,7 +36,9 @@ public class BuildFortressCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() {
+    public override func execute() -> CommandResult {
         builder.buildFortress()
+        
+        return CommandResult(status: CommandStatus.Ok, message: "Success")
     }
 }

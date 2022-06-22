@@ -350,6 +350,10 @@ public class Tile: Hashable, ObservableObject {
         return 0
     }
     
+    public var hasCity: Bool {
+        return city != nil
+    }
+    
     internal func add(city: City) {
         self.city = city
     }

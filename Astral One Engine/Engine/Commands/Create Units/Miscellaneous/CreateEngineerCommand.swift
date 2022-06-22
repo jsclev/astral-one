@@ -37,7 +37,7 @@ public class CreateEngineerCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() {
+    public override func execute() -> CommandResult {
         engineer = Engineer(game: player.game,
                             player: player,
                             theme: player.game.theme,
@@ -56,5 +56,7 @@ public class CreateEngineerCommand: Command {
         if let e = engineer {
             player.add(unit: e)
         }
+        
+        return CommandResult(status: CommandStatus.Ok, message: "Success")
     }
 }

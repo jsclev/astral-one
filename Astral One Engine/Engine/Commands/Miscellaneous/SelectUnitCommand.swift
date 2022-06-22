@@ -45,7 +45,7 @@ public class SelectUnitCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() {
+    public override func execute() -> CommandResult {
         if let selectedUnit = player.selectedUnit {
             if selectedUnit.position == unit.position {
                 player.deselectUnit()
@@ -59,5 +59,7 @@ public class SelectUnitCommand: Command {
         }
         
         node.run(selectSound)
+        
+        return CommandResult(status: CommandStatus.Ok, message: "Success")
     }
 }

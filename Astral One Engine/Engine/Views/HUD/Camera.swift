@@ -4,6 +4,7 @@ import Combine
 
 public class Camera: SKCameraNode {
     private let game: Game
+    private let player: Player
     
     private var cancellable = Set<AnyCancellable>()
     
@@ -13,8 +14,10 @@ public class Camera: SKCameraNode {
     let positionLabel = SKLabelNode(fontNamed: "Arial Bold")
     private let padding: CGFloat
     
-    public init(game: Game) {
+    public init(game: Game, player: Player) {
         self.game = game
+        self.player = player
+        
         padding = game.canvasSize.width * 0.015
         
         nextTurnButton = NextTurnButton(game: game)
@@ -24,6 +27,10 @@ public class Camera: SKCameraNode {
         let turnIndicator = TurnView(game: game)
         turnIndicator.position = CGPoint(x: (game.canvasSize.width / 2) - (turnIndicator.size.width / 2) - padding,
                                          y: (game.canvasSize.height / 2) - (turnIndicator.size.height) - 1.5*padding)
+        
+        let notification = NotificationNode(player: player)
+        notification.position = CGPoint(x: -(game.canvasSize.width / 2) + (notification.size.width / 2) + padding,
+                                         y: -(game.canvasSize.height / 2) + (notification.size.height) + 1.5*padding)
         
         startPositionIcon.size = CGSize(width: 40.0, height: 35.0)
         calculatePathIcon.size = CGSize(width: 40.0, height: 35.0)
@@ -44,6 +51,7 @@ public class Camera: SKCameraNode {
         name = "camera"
         
         addChild(turnIndicator)
+        addChild(notification)
     }
     
     public required init?(coder aDecoder: NSCoder) {

@@ -22,6 +22,8 @@ public class EventBus {
             return
         }
         
+        game.currentPlayer.clearNotification()
+        
         let recognizorLocation = recognizer.location(in: recognizer.view!)
         let location = scene.convertPoint(fromView: recognizorLocation)
         
@@ -33,21 +35,21 @@ public class EventBus {
 
         for node in touchedNodes {
             if let name = node.name {
-                print("Name of node: \(name)")
+//                print("Name of node: \(name)")
                 if name == "Next Turn" {
                     game.nextTurn()
                     return
                 }
                 else if name == "Found City Button" {
-                    if let unit = game.getCurrentPlayer().selectedUnit {
-                        let tile = game.getCurrentPlayer().map.tile(at: unit.position)
-                        let selectUnitCmd = SelectUnitCommand(player: game.getCurrentPlayer(),
+                    if let unit = game.currentPlayer.selectedUnit {
+                        let tile = game.currentPlayer.map.tile(at: unit.position)
+                        let selectUnitCmd = SelectUnitCommand(player: game.currentPlayer,
                                                               turn: game.getCurrentTurn(),
                                                               ordinal: 1,
                                                               node: scene,
                                                               mapManager: mapManager,
                                                               unit: unit)
-                        selectUnitCmd.execute()
+                        let _ = selectUnitCmd.execute()
                         addCity(settler: unit as! Settler, tile: tile)
                     }
                     
@@ -59,23 +61,23 @@ public class EventBus {
         let tile = mapManager.getTile(at: location)
 
         if let unit = mapManager.getUnit(on: tile) {
-            let selectUnitCmd = SelectUnitCommand(player: game.getCurrentPlayer(),
+            let selectUnitCmd = SelectUnitCommand(player: game.currentPlayer,
                                                   turn: game.getCurrentTurn(),
                                                   ordinal: 1,
                                                   node: scene,
                                                   mapManager: mapManager,
                                                   unit: unit)
-            selectUnitCmd.execute()
+            let _ = selectUnitCmd.execute()
         }
         else {
-            if let selectedUnit = game.getCurrentPlayer().selectedUnit {
-                let moveCmd = MoveUnitCommand(player: game.getCurrentPlayer(),
+            if let selectedUnit = game.currentPlayer.selectedUnit {
+                let moveCmd = MoveUnitCommand(player: game.currentPlayer,
                                               turn: game.getCurrentTurn(),
                                               ordinal: 1,
                                               mapManager: mapManager,
                                               unit: selectedUnit,
                                               to: tile.position)
-                moveCmd.execute()
+                let _ = moveCmd.execute()
             }
             else {
                 addSettler(tile: tile)
@@ -84,16 +86,16 @@ public class EventBus {
     }
     
     private func addSettler(tile: Tile) {
-        let cmd = CreateSettlerCommand(player: game.getCurrentPlayer(),
+        let cmd = CreateSettlerCommand(player: game.currentPlayer,
                                        turn: game.getCurrentTurn(),
                                        ordinal: 1,
                                        cost: 1,
                                        tile: tile)
-        cmd.execute()
+        let _ = cmd.execute()
     }
     
     private func addEngineer(tile: Tile) {
-        let player = game.getCurrentPlayer()
+        let player = game.currentPlayer
         
         if let city = player.getCity(at: tile.position) {
             let cmd = CreateEngineerCommand(player: player,
@@ -101,12 +103,12 @@ public class EventBus {
                                             ordinal: 1,
                                             cost: 1,
                                             city: city)
-            cmd.execute()
+            let _ = cmd.execute()
         }
     }
     
     private func addCity(settler: Settler, tile: Tile) {
-        let player = game.getCurrentPlayer()
+        let player = game.currentPlayer
         
         let createCityCmd = CreateCityCommand(player: player,
                                               turn: game.getCurrentTurn(),
@@ -114,7 +116,13 @@ public class EventBus {
                                               cost: 0,
                                               cityCreator: settler,
                                               cityName: "New York-\(player.playerId)")
-        createCityCmd.execute()
+        let result = createCityCmd.execute()
+        
+        if result.status != CommandStatus.Ok {
+            print(player.playerId)
+
+            player.setNotification(notification: result.message)
+        }
         
 //        do {
 //            let agent = try SettlerAgent.getAgent(aiPlayer: player as! AIPlayer,

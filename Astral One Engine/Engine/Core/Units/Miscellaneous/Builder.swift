@@ -43,8 +43,21 @@ public class Builder: Unit {
         }
     }
     
-    public var canCreateCity: Bool {
-        return true
+    public var canCreateCity: Reason {
+        let tile = player.map.tile(at: position)
+        
+        if tile.terrain.type == TerrainType.Ocean {
+            return Reason(value: false,
+                          message: "Cannot found cities on Ocean tiles.")
+        }
+        
+        if tile.hasCity {
+            return Reason(value: false,
+                          message: "Cannot found cities on tiles that already have a city.")
+        }
+        
+        return Reason(value: true,
+                      message: "No existing cities, terrain is Ok.")
     }
     
     public var canBuildFortress: Bool {
