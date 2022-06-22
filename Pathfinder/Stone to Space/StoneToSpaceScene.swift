@@ -143,11 +143,11 @@ class StoneToSpaceScene: SKScene {
         
         gameCamera.show()
         
-        pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
-        view.addGestureRecognizer(pinchGestureRecognizer)
+//        pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
+//        view.addGestureRecognizer(pinchGestureRecognizer)
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(pan))
-        view.addGestureRecognizer(panGesture)
+//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(pan))
+//        view.addGestureRecognizer(panGesture)
                 
         game.processCommands()
         
@@ -195,6 +195,11 @@ class StoneToSpaceScene: SKScene {
         
         self.eventBus = EventBus(game: game, scene: self, mapManager: mapView)
         
+        print("Initial position of camera: \(gameCamera.position)")
+//        gameCamera.position = CGPoint(x: gameCamera.position.x + 500,
+//                                      y: gameCamera.position.y + 500)
+        
+        print("\(gameCamera.scene?.anchorPoint)")
 
     }
     

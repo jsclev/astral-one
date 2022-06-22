@@ -53,6 +53,15 @@ public class Camera: SKCameraNode {
         addChild(turnIndicator)
         addChild(notification)
         addChild(nextTurnButton)
+        
+        physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 400, height: 300))
+        physicsBody!.affectedByGravity = false
+
+//        physicsBody?.velocity = CGVector(dx: 1.0, dy: 1.0)
+
+        
+//        let velocity = CGVectorMake(1.0,1.0)
+        //                    selectedNode?.physicsBody?.velocity = velocity
     }
     
     public required init?(coder aDecoder: NSCoder) {

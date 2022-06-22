@@ -44,25 +44,25 @@ public class MapViewModel {
     }
     
     public func moveCamera(translation: CGSize) {
-        cameraPosition.x = startCameraPosition.x - translation.width
-        cameraPosition.y = startCameraPosition.y + translation.height
+        cameraPosition.x -= translation.width
+        cameraPosition.y -= translation.height
         
-        let xThreshold = 2150.0
-        let yTheshold = 1150.0
-        
-        if scale * cameraPosition.x < -xThreshold {
-            cameraPosition.x = -xThreshold
-        }
-        else if scale * cameraPosition.x > xThreshold {
-            cameraPosition.x = xThreshold
-        }
-
-        if scale * cameraPosition.y > yTheshold {
-            cameraPosition.y = yTheshold
-        }
-        else if scale * cameraPosition.y < -yTheshold {
-            cameraPosition.y = -yTheshold
-        }
+//        let xThreshold = 2150.0
+//        let yTheshold = 1150.0
+//
+//        if scale * cameraPosition.x < -xThreshold {
+//            cameraPosition.x = -xThreshold
+//        }
+//        else if scale * cameraPosition.x > xThreshold {
+//            cameraPosition.x = xThreshold
+//        }
+//
+//        if scale * cameraPosition.y > yTheshold {
+//            cameraPosition.y = yTheshold
+//        }
+//        else if scale * cameraPosition.y < -yTheshold {
+//            cameraPosition.y = -yTheshold
+//        }
         
         //        if (startCameraPosition.x - translation.width <= (mapSize.width / 2) - (mapSize.width - cameraSize.width) / 2) {
         //            cameraPosition.x = (mapSize.width / 2) - (mapSize.width - cameraSize.width) / 2
