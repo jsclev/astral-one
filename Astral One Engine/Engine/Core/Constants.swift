@@ -3,9 +3,8 @@ import CoreGraphics
 public struct Constants {
     public static let noId = 1
     public static let db = Db(fullRefresh: false)
-    public static let mapNumTilesHeight = 10
     public static let tileSize = CGSize(width: 128, height: 64)
-    public static let mapFilename = "freeland-10x10"
+    public static let mapFilename = "freeland"
     public static let tilesetName = "freeland"
     public static let themeName = "Sci-Fi"
     public static let minDefense: Double = 0.001

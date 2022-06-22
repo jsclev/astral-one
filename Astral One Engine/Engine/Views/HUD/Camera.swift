@@ -52,6 +52,7 @@ public class Camera: SKCameraNode {
         
         addChild(turnIndicator)
         addChild(notification)
+        addChild(nextTurnButton)
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -70,8 +71,6 @@ public class Camera: SKCameraNode {
             calculatePathIcon.position = CGPoint(x: leftIconEdge, y: topIconEdge - verticalSpacer)
             positionLabel.position = CGPoint(x: leftIconEdge, y: topIconEdge - 2 * verticalSpacer)
         }
-        
-        addChild(nextTurnButton)
     }
     
     public func updatePositionLabel(pos: CGPoint) {

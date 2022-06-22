@@ -95,7 +95,7 @@ public class MapViewModel {
     }
     
     public func resetCamera() {
-        startCameraPosition.x = cameraPosition.x
-        startCameraPosition.y = cameraPosition.y
+//        startCameraPosition.x = cameraPosition.x
+//        startCameraPosition.y = cameraPosition.y
     }
 }

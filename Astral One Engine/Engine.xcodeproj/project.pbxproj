@@ -918,13 +918,6 @@
 			path = Tiled;
 			sourceTree = "<group>";
 		};
-		52E0B18B27E6D87600607FBE /* IO */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = IO;
-			sourceTree = "<group>";
-		};
 		52E0B1A327E6DFAB00607FBE /* Buildings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1149,7 +1142,6 @@
 				52E0B1BA27E6E15500607FBE /* Components */,
 				52F9042B27F6B4AB00D1AC97 /* Data Access Layer */,
 				52E0B1BF27E6E1F300607FBE /* Extensions */,
-				52E0B18B27E6D87600607FBE /* IO */,
 				52F9044727F80BA000D1AC97 /* Log */,
 				52F559652839E40B00966F06 /* Lua */,
 				52F9043127F6B62B00D1AC97 /* Resources */,

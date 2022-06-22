@@ -73,6 +73,10 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                 map = Map(mapId: 1, width: mapWidth, height: mapHeight)
                 mapInitialized = true
             }
+            
+            if mapWidth == 0 || mapHeight == 0 {
+                fatalError("Map width and height must be greater than 0.")
+            }
 
             let trimmedString = string.trimmingCharacters(in: .whitespacesAndNewlines)
 
@@ -107,7 +111,7 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                     // Convert the Tiled global tile id to the local tileset id
                                     let intLocalTiledId = intGlobalTiledId - 1
                                     let strLocalTiledId = String(intLocalTiledId)
-                                    let row = Constants.mapNumTilesHeight - 1 - mapRowIndex
+                                    let row = mapHeight - 1 - mapRowIndex
                                     let position = Position(row: row, col: col)
 
                                     if let tiledId = Int(strLocalTiledId) {
@@ -131,7 +135,10 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                                                hasRiver: tile.hasRiver))
                                         }
                                         else {
-                                            fatalError("Unable to find tile with Tiled ID \(strLocalTiledId).")
+                                            var msg = "Unable to find tile with Tiled ID \(strLocalTiledId).  "
+                                            msg += "Check the Tiled tileset file (.tsx) to make sure there is "
+                                            msg += "a tile with an id of \(strLocalTiledId) in it."
+                                            fatalError(msg)
                                         }
                                     }
                                 }
