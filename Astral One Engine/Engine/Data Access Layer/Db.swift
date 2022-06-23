@@ -15,6 +15,7 @@ public class Db {
     public let gameDao: GameDAO
     public let mapDao: MapDAO
     public let terrainDao: TerrainDAO
+    public let turnDao: TurnDAO
     public let unitDao: UnitDAO
     
     public init(fullRefresh: Bool) {
@@ -102,10 +103,11 @@ public class Db {
         gameDao = GameDAO(conn: db)
         mapDao = MapDAO(conn: db)
         terrainDao = TerrainDAO(conn: db)
+        turnDao = TurnDAO(conn: db)
     }
     
     public func getGameBy(gameId: Int) throws -> Game {
-        let theme = Theme(id: 2, name: "Standard Theme")
+        let theme = Theme(id: 4, name: "Standard Theme")
         
         // Pull the maps from the database
         let player1Map = try mapDao.get(gameId: gameId)
@@ -115,7 +117,7 @@ public class Db {
         let player5Map = try mapDao.get(gameId: gameId)
         let player6Map = try mapDao.get(gameId: gameId)
 
-        let game = Game(theme: theme, map: player1Map, db: self)
+        let game = try Game(theme: theme, map: player1Map, db: self)
 
         let player1 = AIPlayer(playerId: 1,
                                game: game,

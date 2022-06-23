@@ -136,6 +136,7 @@
 		52A646BA283571750066B82D /* PlayerDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A646B9283571750066B82D /* PlayerDiff.swift */; };
 		52AB06FB2801FB400039B47D /* UnitInfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB06FA2801FB400039B47D /* UnitInfluenceMapCalculator.swift */; };
 		52AB0748280287580039B47D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0747280287580039B47D /* City.swift */; };
+		52AB7E002864FBC6008D86FD /* TurnDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB7DFF2864FBC6008D86FD /* TurnDAO.swift */; };
 		52BD35AC285B84DE00B0BBD4 /* RoadsMapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD35AB285B84DE00B0BBD4 /* RoadsMapLayer.swift */; };
 		52BD35AE285C305500B0BBD4 /* CreateUnitCommandDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD35AD285C305500B0BBD4 /* CreateUnitCommandDAO.swift */; };
 		52D1A3D82852D4990046B219 /* SettlerLevel1Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1A3D72852D4990046B219 /* SettlerLevel1Agent.swift */; };
@@ -376,6 +377,7 @@
 		52A646B9283571750066B82D /* PlayerDiff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDiff.swift; sourceTree = "<group>"; };
 		52AB06FA2801FB400039B47D /* UnitInfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitInfluenceMapCalculator.swift; sourceTree = "<group>"; };
 		52AB0747280287580039B47D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		52AB7DFF2864FBC6008D86FD /* TurnDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnDAO.swift; sourceTree = "<group>"; };
 		52BD35AB285B84DE00B0BBD4 /* RoadsMapLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadsMapLayer.swift; sourceTree = "<group>"; };
 		52BD35AD285C305500B0BBD4 /* CreateUnitCommandDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUnitCommandDAO.swift; sourceTree = "<group>"; };
 		52D1A3D72852D4990046B219 /* SettlerLevel1Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerLevel1Agent.swift; sourceTree = "<group>"; };
@@ -1062,6 +1064,7 @@
 				52F9044327F6D68A00D1AC97 /* GameDAO.swift */,
 				52DE5F332810DAB90029EFE1 /* MapDAO.swift */,
 				5293BC2B280DD55A001DE2F3 /* TerrainDAO.swift */,
+				52AB7DFF2864FBC6008D86FD /* TurnDAO.swift */,
 				52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */,
 			);
 			path = "Data Access Objects";
@@ -1280,6 +1283,7 @@
 				52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */,
 				52DE5F97281E085A0029EFE1 /* Naval7.swift in Sources */,
 				526681662823043B0089D0DD /* AlpineTroop.swift in Sources */,
+				52AB7E002864FBC6008D86FD /* TurnDAO.swift in Sources */,
 				52D1A3DF2854E96F0046B219 /* SpecialResource.swift in Sources */,
 				52A6465A282DF8F70066B82D /* ResearchPolytheismAction.swift in Sources */,
 				52A646B128330BC00066B82D /* CreateEngineerCommand.swift in Sources */,

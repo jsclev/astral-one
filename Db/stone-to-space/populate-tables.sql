@@ -18,6 +18,40 @@ insert into turn (theme_id, ordinal, year, display_text) values (
     (select theme_id from theme where name ='Stone to Space'), 7, -3880, '3880 BC');
 insert into turn (theme_id, ordinal, year, display_text) values (
     (select theme_id from theme where name ='Stone to Space'), 8, -3860, '3860 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 9, -3850, '3850 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 10, -3840, '3840 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 11, -3830, '3830 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 12, -3820, '3820 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 13, -3810, '3810 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 14, -3800, '3800 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 15, -3790, '3790 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 16, -3780, '3780 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 17, -3770, '3770 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 18, -3760, '3760 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 19, -3750, '3750 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 20, -3740, '3740 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 21, -3730, '3730 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 22, -3720, '3720 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 23, -3710, '3710 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 24, -3700, '3700 BC');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Stone to Space'), 25, -3690, '3690 BC');
 
 -- Unit types
 insert into unit_type (tiled_id, name, display_name, theme_id) values (-1, 'Infantry1', 'Basic Infantry', 1);

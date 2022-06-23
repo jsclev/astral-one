@@ -3,21 +3,55 @@ insert into theme (name, description, source) values ('Astral One', 'Sci-fi them
 
 -- Turns
 insert into turn (theme_id, ordinal, year, display_text) values (
-    (select theme_id from theme where name ='Astral One'), 1, -4000, '4000 BC');
+    (select theme_id from theme where name ='Astral One'), 1, 2079, '2079');
 insert into turn (theme_id, ordinal, year, display_text) values (
-    (select theme_id from theme where name ='Astral One'), 2, -3980, '3980 BC');
+    (select theme_id from theme where name ='Astral One'), 2, 2080, '2080');
 insert into turn (theme_id, ordinal, year, display_text) values (
-    (select theme_id from theme where name ='Astral One'), 3, -3960, '3960 BC');
+    (select theme_id from theme where name ='Astral One'), 3, 2081, '2081');
 insert into turn (theme_id, ordinal, year, display_text) values (
-    (select theme_id from theme where name ='Astral One'), 4, -3940, '3940 BC');
+    (select theme_id from theme where name ='Astral One'), 4, 2082, '2082');
 insert into turn (theme_id, ordinal, year, display_text) values (
-    (select theme_id from theme where name ='Astral One'), 5, -3920, '3920 BC');
+    (select theme_id from theme where name ='Astral One'), 5, 2083, '2083');
 insert into turn (theme_id, ordinal, year, display_text) values (
-    (select theme_id from theme where name ='Astral One'), 6, -3900, '3900 BC');
+    (select theme_id from theme where name ='Astral One'), 6, 2084, '2084');
 insert into turn (theme_id, ordinal, year, display_text) values (
-    (select theme_id from theme where name ='Astral One'), 7, -3880, '3880 BC');
+    (select theme_id from theme where name ='Astral One'), 7, 2085, '2085');
 insert into turn (theme_id, ordinal, year, display_text) values (
-    (select theme_id from theme where name ='Astral One'), 8, -3860, '3860 BC');
+    (select theme_id from theme where name ='Astral One'), 8, 2086, '2086');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 9, 2087, '2087');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 10, 2088, '2088');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 11, 2089, '2089');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 12, 2090, '2090');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 13, 2091, '2091');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 14, 2092, '2092');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 15, 2093, '2093');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 16, 2094, '2094');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 17, 2095, '2095');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 18, 2096, '2096');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 19, 2097, '2097');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 20, 2098, '2098');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 21, 2099, '2099');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 22, 2100, '2100');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 23, 2101, '2101');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 24, 2102, '2102');
+insert into turn (theme_id, ordinal, year, display_text) values (
+    (select theme_id from theme where name ='Astral One'), 25, 2103, '2103');
 
 -- Unit types
 -- insert into unit_type (tiled_id, name, display_name, theme_id) values (-1, 'Infantry1', 'Basic Infantry', 1);
