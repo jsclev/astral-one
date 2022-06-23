@@ -28,6 +28,10 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
         hasRivers = [Position: Bool]()
         try terrains = Constants.db.terrainDao.getTerrains()
         
+        if terrains.count == 0 {
+            fatalError("Unable to get terrains from database.")
+        }
+        
         if let path = Bundle.main.url(forResource: filename, withExtension: ".tmx") {
             if let parser = XMLParser(contentsOf: path) {
                 parser.delegate = self
