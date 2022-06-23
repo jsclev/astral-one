@@ -5,7 +5,7 @@ import SQLite3
 public class Db {
     //    let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Db")
     var db: OpaquePointer?
-    let dbFilename = "civitas"
+    let dbFilename = "game"
     let dbExtension = "sqlite"
     
     public let cityDao: CityDAO

@@ -5,7 +5,7 @@ public struct Constants {
     public static let db = Db(fullRefresh: false)
     public static let tileSize = CGSize(width: 128, height: 64)
     public static let mapFilename = "freeland"
-    public static let tilesetName = "Game Tile Set"
+    public static let tilesetName = "Sci-Fi Tile Set"
     public static let tiledTilesetName = "freeland"
     public static let minDefense: Double = 0.001
     public static let minMovementCost: Double = 0.0

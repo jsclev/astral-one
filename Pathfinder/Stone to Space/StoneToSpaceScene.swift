@@ -28,7 +28,7 @@ class StoneToSpaceScene: SKScene {
     var previousCameraPoint = CGPoint.zero
     var startTouchPos = CGPoint.zero
     let tileSet: SKTileSet
-    let theme = Theme(id: 2, name: Constants.themeName)
+    let theme = Theme(id: 2, name: "Stone to Space")
     var mapView: MapManager!
     
     init(mapViewModel: MapViewModel) {
@@ -42,7 +42,7 @@ class StoneToSpaceScene: SKScene {
         catch {
             fatalError("Unable to initialize game object")
         }
-        tilesetName = theme.name + " Tile Set"
+        tilesetName = Constants.tilesetName
         
         if let ts = SKTileSet(named: tilesetName) {
             tileSet = ts

@@ -1,17 +1,19 @@
-# TODO
-# Copy db file to correct iOS folder
-rm civitas.sqlite 2>/dev/null
-sqlite3 civitas.sqlite ""
-sqlite3 civitas.sqlite < tables.sql
-sqlite3 civitas.sqlite < data/core.sql
-sqlite3 civitas.sqlite < data/game-1.sql
+# Nuke and pave
+rm game.sqlite 2>/dev/null
+sqlite3 game.sqlite ""
+sqlite3 game.sqlite < common/create-tables.sql
 
-# Copy the database to the correct directory for the Android project
-#cp civitas.sqlite ../android/app/src/main/assets/civitas.db
+# Populate the common tables
+sqlite3 game.sqlite < common/populate-tables.sql
 
-# Copy the database to the correct directory for the iOS projects
-cp civitas.sqlite "../Astral One/Resources/Data/civitas.sqlite"
-cp civitas.sqlite "../Engine Tests/Resources/civitas.sqlite"
-cp civitas.sqlite "../Pathfinder/Pathfinder/Resources/Data/civitas.sqlite"
-cp civitas.sqlite "../Simulator/Simulator/Resources/Data/civitas.sqlite"
+# Populate the themed databases
+sqlite3 game.sqlite < stone-to-space/populate-tables.sql
+sqlite3 game.sqlite < astral-one/populate-tables.sql
+sqlite3 game.sqlite < fantasy/populate-tables.sql
+sqlite3 game.sqlite < civilization-2/populate-tables.sql
 
+# Copy the database files to the correct project directories
+cp game.sqlite "../Astral One/Resources/Data/game.sqlite"
+cp game.sqlite "../Engine Tests/Resources/game.sqlite"
+cp game.sqlite "../Pathfinder/Stone to Space/Resources/Data/game.sqlite"
+cp game.sqlite "../Simulator/Simulator/Resources/Data/game.sqlite"
