@@ -54,69 +54,10 @@ class StoneToSpaceScene: SKScene {
         mapIconsTileset = SKTileSet(named: mapIconsTilesetName)
         
         super.init(size: UIScreen.main.bounds.size)
-        
-//        self.scaleMode = .aspectFit
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) is not supported.")
-    }
-    
-    @objc func pan(_ sender: UIPanGestureRecognizer) {
-        let location = sender.location(in: sender.view)
-        let velocity = sender.velocity(in: sender.view)
-        let translation = sender.translation(in: sender.view)
-        let magnitude = sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y))
-        
-        mapViewModel.moveCamera(translation: CGSize(width: translation.x,
-                                                    height: translation.y))
-        gameCamera.position = mapViewModel.cameraPosition
-        gameCamera.updatePositionLabel(pos: gameCamera.position)
-        
-        switch sender.state
-        {
-        case .began:
-            startTouchPos = location
-            mapViewModel.resetCamera()
-//        case .changed:
-        case .cancelled, .ended, .failed, .possible:
-//            print("Last touch location \(location)")
-//            print("Pan velocity \(velocity)")
-//            print("Current camera location \(gameCamera.position)")
-            
-            if magnitude > 250 {
-                let moveAction = SKAction.move(to: CGPoint(x: gameCamera.position.x - velocity.x / 3,
-                                                           y: gameCamera.position.y + velocity.y / 3),
-                                               duration: 0.25)
-    //            let force = CGVector(dx: velocity.x, dy: velocity.y)
-    //            gameCamera.physicsBody?.applyForce(force)
-                
-    //            let panVelocity = (sender.velocity(in: view))
-    //            gameCamera.setCameraPositionVelocity(x: panVelocity.x / 100, y: panVelocity.y / 100)
-                
-                gameCamera.run(moveAction, completion: {
-                    self.mapViewModel.cameraPosition = self.gameCamera.position
-                    self.mapViewModel.resetCamera()
-                })
-            }
-            
-//            let transformerX = 1024/self.view!.frame.size.with
-//            let transformerY = 768/self.view!.frame.size.height
-//
-//            if (recognizer.state == .ended) {
-//                let velocity = recognizer.velocity(InView:self.view)
-//                touchedNode.physicsBody?.applyForce:CGVector(dx:velocity.x* transformerX, dy: velocity.y* transformerY)
-//            }
-//            let push = UIPushBehavior(items: [self.orangeView], mode: .instantaneous)
-//            push.pushDirection = CGVector(dx: velocity.x, dy: velocity.y)
-//            push.magnitude = magnitude * magnitudeMultiplier
-//            dynamicAnimator.removeBehavior(attachment)
-//            dynamicAnimator.addBehavior(push)
-            mapViewModel.resetCamera()
-        default:
-            break
-        }
     }
     
     @objc func tap(recognizer: UITapGestureRecognizer){
@@ -126,7 +67,6 @@ class StoneToSpaceScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        
         do {
             try db.mapDao.importTiledMap(filename: Constants.mapFilename)
             game = try db.getGameBy(gameId: 1)
@@ -143,8 +83,8 @@ class StoneToSpaceScene: SKScene {
         
         gameCamera.show()
         
-//        pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
-//        view.addGestureRecognizer(pinchGestureRecognizer)
+        pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
+        view.addGestureRecognizer(pinchGestureRecognizer)
         
 //        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(pan))
 //        view.addGestureRecognizer(panGesture)
@@ -193,14 +133,7 @@ class StoneToSpaceScene: SKScene {
         tapGesture.numberOfTapsRequired = 1
         view.addGestureRecognizer(tapGesture)
         
-        self.eventBus = EventBus(game: game, scene: self, mapManager: mapView)
-        
-        print("Initial position of camera: \(gameCamera.position)")
-//        gameCamera.position = CGPoint(x: gameCamera.position.x + 500,
-//                                      y: gameCamera.position.y + 500)
-        
-        print("\(gameCamera.scene?.anchorPoint)")
-
+        eventBus = EventBus(game: game, scene: self, mapManager: mapView)
     }
     
     private func addInitialSettler(player: Player) {
@@ -256,10 +189,16 @@ class StoneToSpaceScene: SKScene {
     }
     
     @objc func handleZoom(sender: UIPinchGestureRecognizer) {
+        if (sender.state == .began) {
+            mapViewModel.zoomBegan()
+        }
         if (sender.state == .changed) {
+            print("scale: [\(sender.scale)")
+//            print("scale: [\(gameCamera.xScale), \(gameCamera.yScale)]")
             mapViewModel.updateScale(newScale: sender.scale)
             gameCamera.setScale(mapViewModel.scale)
             contextMenu.menu.setScale(mapViewModel.scale)
+//            mapViewModel.resetScale()
         }
     }
 }

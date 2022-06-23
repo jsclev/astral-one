@@ -26,7 +26,7 @@ public class Camera: SKCameraNode {
 
         let turnIndicator = TurnView(game: game)
         turnIndicator.position = CGPoint(x: (game.canvasSize.width / 2) - (turnIndicator.size.width / 2) - padding,
-                                         y: (game.canvasSize.height / 2) - (turnIndicator.size.height) - 1.5*padding)
+                                         y: (game.canvasSize.height / 2) - (turnIndicator.size.height) - 2.0 * padding)
         
         let notification = NotificationNode(player: player)
         notification.position = CGPoint(x: -(game.canvasSize.width / 2) + (notification.size.width / 2) + padding,
@@ -54,14 +54,8 @@ public class Camera: SKCameraNode {
         addChild(notification)
         addChild(nextTurnButton)
         
-        physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 400, height: 300))
-        physicsBody!.affectedByGravity = false
-
-//        physicsBody?.velocity = CGVector(dx: 1.0, dy: 1.0)
-
-        
-//        let velocity = CGVectorMake(1.0,1.0)
-        //                    selectedNode?.physicsBody?.velocity = velocity
+//        physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 400, height: 300))
+//        physicsBody!.affectedByGravity = false
     }
     
     public required init?(coder aDecoder: NSCoder) {

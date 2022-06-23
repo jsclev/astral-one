@@ -9,6 +9,8 @@ public class MapViewModel {
     public var cameraPosition: CGPoint
     public var scale = 1.0
     
+    private var initialScale = 1.0
+    
     public init() {
         cameraSize = CGSize(width: UIScreen.main.bounds.size.width,
                             height: UIScreen.main.bounds.size.height)
@@ -20,19 +22,27 @@ public class MapViewModel {
                                  y: (mapSize.height - cameraSize.height) / 2)
         startCameraPosition = CGPoint(x: cameraPosition.x,
                                       y: cameraPosition.y)
-//                cameraPosition = CGPoint(x: 0.0,
-//                                         y: 0.0)
-//                startCameraPosition = CGPoint(x: cameraPosition.x,
-//                                              y: cameraPosition.y)
     }
     
     public func updateScale(newScale: Double) {
-//        scale = 1.0 + (1/newScale - 1)
-//
-//        if scale >= 3.35 {
-//            scale = 3.35
-//        }
-//
+        scale = initialScale / newScale
+
+        if scale >= 9.0 {
+            scale = 9.0
+        }
+        
+        if scale <= 0.40 {
+            scale = 0.40
+        }
+
+    }
+    
+    public func zoomBegan() {
+        initialScale = scale
+    }
+    
+    public func resetScale() {
+        scale = 1.0
     }
     
     public func changeMap(mapName: String) {

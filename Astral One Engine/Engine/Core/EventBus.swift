@@ -18,7 +18,12 @@ public class EventBus {
     }
     
     public func tap(recognizer: UITapGestureRecognizer){
+        print("ran......")
         if recognizer.state != .ended {
+            if recognizer.state == .began {
+                print("removing action")
+                scene.camera?.removeAction(forKey: "map-pan-momentum")
+            }
             return
         }
         

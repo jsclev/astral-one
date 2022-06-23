@@ -6,6 +6,8 @@ import Engine
 struct StoneToSpaceView: View {
     @State private var offset = CGSize.zero
     @State private var isDragging = false
+    @State private var isAnimating = false
+    @State private var dragAnimationCount = 0
     
     @State private var startCameraPosition = CGPoint.zero
     @GestureState private var cameraPosition = CGPoint.zero
@@ -21,7 +23,7 @@ struct StoneToSpaceView: View {
     }
     
     var simpleDrag: some Gesture {
-        DragGesture()
+        DragGesture(minimumDistance: isAnimating ? 5 : 5)
             .onChanged { value in
                 
                 if !isDragging {
@@ -29,28 +31,9 @@ struct StoneToSpaceView: View {
                     startCameraPosition = scene.gameCamera.position
                     scene.gameCamera.removeAction(forKey: "map-pan-momentum")
                 }
-     
-//                self.location = value.location
-//                print("[offset width: \(value.width), offset height: \(offset.height)]")
-//                var newLocation = startLocation ?? location
-                let finalTranslationX = offset.width
-                let finalTranslationY = offset.height
-//                newLocation.x += finalTranslationX
-//                newLocation.y += finalTranslationY
-//                location = newLocation
-//                mapViewModel.moveCamera(translation: CGSize(width: finalTranslationX,
-//                                                            height: finalTranslationY))
-//                scene.gameCamera.position = mapViewModel.cameraPosition
-//                scene.gameCamera.position = CGPoint(x: -1 * self.location.x,
-//                                                    y: self.location.y)
-//                scene.gameCamera.position = .zero
-//                print("camera width: \(scene.gameCamera.frame.width)")
-//                scene.gameCamera.updatePositionLabel(pos: scene.gameCamera.position)
-//                print(scene.gameCamera.position)
-//                scene.gameCamera.position = CGPoint(x: scene.gameCamera.position.x - (value.translation.width * 0.05),
-//                                                    y: scene.gameCamera.position.y + (value.translation.height * 0.05))
-                scene.gameCamera.position = CGPoint(x: startCameraPosition.x - value.translation.width,
-                                                    y: startCameraPosition.y + value.translation.height)
+                
+                scene.gameCamera.position = CGPoint(x: startCameraPosition.x - (value.translation.width * mapViewModel.scale),
+                                                    y: startCameraPosition.y + (value.translation.height * mapViewModel.scale))
                 
                 // Get the offset between the start location and the camera's position
 //                print("--------------------------------------------------------------------------")
@@ -60,81 +43,42 @@ struct StoneToSpaceView: View {
 //                print("Camera position: \(scene.gameCamera.position)")
             }
             .onEnded { value in
-                let temp = value.predictedEndTranslation.width - value.translation.width
-                let temp2 = value.predictedEndTranslation.height - value.translation.height
+                let temp = (value.predictedEndTranslation.width - value.translation.width)
+                let temp2 = (value.predictedEndTranslation.height - value.translation.height)
                 let magnitude = sqrt(
                     (temp * temp +
                      temp2 * temp2))
-//                let magnitude = sqrt(
-//                    (value.predictedEndTranslation.width * value.predictedEndTranslation.width +
-//                     value.predictedEndTranslation.height * value.predictedEndTranslation.height))
-                
+
                 isDragging = false
-//                scene.gameCamera.physicsBody?.velocity = CGVector(dx: 1, dy: 2)
-                
-//                print("--------------------------------------------------------------------------")
-//                print("On end location: \(value.location)")
-//                print("Predicted end translation: \(value.predictedEndTranslation)")
+
                 var duration = (magnitude/2000) + 0.8
                 if duration < 0.8 {
                     duration = 0.8
                 }
-                print("magnitude: \(magnitude)")
-                print("duration: \(duration)")
+//                print("magnitude: \(magnitude)")
+//                print("duration: \(duration)")
 
-                let moveAction = SKAction.move(to: CGPoint(x: startCameraPosition.x - value.predictedEndTranslation.width,
-                                                           y: startCameraPosition.y + value.predictedEndTranslation.height),
+                let moveAction = SKAction.move(to: CGPoint(x: startCameraPosition.x - (value.predictedEndTranslation.width * mapViewModel.scale),
+                                                           y: startCameraPosition.y + (value.predictedEndTranslation.height * mapViewModel.scale)),
                                                duration: duration,
                                                delay: 0,
                                                usingSpringWithDamping: 9.5,
                                                initialSpringVelocity: 1.0)
-                
-//                @objc class func move(to location: CGPoint,
-//                                      duration: TimeInterval,
-//                                      delay: TimeInterval,
-//                                      usingSpringWithDamping dampingRatio: CGFloat,
-//                                      initialSpringVelocity velocity: CGFloat) -> SKAction {
+                if (magnitude > 10) {
+                    isAnimating = true
+                    dragAnimationCount += 1
+                    let currentAnimationCount = dragAnimationCount
+                    DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+                        if dragAnimationCount == currentAnimationCount {
+                            isAnimating = false
+                            dragAnimationCount = 0
+                        }
+                    }
+                } else {
+                    isAnimating = false
+                }
 
-                    
                 scene.gameCamera.run(moveAction, withKey: "map-pan-momentum")
-//                if let history = history, history.count > 1 && selectedNode != nil {
-//                    var vx:CGFloat = 0.0
-//                    var vy:CGFloat = 0.0
-//                    var previousTouchInfo:TouchInfo?
-//                    // Adjust this value as needed
-//                    let maxIterations = 3
-//                    var numElts:Int = min(history.count, maxIterations)
-//                    // Loop over touch history
-//                    for index in 0..<numElts {
-//                        let touchInfo = history[index]
-//                        let location = touchInfo.location
-//                        if let previousTouch = previousTouchInfo {
-//                            // Step 1
-//                            let dx = location.x - previousTouch.location.x
-//                            let dy = location.y - previousTouch.location.y
-//                            // Step 2
-//                            let dt = CGFloat(touchInfo.time - previousTouch.time)
-//                            // Step 3
-//                            vx += dx / dt
-//                            vy += dy / dt
-//                        }
-//                        previousTouchInfo = touchInfo
-//                    }
-//                    let count = CGFloat(numElts-1)
-//                    // Step 4
-//                    let velocity = CGVectorMake(vx/count,vy/count)
-//                    selectedNode?.physicsBody?.velocity = velocity
-//                }
-//                // Step 5
-//                selectedNode = nil
-//                history = nil
-            }
-    }
-    
-    var fingerDrag: some Gesture {
-        DragGesture()
-            .updating($fingerLocation) { (value, fingerLocation, transaction) in
-                fingerLocation = value.location
             }
     }
     
@@ -146,13 +90,7 @@ struct StoneToSpaceView: View {
                                                         .showsNodeCount,
                                                         .showsDrawCount])
                     .ignoresSafeArea()
-                    .gesture(simpleDrag)
-                if let fingerLocation = fingerLocation {
-                    Circle()
-                        .stroke(Color.green, lineWidth: 2)
-                        .frame(width: 44, height: 44)
-                        .position(fingerLocation)
-                }
+                    .simultaneousGesture(simpleDrag)
             }
             else {
                 SpriteView(scene: scene)

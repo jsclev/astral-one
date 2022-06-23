@@ -23,7 +23,6 @@ public class UnitsMapLayer {
     private func attachSubscribers() {
         player.$units
             .sink(receiveValue: { units in
-                print("Unit count is \(units.count)")
                 if let unit = units.last {
                     self.renderUnit(unit: unit)
                 }
@@ -32,9 +31,7 @@ public class UnitsMapLayer {
         
         player.$cityCreators
             .sink(receiveValue: { cityCreators in
-                print("City creators count is \(cityCreators.count)")
                 if cityCreators.count < self.localSettlers.count {
-                    
                     for settler in self.localSettlers {
                         var foundIt = false
                         for diff in cityCreators {
@@ -51,7 +48,6 @@ public class UnitsMapLayer {
                             }
                         }
                     }
-                    
                 }
                 else {
                     if let cityCreator = cityCreators.last {
