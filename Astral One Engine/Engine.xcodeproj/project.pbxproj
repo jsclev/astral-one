@@ -79,6 +79,7 @@
 		52A6093628629F050029BBFA /* Reason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6093528629F050029BBFA /* Reason.swift */; };
 		52A609382862A7760029BBFA /* NotificationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A609372862A7760029BBFA /* NotificationNode.swift */; };
 		52A6093A2863D0D50029BBFA /* SpriteKitSpring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A609392863D0D50029BBFA /* SpriteKitSpring.swift */; };
+		52A609422864327E0029BBFA /* AssetValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A609412864327E0029BBFA /* AssetValidator.swift */; };
 		52A64633282C36030066B82D /* Advance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64632282C36030066B82D /* Advance.swift */; };
 		52A64638282C94850066B82D /* IncreaseDefenseGoalScorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64637282C94850066B82D /* IncreaseDefenseGoalScorer.swift */; };
 		52A6463A282C95CE0066B82D /* GoalScorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A64639282C95CE0066B82D /* GoalScorer.swift */; };
@@ -318,6 +319,7 @@
 		52A6093528629F050029BBFA /* Reason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reason.swift; sourceTree = "<group>"; };
 		52A609372862A7760029BBFA /* NotificationNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNode.swift; sourceTree = "<group>"; };
 		52A609392863D0D50029BBFA /* SpriteKitSpring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteKitSpring.swift; sourceTree = "<group>"; };
+		52A609412864327E0029BBFA /* AssetValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetValidator.swift; sourceTree = "<group>"; };
 		52A64632282C36030066B82D /* Advance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advance.swift; sourceTree = "<group>"; };
 		52A64637282C94850066B82D /* IncreaseDefenseGoalScorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncreaseDefenseGoalScorer.swift; sourceTree = "<group>"; };
 		52A64639282C95CE0066B82D /* GoalScorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalScorer.swift; sourceTree = "<group>"; };
@@ -629,6 +631,7 @@
 				52EA0D6428480E47005E9AF8 /* Players */,
 				52E0B1FC27F1734000607FBE /* Units */,
 				52A64632282C36030066B82D /* Advance.swift */,
+				52A609412864327E0029BBFA /* AssetValidator.swift */,
 				52E0B18927E6D86A00607FBE /* Constants.swift */,
 				52AB0747280287580039B47D /* City.swift */,
 				52E0B19D27E6DFA100607FBE /* EntityManager.swift */,
@@ -1350,6 +1353,7 @@
 				52A64699283203970066B82D /* BuildPalaceAction.swift in Sources */,
 				52F5595F2838943900966F06 /* TechTree.swift in Sources */,
 				521F21BB2804810700F1D61D /* Air2.swift in Sources */,
+				52A609422864327E0029BBFA /* AssetValidator.swift in Sources */,
 				5234D522285CE6770051172E /* BuildFortressCommand.swift in Sources */,
 				52A609382862A7760029BBFA /* NotificationNode.swift in Sources */,
 				52F9046E27FC8B7D00D1AC97 /* MoveCommandDAO.swift in Sources */,
