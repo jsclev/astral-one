@@ -15,6 +15,7 @@ public class Db {
     public let gameDao: GameDAO
     public let mapDao: MapDAO
     public let terrainDao: TerrainDAO
+    public let themeDao: ThemeDAO
     public let turnDao: TurnDAO
     public let unitDao: UnitDAO
     
@@ -103,11 +104,12 @@ public class Db {
         gameDao = GameDAO(conn: db)
         mapDao = MapDAO(conn: db)
         terrainDao = TerrainDAO(conn: db)
+        themeDao = ThemeDAO(conn: db)
         turnDao = TurnDAO(conn: db)
     }
     
-    public func getGameBy(gameId: Int) throws -> Game {
-        let theme = Theme(id: 1, name: "Standard Theme")
+    public func getGameBy(gameId: Int, themeId: Int) throws -> Game {
+        let theme = try themeDao.getBy(themeId: themeId)
         
         // Pull the maps from the database
         let player1Map = try mapDao.get(gameId: gameId)
@@ -162,22 +164,6 @@ public class Db {
         game.addPlayer(player: player4)
         game.addPlayer(player: player5)
         game.addPlayer(player: player6)
-
-//        let newYork = City(player: player1,
-//                           theme: theme,
-//                           name: "New York",
-//                           assetName: "city-1",
-//                           position: Position(row: 50, col: 50))
-//        let createNewYork = CreateCityCommand(commandId: 1,
-//                                              gameId: 1,
-//                                              turn: turn,
-//                                              player: player1,
-//                                              type: CommandType.init(id: 1, name: "Create City"),
-//                                              ordinal: 1,
-//                                              city: newYork,
-//                                              position: newYork.position)
-//
-//        game.addCommand(command: createNewYork)
         
         return game
     }

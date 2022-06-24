@@ -4,6 +4,11 @@ import GameplayKit
 import Engine
 import SwiftUI
 
+class AppConstants {
+    static let gameId = 1
+    static let themeId = 4
+}
+
 struct TouchInfo {
     var location: CGPoint
     var time: TimeInterval
@@ -28,7 +33,6 @@ class StoneToSpaceScene: SKScene {
     var previousCameraPoint = CGPoint.zero
     var startTouchPos = CGPoint.zero
     let tileSet: SKTileSet
-    let theme = Theme(id: 2, name: "Stone to Space")
     var mapView: MapManager!
     
     init(mapViewModel: MapViewModel) {
@@ -37,7 +41,7 @@ class StoneToSpaceScene: SKScene {
         db = Db(fullRefresh: true)
         
         do {
-            game = try db.getGameBy(gameId: 1)
+            game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
         }
         catch {
             fatalError("Unable to initialize game object")
@@ -69,7 +73,7 @@ class StoneToSpaceScene: SKScene {
     override func didMove(to view: SKView) {
         do {
             try db.mapDao.importTiledMap(filename: Constants.mapFilename)
-            game = try db.getGameBy(gameId: 1)
+            game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
         }
         catch {
             print(error)

@@ -26,6 +26,8 @@ CREATE TABLE theme (
     source INTEGER NOT NULL
 );
 
+CREATE UNIQUE INDEX theme_idx1 ON theme (name);
+
 CREATE TABLE turn (
     turn_id INTEGER PRIMARY KEY,
     theme_id INTEGER NOT NULL,

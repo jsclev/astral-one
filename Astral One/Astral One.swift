@@ -16,6 +16,11 @@ struct GameApp: App {
     }
 }
 
+class AppConstants {
+    static let gameId = 1
+    static let themeId = 1
+}
+
 struct GameView: View {
     @State private var offset = CGSize.zero
     @State private var isDragging = false
@@ -142,7 +147,6 @@ class GameScene: SKScene {
     var previousCameraPoint = CGPoint.zero
     var startTouchPos = CGPoint.zero
     let tileSet: SKTileSet
-    //    let theme = Theme(id: 2, name: Constants.themeName)
     var mapView: MapManager!
     
     init(mapViewModel: MapViewModel) {
@@ -151,10 +155,11 @@ class GameScene: SKScene {
         db = Db(fullRefresh: true)
         
         do {
-            game = try db.getGameBy(gameId: 1)
+            game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
         }
         catch {
-            fatalError("Unable to initialize game object")
+            print(error)
+            fatalError("Could not initialize game object.")
         }
         
         if let ts = SKTileSet(named: Constants.tilesetName) {
@@ -182,7 +187,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         do {
             try db.mapDao.importTiledMap(filename: Constants.mapFilename)
-            game = try db.getGameBy(gameId: 1)
+            game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
         }
         catch {
             print(error)

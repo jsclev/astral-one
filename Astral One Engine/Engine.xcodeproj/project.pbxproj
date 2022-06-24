@@ -233,6 +233,7 @@
 		52F9044D27F9325300D1AC97 /* CommandType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9044C27F9325300D1AC97 /* CommandType.swift */; };
 		52F9045227F9F92C00D1AC97 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9045127F9F92C00D1AC97 /* Command.swift */; };
 		52F9046E27FC8B7D00D1AC97 /* MoveCommandDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9046D27FC8B7D00D1AC97 /* MoveCommandDAO.swift */; };
+		52FC2DD228664AD700824FDD /* ThemeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FC2DD128664AD700824FDD /* ThemeDAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -479,6 +480,7 @@
 		52F9045127F9F92C00D1AC97 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		52F9046D27FC8B7D00D1AC97 /* MoveCommandDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCommandDAO.swift; sourceTree = "<group>"; };
 		52F9B60727E6AA4C005D55E6 /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		52FC2DD128664AD700824FDD /* ThemeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1064,6 +1066,7 @@
 				52F9044327F6D68A00D1AC97 /* GameDAO.swift */,
 				52DE5F332810DAB90029EFE1 /* MapDAO.swift */,
 				5293BC2B280DD55A001DE2F3 /* TerrainDAO.swift */,
+				52FC2DD128664AD700824FDD /* ThemeDAO.swift */,
 				52AB7DFF2864FBC6008D86FD /* TurnDAO.swift */,
 				52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */,
 			);
@@ -1337,6 +1340,7 @@
 				52A6467C282F58B00066B82D /* CreateCavalry2Action.swift in Sources */,
 				52012F602803A77A008388F6 /* Founder.swift in Sources */,
 				52E0B19E27E6DFA100607FBE /* Game.swift in Sources */,
+				52FC2DD228664AD700824FDD /* ThemeDAO.swift in Sources */,
 				52A6463D282CCB5C0066B82D /* ActionSequence.swift in Sources */,
 				52F9045227F9F92C00D1AC97 /* Command.swift in Sources */,
 				52DE5FA7281EEAB30029EFE1 /* Cavalry1.swift in Sources */,
