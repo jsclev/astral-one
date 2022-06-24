@@ -29,7 +29,11 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
         try terrains = Constants.db.terrainDao.getTerrains()
         
         if terrains.count == 0 {
-            fatalError("Unable to get terrains from database.")
+            var errorMsg = "Got zero terrain records from the database.  "
+            errorMsg += "There need to be terrain records in the database "
+            errorMsg += "in order to parse a Tiled map file."
+            
+            fatalError(errorMsg)
         }
         
         if let path = Bundle.main.url(forResource: filename, withExtension: ".tmx") {

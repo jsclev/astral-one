@@ -232,7 +232,8 @@ public class MapDAO: BaseDAO {
                     sqlite3_bind_text(mainStmt, spResourceCol, nil, -1, SQLITE_TRANSIENT)
                 }
                 
-                if sqlite3_step(mainStmt) == SQLITE_DONE {
+                let stepResult = sqlite3_step(mainStmt)
+                if stepResult == SQLITE_DONE {
                     if sqlite3_step(rowIdStmt) == SQLITE_ROW {
                         //returnMap.add(tile: tile.clone())
                     }
@@ -244,7 +245,7 @@ public class MapDAO: BaseDAO {
                     }
                 }
                 else {
-                    print("\nCould not insert row into \(table) table.")
+                    print("\nError inserting row into \(table) table.  SQLite error code: \(stepResult).")
                 }
                 
                 sqlite3_reset(mainStmt)

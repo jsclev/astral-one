@@ -82,7 +82,8 @@ CREATE TABLE player (
     game_id INTEGER NOT NULL,
     ordinal INTEGER NOT NULL,
     name TEXT NOT NULL,
-    type TEXT NOT NULL
+    type TEXT NOT NULL,
+    FOREIGN KEY (game_id) REFERENCES game (game_id)
 );
 
 CREATE TABLE tilemap (

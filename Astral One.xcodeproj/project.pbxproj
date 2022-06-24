@@ -7,24 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		521B498C27DDB27300FED38F /* Astral One.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 521B498B27DDB27300FED38F /* Astral One.tsx */; };
-		521B498E27DEDC7F00FED38F /* map-24x15.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 521B498D27DEDC7F00FED38F /* map-24x15.tmx */; };
-		521B499027DEDC8800FED38F /* map-20x15.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 521B498F27DEDC8800FED38F /* map-20x15.tmx */; };
 		525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 525DC47D27CF41EF003DC3A2 /* Background4.m4a */; };
-		52A6093C2864217A0029BBFA /* AstralOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A6093B2864217A0029BBFA /* AstralOneView.swift */; };
 		52A6093E286422E90029BBFA /* libEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A6093D286422E90029BBFA /* libEngine.a */; };
-		52A6094028642F500029BBFA /* Game Tile Set.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52A6093F28642F500029BBFA /* Game Tile Set.sks */; };
-		52A8787D27E5651200968F7D /* Civ 2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52A8787C27E5651200968F7D /* Civ 2.sks */; };
 		52AB7DFE2864E693008D86FD /* game.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52AB7DFD2864E693008D86FD /* game.sqlite */; };
-		52D1218227CC6F110047C2CA /* GameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218127CC6F110047C2CA /* GameApp.swift */; };
+		52C94A0D28656AE20048CC99 /* map-10x10.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52C94A0C28656AE20048CC99 /* map-10x10.tmx */; };
+		52C94A0F28656AEB0048CC99 /* map.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52C94A0E28656AEB0048CC99 /* map.tmx */; };
+		52C94A1128656AF40048CC99 /* map.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 52C94A1028656AF40048CC99 /* map.tsx */; };
+		52C94A13286576860048CC99 /* Game Tile Set.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52C94A12286576860048CC99 /* Game Tile Set.sks */; };
+		52D1218227CC6F110047C2CA /* Astral One.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218127CC6F110047C2CA /* Astral One.swift */; };
 		52D1218C27CDCCBF0047C2CA /* Background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52D1218B27CDCCBF0047C2CA /* Background.mp3 */; };
 		52D1218E27CDDF220047C2CA /* Background2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52D1218D27CDDF220047C2CA /* Background2.mp3 */; };
 		52D1219027CDE0290047C2CA /* Background3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52D1218F27CDE0290047C2CA /* Background3.mp3 */; };
-		52E0B1DB27E80F9800607FBE /* civ2.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1DA27E80F9800607FBE /* civ2.tsx */; };
-		52E0B1E727E95FB700607FBE /* civ2.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52E0B1E627E95FB700607FBE /* civ2.tmx */; };
 		52FA8F9927E382DE001794BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FA8F9727E382DE001794BD /* Assets.xcassets */; };
 		5394F02521864DF5006E754C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5394F02321864DF4006E754C /* LaunchScreen.storyboard */; };
-		AFEF9620231A043E006025E5 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEF961F231A043E006025E5 /* GameScene.swift */; };
 		AFEF9627231A1E86006025E5 /* Splash.caf in Resources */ = {isa = PBXBuildFile; fileRef = AFEF9616231A0215006025E5 /* Splash.caf */; };
 		AFEF9628231A1E89006025E5 /* Slice.caf in Resources */ = {isa = PBXBuildFile; fileRef = AFEF9615231A020A006025E5 /* Slice.caf */; };
 		AFEF9629231A1E8C006025E5 /* NomNom.caf in Resources */ = {isa = PBXBuildFile; fileRef = AFEF9614231A0200006025E5 /* NomNom.caf */; };
@@ -34,22 +29,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		521B498B27DDB27300FED38F /* Astral One.tsx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "Astral One.tsx"; path = "Astral One/Resources/Astral One.tsx"; sourceTree = SOURCE_ROOT; };
-		521B498D27DEDC7F00FED38F /* map-24x15.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "map-24x15.tmx"; path = "Astral One/Resources/map-24x15.tmx"; sourceTree = SOURCE_ROOT; };
-		521B498F27DEDC8800FED38F /* map-20x15.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "map-20x15.tmx"; path = "Astral One/Resources/map-20x15.tmx"; sourceTree = SOURCE_ROOT; };
 		525DC47D27CF41EF003DC3A2 /* Background4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Background4.m4a; sourceTree = "<group>"; };
-		52A6093B2864217A0029BBFA /* AstralOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstralOneView.swift; sourceTree = "<group>"; };
 		52A6093D286422E90029BBFA /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		52A6093F28642F500029BBFA /* Game Tile Set.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Game Tile Set.sks"; sourceTree = "<group>"; };
-		52A8787C27E5651200968F7D /* Civ 2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Civ 2.sks"; sourceTree = "<group>"; };
 		52AB7DFD2864E693008D86FD /* game.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = game.sqlite; sourceTree = "<group>"; };
-		52D1218127CC6F110047C2CA /* GameApp.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameApp.swift; sourceTree = "<group>"; tabWidth = 4; };
+		52C94A0C28656AE20048CC99 /* map-10x10.tmx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "map-10x10.tmx"; path = "Astral One/Resources/map-10x10.tmx"; sourceTree = SOURCE_ROOT; };
+		52C94A0E28656AEB0048CC99 /* map.tmx */ = {isa = PBXFileReference; lastKnownFileType = file; name = map.tmx; path = "Astral One/Resources/map.tmx"; sourceTree = SOURCE_ROOT; };
+		52C94A1028656AF40048CC99 /* map.tsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = map.tsx; path = "Astral One/Resources/map.tsx"; sourceTree = SOURCE_ROOT; };
+		52C94A12286576860048CC99 /* Game Tile Set.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Game Tile Set.sks"; sourceTree = "<group>"; };
+		52D1218127CC6F110047C2CA /* Astral One.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = "Astral One.swift"; sourceTree = "<group>"; tabWidth = 4; };
 		52D1218B27CDCCBF0047C2CA /* Background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background.mp3; sourceTree = "<group>"; };
 		52D1218D27CDDF220047C2CA /* Background2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background2.mp3; sourceTree = "<group>"; };
 		52D1218F27CDE0290047C2CA /* Background3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background3.mp3; sourceTree = "<group>"; };
 		52E0B19627E6D9D600607FBE /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52E0B1DA27E80F9800607FBE /* civ2.tsx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = civ2.tsx; path = "Astral One/Resources/civ2/civ2.tsx"; sourceTree = SOURCE_ROOT; };
-		52E0B1E627E95FB700607FBE /* civ2.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = civ2.tmx; path = "Astral One/Resources/civ2/civ2.tmx"; sourceTree = SOURCE_ROOT; };
 		52F9B61227E6AB02005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FA8F9727E382DE001794BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5394F02421864DF4006E754C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,7 +48,6 @@
 		AFEF9614231A0200006025E5 /* NomNom.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NomNom.caf; sourceTree = "<group>"; };
 		AFEF9615231A020A006025E5 /* Slice.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Slice.caf; sourceTree = "<group>"; };
 		AFEF9616231A0215006025E5 /* Splash.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Splash.caf; sourceTree = "<group>"; };
-		AFEF961F231A043E006025E5 /* GameScene.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; tabWidth = 4; };
 		D2A5F2001F4A9144005CD714 /* Astral One.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Astral One.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A5F2081F4A9144005CD714 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2A5F20A1F4A9144005CD714 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,8 +82,7 @@
 				AFEF960C231A0196006025E5 /* Sounds */,
 				AFEF960B231A0187006025E5 /* Data */,
 				52FA8F9727E382DE001794BD /* Assets.xcassets */,
-				52A8787C27E5651200968F7D /* Civ 2.sks */,
-				52A6093F28642F500029BBFA /* Game Tile Set.sks */,
+				52C94A12286576860048CC99 /* Game Tile Set.sks */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -102,11 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				52AB7DFD2864E693008D86FD /* game.sqlite */,
-				52E0B1E627E95FB700607FBE /* civ2.tmx */,
-				52E0B1DA27E80F9800607FBE /* civ2.tsx */,
-				521B498B27DDB27300FED38F /* Astral One.tsx */,
-				521B498F27DEDC8800FED38F /* map-20x15.tmx */,
-				521B498D27DEDC7F00FED38F /* map-24x15.tmx */,
+				52C94A0E28656AEB0048CC99 /* map.tmx */,
+				52C94A1028656AF40048CC99 /* map.tsx */,
+				52C94A0C28656AE20048CC99 /* map-10x10.tmx */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -161,9 +148,7 @@
 				AFEF9609231A016D006025E5 /* Resources */,
 				5394F02321864DF4006E754C /* LaunchScreen.storyboard */,
 				D2A5F20A1F4A9144005CD714 /* Assets.xcassets */,
-				52D1218127CC6F110047C2CA /* GameApp.swift */,
-				AFEF961F231A043E006025E5 /* GameScene.swift */,
-				52A6093B2864217A0029BBFA /* AstralOneView.swift */,
+				52D1218127CC6F110047C2CA /* Astral One.swift */,
 			);
 			path = "Astral One";
 			sourceTree = "<group>";
@@ -228,25 +213,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */,
-				521B498E27DEDC7F00FED38F /* map-24x15.tmx in Resources */,
 				AFEF962A231A1E8E006025E5 /* CheeZeeJungle.caf in Resources */,
 				AFEF9629231A1E8C006025E5 /* NomNom.caf in Resources */,
 				AFEF9628231A1E89006025E5 /* Slice.caf in Resources */,
 				52AB7DFE2864E693008D86FD /* game.sqlite in Resources */,
 				AFEF9627231A1E86006025E5 /* Splash.caf in Resources */,
 				5394F02521864DF5006E754C /* LaunchScreen.storyboard in Resources */,
-				52E0B1DB27E80F9800607FBE /* civ2.tsx in Resources */,
 				52D1218E27CDDF220047C2CA /* Background2.mp3 in Resources */,
+				52C94A13286576860048CC99 /* Game Tile Set.sks in Resources */,
+				52C94A0D28656AE20048CC99 /* map-10x10.tmx in Resources */,
 				D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */,
-				521B499027DEDC8800FED38F /* map-20x15.tmx in Resources */,
-				52A8787D27E5651200968F7D /* Civ 2.sks in Resources */,
 				52D1218C27CDCCBF0047C2CA /* Background.mp3 in Resources */,
 				52FA8F9927E382DE001794BD /* Assets.xcassets in Resources */,
+				52C94A0F28656AEB0048CC99 /* map.tmx in Resources */,
 				D2A5F2091F4A9144005CD714 /* Main.storyboard in Resources */,
 				52D1219027CDE0290047C2CA /* Background3.mp3 in Resources */,
-				521B498C27DDB27300FED38F /* Astral One.tsx in Resources */,
-				52E0B1E727E95FB700607FBE /* civ2.tmx in Resources */,
-				52A6094028642F500029BBFA /* Game Tile Set.sks in Resources */,
+				52C94A1128656AF40048CC99 /* map.tsx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,9 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFEF9620231A043E006025E5 /* GameScene.swift in Sources */,
-				52D1218227CC6F110047C2CA /* GameApp.swift in Sources */,
-				52A6093C2864217A0029BBFA /* AstralOneView.swift in Sources */,
+				52D1218227CC6F110047C2CA /* Astral One.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -81,12 +81,12 @@ public class SpecialResourcesMapLayer {
                             assetName += "Wine"
                         }
                         
-                        if let tileGroup = tileSet.tileGroups.first(where: { $0.name == assetName }) {
-                            node.setTileGroup(tileGroup, forColumn: col, row: row)
-                        }
-                        else {
-                            fatalError("Unable to find special resource \"\(assetName)\"")
-                        }
+//                        if let tileGroup = tileSet.tileGroups.first(where: { $0.name == assetName }) {
+//                            node.setTileGroup(tileGroup, forColumn: col, row: row)
+//                        }
+//                        else {
+//                            fatalError("Unable to find special resource \"\(assetName)\"")
+//                        }
                     }
                 }
             }
