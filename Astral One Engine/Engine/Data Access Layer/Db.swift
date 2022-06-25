@@ -105,7 +105,7 @@ public class Db {
     }
     
     public func getGameBy(gameId: Int) throws -> Game {
-        let theme = Theme(id: 2, name: Constants.themeName)
+        let theme = Theme(id: 2, name: "Standard Theme")
         
         // Pull the maps from the database
         let player1Map = try mapDao.get(gameId: gameId)

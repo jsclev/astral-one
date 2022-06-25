@@ -14,14 +14,14 @@ public class TiledTilesetParser: NSObject, XMLParserDelegate {
         elementName = ""
         tileId = ""
         
-        if let path = Bundle.main.url(forResource: Constants.tilesetName, withExtension: ".tsx") {
+        if let path = Bundle.main.url(forResource: Constants.tiledTilesetName, withExtension: ".tsx") {
             if let parser = XMLParser(contentsOf: path) {
                 parser.delegate = self
                 parser.parse()
             }
         }
         else {
-            fatalError("Unable to find Tiled tileset \"\(Constants.tilesetName).tsx\" in app bundle.")
+            fatalError("Unable to find Tiled tileset \"\(Constants.tiledTilesetName).tsx\" in app bundle.")
         }
         
         return TiledTileset(name: "Game Tile Set",
