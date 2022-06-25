@@ -60,15 +60,16 @@ public class TerrainMapLayer {
     private func set(tile: Tile, grassTile: SKTileGroup) {
         let row = tile.position.row
         let col = tile.position.col
+        let tileGrpName = tile.terrain.name
         
         layer1Terrain.setTileGroup(grassTile, forColumn: col, row: row)
         
         if tile.visibility == Visibility.FullyRevealed {
-            if let tileGroup = tileSet.tileGroups.first(where: { $0.name == tile.terrain.name }) {
+            if let tileGroup = tileSet.tileGroups.first(where: { $0.name == tileGrpName }) {
                 layer2Terrain.setTileGroup(tileGroup, forColumn: col, row: row)
             }
             else {
-                fatalError("Unable to find tile group \"\(tile.terrain.name)\"")
+                fatalError("Unable to find tile group \"\(tileGrpName)\"")
             }
         }
         else {
@@ -76,7 +77,7 @@ public class TerrainMapLayer {
                 layer2Terrain.setTileGroup(tileGroup, forColumn: col, row: row)
             }
             else {
-                fatalError("Unable to find tile group \"\(tile.terrain.name)\"")
+                fatalError("Unable to find tile group \"\(tileGrpName)\"")
             }
         }
     }

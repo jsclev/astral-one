@@ -1,9 +1,11 @@
--- insert into game values (1, 'Rome Was Built In A Day', 2, '2022-03-31');
+insert into game
+    (name, theme_id, created_at) values
+    ('New Rome', (select theme_id from theme where name = 'Stone to Space'), '2022-03-31');
 
-insert into player values (1, 1, 1, 'King Tut', 'Human');
-insert into player values (2, 1, 2, 'Tha Pope', 'AI');
-insert into player values (3, 1, 3, 'Magic Mike', 'AI');
-insert into player values (4, 1, 4, 'Mr. Big Stuff', 'AI');
+insert into player values (1, (select game_id from game where name = 'New Rome'), 1, 'King Tut', 'Human');
+insert into player values (2, (select game_id from game where name = 'New Rome'), 2, 'Tha Pope', 'AI');
+insert into player values (3, (select game_id from game where name = 'New Rome'), 3, 'Magic Mike', 'AI');
+insert into player values (4, (select game_id from game where name = 'New Rome'), 4, 'Mr. Big Stuff', 'AI');
 
 -- Tiles 1 - 10
 -- insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 50, 50, 1, FALSE);

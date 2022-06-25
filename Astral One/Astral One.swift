@@ -186,7 +186,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         do {
-            try db.mapDao.importTiledMap(filename: Constants.mapFilename)
+            try db.mapDao.importTiledMap(gameId: AppConstants.gameId, filename: Constants.mapFilename)
             game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
         }
         catch {

@@ -4,10 +4,10 @@ import SpriteKit
 public class SpecialResourceNode: SKSpriteNode {
     private let specialResource: SpecialResourceType
     
-    public init(game: Game, specialResource: SpecialResourceType) {
+    public init(specialResource: SpecialResourceType) {
         self.specialResource = specialResource
         
-        var assetName = game.theme.name + "/Resources/"
+        var assetName = "Special Resources/"
         
         if specialResource == SpecialResourceType.Buffalo {
             assetName += "buffalo"

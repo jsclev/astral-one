@@ -167,7 +167,7 @@ public class MapDAO: BaseDAO {
         }
     }
         
-    public func insert(map: Map) throws -> Map {
+    public func insert(gameId: Int, map: Map) throws -> Map {
         var mainStmt: OpaquePointer?
         var rowIdStmt: OpaquePointer?
         
@@ -259,15 +259,15 @@ public class MapDAO: BaseDAO {
             print("Error!!!!")
         }
         
-        return try get(gameId: 1)
+        return try get(gameId: gameId)
     }
     
-    public func importTiledMap(filename: String) throws {
+    public func importTiledMap(gameId: Int, filename: String) throws {
         let tilesetParser = TiledTilesetParser()
         let tileset = tilesetParser.parse()
         let mapParser = TiledMapParser(tiledTileset: tileset, filename: filename)
         
         // Import the Tiled map into the database
-        let _ = try insert(map: mapParser.parse())
+        let _ = try insert(gameId: gameId, map: mapParser.parse())
     }
 }
