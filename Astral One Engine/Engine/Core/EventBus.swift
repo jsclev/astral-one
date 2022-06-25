@@ -18,7 +18,7 @@ public class EventBus {
     }
     
     public func tap(recognizer: UITapGestureRecognizer){
-        print("ran......")
+        // print("ran......")
         if recognizer.state != .ended {
             if recognizer.state == .began {
                 print("removing action")

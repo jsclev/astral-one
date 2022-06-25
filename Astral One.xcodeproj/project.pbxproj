@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 525DC47D27CF41EF003DC3A2 /* Background4.m4a */; };
 		52A6093E286422E90029BBFA /* libEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A6093D286422E90029BBFA /* libEngine.a */; };
 		52AB7DFE2864E693008D86FD /* game.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52AB7DFD2864E693008D86FD /* game.sqlite */; };
 		52C94A0D28656AE20048CC99 /* map-10x10.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 52C94A0C28656AE20048CC99 /* map-10x10.tmx */; };
@@ -15,38 +14,25 @@
 		52C94A1128656AF40048CC99 /* map.tsx in Resources */ = {isa = PBXBuildFile; fileRef = 52C94A1028656AF40048CC99 /* map.tsx */; };
 		52C94A13286576860048CC99 /* Game Tile Set.sks in Resources */ = {isa = PBXBuildFile; fileRef = 52C94A12286576860048CC99 /* Game Tile Set.sks */; };
 		52D1218227CC6F110047C2CA /* Astral One.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1218127CC6F110047C2CA /* Astral One.swift */; };
-		52D1218C27CDCCBF0047C2CA /* Background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52D1218B27CDCCBF0047C2CA /* Background.mp3 */; };
-		52D1218E27CDDF220047C2CA /* Background2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52D1218D27CDDF220047C2CA /* Background2.mp3 */; };
-		52D1219027CDE0290047C2CA /* Background3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52D1218F27CDE0290047C2CA /* Background3.mp3 */; };
-		52FA8F9927E382DE001794BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FA8F9727E382DE001794BD /* Assets.xcassets */; };
+		52FC2DD42866AF5600824FDD /* tap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52FC2DD32866AF5600824FDD /* tap.mp3 */; };
 		5394F02521864DF5006E754C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5394F02321864DF4006E754C /* LaunchScreen.storyboard */; };
 		AFEF9627231A1E86006025E5 /* Splash.caf in Resources */ = {isa = PBXBuildFile; fileRef = AFEF9616231A0215006025E5 /* Splash.caf */; };
-		AFEF9628231A1E89006025E5 /* Slice.caf in Resources */ = {isa = PBXBuildFile; fileRef = AFEF9615231A020A006025E5 /* Slice.caf */; };
-		AFEF9629231A1E8C006025E5 /* NomNom.caf in Resources */ = {isa = PBXBuildFile; fileRef = AFEF9614231A0200006025E5 /* NomNom.caf */; };
-		AFEF962A231A1E8E006025E5 /* CheeZeeJungle.caf in Resources */ = {isa = PBXBuildFile; fileRef = AFEF9613231A01F4006025E5 /* CheeZeeJungle.caf */; };
 		D2A5F2091F4A9144005CD714 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A5F2071F4A9144005CD714 /* Main.storyboard */; };
 		D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2A5F20A1F4A9144005CD714 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		525DC47D27CF41EF003DC3A2 /* Background4.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Background4.m4a; sourceTree = "<group>"; };
 		52A6093D286422E90029BBFA /* libEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB7DFD2864E693008D86FD /* game.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = game.sqlite; sourceTree = "<group>"; };
-		52C94A0C28656AE20048CC99 /* map-10x10.tmx */ = {isa = PBXFileReference; lastKnownFileType = file; name = "map-10x10.tmx"; path = "Astral One/Resources/map-10x10.tmx"; sourceTree = SOURCE_ROOT; };
-		52C94A0E28656AEB0048CC99 /* map.tmx */ = {isa = PBXFileReference; lastKnownFileType = file; name = map.tmx; path = "Astral One/Resources/map.tmx"; sourceTree = SOURCE_ROOT; };
-		52C94A1028656AF40048CC99 /* map.tsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = map.tsx; path = "Astral One/Resources/map.tsx"; sourceTree = SOURCE_ROOT; };
+		52C94A0C28656AE20048CC99 /* map-10x10.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "map-10x10.tmx"; path = "Astral One/Resources/map-10x10.tmx"; sourceTree = SOURCE_ROOT; };
+		52C94A0E28656AEB0048CC99 /* map.tmx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = map.tmx; path = "Astral One/Resources/map.tmx"; sourceTree = SOURCE_ROOT; };
+		52C94A1028656AF40048CC99 /* map.tsx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = map.tsx; path = "Astral One/Resources/map.tsx"; sourceTree = SOURCE_ROOT; };
 		52C94A12286576860048CC99 /* Game Tile Set.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Game Tile Set.sks"; sourceTree = "<group>"; };
 		52D1218127CC6F110047C2CA /* Astral One.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = "Astral One.swift"; sourceTree = "<group>"; tabWidth = 4; };
-		52D1218B27CDCCBF0047C2CA /* Background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background.mp3; sourceTree = "<group>"; };
-		52D1218D27CDDF220047C2CA /* Background2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background2.mp3; sourceTree = "<group>"; };
-		52D1218F27CDE0290047C2CA /* Background3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background3.mp3; sourceTree = "<group>"; };
 		52E0B19627E6D9D600607FBE /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F9B61227E6AB02005D55E6 /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52FA8F9727E382DE001794BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52FC2DD32866AF5600824FDD /* tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tap.mp3; sourceTree = "<group>"; };
 		5394F02421864DF4006E754C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AFEF9613231A01F4006025E5 /* CheeZeeJungle.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CheeZeeJungle.caf; sourceTree = "<group>"; };
-		AFEF9614231A0200006025E5 /* NomNom.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NomNom.caf; sourceTree = "<group>"; };
-		AFEF9615231A020A006025E5 /* Slice.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Slice.caf; sourceTree = "<group>"; };
 		AFEF9616231A0215006025E5 /* Splash.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Splash.caf; sourceTree = "<group>"; };
 		D2A5F2001F4A9144005CD714 /* Astral One.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Astral One.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A5F2081F4A9144005CD714 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,7 +67,6 @@
 			children = (
 				AFEF960C231A0196006025E5 /* Sounds */,
 				AFEF960B231A0187006025E5 /* Data */,
-				52FA8F9727E382DE001794BD /* Assets.xcassets */,
 				52C94A12286576860048CC99 /* Game Tile Set.sks */,
 			);
 			path = Resources;
@@ -101,14 +86,8 @@
 		AFEF960C231A0196006025E5 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				525DC47D27CF41EF003DC3A2 /* Background4.m4a */,
-				52D1218D27CDDF220047C2CA /* Background2.mp3 */,
-				52D1218F27CDE0290047C2CA /* Background3.mp3 */,
-				52D1218B27CDCCBF0047C2CA /* Background.mp3 */,
+				52FC2DD32866AF5600824FDD /* tap.mp3 */,
 				AFEF9616231A0215006025E5 /* Splash.caf */,
-				AFEF9615231A020A006025E5 /* Slice.caf */,
-				AFEF9614231A0200006025E5 /* NomNom.caf */,
-				AFEF9613231A01F4006025E5 /* CheeZeeJungle.caf */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -212,22 +191,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525DC47E27CF41EF003DC3A2 /* Background4.m4a in Resources */,
-				AFEF962A231A1E8E006025E5 /* CheeZeeJungle.caf in Resources */,
-				AFEF9629231A1E8C006025E5 /* NomNom.caf in Resources */,
-				AFEF9628231A1E89006025E5 /* Slice.caf in Resources */,
 				52AB7DFE2864E693008D86FD /* game.sqlite in Resources */,
 				AFEF9627231A1E86006025E5 /* Splash.caf in Resources */,
 				5394F02521864DF5006E754C /* LaunchScreen.storyboard in Resources */,
-				52D1218E27CDDF220047C2CA /* Background2.mp3 in Resources */,
 				52C94A13286576860048CC99 /* Game Tile Set.sks in Resources */,
 				52C94A0D28656AE20048CC99 /* map-10x10.tmx in Resources */,
 				D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */,
-				52D1218C27CDCCBF0047C2CA /* Background.mp3 in Resources */,
-				52FA8F9927E382DE001794BD /* Assets.xcassets in Resources */,
+				52FC2DD42866AF5600824FDD /* tap.mp3 in Resources */,
 				52C94A0F28656AEB0048CC99 /* map.tmx in Resources */,
 				D2A5F2091F4A9144005CD714 /* Main.storyboard in Resources */,
-				52D1219027CDE0290047C2CA /* Background3.mp3 in Resources */,
 				52C94A1128656AF40048CC99 /* map.tsx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

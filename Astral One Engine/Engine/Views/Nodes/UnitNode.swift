@@ -7,8 +7,8 @@ public class UnitNode: SKNode {
     private let unit: Unit
     private let mapManager: MapManager
     private let unitSprite: SKSpriteNode
-    private let selectedIndicator: SKSpriteNode
-    private let selectedSkyIndicator: SKSpriteNode
+//    private let selectedIndicator: SKSpriteNode
+//    private let selectedSkyIndicator: SKSpriteNode
     private var cancellable = Set<AnyCancellable>()
     
     public init(player: Player, unit: Unit, mapManager: MapManager) {
@@ -23,22 +23,22 @@ public class UnitNode: SKNode {
         unitSprite.position = CGPoint.zero
         unitSprite.zPosition = 10
         
-        let selectedTexture = SKTexture(imageNamed: "select-single")
-        selectedIndicator = SKSpriteNode(texture: selectedTexture,
-                                         color: UIColor.systemPink,
-                                         size: selectedTexture.size())
-        selectedIndicator.position = CGPoint.zero
-        selectedIndicator.isHidden = true
-        selectedIndicator.zPosition = 5
+//        let selectedTexture = SKTexture(imageNamed: "select-single")
+//        selectedIndicator = SKSpriteNode(texture: selectedTexture,
+//                                         color: UIColor.systemPink,
+//                                         size: selectedTexture.size())
+//        selectedIndicator.position = CGPoint.zero
+//        selectedIndicator.isHidden = true
+//        selectedIndicator.zPosition = 5
         
-        let selectedSkyTexture = SKTexture(imageNamed: "unit-select-sky")
-        selectedSkyIndicator = SKSpriteNode(texture: selectedSkyTexture,
-                                            color: UIColor.systemPink,
-                                            size: CGSize(width: 100.0, height: 500.0))
-        selectedSkyIndicator.position = CGPoint(x: -50.0, y: 0.0)
-        selectedSkyIndicator.anchorPoint = CGPoint.zero
-        selectedSkyIndicator.isHidden = true
-        selectedSkyIndicator.zPosition = 1
+//        let selectedSkyTexture = SKTexture(imageNamed: "unit-select-sky")
+//        selectedSkyIndicator = SKSpriteNode(texture: selectedSkyTexture,
+//                                            color: UIColor.systemPink,
+//                                            size: CGSize(width: 100.0, height: 500.0))
+//        selectedSkyIndicator.position = CGPoint(x: -50.0, y: 0.0)
+//        selectedSkyIndicator.anchorPoint = CGPoint.zero
+//        selectedSkyIndicator.isHidden = true
+//        selectedSkyIndicator.zPosition = 1
         
         super.init()
         
@@ -48,8 +48,8 @@ public class UnitNode: SKNode {
         zPosition = Layer.units
         
         addChild(unitSprite)
-        addChild(selectedIndicator)
-        addChild(selectedSkyIndicator)
+//        addChild(selectedIndicator)
+//        addChild(selectedSkyIndicator)
         
         attachSubscribers()
     }

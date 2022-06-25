@@ -5,12 +5,10 @@ import Combine
 public class Camera: SKCameraNode {
     private let game: Game
     private let player: Player
-    
+    private let nextTurnButton: NextTurnButton
+
     private var cancellable = Set<AnyCancellable>()
     
-    private let nextTurnButton: NextTurnButton
-    let startPositionIcon = SKSpriteNode(imageNamed: "square-wooden-button")
-    let calculatePathIcon = SKSpriteNode(imageNamed: "square-wooden-button")
     let positionLabel = SKLabelNode(fontNamed: "Arial Bold")
     private let padding: CGFloat
     
@@ -32,15 +30,7 @@ public class Camera: SKCameraNode {
         notification.position = CGPoint(x: -(game.canvasSize.width / 2) + (notification.size.width / 2) + padding,
                                          y: -(game.canvasSize.height / 2) + (notification.size.height) + 1.5*padding)
         
-        startPositionIcon.size = CGSize(width: 40.0, height: 35.0)
-        calculatePathIcon.size = CGSize(width: 40.0, height: 35.0)
-        
-        startPositionIcon.zPosition = Layer.hud
-        calculatePathIcon.zPosition = Layer.hud
         nextTurnButton.zPosition = Layer.hud
-        
-        startPositionIcon.name = "set-start-position"
-        calculatePathIcon.name = "calculate-path"
         
         positionLabel.fontSize = 20
         positionLabel.horizontalAlignmentMode = .left
@@ -53,9 +43,6 @@ public class Camera: SKCameraNode {
         addChild(turnIndicator)
         addChild(notification)
         addChild(nextTurnButton)
-        
-//        physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 400, height: 300))
-//        physicsBody!.affectedByGravity = false
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -70,8 +57,6 @@ public class Camera: SKCameraNode {
             let verticalSpacer: CGFloat = 45.0
             let leftIconEdge: CGFloat = 65.0 + scene.size.width / -2.0
             
-            startPositionIcon.position = CGPoint(x: leftIconEdge, y: topIconEdge)
-            calculatePathIcon.position = CGPoint(x: leftIconEdge, y: topIconEdge - verticalSpacer)
             positionLabel.position = CGPoint(x: leftIconEdge, y: topIconEdge - 2 * verticalSpacer)
         }
     }

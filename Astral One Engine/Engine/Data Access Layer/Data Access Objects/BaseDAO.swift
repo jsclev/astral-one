@@ -141,7 +141,7 @@ public class BaseDAO {
     func getRowById(stmt: inout OpaquePointer?, table: String, idName: String, id: Int) throws {
         let sql = "SELECT * FROM \(table) where \(idName) = ?"
         
-        logger.debug("Executing query 'SELECT * FROM \(table) where \(idName) = \(id)'")
+        // logger.debug("Executing query 'SELECT * FROM \(table) where \(idName) = \(id)'")
         
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
             // TODO Need to fix the truncation of the Int id
@@ -154,6 +154,7 @@ public class BaseDAO {
             
             var errMsg = "Failed to prepare the statement \"" + sql + "\".  "
             errMsg += "SQLite error message: " + sqliteMsg
+            
             throw DbError.Db(message: errMsg)
         }
         

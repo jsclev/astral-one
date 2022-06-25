@@ -26,7 +26,7 @@ public class CreateCityCommandDAO: BaseDAO {
         
         createCitySql += "("
         createCitySql += getSql(val: command.commandId, postfix: ", ")
-        createCitySql += getSql(val: 1, postfix: ", ")
+        createCitySql += getSql(val: command.cityCreator.id, postfix: ", ")
         createCitySql += getSql(val: city.id, postfix: "")
         createCitySql += "), "
         

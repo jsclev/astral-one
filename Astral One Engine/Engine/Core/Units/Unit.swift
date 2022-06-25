@@ -43,7 +43,7 @@ public class Unit: GKEntity, ObservableObject {
         self.player = player
         self.tiledId = tiledId
         self.name = name
-        self.assetName = theme.name + "/" + assetName
+        self.assetName = assetName
         self.cost = cost
         self.maxHp = maxHp
         self.currentHp = maxHp
