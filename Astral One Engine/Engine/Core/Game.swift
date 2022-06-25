@@ -10,6 +10,7 @@ public class Game: ObservableObject {
     @Published public var selectedCityCreator: Settler?
     @Published public var turnIndex = 0
 
+    public let gameId: Int
     public let turns: [Turn]
     public var players: [Player] = []
     public let map: Map
@@ -18,8 +19,15 @@ public class Game: ObservableObject {
     public let db: Db
     public var canvasSize = CGSize.zero
     
-    public init(theme: Theme, map: Map, db: Db) throws {
-
+//    public convenience init(theme: Theme, map: Map, db: Db) throws {
+//        self.init(gameId: Constants.noId,
+//                  theme: theme,
+//                  map: map,
+//                  db: db)
+//    }
+    
+    public init(gameId: Int, theme: Theme, map: Map, db: Db) throws {
+        self.gameId = gameId
         self.theme = theme
         self.map = map
         self.db = db

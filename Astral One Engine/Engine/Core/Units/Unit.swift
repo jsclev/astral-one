@@ -54,6 +54,7 @@ public class Unit: GKEntity, ObservableObject {
         self.currentMovementPoints = maxMovementPoints
         self.position = position
         
+        // FIXME: Need to implement database driven unit id
         self.id = Int.random(in: 0..<500)
         
         super.init()

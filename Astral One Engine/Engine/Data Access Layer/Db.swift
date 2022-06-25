@@ -119,7 +119,7 @@ public class Db {
         let player5Map = try mapDao.get(gameId: gameId)
         let player6Map = try mapDao.get(gameId: gameId)
 
-        let game = try Game(theme: theme, map: player1Map, db: self)
+        let game = try Game(gameId: gameId, theme: theme, map: player1Map, db: self)
 
         let player1 = AIPlayer(playerId: 1,
                                game: game,

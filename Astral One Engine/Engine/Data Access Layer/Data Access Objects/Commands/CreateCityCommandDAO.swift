@@ -13,7 +13,7 @@ public class CreateCityCommandDAO: BaseDAO {
     }
     
     public func insert(command: CreateCityCommand) throws -> City {
-        let _ = try commandDao.insert(command: Command(player: command.player,
+        let baseCmd = try commandDao.insert(command: Command(player: command.player,
                                                              type: command.type,
                                                              turn: command.turn,
                                                              ordinal: command.ordinal,
@@ -25,7 +25,7 @@ public class CreateCityCommandDAO: BaseDAO {
         ") VALUES "
         
         createCitySql += "("
-        createCitySql += getSql(val: command.commandId, postfix: ", ")
+        createCitySql += getSql(val: baseCmd.commandId, postfix: ", ")
         createCitySql += getSql(val: command.cityCreator.id, postfix: ", ")
         createCitySql += getSql(val: city.id, postfix: "")
         createCitySql += "), "

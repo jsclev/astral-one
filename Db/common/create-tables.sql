@@ -188,8 +188,8 @@ CREATE TABLE create_city_command (
     command_id INTEGER NOT NULL,
     unit_id INTEGER NOT NULL,
     city_id INTEGER NOT NULL,
-    FOREIGN KEY (command_id) REFERENCES command (command_id),
-    FOREIGN KEY (unit_id) REFERENCES unit (unit_id)
+    FOREIGN KEY (command_id) REFERENCES command (command_id)
+--     FOREIGN KEY (unit_id) REFERENCES unit (unit_id)
 );
 
 CREATE TABLE create_unit_command (

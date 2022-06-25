@@ -14,7 +14,6 @@ public class CommandDAO: BaseDAO {
 //        var commands: [Command] = []
 //        let theme = Theme(id: 1, name: "Standard")
 //        let map = Map(mapId: 1, width: 1, height: 1)
-//        let game = Game(theme: theme, map: map)
 //        let player = Player(playerId: 1, game: game)
 //
 //        var stmt: OpaquePointer?
@@ -142,7 +141,7 @@ public class CommandDAO: BaseDAO {
         ") VALUES "
 
         sql += "("
-        sql += getSql(val: 1, postfix: ", ")
+        sql += getSql(val: command.player.game.gameId, postfix: ", ")
         sql += getSql(val: command.turn.id, postfix: ", ")
         sql += getSql(val: command.player.playerId, postfix: ", ")
         sql += getSql(val: command.type.id, postfix: ", ")
