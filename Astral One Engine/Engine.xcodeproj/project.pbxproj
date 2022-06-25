@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AE92BB72864CAEE0048C41A /* GameGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE92BB62864CAEE0048C41A /* GameGestureRecognizer.swift */; };
 		52012F602803A77A008388F6 /* Founder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52012F5F2803A77A008388F6 /* Founder.swift */; };
 		521F21A02803F88400F1D61D /* Infantry2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F219F2803F88400F1D61D /* Infantry2.swift */; };
 		521F21A22803F89A00F1D61D /* Infantry3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21A12803F89A00F1D61D /* Infantry3.swift */; };
@@ -249,6 +250,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3AE92BB62864CAEE0048C41A /* GameGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGestureRecognizer.swift; sourceTree = "<group>"; };
 		52012F5F2803A77A008388F6 /* Founder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Founder.swift; sourceTree = "<group>"; };
 		521F219F2803F88400F1D61D /* Infantry2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry2.swift; sourceTree = "<group>"; };
 		521F21A12803F89A00F1D61D /* Infantry3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry3.swift; sourceTree = "<group>"; };
@@ -724,6 +726,7 @@
 				52F559E02841CFF400966F06 /* Map Layers */,
 				52DE5F7A2818E40E0029EFE1 /* ContextMenu.swift */,
 				52DE5F82281C78450029EFE1 /* FounderContextMenu.swift */,
+				3AE92BB62864CAEE0048C41A /* GameGestureRecognizer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1312,6 +1315,7 @@
 				52A646872830BB580066B82D /* BuildGranaryAction.swift in Sources */,
 				52668176282595B10089D0DD /* Position.swift in Sources */,
 				52F9043927F6D02500D1AC97 /* SqliteError.swift in Sources */,
+				3AE92BB72864CAEE0048C41A /* GameGestureRecognizer.swift in Sources */,
 				52A64652282DF8880066B82D /* ResearchIronWorkingAction.swift in Sources */,
 				52A64633282C36030066B82D /* Advance.swift in Sources */,
 				52DE5F95281E08140029EFE1 /* Naval6.swift in Sources */,

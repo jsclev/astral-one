@@ -14,7 +14,7 @@ struct GameView: View {
     
     @State private var location: CGPoint = .zero
     @GestureState private var fingerLocation: CGPoint? = nil
-    
+
     var mapViewModel = MapViewModel()
     var scene: StoneToSpaceScene
     
@@ -48,16 +48,16 @@ struct GameView: View {
                 let magnitude = sqrt(
                     (temp * temp +
                      temp2 * temp2))
-                
+
                 isDragging = false
-                
+
                 var duration = (magnitude/2000) + 0.8
                 if duration < 0.8 {
                     duration = 0.8
                 }
                 //                print("magnitude: \(magnitude)")
                 //                print("duration: \(duration)")
-                
+
                 let moveAction = SKAction.move(to: CGPoint(x: startCameraPosition.x - (value.predictedEndTranslation.width * mapViewModel.scale),
                                                            y: startCameraPosition.y + (value.predictedEndTranslation.height * mapViewModel.scale)),
                                                duration: duration,
@@ -77,7 +77,7 @@ struct GameView: View {
                 } else {
                     isAnimating = false
                 }
-                
+
                 scene.gameCamera.run(moveAction, withKey: "map-pan-momentum")
             }
     }
@@ -89,8 +89,8 @@ struct GameView: View {
                 SpriteView(scene: scene, debugOptions: [.showsFPS,
                                                         .showsNodeCount,
                                                         .showsDrawCount])
-                .ignoresSafeArea()
-                .simultaneousGesture(simpleDrag)
+                    .ignoresSafeArea()
+//                    .simultaneousGesture(simpleDrag)
             }
             else {
                 SpriteView(scene: scene)
