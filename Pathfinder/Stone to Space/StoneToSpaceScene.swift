@@ -28,7 +28,7 @@ class StoneToSpaceScene: SKScene {
     var previousCameraPoint = CGPoint.zero
     var startTouchPos = CGPoint.zero
     let tileSet: SKTileSet
-    let theme = Theme(id: 2, name: Constants.themeName)
+    let theme = Theme(id: 2, name: "Sci-Fi")
     var mapView: MapManager!
     
     init(mapViewModel: MapViewModel) {
