@@ -85,6 +85,45 @@ public class UnitDAO: BaseDAO {
         return returnMap
     }
     
+    public func insert(settler: Settler) throws -> Settler {
+        var unitId = Constants.noId
+        
+        var sql = "INSERT INTO unit (" +
+        "game_id, player_id, unit_type_id, tile_id" +
+        ") VALUES "
+        
+        // FIXME: Need to fix the unit_type_id and tile_id here
+        sql += "("
+        sql += getSql(val: settler.player.game.gameId, postfix: ", ")
+        sql += getSql(val: settler.player.playerId, postfix: ", ")
+        sql += getSql(val: 1, postfix: ", ")
+        sql += getSql(val: 1, postfix: "")
+        sql += "), "
+        
+        sql = getCleanedSql(sql)
+        
+        do {
+            unitId = try insertOneRow(sql: sql)
+        }
+        catch SQLiteError.Prepare(let message) {
+            var errMsg = "Failed to compile SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        catch SQLiteError.Step(let message) {
+            var errMsg = "Failed to execute SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        
+        return Settler(unitId: unitId,
+                       game: settler.game,
+                       player: settler.player,
+                       theme: settler.theme,
+                       name: settler.name,
+                       position: settler.position)
+    }
+    
     public func insert(engineer: Engineer) throws -> Engineer {
         var unitId = Constants.noId
         
@@ -394,10 +433,10 @@ public class UnitDAO: BaseDAO {
                             position: Position(row: row, col: col))
         case "CityCreator":
             return Settler(game: game,
-                               player: player,
-                               theme: theme,
-                               name: name,
-                               position: Position(row: row, col: col))
+                           player: player,
+                           theme: theme,
+                           name: name,
+                           position: Position(row: row, col: col))
         case "CruiseMissile":
             return CruiseMissile(game: game,
                                  player: player,

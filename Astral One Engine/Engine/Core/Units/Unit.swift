@@ -2,7 +2,7 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
-public class Unit: GKEntity, ObservableObject {
+public class Unit: ObservableObject {
     public let id: Int
     public let game: Game
     public let player: Player
@@ -25,7 +25,7 @@ public class Unit: GKEntity, ObservableObject {
     @Published public var homeCity: City?
     public var node: SKNode?
     
-    public init(game: Game,
+    public convenience init(game: Game,
                 player: Player,
                 theme: Theme,
                 tiledId: Int,
@@ -38,6 +38,20 @@ public class Unit: GKEntity, ObservableObject {
                 fp: Double,
                 maxMovementPoints: Double,
                 position: Position) {
+        self.init(unitId: Int.random(in: 0..<500),
+                  game: game,
+                  player: player,
+                  theme: theme,
+                  tiledId: tiledId,
+                  name: name,
+                  assetName: assetName,
+                  cost: <#T##Double#>,
+                  maxHp: <#T##Double#>,
+                  attack: <#T##Double#>,
+                  defense: <#T##Double#>,
+                  fp: <#T##Double#>,
+                  maxMovementPoints: <#T##Double#>,
+                  position: <#T##Position#>)
         self.game = game
         self.theme = theme
         self.player = player
@@ -56,6 +70,40 @@ public class Unit: GKEntity, ObservableObject {
         
         // FIXME: Need to implement database driven unit id
         self.id = Int.random(in: 0..<500)
+        
+        super.init()
+    }
+    
+    public init(unitId: Int,
+                game: Game,
+                player: Player,
+                theme: Theme,
+                tiledId: Int,
+                name: String,
+                assetName: String,
+                cost: Double,
+                maxHp: Double,
+                attack: Double,
+                defense: Double,
+                fp: Double,
+                maxMovementPoints: Double,
+                position: Position) {
+        self.id = unitId
+        self.game = game
+        self.theme = theme
+        self.player = player
+        self.tiledId = tiledId
+        self.name = name
+        self.assetName = assetName
+        self.cost = cost
+        self.maxHp = maxHp
+        self.currentHp = maxHp
+        self.attack = attack
+        self.defense = defense
+        self.fp = fp
+        self.maxMovementPoints = maxMovementPoints
+        self.currentMovementPoints = maxMovementPoints
+        self.position = position
         
         super.init()
     }

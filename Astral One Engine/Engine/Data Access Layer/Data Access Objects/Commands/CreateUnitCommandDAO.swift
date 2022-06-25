@@ -12,6 +12,26 @@ public class CreateUnitCommandDAO: BaseDAO {
         super.init(conn: conn, table: "command", loggerName: String(describing: type(of: self)))
     }
     
+    public func insert(command: CreateSettlerCommand) throws -> Settler {
+        var unitId = Constants.noId
+        
+        if let settler = command.settler {
+            let _ = try commandDao.insert(command: Command(player: command.player,
+                                                           type: command.type,
+                                                           turn: command.turn,
+                                                           ordinal: command.ordinal,
+                                                           cost: command.cost))
+            return try unitDao.insert(settler: settler)
+        }
+        
+        return Settler(unitId: Constants.noId,
+                       game: command.player.game,
+                       player: command.player,
+                       theme: Theme(id: Constants.noId, name: "Standard"),
+                       name: "Settler",
+                       position: Position.zero)
+    }
+    
     public func insert(command: CreateEngineerCommand) throws -> Engineer {
         if let engineer = command.engineer {
             let _ = try commandDao.insert(command: Command(player: command.player,
