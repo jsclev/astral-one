@@ -1,7 +1,8 @@
 import Foundation
 
 public class Builder: Unit {
-    public override init(game: Game,
+    public override init(id: Int,
+                         game: Game,
                          player: Player,
                          theme: Theme,
                          tiledId: Int,
@@ -14,7 +15,8 @@ public class Builder: Unit {
                          fp: Double,
                          maxMovementPoints: Double,
                          position: Position) {
-        super.init(game: game,
+        super.init(id: id,
+                   game: game,
                    player: player,
                    theme: theme,
                    tiledId: tiledId,
@@ -87,22 +89,22 @@ public class Builder: Unit {
     }
     
     public override func clone() -> Unit {
-        let copy = Builder(game: game,
-                               player: player,
-                               theme: theme,
-                               tiledId: tiledId,
-                               name: name,
-                               assetName: assetName,
-                               cost: cost,
-                               maxHp: maxHp,
-                               attack: attack,
-                               defense: defense,
-                               fp: fp,
-                               maxMovementPoints: maxMovementPoints,
-                               position: position)
+        let copy = Builder(id: id,
+                           game: game,
+                           player: player,
+                           theme: theme,
+                           tiledId: tiledId,
+                           name: name,
+                           assetName: assetName,
+                           cost: cost,
+                           maxHp: maxHp,
+                           attack: attack,
+                           defense: defense,
+                           fp: fp,
+                           maxMovementPoints: maxMovementPoints,
+                           position: position)
         
         return copy
     }
-    
     
 }

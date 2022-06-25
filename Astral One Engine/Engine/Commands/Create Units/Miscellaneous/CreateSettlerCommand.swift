@@ -39,10 +39,10 @@ public class CreateSettlerCommand: Command {
     
     public override func execute() -> CommandResult {
         settler = Settler(game: player.game,
-                           player: player,
-                           theme: player.game.theme,
-                           name: "Settler-\(Int.random(in: 0..<500))",
-                           position: tile.position)
+                          player: player,
+                          theme: player.game.theme,
+                          name: "Settler-\(Int.random(in: 0..<500))",
+                          position: tile.position)
         
         if commandId == Constants.noId {
             do {

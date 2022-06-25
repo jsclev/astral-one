@@ -4,12 +4,27 @@ public class Infantry3: Unit {
     /*
      In Civilization II this is equivalent to an Archers unit.
      */
-    public init(game: Game,
+    public convenience init(game: Game,
+                            player: Player,
+                            theme: Theme,
+                            name: String,
+                            position: Position) {
+        self.init(id: Constants.noId,
+                  game: game,
+                  player: player,
+                  theme: theme,
+                  name: name,
+                  position: position)
+    }
+    
+    public init(id: Int,
+                game: Game,
                 player: Player,
                 theme: Theme,
                 name: String,
                 position: Position) {
-        super.init(game: game,
+        super.init(id: id,
+                   game: game,
                    player: player,
                    theme: theme,
                    tiledId: 100,

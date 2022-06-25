@@ -13,8 +13,6 @@ public class CreateUnitCommandDAO: BaseDAO {
     }
     
     public func insert(command: CreateSettlerCommand) throws -> Settler {
-        var unitId = Constants.noId
-        
         if let settler = command.settler {
             let _ = try commandDao.insert(command: Command(player: command.player,
                                                            type: command.type,
@@ -24,10 +22,10 @@ public class CreateUnitCommandDAO: BaseDAO {
             return try unitDao.insert(settler: settler)
         }
         
-        return Settler(unitId: Constants.noId,
+        return Settler(id: Constants.noId,
                        game: command.player.game,
                        player: command.player,
-                       theme: Theme(id: Constants.noId, name: "Standard"),
+                       theme: command.player.game.theme,
                        name: "Settler",
                        position: Position.zero)
     }
@@ -39,19 +37,10 @@ public class CreateUnitCommandDAO: BaseDAO {
                                                            turn: command.turn,
                                                            ordinal: command.ordinal,
                                                            cost: command.cost))
-            let persisted = try unitDao.insert(engineer: engineer)
-            
-            return Engineer(unitId: persisted.id,
-                            game: engineer.game,
-                            player: engineer.player,
-                            theme: engineer.theme,
-                            name: engineer.name,
-                            position: engineer.position)
-            
-            
+            return try unitDao.insert(engineer: engineer)
         }
         
-        return Engineer(unitId: Constants.noId,
+        return Engineer(id: Constants.noId,
                         game: command.player.game,
                         player: command.player,
                         theme: Theme(id: Constants.noId, name: "Standard"),

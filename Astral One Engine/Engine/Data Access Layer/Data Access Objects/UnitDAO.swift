@@ -116,7 +116,7 @@ public class UnitDAO: BaseDAO {
             throw DbError.Db(message: errMsg)
         }
         
-        return Settler(unitId: unitId,
+        return Settler(id: unitId,
                        game: settler.game,
                        player: settler.player,
                        theme: settler.theme,
@@ -154,7 +154,7 @@ public class UnitDAO: BaseDAO {
             throw DbError.Db(message: errMsg)
         }
         
-        return Engineer(unitId: unitId,
+        return Engineer(id: unitId,
                         game: engineer.game,
                         player: engineer.player,
                         theme: engineer.theme,

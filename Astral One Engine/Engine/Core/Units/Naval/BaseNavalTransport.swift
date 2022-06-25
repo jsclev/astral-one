@@ -5,7 +5,8 @@ public class BaseNavalTransport: Unit {
     public let maxCapacity: Int
     @Published var units: [Unit] = []
     
-    public init(game: Game,
+    public init(id: Int,
+                game: Game,
                 player: Player,
                 theme: Theme,
                 tiledId: Int,
@@ -21,7 +22,8 @@ public class BaseNavalTransport: Unit {
                 maxCapacity: Int) {
         self.maxCapacity = maxCapacity
         
-        super.init(game: game,
+        super.init(id: id,
+                   game: game,
                    player: player,
                    theme: theme,
                    tiledId: tiledId,

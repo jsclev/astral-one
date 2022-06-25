@@ -1,14 +1,12 @@
 import Foundation
 
 public class Engineer: Builder {
-    private let unitId: Int
-    
     public convenience init(game: Game,
                             player: Player,
                             theme: Theme,
                             name: String,
                             position: Position) {
-        self.init(unitId: Constants.noId,
+        self.init(id: Constants.noId,
                   game: game,
                   player: player,
                   theme: theme,
@@ -16,15 +14,14 @@ public class Engineer: Builder {
                   position: position)
     }
     
-    public init(unitId: Int,
+    public init(id: Int,
                 game: Game,
                 player: Player,
                 theme: Theme,
                 name: String,
                 position: Position) {
-        self.unitId = unitId
-        
-        super.init(game: game,
+        super.init(id: id,
+                   game: game,
                    player: player,
                    theme: theme,
                    tiledId: 100,
