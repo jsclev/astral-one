@@ -19,7 +19,6 @@ class StoneToSpaceScene: SKScene {
     var gameCamera: Camera!
     var cameraScale = 1.0
     var initialCameraScale = 1.0
-    var pinchGestureRecognizer: UIPinchGestureRecognizer!
     var gameGestureRecognizer: GameGestureRecognizer!
     var tilesetName: String
     let mapIconsTilesetName: String = "Map Icons"
@@ -32,17 +31,11 @@ class StoneToSpaceScene: SKScene {
     let theme = Theme(id: 2, name: Constants.themeName)
     var mapView: MapManager!
     
-    private var initialZoomPosition: CGPoint = .zero
-    private var initialZoomLocation: CGPoint? = nil
     private var initialCameraPosition: CGPoint = .zero
-    
-    private var previousFromCenter: CGSize = .zero
     private var previousCameraScale: CGFloat = 1.0
     private var previousTranslation: CGSize = .zero
-    
     private var previousOffset: CGSize = .zero
     private var lastZoomCenterLocation: CGPoint = .zero
-//    private var
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
@@ -95,9 +88,6 @@ class StoneToSpaceScene: SKScene {
         addChild(gameCamera)
         
         gameCamera.show()
-        
-        pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
-//        view.addGestureRecognizer(pinchGestureRecognizer)
         
         gameGestureRecognizer = GameGestureRecognizer(target: self, action: #selector(handleGestures))
         view.addGestureRecognizer(gameGestureRecognizer)
@@ -204,61 +194,6 @@ class StoneToSpaceScene: SKScene {
         print(string + formatter.string(from: date))
     }
     
-    @objc func handleZoom(sender: UIPinchGestureRecognizer) {
-        gameCamera.removeAction(forKey: "map-pan-momentum")
-        if (sender.state == .began) {
-            mapViewModel.zoomBegan()
-            initialZoomPosition = gameCamera.position
-            
-            initialZoomLocation = sender.location(in: nil)
-            
-
-        }
-        if (sender.state == .changed) {
-            if sender.numberOfTouches <= 1 {
-//                print("cancel")
-            }
-            mapViewModel.updateScale(newScale: sender.scale)
-            gameCamera.setScale(mapViewModel.scale)
-            
-            let point = sender.location(in: nil)
-            
-            if initialZoomLocation == nil {
-                initialZoomLocation = point
-                
-            }
-            
-            
-            
-            let translation = CGPoint(x: initialZoomLocation!.x - point.x, y: initialZoomLocation!.y - point.y)
-            
-            
-            let fromCenter = CGPoint(x: point.x - game.canvasSize.width/2, y: point.y - game.canvasSize.height/2)
-
-            let scaleX = gameCamera.xScale - mapViewModel.initialScale
-            let scaleXDifference = scaleX - previousCameraScale
-            let offsetX = fromCenter.x * -scaleXDifference
-            
-            
-            let scaleY = gameCamera.yScale - mapViewModel.initialScale
-            let scaleYDifference = scaleY - previousCameraScale
-
-            let offsetY = fromCenter.y * scaleYDifference
-            
-            let translationScale = mapViewModel.initialScale
-            
-            gameCamera.position = CGPoint(x: initialZoomPosition.x + offsetX + translation.x * translationScale, y: initialZoomPosition.y + offsetY - translation.y * translationScale)
-            
-            
-            contextMenu.menu.setScale(mapViewModel.scale)
-            
-//            mapViewModel.resetScale()
-        }
-        if (sender.state == .ended) {
-            initialZoomLocation = nil
-        }
-    }
-    
     @objc func handleGestures(sender: GameGestureRecognizer) {
         switch sender.state {
         case .began:
@@ -268,7 +203,6 @@ class StoneToSpaceScene: SKScene {
             initialCameraPosition = gameCamera.position
             mapViewModel.scale = gameCamera.xScale
             initialCameraScale = mapViewModel.scale
-            previousFromCenter = .zero
             previousOffset = .zero
             previousTranslation = .zero
             previousCameraScale = 0
