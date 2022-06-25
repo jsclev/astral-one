@@ -9,7 +9,7 @@ struct StoneToSpaceApp: App {
             ZStack {
                 Color.black
                     .ignoresSafeArea()
-                StoneToSpaceView()
+                GameView()
             }
             .statusBar(hidden: true)
         }

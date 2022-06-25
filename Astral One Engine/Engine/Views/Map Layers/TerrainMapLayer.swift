@@ -39,6 +39,9 @@ public class TerrainMapLayer {
                 if let grassTile = tileSet.tileGroups.first(where: { $0.name == "Grass" }) {
                     set(tile: player.map.tile(at: Position(row: row, col: col)), grassTile: grassTile)
                 }
+                else {
+                    fatalError("Unable to find default \"Grass\" tile group.")
+                }
             }
         }
         
@@ -63,7 +66,7 @@ public class TerrainMapLayer {
         let tileGrpName = tile.terrain.name
         
         layer1Terrain.setTileGroup(grassTile, forColumn: col, row: row)
-        
+
         if tile.visibility == Visibility.FullyRevealed {
             if let tileGroup = tileSet.tileGroups.first(where: { $0.name == tileGrpName }) {
                 layer2Terrain.setTileGroup(tileGroup, forColumn: col, row: row)

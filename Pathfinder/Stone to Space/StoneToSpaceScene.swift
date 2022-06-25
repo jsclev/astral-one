@@ -5,7 +5,7 @@ import Engine
 import SwiftUI
 
 class AppConstants {
-    static let gameId = 1
+    static let gameId = 2
     static let themeId = 4
 }
 
@@ -25,7 +25,6 @@ class StoneToSpaceScene: SKScene {
     var cameraScale = 1.0
     var initialCameraScale = 1.0
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
-    var tilesetName: String
     let mapIconsTilesetName: String = "Map Icons"
     let mapName = "terrain"
     var mapIconsTileset: SKTileSet!
@@ -44,15 +43,15 @@ class StoneToSpaceScene: SKScene {
             game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
         }
         catch {
-            fatalError("Unable to initialize game object")
+            print(error)
+            fatalError("Could not initialize game object.")
         }
-        tilesetName = Constants.tilesetName
         
-        if let ts = SKTileSet(named: tilesetName) {
+        if let ts = SKTileSet(named: Constants.tilesetName) {
             tileSet = ts
         }
         else {
-            fatalError("Unable to find \"\(tilesetName)\" tile set.")
+            fatalError("Unable to find \"\(Constants.tilesetName)\" tile set.")
         }
         
         mapIconsTileset = SKTileSet(named: mapIconsTilesetName)
@@ -71,73 +70,80 @@ class StoneToSpaceScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        do {
-            try db.mapDao.importTiledMap(gameId: AppConstants.gameId, filename: Constants.mapFilename)
-            game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
-        }
-        catch {
-            print(error)
-        }
-        
-        game.canvasSize = frame.size
-        gameCamera = Camera(game: game, player: game.currentPlayer)
-
-        camera = gameCamera
-        addChild(gameCamera)
-        
-        gameCamera.show()
-        
-        pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
-        view.addGestureRecognizer(pinchGestureRecognizer)
-        
-//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(pan))
-//        view.addGestureRecognizer(panGesture)
-                
-        game.processCommands()
-        
-//        for cityId in 0..<1000 {
-//            let position = Position(row: Int.random(in: 0..<game.map.height),
-//                                    col: Int.random(in: 0..<game.map.width))
-//            let settler = Settler(game: game,
-//                                      player: player,
-//                                      theme: game.theme,
-//                                      name: "Settler",
-//                                      position: position)
-//            let city = City(id: cityId + 100,
-//                            owner: player,
-//                            theme: game.theme,
-//                            name: "New York",
-//                            assetName: "city-1",
-//                            position: position)
-//            player.add(cityCreator: settler)
-//
-//            let createInfantry1Action = CreateInfantry1Action(game: game, player: player, city: city)
-//            let createInfantry2Action = CreateInfantry2Action(game: game, player: player, city: city)
-//            let createInfantry3Action = CreateInfantry3Action(game: game, player: player, city: city)
-//            let createInfantry4Action = CreateInfantry4Action(game: game, player: player, city: city)
-//
-//            createInfantry1Action.execute()
-//            createInfantry2Action.execute()
-//            createInfantry3Action.execute()
-//            createInfantry4Action.execute()
+//        do {
+//            try db.mapDao.importTiledMap(gameId: AppConstants.gameId, filename: Constants.mapFilename)
+//            game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
 //        }
+//        catch {
+//            print(error)
+//        }
+//        
+//        game.canvasSize = frame.size
+//        gameCamera = Camera(game: game, player: game.currentPlayer)
+//        
+//        camera = gameCamera
+//        addChild(gameCamera)
+//        
+//        gameCamera.show()
+//        
+//        pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
+//        view.addGestureRecognizer(pinchGestureRecognizer)
+//        
+//        //        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(pan))
+//        //        view.addGestureRecognizer(panGesture)
+//        
+//        game.processCommands()
+//        
+//        //        for cityId in 0..<1000 {
+//        //            let position = Position(row: Int.random(in: 0..<game.map.height),
+//        //                                    col: Int.random(in: 0..<game.map.width))
+//        //            let settler = Settler(game: game,
+//        //                                      player: player,
+//        //                                      theme: game.theme,
+//        //                                      name: "Settler",
+//        //                                      position: position)
+//        //            let city = City(id: cityId + 100,
+//        //                            owner: player,
+//        //                            theme: game.theme,
+//        //                            name: "New York",
+//        //                            assetName: "city-1",
+//        //                            position: position)
+//        //            player.add(cityCreator: settler)
+//        //
+//        //            let createInfantry1Action = CreateInfantry1Action(game: game, player: player, city: city)
+//        //            let createInfantry2Action = CreateInfantry2Action(game: game, player: player, city: city)
+//        //            let createInfantry3Action = CreateInfantry3Action(game: game, player: player, city: city)
+//        //            let createInfantry4Action = CreateInfantry4Action(game: game, player: player, city: city)
+//        //
+//        //            createInfantry1Action.execute()
+//        //            createInfantry2Action.execute()
+//        //            createInfantry3Action.execute()
+//        //            createInfantry4Action.execute()
+//        //        }
+//        
+//        //        let fowGenerator = FogOfWarGenerator(player: player)
+//        //        fowGenerator.generate()
+//        game.currentPlayer.map.revealAllTiles()
+//        let tileset = SKTileSet(named: Constants.tilesetName)
+//        
+//        // addInitialSettler(player: player)
+//        
+//        mapView = MapManager(player: game.currentPlayer, scene: self, tileset: tileset!)
+//        contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
+//        cityCreatorMenu = CityCreatorMenu(player: game.currentPlayer, parent: self, mapManager: mapView)
+//        
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
+//        tapGesture.numberOfTapsRequired = 1
+//        view.addGestureRecognizer(tapGesture)
+//        
+//        eventBus = EventBus(game: game, scene: self, mapManager: mapView)
         
-//        let fowGenerator = FogOfWarGenerator(player: player)
-//        fowGenerator.generate()
-        game.currentPlayer.map.revealAllTiles()
-        let tileset = SKTileSet(named: tilesetName)
+        let unitTexture = SKTexture(imageNamed: "Units/Misc/city-creator")
+        let unitSprite = SKSpriteNode(texture: unitTexture,
+                                  color: UIColor.systemPink,
+                                  size: unitTexture.size())
         
-        // addInitialSettler(player: player)
-        
-        mapView = MapManager(player: game.currentPlayer, scene: self, tileset: tileset!)
-        contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
-        cityCreatorMenu = CityCreatorMenu(player: game.currentPlayer, parent: self, mapManager: mapView)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
-        tapGesture.numberOfTapsRequired = 1
-        view.addGestureRecognizer(tapGesture)
-        
-        eventBus = EventBus(game: game, scene: self, mapManager: mapView)
+        addChild(unitSprite)
     }
     
     private func addInitialSettler(player: Player) {
@@ -161,27 +167,27 @@ class StoneToSpaceScene: SKScene {
             }
         }
         
-//        let settler1 = Settler(game: game,
-//                              player: player,
-//                              theme: game.theme,
-//                              name: "Settler",
-//                              position: tile.position)
-//        let settler2 = Settler(game: game,
-//                               player: player,
-//                               theme: game.theme,
-//                               name: "Settler2",
-//                               position: tile.position)
+        //        let settler1 = Settler(game: game,
+        //                              player: player,
+        //                              theme: game.theme,
+        //                              name: "Settler",
+        //                              position: tile.position)
+        //        let settler2 = Settler(game: game,
+        //                               player: player,
+        //                               theme: game.theme,
+        //                               name: "Settler2",
+        //                               position: tile.position)
         
-//        player.add(cityCreator: settler1)
-//        player.add(cityCreator: settler2)
+        //        player.add(cityCreator: settler1)
+        //        player.add(cityCreator: settler2)
         
-//        let createCityCmd = CreateCityCommand(player: player,
-//                                              type: CommandType(id: 1, name: ""),
-//                                              turn: player.game.getCurrentTurn(),
-//                                              ordinal: 1,
-//                                              cost: 0,
-//                                              cityCreator: settler1,
-//                                              cityName: "New York")
+        //        let createCityCmd = CreateCityCommand(player: player,
+        //                                              type: CommandType(id: 1, name: ""),
+        //                                              turn: player.game.getCurrentTurn(),
+        //                                              ordinal: 1,
+        //                                              cost: 0,
+        //                                              cityCreator: settler1,
+        //                                              cityName: "New York")
         // createCityCmd.execute()
     }
     
@@ -198,11 +204,11 @@ class StoneToSpaceScene: SKScene {
         }
         if (sender.state == .changed) {
             print("scale: [\(sender.scale)")
-//            print("scale: [\(gameCamera.xScale), \(gameCamera.yScale)]")
+            //            print("scale: [\(gameCamera.xScale), \(gameCamera.yScale)]")
             mapViewModel.updateScale(newScale: sender.scale)
             gameCamera.setScale(mapViewModel.scale)
             contextMenu.menu.setScale(mapViewModel.scale)
-//            mapViewModel.resetScale()
+            //            mapViewModel.resetScale()
         }
     }
 }

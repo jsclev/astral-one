@@ -248,87 +248,87 @@ insert into unit_type (tiled_id, name, display_name, theme_id) values (-1, 'Air1
 -- insert into tech values (1, NULL, 'Alphabet', 'alphabet');
 --
 -- Terrain
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (21, 'Desert', 0.0, 1.0, 0.0, 1.0, 1.0);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (1, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (47, 'Glacier', 0.0, 1.0, 0.0, 3.0, 3.0);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (0, 'Grass', 2.0, 0.0, 0.0, 1.0, 1.0);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (19, 'Hills', 1.0, 0.0, 0.0, 2.0, 2.0);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (22, 'Jungle', 1.0, 0.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (17, 'Mountain', 0.0, 1.0, 0.0, 3.0, 3.0);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (24, 'Water', 1.0, 0.0, 2.0, 1.0, 1.0);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (49, 'Plains', 1.0, 1.0, 0.0, 1.0, 1.0);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (99, 'River', 0.0, 0.0, 1.0, 0.33, 0.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (23, 'Swamp', 1.0, 0.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (99, 'Tundra', 1.0, 0.0, 0.0, 1.0, 1.0);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (3, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (4, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (5, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (6, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (7, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (8, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (9, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (10, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (11, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (12, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (13, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (14, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (15, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (16, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (2, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
-insert into terrain
-    (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
-    (18, 'Mountain', 0.0, 1.0, 0.0, 3.0, 3.0);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (21, 'Desert', 0.0, 1.0, 0.0, 1.0, 1.0);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (1, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (47, 'Glacier', 0.0, 1.0, 0.0, 3.0, 3.0);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (0, 'Grass', 2.0, 0.0, 0.0, 1.0, 1.0);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (19, 'Hills', 1.0, 0.0, 0.0, 2.0, 2.0);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (22, 'Jungle', 1.0, 0.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (17, 'Mountain', 0.0, 1.0, 0.0, 3.0, 3.0);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (24, 'Water', 1.0, 0.0, 2.0, 1.0, 1.0);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (49, 'Plains', 1.0, 1.0, 0.0, 1.0, 1.0);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (99, 'River', 0.0, 0.0, 1.0, 0.33, 0.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (23, 'Swamp', 1.0, 0.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (99, 'Tundra', 1.0, 0.0, 0.0, 1.0, 1.0);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (3, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (4, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (5, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (6, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (7, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (8, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (9, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (10, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (11, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (12, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (13, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (14, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (15, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (16, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (2, 'Forest', 1.0, 2.0, 0.0, 2.0, 1.5);
+-- insert into terrain
+--     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
+--     (18, 'Mountain', 0.0, 1.0, 0.0, 3.0, 3.0);

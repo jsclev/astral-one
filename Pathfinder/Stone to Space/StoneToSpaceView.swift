@@ -3,7 +3,7 @@ import SpriteKit
 import SwiftUI
 import Engine
 
-struct StoneToSpaceView: View {
+struct GameView: View {
     @State private var offset = CGSize.zero
     @State private var isDragging = false
     @State private var isAnimating = false
@@ -14,7 +14,7 @@ struct StoneToSpaceView: View {
     
     @State private var location: CGPoint = .zero
     @GestureState private var fingerLocation: CGPoint? = nil
-
+    
     var mapViewModel = MapViewModel()
     var scene: StoneToSpaceScene
     
@@ -36,11 +36,11 @@ struct StoneToSpaceView: View {
                                                     y: startCameraPosition.y + (value.translation.height * mapViewModel.scale))
                 
                 // Get the offset between the start location and the camera's position
-//                print("--------------------------------------------------------------------------")
-//                print("translation: [\(value.translation.width), \(value.translation.height)]")
-//                print("finger location: \(value.location)")
-//                print("start location: \(value.startLocation)")
-//                print("Camera position: \(scene.gameCamera.position)")
+                //                print("--------------------------------------------------------------------------")
+                //                print("translation: [\(value.translation.width), \(value.translation.height)]")
+                //                print("finger location: \(value.location)")
+                //                print("start location: \(value.startLocation)")
+                //                print("Camera position: \(scene.gameCamera.position)")
             }
             .onEnded { value in
                 let temp = (value.predictedEndTranslation.width - value.translation.width)
@@ -48,16 +48,16 @@ struct StoneToSpaceView: View {
                 let magnitude = sqrt(
                     (temp * temp +
                      temp2 * temp2))
-
+                
                 isDragging = false
-
+                
                 var duration = (magnitude/2000) + 0.8
                 if duration < 0.8 {
                     duration = 0.8
                 }
-//                print("magnitude: \(magnitude)")
-//                print("duration: \(duration)")
-
+                //                print("magnitude: \(magnitude)")
+                //                print("duration: \(duration)")
+                
                 let moveAction = SKAction.move(to: CGPoint(x: startCameraPosition.x - (value.predictedEndTranslation.width * mapViewModel.scale),
                                                            y: startCameraPosition.y + (value.predictedEndTranslation.height * mapViewModel.scale)),
                                                duration: duration,
@@ -77,7 +77,7 @@ struct StoneToSpaceView: View {
                 } else {
                     isAnimating = false
                 }
-
+                
                 scene.gameCamera.run(moveAction, withKey: "map-pan-momentum")
             }
     }
@@ -89,8 +89,8 @@ struct StoneToSpaceView: View {
                 SpriteView(scene: scene, debugOptions: [.showsFPS,
                                                         .showsNodeCount,
                                                         .showsDrawCount])
-                    .ignoresSafeArea()
-                    .simultaneousGesture(simpleDrag)
+                .ignoresSafeArea()
+                .simultaneousGesture(simpleDrag)
             }
             else {
                 SpriteView(scene: scene)
