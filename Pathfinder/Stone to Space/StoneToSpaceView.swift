@@ -90,7 +90,7 @@ struct StoneToSpaceView: View {
                                                         .showsNodeCount,
                                                         .showsDrawCount])
                     .ignoresSafeArea()
-                    .simultaneousGesture(simpleDrag)
+//                    .simultaneousGesture(simpleDrag)
             }
             else {
                 SpriteView(scene: scene)
