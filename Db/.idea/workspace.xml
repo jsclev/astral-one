@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fd414d6-76be-43aa-bf8a-c5778b259c52" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Constants.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Constants.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/GameGestureRecognizer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/GameGestureRecognizer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/Map Layers/SpecialResourcesMapLayer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/Map Layers/SpecialResourcesMapLayer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One/Astral One.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One/Astral One.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/create-tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/common/create-tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/game.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Pathfinder/Stone to Space/StoneToSpaceScene.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/StoneToSpaceScene.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

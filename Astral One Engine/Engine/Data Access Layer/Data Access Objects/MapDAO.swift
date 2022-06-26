@@ -166,7 +166,7 @@ public class MapDAO: BaseDAO {
             fatalError("Should not have gotten here.")
         }
     }
-        
+
     public func insert(gameId: Int, map: Map) throws -> Map {
         var mainStmt: OpaquePointer?
         var rowIdStmt: OpaquePointer?
@@ -212,8 +212,8 @@ public class MapDAO: BaseDAO {
             for col in 0..<map.width {
                 let tile = map.tile(at: Position(row: row, col: col))
                 
-                sqlite3_bind_int(mainStmt, gameIdCol, Int32(1))
-                sqlite3_bind_int(mainStmt, mapIdCol, Int32(1))
+                sqlite3_bind_int(mainStmt, gameIdCol, Int32(gameId))
+                sqlite3_bind_int(mainStmt, mapIdCol, Int32(map.mapId))
                 sqlite3_bind_int(mainStmt, rowCol, Int32(row))
                 sqlite3_bind_int(mainStmt, colCol, Int32(col))
                 sqlite3_bind_int(mainStmt, terrainIdCol, Int32(tile.terrain.id))
@@ -234,10 +234,7 @@ public class MapDAO: BaseDAO {
                 
                 let stepResult = sqlite3_step(mainStmt)
                 if stepResult == SQLITE_DONE {
-                    if sqlite3_step(rowIdStmt) == SQLITE_ROW {
-                        //returnMap.add(tile: tile.clone())
-                    }
-                    else {
+                    if sqlite3_step(rowIdStmt) != SQLITE_ROW {
                         let errMsg = String(cString: sqlite3_errmsg(conn)!)
                         sqlite3_finalize(rowIdStmt)
                         
@@ -256,7 +253,7 @@ public class MapDAO: BaseDAO {
         sqlite3_finalize(mainStmt)
         
         if sqlite3_exec (conn, "COMMIT TRANSACTION", nil, nil, nil) != SQLITE_OK {
-            print("Error!!!!")
+            fatalError("Unable to COMMIT TRANSACTION on \(table) table.")
         }
         
         return try get(gameId: gameId)

@@ -96,8 +96,8 @@ public class UnitDAO: BaseDAO {
         sql += "("
         sql += getSql(val: settler.player.game.gameId, postfix: ", ")
         sql += getSql(val: settler.player.playerId, postfix: ", ")
-        sql += getSql(val: 1, postfix: ", ")
-        sql += getSql(val: 1, postfix: "")
+        sql += getSql(val: Constants.noId, postfix: ", ")
+        sql += getSql(val: settler.player.map.tile(at: settler.position).id, postfix: "")
         sql += "), "
         
         sql = getCleanedSql(sql)

@@ -3,7 +3,6 @@ import Combine
 import SpriteKit
 
 public class SpecialResourcesMapLayer {
-
     public init(player: Player, scene: SKScene, mapView: MapManager, tileSet: SKTileSet) {
         let node = SKTileMapNode(tileSet: tileSet,
                                  columns: player.map.width,
@@ -81,12 +80,12 @@ public class SpecialResourcesMapLayer {
                             assetName += "Wine"
                         }
                         
-//                        if let tileGroup = tileSet.tileGroups.first(where: { $0.name == assetName }) {
-//                            node.setTileGroup(tileGroup, forColumn: col, row: row)
-//                        }
-//                        else {
-//                            fatalError("Unable to find special resource \"\(assetName)\"")
-//                        }
+                        if let tileGroup = tileSet.tileGroups.first(where: { $0.name == assetName }) {
+                            node.setTileGroup(tileGroup, forColumn: col, row: row)
+                        }
+                        else {
+                            fatalError("Unable to find special resource \"\(assetName)\"")
+                        }
                     }
                 }
             }

@@ -135,7 +135,8 @@ CREATE TABLE unit (
     unit_type_id INTEGER NOT NULL,
     tile_id INTEGER NOT NULL,
     FOREIGN KEY (game_id) REFERENCES game (game_id),
-    FOREIGN KEY (unit_type_id) REFERENCES unit_type (unit_type_id),
+    -- FIXME Need to implement the unit type foreign key
+--     FOREIGN KEY (unit_type_id) REFERENCES unit_type (unit_type_id)
     FOREIGN KEY (tile_id) REFERENCES tile (tile_id)
 );
 

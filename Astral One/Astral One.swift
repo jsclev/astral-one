@@ -108,7 +108,7 @@ struct GameView: View {
                                                         .showsNodeCount,
                                                         .showsDrawCount])
                 .ignoresSafeArea()
-                .simultaneousGesture(simpleDrag)
+                //                    .simultaneousGesture(simpleDrag)
             }
             else {
                 SpriteView(scene: scene)
@@ -139,7 +139,8 @@ class GameScene: SKScene {
     var gameCamera: Camera!
     var cameraScale = 1.0
     var initialCameraScale = 1.0
-    var pinchGestureRecognizer: UIPinchGestureRecognizer!
+    var gameGestureRecognizer: GameGestureRecognizer!
+    var tilesetName = Constants.tilesetName
     let mapIconsTilesetName: String = "Map Icons"
     let mapName = "terrain"
     var mapIconsTileset: SKTileSet!
@@ -148,6 +149,12 @@ class GameScene: SKScene {
     var startTouchPos = CGPoint.zero
     let tileSet: SKTileSet
     var mapView: MapManager!
+    
+    private var initialCameraPosition: CGPoint = .zero
+    private var previousCameraScale: CGFloat = 1.0
+    private var previousTranslation: CGSize = .zero
+    private var previousOffset: CGSize = .zero
+    private var lastZoomCenterLocation: CGPoint = .zero
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
@@ -178,12 +185,6 @@ class GameScene: SKScene {
         fatalError("init(coder:) is not supported.")
     }
     
-    @objc func tap(recognizer: UITapGestureRecognizer){
-        if let bus = eventBus {
-            bus.tap(recognizer: recognizer)
-        }
-    }
-    
     override func didMove(to view: SKView) {
         do {
             try db.mapDao.importTiledMap(gameId: AppConstants.gameId, filename: Constants.mapFilename)
@@ -200,9 +201,6 @@ class GameScene: SKScene {
         addChild(gameCamera)
         
         gameCamera.show()
-        
-        pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(handleZoom))
-        view.addGestureRecognizer(pinchGestureRecognizer)
         
         //        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(pan))
         //        view.addGestureRecognizer(panGesture)
@@ -247,11 +245,15 @@ class GameScene: SKScene {
         contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
         cityCreatorMenu = CityCreatorMenu(player: game.currentPlayer, parent: self, mapManager: mapView)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
-        tapGesture.numberOfTapsRequired = 1
-        view.addGestureRecognizer(tapGesture)
-        
         eventBus = EventBus(game: game, scene: self, mapManager: mapView)
+        
+        if let eb = eventBus {
+            gameGestureRecognizer = GameGestureRecognizer(target: self,
+                                                          action: #selector(handleGestures),
+                                                          eventBus: eb)
+            view.addGestureRecognizer(gameGestureRecognizer)
+        }
+        
     }
     
     private func addInitialSettler(player: Player) {
@@ -306,17 +308,119 @@ class GameScene: SKScene {
         print(string + formatter.string(from: date))
     }
     
-    @objc func handleZoom(sender: UIPinchGestureRecognizer) {
-        if (sender.state == .began) {
+    @objc func handleGestures(sender: GameGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            gameCamera.removeAction(forKey: "map-pan-momentum")
+            gameCamera.removeAction(forKey: "map-scale-momentum")
+            
+            initialCameraPosition = gameCamera.position
+            mapViewModel.scale = gameCamera.xScale
+            initialCameraScale = mapViewModel.scale
+            previousOffset = .zero
+            previousTranslation = .zero
+            previousCameraScale = 0
             mapViewModel.zoomBegan()
-        }
-        if (sender.state == .changed) {
-            print("scale: [\(sender.scale)")
-            //            print("scale: [\(gameCamera.xScale), \(gameCamera.yScale)]")
+        case .changed:
+            
+            
+            
             mapViewModel.updateScale(newScale: sender.scale)
             gameCamera.setScale(mapViewModel.scale)
-            contextMenu.menu.setScale(mapViewModel.scale)
-            //            mapViewModel.resetScale()
+            
+            
+            let point = sender.location(in: nil)
+            
+            let fromCenter = CGSize(width: point.x - game.canvasSize.width/2, height: point.y - game.canvasSize.height/2)
+            
+            
+            // let currentTranslation = CGSize(width: sender.translation.width - previousTranslation.width, height: sender.translation.height - previousTranslation.height)
+            
+            let scaleX = gameCamera.xScale - mapViewModel.initialScale
+            let scaleXDifference = scaleX - previousCameraScale
+            let offsetX = (fromCenter.width - sender.translation.width) * -scaleXDifference
+            
+            
+            let scaleY = gameCamera.yScale - mapViewModel.initialScale
+            let scaleYDifference = scaleY - previousCameraScale
+            
+            let offsetY = (fromCenter.height - sender.translation.height ) * scaleYDifference
+            
+            previousOffset.width += offsetX
+            previousOffset.height += offsetY
+            
+            
+            gameCamera.position = CGPoint(x: initialCameraPosition.x + previousOffset.width - (sender.translation.width * mapViewModel.scale),
+                                          y: initialCameraPosition.y + previousOffset.height + (sender.translation.height * mapViewModel.scale))
+            
+            if previousCameraScale != scaleX {
+                lastZoomCenterLocation = sender.location(in: nil)
+            }
+            
+            previousTranslation = sender.translation
+            previousCameraScale = scaleX
+        case .ended:
+            
+            let velocity = sender.predictedExtraTranslation
+            
+            let magnitude = sqrt(
+                (velocity.width * velocity.width +
+                 velocity.height * velocity.height))
+            
+            
+            let translationDuration = (magnitude/2000) + 0.8
+            
+            var velocityScale = gameCamera.xScale / sender.predictedExtraScale
+            velocityScale = min(max(velocityScale, Constants.minZoom), Constants.maxZoom)
+            
+            //            let point = sender.location(in: nil)
+            let fromCenter = CGSize(width: lastZoomCenterLocation.x - game.canvasSize.width/2, height: lastZoomCenterLocation.y - game.canvasSize.height/2)
+            
+            let scaleX = velocityScale - gameCamera.xScale
+            let offsetX = fromCenter.width * -scaleX
+            
+            
+            let scaleY = velocityScale - gameCamera.yScale
+            let offsetY = fromCenter.height * scaleY
+            
+            var scaleDuration = sender.predictedExtraScale - 1
+            
+            if scaleDuration < 0 {
+                scaleDuration = abs(1/scaleDuration)
+            }
+            
+            scaleDuration /= 3
+            
+            var duration = 0.0
+            
+            if sender.predictedExtraScale == 1 {
+                duration = translationDuration
+            } else {
+                duration = 0.65
+            }
+            
+            let moveAction = SKAction.move(to: CGPoint(
+                x: gameCamera.position.x - velocity.width * mapViewModel.scale + offsetX,
+                y: gameCamera.position.y + velocity.height * mapViewModel.scale + offsetY
+            ),
+                                           duration: duration,
+                                           delay: 0,
+                                           usingSpringWithDamping: 9.5,
+                                           initialSpringVelocity: 1.0)
+            
+            
+            let scaleAction = SKAction.scale(to: velocityScale,
+                                             duration: duration,
+                                             delay: 0,
+                                             usingSpringWithDamping: 9.5,
+                                             initialSpringVelocity: 1.0)
+            
+            gameCamera.run(moveAction, withKey: "map-pan-momentum")
+            gameCamera.run(scaleAction, withKey: "map-scale-momentum")
+            
+        default:
+            break
         }
     }
 }
+

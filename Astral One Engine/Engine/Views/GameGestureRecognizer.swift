@@ -203,7 +203,7 @@ public class GameGestureRecognizer: UIGestureRecognizer {
             var scaleDiff = 0.0
             var totalTime = 0.0
             
-            print("\(event.timestamp - (previousVelocityTimeInterval ?? event.timestamp))")
+            // print("\(event.timestamp - (previousVelocityTimeInterval ?? event.timestamp))")
             
             if previousScaleTimes.count > 1 && (touches.count > 1 || event.timestamp - (previousVelocityTimeInterval ?? event.timestamp) < maximumScalePreviousTouchTime) {
                 for i in 1..<previousScaleTimes.count {
