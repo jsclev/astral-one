@@ -70,12 +70,6 @@ class StoneToSpaceScene: SKScene {
         fatalError("init(coder:) is not supported.")
     }
     
-    @objc func tap(recognizer: UITapGestureRecognizer){
-        if let bus = eventBus {
-            bus.tap(recognizer: recognizer)
-        }
-    }
-    
     override func didMove(to view: SKView) {
         do {
             try db.mapDao.importTiledMap(gameId: AppConstants.gameId, filename: Constants.mapFilename)
@@ -92,9 +86,6 @@ class StoneToSpaceScene: SKScene {
         addChild(gameCamera)
         
         gameCamera.show()
-        
-        gameGestureRecognizer = GameGestureRecognizer(target: self, action: #selector(handleGestures))
-        view.addGestureRecognizer(gameGestureRecognizer)
 
 //        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(pan))
 //        view.addGestureRecognizer(panGesture)
@@ -139,11 +130,15 @@ class StoneToSpaceScene: SKScene {
         contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
         cityCreatorMenu = CityCreatorMenu(player: game.currentPlayer, parent: self, mapManager: mapView)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tap))
-        tapGesture.numberOfTapsRequired = 1
-        view.addGestureRecognizer(tapGesture)
-        
         eventBus = EventBus(game: game, scene: self, mapManager: mapView)
+        
+        if let eb = eventBus {
+            gameGestureRecognizer = GameGestureRecognizer(target: self,
+                                                          action: #selector(handleGestures),
+                                                          eventBus: eb)
+            view.addGestureRecognizer(gameGestureRecognizer)
+        }
+
     }
     
     private func addInitialSettler(player: Player) {

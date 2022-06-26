@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 public class GameGestureRecognizer: UIGestureRecognizer {
+    private let eventBus: EventBus
     private var touchPoints: [UITouch: CGPoint] = [:]
     private var initialTouchPoints: [UITouch: CGPoint] = [:]
     private var initialScale: CGFloat = 1.0
@@ -23,6 +24,10 @@ public class GameGestureRecognizer: UIGestureRecognizer {
     public var predictedExtraTranslation: CGSize = .zero
     public var predictedExtraScale: CGFloat = 1.0
     
+    public init(target: Any?, action: Selector?, eventBus: EventBus) {
+        self.eventBus = eventBus
+        super.init(target: target, action: action)
+    }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesBegan(touches, with: event)
@@ -115,6 +120,16 @@ public class GameGestureRecognizer: UIGestureRecognizer {
     
     
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+        // Handle single tap
+        if previousDragTimes.count == 1 && previousDragTimes.values.first?.count == 1 {
+            if let tapLocation = touchPoints.values.first {
+                eventBus.tap(recognizerLocation: tapLocation)
+                
+                super.touchesEnded(touches, with: event)
+                self.state = .ended
+                return
+            }
+        }
         
         touches.forEach { touch in
             touchPoints[touch] = nil
@@ -247,5 +262,7 @@ public class GameGestureRecognizer: UIGestureRecognizer {
         self.previousScaleTimes = []
         
         self.previousVelocityTimeInterval = nil
+        
+        self.predictedExtraTranslation = .zero
     }
 }

@@ -7,7 +7,34 @@ public class CityDAO: BaseDAO {
     }
     
     public func add(city: City) throws -> City {
-        return City(id: city.id + 100,
+        var cityId = Constants.noId
+        
+        var sql = "INSERT INTO city (game_id, player_id, name, tile_id) VALUES "
+        
+        sql += "("
+        sql += getSql(val: city.owner.game.gameId, postfix: ", ")
+        sql += getSql(val: city.owner.playerId, postfix: ", ")
+        sql += getSql(val: city.name, postfix: ", ")
+        sql += getSql(val: city.owner.map.tile(at: city.position).id, postfix: "")
+        sql += "), "
+        
+        sql = getCleanedSql(sql)
+        
+        do {
+            cityId = try insertOneRow(sql: sql)
+        }
+        catch SQLiteError.Prepare(let message) {
+            var errMsg = "Failed to compile the SQL to insert rows into the \(table) table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        catch SQLiteError.Step(let message) {
+            var errMsg = "Failed to execute the SQL to insert rows into the \(table) table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        
+        return City(id: cityId,
                     owner: city.owner,
                     theme: city.theme,
                     name: city.name,
