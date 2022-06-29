@@ -12,7 +12,7 @@ public class Game: ObservableObject {
 
     public let gameId: Int
     public let turns: [Turn]
-    public var players: [Player] = []
+    public var players: [AIPlayer] = []
     public let map: Map
     public let theme: Theme
     public var commands: [Command] = []
@@ -34,8 +34,8 @@ public class Game: ObservableObject {
         self.turns = try self.db.turnDao.getTurns(theme: theme)
     }
     
-    public func addPlayer(player: Player) {
-        players.append(player)
+    public func addPlayer(aiPlayer: AIPlayer) {
+        players.append(aiPlayer)
     }
     
     public func addCommand(command: Command) {
@@ -48,7 +48,7 @@ public class Game: ObservableObject {
         }
     }
     
-    public var currentPlayer: Player {
+    public var currentPlayer: AIPlayer {
         return players[0]
     }
     

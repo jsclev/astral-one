@@ -15,7 +15,8 @@ public class TestUtils {
                     terrain: Terrain(id: 1,
                                      tiledId: 1,
                                      name: "Test \(terrainType)",
-                                     type: terrainType))
+                                     type: terrainType),
+                                     hasRiver: false)
     }
     
     internal static func makeTile(_ row: Int,
@@ -28,6 +29,7 @@ public class TestUtils {
                                      tiledId: 1,
                                      name: "Test \(terrainType)",
                                      type: terrainType),
-                                     specialResource: specialResource)
+                                     specialResource: specialResource,
+                                     hasRiver: false)
     }
 }

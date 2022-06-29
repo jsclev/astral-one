@@ -238,9 +238,7 @@ class GameScene: SKScene {
         //        fowGenerator.generate()
         game.currentPlayer.map.revealAllTiles()
         let tileset = SKTileSet(named: Constants.tilesetName)
-        
-        // addInitialSettler(player: player)
-        
+                
         mapView = MapManager(player: game.currentPlayer, scene: self, tileset: tileset!)
         contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
         cityCreatorMenu = CityCreatorMenu(player: game.currentPlayer, parent: self, mapManager: mapView)
@@ -253,52 +251,6 @@ class GameScene: SKScene {
                                                           eventBus: eb)
             view.addGestureRecognizer(gameGestureRecognizer)
         }
-        
-    }
-    
-    private func addInitialSettler(player: Player) {
-        let minRow = 2
-        let maxRow = player.map.height - 2
-        let minCol = 2
-        let maxCol = player.map.width - 2
-        
-        var foundTile = false
-        var tile = player.map.tile(at: Position(row: 0, col: 0))
-        
-        while !foundTile {
-            let randomRow = Int.random(in: minRow...maxRow)
-            let randomCol = Int.random(in: minCol...maxCol)
-            
-            tile = player.map.tile(at: Position(row: randomRow, col: randomCol))
-            
-            if tile.canCreateCity {
-                foundTile = true
-                print("Adding Settler to [\(randomRow), \(randomCol)]")
-            }
-        }
-        
-        //        let settler1 = Settler(game: game,
-        //                              player: player,
-        //                              theme: game.theme,
-        //                              name: "Settler",
-        //                              position: tile.position)
-        //        let settler2 = Settler(game: game,
-        //                               player: player,
-        //                               theme: game.theme,
-        //                               name: "Settler2",
-        //                               position: tile.position)
-        
-        //        player.add(cityCreator: settler1)
-        //        player.add(cityCreator: settler2)
-        
-        //        let createCityCmd = CreateCityCommand(player: player,
-        //                                              type: CommandType(id: 1, name: ""),
-        //                                              turn: player.game.getCurrentTurn(),
-        //                                              ordinal: 1,
-        //                                              cost: 0,
-        //                                              cityCreator: settler1,
-        //                                              cityName: "New York")
-        // createCityCmd.execute()
     }
     
     func printDate(string: String) {

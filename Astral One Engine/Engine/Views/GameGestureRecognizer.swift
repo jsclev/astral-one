@@ -114,8 +114,8 @@ public class GameGestureRecognizer: UIGestureRecognizer {
         
         
         
-        translation.width += offset.width / CGFloat(touches.count)
-        translation.height += offset.height / CGFloat(touches.count)
+        translation.width += offset.width / CGFloat(touchPoints.count)
+        translation.height += offset.height / CGFloat(touchPoints.count)
     }
     
     

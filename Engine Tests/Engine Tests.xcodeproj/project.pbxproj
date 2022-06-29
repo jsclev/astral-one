@@ -18,6 +18,7 @@
 		521F21F9280A17AD00F1D61D /* ValueNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21F8280A17AD00F1D61D /* ValueNodeTests.swift */; };
 		5236B41028450974006DF7E6 /* level2_settler.lua in Resources */ = {isa = PBXBuildFile; fileRef = 5236B40F28450974006DF7E6 /* level2_settler.lua */; };
 		5236B41128450974006DF7E6 /* level2_settler.lua in Resources */ = {isa = PBXBuildFile; fileRef = 5236B40F28450974006DF7E6 /* level2_settler.lua */; };
+		5239E7A3286AD0A100D08FDB /* game.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5239E7A2286AD0A100D08FDB /* game.sqlite */; };
 		52614791284DB73D00CFF9CA /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293BC2E280DE8A2001DE2F3 /* TestUtils.swift */; };
 		5293BC32280DE8FE001DE2F3 /* CommandDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293BC31280DE8FE001DE2F3 /* CommandDAOTests.swift */; };
 		5293BC36280E3315001DE2F3 /* TerrainDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293BC35280E3315001DE2F3 /* TerrainDAOTests.swift */; };
@@ -29,8 +30,6 @@
 		52AB070B280200550039B47D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB070A280200550039B47D /* ContentView.swift */; };
 		52AB070D280200560039B47D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52AB070C280200560039B47D /* Assets.xcassets */; };
 		52AB0710280200560039B47D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52AB070F280200560039B47D /* Preview Assets.xcassets */; };
-		52AB073C280216200039B47D /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52AB073B280216200039B47D /* civitas.sqlite */; };
-		52AB073D280216200039B47D /* civitas.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 52AB073B280216200039B47D /* civitas.sqlite */; };
 		52AB0741280219660039B47D /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB0740280219660039B47D /* NodeTests.swift */; };
 		52DE5F362810F5D70029EFE1 /* MapDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F352810F5D70029EFE1 /* MapDAOTests.swift */; };
 		52DE5F392811FCB20029EFE1 /* TerrainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F382811FCB20029EFE1 /* TerrainTests.swift */; };
@@ -64,6 +63,7 @@
 		521F21F42808FB7B00F1D61D /* GridGraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridGraphTests.swift; sourceTree = "<group>"; };
 		521F21F8280A17AD00F1D61D /* ValueNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueNodeTests.swift; sourceTree = "<group>"; };
 		5236B40F28450974006DF7E6 /* level2_settler.lua */ = {isa = PBXFileReference; lastKnownFileType = text; path = level2_settler.lua; sourceTree = "<group>"; };
+		5239E7A2286AD0A100D08FDB /* game.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = game.sqlite; sourceTree = "<group>"; };
 		5293BC2E280DE8A2001DE2F3 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		5293BC31280DE8FE001DE2F3 /* CommandDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandDAOTests.swift; sourceTree = "<group>"; };
 		5293BC35280E3315001DE2F3 /* TerrainDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainDAOTests.swift; sourceTree = "<group>"; };
@@ -79,7 +79,6 @@
 		52AB0715280200560039B47D /* Engine Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Engine Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB0733280213A20039B47D /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AB0735280213DA0039B47D /* libAstral One Engine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libAstral One Engine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52AB073B280216200039B47D /* civitas.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = civitas.sqlite; path = ../../Db/civitas.sqlite; sourceTree = "<group>"; };
 		52AB0740280219660039B47D /* NodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
 		52DE5F352810F5D70029EFE1 /* MapDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDAOTests.swift; sourceTree = "<group>"; };
 		52DE5F382811FCB20029EFE1 /* TerrainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrainTests.swift; sourceTree = "<group>"; };
@@ -278,8 +277,8 @@
 		52AB073A2802157D0039B47D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5239E7A2286AD0A100D08FDB /* game.sqlite */,
 				52F559D2283A60ED00966F06 /* Lua */,
-				52AB073B280216200039B47D /* civitas.sqlite */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -414,10 +413,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				52F559D5283A63AA00966F06 /* defensive_ai.lua in Resources */,
-				52AB073C280216200039B47D /* civitas.sqlite in Resources */,
 				52F559CE2839F3D400966F06 /* level1_settler.lua in Resources */,
 				5236B41028450974006DF7E6 /* level2_settler.lua in Resources */,
 				52AB0710280200560039B47D /* Preview Assets.xcassets in Resources */,
+				5239E7A3286AD0A100D08FDB /* game.sqlite in Resources */,
 				52A646BC2835AA300066B82D /* Assets.xcassets in Resources */,
 				52AB070D280200560039B47D /* Assets.xcassets in Resources */,
 			);
@@ -428,7 +427,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				52F559D6283A63AA00966F06 /* defensive_ai.lua in Resources */,
-				52AB073D280216200039B47D /* civitas.sqlite in Resources */,
 				5236B41128450974006DF7E6 /* level2_settler.lua in Resources */,
 				52F559CF2839F3D400966F06 /* level1_settler.lua in Resources */,
 			);

@@ -3,22 +3,22 @@ import Engine
 
 class PlannerTests: XCTestCase {
     
-    func testGetActions1() throws {
-        let theme = Theme(id: 1, name: "Test Theme")
-        let map = Map(mapId: 1, width: 1, height: 1)
-        let game = Game(theme: theme, map: map, db: TestUtils.getDb())
-        let startState = Player(playerId: 1, game: game, map: map)
-        let player = startState.clone()
-        
-        // Execute the sequence of actions that the planner constructed
-        for action in player.getAvailableActions() {
-            action.execute()
-        }
-        
-        // We purposefully did not add any available actions, so the planner cannot do anything
-        XCTAssertEqual(player.defense, startState.defense)
-        
-    }
+//    func testGetActions1() throws {
+//        let theme = Theme(id: 1, name: "Test Theme")
+//        let map = Map(mapId: 1, width: 1, height: 1)
+//        let game = Game(theme: theme, map: map, db: TestUtils.getDb())
+//        let startState = Player(playerId: 1, game: game, map: map)
+//        let player = startState.clone()
+//
+//        // Execute the sequence of actions that the planner constructed
+//        for action in player.getAvailableActions() {
+//            action.execute()
+//        }
+//
+//        // We purposefully did not add any available actions, so the planner cannot do anything
+//        XCTAssertEqual(player.defense, startState.defense)
+//
+//    }
     
 //    func testGetActions100() throws {
 //        let theme = Theme(id: 1, name: "Test Theme")
@@ -569,7 +569,7 @@ class PlannerTests: XCTestCase {
     func testGetActions198() throws {
         let theme = Theme(id: 1, name: "Standard")
         let map = Map(width: 8, height: 8)
-        let game = Game(theme: theme, map: map, db: TestUtils.getDb())
+        let game = try Game(gameId: 1, theme: theme, map: map, db: TestUtils.getDb())
         
         map.add(tile: TestUtils.makeTile(0, 0, TerrainType.Forest, SpecialResourceType.Pheasant))
         map.add(tile: TestUtils.makeTile(1, 0, TerrainType.Grassland))
@@ -651,58 +651,16 @@ class PlannerTests: XCTestCase {
                                 skillLevel: SkillLevel.One,
                                 difficultyLevel: DifficultyLevel.Easy,
                                 playStyle: PlayStyle.init(offense: 0.5, defense: 0.5))
-        let aiSettler = Settler(game: game,
-                                player: aiPlayer,
-                                theme: theme,
-                                name: "Settler",
-                                position: Position(row: 1, col: 1))
-        XCTAssertNil(aiPlayer.map.tile(at: Position(row: 2, col: 2)).city)
 
-        let moveCmd = MoveUnitCommand(player: aiPlayer,
-                                      type: CommandType(id: 1, name: ""),
-                                      turn: Turn(id: 1,
-                                                 year: 1,
-                                                 ordinal: 1,
-                                                 displayText: "Move command"),
-                                      ordinal: 1,
-                                      unit: aiSettler,
-                                      to: Position(row: 2, col: 2))
-        let createCityCmd = CreateCityCommand(player: aiPlayer,
-                                              type: CommandType(id: 1, name: ""),
-                                              turn: Turn(id: 1,
-                                                         year: 1,
-                                                         ordinal: 1,
-                                                         displayText: "Move command"),
-                                              ordinal: 2,
-                                              cost: 0,
-                                              cityCreator: aiSettler,
-                                              cityName: "New York City")
-        moveCmd.execute()
-        createCityCmd.execute()
+        XCTAssertNil(aiPlayer.map.tile(at: Position(row: 2, col: 2)).city)
         
         XCTAssertNotNil(aiPlayer.map.tile(at: Position(row: 2, col: 2)).city)
-        
-        let agent = try SettlerAgent(player: aiPlayer, settler: aiSettler)
-        let cityRadiusScores = agent.getCityRadiusScores()
-        
-        for (key, value) in cityRadiusScores {
-            print("[\(key.row), \(key.col)]: \(value)")
-        }
-        
-        print(cityRadiusScores)
-        
-        let commands = game.db.commandDao.getCommands(gameId: 1)
-        
-        for command in commands {
-            command.execute()
-        }
-        
     }
     
     func testGetActions98() throws {
         let theme = Theme(id: 1, name: "Standard")
         let map = Map(mapId: 1, width: 3, height: 3)
-        let game = Game(theme: theme, map: map, db: TestUtils.getDb())
+        let game = try Game(gameId: 1, theme: theme, map: map, db: TestUtils.getDb())
         let player = Player(playerId: 1, game: game, map: map)
         let player2 = Player(playerId: 2, game: game, map: map)
         // let turn1 = Turn(id: 1, year: -4000, ordinal: 1, displayText: "4000 BC")
@@ -745,22 +703,14 @@ class PlannerTests: XCTestCase {
                                 name: "test city",
                                 assetName: "test asset name",
                                 position: settler.position)
-                let createCity = CreateCityCommand(player: playerCopy,
-                                                   type: CommandType.init(id: 1, name: "test"),
-                                                   turn: turn,
-                                                   ordinal: 1,
-                                                   cost: 0,
-                                                   cityCreator: settler,
-                                                   cityName: "Test city")
-                createCity.execute()
                 actionPlan = []
                 
                 XCTAssertNotNil(playerCopy.map.tile(at: position).city)
                 
                 if let city = playerCopy.getCity(at: position) {
-                    city.addAvailable(action: CreateSettlerAction(game: game,
-                                                                  player: playerCopy,
-                                                                  city: city))
+//                    city.addAvailable(action: CreateSettlerAction(game: game,
+//                                                                  player: playerCopy,
+//                                                                  city: city))
                     city.addAvailable(action: CreateInfantry1Action(game: game,
                                                                     player: playerCopy,
                                                                     city: city))

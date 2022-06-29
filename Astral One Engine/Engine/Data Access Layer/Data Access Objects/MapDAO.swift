@@ -34,7 +34,7 @@ public class MapDAO: BaseDAO {
             INNER JOIN
                 terrain te ON te.terrain_id = t.terrain_id
             WHERE
-                t.game_id = 1
+                t.game_id = \(gameId)
         """
         
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {

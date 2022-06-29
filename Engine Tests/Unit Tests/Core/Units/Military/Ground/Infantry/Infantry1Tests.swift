@@ -5,7 +5,7 @@ class Infantry1Tests: XCTestCase {
     func testCreateExpectsSuccess() throws {
         let theme = Theme(id: 1, name: "Test Theme")
         let map = Map(mapId: 1, width: 1, height: 1)
-        let game = Game(theme: theme, map: map, db: TestUtils.getDb())
+        let game = try Game(gameId: 1, theme: theme, map: map, db: TestUtils.getDb())
 
         let fixture = Infantry1(game: game,
                                 player: Player(playerId: 1, game: game, map: map),

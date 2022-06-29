@@ -3,12 +3,15 @@ import Foundation
 public class SettlerAgent {
     internal let player: AIPlayer
     internal let settler: Settler
+    internal let cityProximity: CityProximityDecorator
 //    private let luaState: OpaquePointer!
     
     public init(player: AIPlayer, settler: Settler) throws {
         self.player = player
         self.settler = settler
         
+        cityProximity = CityProximityDecorator(aiPlayer: player, maxScore: 10.0)
+
 //        luaState = luaL_newstate()
 //        luaL_openlibs(luaState);
 //

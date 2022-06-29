@@ -158,12 +158,12 @@ public class Db {
                                difficultyLevel: DifficultyLevel.Easy,
                                playStyle: PlayStyle(offense: 0.5, defense: 0.5))
 
-        game.addPlayer(player: player1)
-        game.addPlayer(player: player2)
-        game.addPlayer(player: player3)
-        game.addPlayer(player: player4)
-        game.addPlayer(player: player5)
-        game.addPlayer(player: player6)
+        game.addPlayer(aiPlayer: player1)
+        game.addPlayer(aiPlayer: player2)
+        game.addPlayer(aiPlayer: player3)
+        game.addPlayer(aiPlayer: player4)
+        game.addPlayer(aiPlayer: player5)
+        game.addPlayer(aiPlayer: player6)
         
         return game
     }

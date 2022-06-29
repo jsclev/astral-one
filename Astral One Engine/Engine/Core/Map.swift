@@ -116,9 +116,8 @@ public class Map: ObservableObject {
     }
     
     public func getDistanceToNearestCity(from: Position) -> Int {
-        var currDistance = 0
-        var maxDistance = 0
-        
+        var currDistance = -1
+        var minDistance = width + height
         
         if cities.count == 0 {
             return -1
@@ -129,14 +128,25 @@ public class Map: ObservableObject {
                 return 0
             }
             
-            currDistance = abs(city.position.row - from.row) + abs(city.position.col - from.col) - 1
+            let rowDiff = abs(city.position.row - from.row)
+            let colDiff = abs(city.position.col - from.col)
             
-            if currDistance > maxDistance {
-                maxDistance = currDistance
+            if rowDiff == colDiff {
+                currDistance = rowDiff
+            }
+            else if rowDiff > colDiff {
+                currDistance = colDiff + (rowDiff - colDiff)
+            }
+            else {
+                currDistance = rowDiff + (colDiff - rowDiff)
+            }
+            
+            if currDistance < minDistance {
+                minDistance = currDistance
             }
         }
         
-        return maxDistance
+        return minDistance
     }
         
 //    public func add(player: Player) {
