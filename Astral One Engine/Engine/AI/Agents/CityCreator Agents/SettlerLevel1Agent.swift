@@ -50,7 +50,7 @@ public class SettlerLevel1Agent: SettlerAgent {
         var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
                                                           count: player.map.width),
                                          count: player.map.height)
-        let scoreMap2 = cityProximity.process()
+        let scoreMap2 = analyzers[0].getScoreMap()
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {

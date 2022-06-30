@@ -12,8 +12,22 @@
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/SettlerLevel8Agent.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/SettlerLevel8Agent.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/EventBus.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/EventBus.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Game.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Game.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/MapDAO.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/MapDAO.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Db.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Db.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/GameGestureRecognizer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/GameGestureRecognizer.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One/Astral One.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One/Astral One.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine Tests/Engine Tests.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Engine Tests.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/AI/PlannerTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/AI/PlannerTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Data Structures/GridGraphTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Data Structures/GridGraphTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Data Structures/MapTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Data Structures/MapTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Influence Maps/UnitInfluenceMapCalculatorTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Influence Maps/UnitInfluenceMapCalculatorTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/PlayerTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/PlayerTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/TileTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/TileTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Units/Military/Ground/Infantry/Infantry1Tests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Units/Military/Ground/Infantry/Infantry1Tests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Data Access Layer/Data Access Objects/MapDAOTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Data Access Layer/Data Access Objects/MapDAOTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/TestUtils.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/TestUtils.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pathfinder/Stone to Space.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space.xcodeproj/project.pbxproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,6 +1,6 @@
 import Foundation
 
-public class CityProximityDecorator: AgentDecorator {
+public class WaterAnalysisDecorator: AgentDecorator {
     private let aiPlayer: AIPlayer
     private let maxScore: Double
     
@@ -355,11 +355,6 @@ public class CityProximityDecorator: AgentDecorator {
         var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
                                                           count: aiPlayer.map.width),
                                          count: aiPlayer.map.height)
-        
-        if aiPlayer.map.cities.isEmpty {
-            return scoreMap
-        }
-        
         for row in 0..<aiPlayer.map.height {
             for col in 0..<aiPlayer.map.width {
                 let position = Position(row: row, col: col)
@@ -367,14 +362,26 @@ public class CityProximityDecorator: AgentDecorator {
                 
                 if tile.visibility == Visibility.FullyRevealed {
                     if aiPlayer.map.canCreateCity(at: position) {
-                        scoreMap[row][col] = check(position: position)
+                        if tile.hasRiver {
+                            scoreMap[row][col] = 25.0
+                        }
+                        else {
+                            if col > 0 {
+                                let east = aiPlayer.map.tile(at: Position(row: row, col: col - 1))
+
+                                if east.terrain.type == TerrainType.Ocean {
+                                    scoreMap[row][col] = 12.0
+                                }
+                            }
+                            else if col < aiPlayer.map.width - 2 {
+                                let west = aiPlayer.map.tile(at: Position(row: row, col: col + 1))
+
+                                if west.terrain.type == TerrainType.Ocean {
+                                    scoreMap[row][col] = 12.0
+                                }                                
+                            }
+                        }
                     }
-                    else {
-                        scoreMap[row][col] = -maxScore
-                    }
-                }
-                else {
-                    scoreMap[row][col] = maxScore / 100.0
                 }
                 
             }
@@ -390,7 +397,7 @@ public class CityProximityDecorator: AgentDecorator {
         if distance > 0 {
             print("Found city at distance \(distance)")
         }
-
+        
         if distance == 1 {
             score = -4.0 * maxScore
         }

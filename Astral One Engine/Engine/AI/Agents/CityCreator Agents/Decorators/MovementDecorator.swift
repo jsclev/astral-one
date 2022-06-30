@@ -1,24 +1,26 @@
 import Foundation
 
-public class CityProximityDecorator: AgentDecorator {
+public class MovementDecorator: AgentDecorator {
     private let aiPlayer: AIPlayer
+    private let settler: Settler
     private let maxScore: Double
     
-    public init(aiPlayer: AIPlayer, maxScore: Double) {
+    public init(aiPlayer: AIPlayer, cityCreator: Settler, maxScore: Double) {
         self.aiPlayer = aiPlayer
+        self.settler = cityCreator
         self.maxScore = maxScore
     }
     
     public func getScoreMap() -> [[Double]] {
         switch aiPlayer.skillLevel {
         case .One: return getLevel1ScoreMap()
-        case .Two: return getLevel2ScoreMap()
-        case .Three: return getLevel3ScoreMap()
-        case .Four: return getLevel4ScoreMap()
-        case .Five: return getLevel5ScoreMap()
-        case .Six: return getLevel6ScoreMap()
-        case .Seven: return getLevel7ScoreMap()
-        case .Eight: return getLevel8ScoreMap()
+        case .Two: return getLevel1ScoreMap()
+        case .Three: return getLevel1ScoreMap()
+        case .Four: return getLevel1ScoreMap()
+        case .Five: return getLevel1ScoreMap()
+        case .Six: return getLevel1ScoreMap()
+        case .Seven: return getLevel1ScoreMap()
+        case .Eight: return getLevel1ScoreMap()
         }
     }
     
@@ -26,43 +28,23 @@ public class CityProximityDecorator: AgentDecorator {
         var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
                                                           count: aiPlayer.map.width),
                                          count: aiPlayer.map.height)
-        
         for row in 0..<aiPlayer.map.height {
             for col in 0..<aiPlayer.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                let distance = settler.position.distance(to: position)
                 
-                if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
-                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
-                        
-                        if distance == 1 {
-                            scoreMap[row][col] = 0.5
-                        }
-                        else if distance == 2 {
-                            scoreMap[row][col] = 1.0
-                        }
-                        else if distance == 3 {
-                            scoreMap[row][col] = 2.0
-                        }
-                        else if distance == 4 {
-                            scoreMap[row][col] = 3.0
-                        }
-                        else if distance == 5 {
-                            scoreMap[row][col] = 10.0
-                        }
-                        else {
-                            scoreMap[row][col] = 1.0
-                        }
-                    }
-                    else {
-                        scoreMap[row][col] = 0.0
-                    }
+                if distance < 4 {
+                    scoreMap[row][col] = -1.0 * Double(distance)
                 }
-                else {
-                    scoreMap[row][col] = 0.1
+                else if distance >= 4 && distance <= 6 {
+                    scoreMap[row][col] = -4.0 * Double(distance)
                 }
-                
+                else if distance >= 7 && distance <= 10 {
+                    scoreMap[row][col] = -6.0 * Double(distance)
+                }
+                else if distance >= 11 {
+                    scoreMap[row][col] = -7.0 * Double(distance)
+                }
             }
         }
         
@@ -390,7 +372,7 @@ public class CityProximityDecorator: AgentDecorator {
         if distance > 0 {
             print("Found city at distance \(distance)")
         }
-
+        
         if distance == 1 {
             score = -4.0 * maxScore
         }

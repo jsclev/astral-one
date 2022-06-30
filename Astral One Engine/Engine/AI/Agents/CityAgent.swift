@@ -117,7 +117,7 @@ public class CityAgent {
                 
                 if tile.visibility == Visibility.FullyRevealed {
                     if player.map.canCreateCity(at: position) {
-                        let distance = player.map.getDistanceToNearestCity(from: position)
+                        let distance = player.map.getDistanceToNearestCity(position: position)
                         let score = 100 - distance
                         
                         if score < 0 {

@@ -115,8 +115,7 @@ public class Map: ObservableObject {
         return true
     }
     
-    public func getDistanceToNearestCity(from: Position) -> Int {
-        var currDistance = -1
+    public func getDistanceToNearestCity(position: Position) -> Int {
         var minDistance = width + height
         
         if cities.count == 0 {
@@ -124,25 +123,10 @@ public class Map: ObservableObject {
         }
         
         for city in cities {
-            if city.position == from {
-                return 0
-            }
+            let distanceToCity = city.position.distance(to: position)
             
-            let rowDiff = abs(city.position.row - from.row)
-            let colDiff = abs(city.position.col - from.col)
-            
-            if rowDiff == colDiff {
-                currDistance = rowDiff
-            }
-            else if rowDiff > colDiff {
-                currDistance = colDiff + (rowDiff - colDiff)
-            }
-            else {
-                currDistance = rowDiff + (colDiff - rowDiff)
-            }
-            
-            if currDistance < minDistance {
-                minDistance = currDistance
+            if distanceToCity < minDistance {
+                minDistance = distanceToCity
             }
         }
         
@@ -246,10 +230,5 @@ public class Map: ObservableObject {
 //
 //        print("****************************************************************")
     }
-    
-    public func getDistance(fromRow: Int, fromCol: Int, toRow: Int, toCol: Int) -> Int {
-        return abs(toRow - fromRow) + abs(toCol - fromCol) + 1
-    }
-    
     
 }

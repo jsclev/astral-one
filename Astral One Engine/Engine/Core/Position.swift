@@ -19,11 +19,19 @@ public struct Position: Equatable, Hashable {
         hasher.combine(col)
     }
     
-    public func distance(from: Position) -> Int {
-        if self == from {
+    public func distance(to: Position) -> Int {
+        if self == to {
             return 0
         }
         
-        return abs(row - from.row) + abs(col - from.col)
+        let rowDiff = abs(to.row - row)
+        let colDiff = abs(to.col - col)
+        
+        if rowDiff > colDiff {
+            return colDiff + (rowDiff - colDiff)
+        }
+        else {
+            return rowDiff + (colDiff - rowDiff)
+        }
     }
 }

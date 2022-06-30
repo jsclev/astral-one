@@ -10,7 +10,6 @@ public class EventBus {
     private let mapManager: MapManager
     private var cancellable = Set<AnyCancellable>()
     
-    
     public init(game: Game, scene: SKScene, mapManager: MapManager) {
         self.game = game
         self.scene = scene
@@ -37,7 +36,6 @@ public class EventBus {
                 }
                 else if name == "Found City Button" {
                     if let unit = game.currentPlayer.selectedUnit {
-                        let tile = game.currentPlayer.map.tile(at: unit.position)
                         // Deselect the selected unit
                         let deselectUnitCmd = SelectUnitCommand(player: game.currentPlayer,
                                                                 turn: game.getCurrentTurn(),
@@ -47,7 +45,33 @@ public class EventBus {
                                                                 unit: unit)
                         let _ = deselectUnitCmd.execute()
                         
-                        addCity(settler: unit as! Settler, tile: tile)
+                        do {
+                            let agent = try SettlerAgent.getAgent(aiPlayer: game.currentPlayer,
+                                                                  settler: unit as! Settler)
+
+                            if let position = try agent.getSettleCityPosition() {
+                                let moveCmd = MoveUnitCommand(player: game.currentPlayer,
+                                                              turn: game.getCurrentTurn(),
+                                                              ordinal: 2,
+                                                              mapManager: mapManager,
+                                                              unit: unit,
+                                                              to: position)
+                                let _ = moveCmd.execute()
+                                // print(position)
+                                // print(unit.position)
+
+                                let cityCmd = CreateCityCommand(player: game.currentPlayer,
+                                                                turn: game.getCurrentTurn(),
+                                                                ordinal: 2,
+                                                                cost: 1,
+                                                                cityCreator: unit as! Settler,
+                                                                cityName: "Chicago")
+                                let _ = cityCmd.execute()
+                            }
+                        }
+                        catch {
+                            print(error)
+                        }
                     }
                     
                     return
@@ -77,8 +101,7 @@ public class EventBus {
                 let _ = moveCmd.execute()
             }
             else {
-                addInitialSettler(player: game.currentPlayer)
-                // addSettler(tile: tile)
+                addSettler(tile: tile)
             }
         }
     }
@@ -105,60 +128,42 @@ public class EventBus {
         }
     }
     
-    private func addInitialSettler(player: AIPlayer) {
-        let minRow = 2
-        let maxRow = player.map.height - 2
-        let minCol = 2
-        let maxCol = player.map.width - 2
+    private func addInitialSettler(player: AIPlayer, tile: Tile) {
+//        let minRow = 2
+//        let maxRow = player.map.height - 2
+//        let minCol = 2
+//        let maxCol = player.map.width - 2
+//
+//        var foundTile = false
+//        var tile = player.map.tile(at: Position(row: 0, col: 0))
+//
+//        while !foundTile {
+//            let randomRow = Int.random(in: minRow...maxRow)
+//            let randomCol = Int.random(in: minCol...maxCol)
+//
+//            tile = player.map.tile(at: Position(row: randomRow, col: randomCol))
+//
+//            if tile.canCreateCity {
+//                foundTile = true
+//                print("Adding Settler to [\(randomRow), \(randomCol)]")
+//            }
+//        }
         
-        var foundTile = false
-        var tile = player.map.tile(at: Position(row: 0, col: 0))
-        
-        while !foundTile {
-            let randomRow = Int.random(in: minRow...maxRow)
-            let randomCol = Int.random(in: minCol...maxCol)
-            
-            tile = player.map.tile(at: Position(row: randomRow, col: randomCol))
-            
-            if tile.canCreateCity {
-                foundTile = true
-                print("Adding Settler to [\(randomRow), \(randomCol)]")
-            }
-        }
-        
-        let cmd = CreateSettlerCommand(player: player,
-                                       turn: player.game.getCurrentTurn(),
-                                       ordinal: 1,
-                                       cost: 1,
-                                       tile: tile)
-        let _ = cmd.execute()
-        
-        if let settler = player.cityCreators.last as? Settler {
-            do {
-                let agent = try SettlerAgent.getAgent(aiPlayer: player, settler: settler)
-            
-                if let position = try agent.getSettleCityPosition() {
-                    let moveCmd = MoveUnitCommand(player: player,
-                                                  turn: game.getCurrentTurn(),
-                                                  ordinal: 2,
-                                                  mapManager: mapManager,
-                                                  unit: settler,
-                                                  to: position)
-                    let _ = moveCmd.execute()
-                    
-//                    let cityCmd = CreateCityCommand(player: player,
-//                                                    turn: game.getCurrentTurn(),
-//                                                    ordinal: 2,
-//                                                    cost: 1,
-//                                                    cityCreator: settler,
-//                                                    cityName: "Chicago")
-//                    let _ = cityCmd.execute()
-                }
-            }
-            catch {
-                fatalError("\(error)")
-            }
-        }
+//        let cmd = CreateSettlerCommand(player: player,
+//                                       turn: player.game.getCurrentTurn(),
+//                                       ordinal: 1,
+//                                       cost: 1,
+//                                       tile: tile)
+//        let _ = cmd.execute()
+//
+//        if let settler = player.cityCreators.last as? Settler {
+//            do {
+//
+//            }
+//            catch {
+//                fatalError("\(error)")
+//            }
+//        }
         //print(player.cityCreators.last!.id)
         
         //        let settler1 = Settler(game: game,

@@ -50,7 +50,9 @@ public class SettlerLevel8Agent: SettlerAgent {
         var scoreMap: [[Double]] = Array(repeating: Array(repeating: Constants.noScore,
                                                           count: player.map.width),
                                          count: player.map.height)
-        let cityProximityScoreMap = cityProximity.process()
+        let scoreMap0 = analyzers[0].getScoreMap()
+        let scoreMap1 = analyzers[1].getScoreMap()
+        let scoreMap2 = analyzers[2].getScoreMap()
 
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
@@ -71,10 +73,12 @@ public class SettlerLevel8Agent: SettlerAgent {
 //                            print(msg)
 //                        }
                         
-                        scoreMap[row][col] += tile.score + tile.movementCost
+                        scoreMap[row][col] += tile.score
                     }
                     
-                    scoreMap[row][col] += cityProximityScoreMap[row][col]
+                    scoreMap[row][col] += scoreMap0[row][col]
+                    scoreMap[row][col] += scoreMap1[row][col]
+                    scoreMap[row][col] += scoreMap2[row][col]
                 }
             }
         }

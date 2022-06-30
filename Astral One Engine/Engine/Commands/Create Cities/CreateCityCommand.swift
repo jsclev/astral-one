@@ -43,6 +43,7 @@ public class CreateCityCommand: Command {
     }
     
     public override func execute() -> CommandResult {
+        print(cityCreator.position)
         let canCreateCity = cityCreator.canCreateCity
         
         if canCreateCity.value {

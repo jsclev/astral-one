@@ -48,15 +48,17 @@ public class MoveUnitCommand: Command {
         if to != unit.position {
             player.deselectUnit()
             
-            let point = mapManager.getCenterOf(position: to)
-            let moveAction = SKAction.move(to: point, duration: 0.60)
+            //let point = mapManager.getCenterOf(position: to)
+            //let moveAction = SKAction.move(to: point, duration: 0.60)
             
-            if let node = unit.node {
-                node.run(moveAction, completion: {
-                    self.unit.move(to: self.to)
-                    self.player.set(selectedUnit: self.unit)
-                })
-            }
+            unit.move(to: self.to)
+            //player.set(selectedUnit: self.unit)
+//            if let node = unit.node {
+//                node.run(moveAction, completion: {
+//                    self.unit.move(to: self.to)
+//                    self.player.set(selectedUnit: self.unit)
+//                })
+//            }
         }
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")

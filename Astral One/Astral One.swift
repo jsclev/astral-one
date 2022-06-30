@@ -186,6 +186,8 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        view.ignoresSiblingOrder = true
+
         do {
             try db.mapDao.importTiledMap(gameId: AppConstants.gameId, filename: Constants.mapFilename)
             game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
