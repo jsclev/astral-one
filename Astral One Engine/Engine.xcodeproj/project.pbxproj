@@ -11,6 +11,7 @@
 		52012F602803A77A008388F6 /* Founder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52012F5F2803A77A008388F6 /* Founder.swift */; };
 		5215E8C8286D68A700D97549 /* WaterAnalysisDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215E8C7286D68A700D97549 /* WaterAnalysisDecorator.swift */; };
 		5215E8CA286D711D00D97549 /* AgentDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215E8C9286D711D00D97549 /* AgentDecorator.swift */; };
+		5215E8CC286EB95E00D97549 /* CityResourcesDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215E8CB286EB95E00D97549 /* CityResourcesDecorator.swift */; };
 		521F21A02803F88400F1D61D /* Infantry2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F219F2803F88400F1D61D /* Infantry2.swift */; };
 		521F21A22803F89A00F1D61D /* Infantry3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21A12803F89A00F1D61D /* Infantry3.swift */; };
 		521F21A42803F8A900F1D61D /* Infantry4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521F21A32803F8A900F1D61D /* Infantry4.swift */; };
@@ -258,6 +259,7 @@
 		52012F5F2803A77A008388F6 /* Founder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Founder.swift; sourceTree = "<group>"; };
 		5215E8C7286D68A700D97549 /* WaterAnalysisDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterAnalysisDecorator.swift; sourceTree = "<group>"; };
 		5215E8C9286D711D00D97549 /* AgentDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentDecorator.swift; sourceTree = "<group>"; };
+		5215E8CB286EB95E00D97549 /* CityResourcesDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityResourcesDecorator.swift; sourceTree = "<group>"; };
 		521F219F2803F88400F1D61D /* Infantry2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry2.swift; sourceTree = "<group>"; };
 		521F21A12803F89A00F1D61D /* Infantry3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry3.swift; sourceTree = "<group>"; };
 		521F21A32803F8A900F1D61D /* Infantry4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infantry4.swift; sourceTree = "<group>"; };
@@ -723,6 +725,7 @@
 			isa = PBXGroup;
 			children = (
 				5291353F2868CA51006B9E27 /* CityProximityDecorator.swift */,
+				5215E8CB286EB95E00D97549 /* CityResourcesDecorator.swift */,
 				52219094286CBD9C0040EAF0 /* MovementDecorator.swift */,
 				5215E8C7286D68A700D97549 /* WaterAnalysisDecorator.swift */,
 			);
@@ -1280,6 +1283,7 @@
 				52A646832830A7F90066B82D /* BuildHarborAction.swift in Sources */,
 				52E0B19127E6D87600607FBE /* TiledTileset.swift in Sources */,
 				521F21A22803F89A00F1D61D /* Infantry3.swift in Sources */,
+				5215E8CC286EB95E00D97549 /* CityResourcesDecorator.swift in Sources */,
 				52F55962283953F500966F06 /* BuildProductionAction.swift in Sources */,
 				52A6093428628E0C0029BBFA /* CommandResult.swift in Sources */,
 				52EA0D6C28484B12005E9AF8 /* ScienceAgent.swift in Sources */,

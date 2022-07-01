@@ -53,33 +53,14 @@ public class SettlerLevel8Agent: SettlerAgent {
         let scoreMap0 = analyzers[0].getScoreMap()
         let scoreMap1 = analyzers[1].getScoreMap()
         let scoreMap2 = analyzers[2].getScoreMap()
+        let scoreMap3 = analyzers[3].getScoreMap()
 
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
-                let position = Position(row: row, col: col)
-                
-                if player.map.canCreateCity(at: position) {
-                    let tiles = player.getTilesInCityRadius(from: position)
-                    
-                    for tile in tiles {
-//                        if position.row == 1 && position.col == 1 {
-//                            var msg = "City tile [\(tile.position.row), \(tile.position.col)], "
-//                            msg += "\(tile.terrain.name), "
-//                            msg += "total: \(tile.score), "
-//                            msg += "production: \(tile.production), "
-//                            msg += "food: \(tile.food), "
-//                            msg += "trade: \(tile.trade), "
-//                            msg += "defenseBonus: \(tile.defenseBonus)"
-//                            print(msg)
-//                        }
-                        
-                        scoreMap[row][col] += tile.score
-                    }
-                    
-                    scoreMap[row][col] += scoreMap0[row][col]
-                    scoreMap[row][col] += scoreMap1[row][col]
-                    scoreMap[row][col] += scoreMap2[row][col]
-                }
+                scoreMap[row][col] += scoreMap0[row][col]
+                scoreMap[row][col] += scoreMap1[row][col]
+                scoreMap[row][col] += scoreMap2[row][col]
+                scoreMap[row][col] += scoreMap3[row][col]
             }
         }
         

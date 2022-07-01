@@ -11,6 +11,7 @@ public class SettlerAgent {
         self.player = player
         self.settler = settler
         
+        analyzers.append(CityResourcesDecorator(aiPlayer: player, maxScore: 10.0))
         analyzers.append(CityProximityDecorator(aiPlayer: player, maxScore: 10.0))
         analyzers.append(MovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 10.0))
         analyzers.append(WaterAnalysisDecorator(aiPlayer: player, maxScore: 10.0))

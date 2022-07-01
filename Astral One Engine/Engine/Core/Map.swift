@@ -81,6 +81,23 @@ public class Map: ObservableObject {
         return grid[at.row][at.col]
     }
     
+    public func isOnCoast(tile: Tile) -> Bool {
+        let startRow = tile.position.row == 0 ? 0 : tile.position.row - 1
+        let endRow = tile.position.row == height - 1 ? tile.position.row : tile.position.row + 1
+        let startCol = tile.position.col == 0 ? 0 : tile.position.col - 1
+        let endCol = tile.position.col == width - 1 ? tile.position.col : tile.position.col + 1
+        
+        for row in startRow..<endRow {
+            for col in startCol..<endCol {
+                if grid[row][col].terrain.type == TerrainType.Ocean {
+                    return true
+                }
+            }
+        }
+        
+        return false
+    }
+    
     public func revealAllTiles() {
         for row in 0..<height {
             for col in 0..<width {

@@ -1,6 +1,6 @@
 import Foundation
 
-public class WaterAnalysisDecorator: AgentDecorator {
+public class CityResourcesDecorator: AgentDecorator {
     private let aiPlayer: AIPlayer
     private let maxScore: Double
     
@@ -358,37 +358,14 @@ public class WaterAnalysisDecorator: AgentDecorator {
         for row in 0..<aiPlayer.map.height {
             for col in 0..<aiPlayer.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: position)
                 
-                if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
-                        if tile.hasRiver {
-                            scoreMap[row][col] = 15.0
-                        }
-                        else {
-                            if aiPlayer.map.isOnCoast(tile: tile) {
-                                scoreMap[row][col] = 9.0
-                            }
-                            else {
-                                // If this tile is not on a river, and it's not on the coast,
-                                // check the number of river tiles in the city radius, and give
-                                // a bonus for other tiles that have rivers on them.  In general,
-                                // rivers are very good, so settling in a place where there are
-                                // rivers within the city radius, is a good thing.
-                                let cityRadiusTiles = aiPlayer.getTilesInCityRadius(from: position)
-                                
-                                for aTile in cityRadiusTiles {
-                                    if aTile.hasRiver {
-                                        scoreMap[row][col] += 1.0
-                                    }
-                                }
-
-                            }
-
-                        }
+                if aiPlayer.map.canCreateCity(at: position) {
+                    let tiles = aiPlayer.getTilesInCityRadius(from: position)
+                    
+                    for tile in tiles {
+                        scoreMap[row][col] += tile.score
                     }
                 }
-                
             }
         }
         
