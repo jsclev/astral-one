@@ -650,7 +650,7 @@ class PlannerTests: XCTestCase {
                                 map: map,
                                 skillLevel: SkillLevel.One,
                                 difficultyLevel: DifficultyLevel.Easy,
-                                playStyle: PlayStyle.init(offense: 0.5, defense: 0.5))
+                                playStyle: AIStrategy.init(offense: 0.5, defense: 0.5))
 
         XCTAssertNil(aiPlayer.map.tile(at: Position(row: 2, col: 2)).city)
         

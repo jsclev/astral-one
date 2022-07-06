@@ -15,7 +15,7 @@ public class ResearchSeafaringAction: ResearchAction {
         player.removeAvailable(researchAction: self)
         
         for city in player.map.cities {
-            city.addAvailable(action: CreateExplorerAction(game: game, player: player, city: city))
+            // city.addAvailable(action: CreateExplorerCommand(game: game, player: player, city: city))
             
             if city.isCoastal {
                 city.addAvailable(action: BuildHarborAction(game: game, player: player, city: city))

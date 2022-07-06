@@ -162,84 +162,199 @@ public class UnitDAO: BaseDAO {
                         position: engineer.position)
     }
     
-    public func insert(map: Map) throws -> Map {
-        var tileId = -1
-        var mainStmt: OpaquePointer?
-        var rowIdStmt: OpaquePointer?
-        let returnMap = Map(mapId: 1, width: map.width, height: map.height)
+    public func insert(explorer: Explorer) throws -> Explorer {
+        var unitId = Constants.noId
         
-        let mainSql =
-            """
-            INSERT INTO \(table)
-            (game_id, map_id, row, col, terrain_id, has_river)
-            VALUES (?, ?, ?, ?, ?, ?);
-            """
+        var sql = "INSERT INTO unit (" +
+        "game_id, player_id, unit_type_id, tile_id" +
+        ") VALUES "
         
-        let rowIdSql = "SELECT last_insert_rowid()"
+        // FIXME: Need to fix the unit_type_id and tile_id here
+        sql += "("
+        sql += getSql(val: explorer.player.game.gameId, postfix: ", ")
+        sql += getSql(val: explorer.player.playerId, postfix: ", ")
+        sql += getSql(val: Constants.noId, postfix: ", ")
+        sql += getSql(val: explorer.player.map.tile(at: explorer.position).id, postfix: "")
+        sql += "), "
         
-        if sqlite3_exec(conn, "BEGIN TRANSACTION", nil, nil, nil) != SQLITE_OK {
-            let errMsg = String(cString: sqlite3_errmsg(conn)!)
-            sqlite3_finalize(rowIdStmt)
-            
-            throw SQLiteError.Prepare(message: errMsg)
+        sql = getCleanedSql(sql)
+        
+        do {
+            unitId = try insertOneRow(sql: sql)
+        }
+        catch SQLiteError.Prepare(let message) {
+            var errMsg = "Failed to compile SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        catch SQLiteError.Step(let message) {
+            var errMsg = "Failed to execute SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
         }
         
-        if sqlite3_prepare_v2(conn, rowIdSql, -1, &rowIdStmt, nil) != SQLITE_OK {
-            let errMsg = String(cString: sqlite3_errmsg(conn)!)
-            sqlite3_finalize(rowIdStmt)
-            
-            throw SQLiteError.Prepare(message: errMsg)
+        return Explorer(id: unitId,
+                        game: explorer.game,
+                        player: explorer.player,
+                        theme: explorer.theme,
+                        name: explorer.name,
+                        position: explorer.position)
+    }
+    
+    public func insert(infantry1: Infantry1) throws -> Infantry1 {
+        var unitId = Constants.noId
+        
+        var sql = "INSERT INTO unit (" +
+        "game_id, player_id, unit_type_id, tile_id" +
+        ") VALUES "
+        
+        // FIXME: Need to fix the unit_type_id and tile_id here
+        sql += "("
+        sql += getSql(val: infantry1.player.game.gameId, postfix: ", ")
+        sql += getSql(val: infantry1.player.playerId, postfix: ", ")
+        sql += getSql(val: Constants.noId, postfix: ", ")
+        sql += getSql(val: infantry1.player.map.tile(at: infantry1.position).id, postfix: "")
+        sql += "), "
+        
+        sql = getCleanedSql(sql)
+        
+        do {
+            unitId = try insertOneRow(sql: sql)
+        }
+        catch SQLiteError.Prepare(let message) {
+            var errMsg = "Failed to compile SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        catch SQLiteError.Step(let message) {
+            var errMsg = "Failed to execute SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
         }
         
-        if sqlite3_prepare_v2(conn, mainSql, -1, &mainStmt, nil) != SQLITE_OK {
-            let errMsg = String(cString: sqlite3_errmsg(conn)!)
-            sqlite3_finalize(rowIdStmt)
-            
-            throw SQLiteError.Prepare(message: errMsg)
+        return Infantry1(id: unitId,
+                         game: infantry1.game,
+                         player: infantry1.player,
+                         theme: infantry1.theme,
+                         name: infantry1.name,
+                         position: infantry1.position)
+    }
+    
+    public func insert(infantry2: Infantry2) throws -> Infantry2 {
+        var unitId = Constants.noId
+        
+        var sql = "INSERT INTO unit (" +
+        "game_id, player_id, unit_type_id, tile_id" +
+        ") VALUES "
+        
+        // FIXME: Need to fix the unit_type_id and tile_id here
+        sql += "("
+        sql += getSql(val: infantry2.player.game.gameId, postfix: ", ")
+        sql += getSql(val: infantry2.player.playerId, postfix: ", ")
+        sql += getSql(val: Constants.noId, postfix: ", ")
+        sql += getSql(val: infantry2.player.map.tile(at: infantry2.position).id, postfix: "")
+        sql += "), "
+        
+        sql = getCleanedSql(sql)
+        
+        do {
+            unitId = try insertOneRow(sql: sql)
+        }
+        catch SQLiteError.Prepare(let message) {
+            var errMsg = "Failed to compile SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        catch SQLiteError.Step(let message) {
+            var errMsg = "Failed to execute SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
         }
         
-        for row in 0..<map.height {
-            for col in 0..<map.width {
-                let tile = map.tile(at: Position(row: row, col: col))
-                
-                sqlite3_bind_int(mainStmt, 1, Int32(1))
-                sqlite3_bind_int(mainStmt, 2, Int32(1))
-                sqlite3_bind_int(mainStmt, 3, Int32(row))
-                sqlite3_bind_int(mainStmt, 4, Int32(col))
-                sqlite3_bind_int(mainStmt, 5, Int32(tile.terrain.id))
-                sqlite3_bind_int(mainStmt, 6, Int32(0))
-                
-                if sqlite3_step(mainStmt) == SQLITE_DONE {
-                    if sqlite3_step(rowIdStmt) == SQLITE_ROW {
-                        tileId = getInt(stmt: rowIdStmt, colIndex: 0)
-                        returnMap.add(tile: Tile(id: tileId,
-                                                 position: Position(row: row, col: col),
-                                                 terrain: tile.terrain,
-                                                 hasRiver: false))
-                    }
-                    else {
-                        let errMsg = String(cString: sqlite3_errmsg(conn)!)
-                        sqlite3_finalize(rowIdStmt)
-                        
-                        throw SQLiteError.Step(message: errMsg)
-                    }
-                }
-                else {
-                    print("\nCould not insert row into \(table) table.")
-                }
-                
-                sqlite3_reset(mainStmt)
-                sqlite3_reset(rowIdStmt)
-            }
+        return Infantry2(id: unitId,
+                         game: infantry2.game,
+                         player: infantry2.player,
+                         theme: infantry2.theme,
+                         name: infantry2.name,
+                         position: infantry2.position)
+    }
+    
+    public func insert(infantry3: Infantry3) throws -> Infantry3 {
+        var unitId = Constants.noId
+        
+        var sql = "INSERT INTO unit (" +
+        "game_id, player_id, unit_type_id, tile_id" +
+        ") VALUES "
+        
+        // FIXME: Need to fix the unit_type_id and tile_id here
+        sql += "("
+        sql += getSql(val: infantry3.player.game.gameId, postfix: ", ")
+        sql += getSql(val: infantry3.player.playerId, postfix: ", ")
+        sql += getSql(val: Constants.noId, postfix: ", ")
+        sql += getSql(val: infantry3.player.map.tile(at: infantry3.position).id, postfix: "")
+        sql += "), "
+        
+        sql = getCleanedSql(sql)
+        
+        do {
+            unitId = try insertOneRow(sql: sql)
+        }
+        catch SQLiteError.Prepare(let message) {
+            var errMsg = "Failed to compile SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        catch SQLiteError.Step(let message) {
+            var errMsg = "Failed to execute SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
         }
         
-        sqlite3_finalize(mainStmt)
+        return Infantry3(id: unitId,
+                         game: infantry3.game,
+                         player: infantry3.player,
+                         theme: infantry3.theme,
+                         name: infantry3.name,
+                         position: infantry3.position)
+    }
+    
+    public func insert(infantry4: Infantry4) throws -> Infantry4 {
+        var unitId = Constants.noId
         
-        if sqlite3_exec (conn, "COMMIT TRANSACTION", nil, nil, nil) != SQLITE_OK {
-            print("Error!!!!")
+        var sql = "INSERT INTO unit (" +
+        "game_id, player_id, unit_type_id, tile_id" +
+        ") VALUES "
+        
+        // FIXME: Need to fix the unit_type_id and tile_id here
+        sql += "("
+        sql += getSql(val: infantry4.player.game.gameId, postfix: ", ")
+        sql += getSql(val: infantry4.player.playerId, postfix: ", ")
+        sql += getSql(val: Constants.noId, postfix: ", ")
+        sql += getSql(val: infantry4.player.map.tile(at: infantry4.position).id, postfix: "")
+        sql += "), "
+        
+        sql = getCleanedSql(sql)
+        
+        do {
+            unitId = try insertOneRow(sql: sql)
+        }
+        catch SQLiteError.Prepare(let message) {
+            var errMsg = "Failed to compile SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
+        }
+        catch SQLiteError.Step(let message) {
+            var errMsg = "Failed to execute SQL to insert rows into the unit table.  "
+            errMsg += "SQLite error message: " + message
+            throw DbError.Db(message: errMsg)
         }
         
-        return returnMap
+        return Infantry4(id: unitId,
+                         game: infantry4.game,
+                         player: infantry4.player,
+                         theme: infantry4.theme,
+                         name: infantry4.name,
+                         position: infantry4.position)
     }
     
     public func getUnits(game: Game) throws -> [Unit] {

@@ -92,7 +92,7 @@ class MapTests: XCTestCase {
                               map: map,
                               skillLevel: SkillLevel.One,
                               difficultyLevel: DifficultyLevel.Easy,
-                              playStyle: PlayStyle(offense: 0.5, defense: 0.5))
+                              playStyle: AIStrategy(offense: 0.5, defense: 0.5))
         let turn = Turn(id: Constants.noId, year: 0, ordinal: 0, displayText: "test turn")
         
         map.add(tile: TestUtils.makeTile(0, 0, TerrainType.Grassland))

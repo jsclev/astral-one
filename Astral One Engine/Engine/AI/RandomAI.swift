@@ -54,7 +54,7 @@ public class RandomAI {
         results.sort {(lhs, rhs) in return lhs.value < rhs.value}
         
         if results.count > 0 {
-            let index = Int(player.playStyle.defense * 100) - 1
+            let index = Int(player.strategy.defense * 100) - 1
             
             return results[index].actions
         }

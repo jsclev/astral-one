@@ -17,7 +17,7 @@ public class ResearchBronzeWorkingAction: ResearchAction {
         player.removeAvailable(researchAction: self)
         
         for city in player.map.cities {
-            city.addAvailable(action: CreateInfantry2Action(game: game, player: player, city: city))
+            // city.addAvailable(action: CreateInfantry2Command(game: game, player: player, city: city))
             city.addAvailable(action: BuildColossusAction(game: game, player: player, city: city))
         }
         

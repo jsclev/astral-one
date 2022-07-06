@@ -1,19 +1,19 @@
 import Foundation
 
 public class AIPlayer: Player {
-    public let playStyle: PlayStyle
     public let skillLevel: SkillLevel
     public let difficultyLevel: DifficultyLevel
-    
+    public let strategy: AIStrategy
+
     public init(playerId: Int,
                 game: Game,
                 map: Map,
                 skillLevel: SkillLevel,
                 difficultyLevel: DifficultyLevel,
-                playStyle: PlayStyle) {
+                strategy: AIStrategy) {
         self.skillLevel = skillLevel
         self.difficultyLevel = difficultyLevel
-        self.playStyle = playStyle
+        self.strategy = strategy
         
         super.init(playerId: playerId, game: game, map: map)
     }
@@ -24,7 +24,7 @@ public class AIPlayer: Player {
                             map: map,
                             skillLevel: skillLevel,
                             difficultyLevel: difficultyLevel,
-                            playStyle: playStyle)
+                            strategy: strategy)
         //        copy.cities = []
         //        copy.units = []
         //        copy.availableCommands = []

@@ -16,9 +16,9 @@ public class ResearchBridgeBuildingAction: ResearchAction {
     public override func execute() {
         player.removeAvailable(researchAction: self)
         
-        for city in player.map.cities {
-            city.addAvailable(action: CreateInfantry2Action(game: game, player: player, city: city))
-        }
+//        for city in player.map.cities {
+//            city.addAvailable(action: CreateInfantry2Command(game: game, player: player, city: city))
+//        }
         
         if player.hasResearched(advanceName: ResearchWarriorCodeAction(game: game, player: player).name) {
             player.addAvailable(researchAction: ResearchIronWorkingAction(game: game, player: player))

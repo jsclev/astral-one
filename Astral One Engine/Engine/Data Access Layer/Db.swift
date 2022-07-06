@@ -126,37 +126,49 @@ public class Db {
                                map: player1Map,
                                skillLevel: SkillLevel.Eight,
                                difficultyLevel: DifficultyLevel.Easy,
-                               playStyle: PlayStyle(offense: 0.5, defense: 0.5))
+                               strategy: AIStrategy(offense: 0.5,
+                                                    defense: 0.5,
+                                                    cityQuantity: 0.5))
         let player2 = AIPlayer(playerId: 2,
                                game: game,
                                map: player2Map,
                                skillLevel: SkillLevel.Eight,
                                difficultyLevel: DifficultyLevel.Easy,
-                               playStyle: PlayStyle(offense: 0.5, defense: 0.5))
+                               strategy: AIStrategy(offense: 0.5,
+                                                    defense: 0.5,
+                                                    cityQuantity: 0.5))
         let player3 = AIPlayer(playerId: 3,
                                game: game,
                                map: player3Map,
                                skillLevel: SkillLevel.One,
                                difficultyLevel: DifficultyLevel.Easy,
-                               playStyle: PlayStyle(offense: 0.5, defense: 0.5))
+                               strategy: AIStrategy(offense: 0.5,
+                                                    defense: 0.5,
+                                                    cityQuantity: 0.5))
         let player4 = AIPlayer(playerId: 4,
                                game: game,
                                map: player4Map,
                                skillLevel: SkillLevel.One,
                                difficultyLevel: DifficultyLevel.Easy,
-                               playStyle: PlayStyle(offense: 0.5, defense: 0.5))
+                               strategy: AIStrategy(offense: 0.5,
+                                                    defense: 0.5,
+                                                    cityQuantity: 0.5))
         let player5 = AIPlayer(playerId: 5,
                                game: game,
                                map: player5Map,
                                skillLevel: SkillLevel.One,
                                difficultyLevel: DifficultyLevel.Easy,
-                               playStyle: PlayStyle(offense: 0.5, defense: 0.5))
+                               strategy: AIStrategy(offense: 0.5,
+                                                    defense: 0.5,
+                                                    cityQuantity: 0.5))
         let player6 = AIPlayer(playerId: 6,
                                game: game,
                                map: player6Map,
                                skillLevel: SkillLevel.One,
                                difficultyLevel: DifficultyLevel.Easy,
-                               playStyle: PlayStyle(offense: 0.5, defense: 0.5))
+                               strategy: AIStrategy(offense: 0.5,
+                                                    defense: 0.5,
+                                                    cityQuantity: 0.5))
 
         game.addPlayer(aiPlayer: player1)
         game.addPlayer(aiPlayer: player2)
@@ -169,12 +181,12 @@ public class Db {
     }
     
     deinit {
-        // let rc: Int32 = sqlite3_close_v2(dbPointer)
+         let rc: Int32 = sqlite3_close_v2(db)
         
-        // if (rc != SQLITE_OK) {
-        //     let sqliteMsg = String(cString: sqlite3_errmsg(dbPointer))
-        //     logger.error("\(sqliteMsg)")
-        // }
+         if (rc != SQLITE_OK) {
+             let sqliteMsg = String(cString: sqlite3_errmsg(db))
+             print(sqliteMsg)
+         }
     }
 }
 
