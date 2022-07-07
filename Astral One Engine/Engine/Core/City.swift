@@ -8,30 +8,23 @@ public class City: ObservableObject, Equatable {
     public let id: Int
     public let theme: Theme
     public let owner: Player
+    public var agent: CityAgent?
     public let name: String
     public let assetName: String
     public let position: Position
     public var cityRadius: [Tile] = []
     public var population: Int = 0
     private var availableActions: Set<Action> = []
-    private var barracks: Barracks?
     private var colossus: Colossus?
-    private var granary: Granary?
     private var greatWall: GreatWall?
     private var hangingGardens: HangingGardens?
-    private var harbor: Harbor?
     private var palace: Palace?
     private var pyramids: Pyramids?
-    private var temple: Temple?
-    private var cityWalls: CityWalls?
     public var settlers: [Settler] = []
+    private var buildings: [BuildingType: Bool]
     
     @Published var production: Int = 0
     @Published var food: Int = 0
-    
-    public var isCoastal: Bool {
-        return position.row % 2 == 0
-    }
     
     public init(id: Int,
                 owner: Player,
@@ -66,6 +59,48 @@ public class City: ObservableObject, Equatable {
             endCol = owner.map.width - 1
         }
         
+        buildings = [
+            BuildingType.Airport: false,
+            BuildingType.Aqueduct: false,
+            BuildingType.Bank: false,
+            BuildingType.Barracks: false,
+            BuildingType.Capitalization: false,
+            BuildingType.Cathedral: false,
+            BuildingType.CityWalls: false,
+            BuildingType.CoastalFortress: false,
+            BuildingType.Colosseum: false,
+            BuildingType.Courthouse: false,
+            BuildingType.Factory: false,
+            BuildingType.Granary: false,
+            BuildingType.Harbor: false,
+            BuildingType.HydroPlant: false,
+            BuildingType.Library: false,
+            BuildingType.Lighthouse: false,
+            BuildingType.ManufacturingPlant: false,
+            BuildingType.Marketplace: false,
+            BuildingType.MassTransit: false,
+            BuildingType.NuclearPlant: false,
+            BuildingType.OffshorePlatform: false,
+            BuildingType.Palace: false,
+            BuildingType.PoliceStation: false,
+            BuildingType.PortFacility: false,
+            BuildingType.PowerPlant: false,
+            BuildingType.RecyclingCenter: false,
+            BuildingType.ResearchLab: false,
+            BuildingType.SAMMissileBattery: false,
+            BuildingType.SDIDefense: false,
+            BuildingType.SSComponent: false,
+            BuildingType.SSModule: false,
+            BuildingType.SSStructural: false,
+            BuildingType.SewerSystem: false,
+            BuildingType.SolarPlant: false,
+            BuildingType.StockExchange: false,
+            BuildingType.Superhighways: false,
+            BuildingType.Supermarket: false,
+            BuildingType.Temple: false,
+            BuildingType.University: false
+        ]
+        
         for row in startRow..<endRow {
             for col in startCol..<endCol {
                 let tile = owner.map.tile(at: Position(row: row, col: col))
@@ -73,6 +108,10 @@ public class City: ObservableObject, Equatable {
                 production += tile.production
             }
         }
+    }
+    
+    public var isCoastal: Bool {
+        return position.row % 2 == 0
     }
     
     public var trade: Int {
@@ -167,84 +206,7 @@ public class City: ObservableObject, Equatable {
     }
     
     public func build(_ building: BuildingType) {
-        switch building {
-        case .Airport:
-            fatalError("Cannot build this building in a city.")
-        case .Aqueduct:
-            fatalError("Cannot build this building in a city.")
-        case .Bank:
-            fatalError("Cannot build this building in a city.")
-        case .Barracks:
-            barracks = Barracks(imageName: "barracks-1")
-        case .Capitalization:
-            fatalError("Cannot build this building in a city.")
-        case .Cathedral:
-            fatalError("Cannot build this building in a city.")
-        case .CityWalls:
-            cityWalls = CityWalls(imageName: "city-walls-1")
-        case .CoastalFortress:
-            fatalError("Cannot build this building in a city.")
-        case .Colosseum:
-            fatalError("Cannot build this building in a city.")
-        case .Courthouse:
-            fatalError("Cannot build this building in a city.")
-        case .Factory:
-            fatalError("Cannot build this building in a city.")
-        case .Granary:
-            granary = Granary(imageName: "granary-1")
-        case .Harbor:
-            harbor = Harbor(imageName: "harbor-1")
-        case .HydroPlant:
-            fatalError("Cannot build this building in a city.")
-        case .Library:
-            fatalError("Cannot build this building in a city.")
-        case .ManufacturingPlant:
-            fatalError("Cannot build this building in a city.")
-        case .Marketplace:
-            fatalError("Cannot build this building in a city.")
-        case .MassTransit:
-            fatalError("Cannot build this building in a city.")
-        case .NuclearPlant:
-            fatalError("Cannot build this building in a city.")
-        case .OffshorePlatform:
-            fatalError("Cannot build this building in a city.")
-        case .Palace:
-            palace = Palace(imageName: "palace-1")
-        case .PoliceStation:
-            fatalError("Cannot build this building in a city.")
-        case .PortFacility:
-            fatalError("Cannot build this building in a city.")
-        case .PowerPlant:
-            fatalError("Cannot build this building in a city.")
-        case .RecyclingCenter:
-            fatalError("Cannot build this building in a city.")
-        case .ResearchLab:
-            fatalError("Cannot build this building in a city.")
-        case .SAMMissileBattery:
-            fatalError("Cannot build this building in a city.")
-        case .SDIDefense:
-            fatalError("Cannot build this building in a city.")
-        case .SSComponent:
-            fatalError("Cannot build this building in a city.")
-        case .SSModule:
-            fatalError("Cannot build this building in a city.")
-        case .SSStructural:
-            fatalError("Cannot build this building in a city.")
-        case .SewerSystem:
-            fatalError("Cannot build this building in a city.")
-        case .SolarPlant:
-            fatalError("Cannot build this building in a city.")
-        case .StockExchange:
-            fatalError("Cannot build this building in a city.")
-        case .Superhighways:
-            fatalError("Cannot build this building in a city.")
-        case .Supermarket:
-            fatalError("Cannot build this building in a city.")
-        case .Temple:
-            temple = Temple(imageName: "temple-1")
-        case .University:
-            fatalError("Cannot build this building in a city.")
-        }
+        buildings[building] = true
     }
     
     public func build(_ wonder: WonderType) {
@@ -339,25 +301,10 @@ public class City: ObservableObject, Equatable {
                         name: name,
                         assetName: assetName,
                         position: position)
-        
-        if has(building: BuildingType.Barracks) {
-            copy.build(BuildingType.Barracks)
-        }
-        
-        if has(building: BuildingType.CityWalls) {
-            copy.build(BuildingType.CityWalls)
-        }
-        
-        if has(building: BuildingType.Granary) {
-            copy.build(BuildingType.Granary)
-        }
+        copy.buildings = buildings
         
         if has(wonder: WonderType.HangingGardens) {
             copy.build(WonderType.HangingGardens)
-        }
-        
-        if has(building: BuildingType.Harbor) {
-            copy.build(BuildingType.Harbor)
         }
         
         for action in availableActions {
@@ -380,20 +327,7 @@ public class City: ObservableObject, Equatable {
     }
     
     public func has(building: BuildingType) -> Bool {
-        switch building {
-        case BuildingType.Barracks:
-            return barracks != nil
-        case BuildingType.CityWalls:
-            return cityWalls != nil
-        case BuildingType.Granary:
-            return granary != nil
-        case BuildingType.Harbor:
-            return harbor != nil
-        case BuildingType.Palace:
-            return palace != nil
-        default:
-            return false
-        }
+        return buildings[building]!
     }
     
     public func has(wonder: WonderType) -> Bool {

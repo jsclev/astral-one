@@ -376,10 +376,6 @@ public class CityResourcesDecorator: AgentDecorator {
         var score = 1.0
         let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
         
-        if distance > 0 {
-            print("Found city at distance \(distance)")
-        }
-        
         if distance == 1 {
             score = -4.0 * maxScore
         }

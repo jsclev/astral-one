@@ -73,6 +73,7 @@ public enum BuildingType {
     case Harbor
     case HydroPlant
     case Library
+    case Lighthouse
     case ManufacturingPlant
     case Marketplace
     case MassTransit

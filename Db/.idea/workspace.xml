@@ -5,29 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fd414d6-76be-43aa-bf8a-c5778b259c52" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/Decorators/CityProximityDecorator.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/City Agents/CityAgent.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/City Agents/CityLevel1Agent.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/City Agents/CityLevel8Agent.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/SettlerAgent.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/SettlerAgent.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/SettlerLevel1Agent.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/SettlerLevel1Agent.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/SettlerLevel8Agent.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/SettlerLevel8Agent.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityAgent.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/Decorators/CityProximityDecorator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/Decorators/CityProximityDecorator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/Decorators/CityResourcesDecorator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/Decorators/CityResourcesDecorator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/Decorators/MovementDecorator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/Decorators/MovementDecorator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/Decorators/WaterAnalysisDecorator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/CityCreator Agents/Decorators/WaterAnalysisDecorator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Build Buildings/BuildBarracksAction.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Build Buildings/BuildBarracksCommand.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/EventBus.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/EventBus.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Game.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Game.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/MapDAO.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/MapDAO.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Db.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Db.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/GameGestureRecognizer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/GameGestureRecognizer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One/Astral One.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One/Astral One.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine Tests/Engine Tests.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Engine Tests.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/AI/PlannerTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/AI/PlannerTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Data Structures/GridGraphTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Data Structures/GridGraphTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Data Structures/MapTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Data Structures/MapTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Influence Maps/UnitInfluenceMapCalculatorTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Influence Maps/UnitInfluenceMapCalculatorTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/PlayerTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/PlayerTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/TileTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/TileTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Units/Military/Ground/Infantry/Infantry1Tests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Core/Units/Military/Ground/Infantry/Infantry1Tests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Data Access Layer/Data Access Objects/MapDAOTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/Data Access Layer/Data Access Objects/MapDAOTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Engine Tests/Unit Tests/TestUtils.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Unit Tests/TestUtils.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Pathfinder/Stone to Space.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space.xcodeproj/project.pbxproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

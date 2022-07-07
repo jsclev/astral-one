@@ -14,13 +14,13 @@ public class ResearchSeafaringAction: ResearchAction {
     public override func execute() {
         player.removeAvailable(researchAction: self)
         
-        for city in player.map.cities {
+//        for city in player.map.cities {
             // city.addAvailable(action: CreateExplorerCommand(game: game, player: player, city: city))
             
-            if city.isCoastal {
-                city.addAvailable(action: BuildHarborAction(game: game, player: player, city: city))
-            }
-        }
+//            if city.isCoastal {
+//                city.addAvailable(action: BuildHarborAction(game: game, player: player, city: city))
+//            }
+//        }
     }
     
     public override func clone() -> Action {

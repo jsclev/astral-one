@@ -6,6 +6,7 @@ public class Camera: SKCameraNode {
     private let game: Game
     private let player: Player
     private let nextTurnButton: NextTurnButton
+    private let researchButton: ResearchButton
 
     private var cancellable = Set<AnyCancellable>()
     
@@ -30,7 +31,13 @@ public class Camera: SKCameraNode {
         notification.position = CGPoint(x: -(game.canvasSize.width / 2) + (notification.size.width / 2) + padding,
                                          y: -(game.canvasSize.height / 2) + (notification.size.height) + 1.5*padding)
         
+        researchButton = ResearchButton(game: game)
+        researchButton.position = CGPoint.zero
+        researchButton.position = CGPoint(x: -(game.canvasSize.width / 2) + (nextTurnButton.size.width / 2) + padding,
+                                          y: (game.canvasSize.height / 2) - (nextTurnButton.size.height / 2) - padding)
+
         nextTurnButton.zPosition = Layer.hud
+        researchButton.zPosition = Layer.hud
         
         positionLabel.fontSize = 20
         positionLabel.horizontalAlignmentMode = .left
@@ -43,6 +50,7 @@ public class Camera: SKCameraNode {
         addChild(turnIndicator)
         addChild(notification)
         addChild(nextTurnButton)
+        addChild(researchButton)
     }
     
     public required init?(coder aDecoder: NSCoder) {

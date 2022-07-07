@@ -9,6 +9,47 @@ public class EventBus {
     private let scene: SKScene
     private let mapManager: MapManager
     private var cancellable = Set<AnyCancellable>()
+    private var advanceIndex = 0
+    
+    private let advances = [
+        "Pottery",
+        "Alphabet",
+        "Warrior Code",
+        "Horseback Riding",
+        "Bronze Working",
+        "Masonry",
+        "Ceremonial Burial",
+        "Map Making",
+        "Writing",
+        "Code of Laws",
+        "Mathematics",
+        "Feudalism",
+        "The Wheel",
+        "Iron Working",
+        "Currency",
+        "Construction",
+        "Mysticism",
+        "Polytheism",
+        "Seafaring",
+        "Literacy",
+        "Monarchy",
+        "University",
+        "Chivalry",
+        "Engineering",
+        "Bridge Building",
+        "Trade",
+        "Astronomy",
+        "Philosophy",
+        "Navigation",
+        "The Republic",
+        "Chemistry",
+        "Leadership",
+        "Invention",
+        "Banking",
+        "Medicine",
+        "Theory of Gravity",
+        "Monotheism"
+    ]
     
     public init(game: Game, scene: SKScene, mapManager: MapManager) {
         self.game = game
@@ -32,6 +73,13 @@ public class EventBus {
                 // print("Name of node: \(name)")
                 if name == "Next Turn" {
                     game.nextTurn()
+                    return
+                }
+                else if name == "Research Button" {
+                    game.currentPlayer.add(advanceName: advances[advanceIndex])
+                    print("\(advances[advanceIndex]) researched.")
+                    
+                    advanceIndex += 1
                     return
                 }
                 else if name == "Found City Button" {
@@ -67,6 +115,14 @@ public class EventBus {
                                                                 cityCreator: unit as! Settler,
                                                                 cityName: "Chicago")
                                 let _ = cityCmd.execute()
+                                
+                                if let city = cityCmd.city {
+                                    let cityAgent = try CityAgent.getAgent(aiPlayer: game.currentPlayer,
+                                                                           city: city)
+                                    let cmd = cityAgent.getNextCommand()
+                                    let _ = cmd.execute()
+                                    
+                                }
                             }
                         }
                         catch {
