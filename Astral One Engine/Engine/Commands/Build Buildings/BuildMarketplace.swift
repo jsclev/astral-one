@@ -26,7 +26,6 @@ public class BuildMarketplaceCommand: Command {
         
         super.init(commandId: commandId,
                    player: player,
-                   type: CommandType(id: Constants.noId, name: ""),
                    turn: turn,
                    ordinal: ordinal,
                    cost: cost)
@@ -36,10 +35,10 @@ public class BuildMarketplaceCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() -> CommandResult {
+    public override func execute(save: Bool) -> CommandResult {
         if city.canBuild(building: BuildingType.Marketplace) {
             city.build(BuildingType.Marketplace)
-            print("Built a marketplace in \(city.name)")
+            print("Built marketplace in \(city.name)")
             
             return CommandResult(status: CommandStatus.Ok, message: "Success")
         }

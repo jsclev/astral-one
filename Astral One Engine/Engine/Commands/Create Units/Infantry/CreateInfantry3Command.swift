@@ -27,7 +27,6 @@ public class CreateInfantry3Command: Command {
         
         super.init(commandId: commandId,
                    player: player,
-                   type: CommandType(id: Constants.noId, name: ""),
                    turn: turn,
                    ordinal: ordinal,
                    cost: cost)
@@ -37,7 +36,7 @@ public class CreateInfantry3Command: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() -> CommandResult {
+    public override func execute(save: Bool) -> CommandResult {
         infantry3 = Infantry3(game: player.game,
                               player: player,
                               theme: player.game.theme,

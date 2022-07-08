@@ -14,6 +14,7 @@ public class Db {
     public let createUnitCommandDao: CreateUnitCommandDAO
     public let gameDao: GameDAO
     public let mapDao: MapDAO
+    public let playerDao: PlayerDAO
     public let terrainDao: TerrainDAO
     public let themeDao: ThemeDAO
     public let turnDao: TurnDAO
@@ -103,6 +104,7 @@ public class Db {
         createUnitCommandDao = CreateUnitCommandDAO(conn: db, commandDao: commandDao, unitDao: unitDao)
         gameDao = GameDAO(conn: db)
         mapDao = MapDAO(conn: db)
+        playerDao = PlayerDAO(conn: db, mapDao: mapDao)
         terrainDao = TerrainDAO(conn: db)
         themeDao = ThemeDAO(conn: db)
         turnDao = TurnDAO(conn: db)
@@ -110,72 +112,14 @@ public class Db {
     
     public func getGameBy(gameId: Int, themeId: Int) throws -> Game {
         let theme = try themeDao.getBy(themeId: themeId)
+        let map = try mapDao.get(gameId: gameId)
+        let game = try Game(gameId: gameId, theme: theme, map: map, db: self)
         
-        // Pull the maps from the database
-        let player1Map = try mapDao.get(gameId: gameId)
-        let player2Map = try mapDao.get(gameId: gameId)
-        let player3Map = try mapDao.get(gameId: gameId)
-        let player4Map = try mapDao.get(gameId: gameId)
-        let player5Map = try mapDao.get(gameId: gameId)
-        let player6Map = try mapDao.get(gameId: gameId)
-
-        let game = try Game(gameId: gameId, theme: theme, map: player1Map, db: self)
-
-        let player1 = AIPlayer(playerId: 1,
-                               game: game,
-                               map: player1Map,
-                               skillLevel: SkillLevel.Eight,
-                               difficultyLevel: DifficultyLevel.Easy,
-                               strategy: AIStrategy(offense: 0.5,
-                                                    defense: 0.5,
-                                                    cityQuantity: 0.5))
-        let player2 = AIPlayer(playerId: 2,
-                               game: game,
-                               map: player2Map,
-                               skillLevel: SkillLevel.Eight,
-                               difficultyLevel: DifficultyLevel.Easy,
-                               strategy: AIStrategy(offense: 0.5,
-                                                    defense: 0.5,
-                                                    cityQuantity: 0.5))
-        let player3 = AIPlayer(playerId: 3,
-                               game: game,
-                               map: player3Map,
-                               skillLevel: SkillLevel.One,
-                               difficultyLevel: DifficultyLevel.Easy,
-                               strategy: AIStrategy(offense: 0.5,
-                                                    defense: 0.5,
-                                                    cityQuantity: 0.5))
-        let player4 = AIPlayer(playerId: 4,
-                               game: game,
-                               map: player4Map,
-                               skillLevel: SkillLevel.One,
-                               difficultyLevel: DifficultyLevel.Easy,
-                               strategy: AIStrategy(offense: 0.5,
-                                                    defense: 0.5,
-                                                    cityQuantity: 0.5))
-        let player5 = AIPlayer(playerId: 5,
-                               game: game,
-                               map: player5Map,
-                               skillLevel: SkillLevel.One,
-                               difficultyLevel: DifficultyLevel.Easy,
-                               strategy: AIStrategy(offense: 0.5,
-                                                    defense: 0.5,
-                                                    cityQuantity: 0.5))
-        let player6 = AIPlayer(playerId: 6,
-                               game: game,
-                               map: player6Map,
-                               skillLevel: SkillLevel.One,
-                               difficultyLevel: DifficultyLevel.Easy,
-                               strategy: AIStrategy(offense: 0.5,
-                                                    defense: 0.5,
-                                                    cityQuantity: 0.5))
-
-        game.addPlayer(aiPlayer: player1)
-        game.addPlayer(aiPlayer: player2)
-        game.addPlayer(aiPlayer: player3)
-        game.addPlayer(aiPlayer: player4)
-        game.addPlayer(aiPlayer: player5)
-        game.addPlayer(aiPlayer: player6)
+        let players = try playerDao.getPlayers(game: game)
+        
+        for player in players {
+            game.addPlayer(aiPlayer: player)
+        }
         
         return game
     }

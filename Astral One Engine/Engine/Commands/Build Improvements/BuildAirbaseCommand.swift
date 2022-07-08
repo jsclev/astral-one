@@ -9,7 +9,6 @@ public class BuildAirbaseCommand: Command {
                 game: Game,
                 turn: Turn,
                 player: Player,
-                type: CommandType,
                 ordinal: Int,
                 city: City,
                 unit: Unit,
@@ -20,7 +19,6 @@ public class BuildAirbaseCommand: Command {
         
         super.init(commandId: commandId,
                    player: player,
-                   type: type,
                    turn: turn,
                    ordinal: ordinal,
                    cost: 25)
@@ -30,7 +28,7 @@ public class BuildAirbaseCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() -> CommandResult {
+    public override func execute(save: Bool) -> CommandResult {
         city.build(improvement: ImprovementType.Airbase, position: position)
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")

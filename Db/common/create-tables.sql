@@ -12,7 +12,6 @@ DROP TABLE IF EXISTS player;
 DROP TABLE IF EXISTS terrain;
 DROP TABLE IF EXISTS tilemap;
 DROP TABLE IF EXISTS game;
-DROP TABLE IF EXISTS command_type;
 DROP TABLE IF EXISTS building_type;
 DROP TABLE IF EXISTS unit_type;
 DROP TABLE IF EXISTS tech;
@@ -38,11 +37,6 @@ CREATE TABLE turn (
 );
 
 CREATE UNIQUE INDEX turn_idx1 ON turn (theme_id, ordinal);
-
-CREATE TABLE command_type (
-    command_type_id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL
-);
 
 CREATE TABLE unit_type (
     unit_type_id INTEGER PRIMARY KEY,
@@ -84,9 +78,13 @@ CREATE TABLE player (
     game_id INTEGER NOT NULL,
     ordinal INTEGER NOT NULL,
     name TEXT NOT NULL,
-    type TEXT NOT NULL,
+    type TEXT NOT NULL CHECK(type IN ('Human', 'AI')),
+    skill_level INTEGER NOT NULL CHECK (skill_level IN (0, 1, 2, 3, 4, 5, 6, 7, 8)),
     FOREIGN KEY (game_id) REFERENCES game (game_id)
 );
+
+CREATE UNIQUE INDEX player_idx1 ON player (game_id, ordinal);
+CREATE UNIQUE INDEX player_idx2 ON player (game_id, name);
 
 CREATE TABLE tilemap (
     tilemap_id INTEGER PRIMARY KEY,
@@ -166,7 +164,6 @@ CREATE TABLE command (
     game_id INTEGER NOT NULL,
     turn_id INTEGER NOT NULL,
     player_id INTEGER NOT NULL,
-    command_type_id INTEGER NOT NULL,
     ordinal INTEGER NOT NULL,
     FOREIGN KEY (game_id) REFERENCES game (game_id)
 );
@@ -197,9 +194,12 @@ CREATE TABLE create_city_command (
 CREATE TABLE create_unit_command (
     command_id INTEGER NOT NULL,
     unit_id INTEGER NOT NULL,
-    city_id INTEGER NOT NULL,
+    tile_id INTEGER NOT NULL,
+    city_id INTEGER,
     FOREIGN KEY (command_id) REFERENCES command (command_id),
-    FOREIGN KEY (unit_id) REFERENCES unit (unit_id)
+    FOREIGN KEY (unit_id) REFERENCES unit (unit_id),
+    FOREIGN KEY (tile_id) REFERENCES tile (tile_id),
+    FOREIGN KEY (city_id) REFERENCES city (city_id)
 );
 
 CREATE TABLE building_command (

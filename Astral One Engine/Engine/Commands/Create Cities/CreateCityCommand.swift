@@ -32,7 +32,6 @@ public class CreateCityCommand: Command {
         
         super.init(commandId: commandId,
                    player: player,
-                   type: CommandType(id: Constants.noId, name: ""),
                    turn: turn,
                    ordinal: ordinal,
                    cost: cost)
@@ -42,11 +41,8 @@ public class CreateCityCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() -> CommandResult {
-        print(cityCreator.position)
-        let canCreateCity = cityCreator.canCreateCity
-        
-        if canCreateCity.value {
+    public override func execute(save: Bool) -> CommandResult {
+        if cityCreator.canCreateCity.value {
             city = City(id: Constants.noId,
                         owner: player,
                         theme: player.game.theme,
@@ -59,7 +55,8 @@ public class CreateCityCommand: Command {
                     city = try player.game.db.createCityCommandDao.insert(command: self)
                 }
                 catch {
-                    print(error)
+                    return CommandResult(status: CommandStatus.Invalid,
+                                         message: "\(error)")
                 }
             }
             
@@ -67,11 +64,11 @@ public class CreateCityCommand: Command {
                 player.create(city: newCity, using: cityCreator)
             }
             
-            return CommandResult(status: CommandStatus.Ok, message: "Success")
+            return CommandResult(status: CommandStatus.Ok,
+                                 message: "Success")
         }
-        else {
-            return CommandResult(status: CommandStatus.Invalid,
-                                 message: canCreateCity.message)
-        }
+        
+        return CommandResult(status: CommandStatus.Invalid,
+                             message: cityCreator.canCreateCity.message)
     }
 }

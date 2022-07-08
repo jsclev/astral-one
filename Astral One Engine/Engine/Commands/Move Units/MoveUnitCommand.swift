@@ -34,7 +34,6 @@ public class MoveUnitCommand: Command {
         
         super.init(commandId: commandId,
                    player: player,
-                   type: CommandType(id: 1, name: ""),
                    turn: turn,
                    ordinal: ordinal,
                    cost: 10)
@@ -44,7 +43,7 @@ public class MoveUnitCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() -> CommandResult {
+    public override func execute(save: Bool) -> CommandResult {
         if to != unit.position {
             player.deselectUnit()
             

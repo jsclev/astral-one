@@ -14,7 +14,6 @@
 //        let game = Game(theme: theme, map: map)
 //        let player = Player(playerId: 1, game: game)
 //        let turn = Turn(id: 1, year: -4000, ordinal: 0, displayText: "4000 BCE")
-//        let commandType = CommandType(id: 1, name: "Move Unit")
 //
 //        let unit = Engine.Unit(game: game,
 //                               player: player,
@@ -33,7 +32,6 @@
 //                                  game: game,
 //                                  turn: turn,
 //                                  player: player,
-//                                  type: commandType,
 //                                  ordinal: 1,
 //                                  unit: unit,
 //                                  to: Position(row: 0, col: 0))

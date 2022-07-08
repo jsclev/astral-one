@@ -2,10 +2,18 @@ insert into game
     (name, theme_id, created_at) values
     ('New Rome', (select theme_id from theme where name = 'Stone to Space'), '2022-03-31');
 
-insert into player values (1, (select game_id from game where name = 'New Rome'), 1, 'King Tut', 'Human');
-insert into player values (2, (select game_id from game where name = 'New Rome'), 2, 'Tha Pope', 'AI');
-insert into player values (3, (select game_id from game where name = 'New Rome'), 3, 'Magic Mike', 'AI');
-insert into player values (4, (select game_id from game where name = 'New Rome'), 4, 'Mr. Big Stuff', 'AI');
+insert into player (game_id, ordinal, name, type, skill_level)
+    values ((select game_id from game where name = 'New Rome'), 1, 'Abe Lincoln', 'AI', 8);
+insert into player (game_id, ordinal, name, type, skill_level)
+    values ((select game_id from game where name = 'New Rome'), 2, 'Cleopatra', 'AI', 1);
+insert into player (game_id, ordinal, name, type, skill_level)
+    values ((select game_id from game where name = 'New Rome'), 3, 'Genghis Khan', 'AI', 1);
+insert into player (game_id, ordinal, name, type, skill_level)
+    values ((select game_id from game where name = 'New Rome'), 4, 'Caesar', 'AI', 1);
+insert into player (game_id, ordinal, name, type, skill_level)
+    values ((select game_id from game where name = 'New Rome'), 5, 'Isabella', 'AI', 1);
+insert into player (game_id, ordinal, name, type, skill_level)
+    values ((select game_id from game where name = 'New Rome'), 6, 'Henry VIII', 'AI', 1);
 
 -- Tiles 1 - 10
 -- insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 50, 50, 1, FALSE);
@@ -81,20 +89,20 @@ insert into player values (4, (select game_id from game where name = 'New Rome')
 --
 -- -- Turn 1: Build city
 -- insert into city values (1, 1, 1, 57, 'Rome');
--- insert into command values (1, 1, 1, 1, (select command_type_id from command_type where name = 'Build City'), 1);
+-- insert into command values (1, 1, 1, 1, 1);
 -- insert into create_city_command values (1, 1, 1);
 --
 -- -- Turn 1: Create barracks
 -- insert into building values (1, 1, 1, (select building_type_id from building_type where name = 'Barracks'));
--- insert into command values (2, 1, 1, 1, (select command_type_id from command_type where name = 'Build Building'), 2);
+-- insert into command values (2, 1, 1, 1, 2);
 -- insert into building_command values (2, 1);
 --
 -- -- Turn 1: Research Alphabet
--- insert into command values (3, 1, 1, 1, (select command_type_id from command_type where name = 'Research Tech'), 3);
+-- insert into command values (3, 1, 1, 1, 3);
 -- insert into tech_command values (3, (select tech_id from tech where name = 'Alphabet'));
 --
 -- -- Turn 1: Move Warriors
--- insert into command values (4, 1, 1, 1, (select command_type_id from command_type where name = 'Move Unit'), 4);
+-- insert into command values (4, 1, 1, 1, 4);
 -- insert into move_command values (4, 2, 1, 2);
 
 -- insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'CityCreator' and theme_id = 2), 1);

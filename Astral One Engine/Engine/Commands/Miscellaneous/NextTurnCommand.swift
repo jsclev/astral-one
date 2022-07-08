@@ -5,13 +5,11 @@ public class NextTurnCommand: Command {
     
     public init(commandId: Int,
                 player: Player,
-                type: CommandType,
                 turn: Turn,
                 ordinal: Int) {
         
         super.init(commandId: commandId,
                    player: player,
-                   type: type,
                    turn: turn,
                    ordinal: ordinal,
                    cost: 0)
@@ -21,7 +19,7 @@ public class NextTurnCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() -> CommandResult {
+    public override func execute(save: Bool) -> CommandResult {
         player.game.nextTurn()
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")

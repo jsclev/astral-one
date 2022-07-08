@@ -42,13 +42,10 @@ public class MoveCommandDAO: BaseDAO {
 //                        year: -4000,
 //                        ordinal: 0,
 //                        displayText: "4000 BCE")
-//        let commandType = CommandType(id: 1,
-//                                      name: "Move Unit")
 //        return MoveCommand(commandId: 1,
 //                           game: game,
 //                           turn: turn,
 //                           player: moveCommand.player,
-//                           type: commandType,
 //                           ordinal: 1,
 //                           unit: Infantry1(game: game,
 //                                           player: player,

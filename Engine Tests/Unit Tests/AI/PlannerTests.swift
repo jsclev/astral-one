@@ -111,7 +111,6 @@ class PlannerTests: XCTestCase {
 //                          position: Position(row: 0, col: 0))
 //
 //        let createCityCmd = CreateCityCommand(player: p1,
-//                                              type: CommandType(id: 1, name: ""),
 //                                              turn: Turn(id: 1,
 //                                                         year: 1,
 //                                                         ordinal: 1,
@@ -664,8 +663,6 @@ class PlannerTests: XCTestCase {
         let player = Player(playerId: 1, game: game, map: map)
         let player2 = Player(playerId: 2, game: game, map: map)
         // let turn1 = Turn(id: 1, year: -4000, ordinal: 1, displayText: "4000 BC")
-        // let createUnitType = CommandType(id: 1, name: "Create Unit")
-        // let moveUnitType = CommandType(id: 1, name: "Move Unit")
         
         map.add(tile: TestUtils.makeTile(0, 0, TerrainType.Grassland))
         map.add(tile: TestUtils.makeTile(0, 1, TerrainType.Forest))

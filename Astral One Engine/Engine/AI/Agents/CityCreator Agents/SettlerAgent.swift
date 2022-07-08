@@ -180,6 +180,7 @@ public class SettlerAgent {
     }
     
     internal func log(scoreMap: [[Double]]) {
+        return
         // var line1 = "-"
         var line2 = ""
         var line3 = ""

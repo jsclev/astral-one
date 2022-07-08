@@ -26,7 +26,6 @@ public class BuildGranaryCommand: Command {
         
         super.init(commandId: commandId,
                    player: player,
-                   type: CommandType(id: Constants.noId, name: ""),
                    turn: turn,
                    ordinal: ordinal,
                    cost: cost)
@@ -36,7 +35,7 @@ public class BuildGranaryCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() -> CommandResult {
+    public override func execute(save: Bool) -> CommandResult {
         if city.canBuild(building: BuildingType.Granary) {
             // city.removeAvailable(action: self)
             city.build(BuildingType.Granary)

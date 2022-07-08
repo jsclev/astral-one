@@ -226,9 +226,6 @@
 //        let game = Game(theme: theme, map: map)
 //        let player = Player(playerId: 1, game: game, map: map)
 //        // let turn1 = Turn(id: 1, year: -4000, ordinal: 1, displayText: "4000 BC")
-//        // let createUnitType = CommandType(id: 1, name: "Create Unit")
-//        // let moveUnitType = CommandType(id: 1, name: "Move Unit")
-//
 //
 //        //        try map.add(tile: Tile(id: 1,
 //        //                               row: 0,

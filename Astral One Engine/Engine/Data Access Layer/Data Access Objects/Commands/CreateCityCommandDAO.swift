@@ -14,7 +14,6 @@ public class CreateCityCommandDAO: BaseDAO {
     
     public func insert(command: CreateCityCommand) throws -> City {
         let baseCmd = try commandDao.insert(command: Command(player: command.player,
-                                                             type: command.type,
                                                              turn: command.turn,
                                                              ordinal: command.ordinal,
                                                              cost: command.cost))

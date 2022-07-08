@@ -162,11 +162,12 @@ class GameScene: SKScene {
         db = Db(fullRefresh: true)
         
         do {
+            try db.mapDao.importTiledMap(gameId: AppConstants.gameId, filename: Constants.mapFilename)
+
             game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
         }
         catch {
-            print(error)
-            fatalError("Could not initialize game object.")
+            fatalError("Could not initialize game object: \(error)")
         }
         
         if let ts = SKTileSet(named: Constants.tilesetName) {
@@ -187,14 +188,6 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         view.ignoresSiblingOrder = true
-
-        do {
-            try db.mapDao.importTiledMap(gameId: AppConstants.gameId, filename: Constants.mapFilename)
-            game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
-        }
-        catch {
-            print(error)
-        }
         
         game.canvasSize = frame.size
         gameCamera = Camera(game: game, player: game.currentPlayer)
@@ -238,7 +231,9 @@ class GameScene: SKScene {
         
         //        let fowGenerator = FogOfWarGenerator(player: player)
         //        fowGenerator.generate()
-        game.currentPlayer.map.revealAllTiles()
+        for p in game.players {
+            p.map.revealAllTiles()
+        }
         let tileset = SKTileSet(named: Constants.tilesetName)
                 
         mapView = MapManager(player: game.currentPlayer, scene: self, tileset: tileset!)
@@ -253,6 +248,7 @@ class GameScene: SKScene {
                                                           eventBus: eb)
             view.addGestureRecognizer(gameGestureRecognizer)
         }
+
     }
     
     func printDate(string: String) {

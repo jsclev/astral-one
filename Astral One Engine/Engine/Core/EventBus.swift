@@ -55,6 +55,15 @@ public class EventBus {
         self.game = game
         self.scene = scene
         self.mapManager = mapManager
+        
+        for player in game.players {
+            player.map.revealAllTiles()
+        }
+        
+        game.placeInitialSettlers()
+        
+        let cmds = game.db.commandDao.getCommands(game: game)
+
     }
     
     public func tap(recognizerLocation: CGPoint) {
@@ -62,9 +71,17 @@ public class EventBus {
         
         let location = scene.convertPoint(fromView: recognizerLocation)
         
-        for p in game.players {
-            p.map.revealAllTiles()
-        }
+        
+
+        
+//        for _ in 0..<100 {
+//            game.currentPlayer.add(advanceName: advances[advanceIndex])
+//            print("\(advances[advanceIndex]) researched.")
+//            
+//            advanceIndex += 1
+//            
+//            
+//        }
         
         let touchedNodes = scene.nodes(at: location)
         
@@ -91,7 +108,7 @@ public class EventBus {
                                                                 node: scene,
                                                                 mapManager: mapManager,
                                                                 unit: unit)
-                        let _ = deselectUnitCmd.execute()
+                        let _ = deselectUnitCmd.execute(save: false)
                         
                         do {
                             let agent = try SettlerAgent.getAgent(aiPlayer: game.currentPlayer,
@@ -104,7 +121,7 @@ public class EventBus {
                                                               mapManager: mapManager,
                                                               unit: unit,
                                                               to: position)
-                                let _ = moveCmd.execute()
+                                let _ = moveCmd.execute(save: true)
                                 // print(position)
                                 // print(unit.position)
 
@@ -114,13 +131,13 @@ public class EventBus {
                                                                 cost: 1,
                                                                 cityCreator: unit as! Settler,
                                                                 cityName: "Chicago")
-                                let _ = cityCmd.execute()
+                                let _ = cityCmd.execute(save: true)
                                 
                                 if let city = cityCmd.city {
                                     let cityAgent = try CityAgent.getAgent(aiPlayer: game.currentPlayer,
                                                                            city: city)
                                     let cmd = cityAgent.getNextCommand()
-                                    let _ = cmd.execute()
+                                    let _ = cmd.execute(save: true)
                                     
                                 }
                             }
@@ -144,7 +161,7 @@ public class EventBus {
                                                   node: scene,
                                                   mapManager: mapManager,
                                                   unit: unit)
-            let _ = selectUnitCmd.execute()
+            let _ = selectUnitCmd.execute(save: false)
         }
         else {
             if let selectedUnit = game.currentPlayer.selectedUnit {
@@ -154,7 +171,7 @@ public class EventBus {
                                               mapManager: mapManager,
                                               unit: selectedUnit,
                                               to: tile.position)
-                let _ = moveCmd.execute()
+                let _ = moveCmd.execute(save: false)
             }
             else {
                 addSettler(tile: tile)
@@ -168,7 +185,7 @@ public class EventBus {
                                        ordinal: 1,
                                        cost: 1,
                                        tile: tile)
-        let _ = cmd.execute()
+        let _ = cmd.execute(save: true)
     }
     
     private func addEngineer(tile: Tile) {
@@ -180,7 +197,7 @@ public class EventBus {
                                             ordinal: 1,
                                             cost: 1,
                                             city: city)
-            let _ = cmd.execute()
+            let _ = cmd.execute(save: false)
         }
     }
     
@@ -237,7 +254,6 @@ public class EventBus {
         //        player.add(cityCreator: settler2)
         
         //        let createCityCmd = CreateCityCommand(player: player,
-        //                                              type: CommandType(id: 1, name: ""),
         //                                              turn: player.game.getCurrentTurn(),
         //                                              ordinal: 1,
         //                                              cost: 0,
@@ -255,7 +271,7 @@ public class EventBus {
                                               cost: 0,
                                               cityCreator: settler,
                                               cityName: "New York-\(player.playerId)")
-        let result = createCityCmd.execute()
+        let result = createCityCmd.execute(save: true)
         
         if result.status != CommandStatus.Ok {
             print(player.playerId)
@@ -269,7 +285,6 @@ public class EventBus {
         //            if let position = try agent.getSettleCityPosition() {
         //                print("Moving Settler to position [\(position.row), \(position.col)]")
         //                let moveCmd = MoveUnitCommand(player: player,
-        //                                              type: CommandType(id: 1, name: ""),
         //                                              turn: game.getCurrentTurn(),
         //                                              ordinal: 1,
         //                                              unit: settler,

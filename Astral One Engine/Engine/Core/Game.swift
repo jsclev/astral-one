@@ -58,11 +58,22 @@ public class Game: ObservableObject {
     
     public func processCommands() {
         while !commands.isEmpty {
-            let _ = commands.removeLast().execute()
+            let _ = commands.removeLast().execute(save: true)
         }
     }
     
     public func select(mapPosition: Position) {
         self.selectedMapPosition = mapPosition
+    }
+    
+    public func placeInitialSettlers() {
+        let position = Position(row: (currentPlayer.map.height / 2) - 1,
+                                col: (currentPlayer.map.width / 2) - 1)
+        let cmd = CreateSettlerCommand(player: currentPlayer,
+                                       turn: getCurrentTurn(),
+                                       ordinal: 1,
+                                       cost: 1,
+                                       tile: currentPlayer.map.tile(at: position))
+        let _ = cmd.execute(save: true)
     }
 }

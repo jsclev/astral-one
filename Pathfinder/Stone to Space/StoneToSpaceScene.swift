@@ -177,7 +177,6 @@ class StoneToSpaceScene: SKScene {
         //        player.add(cityCreator: settler2)
         
         //        let createCityCmd = CreateCityCommand(player: player,
-        //                                              type: CommandType(id: 1, name: ""),
         //                                              turn: player.game.getCurrentTurn(),
         //                                              ordinal: 1,
         //                                              cost: 0,

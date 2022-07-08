@@ -27,7 +27,6 @@ public class CreateSettlerCommand: Command {
         
         super.init(commandId: commandId,
                    player: player,
-                   type: CommandType(id: Constants.noId, name: ""),
                    turn: turn,
                    ordinal: ordinal,
                    cost: cost)
@@ -37,14 +36,14 @@ public class CreateSettlerCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() -> CommandResult {
+    public override func execute(save: Bool) -> CommandResult {
         settler = Settler(game: player.game,
                           player: player,
                           theme: player.game.theme,
                           name: "Settler-\(Int.random(in: 0..<500))",
                           position: tile.position)
         
-        if commandId == Constants.noId {
+        if save && commandId == Constants.noId {
             do {
                 settler = try player.game.db.createUnitCommandDao.insert(command: self)
             }

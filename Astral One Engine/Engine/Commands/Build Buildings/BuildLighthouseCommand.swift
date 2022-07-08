@@ -26,7 +26,6 @@ public class BuildLighthouseCommand: Command {
         
         super.init(commandId: commandId,
                    player: player,
-                   type: CommandType(id: Constants.noId, name: ""),
                    turn: turn,
                    ordinal: ordinal,
                    cost: cost)
@@ -36,11 +35,11 @@ public class BuildLighthouseCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute() -> CommandResult {
+    public override func execute(save: Bool) -> CommandResult {
         if city.canBuild(building: BuildingType.Lighthouse) {
             // city.removeAvailable(action: self)
             city.build(BuildingType.Lighthouse)
-            print("Built a lighthouse in \(city.name)")
+            print("Built lighthouse in \(city.name)")
             
             return CommandResult(status: CommandStatus.Ok, message: "Success")
         }
