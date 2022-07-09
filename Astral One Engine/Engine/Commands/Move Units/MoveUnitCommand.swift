@@ -2,21 +2,19 @@ import Foundation
 import SpriteKit
 
 public class MoveUnitCommand: Command {
-    private let mapManager: MapManager
-    private let unit: Unit
-    private let to: Position
+    // private let mapManager: MapManager
+    public let unit: Unit
+    public let to: Position
     
     public convenience init(player: Player,
                             turn: Turn,
                             ordinal: Int,
-                            mapManager: MapManager,
                             unit: Unit,
                             to: Position) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
                   ordinal: ordinal,
-                  mapManager: mapManager,
                   unit: unit,
                   to: to)
     }
@@ -25,10 +23,8 @@ public class MoveUnitCommand: Command {
                 player: Player,
                 turn: Turn,
                 ordinal: Int,
-                mapManager: MapManager,
                 unit: Unit,
                 to: Position) {
-        self.mapManager = mapManager
         self.unit = unit
         self.to = to
         
@@ -50,7 +46,18 @@ public class MoveUnitCommand: Command {
             //let point = mapManager.getCenterOf(position: to)
             //let moveAction = SKAction.move(to: point, duration: 0.60)
             
+            if save && commandId == Constants.noId {
+                do {
+                    try player.game.db.moveUnitCommandDao.insert(command: self)
+                }
+                catch {
+                    return CommandResult(status: CommandStatus.Invalid,
+                                         message: "Some type of error occurred")
+                }
+            }
             unit.move(to: self.to)
+            return CommandResult(status: CommandStatus.Ok, message: "Success")
+
             //player.set(selectedUnit: self.unit)
 //            if let node = unit.node {
 //                node.run(moveAction, completion: {
@@ -61,5 +68,6 @@ public class MoveUnitCommand: Command {
         }
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
+        
     }
 }

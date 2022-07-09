@@ -2,7 +2,7 @@ import Foundation
 import SpriteKit
 import Combine
 
-public class NotificationNode: SKNode {
+public class NotificationIndicator: SKNode {
     private let labelNode: SKLabelNode
     private let player: Player
     internal let size: CGSize

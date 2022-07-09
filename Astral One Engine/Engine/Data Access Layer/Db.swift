@@ -14,6 +14,7 @@ public class Db {
     public let createUnitCommandDao: CreateUnitCommandDAO
     public let gameDao: GameDAO
     public let mapDao: MapDAO
+    public let moveUnitCommandDao: MoveUnitCommandDAO
     public let playerDao: PlayerDAO
     public let terrainDao: TerrainDAO
     public let themeDao: ThemeDAO
@@ -104,7 +105,8 @@ public class Db {
         createUnitCommandDao = CreateUnitCommandDAO(conn: db, commandDao: commandDao, unitDao: unitDao)
         gameDao = GameDAO(conn: db)
         mapDao = MapDAO(conn: db)
-        playerDao = PlayerDAO(conn: db, mapDao: mapDao)
+        moveUnitCommandDao = MoveUnitCommandDAO(conn: db, commandDao: commandDao)
+        playerDao = PlayerDAO(conn: db, mapDao: mapDao, unitDao: unitDao)
         terrainDao = TerrainDAO(conn: db)
         themeDao = ThemeDAO(conn: db)
         turnDao = TurnDAO(conn: db)

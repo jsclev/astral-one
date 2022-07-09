@@ -16,25 +16,40 @@ public class CommandDAO: BaseDAO {
         var stmt: OpaquePointer?
         let sql = """
             SELECT
-                c.id AS command_id, c.ordinal,
-                t.id, t.ordinal, t.year, t.display_text,
-                p.id,
-                ct.id, ct.name,
-                mc.id AS mc_id, mc.unit_id AS mc_unit_id, mc.to_position
+                c.command_id,
+                c.ordinal,
+                t.turn_id,
+                t.ordinal,
+                t.year,
+                t.display_text,
+                p.player_id,
+                cuc.command_id AS cuc_command_id,
+                cuc_unit.unit_id AS cuc_unit_id,
+                cuc_tile.tile_id AS cuc_tile_id,
+                cuc_tile.row AS cuc_row,
+                cuc_tile.col AS cuc_col,
+                muc.command_id AS muc_command_id,
+                muc.unit_id AS muc_unit_id
             FROM
                 command c
             INNER JOIN
-                turn t ON t.id = c.turn_id
+                turn t ON t.turn_id = c.turn_id
+            INNER JOIN
+                player p ON p.player_id = c.player_id
             LEFT OUTER JOIN
-                player p ON p.id = c.player_id
+                create_unit_command cuc ON cuc.command_id = c.command_id
             LEFT OUTER JOIN
-                movement_command mc ON mc.command_id = c.id
+                unit cuc_unit ON cuc_unit.unit_id = cuc.unit_id
             LEFT OUTER JOIN
-                settle_command sc ON sc.command_id = c.id
+                unit_type cuc_unit_type ON cuc_unit_type.unit_type_id = cuc_unit.unit_type_id
             LEFT OUTER JOIN
-                tech_command tc ON tc.command_id = c.id
+                tile cuc_tile ON cuc_tile.tile_id = cuc.tile_id
             LEFT OUTER JOIN
-                building_command bc ON bc.command_id = c.id
+                move_unit_command muc ON muc.command_id = c.command_id
+            LEFT OUTER JOIN
+                unit muc_unit ON muc_unit.unit_id = muc.unit_id
+            WHERE
+                c.game_id = \(game.gameId)
             ORDER BY
                 t.ordinal, p.ordinal, c.ordinal
         """
@@ -47,42 +62,68 @@ public class CommandDAO: BaseDAO {
                 let turnOrdinal = getInt(stmt: stmt, colIndex: 3)
                 let year = getInt(stmt: stmt, colIndex: 4)
                 let playerId = getInt(stmt: stmt, colIndex: 6)
-                let player = Player(playerId: playerId, game: game, map: game.currentPlayer.map)
                 
-                do {
-                    if let turnDisplayText = try getString(stmt: stmt, colIndex: 5),
-                       let cmdName = try getString(stmt: stmt, colIndex: 8 ) {
-                        let turn = Turn(id: turnId,
-                                        year: year,
-                                        ordinal: turnOrdinal,
-                                        displayText: turnDisplayText)
-                        
-                        if cmdName == "Build City" {
-                            let unit = Settler(id: 1,
-                                               game: game,
-                                               player: player,
-                                               theme: game.theme,
-                                               name: "Settler",
-                                               position: Position(row: 0, col: 0))
-                            cmds.append(CreateCityCommand(commandId: cmdId,
-                                                          player: player,
-                                                          turn: turn,
-                                                          ordinal: cmdOrdinal,
-                                                          cost: 1,
-                                                          cityCreator: unit,
-                                                          cityName: "city name"))
+                for player in game.players {
+                    if player.playerId == playerId {
+                        do {
+                            if let turnDisplayText = try getString(stmt: stmt, colIndex: 5) {
+                                let turn = Turn(id: turnId,
+                                                year: year,
+                                                ordinal: turnOrdinal,
+                                                displayText: turnDisplayText)
+                                
+                                if !isNull(stmt, 7) {
+                                    let unitId = getInt(stmt: stmt, colIndex: 8)
+                                    // let createUnitCmdTileId = getInt(stmt: stmt, colIndex: 9)
+                                    let row = getInt(stmt: stmt, colIndex: 10)
+                                    let col = getInt(stmt: stmt, colIndex: 11)
+                                    let tile = player.map.tile(at: Position(row: row, col: col))
+
+                                    cmds.append(CreateSettlerCommand(commandId: cmdId,
+                                                                     player: player,
+                                                                     turn: turn,
+                                                                     ordinal: cmdOrdinal,
+                                                                     cost: 1,
+                                                                     settler: Settler(id: unitId,
+                                                                                      game: game,
+                                                                                      player: player,
+                                                                                      theme: game.theme,
+                                                                                      name: "Settler",
+                                                                                      position: tile.position),
+                                                                     tile: tile))
+                                    
+                                }
+                                else if !isNull(stmt, 12) {
+                                    let unitId = getInt(stmt: stmt, colIndex: 13)
+                                    // let createUnitCmdTileId = getInt(stmt: stmt, colIndex: 9)
+                                    let row = 0 //getInt(stmt: stmt, colIndex: 10)
+                                    let col = 0 //getInt(stmt: stmt, colIndex: 11)
+                                    
+                                    for unit in player.units {
+                                        if unit.id == unitId {
+                                            cmds.append(MoveUnitCommand(commandId: cmdId,
+                                                                        player: player,
+                                                                        turn: turn,
+                                                                        ordinal: cmdOrdinal,
+                                                                        unit: unit,
+                                                                        to: Position(row: row, col: col)))
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch {
+                            print(error)
                         }
                     }
                 }
-                catch {
-                    print(error)
-                }
+
             }
         }
         
         sqlite3_finalize(stmt)
         
-        return []
+        return cmds
     }
     
     public func insert(command: Command) throws -> Command {

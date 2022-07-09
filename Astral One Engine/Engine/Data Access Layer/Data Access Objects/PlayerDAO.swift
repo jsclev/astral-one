@@ -3,9 +3,11 @@ import SQLite3
 
 public class PlayerDAO: BaseDAO {
     private let mapDao: MapDAO
+    private let unitDao: UnitDAO
     
-    init(conn: OpaquePointer?, mapDao: MapDAO) {
+    init(conn: OpaquePointer?, mapDao: MapDAO, unitDao: UnitDAO) {
         self.mapDao = mapDao
+        self.unitDao = unitDao
         
         super.init(conn: conn, table: "player", loggerName: String(describing: type(of: self)))
     }
@@ -64,14 +66,20 @@ public class PlayerDAO: BaseDAO {
                         skillLevel = SkillLevel.Eight
                     }
 
-                    players.append(AIPlayer(playerId: playerId,
-                                            game: game,
-                                            map: map,
-                                            skillLevel: skillLevel,
-                                            difficultyLevel: DifficultyLevel.Easy,
-                                            strategy: AIStrategy(offense: 0.5,
-                                                                 defense: 0.5,
-                                                                 cityQuantity: 0.5)))
+                    let player = AIPlayer(playerId: playerId,
+                                          game: game,
+                                          map: map,
+                                          skillLevel: skillLevel,
+                                          difficultyLevel: DifficultyLevel.Easy,
+                                          strategy: AIStrategy(offense: 0.5,
+                                                               defense: 0.5,
+                                                               cityQuantity: 0.5))
+                    let units = try unitDao.getUnits(player: player)
+                    for unit in units {
+                        player.add(unit: unit)
+                    }
+                    
+                    players.append(player)
                 }
                 else {
                     fatalError("Player name cannot be NULL.")

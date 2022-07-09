@@ -87,14 +87,10 @@ public class UnitDAO: BaseDAO {
     
     public func insert(settler: Settler) throws -> Settler {
         var unitId = Constants.noId
+        var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
         
-        var sql = "INSERT INTO unit (" +
-        "game_id, player_id, unit_type_id, tile_id" +
-        ") VALUES "
-        
-        // FIXME: Need to fix the unit_type_id and tile_id here
+        // FIXME: Need to fix the unit_type_id here
         sql += "("
-        sql += getSql(val: settler.player.game.gameId, postfix: ", ")
         sql += getSql(val: settler.player.playerId, postfix: ", ")
         sql += getSql(val: Constants.noId, postfix: ", ")
         sql += getSql(val: settler.player.map.tile(at: settler.position).id, postfix: "")
@@ -126,16 +122,12 @@ public class UnitDAO: BaseDAO {
     
     public func insert(engineer: Engineer) throws -> Engineer {
         var unitId = Constants.noId
-        
-        var sql = "INSERT INTO unit (" +
-        "game_id, player_id, unit_type_id, tile_id" +
-        ") VALUES "
+        var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
         
         sql += "("
-        sql += getSql(val: 1, postfix: ", ")
         sql += getSql(val: engineer.player.playerId, postfix: ", ")
-        sql += getSql(val: 1, postfix: ", ")
-        sql += getSql(val: 1, postfix: "")
+        sql += getSql(val: Constants.noId, postfix: ", ")
+        sql += getSql(val: engineer.player.map.tile(at: engineer.position).id, postfix: "")
         sql += "), "
         
         sql = getCleanedSql(sql)
@@ -164,14 +156,10 @@ public class UnitDAO: BaseDAO {
     
     public func insert(explorer: Explorer) throws -> Explorer {
         var unitId = Constants.noId
-        
-        var sql = "INSERT INTO unit (" +
-        "game_id, player_id, unit_type_id, tile_id" +
-        ") VALUES "
-        
-        // FIXME: Need to fix the unit_type_id and tile_id here
+        var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
+
+        // FIXME: Need to fix the unit_type_id here
         sql += "("
-        sql += getSql(val: explorer.player.game.gameId, postfix: ", ")
         sql += getSql(val: explorer.player.playerId, postfix: ", ")
         sql += getSql(val: Constants.noId, postfix: ", ")
         sql += getSql(val: explorer.player.map.tile(at: explorer.position).id, postfix: "")
@@ -203,14 +191,10 @@ public class UnitDAO: BaseDAO {
     
     public func insert(infantry1: Infantry1) throws -> Infantry1 {
         var unitId = Constants.noId
-        
-        var sql = "INSERT INTO unit (" +
-        "game_id, player_id, unit_type_id, tile_id" +
-        ") VALUES "
-        
+        var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
+
         // FIXME: Need to fix the unit_type_id and tile_id here
         sql += "("
-        sql += getSql(val: infantry1.player.game.gameId, postfix: ", ")
         sql += getSql(val: infantry1.player.playerId, postfix: ", ")
         sql += getSql(val: Constants.noId, postfix: ", ")
         sql += getSql(val: infantry1.player.map.tile(at: infantry1.position).id, postfix: "")
@@ -242,14 +226,10 @@ public class UnitDAO: BaseDAO {
     
     public func insert(infantry2: Infantry2) throws -> Infantry2 {
         var unitId = Constants.noId
-        
-        var sql = "INSERT INTO unit (" +
-        "game_id, player_id, unit_type_id, tile_id" +
-        ") VALUES "
-        
+        var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
+
         // FIXME: Need to fix the unit_type_id and tile_id here
         sql += "("
-        sql += getSql(val: infantry2.player.game.gameId, postfix: ", ")
         sql += getSql(val: infantry2.player.playerId, postfix: ", ")
         sql += getSql(val: Constants.noId, postfix: ", ")
         sql += getSql(val: infantry2.player.map.tile(at: infantry2.position).id, postfix: "")
@@ -281,14 +261,10 @@ public class UnitDAO: BaseDAO {
     
     public func insert(infantry3: Infantry3) throws -> Infantry3 {
         var unitId = Constants.noId
-        
-        var sql = "INSERT INTO unit (" +
-        "game_id, player_id, unit_type_id, tile_id" +
-        ") VALUES "
-        
+        var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
+
         // FIXME: Need to fix the unit_type_id and tile_id here
         sql += "("
-        sql += getSql(val: infantry3.player.game.gameId, postfix: ", ")
         sql += getSql(val: infantry3.player.playerId, postfix: ", ")
         sql += getSql(val: Constants.noId, postfix: ", ")
         sql += getSql(val: infantry3.player.map.tile(at: infantry3.position).id, postfix: "")
@@ -320,14 +296,10 @@ public class UnitDAO: BaseDAO {
     
     public func insert(infantry4: Infantry4) throws -> Infantry4 {
         var unitId = Constants.noId
-        
-        var sql = "INSERT INTO unit (" +
-        "game_id, player_id, unit_type_id, tile_id" +
-        ") VALUES "
-        
-        // FIXME: Need to fix the unit_type_id and tile_id here
+        var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
+
+        // FIXME: Need to fix the unit_type_id here
         sql += "("
-        sql += getSql(val: infantry4.player.game.gameId, postfix: ", ")
         sql += getSql(val: infantry4.player.playerId, postfix: ", ")
         sql += getSql(val: Constants.noId, postfix: ", ")
         sql += getSql(val: infantry4.player.map.tile(at: infantry4.position).id, postfix: "")
@@ -357,14 +329,14 @@ public class UnitDAO: BaseDAO {
                          position: infantry4.position)
     }
     
-    public func getUnits(game: Game) throws -> [Unit] {
+    public func getUnits(player: Player) throws -> [Unit] {
         var units: [Unit] = []
         
         var stmt: OpaquePointer?
         let sql = """
             SELECT
                 unit.unit_id,
-                unit.game_id,
+                unit.player_id,
                 unit.tile_id,
                 unit.unit_type_id,
                 unit_type.name,
@@ -383,7 +355,7 @@ public class UnitDAO: BaseDAO {
             LEFT OUTER JOIN
                 tile ON tile.tile_id = unit.tile_id
             WHERE
-                unit.game_id = 1
+                unit.player_id = \(player.playerId)
         """
         
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
@@ -401,7 +373,7 @@ public class UnitDAO: BaseDAO {
                    let unitTypeDisplayName = try getString(stmt: stmt, colIndex: 5),
                    let themeName = try getString(stmt: stmt, colIndex: 10) {
                     let theme = Theme(id: themeId, name: themeName)
-                    units.append(getUnit(game: game,
+                    units.append(getUnit(game: player.game,
                                          theme: theme,
                                          typeName: unitTypeName,
                                          name: unitTypeDisplayName,

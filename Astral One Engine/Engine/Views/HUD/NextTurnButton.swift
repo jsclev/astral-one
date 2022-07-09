@@ -7,9 +7,9 @@ internal class NextTurnButton: SKNode {
     private let buttonNode: SKSpriteNode
     private let selectedIndicator: SKSpriteNode
     private var cancellable = Set<AnyCancellable>()
-    private let uiScaleFactor = 0.18
-    private let minButtonSize = 40.0
-    private let maxButtonSize = 125.0
+    private let uiScaleFactor = 0.22
+    private let minButtonSize = 100.0
+    private let maxButtonSize = 180.0
     public let size: CGSize
     
     internal init(game: Game) {

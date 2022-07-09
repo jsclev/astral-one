@@ -7,6 +7,7 @@ public class Player: ObservableObject, Equatable {
     public let playerId: Int
     public let game: Game
     public let map: Map
+    public let hud = HUDConfig()
     @Published public var cityCreators: [Builder] = []
     @Published public var units: [Unit] = []
     public var advances: [Advance] = []

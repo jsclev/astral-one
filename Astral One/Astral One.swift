@@ -104,9 +104,7 @@ struct GameView: View {
         ZStack {
 #if DEBUG
             if #available(iOS 15.0, *) {
-                SpriteView(scene: scene, debugOptions: [.showsFPS,
-                                                        .showsNodeCount,
-                                                        .showsDrawCount])
+                SpriteView(scene: scene, debugOptions: [])
                 .ignoresSafeArea()
                 //                    .simultaneousGesture(simpleDrag)
             }
@@ -158,12 +156,11 @@ class GameScene: SKScene {
     
     init(mapViewModel: MapViewModel) {
         self.mapViewModel = mapViewModel
-        
+                
         db = Db(fullRefresh: true)
         
         do {
             try db.mapDao.importTiledMap(gameId: AppConstants.gameId, filename: Constants.mapFilename)
-
             game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
         }
         catch {
@@ -190,12 +187,10 @@ class GameScene: SKScene {
         view.ignoresSiblingOrder = true
         
         game.canvasSize = frame.size
-        gameCamera = Camera(game: game, player: game.currentPlayer)
+        gameCamera = Camera(game: game, player: game.currentPlayer, view: view)
         
         camera = gameCamera
         addChild(gameCamera)
-        
-        gameCamera.show()
         
         //        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(pan))
         //        view.addGestureRecognizer(panGesture)

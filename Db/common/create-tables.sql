@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS tile;
 DROP TABLE IF EXISTS tech_command;
 DROP TABLE IF EXISTS create_city_command;
 DROP TABLE IF EXISTS building_command;
-DROP TABLE IF EXISTS move_command;
+DROP TABLE IF EXISTS move_unit_command;
 DROP TABLE IF EXISTS game_setting;
 DROP TABLE IF EXISTS unit;
 DROP TABLE IF EXISTS building;
@@ -128,11 +128,10 @@ CREATE TABLE tile (
 
 CREATE TABLE unit (
     unit_id INTEGER PRIMARY KEY,
-    game_id INTEGER NOT NULL,
     player_id INTEGER NOT NULL,
     unit_type_id INTEGER NOT NULL,
     tile_id INTEGER NOT NULL,
-    FOREIGN KEY (game_id) REFERENCES game (game_id),
+    FOREIGN KEY (player_id) REFERENCES player (player_id),
     -- FIXME Need to implement the unit type foreign key
 --     FOREIGN KEY (unit_type_id) REFERENCES unit_type (unit_type_id)
     FOREIGN KEY (tile_id) REFERENCES tile (tile_id)
@@ -175,11 +174,15 @@ CREATE TABLE tech_command (
     FOREIGN KEY (tech_id) REFERENCES tech (tech_id)
 );
 
-CREATE TABLE move_command (
+CREATE TABLE move_unit_command (
     command_id INTEGER NOT NULL,
     unit_id INTEGER NOT NULL,
-    from_position INTEGER NOT NULL,
-    to_position INTEGER NOT NULL
+    from_row INTEGER NOT NULL,
+    from_col INTEGER NOT NULL,
+    to_row INTEGER NOT NULL,
+    to_col INTEGER NOT NULL,
+    FOREIGN KEY (command_id) REFERENCES command (command_id),
+    FOREIGN KEY (unit_id) REFERENCES unit (unit_id)
 );
 
 CREATE TABLE create_city_command (

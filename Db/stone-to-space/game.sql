@@ -103,7 +103,7 @@ insert into player (game_id, ordinal, name, type, skill_level)
 --
 -- -- Turn 1: Move Warriors
 -- insert into command values (4, 1, 1, 1, 4);
--- insert into move_command values (4, 2, 1, 2);
+-- insert into move_unit_command values (4, 2, 1, 2);
 
 -- insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'CityCreator' and theme_id = 2), 1);
 -- insert into unit (game_id, player_id, unit_type_id, tile_id) values (1, 1, (select unit_type_id from unit_type where name = 'Naval1' and theme_id = 2), 2);

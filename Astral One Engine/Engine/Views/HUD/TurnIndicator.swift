@@ -2,10 +2,10 @@ import Foundation
 import SpriteKit
 import Combine
 
-public class TurnView: SKNode {
+public class TurnIndicator: SKNode {
     private let yearNode: SKLabelNode
     private let game: Game
-    internal let size: CGSize
+    internal var size: CGSize
     private let uiScaleFactor = 0.18
     private var cancellable = Set<AnyCancellable>()
 
@@ -13,7 +13,7 @@ public class TurnView: SKNode {
         self.game = game
         
         yearNode = SKLabelNode(fontNamed: "Arial Bold")
-        yearNode.horizontalAlignmentMode = .right
+        yearNode.horizontalAlignmentMode = .left
         yearNode.zPosition = Layer.hud
         
         size = yearNode.frame.size
@@ -34,6 +34,9 @@ public class TurnView: SKNode {
         addChild(yearNode)
         
         attachSubscribers()
+        
+        size = yearNode.frame.size
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,6 +51,10 @@ public class TurnView: SKNode {
 
             })
             .store(in: &cancellable)
+    }
+    
+    internal func setAlignment(_ alignment: SKLabelHorizontalAlignmentMode) {
+        yearNode.horizontalAlignmentMode = alignment
     }
  
 }

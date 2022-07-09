@@ -9,7 +9,8 @@ public class EventBus {
     private let scene: SKScene
     private let mapManager: MapManager
     private var cancellable = Set<AnyCancellable>()
-    private var advanceIndex = 0
+    private var cmdIndex = 0
+    private let cmds: [Command]
     
     private let advances = [
         "Pottery",
@@ -60,9 +61,10 @@ public class EventBus {
             player.map.revealAllTiles()
         }
         
-        game.placeInitialSettlers()
+        //game.placeInitialSettlers()
         
-        let cmds = game.db.commandDao.getCommands(game: game)
+        cmds = game.db.commandDao.getCommands(game: game)
+
 
     }
     
@@ -71,17 +73,20 @@ public class EventBus {
         
         let location = scene.convertPoint(fromView: recognizerLocation)
         
+        if cmds.count > 1 {
+            if cmdIndex < cmds.count {
+                let _ = cmds[cmdIndex].execute(save: false)
+                cmdIndex += 1
+                return
+            }
+            
+            return
+        }
+        
         
 
         
-//        for _ in 0..<100 {
-//            game.currentPlayer.add(advanceName: advances[advanceIndex])
-//            print("\(advances[advanceIndex]) researched.")
-//            
-//            advanceIndex += 1
-//            
-//            
-//        }
+
         
         let touchedNodes = scene.nodes(at: location)
         
@@ -93,10 +98,10 @@ public class EventBus {
                     return
                 }
                 else if name == "Research Button" {
-                    game.currentPlayer.add(advanceName: advances[advanceIndex])
-                    print("\(advances[advanceIndex]) researched.")
-                    
-                    advanceIndex += 1
+//                    game.currentPlayer.add(advanceName: advances[advanceIndex])
+//                    print("\(advances[advanceIndex]) researched.")
+//
+//                    advanceIndex += 1
                     return
                 }
                 else if name == "Found City Button" {
@@ -118,7 +123,6 @@ public class EventBus {
                                 let moveCmd = MoveUnitCommand(player: game.currentPlayer,
                                                               turn: game.getCurrentTurn(),
                                                               ordinal: 2,
-                                                              mapManager: mapManager,
                                                               unit: unit,
                                                               to: position)
                                 let _ = moveCmd.execute(save: true)
@@ -168,7 +172,6 @@ public class EventBus {
                 let moveCmd = MoveUnitCommand(player: game.currentPlayer,
                                               turn: game.getCurrentTurn(),
                                               ordinal: 1,
-                                              mapManager: mapManager,
                                               unit: selectedUnit,
                                               to: tile.position)
                 let _ = moveCmd.execute(save: false)
