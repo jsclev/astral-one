@@ -2,6 +2,8 @@ DROP TABLE IF EXISTS tile;
 DROP TABLE IF EXISTS tech_command;
 DROP TABLE IF EXISTS create_city_command;
 DROP TABLE IF EXISTS building_command;
+
+DROP TABLE IF EXISTS build_building_command;
 DROP TABLE IF EXISTS move_unit_command;
 DROP TABLE IF EXISTS game_setting;
 DROP TABLE IF EXISTS unit;
@@ -50,8 +52,12 @@ CREATE TABLE unit_type (
 
 CREATE TABLE building_type (
     building_type_id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL
+    theme_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    FOREIGN KEY (theme_id) REFERENCES theme (theme_id)
 );
+
+CREATE UNIQUE INDEX building_type_idx1 ON building_type (theme_id, name);
 
 CREATE TABLE tech (
     tech_id INTEGER PRIMARY KEY,
@@ -205,9 +211,12 @@ CREATE TABLE create_unit_command (
     FOREIGN KEY (city_id) REFERENCES city (city_id)
 );
 
-CREATE TABLE building_command (
+CREATE TABLE build_building_command (
     command_id INTEGER NOT NULL,
-    building_id INTEGER NOT NULL
-);
+    city_id INTEGER NOT NULL,
+    building_type_id INTEGER NOT NULL,
+    FOREIGN KEY (city_id) REFERENCES city (city_id),
+    FOREIGN KEY (building_type_id) REFERENCES building_type (building_type_id)
 
+);
 

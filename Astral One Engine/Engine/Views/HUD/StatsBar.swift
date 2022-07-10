@@ -2,26 +2,25 @@ import Foundation
 import Combine
 import SpriteKit
 
-internal class ResearchButton: SKNode {
+internal class StatsBar: SKNode {
     private let game: Game
     private let buttonNode: SKSpriteNode
-    private let selectedIndicator: SKSpriteNode
     private var cancellable = Set<AnyCancellable>()
-    private let uiScaleFactor = 0.20
-    private let minButtonSize = 40.0
-    private let maxButtonSize = 125.0
-    public let size: CGSize
+    private let uiScaleFactor = 0.22
+    private let minButtonSize = 100.0
+    private let maxButtonSize = 180.0
+    public var size: CGSize
     
     internal init(game: Game) {
         self.game = game
         
-        let texture = SKTexture(imageNamed: "research-button")
+        let texture = SKTexture(imageNamed: "turn-indicator-bg")
         buttonNode = SKSpriteNode(texture: texture,
                                   color: UIColor.systemPink,
                                   size: texture.size())
         buttonNode.position = CGPoint.zero
         
-        var size = CGSize(width: game.canvasSize.height * uiScaleFactor,
+        var size = CGSize(width: game.canvasSize.width * uiScaleFactor,
                           height: game.canvasSize.height * uiScaleFactor)
         
         if size.width < minButtonSize {
@@ -34,22 +33,11 @@ internal class ResearchButton: SKNode {
         buttonNode.size = size
         self.size = size
         
-        let selectedTexture = SKTexture(imageNamed: "next-turn-button")
-        selectedIndicator = SKSpriteNode(texture: selectedTexture,
-                                         color: UIColor.systemPink,
-                                         size: selectedTexture.size())
-        selectedIndicator.position = CGPoint.zero
-        selectedIndicator.isHidden = true
-        selectedIndicator.zPosition = 1
-        
         super.init()
         
-        name = "Research Button"
-        isUserInteractionEnabled = true
-        
         addChild(buttonNode)
-        addChild(selectedIndicator)
         
+        self.size = buttonNode.size
         attachSubscribers()
     }
     

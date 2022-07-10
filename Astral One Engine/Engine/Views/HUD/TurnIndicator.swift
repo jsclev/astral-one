@@ -3,23 +3,29 @@ import SpriteKit
 import Combine
 
 public class TurnIndicator: SKNode {
-    private let yearNode: SKLabelNode
+    private let labelNode: SKLabelNode
+    private let bgNode: SKSpriteNode
     private let game: Game
     internal var size: CGSize
-    private let uiScaleFactor = 0.18
+    private let uiScaleFactor = 0.25
+    private let minBarHeight = 20.0
+    private let maxBarHeight = 40.0
     private var cancellable = Set<AnyCancellable>()
 
     public init(game: Game) {
         self.game = game
         
-        yearNode = SKLabelNode(fontNamed: "Arial Bold")
-        yearNode.horizontalAlignmentMode = .left
-        yearNode.zPosition = Layer.hud
+        labelNode = SKLabelNode(fontNamed: "Arial Bold")
+        labelNode.horizontalAlignmentMode = .center
+        labelNode.zPosition = Layer.hud
         
-        size = yearNode.frame.size
-        super.init()
+        let texture = SKTexture(imageNamed: "turn-indicator-bg")
+        bgNode = SKSpriteNode(texture: texture,
+                              color: UIColor.systemPink,
+                              size: texture.size())
+        bgNode.zPosition = Layer.hud - 1.0
         
-        var fontSize = game.canvasSize.height / 20.0
+        var fontSize = game.canvasSize.height / 18.0
         if fontSize < 8 {
             fontSize = 8
         }
@@ -29,14 +35,25 @@ public class TurnIndicator: SKNode {
         
         fontSize = floor(fontSize)
         
-        yearNode.fontSize = fontSize
+        labelNode.fontSize = fontSize
+        labelNode.fontColor = UIColor(red: 104.0/255.0,
+                                      green: 75.0/255.0,
+                                      blue: 59.0/255.0,
+                                      alpha: 1.0)
 
-        addChild(yearNode)
+        bgNode.size = CGSize(width: labelNode.frame.size.width * 1.25,
+                             height: labelNode.frame.size.height * 2.0)
+        self.size = bgNode.size
+        super.init()
+
+        addChild(bgNode)
+        addChild(labelNode)
         
         attachSubscribers()
-        
-        size = yearNode.frame.size
-
+        bgNode.size = CGSize(width: labelNode.frame.size.width * 1.25,
+                             height: labelNode.frame.size.height * 2.25)
+        self.size = bgNode.size
+        labelNode.position = CGPoint(x: 0.0, y: -labelNode.frame.size.height / 3.0)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,14 +64,10 @@ public class TurnIndicator: SKNode {
         self.game.$turnIndex
             .sink(receiveValue: { newValue in
                 let turn = self.game.turns[newValue]
-                self.yearNode.text = "Turn \(turn.ordinal): \(turn.displayText)"
+                self.labelNode.text = "Turn \(turn.ordinal): \(turn.displayText)"
 
             })
             .store(in: &cancellable)
     }
     
-    internal func setAlignment(_ alignment: SKLabelHorizontalAlignmentMode) {
-        yearNode.horizontalAlignmentMode = alignment
-    }
- 
 }

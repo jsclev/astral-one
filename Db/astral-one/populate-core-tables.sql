@@ -203,47 +203,47 @@ insert into turn (theme_id, ordinal, year, display_text) values (
 -- insert into unit_type (tiled_id, name, display_name, theme_id) values (-1, 'NuclearMissile', 'Nuclear Missile', 3);
 --
 -- insert into unit_type (tiled_id, name, display_name, theme_id) values (-1, 'Air1', 'Bomber', 3);
---
--- -- Building types
--- insert into building_type (name) values ('Airport');
--- insert into building_type (name) values ('Aqueduct');
--- insert into building_type (name) values ('Bank');
--- insert into building_type (name) values ('Barracks');
--- insert into building_type (name) values ('Capitalization');
--- insert into building_type (name) values ('Cathedral');
--- insert into building_type (name) values ('City Walls');
--- insert into building_type (name) values ('Coastal Fortress');
--- insert into building_type (name) values ('Colosseum');
--- insert into building_type (name) values ('Courthouse');
--- insert into building_type (name) values ('Factory');
--- insert into building_type (name) values ('Granary');
--- insert into building_type (name) values ('Harbor');
--- insert into building_type (name) values ('Hydro Plant');
--- insert into building_type (name) values ('Library');
--- insert into building_type (name) values ('Marketplace');
--- insert into building_type (name) values ('Mass Transit');
--- insert into building_type (name) values ('Mfg. Plant');
--- insert into building_type (name) values ('Nuclear Plant');
--- insert into building_type (name) values ('Offshore Platform');
--- insert into building_type (name) values ('Palace');
--- insert into building_type (name) values ('Police Station');
--- insert into building_type (name) values ('Port Facility');
--- insert into building_type (name) values ('Power Plant');
--- insert into building_type (name) values ('Recycling Center');
--- insert into building_type (name) values ('Research Lab');
--- insert into building_type (name) values ('SAM Missile Battery');
--- insert into building_type (name) values ('SDI Defense');
--- insert into building_type (name) values ('Sewer System');
--- insert into building_type (name) values ('Solar Plant');
--- insert into building_type (name) values ('SS Component');
--- insert into building_type (name) values ('SS Module');
--- insert into building_type (name) values ('SS Structural');
--- insert into building_type (name) values ('Stock Exchange');
--- insert into building_type (name) values ('Superhighways');
--- insert into building_type (name) values ('Supermarket');
--- insert into building_type (name) values ('Temple');
--- insert into building_type (name) values ('University');
---
+
+-- Building types
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Airport');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Aqueduct');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Bank');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Barracks');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Capitalization');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Cathedral');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'City Walls');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Coastal Fortress');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Colosseum');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Courthouse');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Factory');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Granary');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Harbor');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Hydro Plant');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Library');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Marketplace');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Mass Transit');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Mfg. Plant');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Nuclear Plant');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Offshore Platform');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Palace');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Police Station');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Port Facility');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Power Plant');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Recycling Center');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Research Lab');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'SAM Missile Battery');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'SDI Defense');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Sewer System');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Solar Plant');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'SS Component');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'SS Module');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'SS Structural');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Stock Exchange');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Superhighways');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Supermarket');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'Temple');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Astral One'), 'University');
+
 -- -- Techs
 -- insert into tech values (1, NULL, 'Alphabet', 'alphabet');
 --

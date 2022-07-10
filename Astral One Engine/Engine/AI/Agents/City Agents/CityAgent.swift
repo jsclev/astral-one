@@ -68,30 +68,33 @@ public class CityAgent {
                                                    city: city))
         }
         if !city.has(building: BuildingType.Barracks) {
-            commands.append(BuildBarracksCommand(player: player,
+            commands.append(BuildBuildingCommand(player: player,
                                                  turn: player.game.getCurrentTurn(),
                                                  ordinal: 1,
                                                  cost: 1,
-                                                 city: city))
+                                                 city: city,
+                                                 buildingType: BuildingType.Barracks))
         }
         
         if player.hasResearched(advanceName: "Map Making") &&
-           city.canBuild(building: BuildingType.Lighthouse) {
-            commands.append(BuildLighthouseCommand(player: player,
-                                               turn: player.game.getCurrentTurn(),
-                                               ordinal: 1,
-                                               cost: 1,
-                                               city: city))
+            city.canBuild(building: BuildingType.Lighthouse) {
+            commands.append(BuildBuildingCommand(player: player,
+                                                 turn: player.game.getCurrentTurn(),
+                                                 ordinal: 1,
+                                                 cost: 1,
+                                                 city: city,
+                                                 buildingType: BuildingType.Lighthouse))
         }
         
         // FIXME: Need to add check for Seafaring advance
         if player.hasResearched(advanceName: "Seafaring") &&
             city.canBuild(building: BuildingType.Harbor) {
-            commands.append(BuildHarborCommand(player: player,
-                                               turn: player.game.getCurrentTurn(),
-                                               ordinal: 1,
-                                               cost: 1,
-                                               city: city))
+            commands.append(BuildBuildingCommand(player: player,
+                                                 turn: player.game.getCurrentTurn(),
+                                                 ordinal: 1,
+                                                 cost: 1,
+                                                 city: city,
+                                                 buildingType: BuildingType.Harbor))
         }
         
         // FIXME: Need to add availability for the other littoral improvements:
@@ -99,29 +102,32 @@ public class CityAgent {
         
         if !city.has(building: BuildingType.Granary) &&
             player.hasResearched(advanceName: "Alphabet") {
-            commands.append(BuildGranaryCommand(player: player,
-                                                turn: player.game.getCurrentTurn(),
-                                                ordinal: 1,
-                                                cost: 1,
-                                                city: city))
+            commands.append(BuildBuildingCommand(player: player,
+                                                 turn: player.game.getCurrentTurn(),
+                                                 ordinal: 1,
+                                                 cost: 1,
+                                                 city: city,
+                                                 buildingType: BuildingType.Granary))
         }
         
         if !city.has(building: BuildingType.Temple) &&
             player.hasResearched(advanceName: "Ceremonial Burial") {
-            commands.append(BuildTempleCommand(player: player,
-                                               turn: player.game.getCurrentTurn(),
-                                               ordinal: 1,
-                                               cost: 1,
-                                               city: city))
+            commands.append(BuildBuildingCommand(player: player,
+                                                 turn: player.game.getCurrentTurn(),
+                                                 ordinal: 1,
+                                                 cost: 1,
+                                                 city: city,
+                                                 buildingType: BuildingType.Temple))
         }
         
         if !city.has(building: BuildingType.CityWalls) &&
             player.hasResearched(advanceName: "Masonry") {
-            commands.append(BuildCityWallsCommand(player: player,
-                                                  turn: player.game.getCurrentTurn(),
-                                                  ordinal: 1,
-                                                  cost: 1,
-                                                  city: city))
+            commands.append(BuildBuildingCommand(player: player,
+                                                 turn: player.game.getCurrentTurn(),
+                                                 ordinal: 1,
+                                                 cost: 1,
+                                                 city: city,
+                                                 buildingType: BuildingType.CityWalls))
         }
         
         return commands

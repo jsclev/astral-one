@@ -204,46 +204,46 @@ insert into unit_type (tiled_id, name, display_name, theme_id) values (-1, 'Nucl
 
 insert into unit_type (tiled_id, name, display_name, theme_id) values (-1, 'Air1', 'Bomber', 3);
 
--- -- Building types
--- insert into building_type (name) values ('Airport');
--- insert into building_type (name) values ('Aqueduct');
--- insert into building_type (name) values ('Bank');
--- insert into building_type (name) values ('Barracks');
--- insert into building_type (name) values ('Capitalization');
--- insert into building_type (name) values ('Cathedral');
--- insert into building_type (name) values ('City Walls');
--- insert into building_type (name) values ('Coastal Fortress');
--- insert into building_type (name) values ('Colosseum');
--- insert into building_type (name) values ('Courthouse');
--- insert into building_type (name) values ('Factory');
--- insert into building_type (name) values ('Granary');
--- insert into building_type (name) values ('Harbor');
--- insert into building_type (name) values ('Hydro Plant');
--- insert into building_type (name) values ('Library');
--- insert into building_type (name) values ('Marketplace');
--- insert into building_type (name) values ('Mass Transit');
--- insert into building_type (name) values ('Mfg. Plant');
--- insert into building_type (name) values ('Nuclear Plant');
--- insert into building_type (name) values ('Offshore Platform');
--- insert into building_type (name) values ('Palace');
--- insert into building_type (name) values ('Police Station');
--- insert into building_type (name) values ('Port Facility');
--- insert into building_type (name) values ('Power Plant');
--- insert into building_type (name) values ('Recycling Center');
--- insert into building_type (name) values ('Research Lab');
--- insert into building_type (name) values ('SAM Missile Battery');
--- insert into building_type (name) values ('SDI Defense');
--- insert into building_type (name) values ('Sewer System');
--- insert into building_type (name) values ('Solar Plant');
--- insert into building_type (name) values ('SS Component');
--- insert into building_type (name) values ('SS Module');
--- insert into building_type (name) values ('SS Structural');
--- insert into building_type (name) values ('Stock Exchange');
--- insert into building_type (name) values ('Superhighways');
--- insert into building_type (name) values ('Supermarket');
--- insert into building_type (name) values ('Temple');
--- insert into building_type (name) values ('University');
---
+-- Building types
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Airport');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Aqueduct');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Bank');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Barracks');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Capitalization');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Cathedral');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'City Walls');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Coastal Fortress');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Colosseum');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Courthouse');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Factory');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Granary');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Harbor');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Hydro Plant');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Library');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Marketplace');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Mass Transit');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Mfg. Plant');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Nuclear Plant');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Offshore Platform');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Palace');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Police Station');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Port Facility');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Power Plant');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Recycling Center');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Research Lab');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'SAM Missile Battery');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'SDI Defense');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Sewer System');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Solar Plant');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'SS Component');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'SS Module');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'SS Structural');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Stock Exchange');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Superhighways');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Supermarket');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'Temple');
+insert into building_type (theme_id, name) values ((select theme_id from theme where name = 'Stone to Space'), 'University');
+
 -- -- Techs
 -- insert into tech values (1, NULL, 'Alphabet', 'alphabet');
 --

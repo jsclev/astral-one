@@ -64,15 +64,25 @@ public class EventBus {
         //game.placeInitialSettlers()
         
         cmds = game.db.commandDao.getCommands(game: game)
-
-
     }
     
     public func tap(recognizerLocation: CGPoint) {
         game.currentPlayer.clearNotification()
         
         let location = scene.convertPoint(fromView: recognizerLocation)
-        
+        let tile = mapManager.getTile(at: location)
+
+        if let city = tile.city {
+            let cmd = BuildBuildingCommand(player: game.currentPlayer,
+                                           turn: game.getCurrentTurn(),
+                                           ordinal: 1,
+                                           cost: 1,
+                                           city: city,
+                                           buildingType: BuildingType.Barracks)
+            print(cmd.execute(save: true).message)
+            return
+        }
+
         if cmds.count > 1 {
             if cmdIndex < cmds.count {
                 let _ = cmds[cmdIndex].execute(save: false)
@@ -82,11 +92,6 @@ public class EventBus {
             
             return
         }
-        
-        
-
-        
-
         
         let touchedNodes = scene.nodes(at: location)
         
@@ -155,8 +160,6 @@ public class EventBus {
                 }
             }
         }
-        
-        let tile = mapManager.getTile(at: location)
         
         if let unit = mapManager.getUnit(on: tile) {
             let selectUnitCmd = SelectUnitCommand(player: game.currentPlayer,

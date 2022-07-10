@@ -80,13 +80,10 @@ class StoneToSpaceScene: SKScene {
         }
         
         game.canvasSize = frame.size
-        gameCamera = Camera(game: game, player: game.currentPlayer)
+        gameCamera = Camera(game: game, player: game.currentPlayer, view: view)
 
         camera = gameCamera
         addChild(gameCamera)
-        
-        gameCamera.show()
-
 //        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(pan))
 //        view.addGestureRecognizer(panGesture)
                 
