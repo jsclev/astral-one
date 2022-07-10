@@ -154,6 +154,7 @@
 		52D78CE42879410A006AF649 /* HUDConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D78CE32879410A006AF649 /* HUDConfig.swift */; };
 		52D78CE6287A35E1006AF649 /* StatsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D78CE5287A35E1006AF649 /* StatsBar.swift */; };
 		52D78CE8287B2C25006AF649 /* BuildBuildingCommandDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D78CE7287B2C25006AF649 /* BuildBuildingCommandDAO.swift */; };
+		52D78CEA287B759A006AF649 /* BuildingTypeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D78CE9287B759A006AF649 /* BuildingTypeDAO.swift */; };
 		52DE5F32281086A40029EFE1 /* UnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F31281086A40029EFE1 /* UnitFactory.swift */; };
 		52DE5F342810DAB90029EFE1 /* MapDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F332810DAB90029EFE1 /* MapDAO.swift */; };
 		52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */; };
@@ -404,6 +405,7 @@
 		52D78CE32879410A006AF649 /* HUDConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDConfig.swift; sourceTree = "<group>"; };
 		52D78CE5287A35E1006AF649 /* StatsBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsBar.swift; sourceTree = "<group>"; };
 		52D78CE7287B2C25006AF649 /* BuildBuildingCommandDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildBuildingCommandDAO.swift; sourceTree = "<group>"; };
+		52D78CE9287B759A006AF649 /* BuildingTypeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingTypeDAO.swift; sourceTree = "<group>"; };
 		52DE5F31281086A40029EFE1 /* UnitFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitFactory.swift; sourceTree = "<group>"; };
 		52DE5F332810DAB90029EFE1 /* MapDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDAO.swift; sourceTree = "<group>"; };
 		52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitDAO.swift; sourceTree = "<group>"; };
@@ -1086,6 +1088,7 @@
 			children = (
 				52F9046F27FC8B8800D1AC97 /* Commands */,
 				52F9042F27F6B5B100D1AC97 /* BaseDAO.swift */,
+				52D78CE9287B759A006AF649 /* BuildingTypeDAO.swift */,
 				52DE5FB42820EC570029EFE1 /* CityDAO.swift */,
 				52F9044327F6D68A00D1AC97 /* GameDAO.swift */,
 				52DE5F332810DAB90029EFE1 /* MapDAO.swift */,
@@ -1271,6 +1274,7 @@
 				52D78CE42879410A006AF649 /* HUDConfig.swift in Sources */,
 				5236B41328450C1C006DF7E6 /* SettlerAgent.swift in Sources */,
 				52F9042827F4E27B00D1AC97 /* Infantry1.swift in Sources */,
+				52D78CEA287B759A006AF649 /* BuildingTypeDAO.swift in Sources */,
 				52DE5F83281C78450029EFE1 /* FounderContextMenu.swift in Sources */,
 				52A64648282DB53A0066B82D /* ResearchWritingAction.swift in Sources */,
 				52A64660282DFD500066B82D /* ResearchMonarchyAction.swift in Sources */,

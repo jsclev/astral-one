@@ -57,7 +57,7 @@ public enum Government {
     case Democracy
 }
 
-public enum BuildingType {
+public enum BuildingType: CustomStringConvertible {
     case Airport
     case Aqueduct
     case Bank
@@ -97,6 +97,50 @@ public enum BuildingType {
     case Supermarket
     case Temple
     case University
+    
+    public var description: String {
+        switch self {
+        case .Airport: return "Airport"
+        case .Aqueduct: return "AAA"
+        case .Bank: return "AAA"
+        case .Barracks: return "Barracks"
+        case .Capitalization: return "AAA"
+        case .Cathedral: return "AAA"
+        case .CityWalls: return "City Walls"
+        case .CoastalFortress: return "AAA"
+        case .Colosseum: return "AAA"
+        case .Courthouse: return "AAA"
+        case .Factory: return "AAA"
+        case .Granary: return "AAA"
+        case .Harbor: return "AAA"
+        case .HydroPlant: return "AAA"
+        case .Library: return "AAA"
+        case .Lighthouse: return "Lighthouse"
+        case .ManufacturingPlant: return "AAA"
+        case .Marketplace: return "AAA"
+        case .MassTransit: return "AAA"
+        case .NuclearPlant: return "AAA"
+        case .OffshorePlatform: return "AAA"
+        case .Palace: return "AAA"
+        case .PoliceStation: return "AAA"
+        case .PortFacility: return "AAA"
+        case .PowerPlant: return "AAA"
+        case .RecyclingCenter: return "AAA"
+        case .ResearchLab: return "AAA"
+        case .SAMMissileBattery: return "AAA"
+        case .SDIDefense: return "AAA"
+        case .SSComponent: return "SS Component"
+        case .SSModule: return "SS Module"
+        case .SSStructural: return "SS Structural"
+        case .SewerSystem: return "Sewer System"
+        case .SolarPlant: return "Solar Plant"
+        case .StockExchange: return "Stock Exchange"
+        case .Superhighways: return "Superhighways"
+        case .Supermarket: return "Supermarket"
+        case .Temple: return "Temple"
+        case .University: return "University"
+        }
+    }
 }
 
 public enum WonderType {

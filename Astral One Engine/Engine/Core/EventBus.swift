@@ -71,18 +71,17 @@ public class EventBus {
         
         let location = scene.convertPoint(fromView: recognizerLocation)
         let tile = mapManager.getTile(at: location)
-
+        
         if let city = tile.city {
-            let cmd = BuildBuildingCommand(player: game.currentPlayer,
-                                           turn: game.getCurrentTurn(),
-                                           ordinal: 1,
-                                           cost: 1,
-                                           city: city,
-                                           buildingType: BuildingType.Barracks)
-            print(cmd.execute(save: true).message)
+            let _ = BuildBuildingCommand(player: game.currentPlayer,
+                                         turn: game.getCurrentTurn(),
+                                         ordinal: 1,
+                                         cost: 1,
+                                         city: city,
+                                         buildingType: BuildingType.Barracks)
             return
         }
-
+        
         if cmds.count > 1 {
             if cmdIndex < cmds.count {
                 let _ = cmds[cmdIndex].execute(save: false)
@@ -103,10 +102,10 @@ public class EventBus {
                     return
                 }
                 else if name == "Research Button" {
-//                    game.currentPlayer.add(advanceName: advances[advanceIndex])
-//                    print("\(advances[advanceIndex]) researched.")
-//
-//                    advanceIndex += 1
+                    //                    game.currentPlayer.add(advanceName: advances[advanceIndex])
+                    //                    print("\(advances[advanceIndex]) researched.")
+                    //
+                    //                    advanceIndex += 1
                     return
                 }
                 else if name == "Found City Button" {
@@ -123,7 +122,7 @@ public class EventBus {
                         do {
                             let agent = try SettlerAgent.getAgent(aiPlayer: game.currentPlayer,
                                                                   settler: unit as! Settler)
-
+                            
                             if let position = try agent.getSettleCityPosition() {
                                 let moveCmd = MoveUnitCommand(player: game.currentPlayer,
                                                               turn: game.getCurrentTurn(),
@@ -133,7 +132,7 @@ public class EventBus {
                                 let _ = moveCmd.execute(save: true)
                                 // print(position)
                                 // print(unit.position)
-
+                                
                                 let cityCmd = CreateCityCommand(player: game.currentPlayer,
                                                                 turn: game.getCurrentTurn(),
                                                                 ordinal: 2,
@@ -208,41 +207,41 @@ public class EventBus {
     }
     
     private func addInitialSettler(player: AIPlayer, tile: Tile) {
-//        let minRow = 2
-//        let maxRow = player.map.height - 2
-//        let minCol = 2
-//        let maxCol = player.map.width - 2
-//
-//        var foundTile = false
-//        var tile = player.map.tile(at: Position(row: 0, col: 0))
-//
-//        while !foundTile {
-//            let randomRow = Int.random(in: minRow...maxRow)
-//            let randomCol = Int.random(in: minCol...maxCol)
-//
-//            tile = player.map.tile(at: Position(row: randomRow, col: randomCol))
-//
-//            if tile.canCreateCity {
-//                foundTile = true
-//                print("Adding Settler to [\(randomRow), \(randomCol)]")
-//            }
-//        }
+        //        let minRow = 2
+        //        let maxRow = player.map.height - 2
+        //        let minCol = 2
+        //        let maxCol = player.map.width - 2
+        //
+        //        var foundTile = false
+        //        var tile = player.map.tile(at: Position(row: 0, col: 0))
+        //
+        //        while !foundTile {
+        //            let randomRow = Int.random(in: minRow...maxRow)
+        //            let randomCol = Int.random(in: minCol...maxCol)
+        //
+        //            tile = player.map.tile(at: Position(row: randomRow, col: randomCol))
+        //
+        //            if tile.canCreateCity {
+        //                foundTile = true
+        //                print("Adding Settler to [\(randomRow), \(randomCol)]")
+        //            }
+        //        }
         
-//        let cmd = CreateSettlerCommand(player: player,
-//                                       turn: player.game.getCurrentTurn(),
-//                                       ordinal: 1,
-//                                       cost: 1,
-//                                       tile: tile)
-//        let _ = cmd.execute()
-//
-//        if let settler = player.cityCreators.last as? Settler {
-//            do {
-//
-//            }
-//            catch {
-//                fatalError("\(error)")
-//            }
-//        }
+        //        let cmd = CreateSettlerCommand(player: player,
+        //                                       turn: player.game.getCurrentTurn(),
+        //                                       ordinal: 1,
+        //                                       cost: 1,
+        //                                       tile: tile)
+        //        let _ = cmd.execute()
+        //
+        //        if let settler = player.cityCreators.last as? Settler {
+        //            do {
+        //
+        //            }
+        //            catch {
+        //                fatalError("\(error)")
+        //            }
+        //        }
         //print(player.cityCreators.last!.id)
         
         //        let settler1 = Settler(game: game,

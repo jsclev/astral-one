@@ -8,6 +8,7 @@ public class Db {
     let dbFilename = "game"
     let dbExtension = "sqlite"
     
+    public let buildingTypeDao: BuildingTypeDAO
     public let buildBuildingCommandDao: BuildBuildingCommandDAO
     public let cityDao: CityDAO
     public let commandDao: CommandDAO
@@ -99,6 +100,7 @@ public class Db {
         
         sqlite3_finalize(stmt)
         
+        buildingTypeDao = BuildingTypeDAO(conn: db)
         cityDao = CityDAO(conn: db)
         unitDao = UnitDAO(conn: db)
         commandDao = CommandDAO(conn: db, cityDao: cityDao)
@@ -106,7 +108,7 @@ public class Db {
         createUnitCommandDao = CreateUnitCommandDAO(conn: db, commandDao: commandDao, unitDao: unitDao)
         gameDao = GameDAO(conn: db)
         mapDao = MapDAO(conn: db)
-        buildBuildingCommandDao = BuildBuildingCommandDAO(conn: db, commandDao: commandDao)
+        buildBuildingCommandDao = BuildBuildingCommandDAO(conn: db, commandDao: commandDao, buildingTypeDao: buildingTypeDao)
         moveUnitCommandDao = MoveUnitCommandDAO(conn: db, commandDao: commandDao)
         playerDao = PlayerDAO(conn: db, mapDao: mapDao, unitDao: unitDao)
         terrainDao = TerrainDAO(conn: db)

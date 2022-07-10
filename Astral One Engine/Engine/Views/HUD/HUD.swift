@@ -177,9 +177,6 @@ public class Camera: SKCameraNode {
         let barWidth = statsBar.size.width * statsBar.xScale
         let barHeight = statsBar.size.height * statsBar.yScale
         
-        print(researchButton.size.width)
-        print(barWidth)
-        
         switch player.hud.researchButton {
         case HUDPosition.Northeast:
             x = nwAnchorPoint.x + (barWidth / 2.0) + researchButton.size.width

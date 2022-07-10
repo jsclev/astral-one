@@ -7,7 +7,6 @@ public class CityLevel8Agent: CityAgent {
     }
     
     public override func getNextCommand() -> Command {
-        print("Num available commands: \(availableCommands.count)")
         let randNum = Int.random(in: 0..<availableCommands.count)
         
         return availableCommands[randNum]

@@ -5,30 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fd414d6-76be-43aa-bf8a-c5778b259c52" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/Commands/BuildBuildingCommandDAO.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/HUD/StatsBar.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Buttons/research-button.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Buttons/research-button.imageset/research-button.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Buttons/turn-indicator-bg.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Buttons/turn-indicator-bg.imageset/turn-indicator-bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/BuildingTypeDAO.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Build Buildings/BuildBarracksCommand.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/City Commands/BuildBuildingCommand.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Cities/CreateCityCommand.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/City Commands/CreateCityCommand.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Db.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Db.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/HUD/HUD.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/HUD/HUD.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/HUD/ResearchButton.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/HUD/ResearchButton.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/HUD/TurnIndicator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/HUD/TurnIndicator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Enums.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Enums.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One/Resources/Data/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One/Resources/Data/game.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e834f441-23ad-4ed8-bdbd-9b68f3e95065.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e834f441-23ad-4ed8-bdbd-9b68f3e95065.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/astral-one/populate-core-tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/astral-one/populate-core-tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/create-tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/common/create-tables.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/populate-core-tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/common/populate-core-tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/game.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stone-to-space/populate-core-tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/stone-to-space/populate-core-tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine Tests/Resources/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Resources/game.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Buttons/next-turn-button.imageset/next-turn-button.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Buttons/next-turn-button.imageset/next-turn-button.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Resources/Data/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Resources/Data/game.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Pathfinder/Stone to Space/StoneToSpaceScene.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/StoneToSpaceScene.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Simulator/Simulator/Resources/Data/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/../Simulator/Simulator/Resources/Data/game.sqlite" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

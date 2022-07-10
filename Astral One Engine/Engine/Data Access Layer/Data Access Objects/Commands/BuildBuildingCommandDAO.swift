@@ -3,9 +3,11 @@ import SQLite3
 
 public class BuildBuildingCommandDAO: BaseDAO {
     private let commandDao: CommandDAO
+    private let buildingTypeDao: BuildingTypeDAO
     
-    init(conn: OpaquePointer?, commandDao: CommandDAO) {
+    init(conn: OpaquePointer?, commandDao: CommandDAO, buildingTypeDao: BuildingTypeDAO) {
         self.commandDao = commandDao
+        self.buildingTypeDao = buildingTypeDao
         
         super.init(conn: conn, table: "command", loggerName: String(describing: type(of: self)))
     }
@@ -15,7 +17,8 @@ public class BuildBuildingCommandDAO: BaseDAO {
                                                              turn: command.turn,
                                                              ordinal: command.ordinal,
                                                              cost: command.cost))
-        let buildingTypeId = 1
+        let buildingTypeId = try buildingTypeDao.getBuildingTypeId(buildingType: command.buildingType,
+                                                                   theme: command.player.game.theme)
         
         var sql = "INSERT INTO build_building_command (command_id, city_id, building_type_id) VALUES "
         
