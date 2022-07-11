@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS tile;
-DROP TABLE IF EXISTS tech_command;
+DROP TABLE IF EXISTS advance_command;
 DROP TABLE IF EXISTS create_city_command;
 DROP TABLE IF EXISTS build_building_command;
 DROP TABLE IF EXISTS move_unit_command;
@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS tilemap;
 DROP TABLE IF EXISTS game;
 DROP TABLE IF EXISTS building_type;
 DROP TABLE IF EXISTS unit_type;
-DROP TABLE IF EXISTS tech;
+DROP TABLE IF EXISTS advance;
 DROP TABLE IF EXISTS turn;
 
 CREATE TABLE theme (
@@ -96,12 +96,16 @@ CREATE TABLE building_type (
 
 CREATE UNIQUE INDEX building_type_idx1 ON building_type (theme_id, name);
 
-CREATE TABLE tech (
-    tech_id INTEGER PRIMARY KEY,
-    parent_tech_id INTEGER,
+CREATE TABLE advance (
+    advance_id INTEGER PRIMARY KEY,
+    parent_advance_id INTEGER,
+    theme_id INTEGER NOT NULL,
     name TEXT NOT NULL,
-    key TEXT NOT NULL
+    FOREIGN KEY (parent_advance_id) REFERENCES advance (advance_id),
+    FOREIGN KEY (theme_id) REFERENCES theme (theme_id)
 );
+
+CREATE UNIQUE INDEX advance_idx1 ON advance (theme_id, name);
 
 CREATE TABLE game (
     game_id INTEGER PRIMARY KEY,
@@ -219,9 +223,9 @@ CREATE TABLE next_turn_command (
 
 CREATE TABLE research_advance_command (
     command_id INTEGER NOT NULL,
-    tech_id INTEGER NOT NULL,
+    advance_id INTEGER NOT NULL,
     FOREIGN KEY (command_id) REFERENCES command (command_id),
-    FOREIGN KEY (tech_id) REFERENCES tech (tech_id)
+    FOREIGN KEY (advance_id) REFERENCES advance (advance_id)
 );
 
 CREATE TABLE move_unit_command (

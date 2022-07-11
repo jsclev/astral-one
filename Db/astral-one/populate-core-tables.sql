@@ -244,10 +244,98 @@ insert into building_type (theme_id, core_name, name) values ((select theme_id f
 insert into building_type (theme_id, core_name, name) values ((select theme_id from theme where name = 'Astral One'), 'Temple', 'Temple');
 insert into building_type (theme_id, core_name, name) values ((select theme_id from theme where name = 'Astral One'), 'University', 'University');
 
--- -- Techs
--- insert into tech values (1, NULL, 'Alphabet', 'alphabet');
---
--- -- Terrain
+-- Advances
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Advanced Flight');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Alphabet');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Amphibious Warfare');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Astronomy');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Atomic Theory');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Automobile');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Banking');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Bridge Building');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Bronze Working');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Ceremonial Burial');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Chemistry');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Chivalry');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Code of Laws');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Combined Arms');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Combustion');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Communism');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Computers');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Conscription');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Construction');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Corporation');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Currency');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Democracy');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Economics');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Electricity');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Electronics');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Engineering');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Environmentalism');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Espionage');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Explosives');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Feudalism');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Flight');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Fundamentalism');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Fusion Power');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Future Technology');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Genetic Engineering');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Guerrilla Warfare');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Gunpowder');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Horseback Riding');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Industrialization');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Invention');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Iron Working');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Labor Union');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Laser');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Leadership');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Literacy');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Machine Tools');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Magnetism');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Map Making');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Masonry');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Mass Production');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Mathematics');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Medicine');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Metallurgy');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Miniaturization');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Mobile Warfare');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Monarchy');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Monotheism');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Mysticism');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Navigation');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Nuclear Fission');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Nuclear Power');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Philosophy');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Physics');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Plastics');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Polytheism');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Pottery');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Radio');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Railroad');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Recycling');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Refining');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Refrigeration');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Republic');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Robotics');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Rocketry');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Sanitation');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Seafaring');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Space Flight');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Stealth');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Steam Engine');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Steel');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Superconductor');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Tactics');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Theology');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Theory of Gravity');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Trade');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'University');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Warrior Code');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Wheel');
+insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Astral One'), 'Writing');
+
+-- Terrain
 insert into terrain
     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values
     (21, 'Desert', 0.0, 1.0, 0.0, 1.0, 1.0);

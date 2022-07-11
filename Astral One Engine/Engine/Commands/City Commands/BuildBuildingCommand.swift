@@ -42,7 +42,7 @@ public class BuildBuildingCommand: Command {
     
     public override func execute(save: Bool) -> CommandResult {
         if city.canBuild(building: buildingType) {
-            if commandId == Constants.noId {
+            if save && commandId == Constants.noId {
                 do {
                     try player.game.db.buildBuildingCommandDao.insert(command: self)
                 }

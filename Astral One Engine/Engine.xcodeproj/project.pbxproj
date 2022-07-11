@@ -156,6 +156,8 @@
 		52D78CE8287B2C25006AF649 /* BuildBuildingCommandDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D78CE7287B2C25006AF649 /* BuildBuildingCommandDAO.swift */; };
 		52D78CEA287B759A006AF649 /* BuildingTypeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D78CE9287B759A006AF649 /* BuildingTypeDAO.swift */; };
 		52D78CEC287B93A6006AF649 /* NextTurnCommandDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D78CEB287B93A6006AF649 /* NextTurnCommandDAO.swift */; };
+		52D78CEE287BB8DB006AF649 /* ResearchAdvanceCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D78CED287BB8DB006AF649 /* ResearchAdvanceCommand.swift */; };
+		52D78CF0287BC000006AF649 /* ResearchAdvanceCommandDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D78CEF287BC000006AF649 /* ResearchAdvanceCommandDAO.swift */; };
 		52DE5F32281086A40029EFE1 /* UnitFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F31281086A40029EFE1 /* UnitFactory.swift */; };
 		52DE5F342810DAB90029EFE1 /* MapDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F332810DAB90029EFE1 /* MapDAO.swift */; };
 		52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */; };
@@ -408,6 +410,8 @@
 		52D78CE7287B2C25006AF649 /* BuildBuildingCommandDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildBuildingCommandDAO.swift; sourceTree = "<group>"; };
 		52D78CE9287B759A006AF649 /* BuildingTypeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingTypeDAO.swift; sourceTree = "<group>"; };
 		52D78CEB287B93A6006AF649 /* NextTurnCommandDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTurnCommandDAO.swift; sourceTree = "<group>"; };
+		52D78CED287BB8DB006AF649 /* ResearchAdvanceCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchAdvanceCommand.swift; sourceTree = "<group>"; };
+		52D78CEF287BC000006AF649 /* ResearchAdvanceCommandDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchAdvanceCommandDAO.swift; sourceTree = "<group>"; };
 		52DE5F31281086A40029EFE1 /* UnitFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitFactory.swift; sourceTree = "<group>"; };
 		52DE5F332810DAB90029EFE1 /* MapDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDAO.swift; sourceTree = "<group>"; };
 		52DE5F3B281249EC0029EFE1 /* UnitDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitDAO.swift; sourceTree = "<group>"; };
@@ -725,6 +729,7 @@
 		52668189282700400089D0DD /* Research Advances */ = {
 			isa = PBXGroup;
 			children = (
+				52D78CED287BB8DB006AF649 /* ResearchAdvanceCommand.swift */,
 				52A64675282F30C70066B82D /* ResearchAction.swift */,
 				52A64649282DF2940066B82D /* Ancient */,
 				52A6464A282DF2A40066B82D /* Renaissance */,
@@ -1155,6 +1160,7 @@
 				52BD35AD285C305500B0BBD4 /* CreateUnitCommandDAO.swift */,
 				52F9046D27FC8B7D00D1AC97 /* MoveUnitCommandDAO.swift */,
 				52D78CEB287B93A6006AF649 /* NextTurnCommandDAO.swift */,
+				52D78CEF287BC000006AF649 /* ResearchAdvanceCommandDAO.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -1324,6 +1330,7 @@
 				52A6465A282DF8F70066B82D /* ResearchPolytheismAction.swift in Sources */,
 				52A646B128330BC00066B82D /* CreateEngineerCommand.swift in Sources */,
 				52DE5F99281E093E0029EFE1 /* Submarine.swift in Sources */,
+				52D78CEE287BB8DB006AF649 /* ResearchAdvanceCommand.swift in Sources */,
 				52A6469F28321AC40066B82D /* BuildAirbaseCommand.swift in Sources */,
 				52E0B1B827E6DFD100607FBE /* Granary.swift in Sources */,
 				5234D526285D62230051172E /* UnitsMapLayer.swift in Sources */,
@@ -1482,6 +1489,7 @@
 				52E0B1B627E6DFD100607FBE /* Palace.swift in Sources */,
 				52A6463A282C95CE0066B82D /* GoalScorer.swift in Sources */,
 				52A64669282E156F0066B82D /* CreateNaval1Action.swift in Sources */,
+				52D78CF0287BC000006AF649 /* ResearchAdvanceCommandDAO.swift in Sources */,
 				52DE5FAB281EEB130029EFE1 /* Cavalry4.swift in Sources */,
 				52DE5FB928217F070029EFE1 /* Engineer.swift in Sources */,
 				52A6465C282DFC450066B82D /* ResearchSeafaringAction.swift in Sources */,

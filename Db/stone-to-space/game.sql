@@ -99,7 +99,7 @@ insert into player (game_id, ordinal, name, type, skill_level)
 --
 -- -- Turn 1: Research Alphabet
 -- insert into command values (3, 1, 1, 1, 3);
--- insert into tech_command values (3, (select tech_id from tech where name = 'Alphabet'));
+-- insert into research_advance_command values (3, (select advance_id from advance where name = 'Alphabet'));
 --
 -- -- Turn 1: Move Warriors
 -- insert into command values (4, 1, 1, 1, 4);

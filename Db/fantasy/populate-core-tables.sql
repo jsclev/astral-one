@@ -210,8 +210,8 @@ insert into turn (theme_id, ordinal, year, display_text) values (
 -- insert into building_type (name) values ('Temple');
 -- insert into building_type (name) values ('University');
 --
--- -- Techs
--- insert into tech values (1, NULL, 'Alphabet', 'alphabet');
+-- -- Advances
+-- insert into advance values (1, NULL, 'Alphabet', 'alphabet');
 --
 -- -- Terrain
 -- insert into terrain values (1, 21, 'Desert', 0.0, 1.0, 0.0, 1.0, 1.0);
