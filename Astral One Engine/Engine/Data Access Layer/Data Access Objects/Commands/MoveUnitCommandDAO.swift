@@ -15,6 +15,7 @@ public class MoveUnitCommandDAO: BaseDAO {
                                                                 turn: command.turn,
                                                                 ordinal: command.ordinal,
                                                                 cost: command.cost))
+        // FIXME: Should use bind vars for this
         var sql = "INSERT INTO move_unit_command (" +
         "command_id, unit_id, from_row, from_col, to_row, to_col) VALUES "
         

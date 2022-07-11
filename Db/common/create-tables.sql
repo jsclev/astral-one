@@ -1,10 +1,9 @@
 DROP TABLE IF EXISTS tile;
 DROP TABLE IF EXISTS tech_command;
 DROP TABLE IF EXISTS create_city_command;
-DROP TABLE IF EXISTS building_command;
-
 DROP TABLE IF EXISTS build_building_command;
 DROP TABLE IF EXISTS move_unit_command;
+DROP TABLE IF EXISTS next_turn_command;
 DROP TABLE IF EXISTS game_setting;
 DROP TABLE IF EXISTS unit;
 DROP TABLE IF EXISTS building;
@@ -211,7 +210,14 @@ CREATE TABLE command (
     FOREIGN KEY (game_id) REFERENCES game (game_id)
 );
 
-CREATE TABLE tech_command (
+CREATE TABLE next_turn_command (
+    command_id INTEGER NOT NULL,
+    turn_id INTEGER NOT NULL,
+    FOREIGN KEY (command_id) REFERENCES command (command_id),
+    FOREIGN KEY (turn_id) REFERENCES turn (turn_id)
+);
+
+CREATE TABLE research_advance_command (
     command_id INTEGER NOT NULL,
     tech_id INTEGER NOT NULL,
     FOREIGN KEY (command_id) REFERENCES command (command_id),
@@ -255,6 +261,4 @@ CREATE TABLE build_building_command (
     building_type_id INTEGER NOT NULL,
     FOREIGN KEY (city_id) REFERENCES city (city_id),
     FOREIGN KEY (building_type_id) REFERENCES building_type (building_type_id)
-
 );
-

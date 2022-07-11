@@ -5,8 +5,8 @@ public class SelectUnitCommand: Command {
     private let node: SKNode
     private let mapManager: MapManager
     private let unit: Unit
-    private let selectSound = SKAction.playSoundFileNamed("tap",
-                                                          waitForCompletion: false)
+    private let selectSound = SKAction.playSoundFileNamed("tap", waitForCompletion: false)
+    
     public convenience init(player: Player,
                             turn: Turn,
                             ordinal: Int,

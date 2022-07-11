@@ -98,7 +98,10 @@ public class EventBus {
             if let name = node.name {
                 // print("Name of node: \(name)")
                 if name == "Next Turn" {
-                    game.nextTurn()
+                    let cmd = NextTurnCommand(player: game.currentPlayer,
+                                              turn: game.getCurrentTurn(),
+                                              ordinal: 1)
+                    let _ = cmd.execute(save: true)
                     return
                 }
                 else if name == "Research Button" {
