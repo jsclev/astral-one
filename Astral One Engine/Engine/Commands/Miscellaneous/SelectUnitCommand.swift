@@ -58,6 +58,7 @@ public class SelectUnitCommand: Command {
         }
         
         node.run(selectSound)
+        turn.step()
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }

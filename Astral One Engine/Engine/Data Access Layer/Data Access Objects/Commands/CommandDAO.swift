@@ -10,7 +10,7 @@ public class CommandDAO: BaseDAO {
         super.init(conn: conn, table: "command", loggerName: String(describing: type(of: self)))
     }
     
-    public func getCommands(game: Game) -> [Command] {
+    public func getCommands(player: Player) -> [Command] {
         var cmds: [Command] = []
         
         var stmt: OpaquePointer?
@@ -49,7 +49,7 @@ public class CommandDAO: BaseDAO {
             LEFT OUTER JOIN
                 unit muc_unit ON muc_unit.unit_id = muc.unit_id
             WHERE
-                c.game_id = \(game.gameId)
+                c.player_id = \(player.playerId)
             ORDER BY
                 t.ordinal, p.ordinal, c.ordinal
         """
@@ -63,8 +63,8 @@ public class CommandDAO: BaseDAO {
                 let year = getInt(stmt: stmt, colIndex: 4)
                 let playerId = getInt(stmt: stmt, colIndex: 6)
                 
-                for player in game.players {
-                    if player.playerId == playerId {
+                for gamePlayer in player.game.players {
+                    if gamePlayer.playerId == playerId {
                         do {
                             if let turnDisplayText = try getString(stmt: stmt, colIndex: 5) {
                                 let turn = Turn(id: turnId,
@@ -85,9 +85,9 @@ public class CommandDAO: BaseDAO {
                                                                      ordinal: cmdOrdinal,
                                                                      cost: 1,
                                                                      settler: Settler(id: unitId,
-                                                                                      game: game,
+                                                                                      game: player.game,
                                                                                       player: player,
-                                                                                      theme: game.theme,
+                                                                                      theme: player.game.theme,
                                                                                       name: "Settler",
                                                                                       position: tile.position),
                                                                      tile: tile))
@@ -128,31 +128,58 @@ public class CommandDAO: BaseDAO {
     
     public func insert(command: Command) throws -> Command {
         var commandId: Int = -1
-        
-        var sql = "INSERT INTO command (game_id, turn_id, player_id, ordinal) VALUES "
-        
-        sql += "("
-        sql += getSql(val: command.player.game.gameId, postfix: ", ")
-        sql += getSql(val: command.turn.id, postfix: ", ")
-        sql += getSql(val: command.player.playerId, postfix: ", ")
-        sql += getSql(val: command.ordinal, postfix: "")
-        sql += "), "
-        
-        sql = getCleanedSql(sql)
-        
-        do {
-            commandId = try insertOneRow(sql: sql)
-        }
-        catch SQLiteError.Prepare(let message) {
-            var errMsg = "Failed to compile the SQL to insert rows into the \(table) table.  "
-            errMsg += "SQLite error message: " + message
+        var mainStmt: OpaquePointer?
+        var rowIdStmt: OpaquePointer?
+
+        let sql = "INSERT INTO command (player_id, turn_id, ordinal) VALUES (?, ?, ?)"
+        let rowIdSql = "SELECT last_insert_rowid()"
+
+        if sqlite3_prepare_v2(conn, sql, -1, &mainStmt, nil) == SQLITE_OK {
+            // TODO Need to fix the truncation of the Int id
+            guard sqlite3_bind_int(mainStmt, 1, Int32(command.player.playerId)) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind player_id")
+            }
+            
+            guard sqlite3_bind_int(mainStmt, 2, Int32(command.turn.id)) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind turn_id")
+            }
+            
+            guard sqlite3_bind_int(mainStmt, 3, Int32(command.ordinal)) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind command ordinal")
+            }
+        } else {
+            let sqliteMsg = String(cString: sqlite3_errmsg(conn)!)
+            sqlite3_finalize(mainStmt)
+            
+            var errMsg = "Failed to prepare the statement \"" + sql + "\".  "
+            errMsg += "SQLite error message: " + sqliteMsg
             throw DbError.Db(message: errMsg)
         }
-        catch SQLiteError.Step(let message) {
-            var errMsg = "Failed to execute the SQL to insert rows into the \(table) table.  "
-            errMsg += "SQLite error message: " + message
-            throw DbError.Db(message: errMsg)
+        
+        if sqlite3_prepare_v2(conn, rowIdSql, -1, &rowIdStmt, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(conn)!)
+            sqlite3_finalize(rowIdStmt)
+
+            throw SQLiteError.Prepare(message: errMsg)
         }
+
+        if sqlite3_step(mainStmt) == SQLITE_DONE {
+            if sqlite3_step(rowIdStmt) == SQLITE_ROW {
+                commandId = getInt(stmt: rowIdStmt, colIndex: 0)
+            }
+            else {
+                let errMsg = String(cString: sqlite3_errmsg(conn)!)
+                sqlite3_finalize(rowIdStmt)
+
+                throw SQLiteError.Step(message: errMsg)
+            }
+        }
+        else {
+            throw SQLiteError.Step(message: "Could not insert row into \(table) table.")
+        }
+
+        sqlite3_finalize(rowIdStmt)
+        sqlite3_finalize(mainStmt)
         
         return Command(commandId: commandId,
                        player: command.player,

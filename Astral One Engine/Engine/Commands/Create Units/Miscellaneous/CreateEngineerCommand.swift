@@ -54,6 +54,7 @@ public class CreateEngineerCommand: Command {
         
         if let e = engineer {
             player.add(unit: e)
+            turn.step()
         }
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")

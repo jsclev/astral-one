@@ -37,6 +37,7 @@ public class NextTurnCommand: Command {
         }
         
         player.game.nextTurn()
+        turn.step()
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }

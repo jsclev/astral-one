@@ -3,7 +3,7 @@ import Foundation
 public class Turn: CustomStringConvertible {
     public let id: Int
     public let year: Int
-    public let ordinal: Int
+    public var ordinal: Int
     public let displayText: String
     
     public var description: String {
@@ -15,6 +15,10 @@ public class Turn: CustomStringConvertible {
         self.year = year
         self.ordinal = ordinal
         self.displayText = displayText
+    }
+    
+    public func step() {
+        ordinal += 1
     }
 }
 

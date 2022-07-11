@@ -55,8 +55,7 @@ public class CreateCityCommand: Command {
                     city = try player.game.db.createCityCommandDao.insert(command: self)
                 }
                 catch {
-                    return CommandResult(status: CommandStatus.Invalid,
-                                         message: "\(error)")
+                    return CommandResult(status: CommandStatus.Invalid, message: "\(error)")
                 }
             }
             
@@ -64,8 +63,8 @@ public class CreateCityCommand: Command {
                 player.create(city: newCity, using: cityCreator)
             }
             
-            return CommandResult(status: CommandStatus.Ok,
-                                 message: "Success")
+            turn.step()
+            return CommandResult(status: CommandStatus.Ok, message: "Success")
         }
         
         return CommandResult(status: CommandStatus.Invalid,

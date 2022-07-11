@@ -207,12 +207,15 @@ CREATE TABLE building (
 -------------------------------------------------------------------------------
 CREATE TABLE command (
     command_id INTEGER PRIMARY KEY,
-    game_id INTEGER NOT NULL,
-    turn_id INTEGER NOT NULL,
     player_id INTEGER NOT NULL,
+    turn_id INTEGER NOT NULL,
     ordinal INTEGER NOT NULL,
-    FOREIGN KEY (game_id) REFERENCES game (game_id)
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    FOREIGN KEY (player_id) REFERENCES player (player_id),
+    FOREIGN KEY (turn_id) REFERENCES turn (turn_id)
 );
+
+CREATE UNIQUE INDEX command_idx1 ON command (player_id, turn_id, ordinal);
 
 CREATE TABLE next_turn_command (
     command_id INTEGER NOT NULL,

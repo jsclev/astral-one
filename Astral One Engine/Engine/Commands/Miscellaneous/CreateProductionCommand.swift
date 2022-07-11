@@ -22,6 +22,7 @@ public class CreateProductionCommand: Command {
     }
     
     public override func execute(save: Bool) -> CommandResult {
+        turn.step()
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }

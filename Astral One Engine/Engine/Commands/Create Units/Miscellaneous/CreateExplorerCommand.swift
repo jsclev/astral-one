@@ -54,6 +54,7 @@ public class CreateExplorerCommand: Command {
         
         if let newExplorer = explorer {
             player.add(unit: newExplorer)
+            turn.step()
             
             return CommandResult(status: CommandStatus.Ok, message: "Success")
         }

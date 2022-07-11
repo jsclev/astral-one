@@ -56,6 +56,7 @@ public class CreateSettlerCommand: Command {
         
         if let newSettler = settler {
             player.add(cityCreator: newSettler)
+            turn.step()
             
             return CommandResult(status: CommandStatus.Ok, message: "Success")
         }

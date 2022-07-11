@@ -53,6 +53,7 @@ public class BuildBuildingCommand: Command {
             }
             
             city.build(buildingType)
+            turn.step()
             
             return CommandResult(status: CommandStatus.Ok,
                                  message: "Success")
