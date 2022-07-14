@@ -1,6 +1,6 @@
 import Foundation
 
-public class CityResourcesDecorator: AgentDecorator {
+public class CityWaterDecorator: AgentDecorator {
     private let aiPlayer: AIPlayer
     private let maxScore: Double
     
@@ -23,7 +23,7 @@ public class CityResourcesDecorator: AgentDecorator {
     }
     
     private func getLevel1ScoreMap() -> [[Score]] {
-        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
+        let scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
                                                           count: aiPlayer.map.width),
                                          count: aiPlayer.map.height)
         
@@ -35,32 +35,55 @@ public class CityResourcesDecorator: AgentDecorator {
                 if tile.visibility == Visibility.FullyRevealed {
                     if aiPlayer.map.canCreateCity(at: position) {
                         let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                        var reason: Reason
                         
-//                        if distance == 1 {
-//                            scoreMap[row][col] = 0.5
-//                        }
-//                        else if distance == 2 {
-//                            scoreMap[row][col] = 1.0
-//                        }
-//                        else if distance == 3 {
-//                            scoreMap[row][col] = 2.0
-//                        }
-//                        else if distance == 4 {
-//                            scoreMap[row][col] = 3.0
-//                        }
-//                        else if distance == 5 {
-//                            scoreMap[row][col] = 10.0
-//                        }
-//                        else {
-//                            scoreMap[row][col] = 1.0
-//                        }
+                        if distance == 1 {
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 0.5,
+                                            message: "1 tile away from water.")
+                        }
+                        else if distance == 2 {
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 1.0,
+                                            message: "2 tiles away from water.")
+                        }
+                        else if distance == 3 {
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 2.0,
+                                            message: "1 tile away from water.")
+                        }
+                        else if distance == 4 {
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 3.0,
+                                            message: "1 tile away from water.")
+                        }
+                        else if distance == 5 {
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 0.5,
+                                            message: "1 tile away from water.")
+                        }
+                        else {
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 0.5,
+                                            message: "1 tile away from water.")
+                        }
+                        
+                        scoreMap[row][col].reasons.append(reason)
                     }
                     else {
-                        // scoreMap[row][col] = 0.0
+                        let reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                        value: 0.5,
+                                        message: "1 tile away from water.")
+                        
+                        scoreMap[row][col].reasons.append(reason)
                     }
                 }
                 else {
-                    // scoreMap[row][col] = 0.1
+                    let reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                        value: 0.5,
+                                        message: "1 tile away from water.")
+                    scoreMap[row][col].reasons.append(reason)
+
                 }
                 
             }
@@ -69,8 +92,8 @@ public class CityResourcesDecorator: AgentDecorator {
         return scoreMap
     }
     
-//    private func getLevel2ScoreMap() -> [[Double]] {
-//        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+//    private func getLevel2ScoreMap() -> [[Score]] {
+//        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
 //                                                          count: aiPlayer.map.width),
 //                                         count: aiPlayer.map.height)
 //
@@ -116,8 +139,8 @@ public class CityResourcesDecorator: AgentDecorator {
 //        return scoreMap
 //    }
 //
-//    private func getLevel3ScoreMap() -> [[Double]] {
-//        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+//    private func getLevel3ScoreMap() -> [[Score]] {
+//        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
 //                                                          count: aiPlayer.map.width),
 //                                         count: aiPlayer.map.height)
 //
@@ -163,8 +186,8 @@ public class CityResourcesDecorator: AgentDecorator {
 //        return scoreMap
 //    }
 //
-//    private func getLevel4ScoreMap() -> [[Double]] {
-//        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+//    private func getLevel4ScoreMap() -> [[Score]] {
+//        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
 //                                                          count: aiPlayer.map.width),
 //                                         count: aiPlayer.map.height)
 //
@@ -210,8 +233,8 @@ public class CityResourcesDecorator: AgentDecorator {
 //        return scoreMap
 //    }
 //
-//    private func getLevel5ScoreMap() -> [[Double]] {
-//        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+//    private func getLevel5ScoreMap() -> [[Score]] {
+//        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
 //                                                          count: aiPlayer.map.width),
 //                                         count: aiPlayer.map.height)
 //
@@ -257,8 +280,8 @@ public class CityResourcesDecorator: AgentDecorator {
 //        return scoreMap
 //    }
 //
-//    private func getLevel6ScoreMap() -> [[Double]] {
-//        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+//    private func getLevel6ScoreMap() -> [[Score]] {
+//        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
 //                                                          count: aiPlayer.map.width),
 //                                         count: aiPlayer.map.height)
 //
@@ -304,8 +327,8 @@ public class CityResourcesDecorator: AgentDecorator {
 //        return scoreMap
 //    }
 //
-//    private func getLevel7ScoreMap() -> [[Double]] {
-//        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+//    private func getLevel7ScoreMap() -> [[Score]] {
+//        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
 //                                                          count: aiPlayer.map.width),
 //                                         count: aiPlayer.map.height)
 //
@@ -357,29 +380,52 @@ public class CityResourcesDecorator: AgentDecorator {
         for row in 0..<aiPlayer.map.height {
             for col in 0..<aiPlayer.map.width {
                 let position = Position(row: row, col: col)
+                let tile = aiPlayer.map.tile(at: position)
                 
-                if aiPlayer.map.canCreateCity(at: position) {
-                    var foodScore = 0.0
-                    var productionScore = 0.0
-                    var tradeScore = 0.0
-                    let tiles = aiPlayer.getTilesInCityRadius(from: position)
+                if tile.visibility == Visibility.FullyRevealed {
+                    if aiPlayer.map.canCreateCity(at: position) {
+                        if tile.hasRiver {
+                            let reason = Reason(reasonType: ReasonType.OnRiver,
+                                                value: 40.0,
+                                                message: "1 tile away from water.")
+                            scoreMap[row][col].reasons.append(reason)
+                        }
+                        else {
+                            if aiPlayer.map.isOnCoast(tile: tile) {
+                                let reason = Reason(reasonType: ReasonType.OnCoast,
+                                                    value: 25.0,
+                                                    message: "1 tile away from water.")
+                                scoreMap[row][col].reasons.append(reason)
+                            }
+                            else {
+                                // If this tile is not on a river, and it's not on the coast,
+                                // check the number of river tiles in the city radius, and give
+                                // a bonus for other tiles that have rivers on them.  In general,
+                                // rivers are very good, so settling in a place where there are
+                                // rivers within the city radius, is a good thing.
+                                let cityRadiusTiles = aiPlayer.getTilesInCityRadius(from: position)
+                                var scoreValue = 0.0
 
-                    for tile in tiles {
-                        foodScore += Double(tile.food)
-                        productionScore += Double(tile.production)
-                        tradeScore += Double(tile.trade)
+                                
+                                for aTile in cityRadiusTiles {
+                                    if aTile.hasRiver {
+                                        scoreValue += 1.0
+                                    }
+                                }
+                                
+                                if scoreValue > 0.0 {
+                                    let reason = Reason(reasonType: ReasonType.RiverWithinCityRadius,
+                                                        value: 9.0,
+                                                        message: "1 tile away from water.")
+                                    scoreMap[row][col].reasons.append(reason)
+                                }
+
+                            }
+
+                        }
                     }
-                    
-                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.FoodSource,
-                                                             value: foodScore,
-                                                             message: "Food score."))
-                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.ProductionSource,
-                                                             value: productionScore,
-                                                             message: "Production score."))
-                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.TradeSource,
-                                                             value: tradeScore,
-                                                             message: "Trade score."))
                 }
+                
             }
         }
         
@@ -406,7 +452,7 @@ public class CityResourcesDecorator: AgentDecorator {
             score = maxScore
         }
         else {
-            score = 0
+            score = 0.0
         }
         
         return score

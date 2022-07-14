@@ -45,26 +45,6 @@ public class CreateCityCommandDAO: BaseDAO {
             throw DbError.Db(message: errMsg)
         }
         
-//        return CreateCityCommand(commandId: baseCmd.commandId,
-//                                 player: command.player,
-//                                 type: command.type,
-//                                 turn: command.turn,
-//                                 ordinal: command.ordinal,
-//                                 cost: command.cost,
-//                                 cityCreator: CityCreator(game: command.player.game,
-//                                                          player: command.player,
-//                                                          theme: command.player.game.theme,
-//                                                          tiledId: Constants.noId,
-//                                                          name: "City Builder",
-//                                                          assetName: "",
-//                                                          cost: 0.0,
-//                                                          maxHp: 0.0,
-//                                                          attack: 0.0,
-//                                                          defense: 0.0,
-//                                                          fp: 0.0,
-//                                                          maxMovementPoints: 0.0,
-//                                                          position: city.position),
-//                                 cityName: "Unknown City Name")
         return city
     }
     

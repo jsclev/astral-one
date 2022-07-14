@@ -9,23 +9,21 @@ public class CityProximityDecorator: AgentDecorator {
         self.maxScore = maxScore
     }
     
-    public func getScoreMap() -> [[Double]] {
+    public func getScoreMap() -> [[Score]] {
         switch aiPlayer.skillLevel {
         case .One: return getLevel1ScoreMap()
-        case .Two: return getLevel2ScoreMap()
-        case .Three: return getLevel3ScoreMap()
-        case .Four: return getLevel4ScoreMap()
-        case .Five: return getLevel5ScoreMap()
-        case .Six: return getLevel6ScoreMap()
-        case .Seven: return getLevel7ScoreMap()
+        case .Two: return getLevel1ScoreMap()
+        case .Three: return getLevel1ScoreMap()
+        case .Four: return getLevel1ScoreMap()
+        case .Five: return getLevel1ScoreMap()
+        case .Six: return getLevel1ScoreMap()
+        case .Seven: return getLevel1ScoreMap()
         case .Eight: return getLevel8ScoreMap()
         }
     }
     
-    private func getLevel1ScoreMap() -> [[Double]] {
-        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
-                                                          count: aiPlayer.map.width),
-                                         count: aiPlayer.map.height)
+    private func getLevel1ScoreMap() -> [[Score]] {
+        let scoreMap:[[Score]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Score() } }
         
         for row in 0..<aiPlayer.map.height {
             for col in 0..<aiPlayer.map.width {
@@ -35,32 +33,55 @@ public class CityProximityDecorator: AgentDecorator {
                 if tile.visibility == Visibility.FullyRevealed {
                     if aiPlayer.map.canCreateCity(at: position) {
                         let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                        var reason: Reason
                         
                         if distance == 1 {
-                            scoreMap[row][col] = 0.5
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 0.5,
+                                            message: "1 tile away from water.")
                         }
                         else if distance == 2 {
-                            scoreMap[row][col] = 1.0
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 1.0,
+                                            message: "2 tiles away from water.")
                         }
                         else if distance == 3 {
-                            scoreMap[row][col] = 2.0
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 2.0,
+                                            message: "1 tile away from water.")
                         }
                         else if distance == 4 {
-                            scoreMap[row][col] = 3.0
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 3.0,
+                                            message: "1 tile away from water.")
                         }
                         else if distance == 5 {
-                            scoreMap[row][col] = 10.0
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 0.5,
+                                            message: "1 tile away from water.")
                         }
                         else {
-                            scoreMap[row][col] = 1.0
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 0.5,
+                                            message: "1 tile away from water.")
                         }
+                        
+                        scoreMap[row][col].reasons.append(reason)
                     }
                     else {
-                        scoreMap[row][col] = 0.0
+                        let reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 0.5,
+                                            message: "1 tile away from water.")
+                        
+                        scoreMap[row][col].reasons.append(reason)
                     }
                 }
                 else {
-                    scoreMap[row][col] = 0.1
+                    let reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                        value: 0.5,
+                                        message: "1 tile away from water.")
+                    
+                    scoreMap[row][col].reasons.append(reason)
                 }
                 
             }
@@ -351,11 +372,9 @@ public class CityProximityDecorator: AgentDecorator {
         return scoreMap
     }
     
-    private func getLevel8ScoreMap() -> [[Double]] {
-        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
-                                                          count: aiPlayer.map.width),
-                                         count: aiPlayer.map.height)
-        
+    private func getLevel8ScoreMap() -> [[Score]] {
+        let scoreMap:[[Score]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Score() } }
+
         if aiPlayer.map.cities.isEmpty {
             return scoreMap
         }
@@ -367,14 +386,26 @@ public class CityProximityDecorator: AgentDecorator {
                 
                 if tile.visibility == Visibility.FullyRevealed {
                     if aiPlayer.map.canCreateCity(at: position) {
-                        scoreMap[row][col] = check(position: position)
+                        let reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: check(position: position),
+                                            message: "1 tile away from water.")
+                        
+                        scoreMap[row][col].reasons.append(reason)
                     }
                     else {
-                        scoreMap[row][col] = -maxScore
+                        let reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: -maxScore,
+                                            message: "1 tile away from water.")
+                        
+                        scoreMap[row][col].reasons.append(reason)
                     }
                 }
                 else {
-                    scoreMap[row][col] = maxScore / 100.0
+                    let reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                        value: maxScore / 100.0,
+                                        message: "1 tile away from water.")
+                    
+                    scoreMap[row][col].reasons.append(reason)
                 }
                 
             }

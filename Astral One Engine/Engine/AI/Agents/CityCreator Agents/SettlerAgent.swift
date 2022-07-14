@@ -13,8 +13,10 @@ public class SettlerAgent {
         
         analyzers.append(CityResourcesDecorator(aiPlayer: player, maxScore: 10.0))
         analyzers.append(CityProximityDecorator(aiPlayer: player, maxScore: 10.0))
-        analyzers.append(MovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 10.0))
-        analyzers.append(WaterAnalysisDecorator(aiPlayer: player, maxScore: 10.0))
+        analyzers.append(SettlerMovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 10.0))
+        analyzers.append(CityWaterDecorator(aiPlayer: player, maxScore: 10.0))
+        analyzers.append(CityDefensiveDecorator(aiPlayer: player, maxScore: 10.0))
+
 
 //        luaState = luaL_newstate()
 //        luaL_openlibs(luaState);
@@ -73,7 +75,7 @@ public class SettlerAgent {
         }
     }
     
-    public func getSettleCityPosition() throws -> Position? {
+    public func getSettleCityPosition() throws -> PositionScore? {
         fatalError("Must be implemented in subclasses.")
     }
     

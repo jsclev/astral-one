@@ -1326,64 +1326,79 @@
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <key id="499" parent="473">
+    <foreign-key id="499" parent="473">
+      <ColNames>parent_advance_id</ColNames>
+      <RefColNames>advance_id</RefColNames>
+      <RefTableName>advance</RefTableName>
+    </foreign-key>
+    <foreign-key id="500" parent="473">
+      <ColNames>theme_id</ColNames>
+      <RefColNames>theme_id</RefColNames>
+      <RefTableName>theme</RefTableName>
+    </foreign-key>
+    <index id="501" parent="473" name="advance_idx1">
+      <ColNames>theme_id
+name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="502" parent="473">
       <ColNames>advance_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="500" parent="474" name="command_id">
+    <column id="503" parent="474" name="command_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="501" parent="474" name="city_id">
+    <column id="504" parent="474" name="city_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="502" parent="474" name="building_type_id">
+    <column id="505" parent="474" name="building_type_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <foreign-key id="503" parent="474">
+    <foreign-key id="506" parent="474">
       <ColNames>city_id</ColNames>
       <RefColNames>city_id</RefColNames>
       <RefTableName>city</RefTableName>
     </foreign-key>
-    <foreign-key id="504" parent="474">
+    <foreign-key id="507" parent="474">
       <ColNames>building_type_id</ColNames>
       <RefColNames>building_type_id</RefColNames>
       <RefTableName>building_type</RefTableName>
     </foreign-key>
-    <column id="505" parent="475" name="building_id">
+    <column id="508" parent="475" name="building_id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="506" parent="475" name="game_id">
+    <column id="509" parent="475" name="game_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="507" parent="475" name="player_id">
+    <column id="510" parent="475" name="player_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="508" parent="475" name="building_type_id">
+    <column id="511" parent="475" name="building_type_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <foreign-key id="509" parent="475">
+    <foreign-key id="512" parent="475">
       <ColNames>game_id</ColNames>
       <RefColNames>game_id</RefColNames>
       <RefTableName>game</RefTableName>
     </foreign-key>
-    <key id="510" parent="475">
+    <key id="513" parent="475">
       <ColNames>building_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <check id="511" parent="476">
+    <check id="514" parent="476">
       <Predicate>core_name IN (&apos;Airport&apos;,
                                   &apos;Aqueduct&apos;,
                                   &apos;Bank&apos;,
@@ -1423,373 +1438,385 @@
                                   &apos;Temple&apos;,
                                   &apos;University&apos;)</Predicate>
     </check>
-    <column id="512" parent="476" name="building_type_id">
+    <column id="515" parent="476" name="building_type_id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="513" parent="476" name="theme_id">
+    <column id="516" parent="476" name="theme_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="514" parent="476" name="core_name">
+    <column id="517" parent="476" name="core_name">
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="515" parent="476" name="name">
+    <column id="518" parent="476" name="name">
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <foreign-key id="516" parent="476">
+    <foreign-key id="519" parent="476">
       <ColNames>theme_id</ColNames>
       <RefColNames>theme_id</RefColNames>
       <RefTableName>theme</RefTableName>
     </foreign-key>
-    <index id="517" parent="476" name="building_type_idx1">
+    <index id="520" parent="476" name="building_type_idx1">
       <ColNames>theme_id
 name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="518" parent="476">
+    <key id="521" parent="476">
       <ColNames>building_type_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="519" parent="477" name="city_id">
+    <column id="522" parent="477" name="city_id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="520" parent="477" name="game_id">
+    <column id="523" parent="477" name="game_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="521" parent="477" name="player_id">
+    <column id="524" parent="477" name="player_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="522" parent="477" name="name">
+    <column id="525" parent="477" name="name">
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="523" parent="477" name="tile_id">
+    <column id="526" parent="477" name="tile_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <foreign-key id="524" parent="477">
+    <foreign-key id="527" parent="477">
       <ColNames>game_id</ColNames>
       <RefColNames>game_id</RefColNames>
       <RefTableName>game</RefTableName>
     </foreign-key>
-    <foreign-key id="525" parent="477">
+    <foreign-key id="528" parent="477">
       <ColNames>tile_id</ColNames>
       <RefColNames>tile_id</RefColNames>
       <RefTableName>tile</RefTableName>
     </foreign-key>
-    <key id="526" parent="477">
+    <key id="529" parent="477">
       <ColNames>city_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="527" parent="478" name="command_id">
+    <column id="530" parent="478" name="command_id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="528" parent="478" name="game_id">
+    <column id="531" parent="478" name="player_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="529" parent="478" name="turn_id">
+    <column id="532" parent="478" name="turn_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="530" parent="478" name="player_id">
+    <column id="533" parent="478" name="ordinal">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="531" parent="478" name="ordinal">
-      <DataType>INTEGER|0s</DataType>
+    <column id="534" parent="478" name="created_at">
+      <DataType>TIMESTAMP|0s</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <foreign-key id="532" parent="478">
-      <ColNames>game_id</ColNames>
-      <RefColNames>game_id</RefColNames>
-      <RefTableName>game</RefTableName>
+    <foreign-key id="535" parent="478">
+      <ColNames>player_id</ColNames>
+      <RefColNames>player_id</RefColNames>
+      <RefTableName>player</RefTableName>
     </foreign-key>
-    <key id="533" parent="478">
-      <ColNames>command_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="534" parent="479" name="command_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="535" parent="479" name="unit_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="536" parent="479" name="city_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <foreign-key id="537" parent="479">
-      <ColNames>command_id</ColNames>
-      <RefColNames>command_id</RefColNames>
-      <RefTableName>command</RefTableName>
-    </foreign-key>
-    <foreign-key id="538" parent="479">
-      <ColNames>unit_id</ColNames>
-      <RefColNames>unit_id</RefColNames>
-      <RefTableName>unit</RefTableName>
-    </foreign-key>
-    <foreign-key id="539" parent="479">
-      <ColNames>city_id</ColNames>
-      <RefColNames>city_id</RefColNames>
-      <RefTableName>city</RefTableName>
-    </foreign-key>
-    <column id="540" parent="480" name="command_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="541" parent="480" name="unit_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="542" parent="480" name="tile_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <column id="543" parent="480" name="city_id">
-      <DataType>INTEGER|0s</DataType>
-      <Position>4</Position>
-    </column>
-    <foreign-key id="544" parent="480">
-      <ColNames>command_id</ColNames>
-      <RefColNames>command_id</RefColNames>
-      <RefTableName>command</RefTableName>
-    </foreign-key>
-    <foreign-key id="545" parent="480">
-      <ColNames>unit_id</ColNames>
-      <RefColNames>unit_id</RefColNames>
-      <RefTableName>unit</RefTableName>
-    </foreign-key>
-    <foreign-key id="546" parent="480">
-      <ColNames>tile_id</ColNames>
-      <RefColNames>tile_id</RefColNames>
-      <RefTableName>tile</RefTableName>
-    </foreign-key>
-    <foreign-key id="547" parent="480">
-      <ColNames>city_id</ColNames>
-      <RefColNames>city_id</RefColNames>
-      <RefTableName>city</RefTableName>
-    </foreign-key>
-    <column id="548" parent="481" name="game_id">
-      <DataType>INTEGER|0s</DataType>
-      <Position>1</Position>
-    </column>
-    <column id="549" parent="481" name="name">
-      <DataType>TEXT|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="550" parent="481" name="theme_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <column id="551" parent="481" name="created_at">
-      <DataType>TEXT|0s</DataType>
-      <Position>4</Position>
-    </column>
-    <key id="552" parent="481">
-      <ColNames>game_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="553" parent="482" name="game_setting_id">
-      <DataType>INTEGER|0s</DataType>
-      <Position>1</Position>
-    </column>
-    <column id="554" parent="482" name="game_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <foreign-key id="555" parent="482">
-      <ColNames>game_id</ColNames>
-      <RefColNames>game_id</RefColNames>
-      <RefTableName>game</RefTableName>
-    </foreign-key>
-    <key id="556" parent="482">
-      <ColNames>game_setting_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="557" parent="483" name="command_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="558" parent="483" name="unit_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="559" parent="483" name="from_row">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <column id="560" parent="483" name="from_col">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-    </column>
-    <column id="561" parent="483" name="to_row">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-    </column>
-    <column id="562" parent="483" name="to_col">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>6</Position>
-    </column>
-    <foreign-key id="563" parent="483">
-      <ColNames>command_id</ColNames>
-      <RefColNames>command_id</RefColNames>
-      <RefTableName>command</RefTableName>
-    </foreign-key>
-    <foreign-key id="564" parent="483">
-      <ColNames>unit_id</ColNames>
-      <RefColNames>unit_id</RefColNames>
-      <RefTableName>unit</RefTableName>
-    </foreign-key>
-    <column id="565" parent="484" name="command_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="566" parent="484" name="turn_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <foreign-key id="567" parent="484">
-      <ColNames>command_id</ColNames>
-      <RefColNames>command_id</RefColNames>
-      <RefTableName>command</RefTableName>
-    </foreign-key>
-    <foreign-key id="568" parent="484">
+    <foreign-key id="536" parent="478">
       <ColNames>turn_id</ColNames>
       <RefColNames>turn_id</RefColNames>
       <RefTableName>turn</RefTableName>
     </foreign-key>
-    <check id="569" parent="485">
-      <Predicate>skill_level IN (0, 1, 2, 3, 4, 5, 6, 7, 8)</Predicate>
-    </check>
-    <check id="570" parent="485">
-      <Predicate>type IN (&apos;Human&apos;, &apos;AI&apos;)</Predicate>
-    </check>
-    <column id="571" parent="485" name="player_id">
+    <index id="537" parent="478" name="command_idx1">
+      <ColNames>player_id
+turn_id
+ordinal</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="538" parent="478">
+      <ColNames>command_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="539" parent="479" name="command_id">
       <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="572" parent="485" name="game_id">
+    <column id="540" parent="479" name="unit_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="573" parent="485" name="ordinal">
+    <column id="541" parent="479" name="city_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="574" parent="485" name="name">
-      <DataType>TEXT|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-    </column>
-    <column id="575" parent="485" name="type">
-      <DataType>TEXT|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-    </column>
-    <column id="576" parent="485" name="skill_level">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>6</Position>
-    </column>
-    <foreign-key id="577" parent="485">
-      <ColNames>game_id</ColNames>
-      <RefColNames>game_id</RefColNames>
-      <RefTableName>game</RefTableName>
-    </foreign-key>
-    <index id="578" parent="485" name="player_idx1">
-      <ColNames>game_id
-ordinal</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <index id="579" parent="485" name="player_idx2">
-      <ColNames>game_id
-name</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="580" parent="485">
-      <ColNames>player_id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="581" parent="486" name="command_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="582" parent="486" name="advance_id">
-      <DataType>INTEGER|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <foreign-key id="583" parent="486">
+    <foreign-key id="542" parent="479">
       <ColNames>command_id</ColNames>
       <RefColNames>command_id</RefColNames>
       <RefTableName>command</RefTableName>
     </foreign-key>
-    <foreign-key id="584" parent="486">
+    <foreign-key id="543" parent="479">
+      <ColNames>unit_id</ColNames>
+      <RefColNames>unit_id</RefColNames>
+      <RefTableName>unit</RefTableName>
+    </foreign-key>
+    <foreign-key id="544" parent="479">
+      <ColNames>city_id</ColNames>
+      <RefColNames>city_id</RefColNames>
+      <RefTableName>city</RefTableName>
+    </foreign-key>
+    <column id="545" parent="480" name="command_id">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="546" parent="480" name="unit_id">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="547" parent="480" name="tile_id">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="548" parent="480" name="city_id">
+      <DataType>INTEGER|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <foreign-key id="549" parent="480">
+      <ColNames>command_id</ColNames>
+      <RefColNames>command_id</RefColNames>
+      <RefTableName>command</RefTableName>
+    </foreign-key>
+    <foreign-key id="550" parent="480">
+      <ColNames>unit_id</ColNames>
+      <RefColNames>unit_id</RefColNames>
+      <RefTableName>unit</RefTableName>
+    </foreign-key>
+    <foreign-key id="551" parent="480">
+      <ColNames>tile_id</ColNames>
+      <RefColNames>tile_id</RefColNames>
+      <RefTableName>tile</RefTableName>
+    </foreign-key>
+    <foreign-key id="552" parent="480">
+      <ColNames>city_id</ColNames>
+      <RefColNames>city_id</RefColNames>
+      <RefTableName>city</RefTableName>
+    </foreign-key>
+    <column id="553" parent="481" name="game_id">
+      <DataType>INTEGER|0s</DataType>
+      <Position>1</Position>
+    </column>
+    <column id="554" parent="481" name="name">
+      <DataType>TEXT|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="555" parent="481" name="theme_id">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="556" parent="481" name="created_at">
+      <DataType>TEXT|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <key id="557" parent="481">
+      <ColNames>game_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="558" parent="482" name="game_setting_id">
+      <DataType>INTEGER|0s</DataType>
+      <Position>1</Position>
+    </column>
+    <column id="559" parent="482" name="game_id">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="560" parent="482">
+      <ColNames>game_id</ColNames>
+      <RefColNames>game_id</RefColNames>
+      <RefTableName>game</RefTableName>
+    </foreign-key>
+    <key id="561" parent="482">
+      <ColNames>game_setting_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="562" parent="483" name="command_id">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="563" parent="483" name="unit_id">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="564" parent="483" name="from_row">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="565" parent="483" name="from_col">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="566" parent="483" name="to_row">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="567" parent="483" name="to_col">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <foreign-key id="568" parent="483">
+      <ColNames>command_id</ColNames>
+      <RefColNames>command_id</RefColNames>
+      <RefTableName>command</RefTableName>
+    </foreign-key>
+    <foreign-key id="569" parent="483">
+      <ColNames>unit_id</ColNames>
+      <RefColNames>unit_id</RefColNames>
+      <RefTableName>unit</RefTableName>
+    </foreign-key>
+    <column id="570" parent="484" name="command_id">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="571" parent="484" name="turn_id">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="572" parent="484">
+      <ColNames>command_id</ColNames>
+      <RefColNames>command_id</RefColNames>
+      <RefTableName>command</RefTableName>
+    </foreign-key>
+    <foreign-key id="573" parent="484">
+      <ColNames>turn_id</ColNames>
+      <RefColNames>turn_id</RefColNames>
+      <RefTableName>turn</RefTableName>
+    </foreign-key>
+    <check id="574" parent="485">
+      <Predicate>skill_level IN (0, 1, 2, 3, 4, 5, 6, 7, 8)</Predicate>
+    </check>
+    <check id="575" parent="485">
+      <Predicate>type IN (&apos;Human&apos;, &apos;AI&apos;)</Predicate>
+    </check>
+    <column id="576" parent="485" name="player_id">
+      <DataType>INTEGER|0s</DataType>
+      <Position>1</Position>
+    </column>
+    <column id="577" parent="485" name="game_id">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="578" parent="485" name="ordinal">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="579" parent="485" name="name">
+      <DataType>TEXT|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="580" parent="485" name="type">
+      <DataType>TEXT|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="581" parent="485" name="skill_level">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <foreign-key id="582" parent="485">
+      <ColNames>game_id</ColNames>
+      <RefColNames>game_id</RefColNames>
+      <RefTableName>game</RefTableName>
+    </foreign-key>
+    <index id="583" parent="485" name="player_idx1">
+      <ColNames>game_id
+ordinal</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="584" parent="485" name="player_idx2">
+      <ColNames>game_id
+name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="585" parent="485">
+      <ColNames>player_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="586" parent="486" name="command_id">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="587" parent="486" name="advance_id">
+      <DataType>INTEGER|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="588" parent="486">
+      <ColNames>command_id</ColNames>
+      <RefColNames>command_id</RefColNames>
+      <RefTableName>command</RefTableName>
+    </foreign-key>
+    <foreign-key id="589" parent="486">
       <ColNames>advance_id</ColNames>
       <RefColNames>advance_id</RefColNames>
       <RefTableName>advance</RefTableName>
     </foreign-key>
-    <column id="585" parent="487" name="type">
+    <column id="590" parent="487" name="type">
       <DataType>text|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="586" parent="487" name="name">
+    <column id="591" parent="487" name="name">
       <DataType>text|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="587" parent="487" name="tbl_name">
+    <column id="592" parent="487" name="tbl_name">
       <DataType>text|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="588" parent="487" name="rootpage">
+    <column id="593" parent="487" name="rootpage">
       <DataType>int|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="589" parent="487" name="sql">
+    <column id="594" parent="487" name="sql">
       <DataType>text|0s</DataType>
       <Position>5</Position>
     </column>
-    <check id="590" parent="488">
+    <check id="595" parent="488">
       <Predicate>terrain_type IN (&apos;Desert&apos;,
                                              &apos;Forest&apos;,
                                              &apos;Glacier&apos;,
@@ -1803,250 +1830,250 @@ name</ColNames>
                                              &apos;Swamp&apos;,
                                              &apos;Tundra&apos;)</Predicate>
     </check>
-    <column id="591" parent="488" name="terrain_id">
+    <column id="596" parent="488" name="terrain_id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="592" parent="488" name="tiled_id">
+    <column id="597" parent="488" name="tiled_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="593" parent="488" name="terrain_type">
+    <column id="598" parent="488" name="terrain_type">
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="594" parent="488" name="food">
+    <column id="599" parent="488" name="food">
       <DataType>REAL|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="595" parent="488" name="shields">
+    <column id="600" parent="488" name="shields">
       <DataType>REAL|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="596" parent="488" name="trade">
+    <column id="601" parent="488" name="trade">
       <DataType>REAL|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="597" parent="488" name="movement_cost">
+    <column id="602" parent="488" name="movement_cost">
       <DataType>REAL|0s</DataType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="598" parent="488" name="defensive_bonus">
+    <column id="603" parent="488" name="defensive_bonus">
       <DataType>REAL|0s</DataType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <key id="599" parent="488">
+    <key id="604" parent="488">
       <ColNames>terrain_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="600" parent="489" name="theme_id">
+    <column id="605" parent="489" name="theme_id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="601" parent="489" name="name">
+    <column id="606" parent="489" name="name">
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="602" parent="489" name="description">
+    <column id="607" parent="489" name="description">
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="603" parent="489" name="author">
+    <column id="608" parent="489" name="author">
       <DataType>TEXT|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="604" parent="489" name="source">
+    <column id="609" parent="489" name="source">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <index id="605" parent="489" name="theme_idx1">
+    <index id="610" parent="489" name="theme_idx1">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="606" parent="489">
+    <key id="611" parent="489">
       <ColNames>theme_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="607" parent="490" name="tile_id">
+    <column id="612" parent="490" name="tile_id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="608" parent="490" name="game_id">
+    <column id="613" parent="490" name="game_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="609" parent="490" name="map_id">
+    <column id="614" parent="490" name="map_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="610" parent="490" name="row">
+    <column id="615" parent="490" name="row">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="611" parent="490" name="col">
+    <column id="616" parent="490" name="col">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="612" parent="490" name="terrain_id">
+    <column id="617" parent="490" name="terrain_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="613" parent="490" name="has_river">
+    <column id="618" parent="490" name="has_river">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="614" parent="490" name="special_resource">
+    <column id="619" parent="490" name="special_resource">
       <DataType>TEXT|0s</DataType>
       <Position>8</Position>
     </column>
-    <foreign-key id="615" parent="490">
+    <foreign-key id="620" parent="490">
       <ColNames>game_id</ColNames>
       <RefColNames>game_id</RefColNames>
       <RefTableName>game</RefTableName>
     </foreign-key>
-    <foreign-key id="616" parent="490">
+    <foreign-key id="621" parent="490">
       <ColNames>terrain_id</ColNames>
       <RefColNames>terrain_id</RefColNames>
       <RefTableName>terrain</RefTableName>
     </foreign-key>
-    <key id="617" parent="490">
+    <key id="622" parent="490">
       <ColNames>tile_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="618" parent="491" name="tilemap_id">
+    <column id="623" parent="491" name="tilemap_id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="619" parent="491" name="game_id">
+    <column id="624" parent="491" name="game_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <key id="620" parent="491">
+    <key id="625" parent="491">
       <ColNames>tilemap_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="621" parent="492" name="turn_id">
+    <column id="626" parent="492" name="turn_id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="622" parent="492" name="theme_id">
+    <column id="627" parent="492" name="theme_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="623" parent="492" name="ordinal">
+    <column id="628" parent="492" name="ordinal">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="624" parent="492" name="year">
+    <column id="629" parent="492" name="year">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="625" parent="492" name="display_text">
+    <column id="630" parent="492" name="display_text">
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <foreign-key id="626" parent="492">
+    <foreign-key id="631" parent="492">
       <ColNames>theme_id</ColNames>
       <RefColNames>theme_id</RefColNames>
       <RefTableName>theme</RefTableName>
     </foreign-key>
-    <index id="627" parent="492" name="turn_idx1">
+    <index id="632" parent="492" name="turn_idx1">
       <ColNames>theme_id
 ordinal</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="628" parent="492">
+    <key id="633" parent="492">
       <ColNames>turn_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="629" parent="493" name="unit_id">
+    <column id="634" parent="493" name="unit_id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="630" parent="493" name="player_id">
+    <column id="635" parent="493" name="player_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="631" parent="493" name="unit_type_id">
+    <column id="636" parent="493" name="unit_type_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="632" parent="493" name="tile_id">
+    <column id="637" parent="493" name="tile_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <foreign-key id="633" parent="493">
+    <foreign-key id="638" parent="493">
       <ColNames>player_id</ColNames>
       <RefColNames>player_id</RefColNames>
       <RefTableName>player</RefTableName>
     </foreign-key>
-    <foreign-key id="634" parent="493">
+    <foreign-key id="639" parent="493">
       <ColNames>tile_id</ColNames>
       <RefColNames>tile_id</RefColNames>
       <RefTableName>tile</RefTableName>
     </foreign-key>
-    <key id="635" parent="493">
+    <key id="640" parent="493">
       <ColNames>unit_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="636" parent="494" name="unit_type_id">
+    <column id="641" parent="494" name="unit_type_id">
       <DataType>INTEGER|0s</DataType>
       <Position>1</Position>
     </column>
-    <column id="637" parent="494" name="tiled_id">
+    <column id="642" parent="494" name="tiled_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="638" parent="494" name="name">
+    <column id="643" parent="494" name="name">
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="639" parent="494" name="display_name">
+    <column id="644" parent="494" name="display_name">
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="640" parent="494" name="theme_id">
+    <column id="645" parent="494" name="theme_id">
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="641" parent="494" name="notes">
+    <column id="646" parent="494" name="notes">
       <DataType>TEXT|0s</DataType>
       <Position>6</Position>
     </column>
-    <foreign-key id="642" parent="494">
+    <foreign-key id="647" parent="494">
       <ColNames>theme_id</ColNames>
       <RefColNames>theme_id</RefColNames>
       <RefTableName>theme</RefTableName>
     </foreign-key>
-    <key id="643" parent="494">
+    <key id="648" parent="494">
       <ColNames>unit_type_id</ColNames>
       <Primary>1</Primary>
     </key>

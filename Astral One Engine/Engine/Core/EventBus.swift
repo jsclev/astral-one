@@ -182,7 +182,6 @@ public class EventBus {
                 }
                 else if name == "Found City Button" {
                     if let unit = game.currentPlayer.selectedUnit {
-                        // Deselect the selected unit
                         let deselectUnitCmd = SelectUnitCommand(player: game.currentPlayer,
                                                                 turn: game.getCurrentTurn(),
                                                                 ordinal: game.getCurrentTurn().ordinal,
@@ -195,15 +194,13 @@ public class EventBus {
                             let agent = try SettlerAgent.getAgent(aiPlayer: game.currentPlayer,
                                                                   settler: unit as! Settler)
                             
-                            if let position = try agent.getSettleCityPosition() {
+                            if let positionScore = try agent.getSettleCityPosition() {
                                 let moveCmd = MoveUnitCommand(player: game.currentPlayer,
                                                               turn: game.getCurrentTurn(),
                                                               ordinal: game.getCurrentTurn().ordinal,
                                                               unit: unit,
-                                                              to: position)
+                                                              to: positionScore.position)
                                 let _ = moveCmd.execute(save: true)
-                                // print(position)
-                                // print(unit.position)
                                 
                                 let cityCmd = CreateCityCommand(player: game.currentPlayer,
                                                                 turn: game.getCurrentTurn(),
@@ -211,7 +208,16 @@ public class EventBus {
                                                                 cost: 1,
                                                                 cityCreator: unit as! Settler,
                                                                 cityName: "Chicago")
-                                let _ = cityCmd.execute(save: true)
+                                let cityCmdResult = cityCmd.execute(save: true)
+                                if cityCmdResult.status != CommandStatus.Ok {
+                                    fatalError(cityCmdResult.message)
+                                }
+                                
+                                print("Founding city at \(positionScore.position) with score \(positionScore.score.value)")
+                                print("List of reasons for this score are...")
+                                for reason in positionScore.score.reasons {
+                                    print("\(reason.description)")
+                                }
                                 
                                 if let city = cityCmd.city {
                                     let cityAgent = try CityAgent.getAgent(aiPlayer: game.currentPlayer,
@@ -231,6 +237,37 @@ public class EventBus {
                 }
             }
         }
+        
+        if let unit = mapManager.getUnit(on: tile) {
+            let selectUnitCmd = SelectUnitCommand(player: game.currentPlayer,
+                                                  turn: game.getCurrentTurn(),
+                                                  ordinal: game.getCurrentTurn().ordinal,
+                                                  node: scene,
+                                                  mapManager: mapManager,
+                                                  unit: unit)
+            let _ = selectUnitCmd.execute(save: false)
+        }
+        else {
+            if let selectedUnit = game.currentPlayer.selectedUnit {
+                let moveCmd = MoveUnitCommand(player: game.currentPlayer,
+                                              turn: game.getCurrentTurn(),
+                                              ordinal: game.getCurrentTurn().ordinal,
+                                              unit: selectedUnit,
+                                              to: tile.position)
+                let _ = moveCmd.execute(save: false)
+            }
+            else {
+                addSettler(tile: tile)
+            }
+        }
+    }
+    
+    public func doubleTap(recognizerLocation: CGPoint) {
+        game.currentPlayer.clearNotification()
+        
+        let location = scene.convertPoint(fromView: recognizerLocation)
+        let tile = mapManager.getTile(at: location)
+        let touchedNodes = scene.nodes(at: location)
         
         if let unit = mapManager.getUnit(on: tile) {
             let selectUnitCmd = SelectUnitCommand(player: game.currentPlayer,

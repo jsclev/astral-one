@@ -1,23 +1,15 @@
-//
-//  GameGestureRecognizer.swift
-//  Engine
-//
-//  Created by Timothy Cleveland on 6/23/22.
-//
-
 import Foundation
 import UIKit
 
 public class GameGestureRecognizer: UIGestureRecognizer {
     private let eventBus: EventBus
+    private let maximumScalePreviousTouchTime: Double = 0.1
     private var touchPoints: [UITouch: CGPoint] = [:]
     private var initialTouchPoints: [UITouch: CGPoint] = [:]
     private var initialScale: CGFloat = 1.0
     private var previousDragTimes: [UITouch: [(TimeInterval, CGPoint)]] = [:]
     private var previousScaleTimes: [(TimeInterval, CGFloat)] = []
     private var previousVelocityTimeInterval: TimeInterval? = nil
-    
-    private let maximumScalePreviousTouchTime: Double = 0.1
     
     public var translation: CGSize = .zero
     public var scale: CGFloat = 1.0

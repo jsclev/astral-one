@@ -42,7 +42,7 @@ public class CreateCityCommand: Command {
     }
     
     public override func execute(save: Bool) -> CommandResult {
-        if cityCreator.canCreateCity.value {
+        if cityCreator.canCreateCity.value > 0 {
             city = City(id: Constants.noId,
                         owner: player,
                         theme: player.game.theme,
@@ -64,6 +64,7 @@ public class CreateCityCommand: Command {
             }
             
             turn.step()
+            
             return CommandResult(status: CommandStatus.Ok, message: "Success")
         }
         

@@ -346,10 +346,6 @@ public class Tile: Hashable, ObservableObject {
         return Double(food) + Double(production) + Double(trade) + defenseBonus
     }
     
-    private func getFood(terrain: Terrain) -> Int {
-        return 0
-    }
-    
     public var hasCity: Bool {
         return city != nil
     }

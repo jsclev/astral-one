@@ -210,7 +210,7 @@ CREATE TABLE command (
     player_id INTEGER NOT NULL,
     turn_id INTEGER NOT NULL,
     ordinal INTEGER NOT NULL,
---     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     FOREIGN KEY (player_id) REFERENCES player (player_id),
     FOREIGN KEY (turn_id) REFERENCES turn (turn_id)
 );

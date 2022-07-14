@@ -54,6 +54,7 @@ public class CreateInfantry1Command: Command {
         
         if let newUnit = infantry1 {
             player.add(unit: newUnit)
+            turn.step()
             
             return CommandResult(status: CommandStatus.Ok, message: "Success")
         }

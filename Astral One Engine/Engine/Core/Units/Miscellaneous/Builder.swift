@@ -49,16 +49,19 @@ public class Builder: Unit {
         let tile = player.map.tile(at: position)
         
         if tile.terrain.type == TerrainType.Ocean {
-            return Reason(value: false,
+            return Reason(reasonType: ReasonType.InvalidCityLocation,
+                          value: -1,
                           message: "Cannot found cities on Ocean tiles.")
         }
         
         if tile.hasCity {
-            return Reason(value: false,
+            return Reason(reasonType: ReasonType.InvalidCityLocation,
+                          value: -1,
                           message: "Cannot found cities on tiles that already have a city.")
         }
         
-        return Reason(value: true,
+        return Reason(reasonType: ReasonType.ValidCityLocation,
+                      value: 1,
                       message: "No existing cities, terrain is Ok.")
     }
     

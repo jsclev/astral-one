@@ -175,7 +175,12 @@ public class CommandDAO: BaseDAO {
             }
         }
         else {
-            throw SQLiteError.Step(message: "Could not insert row into \(table) table.")
+            let sqliteMsg = String(cString: sqlite3_errmsg(conn)!)
+            sqlite3_finalize(mainStmt)
+            
+            var errMsg = "Could not insert row into \(table) table.  "
+            errMsg += "SQLite error message: " + sqliteMsg
+            throw DbError.Db(message: errMsg)
         }
 
         sqlite3_finalize(rowIdStmt)

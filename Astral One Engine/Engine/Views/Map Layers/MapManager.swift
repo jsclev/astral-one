@@ -19,6 +19,7 @@ public class MapManager {
         let _ = CitiesMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = FortressesMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = SpecialResourcesMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
+        let _ = UnitMovementMapLayer(player: player, scene: scene, tileSet: tileset)
         let _ = UnitsMapLayer(player: player, scene: scene, mapManager: self, tileSet: tileset)
         let _ = TileStatsMapLayer(player: player, scene: scene, mapView: self)
     }

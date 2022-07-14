@@ -145,7 +145,9 @@ public class TiledMapParser: NSObject, XMLParserDelegate {
                                         else {
                                             var msg = "Unable to find tile with Tiled ID \(strLocalTiledId).  "
                                             msg += "Check the Tiled tileset file (.tsx) to make sure there is "
-                                            msg += "a tile with an id of \(strLocalTiledId) in it."
+                                            msg += "a tile with an id of \(strLocalTiledId) in it.  The problem also "
+                                            msg += "be related to that Tiled ID not being in the terrain table in the "
+                                            msg += "database."
                                             fatalError(msg)
                                         }
                                     }

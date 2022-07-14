@@ -30,6 +30,7 @@ public class BuildMineCommand: Command {
     
     public override func execute(save: Bool) -> CommandResult {
         city.build(improvement: ImprovementType.Mine, position: position)
+        turn.step()
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }

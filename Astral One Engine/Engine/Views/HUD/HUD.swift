@@ -58,7 +58,7 @@ public class Camera: SKCameraNode {
         addChild(turnIndicator)
         addChild(notificationIndicator)
         addChild(nextTurnButton)
-        addChild(statsBar)
+        // addChild(statsBar)
         addChild(researchButton)
         
         placeStatsBar()

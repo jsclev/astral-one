@@ -55,7 +55,10 @@ public class MoveUnitCommand: Command {
                                          message: "Some type of error occurred")
                 }
             }
+            
             unit.move(to: self.to)
+            turn.step()
+            
             return CommandResult(status: CommandStatus.Ok, message: "Success")
 
             //player.set(selectedUnit: self.unit)

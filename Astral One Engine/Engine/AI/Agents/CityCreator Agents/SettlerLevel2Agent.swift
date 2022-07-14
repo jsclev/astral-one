@@ -9,7 +9,7 @@ public class SettlerLevel2Agent: SettlerAgent {
         return Double(0.0)
     }
     
-    private func getBuildCityScoreMap() throws -> [[Double]] {
+    private func getBuildCityScores() throws -> [[Double]] {
         var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
                                                           count: player.map.width),
                                          count: player.map.height)

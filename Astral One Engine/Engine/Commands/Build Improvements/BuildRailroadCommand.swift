@@ -37,6 +37,7 @@ public class BuildRailroadCommand: Command {
     
     public override func execute(save: Bool) -> CommandResult {
         builder.buildRailroad()
+        turn.step()
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }

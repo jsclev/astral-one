@@ -212,6 +212,11 @@ public class MapDAO: BaseDAO {
             for col in 0..<map.width {
                 let tile = map.tile(at: Position(row: row, col: col))
                 
+                if tile.terrain.id == Constants.noId {
+                    continue
+                    // fatalError("Unknown terrain at position [\(row), \(col)].")
+                }
+                
                 sqlite3_bind_int(mainStmt, gameIdCol, Int32(gameId))
                 sqlite3_bind_int(mainStmt, mapIdCol, Int32(map.mapId))
                 sqlite3_bind_int(mainStmt, rowCol, Int32(row))

@@ -128,7 +128,7 @@ class PlannerTests: XCTestCase {
 //                                       position: Position(row: 0, col: 0)))
 //
 //        let p1Agent = try AIPlayerAgent(player: p1)
-//        let p1ScoreMap = try p1Agent.settlerAgents[0].getBuildCityScoreMap()
+//        let p1Scores = try p1Agent.settlerAgents[0].getBuildCityScores()
 //
 //        let p2 = AIPlayer(playerId: 2,
 //                          game: game,

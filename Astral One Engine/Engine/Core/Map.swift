@@ -7,7 +7,7 @@ public class Map: ObservableObject {
     public let width: Int
     public let height: Int
     private var grid: [[Tile]]
-    private var movementCosts: [[Double]]
+    private var myMovementCosts: [[Double]]
     private var cancellable = Set<AnyCancellable>()
     @Published internal var cities: [City] = []
     
@@ -42,7 +42,7 @@ public class Map: ObservableObject {
             }
         }
         
-        self.movementCosts = Array(repeating: Array(repeating:0.0, count: width), count: height)
+        self.myMovementCosts = Array(repeating: Array(repeating:0.0, count: width), count: height)
     }
     
     public var visibleTiles: [Tile] {
@@ -69,7 +69,7 @@ public class Map: ObservableObject {
     
     public func add(tile: Tile) {
         grid[tile.position.row][tile.position.col] = tile
-        movementCosts[tile.position.row][tile.position.col] = tile.movementCost
+        myMovementCosts[tile.position.row][tile.position.col] = tile.movementCost
     }
     
     internal func add(city: City) {
@@ -107,7 +107,8 @@ public class Map: ObservableObject {
     }
     
     public func canCreateCity(at: Position) -> Bool {
-        if tile(at: at).terrain.type == TerrainType.Ocean {
+        if tile(at: at).terrain.type == TerrainType.Ocean ||
+           tile(at: at).terrain.type == TerrainType.Glacier {
             return false
         }
         
@@ -183,8 +184,8 @@ public class Map: ObservableObject {
 //        return grid[row][col].getUnits()
     }
     
-    public func getMovementCosts() -> [[Double]] {
-        return movementCosts
+    public var movementCosts: [[Double]] {
+        return myMovementCosts
     }
     
     public func getNumLayers() -> Int {

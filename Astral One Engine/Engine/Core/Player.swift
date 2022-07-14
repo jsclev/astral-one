@@ -21,6 +21,7 @@ public class Player: ObservableObject, Equatable {
     @Published public private (set) var selectedUnit: Unit?
     @Published public private (set) var notificationMsg: String?
     private var cancellable = Set<AnyCancellable>()
+    @Published public var agentMap: [[Score]] = [[]]
     
     public init(playerId: Int, game: Game, map: Map) {
         self.playerId = playerId

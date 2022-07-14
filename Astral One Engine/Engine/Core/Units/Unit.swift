@@ -19,7 +19,7 @@ public class Unit: ObservableObject, Equatable {
     public private(set) var isFortified = false
     public let fp: Double
     public let maxMovementPoints: Double
-    public var currentMovementPoints: Double
+    public var movementPoints: Double
     @Published public var position: Position
     @Published public var availableCommands: [Command] = []
     @Published public var homeCity: City?
@@ -53,7 +53,7 @@ public class Unit: ObservableObject, Equatable {
         self.defense = defense
         self.fp = fp
         self.maxMovementPoints = maxMovementPoints
-        self.currentMovementPoints = maxMovementPoints
+        self.movementPoints = maxMovementPoints
         self.position = position
     }
     
@@ -186,6 +186,27 @@ public class Unit: ObservableObject, Equatable {
     public func makeVeteran() {
         isVeteran = true
     }
+    
+//    public var movementMap: [[Bool]] {
+//        var movesLeft = true
+//        var startPosition = position
+//        var movementMap: [[Double]] = Array(repeating: Array(repeating: -1.0,
+//                                                             count: player.map.width),
+//                                            count: player.map.height)
+//
+//        while movesLeft {
+//            let startRow = startPosition.row - 1
+//            let endRow = startPosition.row + 2
+//            let startCol = startPosition.col - 1
+//            let endCol = startPosition.col + 2
+//
+//            for row in startRow..<endRow {
+//                for col in startCol..<endCol {
+//
+//                }
+//            }
+//        }
+//    }
     
     public func clone() -> Unit {
         fatalError("clone() must be implemented in subclasses.")

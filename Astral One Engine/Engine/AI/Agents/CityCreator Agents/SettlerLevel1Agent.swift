@@ -9,17 +9,19 @@ public class SettlerLevel1Agent: SettlerAgent {
         return Double(0.0)
     }
     
-    public override func getSettleCityPosition() throws -> Position? {
+    public override func getSettleCityPosition() throws -> PositionScore? {
         let scoreMap = try getBuildCityScoreMap()
-        var positions: [Position] = []
+        var positions: [PositionScore] = []
         
         var maxScore = 0.0
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
-                if scoreMap[row][col] > maxScore {
-                    maxScore = scoreMap[row][col]
-                    positions.append(Position(row: row, col: col))
+                if scoreMap[row][col].value > maxScore {
+                    maxScore = scoreMap[row][col].value
+                    
+                    positions.append(PositionScore(position: Position(row: row, col: col),
+                                                   score: scoreMap[row][col]))
                 }
             }
         }
@@ -27,27 +29,12 @@ public class SettlerLevel1Agent: SettlerAgent {
         if let bestPosition = positions.last {
             return bestPosition
         }
-//        positions = positions.sorted {
-//            settler.position.distance(from: $0) < settler.position.distance(from: $1)
-//        }
-//
-//        print("Found \(positions.count) potential city locations.")
-//
-//        if positions.count > 0 {
-//            if positions.count == 1 {
-//                return positions[0]
-//            }
-//            else {
-//                let random = Int.random(in: 0..<positions.count)
-//                return positions[random]
-//            }
-//        }
         
         return nil
     }
     
-    private func getBuildCityScoreMap() throws -> [[Double]] {
-        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+    private func getBuildCityScoreMap() throws -> [[Score]] {
+        let scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
                                                           count: player.map.width),
                                          count: player.map.height)
         let scoreMap2 = analyzers[0].getScoreMap()
@@ -59,17 +46,24 @@ public class SettlerLevel1Agent: SettlerAgent {
                 
                 if tile.visibility == Visibility.FullyRevealed {
                     if player.map.canCreateCity(at: position) {
-                        scoreMap[row][col] = Double(tile.score)
+                        scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.FoodSource,
+                                                                 value: tile.score,
+                                                                 message: ""))
                     }
                     else {
-                        scoreMap[row][col] = 0.0
+                        scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.InvalidCityLocation,
+                                                                 value: 0,
+                                                                 message: ""))
                     }
                 }
                 else {
-                    scoreMap[row][col] = 1.0
+                    
+                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.TileNotRevealed,
+                                                             value: 1,
+                                                             message: ""))
                 }
                 
-                scoreMap[row][col] += scoreMap2[row][col]
+                // scoreMap[row][col].reasons.append(contentsOf: scoreMap2[row][col].reasons)
             }
         }
         

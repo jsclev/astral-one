@@ -47,6 +47,7 @@ public class ResearchAdvanceCommand: Command {
         
         player.add(advanceName: "\(advanceType)")
         turn.step()
+        
         print("Researched \(advanceType)")
             
         return CommandResult(status: CommandStatus.Ok, message: "Success")
