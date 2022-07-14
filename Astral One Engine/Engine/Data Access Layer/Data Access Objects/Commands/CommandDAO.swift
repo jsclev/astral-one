@@ -133,18 +133,21 @@ public class CommandDAO: BaseDAO {
 
         let sql = "INSERT INTO command (player_id, turn_id, ordinal) VALUES (?, ?, ?)"
         let rowIdSql = "SELECT last_insert_rowid()"
-
+        let playerId = Int32(command.player.playerId)
+        let turnId = Int32(command.turn.id)
+        let ordinal = Int32(command.ordinal)
+        
         if sqlite3_prepare_v2(conn, sql, -1, &mainStmt, nil) == SQLITE_OK {
             // TODO Need to fix the truncation of the Int id
-            guard sqlite3_bind_int(mainStmt, 1, Int32(command.player.playerId)) == SQLITE_OK else {
+            guard sqlite3_bind_int(mainStmt, 1, playerId) == SQLITE_OK else {
                 throw DbError.Db(message: "Unable to bind player_id")
             }
             
-            guard sqlite3_bind_int(mainStmt, 2, Int32(command.turn.id)) == SQLITE_OK else {
+            guard sqlite3_bind_int(mainStmt, 2, turnId) == SQLITE_OK else {
                 throw DbError.Db(message: "Unable to bind turn_id")
             }
             
-            guard sqlite3_bind_int(mainStmt, 3, Int32(command.ordinal)) == SQLITE_OK else {
+            guard sqlite3_bind_int(mainStmt, 3, ordinal) == SQLITE_OK else {
                 throw DbError.Db(message: "Unable to bind command ordinal")
             }
         } else {
@@ -178,8 +181,7 @@ public class CommandDAO: BaseDAO {
             let sqliteMsg = String(cString: sqlite3_errmsg(conn)!)
             sqlite3_finalize(mainStmt)
             
-            var errMsg = "Could not insert row into \(table) table.  "
-            errMsg += "SQLite error message: " + sqliteMsg
+            let errMsg = "Could not insert row into \(table) table.  " + sqliteMsg
             throw DbError.Db(message: errMsg)
         }
 

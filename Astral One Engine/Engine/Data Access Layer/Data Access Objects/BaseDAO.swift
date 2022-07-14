@@ -24,9 +24,9 @@ public class BaseDAO {
     
     func logInsertSuccess(table: String, numRows: Int) {
         if numRows == 1 {
-            logger.debug("Successfully inserted \(numRows) row into the \(table, privacy: .public) table.")
+            logger.debug("Inserted \(numRows) row into the \(table, privacy: .public) table.")
         } else {
-            logger.debug("Successfully inserted \(numRows) rows into the \(table, privacy: .public) table.")
+            logger.debug("Inserted \(numRows) rows into the \(table, privacy: .public) table.")
             
         }
     }

@@ -61,11 +61,10 @@ public class CreateCityCommand: Command {
             
             if let newCity = city {
                 player.create(city: newCity, using: cityCreator)
+                turn.step()
+            
+                return CommandResult(status: CommandStatus.Ok, message: "Success")
             }
-            
-            turn.step()
-            
-            return CommandResult(status: CommandStatus.Ok, message: "Success")
         }
         
         return CommandResult(status: CommandStatus.Invalid,

@@ -51,7 +51,7 @@ public class MoveUnitCommandDAO: BaseDAO {
 //                               game: command.player.game,
 //                           turn: turn,
 //                           player: command.player,
-//                           ordinal: 1,
+//                           ordinal: command.player.game.getCurrentTurn().ordinal,
 //                               unit: Infantry1(game: command.player.game,
 //                                               player: command.player,
 //                                               theme: command.player.game.theme,

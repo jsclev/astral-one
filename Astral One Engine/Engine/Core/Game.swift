@@ -71,7 +71,7 @@ public class Game: ObservableObject {
                                 col: (currentPlayer.map.width / 2) - 1)
         let cmd = CreateSettlerCommand(player: currentPlayer,
                                        turn: getCurrentTurn(),
-                                       ordinal: 1,
+                                       ordinal: getCurrentTurn().ordinal,
                                        cost: 1,
                                        tile: currentPlayer.map.tile(at: position))
         let _ = cmd.execute(save: true)
