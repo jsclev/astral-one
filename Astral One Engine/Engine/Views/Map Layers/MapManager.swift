@@ -21,7 +21,7 @@ public class MapManager {
         let _ = SpecialResourcesMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = UnitMovementMapLayer(player: player, scene: scene, tileSet: tileset)
         let _ = UnitsMapLayer(player: player, scene: scene, mapManager: self, tileSet: tileset)
-        let _ = TileStatsMapLayer(player: player, scene: scene, mapView: self)
+        let _ = AIDebugMapLayer(player: player, scene: scene, mapView: self)
     }
     
     required init?(coder aDecoder: NSCoder) {

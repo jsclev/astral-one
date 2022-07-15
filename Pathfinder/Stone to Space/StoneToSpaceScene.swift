@@ -47,6 +47,7 @@ class StoneToSpaceScene: SKScene {
         db = Db(fullRefresh: true)
         
         do {
+            try db.mapDao.importTiledMap(gameId: AppConstants.gameId, filename: Constants.mapFilename)
             game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
         }
         catch {
@@ -71,14 +72,6 @@ class StoneToSpaceScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        do {
-            try db.mapDao.importTiledMap(gameId: AppConstants.gameId, filename: Constants.mapFilename)
-            game = try db.getGameBy(gameId: AppConstants.gameId, themeId: AppConstants.themeId)
-        }
-        catch {
-            print(error)
-        }
-        
         game.canvasSize = frame.size
         gameCamera = Camera(game: game, player: game.currentPlayer, view: view)
 

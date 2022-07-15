@@ -10,6 +10,7 @@ public enum ReasonType {
     case OnCoast
     case OnRiver
     case ProductionSource
+    case ProximityToNearestCity
     case ProximityToWater
     case RiverWithinCityRadius
     case TileNotRevealed

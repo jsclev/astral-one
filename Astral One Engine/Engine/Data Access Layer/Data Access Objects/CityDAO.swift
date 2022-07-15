@@ -69,7 +69,7 @@ public class CityDAO: BaseDAO {
                 
                 if let cityName = try getString(stmt: stmt, colIndex: 4) {
                     cities.append(City(id: cityId,
-                                       owner: Player(playerId: 1, game: game, map: game.map),
+                                       owner: Player(playerId: 1, game: game, name: "", map: game.map),
                                        theme: Theme(id: 1, name: "Standard"),
                                        name: cityName,
                                        assetName: "city-1",

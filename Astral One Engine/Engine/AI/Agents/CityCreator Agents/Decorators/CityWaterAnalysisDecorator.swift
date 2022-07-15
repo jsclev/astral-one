@@ -40,12 +40,12 @@ public class CityWaterDecorator: AgentDecorator {
                         if distance == 1 {
                             reason = Reason(reasonType: ReasonType.ProximityToWater,
                                             value: 0.5,
-                                            message: "1 tile away from water.")
+                                            message: "Location is 1 tile away from closest city.")
                         }
                         else if distance == 2 {
                             reason = Reason(reasonType: ReasonType.ProximityToWater,
                                             value: 1.0,
-                                            message: "2 tiles away from water.")
+                                            message: "2 tiles .")
                         }
                         else if distance == 3 {
                             reason = Reason(reasonType: ReasonType.ProximityToWater,
@@ -387,14 +387,14 @@ public class CityWaterDecorator: AgentDecorator {
                         if tile.hasRiver {
                             let reason = Reason(reasonType: ReasonType.OnRiver,
                                                 value: 40.0,
-                                                message: "1 tile away from water.")
+                                                message: "Tile location is on a river.")
                             scoreMap[row][col].reasons.append(reason)
                         }
                         else {
                             if aiPlayer.map.isOnCoast(tile: tile) {
                                 let reason = Reason(reasonType: ReasonType.OnCoast,
                                                     value: 25.0,
-                                                    message: "1 tile away from water.")
+                                                    message: "Tile is a coastal tile.")
                                 scoreMap[row][col].reasons.append(reason)
                             }
                             else {
@@ -416,7 +416,7 @@ public class CityWaterDecorator: AgentDecorator {
                                 if scoreValue > 0.0 {
                                     let reason = Reason(reasonType: ReasonType.RiverWithinCityRadius,
                                                         value: 9.0,
-                                                        message: "1 tile away from water.")
+                                                        message: "Tile location has rivers within the city radius.")
                                     scoreMap[row][col].reasons.append(reason)
                                 }
 

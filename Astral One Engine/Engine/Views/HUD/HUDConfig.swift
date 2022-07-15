@@ -37,4 +37,8 @@ public class HUDConfig {
     public var researchButton: HUDPosition {
         return HUDPosition.Northwest
     }
+    
+    public var aiDebugButton: HUDPosition {
+        return HUDPosition.Northwest
+    }
 }

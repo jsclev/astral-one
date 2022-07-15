@@ -3,9 +3,10 @@ import Combine
 
 
 
-public class Player: ObservableObject, Equatable {
+public class Player: ObservableObject, Equatable, CustomStringConvertible {
     public let playerId: Int
     public let game: Game
+    public let name: String
     public let map: Map
     public let hud = HUDConfig()
     @Published public var cityCreators: [Builder] = []
@@ -21,13 +22,15 @@ public class Player: ObservableObject, Equatable {
     @Published public private (set) var selectedUnit: Unit?
     @Published public private (set) var notificationMsg: String?
     private var cancellable = Set<AnyCancellable>()
-    @Published public var agentMap: [[Score]] = [[]]
+    @Published public var agentMap: [[Score]]
     
-    public init(playerId: Int, game: Game, map: Map) {
+    public init(playerId: Int, game: Game, name: String, map: Map) {
         self.playerId = playerId
         self.game = game
+        self.name = name
         self.map = map
-        
+        self.agentMap = (0..<map.width).map { _ in (0..<map.height).map { _ in Score() } }
+
         game.map.$cities
             .sink(receiveValue: { cities in
 //                if let city = cities.last {
@@ -53,6 +56,10 @@ public class Player: ObservableObject, Equatable {
 //                }
             })
             .store(in: &cancellable)
+    }
+    
+    public var description: String {
+        return "{playerId: \(playerId), name: \(name)}"
     }
     
     public func setNotification(notification: String) {
@@ -365,6 +372,7 @@ public class Player: ObservableObject, Equatable {
     public func clone() -> Player {
         let copy = Player(playerId: playerId,
                           game: game,
+                          name: name,
                           map: map)
 //        copy.cities = []
 //        copy.units = []

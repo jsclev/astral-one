@@ -68,6 +68,7 @@ public class PlayerDAO: BaseDAO {
 
                     let player = AIPlayer(playerId: playerId,
                                           game: game,
+                                          name: name,
                                           map: map,
                                           skillLevel: skillLevel,
                                           difficultyLevel: DifficultyLevel.Easy,

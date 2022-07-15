@@ -36,22 +36,22 @@ public class SettlerMovementDecorator: AgentDecorator {
                 if distance < 4 {
                     reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
                                         value: -1.0 * Double(distance),
-                                        message: "1 tile away from water.")
+                                        message: "\(distance) movement cost to target tile location.")
                 }
                 else if distance >= 4 && distance <= 6 {
                     reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
                                     value: -4.0 * Double(distance),
-                                    message: "1 tile away from water.")
+                                    message: "\(distance) movement cost to target tile location.")
                 }
                 else if distance >= 7 && distance <= 10 {
                     reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
                                     value: -6.0 * Double(distance),
-                                    message: "1 tile away from water.")
+                                    message: "\(distance) movement cost to target tile location.")
                 }
                 else {
                     reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
                                     value: -7.0 * Double(distance),
-                                    message: "1 tile away from water.")
+                                    message: "\(distance) movement cost to target tile location.")
                 }
                 
                 scoreMap[row][col].reasons.append(reason)
@@ -355,20 +355,22 @@ public class SettlerMovementDecorator: AgentDecorator {
                 
                 if tile.visibility == Visibility.FullyRevealed {
                     if aiPlayer.map.canCreateCity(at: position) {
+                        let distance = settler.position.distance(to: position)
+
                         reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
                                         value: check(position: position),
-                                        message: "1 tile away from water.")
+                                        message: "\(distance) movement cost to target tile location.")
                     }
                     else {
-                        reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
+                        reason = Reason(reasonType: ReasonType.InvalidCityLocation,
                                         value: -maxScore,
-                                        message: "1 tile away from water.")
+                                        message: "Cannot create city on tile.")
                     }
                 }
                 else {
-                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
+                    reason = Reason(reasonType: ReasonType.TileNotRevealed,
                                     value: maxScore / 100.0,
-                                    message: "1 tile away from water.")
+                                    message: "Tile location is not revealed.")
                 }
                 
                 scoreMap[row][col].reasons.append(reason)
@@ -379,36 +381,15 @@ public class SettlerMovementDecorator: AgentDecorator {
     }
     
     private func check(position: Position) -> Double {
-//        var score = 1.0
         let distance = Double(settler.position.distance(to: position))
         
-        return -1.5 * distance
-//
-//        if distance == 1 {
-//            score = -4.0 * maxScore
-//        }
-//        else if distance == 2 {
-//            score = -3.0 * maxScore
-//        }
-//        else if distance == 3 {
-//            score = -maxScore
-//        }
-//        else if distance == 4 {
-//            score = -maxScore / 3.0
-//        }
-//        else if distance >= 5 && distance <= 6 {
-//            score = maxScore
-//        }
-//        else if distance >= 7 && distance <= 9 {
-//            score = -maxScore / 3.0
-//        }
-//        else if distance >= 10 && distance <= 12 {
-//            score = -maxScore
-//        }
-//        else {
-//            score = -maxScore * Double(distance)
-//        }
-//
-//        return score
+        let k = 2.0
+        let m = 2.0
+        var score = pow(distance / m, k)
+        if score > maxScore {
+            score = maxScore
+        }
+        
+        return -score        
     }
 }

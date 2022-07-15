@@ -386,24 +386,24 @@ public class CityProximityDecorator: AgentDecorator {
                 
                 if tile.visibility == Visibility.FullyRevealed {
                     if aiPlayer.map.canCreateCity(at: position) {
-                        let reason = Reason(reasonType: ReasonType.ProximityToWater,
+                        let reason = Reason(reasonType: ReasonType.ProximityToNearestCity,
                                             value: check(position: position),
-                                            message: "1 tile away from water.")
+                                            message: "Proximity to nearest city.")
                         
                         scoreMap[row][col].reasons.append(reason)
                     }
                     else {
-                        let reason = Reason(reasonType: ReasonType.ProximityToWater,
+                        let reason = Reason(reasonType: ReasonType.InvalidCityLocation,
                                             value: -maxScore,
-                                            message: "1 tile away from water.")
+                                            message: "Invalid city location.")
                         
                         scoreMap[row][col].reasons.append(reason)
                     }
                 }
                 else {
-                    let reason = Reason(reasonType: ReasonType.ProximityToWater,
-                                        value: maxScore / 100.0,
-                                        message: "1 tile away from water.")
+                    let reason = Reason(reasonType: ReasonType.TileNotRevealed,
+                                        value: -maxScore / 5.0,
+                                        message: "Location not fully revealed.")
                     
                     scoreMap[row][col].reasons.append(reason)
                 }
@@ -418,23 +418,26 @@ public class CityProximityDecorator: AgentDecorator {
         var score = 1.0
         let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
 
-        if distance == 1 {
-            score = -4.0 * maxScore
-        }
-        else if distance == 2 {
-            score = -3.0 * maxScore
-        }
-        else if distance == 3 {
+        if distance <= 1 {
             score = -maxScore
         }
-        else if distance == 4 {
-            score = -maxScore / 3.0
+        else if distance == 2 {
+            score = -maxScore / 2.0
         }
-        else if distance == 5 && distance <= 6 {
+        else if distance == 3 {
+            score = 0.0
+        }
+        else if distance == 4 {
+            score = maxScore / 2.0
+        }
+        else if distance >= 5 && distance <= 7 {
             score = maxScore
         }
+        else if distance <= 9 {
+            score = maxScore / 2.0
+        }
         else {
-            score = 0.0
+            score = -maxScore
         }
         
         return score

@@ -151,6 +151,7 @@ public class EventBus {
         for node in touchedNodes {
             if let name = node.name {
                 // print("Name of node: \(name)")
+                
                 if name == "Next Turn" {
                     let cmd = NextTurnCommand(player: game.currentPlayer,
                                               turn: game.getCurrentTurn(),
@@ -163,6 +164,10 @@ public class EventBus {
                     else {
                         return
                     }
+                }
+                else if name == "AI Debug Button" {
+                    game.toggleAIDebug()
+                    return
                 }
                 else if name == "Research Button" {
                     let cmd = ResearchAdvanceCommand(player: game.currentPlayer,
@@ -191,8 +196,8 @@ public class EventBus {
                         let _ = deselectUnitCmd.execute(save: false)
                         
                         do {
-                            let agent = try SettlerAgent.getAgent(aiPlayer: game.currentPlayer,
-                                                                  settler: unit as! Settler)
+                            let agent = try SettlerAgent(player: game.currentPlayer,
+                                                         settler: unit as! Settler)
                             
                             if let positionScore = try agent.getSettleCityPosition() {
                                 let moveCmd = MoveUnitCommand(player: game.currentPlayer,
@@ -211,12 +216,6 @@ public class EventBus {
                                 let cityCmdResult = cityCmd.execute(save: true)
                                 if cityCmdResult.status != CommandStatus.Ok {
                                     fatalError(cityCmdResult.message)
-                                }
-                                
-                                print("Founding city at \(positionScore.position) with score \(positionScore.score.value)")
-                                print("List of reasons for this score are...")
-                                for reason in positionScore.score.reasons {
-                                    print("\(reason.description)")
                                 }
                                 
                                 if let city = cityCmd.city {
@@ -238,26 +237,38 @@ public class EventBus {
             }
         }
         
-        if let unit = mapManager.getUnit(on: tile) {
-            let selectUnitCmd = SelectUnitCommand(player: game.currentPlayer,
-                                                  turn: game.getCurrentTurn(),
-                                                  ordinal: game.getCurrentTurn().ordinal,
-                                                  node: scene,
-                                                  mapManager: mapManager,
-                                                  unit: unit)
-            let _ = selectUnitCmd.execute(save: false)
+        if game.aiDebug {
+            let score = game.currentPlayer.agentMap[tile.position.row][tile.position.col]
+            let formattedNum = String(format: "%.1f", score.value)
+
+            print("------------------------------------------------------------------------------")
+            print("Score at [\(tile.position.row), \(tile.position.col)] is \(formattedNum):")
+            for reason in score.reasons {
+                print("\(reason.description)")
+            }
         }
         else {
-            if let selectedUnit = game.currentPlayer.selectedUnit {
-                let moveCmd = MoveUnitCommand(player: game.currentPlayer,
-                                              turn: game.getCurrentTurn(),
-                                              ordinal: game.getCurrentTurn().ordinal,
-                                              unit: selectedUnit,
-                                              to: tile.position)
-                let _ = moveCmd.execute(save: false)
+            if let unit = mapManager.getUnit(on: tile) {
+                let selectUnitCmd = SelectUnitCommand(player: game.currentPlayer,
+                                                      turn: game.getCurrentTurn(),
+                                                      ordinal: game.getCurrentTurn().ordinal,
+                                                      node: scene,
+                                                      mapManager: mapManager,
+                                                      unit: unit)
+                let _ = selectUnitCmd.execute(save: false)
             }
             else {
-                addSettler(tile: tile)
+                if let selectedUnit = game.currentPlayer.selectedUnit {
+                    let moveCmd = MoveUnitCommand(player: game.currentPlayer,
+                                                  turn: game.getCurrentTurn(),
+                                                  ordinal: game.getCurrentTurn().ordinal,
+                                                  unit: selectedUnit,
+                                                  to: tile.position)
+                    let _ = moveCmd.execute(save: false)
+                }
+                else {
+                    addSettler(tile: tile)
+                }
             }
         }
     }

@@ -372,13 +372,13 @@ public class CityResourcesDecorator: AgentDecorator {
                     
                     scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.FoodSource,
                                                              value: foodScore,
-                                                             message: "Food score."))
+                                                             message: "Total food from all tiles in city radius."))
                     scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.ProductionSource,
                                                              value: productionScore,
-                                                             message: "Production score."))
+                                                             message: "Total production from all tiles in city radius."))
                     scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.TradeSource,
                                                              value: tradeScore,
-                                                             message: "Trade score."))
+                                                             message: "Total trade from all tiles in city radius."))
                 }
             }
         }

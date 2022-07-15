@@ -5,104 +5,69 @@ public class SettlerAgent {
     internal let settler: Settler
     internal var analyzers: [AgentDecorator] = []
 
-//    private let luaState: OpaquePointer!
-    
     public init(player: AIPlayer, settler: Settler) throws {
         self.player = player
         self.settler = settler
         
         analyzers.append(CityResourcesDecorator(aiPlayer: player, maxScore: 10.0))
-        analyzers.append(CityProximityDecorator(aiPlayer: player, maxScore: 10.0))
-        analyzers.append(SettlerMovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 10.0))
+        analyzers.append(CityProximityDecorator(aiPlayer: player, maxScore: 25.0))
+        analyzers.append(SettlerMovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
         analyzers.append(CityWaterDecorator(aiPlayer: player, maxScore: 10.0))
         analyzers.append(CityDefensiveDecorator(aiPlayer: player, maxScore: 10.0))
-
-
-//        luaState = luaL_newstate()
-//        luaL_openlibs(luaState);
-//
-//        var scriptName = "level"
-//        switch player.skillLevel {
-//        case .One:
-//            scriptName += "1"
-//        case .Two:
-//            scriptName += "2"
-//        case .Three:
-//            scriptName += "3"
-//        case .Four:
-//            scriptName += "4"
-//        case .Five:
-//            scriptName += "5"
-//        case .Six:
-//            scriptName += "6"
-//        case .Seven:
-//            scriptName += "7"
-//        case .Eight:
-//            scriptName += "8"
-//        }
-//
-//        scriptName += "_settler"
-//
-//        let filename = Bundle.main.path(forResource: scriptName, ofType: "lua")!
-//        let luaScript = try String(contentsOfFile: filename)
-//        let ptrScript = strdup(luaScript)
-//        luaL_loadstring(luaState, ptrScript)
-//        free(ptrScript)
-    }
-    
-//    deinit {
-//        lua.destruct()
-//    }
-    
-    public static func getAgent(aiPlayer: AIPlayer, settler: Settler) throws -> SettlerAgent {
-        switch aiPlayer.skillLevel {
-        case .One:
-            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
-        case .Two:
-            return try SettlerLevel2Agent(player: aiPlayer, settler: settler)
-        case .Three:
-            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
-        case .Four:
-            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
-        case .Five:
-            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
-        case .Six:
-            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
-        case .Seven:
-            return try SettlerLevel1Agent(player: aiPlayer, settler: settler)
-        case .Eight:
-            return try SettlerLevel8Agent(player: aiPlayer, settler: settler)
-        }
     }
     
     public func getSettleCityPosition() throws -> PositionScore? {
-        fatalError("Must be implemented in subclasses.")
+        let scoreMap = try getBuildCityScores()
+        var positions: [PositionScore] = []
+        
+        var maxScore = 0.0
+        
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
+                if scoreMap[row][col].value > maxScore {
+                    maxScore = scoreMap[row][col].value
+                    
+                    positions.append(PositionScore(position: Position(row: row, col: col),
+                                                   score: scoreMap[row][col]))
+                }
+            }
+        }
+        
+        if let bestPosition = positions.last {
+            bestPosition.score.reasons = bestPosition.score.reasons.sorted(by: {
+                $0.value > $1.value
+            })
+            
+            return bestPosition
+        }
+        
+        return nil
     }
     
-    private func getSettleCityScore(tile: Tile) throws -> Double {
-//        let ptrFname = strdup("settle_score")
-//        let value = lua_Number(0)
-//        let value2 = lua_Number(33)
-//        let result = lua.call(nil, method: ptrFname, p1: value, p2: value2)
+    private func getBuildCityScores() throws -> [[Score]] {
+        let scoreMap:[[Score]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Score() } }
         
-//        var luaStateEx: OpaquePointer!
-//
-//        if (luaState != nil) {
-//            luaStateEx = luaState
-//        }
-//
-//        lua_getglobal(luaStateEx, "settle_score");
-//        lua_pushnumber(luaStateEx, 1.0);
-//        lua_pushnumber(luaStateEx, 5.0);
-//
-//        lua_pcallk(luaStateEx, 2, 1, 0, 0, nil);
-
-//        let result = lua_tonumber(luaStateEx, -1);
-//        lua_pop(luaStateEx, 1);
-//        return result;
-//        free(ptrFname)
+        let scoreMap0 = analyzers[0].getScoreMap()
+        let scoreMap1 = analyzers[1].getScoreMap()
+        let scoreMap2 = analyzers[2].getScoreMap()
+        let scoreMap3 = analyzers[3].getScoreMap()
+        let scoreMap4 = analyzers[4].getScoreMap()
         
-        fatalError("Must be implemented in subclasses.")
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
+                scoreMap[row][col].reasons += scoreMap0[row][col].reasons
+                scoreMap[row][col].reasons += scoreMap1[row][col].reasons
+                scoreMap[row][col].reasons += scoreMap2[row][col].reasons
+                scoreMap[row][col].reasons += scoreMap3[row][col].reasons
+                scoreMap[row][col].reasons += scoreMap4[row][col].reasons
+            }
+        }
+        
+        player.agentMap = scoreMap
+        
+        // log(scoreMap: scoreMap)
+        
+        return scoreMap
     }
     
     public func getBuildScore(player: Player, tile: Tile) throws -> Double {
@@ -120,40 +85,6 @@ public class SettlerAgent {
         free(ptrFname)
         
         return Double(0.0)
-    }
-    
-    public func getCityRadiusScores() -> [Position:Double] {
-        var scores: [Position: Double] = [:]
-
-        for row in 0..<player.map.height {
-            for col in 0..<player.map.width {
-                let position = Position(row: row, col: col)
-                let tile = player.map.tile(at: position)
-                
-                if tile.visibility == Visibility.FullyRevealed ||
-                   tile.visibility == Visibility.SemiRevealed {
-
-                    if tile.canCreateCity {
-                        let cityRadiusTiles = player.getTilesInCityRadius(from: position)
-                        
-                        var sum = 0.0
-                        for tile in cityRadiusTiles {
-                            sum += tile.score + tile.movementCost
-                        }
-                        
-                        scores[position] = sum
-                    }
-                    else {
-                        scores[position] = 0.0
-                    }
-                }
-                else {
-                    scores[position] = 1.0
-                }
-            }
-        }
-        
-        return scores
     }
     
     internal func getBestPositions(scoreMap: [[Double]]) -> [Position] {

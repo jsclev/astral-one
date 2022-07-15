@@ -395,7 +395,7 @@ public class UnitDAO: BaseDAO {
                          row: Int,
                          col: Int) -> Unit {
         let map = Map(mapId: 1, width: 1, height: 1)
-        let player = Player(playerId: 1, game: game, map: map)
+        let player = Player(playerId: 1, game: game, name: "",  map: map)
         
         switch typeName {
         case "Air1":

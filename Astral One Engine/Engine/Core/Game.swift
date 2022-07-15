@@ -9,6 +9,7 @@ public class Game: ObservableObject {
     @Published public var selectedMapPosition = Position(row: -1, col: -1)
     @Published public var selectedCityCreator: Settler?
     @Published public var turnIndex = 0
+    @Published public var aiDebug = false
 
     public let gameId: Int
     public let turns: [Turn]
@@ -18,13 +19,6 @@ public class Game: ObservableObject {
     public var commands: [Command] = []
     public let db: Db
     public var canvasSize = CGSize.zero
-    
-//    public convenience init(theme: Theme, map: Map, db: Db) throws {
-//        self.init(gameId: Constants.noId,
-//                  theme: theme,
-//                  map: map,
-//                  db: db)
-//    }
     
     public init(gameId: Int, theme: Theme, map: Map, db: Db) throws {
         self.gameId = gameId
@@ -64,6 +58,10 @@ public class Game: ObservableObject {
     
     public func select(mapPosition: Position) {
         self.selectedMapPosition = mapPosition
+    }
+    
+    public func toggleAIDebug() {
+        aiDebug = !aiDebug
     }
     
     public func placeInitialSettlers() {

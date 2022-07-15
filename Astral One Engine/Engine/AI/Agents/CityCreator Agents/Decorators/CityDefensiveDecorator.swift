@@ -359,46 +359,17 @@ public class CityDefensiveDecorator: AgentDecorator {
                 let position = Position(row: row, col: col)
                 
                 if aiPlayer.map.canCreateCity(at: position) {
-                    var defensiveScore = 0.0
-                    let tiles = aiPlayer.getTilesInCityRadius(from: position)
-                    
-                    for tile in tiles {
-                        defensiveScore += Double(tile.defenseBonus)
-                    }
+                    let tile = aiPlayer.map.tile(at: position)
+                    let defensiveScore = (maxScore / 3.0) * (tile.defenseBonus + 1.0)
                     
                     scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.Defense,
                                                              value: defensiveScore,
-                                                             message: "Defensive score."))
+                                                             message: "Defensive bonus of tile location."))
                 }
             }
         }
         
         return scoreMap
     }
-    
-    private func check(position: Position) -> Double {
-        var score = 1.0
-        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
-        
-        if distance == 1 {
-            score = -4.0 * maxScore
-        }
-        else if distance == 2 {
-            score = -3.0 * maxScore
-        }
-        else if distance == 3 {
-            score = -maxScore
-        }
-        else if distance == 4 {
-            score = -maxScore / 3.0
-        }
-        else if distance == 5 && distance <= 6 {
-            score = maxScore
-        }
-        else {
-            score = 0
-        }
-        
-        return score
-    }
+
 }

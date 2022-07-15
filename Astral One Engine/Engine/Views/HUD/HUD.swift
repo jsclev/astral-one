@@ -9,6 +9,7 @@ public class Camera: SKCameraNode {
     private let statsBar: StatsBar
     private let nextTurnButton: NextTurnButton
     private let researchButton: ResearchButton
+    private let aiDebugButton: AIDebugButton
     private let turnIndicator: TurnIndicator
     private let notificationIndicator: NotificationIndicator
     private let horizontalPadding: CGFloat
@@ -32,7 +33,8 @@ public class Camera: SKCameraNode {
         turnIndicator = TurnIndicator(game: game)
         notificationIndicator = NotificationIndicator(player: player)
         researchButton = ResearchButton(game: game)
-        
+        aiDebugButton = AIDebugButton(game: game)
+
         if view.safeAreaInsets.right > 0.0 {
             neAnchorPoint = CGPoint(x: (game.canvasSize.width / 2.0) - view.safeAreaInsets.right,
                                     y: (game.canvasSize.height / 2.0) - verticalPadding)
@@ -60,12 +62,14 @@ public class Camera: SKCameraNode {
         addChild(nextTurnButton)
         // addChild(statsBar)
         addChild(researchButton)
+        addChild(aiDebugButton)
         
         placeStatsBar()
         placeNotificationIndicator()
         placeTurnIndicator()
         placeNextTurnButton()
         placeResearchButton()
+        placeAIDebugButton()
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -255,6 +259,50 @@ public class Camera: SKCameraNode {
         
         researchButton.zPosition = Layer.hud
         researchButton.position = CGPoint(x: x, y: y)
+        
+    }
+    
+    private func placeAIDebugButton() {
+        var x = 0.0
+        var y = 0.0
+        
+        let buttonWidth = aiDebugButton.size.width * aiDebugButton.xScale
+        let buttonHeight = aiDebugButton.size.height * aiDebugButton.yScale
+        
+        switch player.hud.aiDebugButton {
+        case HUDPosition.Northeast:
+            x = nwAnchorPoint.x - (buttonWidth / 2.0)
+            y = nwAnchorPoint.y - (buttonHeight / 2.0) - researchButton.size.height - verticalPadding
+        case .Northwest:
+            x = nwAnchorPoint.x + (buttonWidth / 2.0)
+            y = nwAnchorPoint.y - (buttonHeight / 2.0) - researchButton.size.height - verticalPadding
+        case .West:
+            x = -(game.canvasSize.width / 2) - (researchButton.size.width / 2) - horizontalPadding
+            y = (game.canvasSize.height / 2) - (researchButton.size.height) - verticalPadding
+        case .SouthWest:
+            x = -(game.canvasSize.width / 2) + (researchButton.size.width / 2) + horizontalPadding
+            y = -(game.canvasSize.height / 2) + (researchButton.size.height) + verticalPadding
+        case .South:
+            x = (game.canvasSize.width / 2) - (researchButton.size.width / 2) - horizontalPadding
+            y = (game.canvasSize.height / 2) - (researchButton.size.height) - verticalPadding
+        case .Southeast:
+            if view.safeAreaInsets.right > 0.0 {
+                x = (game.canvasSize.width / 2) - view.safeAreaInsets.right - (researchButton.size.width / 2.0)
+            }
+            else {
+                x = (game.canvasSize.width / 2) - (researchButton.size.width / 2.0) - horizontalPadding
+            }
+            y = (game.canvasSize.height / 2) - (researchButton.size.height) - verticalPadding
+        case .East:
+            x = (game.canvasSize.width / 2) - (researchButton.size.width / 2) - horizontalPadding
+            y = (game.canvasSize.height / 2) - (researchButton.size.height) - verticalPadding
+        case .North:
+            x = (game.canvasSize.width / 2) - (researchButton.size.width / 2) - horizontalPadding
+            y = (game.canvasSize.height / 2) - (researchButton.size.height) - verticalPadding
+        }
+        
+        aiDebugButton.zPosition = Layer.hud
+        aiDebugButton.position = CGPoint(x: x, y: y)
         
     }
     
