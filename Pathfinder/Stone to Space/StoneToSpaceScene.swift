@@ -138,15 +138,12 @@ class StoneToSpaceScene: SKScene {
         let maxCol = player.map.width - 2
         
         var foundTile = false
-        var tile = player.map.tile(at: Position(row: 0, col: 0))
         
         while !foundTile {
             let randomRow = Int.random(in: minRow...maxRow)
             let randomCol = Int.random(in: minCol...maxCol)
             
-            tile = player.map.tile(at: Position(row: randomRow, col: randomCol))
-            
-            if tile.canCreateCity {
+            if player.map.canCreateCity(at: Position(row: randomRow, col: randomCol)) {
                 foundTile = true
                 print("Adding Settler to [\(randomRow), \(randomCol)]")
             }
@@ -196,9 +193,6 @@ class StoneToSpaceScene: SKScene {
             previousCameraScale = 0
             mapViewModel.zoomBegan()
         case .changed:
-
-
-
             mapViewModel.updateScale(newScale: sender.scale)
             gameCamera.setScale(mapViewModel.scale)
 
@@ -208,7 +202,7 @@ class StoneToSpaceScene: SKScene {
             let fromCenter = CGSize(width: point.x - game.canvasSize.width/2, height: point.y - game.canvasSize.height/2)
 
 
-            let currentTranslation = CGSize(width: sender.translation.width - previousTranslation.width, height: sender.translation.height - previousTranslation.height)
+            let _ = CGSize(width: sender.translation.width - previousTranslation.width, height: sender.translation.height - previousTranslation.height)
 
             let scaleX = gameCamera.xScale - mapViewModel.initialScale
             let scaleXDifference = scaleX - previousCameraScale
@@ -222,7 +216,6 @@ class StoneToSpaceScene: SKScene {
 
             previousOffset.width += offsetX
             previousOffset.height += offsetY
-
 
             gameCamera.position = CGPoint(x: initialCameraPosition.x + previousOffset.width - (sender.translation.width * mapViewModel.scale),
                                           y: initialCameraPosition.y + previousOffset.height + (sender.translation.height * mapViewModel.scale))
@@ -242,8 +235,7 @@ class StoneToSpaceScene: SKScene {
                  velocity.height * velocity.height))
 
 
-            var translationDuration = (magnitude/2000) + 0.8
-
+            let translationDuration = (magnitude/2000) + 0.8
             var velocityScale = gameCamera.xScale / sender.predictedExtraScale
             velocityScale = min(max(velocityScale, Constants.minZoom), Constants.maxZoom)
 

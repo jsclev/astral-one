@@ -273,37 +273,6 @@ public class EventBus {
         }
     }
     
-    public func doubleTap(recognizerLocation: CGPoint) {
-        game.currentPlayer.clearNotification()
-        
-        let location = scene.convertPoint(fromView: recognizerLocation)
-        let tile = mapManager.getTile(at: location)
-        let touchedNodes = scene.nodes(at: location)
-        
-        if let unit = mapManager.getUnit(on: tile) {
-            let selectUnitCmd = SelectUnitCommand(player: game.currentPlayer,
-                                                  turn: game.getCurrentTurn(),
-                                                  ordinal: game.getCurrentTurn().ordinal,
-                                                  node: scene,
-                                                  mapManager: mapManager,
-                                                  unit: unit)
-            let _ = selectUnitCmd.execute(save: false)
-        }
-        else {
-            if let selectedUnit = game.currentPlayer.selectedUnit {
-                let moveCmd = MoveUnitCommand(player: game.currentPlayer,
-                                              turn: game.getCurrentTurn(),
-                                              ordinal: game.getCurrentTurn().ordinal,
-                                              unit: selectedUnit,
-                                              to: tile.position)
-                let _ = moveCmd.execute(save: false)
-            }
-            else {
-                addSettler(tile: tile)
-            }
-        }
-    }
-    
     private func addSettler(tile: Tile) {
         let cmd = CreateSettlerCommand(player: game.currentPlayer,
                                        turn: game.getCurrentTurn(),
@@ -341,7 +310,7 @@ public class EventBus {
         //
         //            tile = player.map.tile(at: Position(row: randomRow, col: randomCol))
         //
-        //            if tile.canCreateCity {
+        //            if player.map.canCreateCity(at: Position(row: randomRow, col: randomCol)) {
         //                foundTile = true
         //                print("Adding Settler to [\(randomRow), \(randomCol)]")
         //            }

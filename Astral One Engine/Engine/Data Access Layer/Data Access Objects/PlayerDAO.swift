@@ -14,9 +14,8 @@ public class PlayerDAO: BaseDAO {
     
     public func getPlayers(game: Game) throws -> [AIPlayer] {
         var players: [AIPlayer] = []
-        var maxRow = 0
-        var maxCol = 0
-        
+        let map = try mapDao.get(gameId: game.gameId)
+
         var stmt: OpaquePointer?
         let sql = """
             SELECT
@@ -33,12 +32,10 @@ public class PlayerDAO: BaseDAO {
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
             while sqlite3_step(stmt) == SQLITE_ROW {
                 let playerId = getInt(stmt: stmt, colIndex: 0)
-                let ordinal = getInt(stmt: stmt, colIndex: 1)
+                // let ordinal = getInt(stmt: stmt, colIndex: 1)
                 let dbSkillLevel = getInt(stmt: stmt, colIndex: 3)
                 
                 if let name = try getString(stmt: stmt, colIndex: 2) {
-                    let map = try mapDao.get(gameId: game.gameId)
-                    
                     var skillLevel = SkillLevel.One
                     
                     if dbSkillLevel == 1 {

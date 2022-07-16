@@ -43,20 +43,5 @@ public class MoveUnitCommandDAO: BaseDAO {
             errMsg += "SQLite error message: " + message
             throw DbError.Db(message: errMsg)
         }
-        let turn = Turn(id: 1,
-                        year: -4000,
-                        ordinal: 0,
-                        displayText: "4000 BCE")
-//        return MoveUnitCommand(commandId: 1,
-//                               game: command.player.game,
-//                           turn: turn,
-//                           player: command.player,
-//                           ordinal: command.player.game.getCurrentTurn().ordinal,
-//                               unit: Infantry1(game: command.player.game,
-//                                               player: command.player,
-//                                               theme: command.player.game.theme,
-//                                           name: "Warrior",
-//                                           position: Position(row: 0, col: 0)),
-//                           to: Position(row: 0, col: 0))
     }
 }

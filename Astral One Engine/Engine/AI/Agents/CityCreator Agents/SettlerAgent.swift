@@ -115,50 +115,50 @@ public class SettlerAgent {
     internal func log(scoreMap: [[Double]]) {
         return
         // var line1 = "-"
-        var line2 = ""
-        var line3 = ""
-        var line4 = ""
-        var line5 = ""
-        
-        let reversedScoreMap: [[Double]] = scoreMap.reversed()
-        
-        print("---------------------------------------------------")
-        for i in 0..<reversedScoreMap.count {
-            line2 = "|"
-            line3 = "|"
-            
-            for j in 0..<reversedScoreMap[i].count {
-                let formattedNum = String(format: "%.0f", reversedScoreMap[i][j])
-                
-                line2 += "     |"
-
-                if formattedNum.count == 1 {
-                    line3 += "  " + formattedNum + " |"
-                }
-                else if formattedNum.count == 2 {
-                    line3 += " " + formattedNum + " |"
-                }
-                else if formattedNum.count == 3 {
-                    line3 += "" + formattedNum + " |"
-                }
-                
-                line4 += "     |"
-                line5 += "-----"
-
-            }
-            
-            line5 += "-"
-            
-//            print(line2)
-            print(line3)
-//            print(line4)
-            print(line5)
-            
-//            line1 = ""
-            line2 = ""
-            line3 = ""
-            line4 = ""
-            line5 = ""
+//        var line2 = ""
+//        var line3 = ""
+//        var line4 = ""
+//        var line5 = ""
+//
+//        let reversedScoreMap: [[Double]] = scoreMap.reversed()
+//
+//        print("---------------------------------------------------")
+//        for i in 0..<reversedScoreMap.count {
+//            line2 = "|"
+//            line3 = "|"
+//
+//            for j in 0..<reversedScoreMap[i].count {
+//                let formattedNum = String(format: "%.0f", reversedScoreMap[i][j])
+//
+//                line2 += "     |"
+//
+//                if formattedNum.count == 1 {
+//                    line3 += "  " + formattedNum + " |"
+//                }
+//                else if formattedNum.count == 2 {
+//                    line3 += " " + formattedNum + " |"
+//                }
+//                else if formattedNum.count == 3 {
+//                    line3 += "" + formattedNum + " |"
+//                }
+//
+//                line4 += "     |"
+//                line5 += "-----"
+//
+//            }
+//
+//            line5 += "-"
+//
+////            print(line2)
+//            print(line3)
+////            print(line4)
+//            print(line5)
+//
+////            line1 = ""
+//            line2 = ""
+//            line3 = ""
+//            line4 = ""
+//            line5 = ""
         }
         
 //        if scoreMap.count > 0 {
@@ -207,6 +207,6 @@ public class SettlerAgent {
 //                line5 = ""
 //            }
 //        }
-    }
+//    }
     
 }

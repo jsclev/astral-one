@@ -23,9 +23,7 @@ public class CityDefensiveDecorator: AgentDecorator {
     }
     
     private func getLevel1ScoreMap() -> [[Score]] {
-        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
-                                                         count: aiPlayer.map.width),
-                                        count: aiPlayer.map.height)
+        let scoreMap:[[Score]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Score() } }
         
         for row in 0..<aiPlayer.map.height {
             for col in 0..<aiPlayer.map.width {
@@ -34,9 +32,9 @@ public class CityDefensiveDecorator: AgentDecorator {
                 
                 if tile.visibility == Visibility.FullyRevealed {
                     if aiPlayer.map.canCreateCity(at: position) {
-                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                        // let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
                         
-                        //                        if distance == 1 {
+                        // if distance == 1 {
                         //                            scoreMap[row][col] = 0.5
                         //                        }
                         //                        else if distance == 2 {

@@ -366,18 +366,6 @@ public class Tile: Hashable, ObservableObject {
         hasFortress = true
     }
     
-    public var canCreateCity: Bool {
-        if terrain.type == TerrainType.Ocean {
-            return false
-        }
-        
-        if city != nil {
-            return false
-        }
-        
-        return true
-    }
-    
     public func set(visibility: Visibility) {
         self.visibility = visibility
     }
