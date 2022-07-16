@@ -9,7 +9,8 @@ public class Camera: SKCameraNode {
     private let statsBar: StatsBar
     private let nextTurnButton: NextTurnButton
     private let researchButton: ResearchButton
-    private let aiDebugButton: AIDebugButton
+    private let tileCoordsToggle: TileCoordsToggle
+    private let aiDebugToggle: AIDebugToggle
     private let turnIndicator: TurnIndicator
     private let notificationIndicator: NotificationIndicator
     private let horizontalPadding: CGFloat
@@ -17,8 +18,6 @@ public class Camera: SKCameraNode {
     private var cancellable = Set<AnyCancellable>()
     private let neAnchorPoint: CGPoint
     private let nwAnchorPoint: CGPoint
-//    private let wAnchorPoint: CGPoint
-//    private let swAnchorPoint: CGPoint
     
     public init(game: Game, player: Player, view: SKView) {
         self.game = game
@@ -33,7 +32,8 @@ public class Camera: SKCameraNode {
         turnIndicator = TurnIndicator(game: game)
         notificationIndicator = NotificationIndicator(player: player)
         researchButton = ResearchButton(game: game)
-        aiDebugButton = AIDebugButton(game: game)
+        aiDebugToggle = AIDebugToggle(game: game)
+        tileCoordsToggle = TileCoordsToggle(player: player)
 
         if view.safeAreaInsets.right > 0.0 {
             neAnchorPoint = CGPoint(x: (game.canvasSize.width / 2.0) - view.safeAreaInsets.right,
@@ -60,15 +60,16 @@ public class Camera: SKCameraNode {
         addChild(turnIndicator)
         addChild(notificationIndicator)
         addChild(nextTurnButton)
-        // addChild(statsBar)
         addChild(researchButton)
-        addChild(aiDebugButton)
+        addChild(tileCoordsToggle)
+        addChild(aiDebugToggle)
         
         placeStatsBar()
         placeNotificationIndicator()
         placeTurnIndicator()
         placeNextTurnButton()
         placeResearchButton()
+        placeTileCoordsToggle()
         placeAIDebugButton()
     }
     
@@ -266,16 +267,20 @@ public class Camera: SKCameraNode {
         var x = 0.0
         var y = 0.0
         
-        let buttonWidth = aiDebugButton.size.width * aiDebugButton.xScale
-        let buttonHeight = aiDebugButton.size.height * aiDebugButton.yScale
+        let buttonWidth = aiDebugToggle.size.width * aiDebugToggle.xScale
+        let buttonHeight = aiDebugToggle.size.height * aiDebugToggle.yScale
+        let vertPadding = researchButton.size.height +
+                          verticalPadding +
+                          aiDebugToggle.size.height +
+                          verticalPadding
         
         switch player.hud.aiDebugButton {
         case HUDPosition.Northeast:
             x = nwAnchorPoint.x - (buttonWidth / 2.0)
-            y = nwAnchorPoint.y - (buttonHeight / 2.0) - researchButton.size.height - verticalPadding
+            y = nwAnchorPoint.y - (buttonHeight / 2.0) - vertPadding
         case .Northwest:
             x = nwAnchorPoint.x + (buttonWidth / 2.0)
-            y = nwAnchorPoint.y - (buttonHeight / 2.0) - researchButton.size.height - verticalPadding
+            y = nwAnchorPoint.y - (buttonHeight / 2.0) - vertPadding
         case .West:
             x = -(game.canvasSize.width / 2) - (researchButton.size.width / 2) - horizontalPadding
             y = (game.canvasSize.height / 2) - (researchButton.size.height) - verticalPadding
@@ -301,8 +306,53 @@ public class Camera: SKCameraNode {
             y = (game.canvasSize.height / 2) - (researchButton.size.height) - verticalPadding
         }
         
-        aiDebugButton.zPosition = Layer.hud
-        aiDebugButton.position = CGPoint(x: x, y: y)
+        aiDebugToggle.zPosition = Layer.hud
+        aiDebugToggle.position = CGPoint(x: x, y: y)
+        
+    }
+    
+    private func placeTileCoordsToggle() {
+        var x = 0.0
+        var y = 0.0
+        
+        let buttonWidth = tileCoordsToggle.size.width * tileCoordsToggle.xScale
+        let buttonHeight = tileCoordsToggle.size.height * tileCoordsToggle.yScale
+        let vertPadding = researchButton.size.height + verticalPadding
+        
+        switch player.hud.aiDebugButton {
+        case HUDPosition.Northeast:
+            x = nwAnchorPoint.x - (buttonWidth / 2.0)
+            y = nwAnchorPoint.y - (buttonHeight / 2.0) - vertPadding
+        case .Northwest:
+            x = nwAnchorPoint.x + (buttonWidth / 2.0)
+            y = nwAnchorPoint.y - (buttonHeight / 2.0) - vertPadding
+        case .West:
+            x = -(game.canvasSize.width / 2) - (researchButton.size.width / 2) - horizontalPadding
+            y = (game.canvasSize.height / 2) - (researchButton.size.height) - verticalPadding
+        case .SouthWest:
+            x = -(game.canvasSize.width / 2) + (researchButton.size.width / 2) + horizontalPadding
+            y = -(game.canvasSize.height / 2) + (researchButton.size.height) + verticalPadding
+        case .South:
+            x = (game.canvasSize.width / 2) - (researchButton.size.width / 2) - horizontalPadding
+            y = (game.canvasSize.height / 2) - (researchButton.size.height) - verticalPadding
+        case .Southeast:
+            if view.safeAreaInsets.right > 0.0 {
+                x = (game.canvasSize.width / 2) - view.safeAreaInsets.right - (researchButton.size.width / 2.0)
+            }
+            else {
+                x = (game.canvasSize.width / 2) - (researchButton.size.width / 2.0) - horizontalPadding
+            }
+            y = (game.canvasSize.height / 2) - (researchButton.size.height) - verticalPadding
+        case .East:
+            x = (game.canvasSize.width / 2) - (researchButton.size.width / 2) - horizontalPadding
+            y = (game.canvasSize.height / 2) - (researchButton.size.height) - verticalPadding
+        case .North:
+            x = (game.canvasSize.width / 2) - (researchButton.size.width / 2) - horizontalPadding
+            y = (game.canvasSize.height / 2) - (researchButton.size.height) - verticalPadding
+        }
+        
+        tileCoordsToggle.zPosition = Layer.hud
+        tileCoordsToggle.position = CGPoint(x: x, y: y)
         
     }
     

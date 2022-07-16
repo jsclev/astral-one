@@ -9,6 +9,7 @@ public class Game: ObservableObject {
     @Published public var selectedMapPosition = Position(row: -1, col: -1)
     @Published public var selectedCityCreator: Settler?
     @Published public var turnIndex = 0
+    @Published public var tileCoords = false
     @Published public var aiDebug = false
 
     public let gameId: Int
@@ -46,7 +47,7 @@ public class Game: ObservableObject {
         return players[0]
     }
     
-    public func getCurrentTurn() -> Turn {
+    public var currentTurn: Turn {
         return turns[turnIndex]
     }
     
@@ -60,6 +61,10 @@ public class Game: ObservableObject {
         self.selectedMapPosition = mapPosition
     }
     
+    public func toggleTileCoords() {
+        tileCoords = !tileCoords
+    }
+    
     public func toggleAIDebug() {
         aiDebug = !aiDebug
     }
@@ -68,8 +73,8 @@ public class Game: ObservableObject {
         let position = Position(row: (currentPlayer.map.height / 2) - 1,
                                 col: (currentPlayer.map.width / 2) - 1)
         let cmd = CreateSettlerCommand(player: currentPlayer,
-                                       turn: getCurrentTurn(),
-                                       ordinal: getCurrentTurn().ordinal,
+                                       turn: currentTurn,
+                                       ordinal: currentTurn.ordinal,
                                        cost: 1,
                                        tile: currentPlayer.map.tile(at: position))
         let _ = cmd.execute(save: true)

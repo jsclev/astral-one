@@ -25,7 +25,7 @@ public class NextTurnCommandDAO: BaseDAO {
                 throw DbError.Db(message: "Unable to bind")
             }
             
-            let turnId = command.player.game.getCurrentTurn().id
+            let turnId = command.player.game.currentTurn.id
             guard sqlite3_bind_int(stmt, 2, Int32(turnId)) == SQLITE_OK else {
                 throw DbError.Db(message: "Unable to bind")
             }

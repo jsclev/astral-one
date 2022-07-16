@@ -37,40 +37,40 @@ public class CityAgent {
     public var availableCommands: [Command] {
         var commands: [Command] = []
         commands.append(CreateInfantry1Command(player: player,
-                                               turn: player.game.getCurrentTurn(),
-                                               ordinal: player.game.getCurrentTurn().ordinal,
+                                               turn: player.game.currentTurn,
+                                               ordinal: player.game.currentTurn.ordinal,
                                                cost: 1,
                                                city: city))
         commands.append(CreateSettlerCommand(player: player,
-                                             turn: player.game.getCurrentTurn(),
-                                             ordinal: player.game.getCurrentTurn().ordinal,
+                                             turn: player.game.currentTurn,
+                                             ordinal: player.game.currentTurn.ordinal,
                                              cost: 1,
                                              tile: player.map.tile(at: city.position)))
         if player.hasResearched(advanceName: "Bronze Working") {
             commands.append(CreateInfantry2Command(player: player,
-                                                   turn: player.game.getCurrentTurn(),
-                                                   ordinal: player.game.getCurrentTurn().ordinal,
+                                                   turn: player.game.currentTurn,
+                                                   ordinal: player.game.currentTurn.ordinal,
                                                    cost: 1,
                                                    city: city))
         }
         if player.hasResearched(advanceName: "Warrior Code") {
             commands.append(CreateInfantry3Command(player: player,
-                                                   turn: player.game.getCurrentTurn(),
-                                                   ordinal: player.game.getCurrentTurn().ordinal,
+                                                   turn: player.game.currentTurn,
+                                                   ordinal: player.game.currentTurn.ordinal,
                                                    cost: 1,
                                                    city: city))
         }
         if player.hasResearched(advanceName: "Feudalism") {
             commands.append(CreateInfantry4Command(player: player,
-                                                   turn: player.game.getCurrentTurn(),
-                                                   ordinal: player.game.getCurrentTurn().ordinal,
+                                                   turn: player.game.currentTurn,
+                                                   ordinal: player.game.currentTurn.ordinal,
                                                    cost: 1,
                                                    city: city))
         }
         if !city.has(building: BuildingType.Barracks) {
             commands.append(BuildBuildingCommand(player: player,
-                                                 turn: player.game.getCurrentTurn(),
-                                                 ordinal: player.game.getCurrentTurn().ordinal,
+                                                 turn: player.game.currentTurn,
+                                                 ordinal: player.game.currentTurn.ordinal,
                                                  cost: 1,
                                                  city: city,
                                                  buildingType: BuildingType.Barracks))
@@ -79,8 +79,8 @@ public class CityAgent {
         if player.hasResearched(advanceName: "Map Making") &&
             city.canBuild(building: BuildingType.Lighthouse) {
             commands.append(BuildBuildingCommand(player: player,
-                                                 turn: player.game.getCurrentTurn(),
-                                                 ordinal: player.game.getCurrentTurn().ordinal,
+                                                 turn: player.game.currentTurn,
+                                                 ordinal: player.game.currentTurn.ordinal,
                                                  cost: 1,
                                                  city: city,
                                                  buildingType: BuildingType.Lighthouse))
@@ -90,8 +90,8 @@ public class CityAgent {
         if player.hasResearched(advanceName: "Seafaring") &&
             city.canBuild(building: BuildingType.Harbor) {
             commands.append(BuildBuildingCommand(player: player,
-                                                 turn: player.game.getCurrentTurn(),
-                                                 ordinal: player.game.getCurrentTurn().ordinal,
+                                                 turn: player.game.currentTurn,
+                                                 ordinal: player.game.currentTurn.ordinal,
                                                  cost: 1,
                                                  city: city,
                                                  buildingType: BuildingType.Harbor))
@@ -103,8 +103,8 @@ public class CityAgent {
         if !city.has(building: BuildingType.Granary) &&
             player.hasResearched(advanceName: "Alphabet") {
             commands.append(BuildBuildingCommand(player: player,
-                                                 turn: player.game.getCurrentTurn(),
-                                                 ordinal: player.game.getCurrentTurn().ordinal,
+                                                 turn: player.game.currentTurn,
+                                                 ordinal: player.game.currentTurn.ordinal,
                                                  cost: 1,
                                                  city: city,
                                                  buildingType: BuildingType.Granary))
@@ -113,8 +113,8 @@ public class CityAgent {
         if !city.has(building: BuildingType.Temple) &&
             player.hasResearched(advanceName: "Ceremonial Burial") {
             commands.append(BuildBuildingCommand(player: player,
-                                                 turn: player.game.getCurrentTurn(),
-                                                 ordinal: player.game.getCurrentTurn().ordinal,
+                                                 turn: player.game.currentTurn,
+                                                 ordinal: player.game.currentTurn.ordinal,
                                                  cost: 1,
                                                  city: city,
                                                  buildingType: BuildingType.Temple))
@@ -123,7 +123,7 @@ public class CityAgent {
         if !city.has(building: BuildingType.CityWalls) &&
             player.hasResearched(advanceName: "Masonry") {
             commands.append(BuildBuildingCommand(player: player,
-                                                 turn: player.game.getCurrentTurn(),
+                                                 turn: player.game.currentTurn,
                                                  ordinal: 1,
                                                  cost: 1,
                                                  city: city,

@@ -2,10 +2,10 @@ import Foundation
 import Combine
 import SpriteKit
 
-internal class AIDebugButton: SKNode {
+internal class AIDebugToggle: SKNode {
     private let game: Game
     private let buttonNode: SKSpriteNode
-    private let uiScaleFactor = 0.20
+    private let uiScaleFactor = 0.13
     private let minButtonSize = 40.0
     private let maxButtonSize = 125.0
     public let size: CGSize
@@ -34,7 +34,7 @@ internal class AIDebugButton: SKNode {
         
         super.init()
         
-        name = "AI Debug Button"
+        name = "AI Debug Toggle"
         isUserInteractionEnabled = true
         
         addChild(buttonNode)
