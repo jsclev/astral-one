@@ -2,21 +2,20 @@ import Foundation
 import SpriteKit
 
 public class MoveUnitCommand: Command {
-    // private let mapManager: MapManager
     public let unit: Unit
     public let to: Position
     
-    public convenience init(player: Player,
-                            turn: Turn,
-                            ordinal: Int,
-                            unit: Unit,
-                            to: Position) {
-        self.init(commandId: Constants.noId,
-                  player: player,
-                  turn: turn,
-                  ordinal: ordinal,
-                  unit: unit,
-                  to: to)
+    public init(player: Player,
+                turn: Turn,
+                unit: Unit,
+                to: Position) {
+        self.unit = unit
+        self.to = to
+        
+        super.init(player: player,
+                   turn: turn,
+                   ordinal: Constants.noId,
+                   cost: 10)
     }
     
     public init(commandId: Int,
@@ -35,20 +34,37 @@ public class MoveUnitCommand: Command {
                    cost: 10)
     }
     
+    public init(db: Db,
+                player: Player,
+                turn: Turn,
+                unit: Unit,
+                to: Position) {
+        self.unit = unit
+        self.to = to
+        
+        super.init(db: db,
+                   player: player,
+                   turn: turn,
+                   ordinal: Constants.noId,
+                   cost: 10)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
+    public override func execute() -> CommandResult {
         if to != unit.position {
             player.deselectUnit()
             
-            //let point = mapManager.getCenterOf(position: to)
-            //let moveAction = SKAction.move(to: point, duration: 0.60)
-            
-            if save && commandId == Constants.noId {
+            if persist {
                 do {
-                    try player.game.db.moveUnitCommandDao.insert(command: self)
+                    guard let db = database else {
+                        return CommandResult(status: CommandStatus.Invalid,
+                                             message: "Some type of error occurred")
+                    }
+                    
+                    try db.moveUnitCommandDao.insert(command: self)
                 }
                 catch {
                     return CommandResult(status: CommandStatus.Invalid,
@@ -56,21 +72,12 @@ public class MoveUnitCommand: Command {
                 }
             }
             
-            unit.move(to: self.to)
-            turn.step()
+            unit.move(to: to)
             
             return CommandResult(status: CommandStatus.Ok, message: "Success")
-
-            //player.set(selectedUnit: self.unit)
-//            if let node = unit.node {
-//                node.run(moveAction, completion: {
-//                    self.unit.move(to: self.to)
-//                    self.player.set(selectedUnit: self.unit)
-//                })
-//            }
         }
         
-        return CommandResult(status: CommandStatus.Ok, message: "Success")
+        return CommandResult(status: CommandStatus.Invalid, message: "Something went wrong")
         
     }
 }

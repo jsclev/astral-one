@@ -2,8 +2,8 @@ import Foundation
 
 public class CityLevel8Agent: CityAgent {
     
-    public override init(player: AIPlayer, city: City) throws {
-        try super.init(player: player, city: city)
+    public override init(game: Game, player: AIPlayer, city: City) throws {
+        try super.init(game: game, player: player, city: city)
     }
     
     public override func getNextCommand() -> Command {

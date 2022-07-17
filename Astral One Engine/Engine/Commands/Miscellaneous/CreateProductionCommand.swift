@@ -21,8 +21,7 @@ public class CreateProductionCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
-        turn.step()
+    public override func execute() -> CommandResult {
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }

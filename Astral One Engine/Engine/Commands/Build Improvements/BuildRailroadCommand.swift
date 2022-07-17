@@ -5,13 +5,12 @@ public class BuildRailroadCommand: Command {
     
     public convenience init(player: Player,
                             turn: Turn,
-                            ordinal: Int,
                             cost: Int,
                             builder: Builder) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
-                  ordinal: ordinal,
+                  ordinal: Constants.noId,
                   cost: cost,
                   builder: builder)
     }
@@ -35,9 +34,8 @@ public class BuildRailroadCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
+    public override func execute() -> CommandResult {
         builder.buildRailroad()
-        turn.step()
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }

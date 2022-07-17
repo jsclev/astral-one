@@ -1,13 +1,11 @@
 import Foundation
 
 public class Settler: Builder {
-    public convenience init(game: Game,
-                            player: Player,
+    public convenience init(player: Player,
                             theme: Theme,
                             name: String,
                             position: Position) {
         self.init(id: Constants.noId,
-                  game: game,
                   player: player,
                   theme: theme,
                   name: name,
@@ -15,13 +13,11 @@ public class Settler: Builder {
     }
     
     public init(id: Int,
-                game: Game,
                 player: Player,
                 theme: Theme,
                 name: String,
                 position: Position) {
         super.init(id: id,
-                   game: game,
                    player: player,
                    theme: theme,
                    tiledId: 100,
@@ -41,18 +37,24 @@ public class Settler: Builder {
     }
     
     public override func move(to: Position) {
-        position = to
-        
-        if game.map.tile(at: position).terrain.type == TerrainType.Mountains {
-            if let index = availableCommands.firstIndex(where: {$0.commandId == 1}) {
-                availableCommands.remove(at: index)
-            }
+        if canMove(to: to) {
+            position = to
+            
+            movementPoints -= player.map.tile(at: to).movementCost
         }
     }
     
+    public override func canMove(to: Position) -> Bool {
+        if player.map.tile(at: to).terrain.type == TerrainType.Ocean ||
+            player.map.tile(at: to).terrain.type == TerrainType.Glacier {
+            return false
+        }
+        
+        return movementPoints >= player.map.tile(at: to).movementCost
+    }
+    
     public override func clone() -> Unit {
-        return Settler(game: game,
-                       player: player,
+        return Settler(player: player,
                        theme: theme,
                        name: name,
                        position: position)

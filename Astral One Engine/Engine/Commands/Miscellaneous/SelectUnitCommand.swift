@@ -9,14 +9,13 @@ public class SelectUnitCommand: Command {
     
     public convenience init(player: Player,
                             turn: Turn,
-                            ordinal: Int,
                             node: SKNode,
                             mapManager: MapManager,
                             unit: Unit) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
-                  ordinal: ordinal,
+                  ordinal: Constants.noId,
                   node: node,
                   mapManager: mapManager,
                   unit: unit)
@@ -44,7 +43,7 @@ public class SelectUnitCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
+    public override func execute() -> CommandResult {
         if let selectedUnit = player.selectedUnit {
             if selectedUnit.position == unit.position {
                 player.deselectUnit()
@@ -58,7 +57,6 @@ public class SelectUnitCommand: Command {
         }
         
         node.run(selectSound)
-        turn.step()
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }

@@ -1,14 +1,14 @@
 import Foundation
 import SpriteKit
 
-public class NextTurnCommand: Command {
-    public convenience init(player: Player,
-                            turn: Turn,
-                            ordinal: Int) {
-        self.init(commandId: Constants.noId,
-                  player: player,
-                  turn: turn,
-                  ordinal: ordinal)
+public class EndPlayerTurnCommand: Command {
+    public init(player: Player,
+                turn: Turn) {
+        super.init(commandId: Constants.noId,
+                   player: player,
+                   turn: turn,
+                   ordinal: Constants.noId,
+                   cost: 0)
     }
     
     public init(commandId: Int,
@@ -22,22 +22,36 @@ public class NextTurnCommand: Command {
                    cost: 0)
     }
     
+    public init(db: Db,
+                player: Player,
+                turn: Turn) {
+        super.init(db: db,
+                   player: player,
+                   turn: turn,
+                   ordinal: Constants.noId,
+                   cost: 0)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
+    public override func execute() -> CommandResult {
         if commandId == Constants.noId {
             do {
-                try player.game.db.nextTurnCommandDao.insert(command: self)
+                guard let db = database else {
+                    return CommandResult(status: CommandStatus.Invalid,
+                                         message: "Some type of error occurred")
+                }
+                
+                try db.turnCommandDao.insert(command: self)
             }
             catch {
                 return CommandResult(status: CommandStatus.Invalid, message: "\(error)")
             }
         }
         
-        player.game.nextTurn()
-        turn.step()
+        player.endTurn()
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }

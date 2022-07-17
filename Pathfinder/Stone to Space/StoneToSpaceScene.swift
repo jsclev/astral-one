@@ -116,7 +116,7 @@ class StoneToSpaceScene: SKScene {
         
         // addInitialSettler(player: player)
         
-        mapView = MapManager(player: game.currentPlayer, scene: self, tileset: tileset!)
+        mapView = MapManager(game: game, player: game.currentPlayer, scene: self, tileset: tileset!)
         contextMenu = ContextMenu(game: game, parent: self, mapView: mapView)
         cityCreatorMenu = CityCreatorMenu(player: game.currentPlayer, parent: self, mapManager: mapView)
         
@@ -128,6 +128,8 @@ class StoneToSpaceScene: SKScene {
                                                           eventBus: eb)
             view.addGestureRecognizer(gameGestureRecognizer)
         }
+        
+        Scenario1.run(game: game)
 
     }
     

@@ -110,8 +110,9 @@ public class SettlerAgent {
 //            scoreMaps.append(analyzer.getScoreMap())
 //        }
         
-        // FIXME: Add a utility class to boost river tiles if there are few rivers on the map.
-        // FIXME: Add a utility class to boost coastal tiles if there are few ocean tiles on the map.
+        // TODO: Add scorer to boost river tiles if there are few rivers on the map.
+        // TODO: Add scorer to boost coastal tiles if there are few ocean tiles on the map.
+        // TODO: Add scorer to boost tiles that are already near or on a road
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {

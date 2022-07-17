@@ -10,7 +10,7 @@ public class AIPlayerAgent {
     private var cancellable = Set<AnyCancellable>()
 
     
-    public init(player: AIPlayer) throws {
+    public init(game: Game, player: AIPlayer) throws {
         self.player = player
         
         diplomacyAgent = DiplomacyAgent(player: player)
@@ -21,7 +21,7 @@ public class AIPlayerAgent {
         }
         
         for city in player.map.cities {
-            cityAgents.append(try CityAgent(player: player, city: city))
+            cityAgents.append(try CityAgent(game: game, player: player, city: city))
         }
         
 

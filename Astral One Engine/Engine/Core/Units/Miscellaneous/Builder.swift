@@ -2,7 +2,6 @@ import Foundation
 
 public class Builder: Unit {
     public override init(id: Int,
-                         game: Game,
                          player: Player,
                          theme: Theme,
                          tiledId: Int,
@@ -16,7 +15,6 @@ public class Builder: Unit {
                          maxMovementPoints: Double,
                          position: Position) {
         super.init(id: id,
-                   game: game,
                    player: player,
                    theme: theme,
                    tiledId: tiledId,
@@ -38,7 +36,7 @@ public class Builder: Unit {
     public override func move(to: Position) {
         position = to
         
-        if game.map.tile(at: position).terrain.type == TerrainType.Mountains {
+        if player.map.tile(at: position).terrain.type == TerrainType.Mountains {
             if let index = availableCommands.firstIndex(where: {$0.commandId == 1}) {
                 availableCommands.remove(at: index)
             }
@@ -93,7 +91,6 @@ public class Builder: Unit {
     
     public override func clone() -> Unit {
         let copy = Builder(id: id,
-                           game: game,
                            player: player,
                            theme: theme,
                            tiledId: tiledId,

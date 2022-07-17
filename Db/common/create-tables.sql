@@ -123,7 +123,7 @@ CREATE TABLE game_setting (
 CREATE TABLE player (
     player_id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
-    ordinal INTEGER NOT NULL,
+    ordinal INTEGER NOT NULL CHECK (ordinal IN (1, 2, 3, 4, 5, 6, 7, 8)),
     name TEXT NOT NULL,
     type TEXT NOT NULL CHECK(type IN ('Human', 'AI')),
     skill_level INTEGER NOT NULL CHECK (skill_level IN (0, 1, 2, 3, 4, 5, 6, 7, 8)),
@@ -186,11 +186,10 @@ CREATE TABLE unit (
 
 CREATE TABLE city (
     city_id INTEGER PRIMARY KEY,
-    game_id INTEGER NOT NULL,
     player_id INTEGER NOT NULL,
     name TEXT NOT NULL,
     tile_id INTEGER NOT NULL,
-    FOREIGN KEY (game_id) REFERENCES game (game_id),
+    FOREIGN KEY (player_id) REFERENCES player (player_id),
     FOREIGN KEY (tile_id) REFERENCES tile (tile_id)
 );
 

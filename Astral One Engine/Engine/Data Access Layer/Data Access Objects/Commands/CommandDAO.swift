@@ -54,74 +54,76 @@ public class CommandDAO: BaseDAO {
                 t.ordinal, p.ordinal, c.ordinal
         """
         
-        if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
-            while sqlite3_step(stmt) == SQLITE_ROW {
-                let cmdId = getInt(stmt: stmt, colIndex: 0)
-                let cmdOrdinal = getInt(stmt: stmt, colIndex: 1)
-                let turnId = getInt(stmt: stmt, colIndex: 2)
-                let turnOrdinal = getInt(stmt: stmt, colIndex: 3)
-                let year = getInt(stmt: stmt, colIndex: 4)
-                let playerId = getInt(stmt: stmt, colIndex: 6)
+//        if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
+//            while sqlite3_step(stmt) == SQLITE_ROW {
+//                let cmdId = getInt(stmt: stmt, colIndex: 0)
+//                let cmdOrdinal = getInt(stmt: stmt, colIndex: 1)
+//                let turnId = getInt(stmt: stmt, colIndex: 2)
+//                let turnOrdinal = getInt(stmt: stmt, colIndex: 3)
+//                let year = getInt(stmt: stmt, colIndex: 4)
+//                let playerId = getInt(stmt: stmt, colIndex: 6)
                 
-                for gamePlayer in player.game.players {
-                    if gamePlayer.playerId == playerId {
-                        do {
-                            if let turnDisplayText = try getString(stmt: stmt, colIndex: 5) {
-                                let turn = Turn(id: turnId,
-                                                year: year,
-                                                ordinal: turnOrdinal,
-                                                displayText: turnDisplayText)
-                                
-                                if !isNull(stmt, 7) {
-                                    let unitId = getInt(stmt: stmt, colIndex: 8)
-                                    // let createUnitCmdTileId = getInt(stmt: stmt, colIndex: 9)
-                                    let row = getInt(stmt: stmt, colIndex: 10)
-                                    let col = getInt(stmt: stmt, colIndex: 11)
-                                    let tile = player.map.tile(at: Position(row: row, col: col))
+                // FIXME: Need to fix this
+//                for gamePlayer in player.game.players {
+//                    if gamePlayer.playerId == playerId {
+//                        do {
+//                            if let turnDisplayText = try getString(stmt: stmt, colIndex: 5) {
+//                                let turn = Turn(id: turnId,
+//                                                year: year,
+//                                                ordinal: turnOrdinal,
+//                                                displayText: turnDisplayText)
+//
+//                                if !isNull(stmt, 7) {
+//                                    let unitId = getInt(stmt: stmt, colIndex: 8)
+//                                    // let createUnitCmdTileId = getInt(stmt: stmt, colIndex: 9)
+//                                    let row = getInt(stmt: stmt, colIndex: 10)
+//                                    let col = getInt(stmt: stmt, colIndex: 11)
+//                                    let tile = player.map.tile(at: Position(row: row, col: col))
+//
+//                                    cmds.append(CreateSettlerCommand(commandId: cmdId,
+//                                                                     player: player,
+//                                                                     turn: turn,
+//                                                                     ordinal: cmdOrdinal,
+//                                                                     cost: 1,
+//                                                                     settler: Settler(id: unitId,
+//                                                                                      game: player.game,
+//                                                                                      player: player,
+//                                                                                      theme: Theme(id: Constants.noId,
+//                                                                                                   name: "Standard"),
+//                                                                                      name: "Settler",
+//                                                                                      position: tile.position),
+//                                                                     tile: tile))
+//
+//                                }
+//                                else if !isNull(stmt, 12) {
+//                                    let unitId = getInt(stmt: stmt, colIndex: 13)
+//                                    // let createUnitCmdTileId = getInt(stmt: stmt, colIndex: 9)
+//                                    let row = 0 //getInt(stmt: stmt, colIndex: 10)
+//                                    let col = 0 //getInt(stmt: stmt, colIndex: 11)
+//
+//                                    for unit in player.units {
+//                                        if unit.id == unitId {
+//                                            cmds.append(MoveUnitCommand(commandId: cmdId,
+//                                                                        player: player,
+//                                                                        turn: turn,
+//                                                                        ordinal: cmdOrdinal,
+//                                                                        unit: unit,
+//                                                                        to: Position(row: row, col: col)))
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        catch {
+//                            print(error)
+//                        }
+//                    }
+//                }
 
-                                    cmds.append(CreateSettlerCommand(commandId: cmdId,
-                                                                     player: player,
-                                                                     turn: turn,
-                                                                     ordinal: cmdOrdinal,
-                                                                     cost: 1,
-                                                                     settler: Settler(id: unitId,
-                                                                                      game: player.game,
-                                                                                      player: player,
-                                                                                      theme: player.game.theme,
-                                                                                      name: "Settler",
-                                                                                      position: tile.position),
-                                                                     tile: tile))
-                                    
-                                }
-                                else if !isNull(stmt, 12) {
-                                    let unitId = getInt(stmt: stmt, colIndex: 13)
-                                    // let createUnitCmdTileId = getInt(stmt: stmt, colIndex: 9)
-                                    let row = 0 //getInt(stmt: stmt, colIndex: 10)
-                                    let col = 0 //getInt(stmt: stmt, colIndex: 11)
-                                    
-                                    for unit in player.units {
-                                        if unit.id == unitId {
-                                            cmds.append(MoveUnitCommand(commandId: cmdId,
-                                                                        player: player,
-                                                                        turn: turn,
-                                                                        ordinal: cmdOrdinal,
-                                                                        unit: unit,
-                                                                        to: Position(row: row, col: col)))
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        catch {
-                            print(error)
-                        }
-                    }
-                }
-
-            }
-        }
+//            }
+//        }
         
-        sqlite3_finalize(stmt)
+//        sqlite3_finalize(stmt)
         
         return cmds
     }
@@ -135,7 +137,7 @@ public class CommandDAO: BaseDAO {
         let rowIdSql = "SELECT last_insert_rowid()"
         let playerId = Int32(command.player.playerId)
         let turnId = Int32(command.turn.id)
-        let ordinal = Int32(command.ordinal)
+        let ordinal = try getNextOrdinal(command: command)
         
         if sqlite3_prepare_v2(conn, sql, -1, &mainStmt, nil) == SQLITE_OK {
             // TODO Need to fix the truncation of the Int id
@@ -193,6 +195,41 @@ public class CommandDAO: BaseDAO {
                        turn: command.turn,
                        ordinal: command.ordinal,
                        cost: command.cost)
+    }
+    
+    public func getNextOrdinal(command: Command) throws -> Int32 {
+        var ordinal: Int32 = -1
+        var stmt: OpaquePointer?
+        
+        let sql = "SELECT MAX(ordinal) FROM command WHERE player_id = ? AND turn_id = ?"
+        let playerId = Int32(command.player.playerId)
+        let turnId = Int32(command.turn.id)
+        
+        if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
+            // TODO Need to fix the truncation of the Int id
+            guard sqlite3_bind_int(stmt, 1, playerId) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind player_id")
+            }
+            
+            guard sqlite3_bind_int(stmt, 2, turnId) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind turn_id")
+            }
+        } else {
+            let sqliteMsg = String(cString: sqlite3_errmsg(conn)!)
+            sqlite3_finalize(stmt)
+            
+            var errMsg = "Failed to prepare the statement \"" + sql + "\".  "
+            errMsg += "SQLite error message: " + sqliteMsg
+            throw DbError.Db(message: errMsg)
+        }
+        
+        if sqlite3_step(stmt) == SQLITE_ROW {
+            ordinal = Int32(getInt(stmt: stmt, colIndex: 0))
+        }
+        
+        sqlite3_finalize(stmt)
+        
+        return ordinal + 1
     }
     
     //    public func insertMoveCommands(moveCommands: [MoveCommand]) throws -> [MoveCommand] {

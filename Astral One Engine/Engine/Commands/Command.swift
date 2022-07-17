@@ -2,28 +2,48 @@ import Foundation
 
 public class Command: CustomStringConvertible {
     public internal(set) var commandId: Int
+    public let persist: Bool
+    internal let database: Db?
     public let player: Player
     public let turn: Turn
     public let ordinal: Int
     public let cost: Int
     
-    init(player: Player,
-         turn: Turn,
-         ordinal: Int,
-         cost: Int) {
+    internal init(player: Player,
+                  turn: Turn,
+                  ordinal: Int,
+                  cost: Int) {
         self.commandId = Constants.noId
+        self.persist = false
+        self.database = nil
         self.player = player
         self.turn = turn
         self.ordinal = ordinal
         self.cost = cost
     }
     
-    init(commandId: Int,
-         player: Player,
-         turn: Turn,
-         ordinal: Int,
-         cost: Int) {
+    internal init(commandId: Int,
+                  player: Player,
+                  turn: Turn,
+                  ordinal: Int,
+                  cost: Int) {
         self.commandId = commandId
+        self.persist = false
+        self.database = nil
+        self.player = player
+        self.turn = turn
+        self.ordinal = ordinal
+        self.cost = cost
+    }
+    
+    internal init(db: Db,
+                  player: Player,
+                  turn: Turn,
+                  ordinal: Int,
+                  cost: Int) {
+        self.commandId = Constants.noId
+        self.persist = true
+        self.database = db
         self.player = player
         self.turn = turn
         self.ordinal = ordinal
@@ -35,11 +55,11 @@ public class Command: CustomStringConvertible {
     }
     
     public var description: String {
-        return "{id: \(commandId), game: \(player.game), turn: \(turn), " +
+        return "{id: \(commandId), turn: \(turn), " +
         "player: \(player), ordinal: \(ordinal)}"
     }
     
-    public func execute(save: Bool) -> CommandResult {
+    public func execute() -> CommandResult {
         fatalError("execute() must be implemented in subclasses.")
     }
 }

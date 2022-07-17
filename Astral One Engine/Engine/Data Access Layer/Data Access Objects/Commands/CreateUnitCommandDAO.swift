@@ -26,9 +26,8 @@ public class CreateUnitCommandDAO: BaseDAO {
         }
         
         return Settler(id: Constants.noId,
-                       game: command.player.game,
                        player: command.player,
-                       theme: command.player.game.theme,
+                       theme: Theme(id: Constants.noId, name: "Standard"),
                        name: "Settler",
                        position: Position.zero)
     }
@@ -43,7 +42,6 @@ public class CreateUnitCommandDAO: BaseDAO {
         }
         
         return Engineer(id: Constants.noId,
-                        game: command.player.game,
                         player: command.player,
                         theme: Theme(id: Constants.noId, name: "Standard"),
                         name: "Engineer",
@@ -60,9 +58,8 @@ public class CreateUnitCommandDAO: BaseDAO {
         }
         
         return Explorer(id: Constants.noId,
-                       game: command.player.game,
                        player: command.player,
-                       theme: command.player.game.theme,
+                       theme: Theme(id: Constants.noId, name: "Standard"),
                        name: "Explorer",
                        position: Position.zero)
     }
@@ -77,7 +74,6 @@ public class CreateUnitCommandDAO: BaseDAO {
         }
         
         return Infantry1(id: Constants.noId,
-                        game: command.player.game,
                         player: command.player,
                         theme: Theme(id: Constants.noId, name: "Standard"),
                         name: "Infantry1",
@@ -94,7 +90,6 @@ public class CreateUnitCommandDAO: BaseDAO {
         }
         
         return Infantry2(id: Constants.noId,
-                         game: command.player.game,
                          player: command.player,
                          theme: Theme(id: Constants.noId, name: "Standard"),
                          name: "Infantry2",
@@ -111,7 +106,6 @@ public class CreateUnitCommandDAO: BaseDAO {
         }
         
         return Infantry3(id: Constants.noId,
-                         game: command.player.game,
                          player: command.player,
                          theme: Theme(id: Constants.noId, name: "Standard"),
                          name: "Infantry3",
@@ -128,7 +122,6 @@ public class CreateUnitCommandDAO: BaseDAO {
         }
         
         return Infantry4(id: Constants.noId,
-                         game: command.player.game,
                          player: command.player,
                          theme: Theme(id: Constants.noId, name: "Standard"),
                          name: "Infantry4",

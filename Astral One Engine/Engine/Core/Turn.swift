@@ -16,10 +16,6 @@ public class Turn: CustomStringConvertible {
         self.ordinal = ordinal
         self.displayText = displayText
     }
-    
-    public func step() {
-        ordinal += 1
-    }
 }
 
 

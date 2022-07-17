@@ -17,8 +17,7 @@ public class CreateNaval1Action: Action {
     }
     
     public override func execute() {
-        let unit = Naval1(game: game,
-                          player: player,
+        let unit = Naval1(player: player,
                           theme: game.theme,
                           name: "Trireme",
                           position: city.position)

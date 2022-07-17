@@ -111,6 +111,7 @@ public class City: ObservableObject, Equatable {
     }
     
     public var isCoastal: Bool {
+        // FIXME: Need to actually implement this
         return position.row % 2 == 0
     }
     

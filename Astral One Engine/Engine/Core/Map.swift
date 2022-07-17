@@ -81,7 +81,8 @@ public class Map: ObservableObject {
         return grid[at.row][at.col]
     }
     
-    public func isOnCoast(tile: Tile) -> Bool {
+    public func accessToOcean(tile: Tile) -> Bool {
+        // FIXME: Need to account for landlocked water tiles (lakes)
         let startRow = tile.position.row == 0 ? 0 : tile.position.row - 1
         let endRow = tile.position.row == height - 1 ? tile.position.row : tile.position.row + 1
         let startCol = tile.position.col == 0 ? 0 : tile.position.col - 1

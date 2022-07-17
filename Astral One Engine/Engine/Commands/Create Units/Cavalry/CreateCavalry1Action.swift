@@ -17,8 +17,7 @@ public class CreateCavalry1Action: Action {
     }
     
     public override func execute() {
-        let unit = Cavalry1(game: game,
-                            player: player,
+        let unit = Cavalry1(player: player,
                             theme: game.theme,
                             name: "Horseman",
                             position: city.position)

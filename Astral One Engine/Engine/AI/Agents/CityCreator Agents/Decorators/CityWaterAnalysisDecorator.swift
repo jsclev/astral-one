@@ -391,7 +391,7 @@ public class CityWaterDecorator: AgentDecorator {
                             scoreMap[row][col].reasons.append(reason)
                         }
                         else {
-                            if aiPlayer.map.isOnCoast(tile: tile) {
+                            if aiPlayer.map.accessToOcean(tile: tile) {
                                 let reason = Reason(reasonType: ReasonType.OnCoast,
                                                     value: 25.0,
                                                     message: "Tile is a coastal tile.")

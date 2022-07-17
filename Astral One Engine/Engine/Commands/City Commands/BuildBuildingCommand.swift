@@ -6,14 +6,13 @@ public class BuildBuildingCommand: Command {
     
     public convenience init(player: Player,
                             turn: Turn,
-                            ordinal: Int,
                             cost: Int,
                             city: City,
                             buildingType: BuildingType) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
-                  ordinal: ordinal,
+                  ordinal: Constants.noId,
                   cost: cost,
                   city: city,
                   buildingType: buildingType)
@@ -40,23 +39,25 @@ public class BuildBuildingCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
+    public override func execute() -> CommandResult {
         if city.canBuild(building: buildingType) {
-            if save && commandId == Constants.noId {
+            if persist {
                 do {
-                    try player.game.db.buildBuildingCommandDao.insert(command: self)
+                    guard let db = database else {
+                        return CommandResult(status: CommandStatus.Invalid,
+                                             message: "Some type of error occurred")
+                    }
+                    
+                    try db.buildBuildingCommandDao.insert(command: self)
                 }
                 catch {
-                    return CommandResult(status: CommandStatus.Invalid,
-                                         message: "\(error)")
+                    return CommandResult(status: CommandStatus.Invalid, message: "\(error)")
                 }
             }
             
             city.build(buildingType)
-            turn.step()
             
-            return CommandResult(status: CommandStatus.Ok,
-                                 message: "Success")
+            return CommandResult(status: CommandStatus.Ok, message: "Success")
         }
         
         return CommandResult(status: CommandStatus.Invalid,

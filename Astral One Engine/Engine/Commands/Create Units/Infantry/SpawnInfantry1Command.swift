@@ -12,8 +12,7 @@ public class SpawnInfantry1Action: Action {
     }
     
     public override func execute() {
-        player.add(unit: Infantry1(game: game,
-                                   player: player,
+        player.add(unit: Infantry1(player: player,
                                    theme: game.theme,
                                    name: "Warrior",
                                    position: goodieHut.position))

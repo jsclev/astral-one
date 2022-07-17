@@ -4,7 +4,6 @@ import SpriteKit
 
 public class Unit: ObservableObject, Equatable {
     public let id: Int
-    public let game: Game
     public let player: Player
     public let theme: Theme
     public let tiledId: Int
@@ -26,7 +25,6 @@ public class Unit: ObservableObject, Equatable {
     public var node: SKNode?
     
     public init(id: Int,
-                game: Game,
                 player: Player,
                 theme: Theme,
                 tiledId: Int,
@@ -40,7 +38,6 @@ public class Unit: ObservableObject, Equatable {
                 maxMovementPoints: Double,
                 position: Position) {
         self.id = id
-        self.game = game
         self.theme = theme
         self.player = player
         self.tiledId = tiledId
@@ -86,13 +83,17 @@ public class Unit: ObservableObject, Equatable {
             calculatedDefense = defense * 1.5
         }
         
-        calculatedDefense *= game.map.tile(at: position).defenseBonus
+        calculatedDefense *= player.map.tile(at: position).defenseBonus
         
         return floor(calculatedDefense)
     }
     
     internal func move(to: Position) {
         fatalError("move(to:) must be implemented by a subclass.")
+    }
+    
+    public func canMove(to: Position) -> Bool {
+        fatalError("canMove(to:) must be implemented by a subclass.")
     }
     
     public func getChebyshevDistance(toRow: Int, toCol: Int) -> Int {

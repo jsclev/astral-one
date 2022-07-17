@@ -1,7 +1,7 @@
 import Foundation
 import SQLite3
 
-public class NextTurnCommandDAO: BaseDAO {
+public class EndPlayerTurnCommandDAO: BaseDAO {
     private let commandDao: CommandDAO
     
     init(conn: OpaquePointer?, commandDao: CommandDAO) {
@@ -10,7 +10,7 @@ public class NextTurnCommandDAO: BaseDAO {
         super.init(conn: conn, table: "next_turn_command", loggerName: String(describing: type(of: self)))
     }
     
-    public func insert(command: NextTurnCommand) throws {
+    public func insert(command: EndPlayerTurnCommand) throws {
         var stmt: OpaquePointer?
 
         let baseCmd = try commandDao.insert(command: Command(player: command.player,
@@ -25,7 +25,7 @@ public class NextTurnCommandDAO: BaseDAO {
                 throw DbError.Db(message: "Unable to bind")
             }
             
-            let turnId = command.player.game.currentTurn.id
+            let turnId = command.turn.id
             guard sqlite3_bind_int(stmt, 2, Int32(turnId)) == SQLITE_OK else {
                 throw DbError.Db(message: "Unable to bind")
             }

@@ -3,7 +3,7 @@ import Foundation
 public class CreateExplorerCommand: Command {
     public private(set) var explorer: Explorer?
     public let city: City
-
+    
     public convenience init(player: Player,
                             turn: Turn,
                             ordinal: Int,
@@ -36,16 +36,20 @@ public class CreateExplorerCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
-        explorer = Explorer(game: player.game,
-                          player: player,
-                          theme: player.game.theme,
-                          name: "Explorer-\(Int.random(in: 0..<500))",
-                          position: city.position)
+    public override func execute() -> CommandResult {
+        explorer = Explorer(player: player,
+                            theme: Theme(id: Constants.noId, name: "Standard"),
+                            name: "Explorer-\(Int.random(in: 0..<500))",
+                            position: city.position)
         
         if commandId == Constants.noId {
             do {
-                explorer = try player.game.db.createUnitCommandDao.insert(command: self)
+                guard let db = database else {
+                    return CommandResult(status: CommandStatus.Invalid,
+                                         message: "Some type of error occurred")
+                }
+                
+                explorer = try db.createUnitCommandDao.insert(command: self)
             }
             catch {
                 print(error)
@@ -54,7 +58,6 @@ public class CreateExplorerCommand: Command {
         
         if let newExplorer = explorer {
             player.add(unit: newExplorer)
-            turn.step()
             
             return CommandResult(status: CommandStatus.Ok, message: "Success")
         }

@@ -10,7 +10,7 @@ public class AIDebugMapLayer {
     private let labelNodes: [[SKLabelNode]]
     private var cancellable = Set<AnyCancellable>()
     
-    public init(player: Player, scene: SKScene, mapView: MapManager) {
+    public init(game: Game, player: Player, scene: SKScene, mapView: MapManager) {
         self.player = player
         self.scene = scene
         
@@ -37,7 +37,7 @@ public class AIDebugMapLayer {
             }
         }
         
-        self.player.$agentMap
+        player.$agentMap
             .sink(receiveValue: { agentMap in
                 for row in 0..<self.player.map.height {
                     for col in 0..<self.player.map.width {
@@ -54,7 +54,7 @@ public class AIDebugMapLayer {
             })
             .store(in: &cancellable)
         
-        self.player.game.$aiDebug
+        game.$aiDebug
             .sink(receiveValue: { aiDebug in
                 self.node.isHidden = !aiDebug
             })

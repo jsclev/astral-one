@@ -10,7 +10,7 @@ public class TileCoordsMapLayer {
     private let labelNodes: [[SKLabelNode]]
     private var cancellable = Set<AnyCancellable>()
     
-    public init(player: Player, scene: SKScene, mapView: MapManager) {
+    public init(game: Game, player: Player, scene: SKScene, mapView: MapManager) {
         self.player = player
         self.scene = scene
         
@@ -29,7 +29,7 @@ public class TileCoordsMapLayer {
                 let position = Position(row: row, col: col)
                 
                 let labelNode = labelNodes[row][col]
-                labelNode.fontSize = 13
+                labelNode.fontSize = 14
                 labelNode.horizontalAlignmentMode = .center
                 labelNode.text = "(\(row), \(col))"
                 labelNode.position = CGPoint(x: mapView.getCenterOf(position: position).x,
@@ -38,7 +38,7 @@ public class TileCoordsMapLayer {
             }
         }
         
-        self.player.game.$tileCoords
+        game.$tileCoords
             .sink(receiveValue: { toggle in
                 self.node.isHidden = !toggle
             })

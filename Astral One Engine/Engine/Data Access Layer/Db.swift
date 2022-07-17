@@ -17,7 +17,7 @@ public class Db {
     public let gameDao: GameDAO
     public let mapDao: MapDAO
     public let moveUnitCommandDao: MoveUnitCommandDAO
-    public let nextTurnCommandDao: NextTurnCommandDAO
+    public let turnCommandDao: EndPlayerTurnCommandDAO
     public let playerDao: PlayerDAO
     public let researchAdvanceCommandDao: ResearchAdvanceCommandDAO
     public let terrainDao: TerrainDAO
@@ -108,7 +108,7 @@ public class Db {
         commandDao = CommandDAO(conn: db, cityDao: cityDao)
         createCityCommandDao = CreateCityCommandDAO(conn: db, commandDao: commandDao, cityDao: cityDao)
         createUnitCommandDao = CreateUnitCommandDAO(conn: db, commandDao: commandDao, unitDao: unitDao)
-        nextTurnCommandDao = NextTurnCommandDAO(conn: db, commandDao: commandDao)
+        turnCommandDao = EndPlayerTurnCommandDAO(conn: db, commandDao: commandDao)
         gameDao = GameDAO(conn: db)
         mapDao = MapDAO(conn: db)
         buildBuildingCommandDao = BuildBuildingCommandDAO(conn: db, commandDao: commandDao, buildingTypeDao: buildingTypeDao)
@@ -123,15 +123,8 @@ public class Db {
     public func getGameBy(gameId: Int, themeId: Int) throws -> Game {
         let theme = try themeDao.getBy(themeId: themeId)
         let map = try mapDao.get(gameId: gameId)
-        let game = try Game(gameId: gameId, theme: theme, map: map, db: self)
-        
-        let players = try playerDao.getPlayers(game: game)
-        
-        for player in players {
-            game.addPlayer(aiPlayer: player)
-        }
-        
-        return game
+        let players = try playerDao.getPlayers(gameId: gameId)
+        return try Game(gameId: gameId, theme: theme, players: players, map: map, db: self)
     }
     
     deinit {

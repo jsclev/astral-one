@@ -129,7 +129,6 @@ public class EventBus {
         if let city = tile.city {
             let _ = BuildBuildingCommand(player: game.currentPlayer,
                                          turn: game.currentTurn,
-                                         ordinal: game.currentTurn.ordinal,
                                          cost: 1,
                                          city: city,
                                          buildingType: BuildingType.Barracks)
@@ -153,10 +152,9 @@ public class EventBus {
                 // print("Name of node: \(name)")
                 
                 if name == "Next Turn" {
-                    let cmd = NextTurnCommand(player: game.currentPlayer,
-                                              turn: game.currentTurn,
-                                              ordinal: game.currentTurn.ordinal)
-                    let result = cmd.execute(save: true)
+                    let cmd = EndPlayerTurnCommand(player: game.currentPlayer,
+                                                   turn: game.currentTurn)
+                    let result = cmd.execute()
                     
                     if result.status != CommandStatus.Ok {
                         fatalError(result.message)
@@ -176,10 +174,9 @@ public class EventBus {
                 else if name == "Research Button" {
                     let cmd = ResearchAdvanceCommand(player: game.currentPlayer,
                                                      turn: game.currentTurn,
-                                                     ordinal: game.currentTurn.ordinal,
                                                      cost: 1,
                                                      advanceType: advances[advanceIndex])
-                    let result = cmd.execute(save: true)
+                    let result = cmd.execute()
                     
                     if result.status != CommandStatus.Ok {
                         fatalError(result.message)
@@ -193,11 +190,10 @@ public class EventBus {
                     if let unit = game.currentPlayer.selectedUnit {
                         let deselectUnitCmd = SelectUnitCommand(player: game.currentPlayer,
                                                                 turn: game.currentTurn,
-                                                                ordinal: game.currentTurn.ordinal,
                                                                 node: scene,
                                                                 mapManager: mapManager,
                                                                 unit: unit)
-                        let _ = deselectUnitCmd.execute(save: false)
+                        let _ = deselectUnitCmd.execute()
                         
                         do {
                             let agent = try SettlerAgent(player: game.currentPlayer,
@@ -206,27 +202,26 @@ public class EventBus {
                             if let positionScore = try agent.getSettleCityPosition() {
                                 let moveCmd = MoveUnitCommand(player: game.currentPlayer,
                                                               turn: game.currentTurn,
-                                                              ordinal: game.currentTurn.ordinal,
                                                               unit: unit,
                                                               to: positionScore.position)
-                                let _ = moveCmd.execute(save: true)
+                                let _ = moveCmd.execute()
                                 
                                 let cityCmd = CreateCityCommand(player: game.currentPlayer,
                                                                 turn: game.currentTurn,
-                                                                ordinal: game.currentTurn.ordinal,
                                                                 cost: 1,
                                                                 cityCreator: unit as! Settler,
                                                                 cityName: "Chicago")
-                                let cityCmdResult = cityCmd.execute(save: true)
+                                let cityCmdResult = cityCmd.execute()
                                 if cityCmdResult.status != CommandStatus.Ok {
                                     fatalError(cityCmdResult.message)
                                 }
                                 
                                 if let city = cityCmd.city {
-                                    let cityAgent = try CityAgent.getAgent(aiPlayer: game.currentPlayer,
+                                    let cityAgent = try CityAgent.getAgent(game: game,
+                                                                           aiPlayer: game.currentPlayer,
                                                                            city: city)
                                     let cmd = cityAgent.getNextCommand()
-                                    let _ = cmd.execute(save: true)
+                                    let _ = cmd.execute()
                                     
                                 }
                             }
@@ -255,20 +250,18 @@ public class EventBus {
             if let unit = mapManager.getUnit(on: tile) {
                 let selectUnitCmd = SelectUnitCommand(player: game.currentPlayer,
                                                       turn: game.currentTurn,
-                                                      ordinal: game.currentTurn.ordinal,
                                                       node: scene,
                                                       mapManager: mapManager,
                                                       unit: unit)
-                let _ = selectUnitCmd.execute(save: false)
+                let _ = selectUnitCmd.execute()
             }
             else {
                 if let selectedUnit = game.currentPlayer.selectedUnit {
                     let moveCmd = MoveUnitCommand(player: game.currentPlayer,
                                                   turn: game.currentTurn,
-                                                  ordinal: game.currentTurn.ordinal,
                                                   unit: selectedUnit,
                                                   to: tile.position)
-                    let _ = moveCmd.execute(save: false)
+                    let _ = moveCmd.execute()
                 }
                 else {
                     addSettler(tile: tile)
@@ -280,10 +273,8 @@ public class EventBus {
     private func addSettler(tile: Tile) {
         let cmd = CreateSettlerCommand(player: game.currentPlayer,
                                        turn: game.currentTurn,
-                                       ordinal: game.currentTurn.ordinal,
-                                       cost: 1,
                                        tile: tile)
-        let _ = cmd.execute(save: true)
+        let _ = cmd.execute()
     }
     
     private func addEngineer(tile: Tile) {
@@ -292,10 +283,9 @@ public class EventBus {
         if let city = player.getCity(at: tile.position) {
             let cmd = CreateEngineerCommand(player: player,
                                             turn: game.currentTurn,
-                                            ordinal: game.currentTurn.ordinal,
                                             cost: 1,
                                             city: city)
-            let _ = cmd.execute(save: false)
+            let _ = cmd.execute()
         }
     }
     
@@ -365,11 +355,10 @@ public class EventBus {
         
         let createCityCmd = CreateCityCommand(player: player,
                                               turn: game.currentTurn,
-                                              ordinal: game.currentTurn.ordinal,
                                               cost: 0,
                                               cityCreator: settler,
                                               cityName: "New York-\(player.playerId)")
-        let result = createCityCmd.execute(save: true)
+        let result = createCityCmd.execute()
         
         if result.status != CommandStatus.Ok {
             print(player.playerId)

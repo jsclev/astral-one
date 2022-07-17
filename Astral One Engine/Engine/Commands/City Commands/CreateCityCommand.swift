@@ -7,14 +7,13 @@ public class CreateCityCommand: Command {
     
     public convenience init(player: Player,
                             turn: Turn,
-                            ordinal: Int,
                             cost: Int,
                             cityCreator: Builder,
                             cityName: String) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
-                  ordinal: ordinal,
+                  ordinal: Constants.noId,
                   cost: cost,
                   cityCreator: cityCreator,
                   cityName: cityName)
@@ -37,22 +36,43 @@ public class CreateCityCommand: Command {
                    cost: cost)
     }
     
+    public init(db: Db,
+                player: Player,
+                turn: Turn,
+                cost: Int,
+                cityCreator: Builder,
+                cityName: String) {
+        self.cityCreator = cityCreator
+        self.cityName = cityName
+        
+        super.init(db: db,
+                   player: player,
+                   turn: turn,
+                   ordinal: Constants.noId,
+                   cost: cost)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
+    public override func execute() -> CommandResult {
         if cityCreator.canCreateCity.value > 0 {
             city = City(id: Constants.noId,
                         owner: player,
-                        theme: player.game.theme,
+                        theme: Theme(id: Constants.noId, name: "Standard"),
                         name: cityName,
                         assetName: "city-1",
                         position: cityCreator.position)
             
-            if commandId == Constants.noId {
+            if persist {
                 do {
-                    city = try player.game.db.createCityCommandDao.insert(command: self)
+                    guard let db = database else {
+                        return CommandResult(status: CommandStatus.Invalid,
+                                             message: "Some type of error occurred")
+                    }
+                    
+                    city = try db.createCityCommandDao.insert(command: self)
                 }
                 catch {
                     return CommandResult(status: CommandStatus.Invalid, message: "\(error)")
@@ -61,7 +81,6 @@ public class CreateCityCommand: Command {
             
             if let newCity = city {
                 player.create(city: newCity, using: cityCreator)
-                turn.step()
             
                 return CommandResult(status: CommandStatus.Ok, message: "Success")
             }

@@ -6,13 +6,12 @@ public class CreateInfantry4Command: Command {
     
     public convenience init(player: Player,
                             turn: Turn,
-                            ordinal: Int,
                             cost: Int,
                             city: City) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
-                  ordinal: ordinal,
+                  ordinal: Constants.noId,
                   cost: cost,
                   city: city)
     }
@@ -36,16 +35,20 @@ public class CreateInfantry4Command: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
-        infantry4 = Infantry4(game: player.game,
-                              player: player,
-                              theme: player.game.theme,
+    public override func execute() -> CommandResult {
+        infantry4 = Infantry4(player: player,
+                              theme: Theme(id: Constants.noId, name: "Standard"),
                               name: "Infantry4-\(Int.random(in: 0..<500))",
                               position: city.position)
         
         if commandId == Constants.noId {
             do {
-                infantry4 = try player.game.db.createUnitCommandDao.insert(command: self)
+                guard let db = database else {
+                    return CommandResult(status: CommandStatus.Invalid,
+                                         message: "Some type of error occurred")
+                }
+                
+                infantry4 = try db.createUnitCommandDao.insert(command: self)
             }
             catch {
                 print(error)
@@ -54,7 +57,6 @@ public class CreateInfantry4Command: Command {
         
         if let newUnit = infantry4 {
             player.add(unit: newUnit)
-            turn.step()
             
             return CommandResult(status: CommandStatus.Ok, message: "Success")
         }

@@ -6,7 +6,6 @@ public class BaseNavalTransport: Unit {
     @Published var units: [Unit] = []
     
     public init(id: Int,
-                game: Game,
                 player: Player,
                 theme: Theme,
                 tiledId: Int,
@@ -23,7 +22,6 @@ public class BaseNavalTransport: Unit {
         self.maxCapacity = maxCapacity
         
         super.init(id: id,
-                   game: game,
                    player: player,
                    theme: theme,
                    tiledId: tiledId,

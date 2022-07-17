@@ -9,10 +9,10 @@ public class CityDAO: BaseDAO {
     public func add(city: City) throws -> City {
         var cityId = Constants.noId
         
-        var sql = "INSERT INTO city (game_id, player_id, name, tile_id) VALUES "
+        // FIXME: Need to use bind vars instead of dynamic SQL here
+        var sql = "INSERT INTO city (player_id, name, tile_id) VALUES "
         
         sql += "("
-        sql += getSql(val: city.owner.game.gameId, postfix: ", ")
         sql += getSql(val: city.owner.playerId, postfix: ", ")
         sql += getSql(val: city.name, postfix: ", ")
         sql += getSql(val: city.owner.map.tile(at: city.position).id, postfix: "")
@@ -44,6 +44,8 @@ public class CityDAO: BaseDAO {
     
     public func getCities(game: Game) throws -> [City] {
         var cities: [City] = []
+        let player = Player(playerId: 1, name: "", ordinal: 1, map: game.map)
+        let theme = Theme(id: 1, name: "Standard")
         
         var stmt: OpaquePointer?
         let sql = """
@@ -69,8 +71,8 @@ public class CityDAO: BaseDAO {
                 
                 if let cityName = try getString(stmt: stmt, colIndex: 4) {
                     cities.append(City(id: cityId,
-                                       owner: Player(playerId: 1, game: game, name: "", map: game.map),
-                                       theme: Theme(id: 1, name: "Standard"),
+                                       owner: player,
+                                       theme: theme,
                                        name: cityName,
                                        assetName: "city-1",
                                        position: Position(row: row, col: col)))

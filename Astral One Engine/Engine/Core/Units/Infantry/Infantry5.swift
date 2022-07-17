@@ -4,13 +4,11 @@ public class Infantry5: Unit {
     /*
      In Civilization II this is equivalent to a Legion unit.
      */
-    public convenience init(game: Game,
-                            player: Player,
+    public convenience init(player: Player,
                             theme: Theme,
                             name: String,
                             position: Position) {
         self.init(id: Constants.noId,
-                  game: game,
                   player: player,
                   theme: theme,
                   name: name,
@@ -18,13 +16,11 @@ public class Infantry5: Unit {
     }
     
     public init(id: Int,
-                game: Game,
                 player: Player,
                 theme: Theme,
                 name: String,
                 position: Position) {
         super.init(id: id,
-                   game: game,
                    player: player,
                    theme: theme,
                    tiledId: 100,
@@ -44,8 +40,7 @@ public class Infantry5: Unit {
     }
     
     public override func clone() -> Unit {
-        return Infantry5(game: game,
-                         player: player,
+        return Infantry5(player: player,
                          theme: theme,
                          name: name,
                          position: position)

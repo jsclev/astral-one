@@ -6,23 +6,20 @@ public class CreateSettlerCommand: Command {
     
     public init(player: Player,
                 turn: Turn,
-                ordinal: Int,
-                cost: Int,
                 tile: Tile) {
         self.tile = tile
         
         super.init(commandId: Constants.noId,
                    player: player,
                    turn: turn,
-                   ordinal: ordinal,
-                   cost: cost)
+                   ordinal: Constants.noId,
+                   cost: 10)
     }
     
     public init(commandId: Int,
                 player: Player,
                 turn: Turn,
                 ordinal: Int,
-                cost: Int,
                 settler: Settler,
                 tile: Tile) {
         self.settler = settler
@@ -32,22 +29,41 @@ public class CreateSettlerCommand: Command {
                    player: player,
                    turn: turn,
                    ordinal: ordinal,
-                   cost: cost)
+                   cost: 10)
+    }
+    
+    public init(db: Db,
+                player: Player,
+                turn: Turn,
+                tile: Tile) {
+        self.settler = nil
+        self.tile = tile
+        
+        super.init(db: db,
+                   player: player,
+                   turn: turn,
+                   ordinal: Constants.noId,
+                   cost: 10)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
-        if save && commandId == Constants.noId {
+    public override func execute() -> CommandResult {
+        if persist {
             do {
-                settler = Settler(game: player.game,
-                                  player: player,
-                                  theme: player.game.theme,
+                settler = Settler(player: player,
+                                  theme: Theme(id: Constants.noId, name: "Standard"),
                                   name: "Settler-\(Int.random(in: 0..<500))",
                                   position: tile.position)
-                settler = try player.game.db.createUnitCommandDao.insert(command: self)
+                
+                guard let db = database else {
+                    return CommandResult(status: CommandStatus.Invalid,
+                                         message: "Some type of error occurred")
+                }
+                
+                settler = try db.createUnitCommandDao.insert(command: self)
             }
             catch {
                 print(error)
@@ -56,7 +72,6 @@ public class CreateSettlerCommand: Command {
         
         if let newSettler = settler {
             player.add(cityCreator: newSettler)
-            turn.step()
             
             return CommandResult(status: CommandStatus.Ok, message: "Success")
         }

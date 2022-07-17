@@ -4,32 +4,30 @@ public class UnitFactory {
     public static func createUnit(game: Game, tiledId: Int, row: Int, col: Int) -> Unit {
         let theme = Theme(id: 1, name: "Standard")
         let map = Map(mapId: 1, width: 1, height: 1)
+        let player = Player(playerId: 1, name: "", ordinal: 1, map: map)
+        let position = Position(row: row, col: col)
         
         switch tiledId {
         case 1:
-            return Infantry1(game: game,
-                             player: Player(playerId: 1, game: game, name: "", map: map),
+            return Infantry1(player: player,
                              theme: theme,
                              name: "Warrior",
-                             position: Position(row: row, col: col))
+                             position: position)
         case 25:
-            return Cavalry7(game: game,
-                            player: Player(playerId: 1, game: game, name: "",  map: map),
+            return Cavalry7(player: player,
                             theme: theme,
                             name: "Tank",
-                            position: Position(row: row, col: col))
+                            position: position)
         case 26:
-            return Air1(game: game,
-                        player: Player(playerId: 1, game: game, name: "",  map: map),
+            return Air1(player: player,
                         theme: theme,
                         name: "Battleship",
-                        position: Position(row: row, col: col))
+                        position: position)
         case 27:
-            return Infantry2(game: game,
-                             player: Player(playerId: 1, game: game, name: "",  map: map),
+            return Infantry2(player: player,
                              theme: theme,
                              name: "Explorer",
-                             position: Position(row: row, col: col))
+                             position: position)
         default:
             fatalError("Unable to create unit with Tiled Id \(tiledId).")
         }

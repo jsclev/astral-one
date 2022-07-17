@@ -5,7 +5,7 @@ import Combine
 
 public class Player: ObservableObject, Equatable, CustomStringConvertible {
     public let playerId: Int
-    public let game: Game
+    public let ordinal: Int
     public let name: String
     public let map: Map
     public let hud = HUDConfig()
@@ -24,15 +24,15 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible {
     private var cancellable = Set<AnyCancellable>()
     @Published public var agentMap: [[Score]]
     
-    public init(playerId: Int, game: Game, name: String, map: Map) {
+    public init(playerId: Int, name: String, ordinal: Int, map: Map) {
         self.playerId = playerId
-        self.game = game
+        self.ordinal = ordinal
         self.name = name
         self.map = map
         self.agentMap = (0..<map.width).map { _ in (0..<map.height).map { _ in Score() } }
 
-        game.map.$cities
-            .sink(receiveValue: { cities in
+//        game.map.$cities
+//            .sink(receiveValue: { cities in
 //                if let city = cities.last {
 //                    print("----------------------------------------------")
 //                    if city.owner == self {
@@ -54,8 +54,8 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible {
 //                        print("Added \"\(city.name)\" to my map. Owned by \(city.owner.playerId).")
 //                    }
 //                }
-            })
-            .store(in: &cancellable)
+//            })
+//            .store(in: &cancellable)
     }
     
     public var description: String {
@@ -64,6 +64,10 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible {
     
     public func setNotification(notification: String) {
         notificationMsg = notification
+    }
+    
+    public func endTurn() {
+        
     }
     
     public func clearNotification() {
@@ -325,10 +329,10 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible {
     }
     
     public func revealTile(at: Position) {
-        let tile = game.map.tile(at: at)
-        tile.set(visibility: Visibility.FullyRevealed)
-        
-        map.add(tile: tile)
+//        let tile = game.map.tile(at: at)
+//        tile.set(visibility: Visibility.FullyRevealed)
+//
+//        map.add(tile: tile)
     }
     
     public func getTilesInCityRadius(from: Position) -> [Tile] {
@@ -371,8 +375,8 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible {
     
     public func clone() -> Player {
         let copy = Player(playerId: playerId,
-                          game: game,
                           name: name,
+                          ordinal: ordinal,
                           map: map)
 //        copy.cities = []
 //        copy.units = []

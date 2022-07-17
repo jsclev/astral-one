@@ -13,6 +13,7 @@ public class Camera: SKCameraNode {
     private let aiDebugToggle: AIDebugToggle
     private let turnIndicator: TurnIndicator
     private let notificationIndicator: NotificationIndicator
+    private let notificationSection: NotificationSection
     private let horizontalPadding: CGFloat
     private let verticalPadding: CGFloat
     private var cancellable = Set<AnyCancellable>()
@@ -28,12 +29,13 @@ public class Camera: SKCameraNode {
         verticalPadding = game.canvasSize.width * 0.011
 
         statsBar = StatsBar(game: game)
+        notificationSection = NotificationSection(game: game)
         nextTurnButton = NextTurnButton(game: game)
         turnIndicator = TurnIndicator(game: game)
         notificationIndicator = NotificationIndicator(player: player)
         researchButton = ResearchButton(game: game)
         aiDebugToggle = AIDebugToggle(game: game)
-        tileCoordsToggle = TileCoordsToggle(player: player)
+        tileCoordsToggle = TileCoordsToggle(game: game)
 
         if view.safeAreaInsets.right > 0.0 {
             neAnchorPoint = CGPoint(x: (game.canvasSize.width / 2.0) - view.safeAreaInsets.right,

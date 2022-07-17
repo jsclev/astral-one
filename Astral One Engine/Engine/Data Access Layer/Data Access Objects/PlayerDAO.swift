@@ -12,9 +12,9 @@ public class PlayerDAO: BaseDAO {
         super.init(conn: conn, table: "player", loggerName: String(describing: type(of: self)))
     }
     
-    public func getPlayers(game: Game) throws -> [AIPlayer] {
+    public func getPlayers(gameId: Int) throws -> [AIPlayer] {
         var players: [AIPlayer] = []
-        let map = try mapDao.get(gameId: game.gameId)
+        let map = try mapDao.get(gameId: gameId)
 
         var stmt: OpaquePointer?
         let sql = """
@@ -26,13 +26,13 @@ public class PlayerDAO: BaseDAO {
             FROM
                 player
             WHERE
-                game_id = \(game.gameId)
+                game_id = \(gameId)
         """
         
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
             while sqlite3_step(stmt) == SQLITE_ROW {
                 let playerId = getInt(stmt: stmt, colIndex: 0)
-                // let ordinal = getInt(stmt: stmt, colIndex: 1)
+                let ordinal = getInt(stmt: stmt, colIndex: 1)
                 let dbSkillLevel = getInt(stmt: stmt, colIndex: 3)
                 
                 if let name = try getString(stmt: stmt, colIndex: 2) {
@@ -64,8 +64,8 @@ public class PlayerDAO: BaseDAO {
                     }
 
                     let player = AIPlayer(playerId: playerId,
-                                          game: game,
                                           name: name,
+                                          ordinal: ordinal,
                                           map: map,
                                           skillLevel: skillLevel,
                                           difficultyLevel: DifficultyLevel.Easy,

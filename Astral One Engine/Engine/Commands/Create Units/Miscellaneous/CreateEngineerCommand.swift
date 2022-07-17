@@ -6,13 +6,12 @@ public class CreateEngineerCommand: Command {
 
     public convenience init(player: Player,
                             turn: Turn,
-                            ordinal: Int,
                             cost: Int,
                             city: City) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
-                  ordinal: ordinal,
+                  ordinal: Constants.noId,
                   cost: cost,
                   city: city)
     }
@@ -36,16 +35,20 @@ public class CreateEngineerCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
-        engineer = Engineer(game: player.game,
-                            player: player,
-                            theme: player.game.theme,
+    public override func execute() -> CommandResult {
+        engineer = Engineer(player: player,
+                            theme: Theme(id: Constants.noId, name: "Standard"),
                             name: "Engineer",
                             position: city.position)
         
         if commandId == Constants.noId {
             do {
-                engineer = try player.game.db.createUnitCommandDao.insert(command: self)
+                guard let db = database else {
+                    return CommandResult(status: CommandStatus.Invalid,
+                                         message: "Some type of error occurred")
+                }
+                
+                engineer = try db.createUnitCommandDao.insert(command: self)
             }
             catch {
                 print(error)
@@ -54,7 +57,6 @@ public class CreateEngineerCommand: Command {
         
         if let e = engineer {
             player.add(unit: e)
-            turn.step()
         }
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")

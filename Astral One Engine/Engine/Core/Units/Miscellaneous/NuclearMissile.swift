@@ -1,13 +1,11 @@
 import Foundation
 
 public class NuclearMissile: Unit {
-    public convenience init(game: Game,
-                            player: Player,
+    public convenience init(player: Player,
                             theme: Theme,
                             name: String,
                             position: Position) {
         self.init(id: Constants.noId,
-                  game: game,
                   player: player,
                   theme: theme,
                   name: name,
@@ -15,13 +13,11 @@ public class NuclearMissile: Unit {
     }
     
     public init(id: Int,
-                game: Game,
                 player: Player,
                 theme: Theme,
                 name: String,
                 position: Position) {
         super.init(id: id,
-                   game: game,
                    player: player,
                    theme: theme,
                    tiledId: 100,

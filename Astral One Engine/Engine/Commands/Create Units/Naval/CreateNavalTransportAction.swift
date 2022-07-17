@@ -17,11 +17,10 @@ public class CreateNavalTransportAction: Action {
     }
     
     public override func execute() {
-        let unit = NavalTransport(game: game,
-                          player: player,
-                          theme: game.theme,
-                          name: "Transport",
-                          position: city.position)
+        let unit = NavalTransport(player: player,
+                                  theme: game.theme,
+                                  name: "Transport",
+                                  position: city.position)
         unit.homeCity = city
         
         //        if city.hasPortFacility {

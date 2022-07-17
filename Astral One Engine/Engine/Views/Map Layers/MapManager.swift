@@ -8,7 +8,7 @@ public class MapManager {
     private let terrainLayer: TerrainMapLayer
     private var cancellable = Set<AnyCancellable>()
     
-    public init(player: Player, scene: SKScene, tileset: SKTileSet) {
+    public init(game: Game, player: Player, scene: SKScene, tileset: SKTileSet) {
         self.player = player
         self.scene = scene
         self.tileset = tileset
@@ -21,8 +21,8 @@ public class MapManager {
         let _ = SpecialResourcesMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = UnitMovementMapLayer(player: player, scene: scene, tileSet: tileset)
         let _ = UnitsMapLayer(player: player, scene: scene, mapManager: self, tileSet: tileset)
-        let _ = TileCoordsMapLayer(player: player, scene: scene, mapView: self)
-        let _ = AIDebugMapLayer(player: player, scene: scene, mapView: self)
+        let _ = TileCoordsMapLayer(game: game, player: player, scene: scene, mapView: self)
+        let _ = AIDebugMapLayer(game: game, player: player, scene: scene, mapView: self)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -45,6 +45,8 @@
 		5236B4172845450B006DF7E6 /* LuaVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B4162845450B006DF7E6 /* LuaVM.swift */; };
 		5258868A288265A3009EC608 /* Scenario1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52588689288265A2009EC608 /* Scenario1.swift */; };
 		5258868D28827919009EC608 /* TileCoordsToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258868C28827919009EC608 /* TileCoordsToggle.swift */; };
+		5258869028832FB3009EC608 /* SettlerPathfinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258868F28832FB3009EC608 /* SettlerPathfinder.swift */; };
+		5258869228846E6B009EC608 /* NotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258869128846E6B009EC608 /* NotificationSection.swift */; };
 		52605C902801E3B00082C0DB /* InfluenceMapCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */; };
 		5261478D284D8CA600CFF9CA /* FogOfWarGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261478C284D8CA600CFF9CA /* FogOfWarGenerator.swift */; };
 		52614793284FC40F00CFF9CA /* CreateCityCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52614792284FC40F00CFF9CA /* CreateCityCommand.swift */; };
@@ -303,6 +305,8 @@
 		5236B4162845450B006DF7E6 /* LuaVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuaVM.swift; sourceTree = "<group>"; };
 		52588689288265A2009EC608 /* Scenario1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenario1.swift; sourceTree = "<group>"; };
 		5258868C28827919009EC608 /* TileCoordsToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCoordsToggle.swift; sourceTree = "<group>"; };
+		5258868F28832FB3009EC608 /* SettlerPathfinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerPathfinder.swift; sourceTree = "<group>"; };
+		5258869128846E6B009EC608 /* NotificationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSection.swift; sourceTree = "<group>"; };
 		52605C8F2801E3B00082C0DB /* InfluenceMapCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfluenceMapCalculator.swift; sourceTree = "<group>"; };
 		5261478C284D8CA600CFF9CA /* FogOfWarGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FogOfWarGenerator.swift; sourceTree = "<group>"; };
 		52614792284FC40F00CFF9CA /* CreateCityCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCityCommand.swift; sourceTree = "<group>"; };
@@ -655,6 +659,7 @@
 				52D78CE32879410A006AF649 /* HUDConfig.swift */,
 				5234D530285F6F380051172E /* NextTurnButton.swift */,
 				52A609372862A7760029BBFA /* NotificationIndicator.swift */,
+				5258869128846E6B009EC608 /* NotificationSection.swift */,
 				52D78CD92875F631006AF649 /* ResearchButton.swift */,
 				52D78CE5287A35E1006AF649 /* StatsBar.swift */,
 				5266817B2825ED1C0089D0DD /* TurnIndicator.swift */,
@@ -677,6 +682,14 @@
 				5258868C28827919009EC608 /* TileCoordsToggle.swift */,
 			);
 			path = "Map Toggles";
+			sourceTree = "<group>";
+		};
+		5258868E28832F80009EC608 /* Pathfinders */ = {
+			isa = PBXGroup;
+			children = (
+				5258868F28832FB3009EC608 /* SettlerPathfinder.swift */,
+			);
+			path = Pathfinders;
 			sourceTree = "<group>";
 		};
 		52605C8828014FF90082C0DB /* Core */ = {
@@ -733,6 +746,7 @@
 			children = (
 				52EA0D632847E414005E9AF8 /* Agents */,
 				52A64636282C8D860066B82D /* Goals */,
+				5258868E28832F80009EC608 /* Pathfinders */,
 				52A6467F282F6DA10066B82D /* Personalities */,
 				52EA0D6528480E74005E9AF8 /* AIPlayer.swift */,
 				5236B41428451AEF006DF7E6 /* AISkillLevel.swift */,
@@ -1305,6 +1319,7 @@
 				526681782825BD780089D0DD /* CitiesMapLayer.swift in Sources */,
 				52D78CFE287F5D4A006AF649 /* PositionScore.swift in Sources */,
 				5266816A282315670089D0DD /* Partisan.swift in Sources */,
+				5258869028832FB3009EC608 /* SettlerPathfinder.swift in Sources */,
 				52F9042627F4E1AC00D1AC97 /* Unit.swift in Sources */,
 				52AB0748280287580039B47D /* City.swift in Sources */,
 				52A6469128317ADD0066B82D /* Temple.swift in Sources */,
@@ -1350,6 +1365,7 @@
 				52A64672282F01C30066B82D /* SpawnInfantry1Command.swift in Sources */,
 				52A64681282F70060066B82D /* AIStrategy.swift in Sources */,
 				521F21B528047F8000F1D61D /* Trade2.swift in Sources */,
+				5258869228846E6B009EC608 /* NotificationSection.swift in Sources */,
 				52DE5F7F281C6A010029EFE1 /* Settler.swift in Sources */,
 				52DE5F3C281249EC0029EFE1 /* UnitDAO.swift in Sources */,
 				52DE5F97281E085A0029EFE1 /* Naval7.swift in Sources */,

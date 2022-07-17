@@ -5,8 +5,8 @@ import SpriteKit
 internal class AIDebugToggle: SKNode {
     private let game: Game
     private let buttonNode: SKSpriteNode
-    private let uiScaleFactor = 0.13
-    private let minButtonSize = 40.0
+    private let uiScaleFactor = 0.075
+    private let minButtonSize = 24.0
     private let maxButtonSize = 125.0
     public let size: CGSize
     

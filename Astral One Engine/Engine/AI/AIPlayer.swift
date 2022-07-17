@@ -6,8 +6,8 @@ public class AIPlayer: Player {
     public let strategy: AIStrategy
 
     public init(playerId: Int,
-                game: Game,
                 name: String,
+                ordinal: Int,
                 map: Map,
                 skillLevel: SkillLevel,
                 difficultyLevel: DifficultyLevel,
@@ -16,13 +16,13 @@ public class AIPlayer: Player {
         self.difficultyLevel = difficultyLevel
         self.strategy = strategy
         
-        super.init(playerId: playerId, game: game, name: name, map: map)
+        super.init(playerId: playerId, name: name, ordinal: ordinal, map: map)
     }
     
     public override func clone() -> Player {
         let copy = AIPlayer(playerId: playerId,
-                            game: game,
                             name: name,
+                            ordinal: ordinal,
                             map: map,
                             skillLevel: skillLevel,
                             difficultyLevel: difficultyLevel,

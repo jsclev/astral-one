@@ -28,9 +28,8 @@ public class BuildFarmlandCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
+    public override func execute() -> CommandResult {
         city.build(improvement: ImprovementType.Farmland, position: position)
-        turn.step()
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }

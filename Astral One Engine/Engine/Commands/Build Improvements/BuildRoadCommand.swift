@@ -35,9 +35,8 @@ public class BuildRoadCommand: Command {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func execute(save: Bool) -> CommandResult {
+    public override func execute() -> CommandResult {
         builder.buildRoad()
-        turn.step()
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }
