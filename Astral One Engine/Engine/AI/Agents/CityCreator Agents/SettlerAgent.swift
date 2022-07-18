@@ -69,9 +69,9 @@ public class SettlerAgent {
         }
     }
     
-    public func getSettleCityPosition() throws -> PositionScore? {
+    public func getSettleCityPosition() throws -> PositionUtility? {
         let scoreMap = try getBuildCityScores()
-        var positions: [PositionScore] = []
+        var positions: [PositionUtility] = []
         
         var maxScore = 0.0
         
@@ -80,14 +80,14 @@ public class SettlerAgent {
                 if scoreMap[row][col].score > maxScore {
                     maxScore = scoreMap[row][col].score
                     
-                    positions.append(PositionScore(position: Position(row: row, col: col),
-                                                   score: scoreMap[row][col]))
+                    positions.append(PositionUtility(position: Position(row: row, col: col),
+                                                   utility: scoreMap[row][col]))
                 }
             }
         }
         
         if let bestPosition = positions.last {
-            bestPosition.score.reasons = bestPosition.score.reasons.sorted(by: {
+            bestPosition.utility.reasons = bestPosition.utility.reasons.sorted(by: {
                 $0.score > $1.score
             })
             

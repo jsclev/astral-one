@@ -108,7 +108,7 @@ public class UnitsMapLayer {
         unit.node = unitNode
         
         let playerNumNode = SKLabelNode(fontNamed: "Arial")
-        playerNumNode.text = "\(unit.player.ordinal)"
+        playerNumNode.text = "\(unit.player.ordinal + 1)"
         playerNumNode.position = labelPosition
         playerNumNode.fontSize = 20
         playerNumNode.horizontalAlignmentMode = .center
@@ -116,19 +116,19 @@ public class UnitsMapLayer {
         
         var color = UIColor.white
         
-        if unit.player.ordinal == 1 {
+        if unit.player.ordinal == 0 {
             color = UIColor.green
         }
-        else if unit.player.ordinal == 2 {
+        else if unit.player.ordinal == 1 {
             color = UIColor.red
         }
-        else if unit.player.ordinal == 3 {
+        else if unit.player.ordinal == 2 {
             color = UIColor.blue
         }
-        else if unit.player.ordinal == 4 {
+        else if unit.player.ordinal == 3 {
             color = UIColor.yellow
         }
-        else if unit.player.ordinal == 5 {
+        else if unit.player.ordinal == 4 {
             color = UIColor.cyan
         }
         

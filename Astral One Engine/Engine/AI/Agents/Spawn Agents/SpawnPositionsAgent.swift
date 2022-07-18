@@ -1,6 +1,6 @@
 import Foundation
 
-public class StartingSettlerAgent {
+public class SpawnPositionsAgent {
     internal let game: Game
     internal var playerScorers: [AIPlayer:[AgentUtility]] = [:]
     
@@ -9,18 +9,19 @@ public class StartingSettlerAgent {
         
         for player in game.players {
             playerScorers[player] = [
-                CityResourcesUtility(aiPlayer: player, maxScore: 10.0),
-                CityWaterUtility(aiPlayer: player, maxScore: 10.0)
+                SpawnResourcesUtility(game: game, aiPlayer: player, maxScore: 10.0),
+                SpawnWaterUtility(game: game, aiPlayer: player, maxScore: 10.0),
+                SpawnProximityUtility(game: game, aiPlayer: player, maxScore: 10.0)
             ]
         }
     }
     
-    public func getStartPositions() throws -> [AIPlayer:PositionScore] {
-        var startingPositions: [AIPlayer:PositionScore] = [:]
+    public func getSpawnPositions() throws -> [AIPlayer:PositionUtility] {
+        var startingPositions: [AIPlayer:PositionUtility] = [:]
         
         for player in game.players {
             let utilityMap = try getCityUtilityMap(player: player)
-            var positions: [PositionScore] = []
+            var positions: [PositionUtility] = []
             
             var maxScore = 0.0
             
@@ -29,16 +30,18 @@ public class StartingSettlerAgent {
                     if utilityMap[row][col].score > maxScore {
                         maxScore = utilityMap[row][col].score
                         
-                        positions.append(PositionScore(position: Position(row: row, col: col),
-                                                       score: utilityMap[row][col]))
+                        positions.append(PositionUtility(position: Position(row: row, col: col),
+                                                         utility: utilityMap[row][col]))
                     }
                 }
             }
             
             if let bestPosition = positions.last {
-                bestPosition.score.reasons = bestPosition.score.reasons.sorted(by: {
+                bestPosition.utility.reasons = bestPosition.utility.reasons.sorted(by: {
                     $0.score > $1.score
                 })
+                
+                print("Best position for \(player.name) is \(bestPosition.position)")
                 
                 startingPositions[player] = bestPosition
             }
@@ -57,22 +60,24 @@ public class StartingSettlerAgent {
         if let scorers = playerScorers[player] {
             let utilityMap0 = scorers[0].getUtilityMap()
             let utilityMap1 = scorers[1].getUtilityMap()
+            let utilityMap2 = scorers[2].getUtilityMap()
             
             // TODO: Add scorer to boost river tiles if there are few rivers on the map.
             // TODO: Add scorer to boost coastal tiles if there are few ocean tiles on the map.
-    
-            for row in 0..<player.map.height {
-                for col in 0..<player.map.width {
+            
+            for row in 0..<game.map.height {
+                for col in 0..<game.map.width {
                     utilityMap[row][col].reasons += utilityMap0[row][col].reasons
                     utilityMap[row][col].reasons += utilityMap1[row][col].reasons
+                    utilityMap[row][col].reasons += utilityMap2[row][col].reasons
                     
-                    if utilityMap[row][col].reasons.count > 0 {
-                        let utility = utilityMap[row][col]
-                        print(utility)
-                    }
+                    //                    if utilityMap[row][col].reasons.count > 0 {
+                    //                        let utility = utilityMap[row][col]
+                    //                        print(utility)
+                    //                    }
                 }
             }
-    
+            
             player.agentMap = utilityMap
         }
         
