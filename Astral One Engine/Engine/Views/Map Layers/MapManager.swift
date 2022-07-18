@@ -20,7 +20,7 @@ public class MapManager {
         let _ = FortressesMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = SpecialResourcesMapLayer(player: player, scene: scene, mapView: self, tileSet: tileset)
         let _ = UnitMovementMapLayer(player: player, scene: scene, tileSet: tileset)
-        let _ = UnitsMapLayer(player: player, scene: scene, mapManager: self, tileSet: tileset)
+        let _ = UnitsMapLayer(game: game, player: player, scene: scene, mapManager: self, tileSet: tileset)
         let _ = TileCoordsMapLayer(game: game, player: player, scene: scene, mapView: self)
         let _ = AIDebugMapLayer(game: game, player: player, scene: scene, mapView: self)
     }

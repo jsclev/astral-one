@@ -27,7 +27,6 @@ public class BaseDAO {
             logger.debug("Inserted \(numRows) row into the \(table, privacy: .public) table.")
         } else {
             logger.debug("Inserted \(numRows) rows into the \(table, privacy: .public) table.")
-            
         }
     }
     
@@ -169,9 +168,9 @@ public class BaseDAO {
             return
         }
         
-        logInsertAttempt(table: table, numRows: numRows)
+        // logInsertAttempt(table: table, numRows: numRows)
         try executeNonQuery(sql: sql)
-        logInsertSuccess(table: table, numRows: numRows)
+        // logInsertSuccess(table: table, numRows: numRows)
     }
     
     func executeNonQuery(sql: String) throws {

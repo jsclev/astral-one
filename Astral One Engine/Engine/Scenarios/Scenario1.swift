@@ -34,6 +34,13 @@ public class Scenario1 {
                                                 cityName: "Chicago")
             errorCheck(createCity1.execute())
             
+            let research1 = ResearchAdvanceCommand(db: game.db,
+                                                   player: game.currentPlayer,
+                                                   turn: game.currentTurn,
+                                                   cost: 1,
+                                                   advanceType: AdvanceType.Pottery)
+            errorCheck(research1.execute())
+            
             let turnCmd = EndPlayerTurnCommand(db: game.db,
                                                player: game.currentPlayer,
                                                turn: game.currentTurn)
@@ -45,7 +52,7 @@ public class Scenario1 {
             db: game.db,
             player: game.currentPlayer,
             turn: game.currentTurn,
-            tile: game.currentPlayer.map.tile(at: Position(row: 26, col: 38)))
+            tile: game.currentPlayer.map.tile(at: Position(row: 37, col: 36)))
         errorCheck(createSettler2.execute())
         
         if let settler2 = createSettler2.settler {
@@ -57,11 +64,41 @@ public class Scenario1 {
                                                       col: settler2.position.col - 1))
             errorCheck(mvUnit.execute())
             
+            let alphabet = ResearchAdvanceCommand(db: game.db,
+                                                  player: game.currentPlayer,
+                                                  turn: game.currentTurn,
+                                                  cost: 1,
+                                                  advanceType: AdvanceType.Alphabet)
+            errorCheck(alphabet.execute())
+            
             let turnCmd = EndPlayerTurnCommand(db: game.db,
                                                player: game.currentPlayer,
                                                turn: game.currentTurn)
             errorCheck(turnCmd.execute())
         }
+        
+        let turn3Cmd = EndPlayerTurnCommand(db: game.db,
+                                           player: game.currentPlayer,
+                                           turn: game.currentTurn)
+        errorCheck(turn3Cmd.execute())
+        
+        let turn4Cmd = EndPlayerTurnCommand(db: game.db,
+                                           player: game.currentPlayer,
+                                           turn: game.currentTurn)
+        errorCheck(turn4Cmd.execute())
+        
+        let turn5Cmd = EndPlayerTurnCommand(db: game.db,
+                                            player: game.currentPlayer,
+                                            turn: game.currentTurn)
+        errorCheck(turn5Cmd.execute())
+        
+        let turn6Cmd = EndPlayerTurnCommand(db: game.db,
+                                            player: game.currentPlayer,
+                                            turn: game.currentTurn)
+        errorCheck(turn6Cmd.execute())
+        
+        print(game.currentPlayer)
+        
         
         //        let createCity1 = CreateCityCommand(player: player,
         //                                           turn: game.currentTurn,

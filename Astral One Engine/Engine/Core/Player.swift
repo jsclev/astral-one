@@ -1,8 +1,6 @@
 import Foundation
 import Combine
 
-
-
 public class Player: ObservableObject, Equatable, CustomStringConvertible {
     public let playerId: Int
     public let ordinal: Int
@@ -23,6 +21,9 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible {
     @Published public private (set) var notificationMsg: String?
     private var cancellable = Set<AnyCancellable>()
     @Published public var agentMap: [[Score]]
+    @Published public private (set) var turnStatus = 0
+    
+    @Published public var otherCityCreators: [Builder] = []
     
     public init(playerId: Int, name: String, ordinal: Int, map: Map) {
         self.playerId = playerId
@@ -59,7 +60,7 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible {
     }
     
     public var description: String {
-        return "{playerId: \(playerId), name: \(name)}"
+        return "{playerId: \(playerId), name: \(name), ordinal: \(ordinal)}"
     }
     
     public func setNotification(notification: String) {
@@ -67,7 +68,11 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible {
     }
     
     public func endTurn() {
-        
+        turnStatus = 1
+    }
+    
+    public func startTurn() {
+        turnStatus = 0
     }
     
     public func clearNotification() {
@@ -251,6 +256,10 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible {
     
     internal func add(cityCreator: Builder) {
         cityCreators.append(cityCreator)
+    }
+    
+    internal func addOther(cityCreator: Builder) {
+        otherCityCreators.append(cityCreator)
     }
     
     internal func add(unit: Unit) {

@@ -64,7 +64,7 @@
 		52668176282595B10089D0DD /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52668175282595B10089D0DD /* Position.swift */; };
 		526681782825BD780089D0DD /* CitiesMapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526681772825BD780089D0DD /* CitiesMapLayer.swift */; };
 		5266817C2825ED1C0089D0DD /* TurnIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266817B2825ED1C0089D0DD /* TurnIndicator.swift */; };
-		5266817E282610680089D0DD /* NextTurnCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266817D282610680089D0DD /* NextTurnCommand.swift */; };
+		5266817E282610680089D0DD /* EndPlayerTurnCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266817D282610680089D0DD /* EndPlayerTurnCommand.swift */; };
 		526681822826DE440089D0DD /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526681812826DE440089D0DD /* Action.swift */; };
 		526681852826DEA70089D0DD /* CreateInfantry1Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526681842826DEA70089D0DD /* CreateInfantry1Command.swift */; };
 		5266818B282700C40089D0DD /* ResearchMasonryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5266818A282700C40089D0DD /* ResearchMasonryAction.swift */; };
@@ -324,7 +324,7 @@
 		52668175282595B10089D0DD /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		526681772825BD780089D0DD /* CitiesMapLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesMapLayer.swift; sourceTree = "<group>"; };
 		5266817B2825ED1C0089D0DD /* TurnIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnIndicator.swift; sourceTree = "<group>"; };
-		5266817D282610680089D0DD /* NextTurnCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTurnCommand.swift; sourceTree = "<group>"; };
+		5266817D282610680089D0DD /* EndPlayerTurnCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPlayerTurnCommand.swift; sourceTree = "<group>"; };
 		526681812826DE440089D0DD /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		526681842826DEA70089D0DD /* CreateInfantry1Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInfantry1Command.swift; sourceTree = "<group>"; };
 		5266818A282700C40089D0DD /* ResearchMasonryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchMasonryAction.swift; sourceTree = "<group>"; };
@@ -1084,7 +1084,7 @@
 			isa = PBXGroup;
 			children = (
 				52F55961283953F500966F06 /* CreateProductionCommand.swift */,
-				5266817D282610680089D0DD /* NextTurnCommand.swift */,
+				5266817D282610680089D0DD /* EndPlayerTurnCommand.swift */,
 				5234D528285EEDF90051172E /* SelectUnitCommand.swift */,
 			);
 			path = Miscellaneous;
@@ -1501,7 +1501,7 @@
 				521F21AB2803F91200F1D61D /* Artillery2.swift in Sources */,
 				521F21B328047F7600F1D61D /* Trade1.swift in Sources */,
 				5266816C282315760089D0DD /* Crusader.swift in Sources */,
-				5266817E282610680089D0DD /* NextTurnCommand.swift in Sources */,
+				5266817E282610680089D0DD /* EndPlayerTurnCommand.swift in Sources */,
 				52DE5F8F281E072C0029EFE1 /* Naval2.swift in Sources */,
 				5258868D28827919009EC608 /* TileCoordsToggle.swift in Sources */,
 				521F21E32807115100F1D61D /* Terrain.swift in Sources */,

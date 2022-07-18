@@ -271,7 +271,8 @@ public class EventBus {
     }
     
     private func addSettler(tile: Tile) {
-        let cmd = CreateSettlerCommand(player: game.currentPlayer,
+        let cmd = CreateSettlerCommand(db: game.db,
+                                       player: game.currentPlayer,
                                        turn: game.currentTurn,
                                        tile: tile)
         let _ = cmd.execute()

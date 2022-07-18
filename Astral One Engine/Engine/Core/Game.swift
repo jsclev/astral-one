@@ -15,13 +15,14 @@ public class Game: ObservableObject {
 
     public let gameId: Int
     public let turns: [Turn]
-    public var players: [AIPlayer] = []
+    public let players: [AIPlayer]
     public let map: Map
     public let theme: Theme
     public var commands: [Command] = []
     public let db: Db
     public var canvasSize = CGSize.zero
     public private (set) var currentPlayerIndex = 0
+    private var cancellable = Set<AnyCancellable>()
     
     public init(gameId: Int,
                 theme: Theme,
@@ -36,15 +37,76 @@ public class Game: ObservableObject {
         self.currentPlayerIndex = 0
         self.players = players
         self.currentPlayer = players[0]
+        
+        for player in players {
+            player.$turnStatus
+                .dropFirst()
+                .sink(receiveValue: { turnStatus in
+                    print(player.name + " turn status: \(turnStatus)")
+                    if turnStatus == 1 {
+                        self.bumpPlayerTurn()
+                    }
+                })
+                .store(in: &cancellable)
+            
+            player.$cityCreators
+                .sink(receiveValue: { cityCreators in
+                    print(player.name + " city creators changed.")
+                    
+                    for playerToUpdate in self.players {
+                        if playerToUpdate != player {
+                            for cityCreator in cityCreators {
+                                playerToUpdate.addOther(cityCreator: cityCreator)
+                                //print("City creator at \(cityCreator.position)")
+//                                let tile = playerToUpdate.map.tile(at: cityCreator.position)
+//
+//                                if tile.visibility == Visibility.FullyRevealed {
+//                                    tile.a
+//                                }
+                            }
+//                            print("Need to update the map")
+                        }
+                    }
+//                    if cityCreators.count < self.localSettlers.count {
+//                        for settler in self.localSettlers {
+//                            var foundIt = false
+//                            for diff in cityCreators {
+//                                if diff.name == settler.name {
+//                                    foundIt = true
+//                                }
+//                            }
+//
+//                            if !foundIt {
+//                                self.localSettlers.remove(at: self.localSettlers.count - 1)
+//
+//                                if let node = self.scene.childNode(withName: settler.name) {
+//                                    node.removeFromParent()
+//                                }
+//                            }
+//                        }
+//                    }
+//                    else {
+//                        if let cityCreator = cityCreators.last {
+//                            self.renderUnit(unit: cityCreator)
+//                            self.localSettlers.append(cityCreator as! Settler)
+//                        }
+//                    }
+                })
+                .store(in: &cancellable)
+        }
     }
     
     public func addCommand(command: Command) {
         commands.append(command)
     }
     
-    public func endPlayerTurn() {
+    public func bumpPlayerTurn() {
         if currentPlayerIndex == players.count - 1 {
             currentPlayerIndex = 0
+            
+            if turnIndex < turns.count {
+                turnIndex += 1
+            }
             
             for player in players {
                 for cityCreator in player.cityCreators {
@@ -60,10 +122,6 @@ public class Game: ObservableObject {
             currentPlayerIndex += 1
         }
         
-        if turnIndex < turns.count {
-            turnIndex += 1
-        }
-            
         currentPlayer = players[currentPlayerIndex]
     }
     

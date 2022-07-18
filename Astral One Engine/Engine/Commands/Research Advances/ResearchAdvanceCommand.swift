@@ -4,15 +4,15 @@ public class ResearchAdvanceCommand: Command {
     public let advanceType: AdvanceType
     
     public init(player: Player,
-                            turn: Turn,
-                            cost: Int,
-                            advanceType: AdvanceType) {
+                turn: Turn,
+                cost: Int,
+                advanceType: AdvanceType) {
         self.advanceType = advanceType
         
         super.init(player: player,
-                  turn: turn,
-                  ordinal: Constants.noId,
-                  cost: cost)
+                   turn: turn,
+                   ordinal: Constants.noId,
+                   cost: cost)
     }
     
     public init(commandId: Int,
@@ -33,7 +33,6 @@ public class ResearchAdvanceCommand: Command {
     public init(db: Db,
                 player: Player,
                 turn: Turn,
-                ordinal: Int,
                 cost: Int,
                 advanceType: AdvanceType) {
         self.advanceType = advanceType
@@ -41,7 +40,7 @@ public class ResearchAdvanceCommand: Command {
         super.init(db: db,
                    player: player,
                    turn: turn,
-                   ordinal: ordinal,
+                   ordinal: Constants.noId,
                    cost: cost)
     }
     
@@ -67,7 +66,7 @@ public class ResearchAdvanceCommand: Command {
         player.add(advanceName: "\(advanceType)")
         
         print("Researched \(advanceType)")
-            
+        
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }
     

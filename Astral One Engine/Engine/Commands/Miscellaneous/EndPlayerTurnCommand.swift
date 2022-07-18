@@ -37,7 +37,7 @@ public class EndPlayerTurnCommand: Command {
     }
     
     public override func execute() -> CommandResult {
-        if commandId == Constants.noId {
+        if persist {
             do {
                 guard let db = database else {
                     return CommandResult(status: CommandStatus.Invalid,
