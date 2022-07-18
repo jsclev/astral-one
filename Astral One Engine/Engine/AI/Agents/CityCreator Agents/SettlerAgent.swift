@@ -3,7 +3,7 @@ import Foundation
 public class SettlerAgent {
     internal let player: AIPlayer
     internal let settler: Settler
-    internal var analyzers: [AgentDecorator] = []
+    internal var analyzers: [AgentUtility] = []
 
     public init(player: AIPlayer, settler: Settler) throws {
         self.player = player
@@ -11,60 +11,60 @@ public class SettlerAgent {
         
         switch player.skillLevel {
         case .One:
-            analyzers.append(CityResourcesDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityProximityDecorator(aiPlayer: player, maxScore: 25.0))
-            analyzers.append(SettlerMovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
-            analyzers.append(CityWaterDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityDefensiveDecorator(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityResourcesUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityProximityUtility(aiPlayer: player, maxScore: 25.0))
+            analyzers.append(DistanceToCityUtility(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(CityWaterUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityDefensiveUtility(aiPlayer: player, maxScore: 10.0))
             break
         case .Two:
-            analyzers.append(CityResourcesDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityProximityDecorator(aiPlayer: player, maxScore: 25.0))
-            analyzers.append(SettlerMovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
-            analyzers.append(CityWaterDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityDefensiveDecorator(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityResourcesUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityProximityUtility(aiPlayer: player, maxScore: 25.0))
+            analyzers.append(DistanceToCityUtility(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(CityWaterUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityDefensiveUtility(aiPlayer: player, maxScore: 10.0))
             break
         case .Three:
-            analyzers.append(CityResourcesDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityProximityDecorator(aiPlayer: player, maxScore: 25.0))
-            analyzers.append(SettlerMovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
-            analyzers.append(CityWaterDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityDefensiveDecorator(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityResourcesUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityProximityUtility(aiPlayer: player, maxScore: 25.0))
+            analyzers.append(DistanceToCityUtility(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(CityWaterUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityDefensiveUtility(aiPlayer: player, maxScore: 10.0))
             break
         case .Four:
-            analyzers.append(CityResourcesDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityProximityDecorator(aiPlayer: player, maxScore: 25.0))
-            analyzers.append(SettlerMovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
-            analyzers.append(CityWaterDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityDefensiveDecorator(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityResourcesUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityProximityUtility(aiPlayer: player, maxScore: 25.0))
+            analyzers.append(DistanceToCityUtility(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(CityWaterUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityDefensiveUtility(aiPlayer: player, maxScore: 10.0))
             break
         case .Five:
-            analyzers.append(CityResourcesDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityProximityDecorator(aiPlayer: player, maxScore: 25.0))
-            analyzers.append(SettlerMovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
-            analyzers.append(CityWaterDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityDefensiveDecorator(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityResourcesUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityProximityUtility(aiPlayer: player, maxScore: 25.0))
+            analyzers.append(DistanceToCityUtility(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(CityWaterUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityDefensiveUtility(aiPlayer: player, maxScore: 10.0))
             break
         case .Six:
-            analyzers.append(CityResourcesDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityProximityDecorator(aiPlayer: player, maxScore: 25.0))
-            analyzers.append(SettlerMovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
-            analyzers.append(CityWaterDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityDefensiveDecorator(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityResourcesUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityProximityUtility(aiPlayer: player, maxScore: 25.0))
+            analyzers.append(DistanceToCityUtility(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(CityWaterUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityDefensiveUtility(aiPlayer: player, maxScore: 10.0))
             break
         case .Seven:
-            analyzers.append(CityResourcesDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityProximityDecorator(aiPlayer: player, maxScore: 25.0))
-            analyzers.append(SettlerMovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
-            analyzers.append(CityWaterDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityDefensiveDecorator(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityResourcesUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityProximityUtility(aiPlayer: player, maxScore: 25.0))
+            analyzers.append(DistanceToCityUtility(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(CityWaterUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityDefensiveUtility(aiPlayer: player, maxScore: 10.0))
             break
         case .Eight:
-            analyzers.append(CityResourcesDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityProximityDecorator(aiPlayer: player, maxScore: 25.0))
-            analyzers.append(SettlerMovementDecorator(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
-            analyzers.append(CityWaterDecorator(aiPlayer: player, maxScore: 10.0))
-            analyzers.append(CityDefensiveDecorator(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityResourcesUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityProximityUtility(aiPlayer: player, maxScore: 25.0))
+            analyzers.append(DistanceToCityUtility(aiPlayer: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(CityWaterUtility(aiPlayer: player, maxScore: 10.0))
+            analyzers.append(CityDefensiveUtility(aiPlayer: player, maxScore: 10.0))
             break
         }
     }
@@ -77,8 +77,8 @@ public class SettlerAgent {
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
-                if scoreMap[row][col].value > maxScore {
-                    maxScore = scoreMap[row][col].value
+                if scoreMap[row][col].score > maxScore {
+                    maxScore = scoreMap[row][col].score
                     
                     positions.append(PositionScore(position: Position(row: row, col: col),
                                                    score: scoreMap[row][col]))
@@ -88,7 +88,7 @@ public class SettlerAgent {
         
         if let bestPosition = positions.last {
             bestPosition.score.reasons = bestPosition.score.reasons.sorted(by: {
-                $0.value > $1.value
+                $0.score > $1.score
             })
             
             return bestPosition
@@ -97,14 +97,14 @@ public class SettlerAgent {
         return nil
     }
     
-    private func getBuildCityScores() throws -> [[Score]] {
-        let scoreMap:[[Score]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Score() } }
+    private func getBuildCityScores() throws -> [[Utility]] {
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Utility() } }
         
-        let scoreMap0 = analyzers[0].getScoreMap()
-        let scoreMap1 = analyzers[1].getScoreMap()
-        let scoreMap2 = analyzers[2].getScoreMap()
-        let scoreMap3 = analyzers[3].getScoreMap()
-        let scoreMap4 = analyzers[4].getScoreMap()
+        let scoreMap0 = analyzers[0].getUtilityMap()
+        let scoreMap1 = analyzers[1].getUtilityMap()
+        let scoreMap2 = analyzers[2].getUtilityMap()
+        let scoreMap3 = analyzers[3].getUtilityMap()
+        let scoreMap4 = analyzers[4].getUtilityMap()
         
 //        for analyzer in analyzers {
 //            scoreMaps.append(analyzer.getScoreMap())

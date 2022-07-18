@@ -123,7 +123,7 @@ CREATE TABLE game_setting (
 CREATE TABLE player (
     player_id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
-    ordinal INTEGER NOT NULL CHECK (ordinal IN (1, 2, 3, 4, 5, 6, 7, 8)),
+    ordinal INTEGER NOT NULL CHECK (ordinal IN (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)),
     name TEXT NOT NULL,
     type TEXT NOT NULL CHECK(type IN ('Human', 'AI')),
     skill_level INTEGER NOT NULL CHECK (skill_level IN (0, 1, 2, 3, 4, 5, 6, 7, 8)),

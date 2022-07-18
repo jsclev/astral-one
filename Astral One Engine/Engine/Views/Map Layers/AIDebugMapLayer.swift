@@ -41,11 +41,11 @@ public class AIDebugMapLayer {
             .sink(receiveValue: { agentMap in
                 for row in 0..<self.player.map.height {
                     for col in 0..<self.player.map.width {
-                        let score = agentMap[row][col]
+                        let utility = agentMap[row][col]
                         var text = ""
                         
-                        if score.value > 0.0 {
-                            text = String(format: "%.1f", score.value)
+                        if utility.score > 0.0 {
+                            text = String(format: "%.1f", utility.score)
                         }
                         
                         self.labelNodes[row][col].text = text

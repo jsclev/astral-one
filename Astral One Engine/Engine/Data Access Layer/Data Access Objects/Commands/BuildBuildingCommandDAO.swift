@@ -13,10 +13,10 @@ public class BuildBuildingCommandDAO: BaseDAO {
     }
     
     public func insert(command: BuildBuildingCommand) throws {
-        let baseCmd = try commandDao.insert(command: Command(player: command.player,
-                                                             turn: command.turn,
-                                                             ordinal: command.ordinal,
-                                                             cost: command.cost))
+//        let baseCmd = try commandDao.insert(command: Command(player: command.player,
+//                                                             turn: command.turn,
+//                                                             ordinal: command.ordinal,
+//                                                             cost: command.cost))
         // FIXME: Need to re-implement this after the game-player refactor
 //        let buildingTypeId = try buildingTypeDao.getBuildingTypeId(buildingType: command.buildingType,
 //                                                                   theme: command.player.game.theme)

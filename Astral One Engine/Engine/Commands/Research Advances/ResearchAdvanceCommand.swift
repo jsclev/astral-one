@@ -5,21 +5,19 @@ public class ResearchAdvanceCommand: Command {
     
     public init(player: Player,
                 turn: Turn,
-                cost: Int,
                 advanceType: AdvanceType) {
         self.advanceType = advanceType
         
         super.init(player: player,
                    turn: turn,
                    ordinal: Constants.noId,
-                   cost: cost)
+                   cost: 5.0)
     }
     
     public init(commandId: Int,
                 player: Player,
                 turn: Turn,
                 ordinal: Int,
-                cost: Int,
                 advanceType: AdvanceType) {
         self.advanceType = advanceType
         
@@ -27,13 +25,12 @@ public class ResearchAdvanceCommand: Command {
                    player: player,
                    turn: turn,
                    ordinal: ordinal,
-                   cost: cost)
+                   cost: 5.0)
     }
     
     public init(db: Db,
                 player: Player,
                 turn: Turn,
-                cost: Int,
                 advanceType: AdvanceType) {
         self.advanceType = advanceType
         
@@ -41,7 +38,7 @@ public class ResearchAdvanceCommand: Command {
                    player: player,
                    turn: turn,
                    ordinal: Constants.noId,
-                   cost: cost)
+                   cost: 5.0)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-public class Player: ObservableObject, Equatable, CustomStringConvertible {
+public class Player: ObservableObject, Equatable, CustomStringConvertible, Hashable {
     public let playerId: Int
     public let ordinal: Int
     public let name: String
@@ -20,9 +20,8 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible {
     @Published public private (set) var selectedUnit: Unit?
     @Published public private (set) var notificationMsg: String?
     private var cancellable = Set<AnyCancellable>()
-    @Published public var agentMap: [[Score]]
+    @Published public var agentMap: [[Utility]]
     @Published public private (set) var turnStatus = 0
-    
     @Published public var otherCityCreators: [Builder] = []
     
     public init(playerId: Int, name: String, ordinal: Int, map: Map) {
@@ -30,7 +29,7 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible {
         self.ordinal = ordinal
         self.name = name
         self.map = map
-        self.agentMap = (0..<map.width).map { _ in (0..<map.height).map { _ in Score() } }
+        self.agentMap = (0..<map.width).map { _ in (0..<map.height).map { _ in Utility() } }
 
 //        game.map.$cities
 //            .sink(receiveValue: { cities in
@@ -61,6 +60,10 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible {
     
     public var description: String {
         return "{playerId: \(playerId), name: \(name), ordinal: \(ordinal)}"
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(playerId)
     }
     
     public func setNotification(notification: String) {

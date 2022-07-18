@@ -1,18 +1,16 @@
 import Foundation
 
 public class CreateInfantry4Command: Command {
-    public private(set) var infantry4: Infantry4?
+    public private(set) var infantry4: Infantry4
     public let city: City
     
     public convenience init(player: Player,
                             turn: Turn,
-                            cost: Int,
                             city: City) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
                   ordinal: Constants.noId,
-                  cost: cost,
                   city: city)
     }
     
@@ -20,15 +18,19 @@ public class CreateInfantry4Command: Command {
                 player: Player,
                 turn: Turn,
                 ordinal: Int,
-                cost: Int,
                 city: City) {
         self.city = city
+        
+        infantry4 = Infantry4(player: player,
+                              theme: Theme(id: Constants.noId, name: "Standard"),
+                              name: "Infantry4-\(Int.random(in: 0..<500))",
+                              position: city.position)
         
         super.init(commandId: commandId,
                    player: player,
                    turn: turn,
                    ordinal: ordinal,
-                   cost: cost)
+                   cost: infantry4.cost)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,12 +38,7 @@ public class CreateInfantry4Command: Command {
     }
     
     public override func execute() -> CommandResult {
-        infantry4 = Infantry4(player: player,
-                              theme: Theme(id: Constants.noId, name: "Standard"),
-                              name: "Infantry4-\(Int.random(in: 0..<500))",
-                              position: city.position)
-        
-        if commandId == Constants.noId {
+        if persist {
             do {
                 guard let db = database else {
                     return CommandResult(status: CommandStatus.Invalid,
@@ -55,12 +52,8 @@ public class CreateInfantry4Command: Command {
             }
         }
         
-        if let newUnit = infantry4 {
-            player.add(unit: newUnit)
+        player.add(unit: infantry4)
             
-            return CommandResult(status: CommandStatus.Ok, message: "Success")
-        }
-        
-        return CommandResult(status: CommandStatus.Invalid, message: "Some type of error occurred")
+        return CommandResult(status: CommandStatus.Ok, message: "Success")
     }
 }

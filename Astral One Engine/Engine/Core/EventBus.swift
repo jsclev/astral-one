@@ -129,7 +129,6 @@ public class EventBus {
         if let city = tile.city {
             let _ = BuildBuildingCommand(player: game.currentPlayer,
                                          turn: game.currentTurn,
-                                         cost: 1,
                                          city: city,
                                          buildingType: BuildingType.Barracks)
             return
@@ -174,7 +173,6 @@ public class EventBus {
                 else if name == "Research Button" {
                     let cmd = ResearchAdvanceCommand(player: game.currentPlayer,
                                                      turn: game.currentTurn,
-                                                     cost: 1,
                                                      advanceType: advances[advanceIndex])
                     let result = cmd.execute()
                     
@@ -208,7 +206,6 @@ public class EventBus {
                                 
                                 let cityCmd = CreateCityCommand(player: game.currentPlayer,
                                                                 turn: game.currentTurn,
-                                                                cost: 1,
                                                                 cityCreator: unit as! Settler,
                                                                 cityName: "Chicago")
                                 let cityCmdResult = cityCmd.execute()
@@ -222,7 +219,6 @@ public class EventBus {
                                                                            city: city)
                                     let cmd = cityAgent.getNextCommand()
                                     let _ = cmd.execute()
-                                    
                                 }
                             }
                         }
@@ -237,12 +233,12 @@ public class EventBus {
         }
         
         if game.aiDebug {
-            let score = game.currentPlayer.agentMap[tile.position.row][tile.position.col]
-            let formattedNum = String(format: "%.1f", score.value)
+            let utility = game.currentPlayer.agentMap[tile.position.row][tile.position.col]
+            let formattedNum = String(format: "%.1f", utility.score)
 
             print("------------------------------------------------------------------------------")
             print("Score at [\(tile.position.row), \(tile.position.col)] is \(formattedNum):")
-            for reason in score.reasons {
+            for reason in utility.reasons {
                 print("\(reason.description)")
             }
         }
@@ -284,7 +280,6 @@ public class EventBus {
         if let city = player.getCity(at: tile.position) {
             let cmd = CreateEngineerCommand(player: player,
                                             turn: game.currentTurn,
-                                            cost: 1,
                                             city: city)
             let _ = cmd.execute()
         }
@@ -356,7 +351,6 @@ public class EventBus {
         
         let createCityCmd = CreateCityCommand(player: player,
                                               turn: game.currentTurn,
-                                              cost: 0,
                                               cityCreator: settler,
                                               cityName: "New York-\(player.playerId)")
         let result = createCityCmd.execute()

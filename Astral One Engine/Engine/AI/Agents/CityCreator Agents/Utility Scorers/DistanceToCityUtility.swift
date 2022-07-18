@@ -1,15 +1,17 @@
 import Foundation
 
-public class CityResourcesDecorator: AgentDecorator {
+public class DistanceToCityUtility: AgentUtility {
     private let aiPlayer: AIPlayer
+    private let settler: Settler
     private let maxScore: Double
     
-    public init(aiPlayer: AIPlayer, maxScore: Double) {
+    public init(aiPlayer: AIPlayer, cityCreator: Settler, maxScore: Double) {
         self.aiPlayer = aiPlayer
+        self.settler = cityCreator
         self.maxScore = maxScore
     }
     
-    public func getScoreMap() -> [[Score]] {
+    public func getUtilityMap() -> [[Utility]] {
         switch aiPlayer.skillLevel {
         case .One: return getLevel1ScoreMap()
         case .Two: return getLevel1ScoreMap()
@@ -22,45 +24,38 @@ public class CityResourcesDecorator: AgentDecorator {
         }
     }
     
-    private func getLevel1ScoreMap() -> [[Score]] {
-        let scoreMap:[[Score]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Score() } }
-        
+    private func getLevel1ScoreMap() -> [[Utility]] {
+        let scoreMap:[[Utility]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Utility() } }
+
         for row in 0..<aiPlayer.map.height {
             for col in 0..<aiPlayer.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                let distance = settler.position.distance(to: position)
+                var reason: Reason
                 
-                if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
-                        // let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
-                        
-//                        if distance == 1 {
-//                            scoreMap[row][col] = 0.5
-//                        }
-//                        else if distance == 2 {
-//                            scoreMap[row][col] = 1.0
-//                        }
-//                        else if distance == 3 {
-//                            scoreMap[row][col] = 2.0
-//                        }
-//                        else if distance == 4 {
-//                            scoreMap[row][col] = 3.0
-//                        }
-//                        else if distance == 5 {
-//                            scoreMap[row][col] = 10.0
-//                        }
-//                        else {
-//                            scoreMap[row][col] = 1.0
-//                        }
-                    }
-                    else {
-                        // scoreMap[row][col] = 0.0
-                    }
+                if distance < 4 {
+                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
+                                        value: -1.0 * Double(distance),
+                                        message: "\(distance) movement cost to target tile location.")
+                }
+                else if distance >= 4 && distance <= 6 {
+                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
+                                    value: -4.0 * Double(distance),
+                                    message: "\(distance) movement cost to target tile location.")
+                }
+                else if distance >= 7 && distance <= 10 {
+                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
+                                    value: -6.0 * Double(distance),
+                                    message: "\(distance) movement cost to target tile location.")
                 }
                 else {
-                    // scoreMap[row][col] = 0.1
+                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
+                                    value: -7.0 * Double(distance),
+                                    message: "\(distance) movement cost to target tile location.")
                 }
                 
+                scoreMap[row][col].reasons.append(reason)
+
             }
         }
         
@@ -349,35 +344,36 @@ public class CityResourcesDecorator: AgentDecorator {
 //        return scoreMap
 //    }
     
-    private func getLevel8ScoreMap() -> [[Score]] {
-        let scoreMap:[[Score]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Score() } }
-
+    private func getLevel8ScoreMap() -> [[Utility]] {
+        let scoreMap:[[Utility]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Utility() } }
+        
         for row in 0..<aiPlayer.map.height {
             for col in 0..<aiPlayer.map.width {
                 let position = Position(row: row, col: col)
+                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                var reason: Reason
                 
-                if aiPlayer.map.canCreateCity(at: position) {
-                    var foodScore = 0.0
-                    var productionScore = 0.0
-                    var tradeScore = 0.0
-                    let tiles = aiPlayer.getTilesInCityRadius(from: position)
+                if tile.visibility == Visibility.FullyRevealed {
+                    if aiPlayer.map.canCreateCity(at: position) {
+                        let distance = settler.position.distance(to: position)
 
-                    for tile in tiles {
-                        foodScore += Double(tile.food)
-                        productionScore += Double(tile.production)
-                        tradeScore += Double(tile.trade)
+                        reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
+                                        value: check(position: position),
+                                        message: "\(distance) movement cost to target tile location.")
                     }
-                    
-                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.FoodSource,
-                                                             value: foodScore,
-                                                             message: "Total food from all tiles in city radius."))
-                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.ProductionSource,
-                                                             value: productionScore,
-                                                             message: "Total production from all tiles in city radius."))
-                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.TradeSource,
-                                                             value: tradeScore,
-                                                             message: "Total trade from all tiles in city radius."))
+                    else {
+                        reason = Reason(reasonType: ReasonType.InvalidCityLocation,
+                                        value: -maxScore,
+                                        message: "Cannot create city on tile.")
+                    }
                 }
+                else {
+                    reason = Reason(reasonType: ReasonType.TileNotRevealed,
+                                    value: maxScore / 100.0,
+                                    message: "Tile location is not revealed.")
+                }
+                
+                scoreMap[row][col].reasons.append(reason)
             }
         }
         
@@ -385,28 +381,20 @@ public class CityResourcesDecorator: AgentDecorator {
     }
     
     private func check(position: Position) -> Double {
-        var score = 1.0
-        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+        // FIXME: Need to add a parameter that will penalize the score
+        //        if we are on the first few turns of the game.  If it
+        //        is the first turn of the game, for example, we want
+        //        to spend very few turns finding the ideal tile before
+        //        settling our first city.
+        let distance = Double(settler.position.distance(to: position))
         
-        if distance == 1 {
-            score = -4.0 * maxScore
-        }
-        else if distance == 2 {
-            score = -3.0 * maxScore
-        }
-        else if distance == 3 {
-            score = -maxScore
-        }
-        else if distance == 4 {
-            score = -maxScore / 3.0
-        }
-        else if distance == 5 && distance <= 6 {
+        let k = 2.0
+        let m = 2.0
+        var score = pow(distance / m, k)
+        if score > maxScore {
             score = maxScore
         }
-        else {
-            score = 0
-        }
         
-        return score
+        return -score        
     }
 }

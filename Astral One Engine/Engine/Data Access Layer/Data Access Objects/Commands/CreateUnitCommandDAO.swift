@@ -33,99 +33,51 @@ public class CreateUnitCommandDAO: BaseDAO {
     }
     
     public func insert(command: CreateEngineerCommand) throws -> Engineer {
-        if let engineer = command.engineer {
-            let _ = try commandDao.insert(command: Command(player: command.player,
-                                                           turn: command.turn,
-                                                           ordinal: command.ordinal,
-                                                           cost: command.cost))
-            return try unitDao.insert(engineer: engineer)
-        }
-        
-        return Engineer(id: Constants.noId,
-                        player: command.player,
-                        theme: Theme(id: Constants.noId, name: "Standard"),
-                        name: "Engineer",
-                        position: Position.zero)
+        let _ = try commandDao.insert(command: Command(player: command.player,
+                                                       turn: command.turn,
+                                                       ordinal: command.ordinal,
+                                                       cost: command.cost))
+        return try unitDao.insert(engineer: command.engineer)
     }
     
     public func insert(command: CreateExplorerCommand) throws -> Explorer {
-        if let explorer = command.explorer {
-            let _ = try commandDao.insert(command: Command(player: command.player,
-                                                           turn: command.turn,
-                                                           ordinal: command.ordinal,
-                                                           cost: command.cost))
-            return try unitDao.insert(explorer: explorer)
-        }
-        
-        return Explorer(id: Constants.noId,
-                       player: command.player,
-                       theme: Theme(id: Constants.noId, name: "Standard"),
-                       name: "Explorer",
-                       position: Position.zero)
+        let _ = try commandDao.insert(command: Command(player: command.player,
+                                                       turn: command.turn,
+                                                       ordinal: command.ordinal,
+                                                       cost: command.cost))
+        return try unitDao.insert(explorer: command.explorer)
     }
     
     public func insert(command: CreateInfantry1Command) throws -> Infantry1 {
-        if let infantry1 = command.infantry1 {
-            let _ = try commandDao.insert(command: Command(player: command.player,
-                                                           turn: command.turn,
-                                                           ordinal: command.ordinal,
-                                                           cost: command.cost))
-            return try unitDao.insert(infantry1: infantry1)
-        }
-        
-        return Infantry1(id: Constants.noId,
-                        player: command.player,
-                        theme: Theme(id: Constants.noId, name: "Standard"),
-                        name: "Infantry1",
-                        position: Position.zero)
+        let _ = try commandDao.insert(command: Command(player: command.player,
+                                                       turn: command.turn,
+                                                       ordinal: command.ordinal,
+                                                       cost: command.cost))
+        return try unitDao.insert(infantry1: command.infantry1)
     }
     
     public func insert(command: CreateInfantry2Command) throws -> Infantry2 {
-        if let infantry2 = command.infantry2 {
-            let _ = try commandDao.insert(command: Command(player: command.player,
-                                                           turn: command.turn,
-                                                           ordinal: command.ordinal,
-                                                           cost: command.cost))
-            return try unitDao.insert(infantry2: infantry2)
-        }
-        
-        return Infantry2(id: Constants.noId,
-                         player: command.player,
-                         theme: Theme(id: Constants.noId, name: "Standard"),
-                         name: "Infantry2",
-                         position: Position.zero)
+        let _ = try commandDao.insert(command: Command(player: command.player,
+                                                       turn: command.turn,
+                                                       ordinal: command.ordinal,
+                                                       cost: command.cost))
+        return try unitDao.insert(infantry2: command.infantry2)
     }
     
     public func insert(command: CreateInfantry3Command) throws -> Infantry3 {
-        if let infantry3 = command.infantry3 {
-            let _ = try commandDao.insert(command: Command(player: command.player,
-                                                           turn: command.turn,
-                                                           ordinal: command.ordinal,
-                                                           cost: command.cost))
-            return try unitDao.insert(infantry3: infantry3)
-        }
-        
-        return Infantry3(id: Constants.noId,
-                         player: command.player,
-                         theme: Theme(id: Constants.noId, name: "Standard"),
-                         name: "Infantry3",
-                         position: Position.zero)
+        let _ = try commandDao.insert(command: Command(player: command.player,
+                                                       turn: command.turn,
+                                                       ordinal: command.ordinal,
+                                                       cost: command.cost))
+        return try unitDao.insert(infantry3: command.infantry3)
     }
     
     public func insert(command: CreateInfantry4Command) throws -> Infantry4 {
-        if let infantry4 = command.infantry4 {
-            let _ = try commandDao.insert(command: Command(player: command.player,
-                                                           turn: command.turn,
-                                                           ordinal: command.ordinal,
-                                                           cost: command.cost))
-            return try unitDao.insert(infantry4: infantry4)
-        }
-        
-        return Infantry4(id: Constants.noId,
-                         player: command.player,
-                         theme: Theme(id: Constants.noId, name: "Standard"),
-                         name: "Infantry4",
-                         position: Position.zero)
+        let _ = try commandDao.insert(command: Command(player: command.player,
+                                                       turn: command.turn,
+                                                       ordinal: command.ordinal,
+                                                       cost: command.cost))
+        return try unitDao.insert(infantry4: command.infantry4)
     }
     
     private func insert(command: Command, unit: Unit) throws {

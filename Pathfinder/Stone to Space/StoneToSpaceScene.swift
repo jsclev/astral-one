@@ -129,7 +129,12 @@ class StoneToSpaceScene: SKScene {
             view.addGestureRecognizer(gameGestureRecognizer)
         }
         
-        Scenario1.run(game: game)
+        do {
+            try Scenario1.run(game: game)
+        }
+        catch {
+            fatalError("\(error)")
+        }
 
     }
     

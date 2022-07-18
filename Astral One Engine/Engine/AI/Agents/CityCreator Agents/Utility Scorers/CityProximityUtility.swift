@@ -1,6 +1,6 @@
 import Foundation
 
-public class CityProximityDecorator: AgentDecorator {
+public class CityProximityUtility: AgentUtility {
     private let aiPlayer: AIPlayer
     private let maxScore: Double
     
@@ -9,7 +9,7 @@ public class CityProximityDecorator: AgentDecorator {
         self.maxScore = maxScore
     }
     
-    public func getScoreMap() -> [[Score]] {
+    public func getUtilityMap() -> [[Utility]] {
         switch aiPlayer.skillLevel {
         case .One: return getLevel1ScoreMap()
         case .Two: return getLevel1ScoreMap()
@@ -22,8 +22,8 @@ public class CityProximityDecorator: AgentDecorator {
         }
     }
     
-    private func getLevel1ScoreMap() -> [[Score]] {
-        let scoreMap:[[Score]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Score() } }
+    private func getLevel1ScoreMap() -> [[Utility]] {
+        let scoreMap:[[Utility]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Utility() } }
         
         for row in 0..<aiPlayer.map.height {
             for col in 0..<aiPlayer.map.width {
@@ -372,8 +372,8 @@ public class CityProximityDecorator: AgentDecorator {
         return scoreMap
     }
     
-    private func getLevel8ScoreMap() -> [[Score]] {
-        let scoreMap:[[Score]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Score() } }
+    private func getLevel8ScoreMap() -> [[Utility]] {
+        let scoreMap:[[Utility]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Utility() } }
 
         if aiPlayer.map.cities.isEmpty {
             return scoreMap

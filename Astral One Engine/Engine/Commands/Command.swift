@@ -2,17 +2,17 @@ import Foundation
 
 public class Command: CustomStringConvertible {
     public internal(set) var commandId: Int
-    public let persist: Bool
+    internal let persist: Bool
     internal let database: Db?
     public let player: Player
     public let turn: Turn
     public let ordinal: Int
-    public let cost: Int
+    public let cost: Double
     
     internal init(player: Player,
                   turn: Turn,
                   ordinal: Int,
-                  cost: Int) {
+                  cost: Double) {
         self.commandId = Constants.noId
         self.persist = false
         self.database = nil
@@ -26,7 +26,7 @@ public class Command: CustomStringConvertible {
                   player: Player,
                   turn: Turn,
                   ordinal: Int,
-                  cost: Int) {
+                  cost: Double) {
         self.commandId = commandId
         self.persist = false
         self.database = nil
@@ -40,7 +40,7 @@ public class Command: CustomStringConvertible {
                   player: Player,
                   turn: Turn,
                   ordinal: Int,
-                  cost: Int) {
+                  cost: Double) {
         self.commandId = Constants.noId
         self.persist = true
         self.database = db

@@ -6,13 +6,11 @@ public class BuildRoadCommand: Command {
     public convenience init(player: Player,
                             turn: Turn,
                             ordinal: Int,
-                            cost: Int,
                             builder: Builder) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
                   ordinal: ordinal,
-                  cost: cost,
                   builder: builder)
     }
     
@@ -20,7 +18,6 @@ public class BuildRoadCommand: Command {
                 player: Player,
                 turn: Turn,
                 ordinal: Int,
-                cost: Int,
                 builder: Builder) {
         self.builder = builder
         
@@ -28,7 +25,7 @@ public class BuildRoadCommand: Command {
                    player: player,
                    turn: turn,
                    ordinal: ordinal,
-                   cost: cost)
+                   cost: 5.0)
     }
     
     required init?(coder aDecoder: NSCoder) {

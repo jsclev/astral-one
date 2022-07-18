@@ -7,14 +7,12 @@ public class CreateCityCommand: Command {
     
     public convenience init(player: Player,
                             turn: Turn,
-                            cost: Int,
                             cityCreator: Builder,
                             cityName: String) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
                   ordinal: Constants.noId,
-                  cost: cost,
                   cityCreator: cityCreator,
                   cityName: cityName)
     }
@@ -23,7 +21,6 @@ public class CreateCityCommand: Command {
                 player: Player,
                 turn: Turn,
                 ordinal: Int,
-                cost: Int,
                 cityCreator: Builder,
                 cityName: String) {
         self.cityCreator = cityCreator
@@ -33,13 +30,12 @@ public class CreateCityCommand: Command {
                    player: player,
                    turn: turn,
                    ordinal: ordinal,
-                   cost: cost)
+                   cost: 0.0)
     }
     
     public init(db: Db,
                 player: Player,
                 turn: Turn,
-                cost: Int,
                 cityCreator: Builder,
                 cityName: String) {
         self.cityCreator = cityCreator
@@ -49,7 +45,7 @@ public class CreateCityCommand: Command {
                    player: player,
                    turn: turn,
                    ordinal: Constants.noId,
-                   cost: cost)
+                   cost: 0.0)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,7 +53,7 @@ public class CreateCityCommand: Command {
     }
     
     public override func execute() -> CommandResult {
-        if cityCreator.canCreateCity.value > 0 {
+        if cityCreator.canCreateCity.score > 0 {
             city = City(id: Constants.noId,
                         owner: player,
                         theme: Theme(id: Constants.noId, name: "Standard"),

@@ -3,17 +3,17 @@ insert into game
     ('New Rome', (select theme_id from theme where name = 'Stone to Space'), '2022-03-31');
 
 insert into player (game_id, ordinal, name, type, skill_level)
-    values ((select game_id from game where name = 'New Rome'), 1, 'Abe Lincoln', 'AI', 8);
+    values ((select game_id from game where name = 'New Rome'), 0, 'Abe Lincoln', 'AI', 8);
 insert into player (game_id, ordinal, name, type, skill_level)
-    values ((select game_id from game where name = 'New Rome'), 2, 'Cleopatra', 'AI', 1);
+    values ((select game_id from game where name = 'New Rome'), 1, 'Cleopatra', 'AI', 1);
 insert into player (game_id, ordinal, name, type, skill_level)
-    values ((select game_id from game where name = 'New Rome'), 3, 'Genghis Khan', 'AI', 1);
+    values ((select game_id from game where name = 'New Rome'), 2, 'Genghis Khan', 'AI', 1);
 insert into player (game_id, ordinal, name, type, skill_level)
-    values ((select game_id from game where name = 'New Rome'), 4, 'Caesar', 'AI', 1);
+    values ((select game_id from game where name = 'New Rome'), 3, 'Caesar', 'AI', 1);
 insert into player (game_id, ordinal, name, type, skill_level)
-    values ((select game_id from game where name = 'New Rome'), 5, 'Isabella', 'AI', 1);
+    values ((select game_id from game where name = 'New Rome'), 4, 'Isabella', 'AI', 1);
 insert into player (game_id, ordinal, name, type, skill_level)
-    values ((select game_id from game where name = 'New Rome'), 6, 'Henry VIII', 'AI', 1);
+    values ((select game_id from game where name = 'New Rome'), 5, 'Henry VIII', 'AI', 1);
 
 -- Tiles 1 - 10
 -- insert into tile (game_id, map_id, row, col, terrain_id, has_river) values (1, 1, 50, 50, 1, FALSE);

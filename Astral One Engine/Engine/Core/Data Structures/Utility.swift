@@ -1,17 +1,17 @@
 import Foundation
 
-public class Score {
+public class Utility {
     public var reasons: [Reason] = []
     
     public init() {
         
     }
     
-    public var value: Double {
+    public var score: Double {
         var val = 0.0
         
         for reason in reasons {
-            val += reason.value
+            val += reason.score
         }
         
         return val

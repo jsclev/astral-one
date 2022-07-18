@@ -6,14 +6,12 @@ public class BuildBuildingCommand: Command {
     
     public convenience init(player: Player,
                             turn: Turn,
-                            cost: Int,
                             city: City,
                             buildingType: BuildingType) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
                   ordinal: Constants.noId,
-                  cost: cost,
                   city: city,
                   buildingType: buildingType)
     }
@@ -22,7 +20,6 @@ public class BuildBuildingCommand: Command {
                 player: Player,
                 turn: Turn,
                 ordinal: Int,
-                cost: Int,
                 city: City,
                 buildingType: BuildingType) {
         self.city = city
@@ -32,7 +29,7 @@ public class BuildBuildingCommand: Command {
                    player: player,
                    turn: turn,
                    ordinal: ordinal,
-                   cost: cost)
+                   cost: 10.0)
     }
     
     required init?(coder aDecoder: NSCoder) {

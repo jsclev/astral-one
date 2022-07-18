@@ -2,17 +2,15 @@ import Foundation
 
 public class CreateEngineerCommand: Command {
     private let city: City
-    public private(set) var engineer: Engineer?
+    public private(set) var engineer: Engineer
 
     public convenience init(player: Player,
                             turn: Turn,
-                            cost: Int,
                             city: City) {
         self.init(commandId: Constants.noId,
                   player: player,
                   turn: turn,
                   ordinal: Constants.noId,
-                  cost: cost,
                   city: city)
     }
     
@@ -20,15 +18,19 @@ public class CreateEngineerCommand: Command {
                 player: Player,
                 turn: Turn,
                 ordinal: Int,
-                cost: Int,
                 city: City) {
         self.city = city
+        
+        engineer = Engineer(player: player,
+                            theme: Theme(id: Constants.noId, name: "Standard"),
+                            name: "Engineer",
+                            position: city.position)
         
         super.init(commandId: commandId,
                    player: player,
                    turn: turn,
                    ordinal: ordinal,
-                   cost: cost)
+                   cost: engineer.cost)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,12 +38,7 @@ public class CreateEngineerCommand: Command {
     }
     
     public override func execute() -> CommandResult {
-        engineer = Engineer(player: player,
-                            theme: Theme(id: Constants.noId, name: "Standard"),
-                            name: "Engineer",
-                            position: city.position)
-        
-        if commandId == Constants.noId {
+        if persist {
             do {
                 guard let db = database else {
                     return CommandResult(status: CommandStatus.Invalid,
@@ -51,13 +48,11 @@ public class CreateEngineerCommand: Command {
                 engineer = try db.createUnitCommandDao.insert(command: self)
             }
             catch {
-                print(error)
+                fatalError("\(error)")
             }
         }
         
-        if let e = engineer {
-            player.add(unit: e)
-        }
+        player.add(unit: engineer)
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }

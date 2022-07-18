@@ -1,17 +1,15 @@
 import Foundation
 
-public class SettlerMovementDecorator: AgentDecorator {
+public class CityWaterUtility: AgentUtility {
     private let aiPlayer: AIPlayer
-    private let settler: Settler
     private let maxScore: Double
     
-    public init(aiPlayer: AIPlayer, cityCreator: Settler, maxScore: Double) {
+    public init(aiPlayer: AIPlayer, maxScore: Double) {
         self.aiPlayer = aiPlayer
-        self.settler = cityCreator
         self.maxScore = maxScore
     }
     
-    public func getScoreMap() -> [[Score]] {
+    public func getUtilityMap() -> [[Utility]] {
         switch aiPlayer.skillLevel {
         case .One: return getLevel1ScoreMap()
         case .Two: return getLevel1ScoreMap()
@@ -24,46 +22,78 @@ public class SettlerMovementDecorator: AgentDecorator {
         }
     }
     
-    private func getLevel1ScoreMap() -> [[Score]] {
-        let scoreMap:[[Score]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Score() } }
-
+    private func getLevel1ScoreMap() -> [[Utility]] {
+        let scoreMap: [[Utility]] = Array(repeating: Array(repeating: Utility(),
+                                                          count: aiPlayer.map.width),
+                                         count: aiPlayer.map.height)
+        
         for row in 0..<aiPlayer.map.height {
             for col in 0..<aiPlayer.map.width {
                 let position = Position(row: row, col: col)
-                let distance = settler.position.distance(to: position)
-                var reason: Reason
+                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
                 
-                if distance < 4 {
-                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
-                                        value: -1.0 * Double(distance),
-                                        message: "\(distance) movement cost to target tile location.")
-                }
-                else if distance >= 4 && distance <= 6 {
-                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
-                                    value: -4.0 * Double(distance),
-                                    message: "\(distance) movement cost to target tile location.")
-                }
-                else if distance >= 7 && distance <= 10 {
-                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
-                                    value: -6.0 * Double(distance),
-                                    message: "\(distance) movement cost to target tile location.")
+                if tile.visibility == Visibility.FullyRevealed {
+                    if aiPlayer.map.canCreateCity(at: position) {
+                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                        var reason: Reason
+                        
+                        if distance == 1 {
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 0.5,
+                                            message: "Location is 1 tile away from closest city.")
+                        }
+                        else if distance == 2 {
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 1.0,
+                                            message: "2 tiles .")
+                        }
+                        else if distance == 3 {
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 2.0,
+                                            message: "1 tile away from water.")
+                        }
+                        else if distance == 4 {
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 3.0,
+                                            message: "1 tile away from water.")
+                        }
+                        else if distance == 5 {
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 0.5,
+                                            message: "1 tile away from water.")
+                        }
+                        else {
+                            reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                            value: 0.5,
+                                            message: "1 tile away from water.")
+                        }
+                        
+                        scoreMap[row][col].reasons.append(reason)
+                    }
+                    else {
+                        let reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                        value: 0.5,
+                                        message: "1 tile away from water.")
+                        
+                        scoreMap[row][col].reasons.append(reason)
+                    }
                 }
                 else {
-                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
-                                    value: -7.0 * Double(distance),
-                                    message: "\(distance) movement cost to target tile location.")
+                    let reason = Reason(reasonType: ReasonType.ProximityToWater,
+                                        value: 0.5,
+                                        message: "1 tile away from water.")
+                    scoreMap[row][col].reasons.append(reason)
+
                 }
                 
-                scoreMap[row][col].reasons.append(reason)
-
             }
         }
         
         return scoreMap
     }
     
-//    private func getLevel2ScoreMap() -> [[Double]] {
-//        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+//    private func getLevel2ScoreMap() -> [[Score]] {
+//        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
 //                                                          count: aiPlayer.map.width),
 //                                         count: aiPlayer.map.height)
 //
@@ -109,8 +139,8 @@ public class SettlerMovementDecorator: AgentDecorator {
 //        return scoreMap
 //    }
 //
-//    private func getLevel3ScoreMap() -> [[Double]] {
-//        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+//    private func getLevel3ScoreMap() -> [[Score]] {
+//        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
 //                                                          count: aiPlayer.map.width),
 //                                         count: aiPlayer.map.height)
 //
@@ -156,8 +186,8 @@ public class SettlerMovementDecorator: AgentDecorator {
 //        return scoreMap
 //    }
 //
-//    private func getLevel4ScoreMap() -> [[Double]] {
-//        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+//    private func getLevel4ScoreMap() -> [[Score]] {
+//        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
 //                                                          count: aiPlayer.map.width),
 //                                         count: aiPlayer.map.height)
 //
@@ -203,8 +233,8 @@ public class SettlerMovementDecorator: AgentDecorator {
 //        return scoreMap
 //    }
 //
-//    private func getLevel5ScoreMap() -> [[Double]] {
-//        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+//    private func getLevel5ScoreMap() -> [[Score]] {
+//        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
 //                                                          count: aiPlayer.map.width),
 //                                         count: aiPlayer.map.height)
 //
@@ -250,8 +280,8 @@ public class SettlerMovementDecorator: AgentDecorator {
 //        return scoreMap
 //    }
 //
-//    private func getLevel6ScoreMap() -> [[Double]] {
-//        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+//    private func getLevel6ScoreMap() -> [[Score]] {
+//        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
 //                                                          count: aiPlayer.map.width),
 //                                         count: aiPlayer.map.height)
 //
@@ -297,8 +327,8 @@ public class SettlerMovementDecorator: AgentDecorator {
 //        return scoreMap
 //    }
 //
-//    private func getLevel7ScoreMap() -> [[Double]] {
-//        var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
+//    private func getLevel7ScoreMap() -> [[Score]] {
+//        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
 //                                                          count: aiPlayer.map.width),
 //                                         count: aiPlayer.map.height)
 //
@@ -344,36 +374,58 @@ public class SettlerMovementDecorator: AgentDecorator {
 //        return scoreMap
 //    }
     
-    private func getLevel8ScoreMap() -> [[Score]] {
-        let scoreMap:[[Score]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Score() } }
-        
+    private func getLevel8ScoreMap() -> [[Utility]] {
+        let scoreMap:[[Utility]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Utility() } }
+
         for row in 0..<aiPlayer.map.height {
             for col in 0..<aiPlayer.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
-                var reason: Reason
+                let tile = aiPlayer.map.tile(at: position)
                 
                 if tile.visibility == Visibility.FullyRevealed {
                     if aiPlayer.map.canCreateCity(at: position) {
-                        let distance = settler.position.distance(to: position)
+                        if tile.hasRiver {
+                            let reason = Reason(reasonType: ReasonType.OnRiver,
+                                                value: 40.0,
+                                                message: "Tile location is on a river.")
+                            scoreMap[row][col].reasons.append(reason)
+                        }
+                        else {
+                            if aiPlayer.map.accessToOcean(tile: tile) {
+                                let reason = Reason(reasonType: ReasonType.OnCoast,
+                                                    value: 25.0,
+                                                    message: "Tile is a coastal tile.")
+                                scoreMap[row][col].reasons.append(reason)
+                            }
+                            else {
+                                // If this tile is not on a river, and it's not on the coast,
+                                // check the number of river tiles in the city radius, and give
+                                // a bonus for other tiles that have rivers on them.  In general,
+                                // rivers are very good, so settling in a place where there are
+                                // rivers within the city radius, is a good thing.
+                                let cityRadiusTiles = aiPlayer.getTilesInCityRadius(from: position)
+                                var scoreValue = 0.0
 
-                        reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
-                                        value: check(position: position),
-                                        message: "\(distance) movement cost to target tile location.")
+                                
+                                for aTile in cityRadiusTiles {
+                                    if aTile.hasRiver {
+                                        scoreValue += 1.0
+                                    }
+                                }
+                                
+                                if scoreValue > 0.0 {
+                                    let reason = Reason(reasonType: ReasonType.RiverWithinCityRadius,
+                                                        value: 9.0,
+                                                        message: "Tile location has rivers within the city radius.")
+                                    scoreMap[row][col].reasons.append(reason)
+                                }
+
+                            }
+
+                        }
                     }
-                    else {
-                        reason = Reason(reasonType: ReasonType.InvalidCityLocation,
-                                        value: -maxScore,
-                                        message: "Cannot create city on tile.")
-                    }
-                }
-                else {
-                    reason = Reason(reasonType: ReasonType.TileNotRevealed,
-                                    value: maxScore / 100.0,
-                                    message: "Tile location is not revealed.")
                 }
                 
-                scoreMap[row][col].reasons.append(reason)
             }
         }
         
@@ -381,15 +433,28 @@ public class SettlerMovementDecorator: AgentDecorator {
     }
     
     private func check(position: Position) -> Double {
-        let distance = Double(settler.position.distance(to: position))
+        var score = 1.0
+        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
         
-        let k = 2.0
-        let m = 2.0
-        var score = pow(distance / m, k)
-        if score > maxScore {
+        if distance == 1 {
+            score = -4.0 * maxScore
+        }
+        else if distance == 2 {
+            score = -3.0 * maxScore
+        }
+        else if distance == 3 {
+            score = -maxScore
+        }
+        else if distance == 4 {
+            score = -maxScore / 3.0
+        }
+        else if distance == 5 && distance <= 6 {
             score = maxScore
         }
+        else {
+            score = 0.0
+        }
         
-        return -score        
+        return score
     }
 }

@@ -71,7 +71,7 @@ public class PlayerDAO: BaseDAO {
                                           difficultyLevel: DifficultyLevel.Easy,
                                           strategy: AIStrategy(offense: 0.5,
                                                                defense: 0.5,
-                                                               cityQuantity: 0.5))
+                                                               cityQuantity: 0.85))
                     let units = try unitDao.getUnits(player: player)
                     for unit in units {
                         player.add(unit: unit)
