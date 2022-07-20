@@ -62,7 +62,7 @@ public class ResearchAdvanceCommand: Command {
         
         player.add(advanceName: "\(advanceType)")
         
-        print("Researched \(advanceType)")
+        print("\(player.name) (\(player.ordinal)) researched \(advanceType)")
         
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }

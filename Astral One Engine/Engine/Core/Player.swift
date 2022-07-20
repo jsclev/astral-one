@@ -34,7 +34,6 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
 //        game.map.$cities
 //            .sink(receiveValue: { cities in
 //                if let city = cities.last {
-//                    print("----------------------------------------------")
 //                    if city.owner == self {
 //                        print("I own \(city.name)")
 //                    }

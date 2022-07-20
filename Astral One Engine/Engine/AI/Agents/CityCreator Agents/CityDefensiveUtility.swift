@@ -1,6 +1,10 @@
 import Foundation
 
 public class CityDefensiveUtility: AgentUtility {
+    // TODO: Need to add a bonus score if the tile sits on a location
+    //       that provides a single lane between two bodies of water,
+    //       or if the tile is a chokepoint of some kind.  Those
+    //       locations can be good defensive locations.
     private let aiPlayer: AIPlayer
     private let maxScore: Double
     

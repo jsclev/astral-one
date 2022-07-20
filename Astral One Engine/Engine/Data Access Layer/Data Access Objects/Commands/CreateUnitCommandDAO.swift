@@ -13,23 +13,15 @@ public class CreateUnitCommandDAO: BaseDAO {
     }
     
     public func insert(command: CreateSettlerCommand) throws -> Settler {
-        if let settler = command.settler {
-            let newCommand = try commandDao.insert(command: Command(player: command.player,
-                                                                    turn: command.turn,
-                                                                    ordinal: command.ordinal,
-                                                                    cost: command.cost))
-            let newSettler = try unitDao.insert(settler: settler)
-            
-            try insert(command: newCommand, unit: newSettler)
-            
-            return newSettler
-        }
+        let newCommand = try commandDao.insert(command: Command(player: command.player,
+                                                                turn: command.turn,
+                                                                ordinal: command.ordinal,
+                                                                cost: command.cost))
+        let newSettler = try unitDao.insert(settler: command.settler)
         
-        return Settler(id: Constants.noId,
-                       player: command.player,
-                       theme: Theme(id: Constants.noId, name: "Standard"),
-                       name: "Settler",
-                       position: Position.zero)
+        try insert(command: newCommand, unit: newSettler)
+        
+        return newSettler
     }
     
     public func insert(command: CreateEngineerCommand) throws -> Engineer {

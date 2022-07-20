@@ -134,8 +134,6 @@ public class UnitsMapLayer {
         
         playerNumNode.fontColor = color
         
-        print("Rendered unit \(unit.name), owned by \(unit.player.name)")
-        
         scene.addChild(playerNumNode)
     }
 }

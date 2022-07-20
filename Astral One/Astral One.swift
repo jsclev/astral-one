@@ -52,13 +52,6 @@ struct GameView: View {
                 
                 scene.gameCamera.position = CGPoint(x: startCameraPosition.x - (value.translation.width * mapViewModel.scale),
                                                     y: startCameraPosition.y + (value.translation.height * mapViewModel.scale))
-                
-                // Get the offset between the start location and the camera's position
-                //                print("--------------------------------------------------------------------------")
-                //                print("translation: [\(value.translation.width), \(value.translation.height)]")
-                //                print("finger location: \(value.location)")
-                //                print("start location: \(value.startLocation)")
-                //                print("Camera position: \(scene.gameCamera.position)")
             }
             .onEnded { value in
                 let temp = (value.predictedEndTranslation.width - value.translation.width)
@@ -73,8 +66,6 @@ struct GameView: View {
                 if duration < 0.8 {
                     duration = 0.8
                 }
-                //                print("magnitude: \(magnitude)")
-                //                print("duration: \(duration)")
                 
                 let moveAction = SKAction.move(to: CGPoint(x: startCameraPosition.x - (value.predictedEndTranslation.width * mapViewModel.scale),
                                                            y: startCameraPosition.y + (value.predictedEndTranslation.height * mapViewModel.scale)),

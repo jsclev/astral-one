@@ -13,7 +13,7 @@ public class SpawnPositionsAgent {
         var center = Position.zero
         
         let resourcesUtility = SpawnResourcesUtility(game: game, maxScore: 100.0)
-        let waterUtility = SpawnWaterUtility(game: game, maxScore: 100.0)
+        let waterUtility = SpawnWaterUtility(game: game, maxScore: 60.0)
         
         let resourcesMap = resourcesUtility.getUtilityMap()
         let waterMap = waterUtility.getUtilityMap()
@@ -59,8 +59,8 @@ public class SpawnPositionsAgent {
                 }
             }
             
-            if player.ordinal == 1 {
-                game.currentPlayer.agentMap = proximityMap
+            if player.ordinal == 4 {
+                game.currentPlayer.agentMap = utilityMap
             }
             
             startingPositions[player] = getBestPosition(utilityMap: utilityMap)

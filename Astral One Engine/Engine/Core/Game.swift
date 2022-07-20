@@ -42,7 +42,6 @@ public class Game: ObservableObject {
             player.$turnStatus
                 .dropFirst()
                 .sink(receiveValue: { turnStatus in
-                    print(player.name + " turn status: \(turnStatus)")
                     if turnStatus == 1 {
                         self.bumpPlayerTurn()
                     }

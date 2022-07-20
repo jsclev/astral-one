@@ -26,18 +26,11 @@ public class SpawnProximityUtility: AgentUtility {
     }
     
     private func getReason(position: Position) -> Reason {
-//        let distanceToCenter = Double(position.distance(to: center))
-//        return Reason(reasonType: ReasonType.ProximityToNearestCity,
-//                      value: -distanceToCenter,
-//                      message: "Total food from all tiles in city radius.")
         var penalty = -1.0 * maxScore
         
         if game.map.canCreateCity(at: position) {
-            let distanceToCenter = Double(position.distance(to: center))
-            print("-----------------------------------------------------------------")
-            print("Can create city")
-            print(distanceToCenter)
             // We'll use a quadratic curve for the penalty
+            let distanceToCenter = Double(position.distance(to: center))
             let m = 3.0
             let k = 4.0
             penalty = -1.0 * pow((distanceToCenter / m), k)
@@ -49,9 +42,6 @@ public class SpawnProximityUtility: AgentUtility {
             return Reason(reasonType: ReasonType.ProximityToNearestCity,
                           value: penalty,
                           message: "Total food from all tiles in city radius.")
-        }
-        else {
-            // print("Cannot create city...")
         }
         
         return Reason(reasonType: ReasonType.InvalidCityLocation,

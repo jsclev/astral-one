@@ -1,13 +1,18 @@
 import Foundation
 
 public class CreateSettlerCommand: Command {
-    public private(set) var settler: Settler?
+    public private(set) var settler: Settler
     public let tile: Tile
     
     public init(player: Player,
                 turn: Turn,
                 tile: Tile) {
         self.tile = tile
+        
+        settler = Settler(player: player,
+                          theme: Theme(id: Constants.noId, name: "Standard"),
+                          name: "Settler-\(Int.random(in: 0..<500))",
+                          position: tile.position)
         
         super.init(commandId: Constants.noId,
                    player: player,
@@ -36,8 +41,12 @@ public class CreateSettlerCommand: Command {
                 player: Player,
                 turn: Turn,
                 tile: Tile) {
-        self.settler = nil
         self.tile = tile
+        
+        settler = Settler(player: player,
+                          theme: Theme(id: Constants.noId, name: "Standard"),
+                          name: "Settler-\(Int.random(in: 0..<500))",
+                          position: tile.position)
         
         super.init(db: db,
                    player: player,
@@ -53,11 +62,6 @@ public class CreateSettlerCommand: Command {
     public override func execute() -> CommandResult {
         if persist {
             do {
-                settler = Settler(player: player,
-                                  theme: Theme(id: Constants.noId, name: "Standard"),
-                                  name: "Settler-\(Int.random(in: 0..<500))",
-                                  position: tile.position)
-                
                 guard let db = database else {
                     return CommandResult(status: CommandStatus.Invalid,
                                          message: "Some type of error occurred")
@@ -70,13 +74,9 @@ public class CreateSettlerCommand: Command {
             }
         }
         
-        if let newSettler = settler {
-            player.add(cityCreator: newSettler)
+        player.add(cityCreator: settler)
             
-            return CommandResult(status: CommandStatus.Ok, message: "Success")
-        }
-        
-        return CommandResult(status: CommandStatus.Invalid, message: "Some type of error occurred")
+        return CommandResult(status: CommandStatus.Ok, message: "Success")
     }
     
 }

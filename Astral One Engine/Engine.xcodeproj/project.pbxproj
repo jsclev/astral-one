@@ -789,18 +789,6 @@
 			path = "Research Advances";
 			sourceTree = "<group>";
 		};
-		5291353E2868CA30006B9E27 /* Utility Scorers */ = {
-			isa = PBXGroup;
-			children = (
-				5291353F2868CA51006B9E27 /* CityProximityUtility.swift */,
-				5215E8CB286EB95E00D97549 /* CityResourcesUtility.swift */,
-				52D78CFF287F9000006AF649 /* CityDefensiveUtility.swift */,
-				52219094286CBD9C0040EAF0 /* DistanceToCityUtility.swift */,
-				5215E8C7286D68A700D97549 /* CityWaterUtility.swift */,
-			);
-			path = "Utility Scorers";
-			sourceTree = "<group>";
-		};
 		5293BC38280E77BA001DE2F3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1011,8 +999,12 @@
 		52D1A3D62852D4510046B219 /* CityCreator Agents */ = {
 			isa = PBXGroup;
 			children = (
-				5291353E2868CA30006B9E27 /* Utility Scorers */,
 				5236B41228450C1C006DF7E6 /* SettlerAgent.swift */,
+				5291353F2868CA51006B9E27 /* CityProximityUtility.swift */,
+				5215E8CB286EB95E00D97549 /* CityResourcesUtility.swift */,
+				52D78CFF287F9000006AF649 /* CityDefensiveUtility.swift */,
+				5215E8C7286D68A700D97549 /* CityWaterUtility.swift */,
+				52219094286CBD9C0040EAF0 /* DistanceToCityUtility.swift */,
 			);
 			path = "CityCreator Agents";
 			sourceTree = "<group>";

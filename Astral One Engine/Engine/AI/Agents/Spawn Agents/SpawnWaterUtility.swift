@@ -21,14 +21,14 @@ public class SpawnWaterUtility: AgentUtility {
                 if game.map.canCreateCity(at: position) {
                     if tile.hasRiver {
                         let reason = Reason(reasonType: ReasonType.OnRiver,
-                                            value: maxScore / 1.75,
+                                            value: maxScore / 2.0,
                                             message: "Tile location is on a river.")
                         scoreMap[row][col].reasons.append(reason)
                     }
                         
                     if game.map.accessToOcean(tile: tile) {
                         let reason = Reason(reasonType: ReasonType.OnCoast,
-                                            value: maxScore / 2.5,
+                                            value: maxScore / 3.0,
                                             message: "Tile is a coastal tile.")
                         scoreMap[row][col].reasons.append(reason)
                     }
@@ -44,7 +44,7 @@ public class SpawnWaterUtility: AgentUtility {
                     for aTile in cityRadiusTiles {
                         if aTile.position != position {
                             if aTile.hasRiver {
-                                riverScore += maxScore / 25.0
+                                riverScore += maxScore / 30.0
                             }
                         }
                     }

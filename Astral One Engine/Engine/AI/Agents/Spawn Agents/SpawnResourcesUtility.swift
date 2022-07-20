@@ -31,6 +31,7 @@ public class SpawnResourcesUtility: AgentUtility {
                         totalScore += Double(tile.food + tile.production + tile.trade)
                         
                     }
+                    totalScore *= totalScore
                     
                     if totalScore > maxScore {
                         scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.BasicResources,
