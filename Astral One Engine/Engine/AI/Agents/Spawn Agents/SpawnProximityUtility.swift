@@ -1,14 +1,15 @@
 import Foundation
+import CoreGraphics
 
 public class SpawnProximityUtility: AgentUtility {
     private let game: Game
-    private let aiPlayer: AIPlayer
     private let maxScore: Double
+    private let center: Position
     
-    public init(game: Game, aiPlayer: AIPlayer, maxScore: Double) {
+    public init(game: Game, maxScore: Double, center: Position) {
         self.game = game
-        self.aiPlayer = aiPlayer
         self.maxScore = maxScore
+        self.center = center
     }
     
     public func getUtilityMap() -> [[Utility]] {
@@ -17,58 +18,44 @@ public class SpawnProximityUtility: AgentUtility {
         for row in 0..<game.map.height {
             for col in 0..<game.map.width {
                 let position = Position(row: row, col: col)
-                
-                if aiPlayer.map.canCreateCity(at: position) {
-                    var foodScore = 0.0
-                    var productionScore = 0.0
-                    var tradeScore = 0.0
-                    let tiles = aiPlayer.getTilesInCityRadius(from: position)
-                    
-                    for tile in tiles {
-                        foodScore += Double(tile.food)
-                        productionScore += Double(tile.production)
-                        tradeScore += Double(tile.trade)
-                    }
-                    
-                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.FoodSource,
-                                                             value: foodScore,
-                                                             message: "Total food from all tiles in city radius."))
-                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.ProductionSource,
-                                                             value: productionScore,
-                                                             message: "Total production from all tiles in city radius."))
-                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.TradeSource,
-                                                             value: tradeScore,
-                                                             message: "Total trade from all tiles in city radius."))
-                }
+                scoreMap[row][col].reasons.append(getReason(position: position))
             }
         }
         
         return scoreMap
     }
     
-    private func check(position: Position) -> Double {
-        var score = 1.0
-        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+    private func getReason(position: Position) -> Reason {
+//        let distanceToCenter = Double(position.distance(to: center))
+//        return Reason(reasonType: ReasonType.ProximityToNearestCity,
+//                      value: -distanceToCenter,
+//                      message: "Total food from all tiles in city radius.")
+        var penalty = -1.0 * maxScore
         
-        if distance == 1 {
-            score = -4.0 * maxScore
-        }
-        else if distance == 2 {
-            score = -3.0 * maxScore
-        }
-        else if distance == 3 {
-            score = -maxScore
-        }
-        else if distance == 4 {
-            score = -maxScore / 3.0
-        }
-        else if distance == 5 && distance <= 6 {
-            score = maxScore
+        if game.map.canCreateCity(at: position) {
+            let distanceToCenter = Double(position.distance(to: center))
+            print("-----------------------------------------------------------------")
+            print("Can create city")
+            print(distanceToCenter)
+            // We'll use a quadratic curve for the penalty
+            let m = 3.0
+            let k = 4.0
+            penalty = -1.0 * pow((distanceToCenter / m), k)
+            
+            if penalty < -maxScore {
+                penalty = -maxScore
+            }
+            
+            return Reason(reasonType: ReasonType.ProximityToNearestCity,
+                          value: penalty,
+                          message: "Total food from all tiles in city radius.")
         }
         else {
-            score = 0
+            // print("Cannot create city...")
         }
         
-        return score
+        return Reason(reasonType: ReasonType.InvalidCityLocation,
+                      value: penalty,
+                      message: "Invalid city location.")
     }
 }

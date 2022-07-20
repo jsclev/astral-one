@@ -55,7 +55,5 @@ public class CreateInfantry1Command: Command {
         player.add(unit: infantry1)
             
         return CommandResult(status: CommandStatus.Ok, message: "Success")
-        
-        return CommandResult(status: CommandStatus.Invalid, message: "Some type of error occurred")
     }
 }

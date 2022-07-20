@@ -214,7 +214,6 @@ public class MapDAO: BaseDAO {
                 
                 if tile.terrain.id == Constants.noId {
                     continue
-                    // fatalError("Unknown terrain at position [\(row), \(col)].")
                 }
                 
                 sqlite3_bind_int(mainStmt, gameIdCol, Int32(gameId))

@@ -347,43 +347,7 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
 //        map.add(tile: tile)
     }
     
-    public func getTilesInCityRadius(from: Position) -> [Tile] {
-        var cityRadiusTiles: [Tile] = []
-        var positions: [Position] = []
-        
-        let startRow = from.row - 2
-        let endRow = from.row + 2
-        let startCol = from.col - 2
-        let endCol = from.col + 2
-        
-        for row in startRow...endRow {
-            for col in startCol...endCol {
-                // We don't add the outer corners in the city radius
-                if row == startRow && col == startCol ||
-                    row == endRow && col == startCol ||
-                    row == startRow && col == endCol ||
-                    row == endRow && col == endCol {
-                    continue
-                }
-                else {
-                    positions.append(Position(row: row, col: col))
-                }
-            }
-        }
-        
-        positions = positions.filter{
-            $0.row >= 0 &&
-            $0.row < map.height &&
-            $0.col >= 0 &&
-            $0.col < map.width
-        }
-        
-        for position in positions {
-            cityRadiusTiles.append(map.tile(at: position))
-        }
-        
-        return cityRadiusTiles
-    }
+    
     
     public func clone() -> Player {
         let copy = Player(playerId: playerId,

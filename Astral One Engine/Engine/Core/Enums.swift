@@ -250,7 +250,6 @@ public enum TerrainType {
     case Plains
     case Swamp
     case Tundra
-    case Unknown
 }
 
 public enum Visibility {

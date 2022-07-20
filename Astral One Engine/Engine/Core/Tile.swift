@@ -101,12 +101,6 @@ public class Tile: Hashable, ObservableObject {
             trade = 0
             defenseBonus = 1.0
             baseMovementCost = 1.0
-        case TerrainType.Unknown:
-            food = 0
-            production = 0
-            trade = 0
-            defenseBonus = 0.0
-            baseMovementCost = 1.0
         }
     }
     
@@ -306,12 +300,6 @@ public class Tile: Hashable, ObservableObject {
             }
 
             defenseBonus = 1.0
-            baseMovementCost = 1.0
-        case TerrainType.Unknown:
-            food = 0
-            production = 0
-            trade = 0
-            defenseBonus = 0.0
             baseMovementCost = 1.0
         }
         

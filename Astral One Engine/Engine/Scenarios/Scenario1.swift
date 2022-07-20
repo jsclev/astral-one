@@ -9,8 +9,18 @@ public class Scenario1 {
     }
     
     public static func run(game: Game) throws {
+        game.map.revealAllTiles()
         let spawnAgent = try SpawnPositionsAgent(game: game)
         let spawnPositions = try spawnAgent.getSpawnPositions()
+    
+        for player in game.players {
+            if let spawnPosition = spawnPositions[player] {
+                var msg = "Spawn position for \(player.name) (\(player.ordinal)) is "
+                msg += "[\(spawnPosition.position.row), \(spawnPosition.position.col)] "
+                msg += "with score \(spawnPosition.utility.score)"
+                print(msg)
+            }
+        }
         
         for player in game.players {
             if let spawnPosition = spawnPositions[player] {
@@ -20,19 +30,23 @@ public class Scenario1 {
                                                tile: player.map.tile(at: spawnPosition.position))
                 errorCheck(cmd.execute())
             }
+            else {
+                fatalError("No spawn position for \(player.name).")
+            }
         }
         
-        let settler1 = game.currentPlayer.cityCreators[0] as! Settler
-        let settlerAgent = try SettlerAgent(player: game.currentPlayer,
-                                            settler: settler1)
-        if let positionUtility = try settlerAgent.getSettleCityPosition() {
-            let createCity1 = CreateCityCommand(db: game.db,
-                                                player: game.currentPlayer,
-                                                turn: game.currentTurn,
-                                                cityCreator: settler1,
-                                                cityName: "Chicago")
-            errorCheck(createCity1.execute())
-        }
+//        let settler1 = game.currentPlayer.cityCreators[0] as! Settler
+//        let settlerAgent = try SettlerAgent(player: game.currentPlayer,
+//                                            settler: settler1)
+//        if let positionUtility = try settlerAgent.getSettleCityPosition() {
+//            print("Creating city at \(positionUtility.position)")
+//            let createCity1 = CreateCityCommand(db: game.db,
+//                                                player: game.currentPlayer,
+//                                                turn: game.currentTurn,
+//                                                cityCreator: settler1,
+//                                                cityName: "Chicago")
+//            errorCheck(createCity1.execute())
+//        }
         
         //        print("Running commands for player \(game.currentPlayer.name)")
         //        let startTile = game.currentPlayer.map.tile(at: Position(row: 32, col: 36))

@@ -28,13 +28,11 @@ public class TerrainFactory {
             for terrain in terrains { if terrain.type == TerrainType.Swamp { return terrain} }
         case .Tundra:
             for terrain in terrains { if terrain.type == TerrainType.Tundra { return terrain} }
-        case .Unknown:
-            for terrain in terrains { if terrain.type == TerrainType.Unknown { return terrain } }
         }
         
         return Terrain(id: 0,
                        tiledId: 0,
-                       name: "Unknown terrain",
-                       type: TerrainType.Unknown)
+                       name: "Non-playable terrain",
+                       type: TerrainType.Glacier)
     }
 }

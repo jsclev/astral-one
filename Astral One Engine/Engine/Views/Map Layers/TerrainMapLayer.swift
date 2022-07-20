@@ -66,6 +66,10 @@ public class TerrainMapLayer {
         let tileGrpName = tile.terrain.name
         
         layer1Terrain.setTileGroup(grassTile, forColumn: col, row: row)
+        
+//        if let tileGroup = tileSet.tileGroups.first(where: { $0.name == "Fog" }) {
+//            layer2Terrain.setTileGroup(tileGroup, forColumn: 2, row: 10)
+//        }
 
         if tile.visibility == Visibility.FullyRevealed {
             if let tileGroup = tileSet.tileGroups.first(where: { $0.name == tileGrpName }) {

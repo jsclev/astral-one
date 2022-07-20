@@ -29,7 +29,7 @@ public class AIDebugMapLayer {
                 let position = Position(row: row, col: col)
                 
                 let labelNode = labelNodes[row][col]
-                labelNode.fontSize = 12
+                labelNode.fontSize = 16
                 labelNode.horizontalAlignmentMode = .center
                 labelNode.position = CGPoint(x: mapView.getCenterOf(position: position).x,
                                              y: mapView.getCenterOf(position: position).y - 25.0)
@@ -42,13 +42,8 @@ public class AIDebugMapLayer {
                 for row in 0..<self.player.map.height {
                     for col in 0..<self.player.map.width {
                         let utility = agentMap[row][col]
-                        var text = ""
                         
-                        if utility.score > 0.0 {
-                            text = String(format: "%.1f", utility.score)
-                        }
-                        
-                        self.labelNodes[row][col].text = text
+                        self.labelNodes[row][col].text = String(format: "%.1f", utility.score)
                     }
                 }
             })

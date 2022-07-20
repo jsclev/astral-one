@@ -403,7 +403,7 @@ public class CityWaterUtility: AgentUtility {
                                 // a bonus for other tiles that have rivers on them.  In general,
                                 // rivers are very good, so settling in a place where there are
                                 // rivers within the city radius, is a good thing.
-                                let cityRadiusTiles = aiPlayer.getTilesInCityRadius(from: position)
+                                let cityRadiusTiles = aiPlayer.map.getTilesInCityRadius(from: position)
                                 var scoreValue = 0.0
 
                                 

@@ -51,8 +51,6 @@ public class Game: ObservableObject {
             
             player.$cityCreators
                 .sink(receiveValue: { cityCreators in
-                    print(player.name + " city creators changed.")
-                    
                     for playerToUpdate in self.players {
                         if playerToUpdate != player {
                             for cityCreator in cityCreators {

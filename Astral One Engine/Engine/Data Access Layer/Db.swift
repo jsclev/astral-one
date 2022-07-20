@@ -122,8 +122,11 @@ public class Db {
     
     public func getGameBy(gameId: Int, themeId: Int) throws -> Game {
         let theme = try themeDao.getBy(themeId: themeId)
-        let map = try mapDao.get(gameId: gameId)
         let players = try playerDao.getPlayers(gameId: gameId)
+        
+        let map = try mapDao.get(gameId: gameId)
+        map.revealAllTiles()
+        
         return try Game(gameId: gameId, theme: theme, players: players, map: map, db: self)
     }
     

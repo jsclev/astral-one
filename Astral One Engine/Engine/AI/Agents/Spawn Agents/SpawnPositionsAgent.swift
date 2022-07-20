@@ -1,87 +1,91 @@
 import Foundation
+import CoreGraphics
 
 public class SpawnPositionsAgent {
-    internal let game: Game
-    internal var playerScorers: [AIPlayer:[AgentUtility]] = [:]
+    private let game: Game
     
     public init(game: Game) throws {
         self.game = game
-        
-        for player in game.players {
-            playerScorers[player] = [
-                SpawnResourcesUtility(game: game, aiPlayer: player, maxScore: 10.0),
-                SpawnWaterUtility(game: game, aiPlayer: player, maxScore: 10.0),
-                SpawnProximityUtility(game: game, aiPlayer: player, maxScore: 10.0)
-            ]
-        }
     }
     
     public func getSpawnPositions() throws -> [AIPlayer:PositionUtility] {
         var startingPositions: [AIPlayer:PositionUtility] = [:]
+        var center = Position.zero
+        
+        let resourcesUtility = SpawnResourcesUtility(game: game, maxScore: 100.0)
+        let waterUtility = SpawnWaterUtility(game: game, maxScore: 100.0)
+        
+        let resourcesMap = resourcesUtility.getUtilityMap()
+        let waterMap = waterUtility.getUtilityMap()
+        
+        //game.currentPlayer.agentMap = waterMap
         
         for player in game.players {
-            let utilityMap = try getCityUtilityMap(player: player)
-            var positions: [PositionUtility] = []
-            
-            var maxScore = 0.0
-            
-            for row in 0..<player.map.height {
-                for col in 0..<player.map.width {
-                    if utilityMap[row][col].score > maxScore {
-                        maxScore = utilityMap[row][col].score
-                        
-                        positions.append(PositionUtility(position: Position(row: row, col: col),
-                                                         utility: utilityMap[row][col]))
-                    }
+            let utilityMap:[[Utility]] = (0..<game.map.width).map {
+                _ in (0..<game.map.height).map {
+                    _ in Utility()
                 }
             }
             
-            if let bestPosition = positions.last {
-                bestPosition.utility.reasons = bestPosition.utility.reasons.sorted(by: {
-                    $0.score > $1.score
-                })
-                
-                print("Best position for \(player.name) is \(bestPosition.position)")
-                
-                startingPositions[player] = bestPosition
+            if player.ordinal == 0 {
+                center = Position(row: 27, col: 15)
             }
+            else if player.ordinal == 1 {
+                center = Position(row: 40, col: 27)
+            }
+            else if player.ordinal == 2 {
+                center = Position(row: 54, col: 42)
+            }
+            else if player.ordinal == 3 {
+                center = Position(row: 15, col: 27)
+            }
+            else if player.ordinal == 4 {
+                center = Position(row: 28, col: 40)
+            }
+            else if player.ordinal == 5 {
+                center = Position(row: 42, col: 54)
+            }
+            
+            let proximityUtility = SpawnProximityUtility(game: game,
+                                                         maxScore: 5000,
+                                                         center: center)
+            let proximityMap = proximityUtility.getUtilityMap()
+            
+            for row in 0..<game.map.height {
+                for col in 0..<game.map.width {
+                    utilityMap[row][col].reasons += resourcesMap[row][col].reasons
+                    utilityMap[row][col].reasons += waterMap[row][col].reasons
+                    utilityMap[row][col].reasons += proximityMap[row][col].reasons
+                }
+            }
+            
+            if player.ordinal == 1 {
+                game.currentPlayer.agentMap = proximityMap
+            }
+            
+            startingPositions[player] = getBestPosition(utilityMap: utilityMap)
         }
         
         return startingPositions
     }
-    
-    private func getCityUtilityMap(player: AIPlayer) throws -> [[Utility]] {
-        let utilityMap:[[Utility]] = (0..<player.map.width).map {
-            _ in (0..<player.map.height).map {
-                _ in Utility()
-            }
-        }
         
-        if let scorers = playerScorers[player] {
-            let utilityMap0 = scorers[0].getUtilityMap()
-            let utilityMap1 = scorers[1].getUtilityMap()
-            let utilityMap2 = scorers[2].getUtilityMap()
-            
-            // TODO: Add scorer to boost river tiles if there are few rivers on the map.
-            // TODO: Add scorer to boost coastal tiles if there are few ocean tiles on the map.
-            
-            for row in 0..<game.map.height {
-                for col in 0..<game.map.width {
-                    utilityMap[row][col].reasons += utilityMap0[row][col].reasons
-                    utilityMap[row][col].reasons += utilityMap1[row][col].reasons
-                    utilityMap[row][col].reasons += utilityMap2[row][col].reasons
-                    
-                    //                    if utilityMap[row][col].reasons.count > 0 {
-                    //                        let utility = utilityMap[row][col]
-                    //                        print(utility)
-                    //                    }
+    private func getBestPosition(utilityMap: [[Utility]]) -> PositionUtility {
+        var bestPosition = PositionUtility(position: Position(row: 0, col: 0),
+                                           utility: utilityMap[0][0])
+        var maxScore = -Double.greatestFiniteMagnitude
+
+        for row in 0..<game.map.height {
+            for col in 0..<game.map.width {
+                if utilityMap[row][col].score > maxScore {
+                    maxScore = utilityMap[row][col].score
+
+                    bestPosition = PositionUtility(position: Position(row: row, col: col),
+                                                     utility: utilityMap[row][col])
                 }
             }
-            
-            player.agentMap = utilityMap
         }
         
-        return utilityMap
+        return bestPosition
     }
-    
+        
 }

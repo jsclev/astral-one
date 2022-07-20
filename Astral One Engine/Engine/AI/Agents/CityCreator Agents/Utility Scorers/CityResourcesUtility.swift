@@ -360,7 +360,7 @@ public class CityResourcesUtility: AgentUtility {
                     var foodScore = 0.0
                     var productionScore = 0.0
                     var tradeScore = 0.0
-                    let tiles = aiPlayer.getTilesInCityRadius(from: position)
+                    let tiles = aiPlayer.map.getTilesInCityRadius(from: position)
 
                     for tile in tiles {
                         foodScore += Double(tile.food)

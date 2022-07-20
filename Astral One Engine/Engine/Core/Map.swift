@@ -24,7 +24,7 @@ public class Map: ObservableObject {
         let nullTerrain = Terrain(id: Constants.noId,
                                   tiledId: Constants.noId,
                                   name: "",
-                                  type: TerrainType.Unknown)
+                                  type: TerrainType.Glacier)
         self.grid = Array(repeating: Array(repeating: Tile(position: nullPosition,
                                                            terrain: nullTerrain,
                                                            hasRiver: false),
@@ -37,7 +37,7 @@ public class Map: ObservableObject {
                                            terrain: Terrain(id: Constants.noId,
                                                             tiledId: Constants.noId,
                                                             name: "Null",
-                                                            type: TerrainType.Unknown),
+                                                            type: TerrainType.Glacier),
                                                             hasRiver: false)
             }
         }
@@ -151,30 +151,44 @@ public class Map: ObservableObject {
         
         return minDistance
     }
-        
-//    public func add(player: Player) {
-//        players.append(player)
-//
-//        player.$units
-//            .dropFirst()
-//            .sink(receiveValue: { units in
-//                if let newUnit = units.last {
-//                    do {
-//                        try self.tile(row: newUnit.position.row,
-//                                      col: newUnit.position.col).add(unit: newUnit)
-//                    }
-//                    catch {
-//                        fatalError("\(error)")
-//                    }
-//                }
-//            })
-//            .store(in: &cancellable)
-//
-//    }
     
-//    public func add(unit: Unit) throws {
-//        try tile(row: unit.position.row, col: unit.position.col).add(unit: unit)
-//    }
+    public func getTilesInCityRadius(from: Position) -> [Tile] {
+        var cityRadiusTiles: [Tile] = []
+        var positions: [Position] = []
+        
+        let startRow = from.row - 2
+        let endRow = from.row + 2
+        let startCol = from.col - 2
+        let endCol = from.col + 2
+        
+        for row in startRow...endRow {
+            for col in startCol...endCol {
+                // We don't add the outer corners in the city radius
+                if row == startRow && col == startCol ||
+                    row == endRow && col == startCol ||
+                    row == startRow && col == endCol ||
+                    row == endRow && col == endCol {
+                    continue
+                }
+                else {
+                    positions.append(Position(row: row, col: col))
+                }
+            }
+        }
+        
+        positions = positions.filter{
+            $0.row >= 0 &&
+            $0.row < height &&
+            $0.col >= 0 &&
+            $0.col < width
+        }
+        
+        for position in positions {
+            cityRadiusTiles.append(tile(at: position))
+        }
+        
+        return cityRadiusTiles
+    }
     
     public func getGrid() -> [[Tile]] {
         return grid

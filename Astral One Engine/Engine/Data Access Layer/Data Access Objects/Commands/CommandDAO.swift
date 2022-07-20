@@ -11,48 +11,49 @@ public class CommandDAO: BaseDAO {
     }
     
     public func getCommands(player: Player) -> [Command] {
-        var cmds: [Command] = []
-        
-        var stmt: OpaquePointer?
-        let sql = """
-            SELECT
-                c.command_id,
-                c.ordinal,
-                t.turn_id,
-                t.ordinal,
-                t.year,
-                t.display_text,
-                p.player_id,
-                cuc.command_id AS cuc_command_id,
-                cuc_unit.unit_id AS cuc_unit_id,
-                cuc_tile.tile_id AS cuc_tile_id,
-                cuc_tile.row AS cuc_row,
-                cuc_tile.col AS cuc_col,
-                muc.command_id AS muc_command_id,
-                muc.unit_id AS muc_unit_id
-            FROM
-                command c
-            INNER JOIN
-                turn t ON t.turn_id = c.turn_id
-            INNER JOIN
-                player p ON p.player_id = c.player_id
-            LEFT OUTER JOIN
-                create_unit_command cuc ON cuc.command_id = c.command_id
-            LEFT OUTER JOIN
-                unit cuc_unit ON cuc_unit.unit_id = cuc.unit_id
-            LEFT OUTER JOIN
-                unit_type cuc_unit_type ON cuc_unit_type.unit_type_id = cuc_unit.unit_type_id
-            LEFT OUTER JOIN
-                tile cuc_tile ON cuc_tile.tile_id = cuc.tile_id
-            LEFT OUTER JOIN
-                move_unit_command muc ON muc.command_id = c.command_id
-            LEFT OUTER JOIN
-                unit muc_unit ON muc_unit.unit_id = muc.unit_id
-            WHERE
-                c.player_id = \(player.playerId)
-            ORDER BY
-                t.ordinal, p.ordinal, c.ordinal
-        """
+        return []
+//        var cmds: [Command] = []
+//
+//        var stmt: OpaquePointer?
+//        let sql = """
+//            SELECT
+//                c.command_id,
+//                c.ordinal,
+//                t.turn_id,
+//                t.ordinal,
+//                t.year,
+//                t.display_text,
+//                p.player_id,
+//                cuc.command_id AS cuc_command_id,
+//                cuc_unit.unit_id AS cuc_unit_id,
+//                cuc_tile.tile_id AS cuc_tile_id,
+//                cuc_tile.row AS cuc_row,
+//                cuc_tile.col AS cuc_col,
+//                muc.command_id AS muc_command_id,
+//                muc.unit_id AS muc_unit_id
+//            FROM
+//                command c
+//            INNER JOIN
+//                turn t ON t.turn_id = c.turn_id
+//            INNER JOIN
+//                player p ON p.player_id = c.player_id
+//            LEFT OUTER JOIN
+//                create_unit_command cuc ON cuc.command_id = c.command_id
+//            LEFT OUTER JOIN
+//                unit cuc_unit ON cuc_unit.unit_id = cuc.unit_id
+//            LEFT OUTER JOIN
+//                unit_type cuc_unit_type ON cuc_unit_type.unit_type_id = cuc_unit.unit_type_id
+//            LEFT OUTER JOIN
+//                tile cuc_tile ON cuc_tile.tile_id = cuc.tile_id
+//            LEFT OUTER JOIN
+//                move_unit_command muc ON muc.command_id = c.command_id
+//            LEFT OUTER JOIN
+//                unit muc_unit ON muc_unit.unit_id = muc.unit_id
+//            WHERE
+//                c.player_id = \(player.playerId)
+//            ORDER BY
+//                t.ordinal, p.ordinal, c.ordinal
+//        """
         
 //        if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
 //            while sqlite3_step(stmt) == SQLITE_ROW {
@@ -125,7 +126,7 @@ public class CommandDAO: BaseDAO {
         
 //        sqlite3_finalize(stmt)
         
-        return cmds
+//        return cmds
     }
     
     public func insert(command: Command) throws -> Command {
