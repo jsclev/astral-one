@@ -350,3 +350,8 @@ public enum AdvanceType {
     case Wheel
     case Writing
 }
+
+public enum PlayerType {
+    case AI
+    case Human
+}

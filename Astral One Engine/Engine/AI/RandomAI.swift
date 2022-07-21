@@ -12,9 +12,9 @@ fileprivate struct DefenseDiff {
 
 public class RandomAI {
     private let game: Game
-    private let player: AIPlayer
+    private let player: Player
     
-    public init(game: Game, player: AIPlayer) {
+    public init(game: Game, player: Player) {
         self.game = game
         self.player = player
     }

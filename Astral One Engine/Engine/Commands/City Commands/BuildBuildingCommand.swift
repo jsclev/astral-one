@@ -3,6 +3,8 @@ import Foundation
 public class BuildBuildingCommand: Command {
     public let city: City
     public let buildingType: BuildingType
+    private var currentDisplayText: String
+    private var currentDebugText: String
     
     public convenience init(player: Player,
                             turn: Turn,
@@ -25,6 +27,9 @@ public class BuildBuildingCommand: Command {
         self.city = city
         self.buildingType = buildingType
         
+        self.currentDisplayText = "Ready to build \(buildingType)."
+        self.currentDebugText = "Ready to build \(buildingType)."
+        
         super.init(commandId: commandId,
                    player: player,
                    turn: turn,
@@ -34,6 +39,14 @@ public class BuildBuildingCommand: Command {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override var displayText: String {
+        return currentDisplayText
+    }
+    
+    public override var debugText: String {
+        return currentDebugText
     }
     
     public override func execute() -> CommandResult {
@@ -54,11 +67,14 @@ public class BuildBuildingCommand: Command {
             
             city.build(buildingType)
             
+            currentDisplayText = "\(player.name) built \(buildingType) in \(city.name)."
+            currentDebugText = "\(player.name) built \(buildingType) in \(city.name)."
+
             return CommandResult(status: CommandStatus.Ok, message: "Success")
         }
         
         return CommandResult(status: CommandStatus.Invalid,
-                             message: "Cannot build \(buildingType) in the city \(city.name).")
+                             message: "Cannot build \(buildingType) in \(city.name).")
     }
     
 }

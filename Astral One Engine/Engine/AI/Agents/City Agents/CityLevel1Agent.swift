@@ -2,7 +2,7 @@ import Foundation
 
 public class CityLevel1Agent: CityAgent {
     
-    public override init(game: Game, player: AIPlayer, city: City) throws {
+    public override init(game: Game, player: Player, city: City) throws {
         try super.init(game: game, player: player, city: city)
     }
     

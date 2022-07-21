@@ -1,9 +1,10 @@
 import Foundation
 
 public class ScienceAgent {
-    private let player: AIPlayer
+    private let player: Player
     
-    public init(player: AIPlayer) {
+    public init(player: Player) {
         self.player = player
     }
+    
 }

@@ -1,16 +1,16 @@
 import Foundation
 
 public class CityProximityUtility: AgentUtility {
-    private let aiPlayer: AIPlayer
+    private let player: Player
     private let maxScore: Double
     
-    public init(aiPlayer: AIPlayer, maxScore: Double) {
-        self.aiPlayer = aiPlayer
+    public init(player: Player, maxScore: Double) {
+        self.player = player
         self.maxScore = maxScore
     }
     
     public func getUtilityMap() -> [[Utility]] {
-        switch aiPlayer.skillLevel {
+        switch player.skillLevel {
         case .One: return getLevel1ScoreMap()
         case .Two: return getLevel1ScoreMap()
         case .Three: return getLevel1ScoreMap()
@@ -23,16 +23,16 @@ public class CityProximityUtility: AgentUtility {
     }
     
     private func getLevel1ScoreMap() -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Utility() } }
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Utility() } }
         
-        for row in 0..<aiPlayer.map.height {
-            for col in 0..<aiPlayer.map.width {
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
-                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                    if player.map.canCreateCity(at: position) {
+                        let distance = player.map.getDistanceToNearestCity(position: position)
                         var reason: Reason
                         
                         if distance == 1 {
@@ -91,18 +91,19 @@ public class CityProximityUtility: AgentUtility {
     }
     
     private func getLevel2ScoreMap() -> [[Double]] {
+        // FIXME: This is the wrong way to initialize a 2d array
         var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
-                                                          count: aiPlayer.map.width),
-                                         count: aiPlayer.map.height)
+                                                          count: player.map.width),
+                                         count: player.map.height)
         
-        for row in 0..<aiPlayer.map.height {
-            for col in 0..<aiPlayer.map.width {
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
-                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                    if player.map.canCreateCity(at: position) {
+                        let distance = player.map.getDistanceToNearestCity(position: position)
                         
                         if distance == 1 {
                             scoreMap[row][col] = 0.5
@@ -139,17 +140,17 @@ public class CityProximityUtility: AgentUtility {
     
     private func getLevel3ScoreMap() -> [[Double]] {
         var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
-                                                          count: aiPlayer.map.width),
-                                         count: aiPlayer.map.height)
+                                                          count: player.map.width),
+                                         count: player.map.height)
         
-        for row in 0..<aiPlayer.map.height {
-            for col in 0..<aiPlayer.map.width {
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
-                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                    if player.map.canCreateCity(at: position) {
+                        let distance = player.map.getDistanceToNearestCity(position: position)
                         
                         if distance == 1 {
                             scoreMap[row][col] = 0.5
@@ -186,17 +187,17 @@ public class CityProximityUtility: AgentUtility {
     
     private func getLevel4ScoreMap() -> [[Double]] {
         var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
-                                                          count: aiPlayer.map.width),
-                                         count: aiPlayer.map.height)
+                                                          count: player.map.width),
+                                         count: player.map.height)
         
-        for row in 0..<aiPlayer.map.height {
-            for col in 0..<aiPlayer.map.width {
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
-                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                    if player.map.canCreateCity(at: position) {
+                        let distance = player.map.getDistanceToNearestCity(position: position)
                         
                         if distance == 1 {
                             scoreMap[row][col] = 0.5
@@ -233,17 +234,17 @@ public class CityProximityUtility: AgentUtility {
     
     private func getLevel5ScoreMap() -> [[Double]] {
         var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
-                                                          count: aiPlayer.map.width),
-                                         count: aiPlayer.map.height)
+                                                          count: player.map.width),
+                                         count: player.map.height)
         
-        for row in 0..<aiPlayer.map.height {
-            for col in 0..<aiPlayer.map.width {
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
-                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                    if player.map.canCreateCity(at: position) {
+                        let distance = player.map.getDistanceToNearestCity(position: position)
                         
                         if distance == 1 {
                             scoreMap[row][col] = 0.5
@@ -280,17 +281,17 @@ public class CityProximityUtility: AgentUtility {
     
     private func getLevel6ScoreMap() -> [[Double]] {
         var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
-                                                          count: aiPlayer.map.width),
-                                         count: aiPlayer.map.height)
+                                                          count: player.map.width),
+                                         count: player.map.height)
         
-        for row in 0..<aiPlayer.map.height {
-            for col in 0..<aiPlayer.map.width {
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
-                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                    if player.map.canCreateCity(at: position) {
+                        let distance = player.map.getDistanceToNearestCity(position: position)
                         
                         if distance == 1 {
                             scoreMap[row][col] = 0.5
@@ -327,17 +328,17 @@ public class CityProximityUtility: AgentUtility {
     
     private func getLevel7ScoreMap() -> [[Double]] {
         var scoreMap: [[Double]] = Array(repeating: Array(repeating: 0.0,
-                                                          count: aiPlayer.map.width),
-                                         count: aiPlayer.map.height)
+                                                          count: player.map.width),
+                                         count: player.map.height)
         
-        for row in 0..<aiPlayer.map.height {
-            for col in 0..<aiPlayer.map.width {
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
-                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                    if player.map.canCreateCity(at: position) {
+                        let distance = player.map.getDistanceToNearestCity(position: position)
                         
                         if distance == 1 {
                             scoreMap[row][col] = 0.5
@@ -373,19 +374,19 @@ public class CityProximityUtility: AgentUtility {
     }
     
     private func getLevel8ScoreMap() -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Utility() } }
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Utility() } }
 
-        if aiPlayer.map.cities.isEmpty {
+        if player.map.cities.isEmpty {
             return scoreMap
         }
         
-        for row in 0..<aiPlayer.map.height {
-            for col in 0..<aiPlayer.map.width {
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
+                    if player.map.canCreateCity(at: position) {
                         let reason = Reason(reasonType: ReasonType.ProximityToNearestCity,
                                             value: check(position: position),
                                             message: "Proximity to nearest city.")
@@ -416,7 +417,7 @@ public class CityProximityUtility: AgentUtility {
     
     private func check(position: Position) -> Double {
         var score = 1.0
-        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+        let distance = player.map.getDistanceToNearestCity(position: position)
 
         if distance <= 1 {
             score = -maxScore

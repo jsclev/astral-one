@@ -3,9 +3,13 @@ import Combine
 
 public class Player: ObservableObject, Equatable, CustomStringConvertible, Hashable {
     public let playerId: Int
+    public let type: PlayerType
     public let ordinal: Int
     public let name: String
     public let map: Map
+    public let skillLevel: SkillLevel
+    public let difficultyLevel: DifficultyLevel
+    public let strategy: AIStrategy
     public let hud = HUDConfig()
     @Published public var cityCreators: [Builder] = []
     @Published public var units: [Unit] = []
@@ -24,37 +28,49 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
     @Published public private (set) var turnStatus = 0
     @Published public var otherCityCreators: [Builder] = []
     
-    public init(playerId: Int, name: String, ordinal: Int, map: Map) {
+    public init(playerId: Int,
+                type: PlayerType,
+                name: String,
+                ordinal: Int,
+                map: Map,
+                skillLevel: SkillLevel,
+                difficultyLevel: DifficultyLevel,
+                strategy: AIStrategy) {
         self.playerId = playerId
+        self.type = type
         self.ordinal = ordinal
         self.name = name
         self.map = map
+        self.skillLevel = skillLevel
+        self.difficultyLevel = difficultyLevel
+        self.strategy = strategy
+        
         self.agentMap = (0..<map.width).map { _ in (0..<map.height).map { _ in Utility() } }
-
-//        game.map.$cities
-//            .sink(receiveValue: { cities in
-//                if let city = cities.last {
-//                    if city.owner == self {
-//                        print("I own \(city.name)")
-//                    }
-//                    else {
-//                        print("I do not own \(city.name)")
-//                    }
-//
-//                    if map.isFullyVisible(position: city.position) {
-//                        print("I can see \(city.name)")
-//                    }
-//                    else {
-//                        print("I can not see \(city.name)")
-//                    }
-//
-//                    if city.owner != self && map.isFullyVisible(position: city.position) {
-//                        map.add(city: city)
-//                        print("Added \"\(city.name)\" to my map. Owned by \(city.owner.playerId).")
-//                    }
-//                }
-//            })
-//            .store(in: &cancellable)
+        
+        //        game.map.$cities
+        //            .sink(receiveValue: { cities in
+        //                if let city = cities.last {
+        //                    if city.owner == self {
+        //                        print("I own \(city.name)")
+        //                    }
+        //                    else {
+        //                        print("I do not own \(city.name)")
+        //                    }
+        //
+        //                    if map.isFullyVisible(position: city.position) {
+        //                        print("I can see \(city.name)")
+        //                    }
+        //                    else {
+        //                        print("I can not see \(city.name)")
+        //                    }
+        //
+        //                    if city.owner != self && map.isFullyVisible(position: city.position) {
+        //                        map.add(city: city)
+        //                        print("Added \"\(city.name)\" to my map. Owned by \(city.owner.playerId).")
+        //                    }
+        //                }
+        //            })
+        //            .store(in: &cancellable)
     }
     
     public var description: String {
@@ -136,19 +152,19 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
         return Advance(type: AdvanceType.Error, parents: [])
     }
     
-//    public func getActions() -> [[Action]] {
-//        for action in availableResearchActions {
-//            var plan: [Action] = []
-//
-//            action.execute()
-//            plan.append(action)
-//
-//            while plan.count <= maxActionPlanLength {
-//
-//            }
-//
-//        }
-//    }
+    //    public func getActions() -> [[Action]] {
+    //        for action in availableResearchActions {
+    //            var plan: [Action] = []
+    //
+    //            action.execute()
+    //            plan.append(action)
+    //
+    //            while plan.count <= maxActionPlanLength {
+    //
+    //            }
+    //
+    //        }
+    //    }
     
     public func startResearching(advanceType: AdvanceType) {
         if let advance = techTree.advances[advanceType] {
@@ -235,19 +251,19 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
     internal func create(city: City, using: Builder) {
         map.add(city: city)
         
-//        for action in availableCityActions {
-//            city.addAvailable(action: action)
-//        }
-
+        //        for action in availableCityActions {
+        //            city.addAvailable(action: action)
+        //        }
+        
         // City builders are consumed when the city is built
         if let index = cityCreators.lastIndex(of: using) {
             cityCreators.remove(at: index)
         }
-
-//        if let index = units.lastIndex(of: using) {
-//            units.remove(at: index)
-//        }
-
+        
+        //        if let index = units.lastIndex(of: using) {
+        //            units.remove(at: index)
+        //        }
+        
         // City builders become the first population point of new cities
         city.addPopulation(amount: 1)
     }
@@ -340,32 +356,37 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
     }
     
     public func revealTile(at: Position) {
-//        let tile = game.map.tile(at: at)
-//        tile.set(visibility: Visibility.FullyRevealed)
-//
-//        map.add(tile: tile)
+        //        let tile = game.map.tile(at: at)
+        //        tile.set(visibility: Visibility.FullyRevealed)
+        //
+        //        map.add(tile: tile)
     }
     
     
     
     public func clone() -> Player {
+        // FIXME: Need to clone the map, right now only the pointer is being cloned
         let copy = Player(playerId: playerId,
+                          type: type,
                           name: name,
                           ordinal: ordinal,
-                          map: map)
-//        copy.cities = []
-//        copy.units = []
-//        copy.availableCommands = []
-//        copy.cityBuilders = []
-//        copy.availableResearchActions = []
+                          map: map,
+                          skillLevel: skillLevel,
+                          difficultyLevel: difficultyLevel,
+                          strategy: strategy)
+        //        copy.cities = []
+        //        copy.units = []
+        //        copy.availableCommands = []
+        //        copy.cityBuilders = []
+        //        copy.availableResearchActions = []
         
         for unit in units {
             copy.units.append(unit.clone())
         }
         
-//        for city in cities {
-//            copy.cities.append(city.clone())
-//        }
+        //        for city in cities {
+        //            copy.cities.append(city.clone())
+        //        }
         
         for action in availableResearchActions {
             copy.addAvailable(researchAction: action.clone() as! ResearchAction)
@@ -380,7 +401,7 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
                 return false
             }
         }
-            
+        
         return true
     }
     
@@ -395,18 +416,18 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
     }
     
     public func has(buildingType: BuildingType, in: City) -> Bool {
-//        switch buildingType {
-//        case BuildingType.Barracks:
-//            return barracks != nil
-//        case BuildingType.CityWalls:
-//            return walls != nil
-//        case BuildingType.Granary:
-//            return granary != nil
-//        case BuildingType.Harbor:
-//            return harbor != nil
-//        default:
-//            return false
-//        }
+        //        switch buildingType {
+        //        case BuildingType.Barracks:
+        //            return barracks != nil
+        //        case BuildingType.CityWalls:
+        //            return walls != nil
+        //        case BuildingType.Granary:
+        //            return granary != nil
+        //        case BuildingType.Harbor:
+        //            return harbor != nil
+        //        default:
+        //            return false
+        //        }
         return false
     }
     

@@ -51,15 +51,22 @@ public class Command: CustomStringConvertible {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("init(coder:) has not been implemented.")
     }
     
     public var description: String {
-        return "{id: \(commandId), turn: \(turn), " +
-        "player: \(player), ordinal: \(ordinal)}"
+        return "{id: \(commandId), turn: \(turn), player: \(player), ordinal: \(ordinal)}"
+    }
+    
+    public var displayText: String {
+        fatalError("displayText property must be implemented by \(String(describing: self)) class.")
+    }
+    
+    public var debugText: String {
+        fatalError("debugText property must be implemented by \(String(describing: self)) class.")
     }
     
     public func execute() -> CommandResult {
-        fatalError("execute() must be implemented in subclasses.")
+        fatalError("execute() must be implemented by subclasses.")
     }
 }

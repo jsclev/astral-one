@@ -86,33 +86,69 @@ public class UnitDAO: BaseDAO {
     }
     
     public func insert(settler: Settler) throws -> Settler {
-        var unitId = Constants.noId
-        var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
+        var rowId: Int = -1
+        var mainStmt: OpaquePointer?
+        var rowIdStmt: OpaquePointer?
         
-        // FIXME: Need to fix the unit_type_id here
-        sql += "("
-        sql += getSql(val: settler.player.playerId, postfix: ", ")
-        sql += getSql(val: Constants.noId, postfix: ", ")
-        sql += getSql(val: settler.player.map.tile(at: settler.position).id, postfix: "")
-        sql += "), "
+        // FIXME: Need to provide correct unit type id
+        let sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES (?, ?, ?)"
+        let rowIdSql = "SELECT last_insert_rowid()"
+        let playerId = Int32(settler.player.playerId)
+        let unitTypeId = Int32(Constants.noId)
+        let tileId = Int32(settler.player.map.tile(at: settler.position).id)
         
-        sql = getCleanedSql(sql)
-        
-        do {
-            unitId = try insertOneRow(sql: sql)
-        }
-        catch SQLiteError.Prepare(let message) {
-            var errMsg = "Failed to compile SQL to insert rows into the unit table.  "
-            errMsg += "SQLite error message: " + message
+        if sqlite3_prepare_v2(conn, sql, -1, &mainStmt, nil) == SQLITE_OK {
+            // TODO Need to fix the truncation of the Int id
+            guard sqlite3_bind_int(mainStmt, 1, playerId) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind player_id")
+            }
+            
+            guard sqlite3_bind_int(mainStmt, 2, unitTypeId) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind unit_type_id")
+            }
+            
+            guard sqlite3_bind_int(mainStmt, 3, tileId) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind tile_id")
+            }
+        } else {
+            let sqliteMsg = String(cString: sqlite3_errmsg(conn)!)
+            sqlite3_finalize(mainStmt)
+            
+            var errMsg = "Failed to prepare the statement \"" + sql + "\".  "
+            errMsg += "SQLite error message: " + sqliteMsg
             throw DbError.Db(message: errMsg)
         }
-        catch SQLiteError.Step(let message) {
-            var errMsg = "Failed to execute SQL to insert rows into the unit table.  "
-            errMsg += "SQLite error message: " + message
+        
+        if sqlite3_prepare_v2(conn, rowIdSql, -1, &rowIdStmt, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(conn)!)
+            sqlite3_finalize(rowIdStmt)
+            
+            throw SQLiteError.Prepare(message: errMsg)
+        }
+        
+        if sqlite3_step(mainStmt) == SQLITE_DONE {
+            if sqlite3_step(rowIdStmt) == SQLITE_ROW {
+                rowId = getInt(stmt: rowIdStmt, colIndex: 0)
+            }
+            else {
+                let errMsg = String(cString: sqlite3_errmsg(conn)!)
+                sqlite3_finalize(rowIdStmt)
+                
+                throw SQLiteError.Step(message: errMsg)
+            }
+        }
+        else {
+            let sqliteMsg = String(cString: sqlite3_errmsg(conn)!)
+            sqlite3_finalize(mainStmt)
+            
+            let errMsg = "Could not insert row into \(table) table.  " + sqliteMsg
             throw DbError.Db(message: errMsg)
         }
         
-        return Settler(id: unitId,
+        sqlite3_finalize(rowIdStmt)
+        sqlite3_finalize(mainStmt)
+        
+        return Settler(id: rowId,
                        player: settler.player,
                        theme: settler.theme,
                        name: settler.name,
@@ -155,7 +191,7 @@ public class UnitDAO: BaseDAO {
     public func insert(explorer: Explorer) throws -> Explorer {
         var unitId = Constants.noId
         var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
-
+        
         // FIXME: Need to fix the unit_type_id here
         sql += "("
         sql += getSql(val: explorer.player.playerId, postfix: ", ")
@@ -189,7 +225,7 @@ public class UnitDAO: BaseDAO {
     public func insert(infantry1: Infantry1) throws -> Infantry1 {
         var unitId = Constants.noId
         var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
-
+        
         // FIXME: Need to fix the unit_type_id and tile_id here
         sql += "("
         sql += getSql(val: infantry1.player.playerId, postfix: ", ")
@@ -223,7 +259,7 @@ public class UnitDAO: BaseDAO {
     public func insert(infantry2: Infantry2) throws -> Infantry2 {
         var unitId = Constants.noId
         var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
-
+        
         // FIXME: Need to fix the unit_type_id and tile_id here
         sql += "("
         sql += getSql(val: infantry2.player.playerId, postfix: ", ")
@@ -257,7 +293,7 @@ public class UnitDAO: BaseDAO {
     public func insert(infantry3: Infantry3) throws -> Infantry3 {
         var unitId = Constants.noId
         var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
-
+        
         // FIXME: Need to fix the unit_type_id and tile_id here
         sql += "("
         sql += getSql(val: infantry3.player.playerId, postfix: ", ")
@@ -291,7 +327,7 @@ public class UnitDAO: BaseDAO {
     public func insert(infantry4: Infantry4) throws -> Infantry4 {
         var unitId = Constants.noId
         var sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES "
-
+        
         // FIXME: Need to fix the unit_type_id here
         sql += "("
         sql += getSql(val: infantry4.player.playerId, postfix: ", ")
@@ -386,7 +422,14 @@ public class UnitDAO: BaseDAO {
                          row: Int,
                          col: Int) -> Unit {
         let map = Map(mapId: 1, width: 1, height: 1)
-        let player = Player(playerId: 1, name: "", ordinal: 1, map: map)
+        let player = Player(playerId: 1,
+                            type: PlayerType.AI,
+                            name: "",
+                            ordinal: 1,
+                            map: map,
+                            skillLevel: SkillLevel.One,
+                            difficultyLevel: DifficultyLevel.Easy,
+                            strategy: AIStrategy())
         
         switch typeName {
         case "Air1":

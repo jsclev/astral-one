@@ -1,16 +1,16 @@
 import Foundation
 
 public class CityWaterUtility: AgentUtility {
-    private let aiPlayer: AIPlayer
+    private let player: Player
     private let maxScore: Double
     
-    public init(aiPlayer: AIPlayer, maxScore: Double) {
-        self.aiPlayer = aiPlayer
+    public init(player: Player, maxScore: Double) {
+        self.player = player
         self.maxScore = maxScore
     }
     
     public func getUtilityMap() -> [[Utility]] {
-        switch aiPlayer.skillLevel {
+        switch player.skillLevel {
         case .One: return getLevel1ScoreMap()
         case .Two: return getLevel1ScoreMap()
         case .Three: return getLevel1ScoreMap()
@@ -24,17 +24,17 @@ public class CityWaterUtility: AgentUtility {
     
     private func getLevel1ScoreMap() -> [[Utility]] {
         let scoreMap: [[Utility]] = Array(repeating: Array(repeating: Utility(),
-                                                          count: aiPlayer.map.width),
-                                         count: aiPlayer.map.height)
+                                                          count: player.map.width),
+                                         count: player.map.height)
         
-        for row in 0..<aiPlayer.map.height {
-            for col in 0..<aiPlayer.map.width {
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
-                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                    if player.map.canCreateCity(at: position) {
+                        let distance = player.map.getDistanceToNearestCity(position: position)
                         var reason: Reason
                         
                         if distance == 1 {
@@ -94,17 +94,17 @@ public class CityWaterUtility: AgentUtility {
     
 //    private func getLevel2ScoreMap() -> [[Score]] {
 //        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
-//                                                          count: aiPlayer.map.width),
-//                                         count: aiPlayer.map.height)
+//                                                          count: player.map.width),
+//                                         count: player.map.height)
 //
-//        for row in 0..<aiPlayer.map.height {
-//            for col in 0..<aiPlayer.map.width {
+//        for row in 0..<player.map.height {
+//            for col in 0..<player.map.width {
 //                let position = Position(row: row, col: col)
-//                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+//                let tile = player.map.tile(at: Position(row: row, col: col))
 //
 //                if tile.visibility == Visibility.FullyRevealed {
-//                    if aiPlayer.map.canCreateCity(at: position) {
-//                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+//                    if player.map.canCreateCity(at: position) {
+//                        let distance = player.map.getDistanceToNearestCity(position: position)
 //
 //                        if distance == 1 {
 //                            scoreMap[row][col] = 0.5
@@ -141,17 +141,17 @@ public class CityWaterUtility: AgentUtility {
 //
 //    private func getLevel3ScoreMap() -> [[Score]] {
 //        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
-//                                                          count: aiPlayer.map.width),
-//                                         count: aiPlayer.map.height)
+//                                                          count: player.map.width),
+//                                         count: player.map.height)
 //
-//        for row in 0..<aiPlayer.map.height {
-//            for col in 0..<aiPlayer.map.width {
+//        for row in 0..<player.map.height {
+//            for col in 0..<player.map.width {
 //                let position = Position(row: row, col: col)
-//                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+//                let tile = player.map.tile(at: Position(row: row, col: col))
 //
 //                if tile.visibility == Visibility.FullyRevealed {
-//                    if aiPlayer.map.canCreateCity(at: position) {
-//                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+//                    if player.map.canCreateCity(at: position) {
+//                        let distance = player.map.getDistanceToNearestCity(position: position)
 //
 //                        if distance == 1 {
 //                            scoreMap[row][col] = 0.5
@@ -188,17 +188,17 @@ public class CityWaterUtility: AgentUtility {
 //
 //    private func getLevel4ScoreMap() -> [[Score]] {
 //        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
-//                                                          count: aiPlayer.map.width),
-//                                         count: aiPlayer.map.height)
+//                                                          count: player.map.width),
+//                                         count: player.map.height)
 //
-//        for row in 0..<aiPlayer.map.height {
-//            for col in 0..<aiPlayer.map.width {
+//        for row in 0..<player.map.height {
+//            for col in 0..<player.map.width {
 //                let position = Position(row: row, col: col)
-//                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+//                let tile = player.map.tile(at: Position(row: row, col: col))
 //
 //                if tile.visibility == Visibility.FullyRevealed {
-//                    if aiPlayer.map.canCreateCity(at: position) {
-//                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+//                    if player.map.canCreateCity(at: position) {
+//                        let distance = player.map.getDistanceToNearestCity(position: position)
 //
 //                        if distance == 1 {
 //                            scoreMap[row][col] = 0.5
@@ -235,17 +235,17 @@ public class CityWaterUtility: AgentUtility {
 //
 //    private func getLevel5ScoreMap() -> [[Score]] {
 //        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
-//                                                          count: aiPlayer.map.width),
-//                                         count: aiPlayer.map.height)
+//                                                          count: player.map.width),
+//                                         count: player.map.height)
 //
-//        for row in 0..<aiPlayer.map.height {
-//            for col in 0..<aiPlayer.map.width {
+//        for row in 0..<player.map.height {
+//            for col in 0..<player.map.width {
 //                let position = Position(row: row, col: col)
-//                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+//                let tile = player.map.tile(at: Position(row: row, col: col))
 //
 //                if tile.visibility == Visibility.FullyRevealed {
-//                    if aiPlayer.map.canCreateCity(at: position) {
-//                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+//                    if player.map.canCreateCity(at: position) {
+//                        let distance = player.map.getDistanceToNearestCity(position: position)
 //
 //                        if distance == 1 {
 //                            scoreMap[row][col] = 0.5
@@ -282,17 +282,17 @@ public class CityWaterUtility: AgentUtility {
 //
 //    private func getLevel6ScoreMap() -> [[Score]] {
 //        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
-//                                                          count: aiPlayer.map.width),
-//                                         count: aiPlayer.map.height)
+//                                                          count: player.map.width),
+//                                         count: player.map.height)
 //
-//        for row in 0..<aiPlayer.map.height {
-//            for col in 0..<aiPlayer.map.width {
+//        for row in 0..<player.map.height {
+//            for col in 0..<player.map.width {
 //                let position = Position(row: row, col: col)
-//                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+//                let tile = player.map.tile(at: Position(row: row, col: col))
 //
 //                if tile.visibility == Visibility.FullyRevealed {
-//                    if aiPlayer.map.canCreateCity(at: position) {
-//                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+//                    if player.map.canCreateCity(at: position) {
+//                        let distance = player.map.getDistanceToNearestCity(position: position)
 //
 //                        if distance == 1 {
 //                            scoreMap[row][col] = 0.5
@@ -329,17 +329,17 @@ public class CityWaterUtility: AgentUtility {
 //
 //    private func getLevel7ScoreMap() -> [[Score]] {
 //        var scoreMap: [[Score]] = Array(repeating: Array(repeating: Score(),
-//                                                          count: aiPlayer.map.width),
-//                                         count: aiPlayer.map.height)
+//                                                          count: player.map.width),
+//                                         count: player.map.height)
 //
-//        for row in 0..<aiPlayer.map.height {
-//            for col in 0..<aiPlayer.map.width {
+//        for row in 0..<player.map.height {
+//            for col in 0..<player.map.width {
 //                let position = Position(row: row, col: col)
-//                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+//                let tile = player.map.tile(at: Position(row: row, col: col))
 //
 //                if tile.visibility == Visibility.FullyRevealed {
-//                    if aiPlayer.map.canCreateCity(at: position) {
-//                        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+//                    if player.map.canCreateCity(at: position) {
+//                        let distance = player.map.getDistanceToNearestCity(position: position)
 //
 //                        if distance == 1 {
 //                            scoreMap[row][col] = 0.5
@@ -375,15 +375,15 @@ public class CityWaterUtility: AgentUtility {
 //    }
     
     private func getLevel8ScoreMap() -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Utility() } }
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Utility() } }
 
-        for row in 0..<aiPlayer.map.height {
-            for col in 0..<aiPlayer.map.width {
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: position)
+                let tile = player.map.tile(at: position)
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
+                    if player.map.canCreateCity(at: position) {
                         if tile.hasRiver {
                             let reason = Reason(reasonType: ReasonType.OnRiver,
                                                 value: 40.0,
@@ -391,7 +391,7 @@ public class CityWaterUtility: AgentUtility {
                             scoreMap[row][col].reasons.append(reason)
                         }
                         else {
-                            if aiPlayer.map.accessToOcean(tile: tile) {
+                            if player.map.accessToOcean(tile: tile) {
                                 let reason = Reason(reasonType: ReasonType.OnCoast,
                                                     value: 25.0,
                                                     message: "Tile is a coastal tile.")
@@ -403,7 +403,7 @@ public class CityWaterUtility: AgentUtility {
                                 // a bonus for other tiles that have rivers on them.  In general,
                                 // rivers are very good, so settling in a place where there are
                                 // rivers within the city radius, is a good thing.
-                                let cityRadiusTiles = aiPlayer.map.getTilesInCityRadius(from: position)
+                                let cityRadiusTiles = player.map.getTilesInCityRadius(from: position)
                                 var scoreValue = 0.0
 
                                 
@@ -434,7 +434,7 @@ public class CityWaterUtility: AgentUtility {
     
     private func check(position: Position) -> Double {
         var score = 1.0
-        let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+        let distance = player.map.getDistanceToNearestCity(position: position)
         
         if distance == 1 {
             score = -4.0 * maxScore

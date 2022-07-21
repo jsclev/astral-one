@@ -2,33 +2,33 @@ import Foundation
 
 public class CityAgent {
     internal let game: Game
-    internal let player: AIPlayer
+    internal let player: Player
     internal let city: City
     
-    public init(game: Game, player: AIPlayer, city: City) throws {
+    public init(game: Game, player: Player, city: City) throws {
         self.game = game
         self.player = player
         self.city = city
     }
     
-    public static func getAgent(game: Game, aiPlayer: AIPlayer, city: City) throws -> CityAgent {
-        switch aiPlayer.skillLevel {
+    public static func getAgent(game: Game, player: Player, city: City) throws -> CityAgent {
+        switch player.skillLevel {
         case .One:
-            return try CityLevel1Agent(game: game, player: aiPlayer, city: city)
+            return try CityLevel1Agent(game: game, player: player, city: city)
         case .Two:
-            return try CityLevel1Agent(game: game, player: aiPlayer, city: city)
+            return try CityLevel1Agent(game: game, player: player, city: city)
         case .Three:
-            return try CityLevel1Agent(game: game, player: aiPlayer, city: city)
+            return try CityLevel1Agent(game: game, player: player, city: city)
         case .Four:
-            return try CityLevel1Agent(game: game, player: aiPlayer, city: city)
+            return try CityLevel1Agent(game: game, player: player, city: city)
         case .Five:
-            return try CityLevel1Agent(game: game, player: aiPlayer, city: city)
+            return try CityLevel1Agent(game: game, player: player, city: city)
         case .Six:
-            return try CityLevel1Agent(game: game, player: aiPlayer, city: city)
+            return try CityLevel1Agent(game: game, player: player, city: city)
         case .Seven:
-            return try CityLevel1Agent(game: game, player: aiPlayer, city: city)
+            return try CityLevel1Agent(game: game, player: player, city: city)
         case .Eight:
-            return try CityLevel8Agent(game: game, player: aiPlayer, city: city)
+            return try CityLevel8Agent(game: game, player: player, city: city)
         }
     }
     
@@ -38,10 +38,12 @@ public class CityAgent {
     
     public var availableCommands: [Command] {
         var commands: [Command] = []
-        commands.append(CreateInfantry1Command(player: player,
+        commands.append(CreateInfantry1Command(db: game.db,
+                                               player: player,
                                                turn: game.currentTurn,
                                                city: city))
-        commands.append(CreateSettlerCommand(player: player,
+        commands.append(CreateSettlerCommand(db: game.db,
+                                             player: player,
                                              turn: game.currentTurn,
                                              tile: player.map.tile(at: city.position)))
         if player.hasResearched(advanceName: "Bronze Working") {

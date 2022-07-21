@@ -8,14 +8,14 @@ public class Game: ObservableObject {
     @Published public var tapLocation = CGPoint.zero
     @Published public var selectedMapPosition = Position(row: -1, col: -1)
     @Published public var selectedCityCreator: Settler?
-    @Published public private (set) var currentPlayer: AIPlayer
+    @Published public private (set) var currentPlayer: Player
     @Published public var turnIndex = 0
     @Published public var tileCoords = false
     @Published public var aiDebug = false
 
     public let gameId: Int
     public let turns: [Turn]
-    public let players: [AIPlayer]
+    public let players: [Player]
     public let map: Map
     public let theme: Theme
     public var commands: [Command] = []
@@ -26,7 +26,7 @@ public class Game: ObservableObject {
     
     public init(gameId: Int,
                 theme: Theme,
-                players: [AIPlayer],
+                players: [Player],
                 map: Map,
                 db: Db) throws {
         self.gameId = gameId

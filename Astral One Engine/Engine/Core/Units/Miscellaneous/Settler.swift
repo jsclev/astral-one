@@ -54,7 +54,8 @@ public class Settler: Builder {
     }
     
     public override func clone() -> Unit {
-        return Settler(player: player,
+        return Settler(id: id,
+                       player: player,
                        theme: theme,
                        name: name,
                        position: position)

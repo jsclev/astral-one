@@ -4,7 +4,14 @@ public class UnitFactory {
     public static func createUnit(game: Game, tiledId: Int, row: Int, col: Int) -> Unit {
         let theme = Theme(id: 1, name: "Standard")
         let map = Map(mapId: 1, width: 1, height: 1)
-        let player = Player(playerId: 1, name: "", ordinal: 1, map: map)
+        let player = Player(playerId: 1,
+                            type: PlayerType.AI,
+                            name: "",
+                            ordinal: 1,
+                            map: map,
+                            skillLevel: SkillLevel.One,
+                            difficultyLevel: DifficultyLevel.Easy,
+                            strategy: AIStrategy())
         let position = Position(row: row, col: col)
         
         switch tiledId {

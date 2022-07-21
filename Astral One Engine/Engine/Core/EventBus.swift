@@ -215,7 +215,7 @@ public class EventBus {
                                 
                                 if let city = cityCmd.city {
                                     let cityAgent = try CityAgent.getAgent(game: game,
-                                                                           aiPlayer: game.currentPlayer,
+                                                                           player: game.currentPlayer,
                                                                            city: city)
                                     let cmd = cityAgent.getNextCommand()
                                     let _ = cmd.execute()
@@ -285,7 +285,7 @@ public class EventBus {
         }
     }
     
-    private func addInitialSettler(player: AIPlayer, tile: Tile) {
+    private func addInitialSettler(player: Player, tile: Tile) {
         //        let minRow = 2
         //        let maxRow = player.map.height - 2
         //        let minCol = 2

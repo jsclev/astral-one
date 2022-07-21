@@ -5,16 +5,16 @@ public class CityDefensiveUtility: AgentUtility {
     //       that provides a single lane between two bodies of water,
     //       or if the tile is a chokepoint of some kind.  Those
     //       locations can be good defensive locations.
-    private let aiPlayer: AIPlayer
+    private let player: Player
     private let maxScore: Double
     
-    public init(aiPlayer: AIPlayer, maxScore: Double) {
-        self.aiPlayer = aiPlayer
+    public init(player: Player, maxScore: Double) {
+        self.player = player
         self.maxScore = maxScore
     }
     
     public func getUtilityMap() -> [[Utility]] {
-        switch aiPlayer.skillLevel {
+        switch player.skillLevel {
         case .One: return getLevel1ScoreMap()
         case .Two: return getLevel1ScoreMap()
         case .Three: return getLevel1ScoreMap()
@@ -27,15 +27,15 @@ public class CityDefensiveUtility: AgentUtility {
     }
     
     private func getLevel1ScoreMap() -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Utility() } }
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Utility() } }
         
-        for row in 0..<aiPlayer.map.height {
-            for col in 0..<aiPlayer.map.width {
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tile = aiPlayer.map.tile(at: Position(row: row, col: col))
+                let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if tile.visibility == Visibility.FullyRevealed {
-                    if aiPlayer.map.canCreateCity(at: position) {
+                    if player.map.canCreateCity(at: position) {
                         // let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
                         
                         // if distance == 1 {
@@ -354,14 +354,14 @@ public class CityDefensiveUtility: AgentUtility {
     //    }
     
     private func getLevel8ScoreMap() -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<aiPlayer.map.width).map { _ in (0..<aiPlayer.map.height).map { _ in Utility() } }
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Utility() } }
         
-        for row in 0..<aiPlayer.map.height {
-            for col in 0..<aiPlayer.map.width {
+        for row in 0..<player.map.height {
+            for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
                 
-                if aiPlayer.map.canCreateCity(at: position) {
-                    let tile = aiPlayer.map.tile(at: position)
+                if player.map.canCreateCity(at: position) {
+                    let tile = player.map.tile(at: position)
                     let defensiveScore = (maxScore / 3.0) * (tile.defenseBonus + 1.0)
                     
                     scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.Defense,

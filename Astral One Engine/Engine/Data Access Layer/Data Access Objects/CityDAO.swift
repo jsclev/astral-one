@@ -44,7 +44,14 @@ public class CityDAO: BaseDAO {
     
     public func getCities(game: Game) throws -> [City] {
         var cities: [City] = []
-        let player = Player(playerId: 1, name: "", ordinal: 1, map: game.map)
+        let player = Player(playerId: 1,
+                            type: PlayerType.AI,
+                            name: "",
+                            ordinal: 1,
+                            map: game.map,
+                            skillLevel: SkillLevel.One,
+                            difficultyLevel: DifficultyLevel.Easy,
+                            strategy: AIStrategy())
         let theme = Theme(id: 1, name: "Standard")
         
         var stmt: OpaquePointer?

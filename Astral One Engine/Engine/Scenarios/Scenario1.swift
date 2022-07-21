@@ -35,7 +35,7 @@ public class Scenario1 {
                 
                 if let city = createCity.city {
                     let cityAgent = try CityAgent.getAgent(game: game,
-                                                           aiPlayer: game.currentPlayer,
+                                                           player: game.currentPlayer,
                                                            city: city)
                     let cityAgentCmd = cityAgent.getNextCommand()
                     errorCheck(cityAgentCmd.execute())
@@ -58,18 +58,15 @@ public class Scenario1 {
         }
         
         while game.turnIndex < game.turns.count - 20 {
-            let city = game.currentPlayer.map.cities[0]
-            let cityAgent = try CityAgent.getAgent(game: game,
-                                                   aiPlayer: game.currentPlayer,
-                                                   city: city)
-            let cityAgentCmd = cityAgent.getNextCommand()
-            errorCheck(cityAgentCmd.execute())
-            print("\(cityAgentCmd) executed")
+            print("----------------------------------------------------")
+            print("Starting turn \(game.currentTurn.ordinal) for \(game.currentPlayer.name)...")
+            let agent = try AIPlayerAgent(game: game, player: game.currentPlayer)
+            let cmds = try agent.getNextCommands()
             
-            let turnCmd = EndPlayerTurnCommand(db: game.db,
-                                               player: game.currentPlayer,
-                                               turn: game.currentTurn)
-            errorCheck(turnCmd.execute())
+            for cmd in cmds {
+                errorCheck(cmd.execute())
+                print(cmd.debugText)
+            }
         }
         
 
@@ -93,7 +90,7 @@ public class Scenario1 {
         //
         //            if let city = createCity1.city {
         //                let cityAgent = try CityAgent.getAgent(game: game,
-        //                                                       aiPlayer: game.currentPlayer,
+        //                                                       player: game.currentPlayer,
         //                                                       city: city)
         //                let cityAgentCmd = cityAgent.getNextCommand()
         //                errorCheck(cityAgentCmd.execute())
@@ -111,56 +108,7 @@ public class Scenario1 {
         //            errorCheck(turnCmd.execute())
         //        }
         //
-        //        print("Running commands for player \(game.currentPlayer.name)")
-        //        let createSettler2 = CreateSettlerCommand(
-        //            db: game.db,
-        //            player: game.currentPlayer,
-        //            turn: game.currentTurn,
-        //            tile: game.currentPlayer.map.tile(at: Position(row: 37, col: 36)))
-        //        errorCheck(createSettler2.execute())
-        //
-        //        if let settler2 = createSettler2.settler {
-        //            let mvUnit = MoveUnitCommand(db: game.db,
-        //                                         player: game.currentPlayer,
-        //                                         turn: game.currentTurn,
-        //                                         unit: settler2,
-        //                                         to: Position(row: settler2.position.row + 1,
-        //                                                      col: settler2.position.col - 1))
-        //            errorCheck(mvUnit.execute())
-        //
-        //            let alphabet = ResearchAdvanceCommand(db: game.db,
-        //                                                  player: game.currentPlayer,
-        //                                                  turn: game.currentTurn,
-        //                                                  advanceType: AdvanceType.Alphabet)
-        //            errorCheck(alphabet.execute())
-        //
-        //            let turnCmd = EndPlayerTurnCommand(db: game.db,
-        //                                               player: game.currentPlayer,
-        //                                               turn: game.currentTurn)
-        //            errorCheck(turnCmd.execute())
-        //        }
-        //
-        //        let turn3Cmd = EndPlayerTurnCommand(db: game.db,
-        //                                           player: game.currentPlayer,
-        //                                           turn: game.currentTurn)
-        //        errorCheck(turn3Cmd.execute())
-        //
-        //        let turn4Cmd = EndPlayerTurnCommand(db: game.db,
-        //                                           player: game.currentPlayer,
-        //                                           turn: game.currentTurn)
-        //        errorCheck(turn4Cmd.execute())
-        //
-        //        let turn5Cmd = EndPlayerTurnCommand(db: game.db,
-        //                                            player: game.currentPlayer,
-        //                                            turn: game.currentTurn)
-        //        errorCheck(turn5Cmd.execute())
-        //
-        //        let turn6Cmd = EndPlayerTurnCommand(db: game.db,
-        //                                            player: game.currentPlayer,
-        //                                            turn: game.currentTurn)
-        //        errorCheck(turn6Cmd.execute())
-        //
-        //        print(game.currentPlayer)
+
         
     }
 }

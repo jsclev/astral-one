@@ -8,8 +8,8 @@ public class SpawnPositionsAgent {
         self.game = game
     }
     
-    public func getSpawnPositions() throws -> [AIPlayer:PositionUtility] {
-        var startingPositions: [AIPlayer:PositionUtility] = [:]
+    public func getSpawnPositions() throws -> [Player:PositionUtility] {
+        var startingPositions: [Player:PositionUtility] = [:]
         var center = Position.zero
         
         let resourcesUtility = SpawnResourcesUtility(game: game, maxScore: 100.0)

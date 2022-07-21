@@ -12,10 +12,10 @@ public class PlayerDAO: BaseDAO {
         super.init(conn: conn, table: "player", loggerName: String(describing: type(of: self)))
     }
     
-    public func getPlayers(gameId: Int) throws -> [AIPlayer] {
-        var players: [AIPlayer] = []
+    public func getPlayers(gameId: Int) throws -> [Player] {
+        var players: [Player] = []
         let map = try mapDao.get(gameId: gameId)
-
+        
         var stmt: OpaquePointer?
         let sql = """
             SELECT
@@ -62,16 +62,17 @@ public class PlayerDAO: BaseDAO {
                     else if dbSkillLevel == 8 {
                         skillLevel = SkillLevel.Eight
                     }
-
-                    let player = AIPlayer(playerId: playerId,
-                                          name: name,
-                                          ordinal: ordinal,
-                                          map: map,
-                                          skillLevel: skillLevel,
-                                          difficultyLevel: DifficultyLevel.Easy,
-                                          strategy: AIStrategy(offense: 0.5,
-                                                               defense: 0.5,
-                                                               cityQuantity: 0.85))
+                    
+                    let player = Player(playerId: playerId,
+                                        type: PlayerType.AI,
+                                        name: name,
+                                        ordinal: ordinal,
+                                        map: map,
+                                        skillLevel: skillLevel,
+                                        difficultyLevel: DifficultyLevel.Easy,
+                                        strategy: AIStrategy(offense: 0.5,
+                                                             defense: 0.5,
+                                                             cityQuantity: 0.85))
                     let units = try unitDao.getUnits(player: player)
                     for unit in units {
                         player.add(unit: unit)

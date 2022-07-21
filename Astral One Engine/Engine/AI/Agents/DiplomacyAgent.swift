@@ -1,9 +1,9 @@
 import Foundation
 
 public class DiplomacyAgent {
-    private let player: AIPlayer
+    private let player: Player
     
-    public init(player: AIPlayer) {
+    public init(player: Player) {
         self.player = player
     }
 }

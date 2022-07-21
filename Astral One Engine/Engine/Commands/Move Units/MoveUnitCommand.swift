@@ -4,6 +4,8 @@ import SpriteKit
 public class MoveUnitCommand: Command {
     public let unit: Unit
     public let to: Position
+    private var currentDisplayText: String
+    private var currentDebugText: String
     
     public init(player: Player,
                 turn: Turn,
@@ -11,6 +13,9 @@ public class MoveUnitCommand: Command {
                 to: Position) {
         self.unit = unit
         self.to = to
+        
+        self.currentDisplayText = "Ready to move unit \(unit.name)."
+        self.currentDebugText = "Ready to move unit \(unit.name)."
         
         super.init(player: player,
                    turn: turn,
@@ -27,6 +32,9 @@ public class MoveUnitCommand: Command {
         self.unit = unit
         self.to = to
         
+        self.currentDisplayText = "Ready to move unit \(unit.name)."
+        self.currentDebugText = "Ready to move unit \(unit.name)."
+        
         super.init(commandId: commandId,
                    player: player,
                    turn: turn,
@@ -42,6 +50,9 @@ public class MoveUnitCommand: Command {
         self.unit = unit
         self.to = to
         
+        self.currentDisplayText = "Ready to move unit \(unit.name)."
+        self.currentDebugText = "Ready to move unit \(unit.name)."
+        
         super.init(db: db,
                    player: player,
                    turn: turn,
@@ -51,6 +62,14 @@ public class MoveUnitCommand: Command {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override var displayText: String {
+        return currentDisplayText
+    }
+    
+    public override var debugText: String {
+        return currentDebugText
     }
     
     public override func execute() -> CommandResult {
@@ -74,6 +93,9 @@ public class MoveUnitCommand: Command {
             
             unit.move(to: to)
             
+            currentDisplayText = "\(player.name) moved unit \(unit.name) to [\(to.row), \(to.col)]."
+            currentDebugText = "\(player.name) moved unit \(unit.name) to \(to)."
+
             return CommandResult(status: CommandStatus.Ok, message: "Success")
         }
         

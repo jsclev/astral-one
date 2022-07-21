@@ -17,11 +17,10 @@ public class CreateUnitCommandDAO: BaseDAO {
                                                                 turn: command.turn,
                                                                 ordinal: command.ordinal,
                                                                 cost: command.cost))
-        let newSettler = try unitDao.insert(settler: command.settler)
+        let settler = try unitDao.insert(settler: command.settler)
+        try insert(command: newCommand, unit: settler)
         
-        try insert(command: newCommand, unit: newSettler)
-        
-        return newSettler
+        return settler
     }
     
     public func insert(command: CreateEngineerCommand) throws -> Engineer {

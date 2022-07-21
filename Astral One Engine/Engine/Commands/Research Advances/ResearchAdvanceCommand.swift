@@ -2,11 +2,16 @@ import Foundation
 
 public class ResearchAdvanceCommand: Command {
     public let advanceType: AdvanceType
+    private var currentDisplayText: String
+    private var currentDebugText: String
     
     public init(player: Player,
                 turn: Turn,
                 advanceType: AdvanceType) {
         self.advanceType = advanceType
+        
+        currentDisplayText = "\(player.name)Ready to research \(advanceType)."
+        currentDebugText = "Ready to research \(advanceType)."
         
         super.init(player: player,
                    turn: turn,
@@ -21,6 +26,9 @@ public class ResearchAdvanceCommand: Command {
                 advanceType: AdvanceType) {
         self.advanceType = advanceType
         
+        currentDisplayText = "Ready to research \(advanceType)."
+        currentDebugText = "Ready to research \(advanceType)."
+        
         super.init(commandId: commandId,
                    player: player,
                    turn: turn,
@@ -34,6 +42,9 @@ public class ResearchAdvanceCommand: Command {
                 advanceType: AdvanceType) {
         self.advanceType = advanceType
         
+        currentDisplayText = "Ready to research \(advanceType)."
+        currentDebugText = "Ready to research \(advanceType)."
+        
         super.init(db: db,
                    player: player,
                    turn: turn,
@@ -43,6 +54,14 @@ public class ResearchAdvanceCommand: Command {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override var displayText: String {
+        return currentDisplayText
+    }
+    
+    public override var debugText: String {
+        return currentDebugText
     }
     
     public override func execute() -> CommandResult {
@@ -62,8 +81,9 @@ public class ResearchAdvanceCommand: Command {
         
         player.add(advanceName: "\(advanceType)")
         
-        print("\(player.name) (\(player.ordinal)) researched \(advanceType)")
-        
+        currentDisplayText = "\(player.name) researched \(advanceType)."
+        currentDebugText = "\(player.name) researched \(advanceType)."
+
         return CommandResult(status: CommandStatus.Ok, message: "Success")
     }
     
