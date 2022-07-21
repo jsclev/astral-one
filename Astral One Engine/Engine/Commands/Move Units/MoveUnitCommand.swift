@@ -99,7 +99,8 @@ public class MoveUnitCommand: Command {
             return CommandResult(status: CommandStatus.Ok, message: "Success")
         }
         
-        return CommandResult(status: CommandStatus.Invalid, message: "Something went wrong")
+        return CommandResult(status: CommandStatus.Invalid,
+                             message: "Unit position and destination are the same.")
         
     }
 }

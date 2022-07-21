@@ -106,21 +106,23 @@ public class SettlerAgent {
         let scoreMap3 = analyzers[3].getUtilityMap()
         let scoreMap4 = analyzers[4].getUtilityMap()
         
-//        for analyzer in analyzers {
-//            scoreMaps.append(analyzer.getScoreMap())
-//        }
-        
         // TODO: Add scorer to boost river tiles if there are few rivers on the map.
         // TODO: Add scorer to boost coastal tiles if there are few ocean tiles on the map.
         // TODO: Add scorer to boost tiles that are already near or on a road
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
-                scoreMap[row][col].reasons += scoreMap0[row][col].reasons
-                scoreMap[row][col].reasons += scoreMap1[row][col].reasons
-                scoreMap[row][col].reasons += scoreMap2[row][col].reasons
-                scoreMap[row][col].reasons += scoreMap3[row][col].reasons
-                scoreMap[row][col].reasons += scoreMap4[row][col].reasons
+                if row == 25 && col == 12 {
+                    print("hello")
+                }
+                if player.map.canCreateCity(at: Position(row: row, col: col)) {
+                    scoreMap[row][col].reasons += scoreMap0[row][col].reasons
+                    scoreMap[row][col].reasons += scoreMap1[row][col].reasons
+                    scoreMap[row][col].reasons += scoreMap2[row][col].reasons
+                    scoreMap[row][col].reasons += scoreMap3[row][col].reasons
+                    scoreMap[row][col].reasons += scoreMap4[row][col].reasons
+                }
+
             }
         }
         

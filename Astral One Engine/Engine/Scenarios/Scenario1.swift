@@ -57,58 +57,10 @@ public class Scenario1 {
             }
         }
         
-        while game.turnIndex < game.turns.count - 20 {
-            print("----------------------------------------------------")
-            print("Starting turn \(game.currentTurn.ordinal) for \(game.currentPlayer.name)...")
+        while game.turnIndex < 3 {
             let agent = try AIPlayerAgent(game: game, player: game.currentPlayer)
-            let cmds = try agent.getNextCommands()
-            
-            for cmd in cmds {
-                errorCheck(cmd.execute())
-                print(cmd.debugText)
-            }
+            try agent.processPlayerTurn()
         }
-        
 
-    
-        //
-        //        if let settler1 = createSettler1.settler {
-        //            let mvUnit = MoveUnitCommand(db: game.db,
-        //                                         player: game.currentPlayer,
-        //                                         turn: game.currentTurn,
-        //                                         unit: settler1,
-        //                                         to: Position(row: settler1.position.row + 1,
-        //                                                      col: settler1.position.col - 1))
-        //            errorCheck(mvUnit.execute())
-        //
-        //            let createCity1 = CreateCityCommand(db: game.db,
-        //                                                player: game.currentPlayer,
-        //                                                turn: game.currentTurn,
-        //                                                cityCreator: settler1,
-        //                                                cityName: "Chicago")
-        //            errorCheck(createCity1.execute())
-        //
-        //            if let city = createCity1.city {
-        //                let cityAgent = try CityAgent.getAgent(game: game,
-        //                                                       player: game.currentPlayer,
-        //                                                       city: city)
-        //                let cityAgentCmd = cityAgent.getNextCommand()
-        //                errorCheck(cityAgentCmd.execute())
-        //            }
-        //
-        //            let research1 = ResearchAdvanceCommand(db: game.db,
-        //                                                   player: game.currentPlayer,
-        //                                                   turn: game.currentTurn,
-        //                                                   advanceType: AdvanceType.Pottery)
-        //            errorCheck(research1.execute())
-        //
-        //            let turnCmd = EndPlayerTurnCommand(db: game.db,
-        //                                               player: game.currentPlayer,
-        //                                               turn: game.currentTurn)
-        //            errorCheck(turnCmd.execute())
-        //        }
-        //
-
-        
     }
 }

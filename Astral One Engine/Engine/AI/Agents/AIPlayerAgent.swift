@@ -29,27 +29,62 @@ public class AIPlayerAgent {
         
     }
     
-    public func getNextCommands() throws -> [Command] {
-        var cmds: [Command] = []
+    public func processPlayerTurn() throws {
+//        if player.ordinal > 1 {
+//            return
+//        }
+        print("----------------------------------------------------")
+        print("Starting turn \(game.currentTurn.ordinal) for \(game.currentPlayer.name)...")
         
         let city = player.map.cities[0]
         let cityAgent = try CityAgent.getAgent(game: game,
                                                player: player,
                                                city: city)
         let cityAgentCmd = cityAgent.getNextCommand()
-        cmds.append(cityAgentCmd)
+        errorCheck(cityAgentCmd.execute())
         
         let research = ResearchAdvanceCommand(db: game.db,
                                               player: player,
                                               turn: game.currentTurn,
                                               advanceType: AdvanceType.Pottery)
-        cmds.append(research)
+        errorCheck(research.execute())
+
+        let settlerCmd = CreateSettlerCommand(db: game.db,
+                                                  player: player,
+                                                  turn: game.currentTurn,
+                                                  tile: player.map.tile(at: city.position))
+        errorCheck(settlerCmd.execute())
+
+        let settlerAgent = try SettlerAgent(player: player,
+                                            settler: settlerCmd.settler)
+        if let positionUtility = try settlerAgent.getSettleCityPosition() {
+            print("\(player.name) SettlerAgent found location \(positionUtility.position) for city.")
+
+            let moveUnitCmd = MoveUnitCommand(db: game.db,
+                                           player: player,
+                                           turn: game.currentTurn,
+                                           unit: settlerCmd.settler,
+                                           to: positionUtility.position)
+            errorCheck(moveUnitCmd.execute())
+            
+            let createCityCmd = CreateCityCommand(db: game.db,
+                                               player: player,
+                                               turn: game.currentTurn,
+                                               cityCreator: settlerCmd.settler,
+                                               cityName: "Auto City")
+            errorCheck(createCityCmd.execute())
+            print("\(player.name) settled a city at \(positionUtility.position).")
+        }
         
         let turnCmd = EndPlayerTurnCommand(db: game.db,
                                            player: player,
                                            turn: game.currentTurn)
-        cmds.append(turnCmd)
-        
-        return cmds
+        errorCheck(turnCmd.execute())
+    }
+    
+    private func errorCheck(_ commandResult: CommandResult) {
+        if commandResult.status != CommandStatus.Ok {
+            fatalError(commandResult.message)
+        }
     }
 }

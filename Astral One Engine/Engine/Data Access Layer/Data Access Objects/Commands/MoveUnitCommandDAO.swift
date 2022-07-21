@@ -7,41 +7,60 @@ public class MoveUnitCommandDAO: BaseDAO {
     init(conn: OpaquePointer?, commandDao: CommandDAO) {
         self.commandDao = commandDao
         
-        super.init(conn: conn, table: "move_unit_command", loggerName: String(describing: type(of: self)))
+        super.init(conn: conn,
+                   table: "move_unit_command",
+                   loggerName: String(describing: type(of: self)))
     }
     
     public func insert(command: MoveUnitCommand) throws {
-        let newCommand = try commandDao.insert(command: Command(player: command.player,
-                                                                turn: command.turn,
-                                                                ordinal: command.ordinal,
-                                                                cost: command.cost))
-        // FIXME: Should use bind vars for this
-        var sql = "INSERT INTO move_unit_command (" +
-        "command_id, unit_id, from_row, from_col, to_row, to_col) VALUES "
+        var stmt: OpaquePointer?
         
-        sql += "("
-        sql += getSql(val: newCommand.commandId, postfix: ", ")
-        sql += getSql(val: command.unit.id, postfix: ", ")
-        sql += getSql(val: command.unit.position.row, postfix: ", ")
-        sql += getSql(val: command.unit.position.col, postfix: ", ")
-        sql += getSql(val: command.to.row, postfix: ", ")
-        sql += getSql(val: command.to.col, postfix: "")
-        sql += "), "
+        let baseCmd = try commandDao.insert(command: Command(player: command.player,
+                                                             turn: command.turn,
+                                                             ordinal: command.ordinal,
+                                                             cost: command.cost))
+        let sql = "INSERT INTO move_unit_command (" +
+        "command_id, unit_id, from_row, from_col, to_row, to_col) VALUES (?, ?, ?, ?, ?, ?)"
+        
+        if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
+            // TODO Need to fix the truncation of the Int id
+            guard sqlite3_bind_int(stmt, 1, Int32(baseCmd.commandId)) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind command_id")
+            }
+            
+            guard sqlite3_bind_int(stmt, 2, Int32(command.unit.id)) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind unit_id")
+            }
+            
+            guard sqlite3_bind_int(stmt, 3, Int32(command.unit.position.row)) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind from_row")
+            }
+            
+            guard sqlite3_bind_int(stmt, 4, Int32(command.unit.position.col)) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind from_col")
+            }
+            
+            guard sqlite3_bind_int(stmt, 5, Int32(command.to.row)) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind to_row")
+            }
+            
+            guard sqlite3_bind_int(stmt, 6, Int32(command.to.col)) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind to_col")
+            }
 
-        sql = getCleanedSql(sql)
-
-        do {
-            try executeInsert(table: table, numRows: 1, sql: sql)
-        }
-        catch SQLiteError.Prepare(let message) {
-            var errMsg = "Failed to compile the SQL to insert rows into the \(table) table.  "
-            errMsg += "SQLite error message: " + message
+        } else {
+            let sqliteMsg = String(cString: sqlite3_errmsg(conn)!)
+            sqlite3_finalize(stmt)
+            
+            var errMsg = "Failed to prepare the statement \"" + sql + "\".  "
+            errMsg += "SQLite error message: " + sqliteMsg
             throw DbError.Db(message: errMsg)
         }
-        catch SQLiteError.Step(let message) {
-            var errMsg = "Failed to execute the SQL to insert rows into the \(table) table.  "
-            errMsg += "SQLite error message: " + message
-            throw DbError.Db(message: errMsg)
+        
+        if sqlite3_step(stmt) != SQLITE_DONE {
+            print("Could not insert row into \(table).")
         }
+        
+        sqlite3_finalize(stmt)
     }
 }
