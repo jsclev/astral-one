@@ -43,7 +43,9 @@ public class AIDebugMapLayer {
                     for col in 0..<self.player.map.width {
                         let utility = agentMap[row][col]
                         
+//                        if player.ordinal == 4 {
                         self.labelNodes[row][col].text = String(format: "%.1f", utility.score)
+//                        }
                     }
                 }
             })

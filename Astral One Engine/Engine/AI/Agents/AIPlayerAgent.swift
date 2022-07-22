@@ -30,9 +30,6 @@ public class AIPlayerAgent {
     }
     
     public func processPlayerTurn() throws {
-//        if player.ordinal > 1 {
-//            return
-//        }
         print("----------------------------------------------------")
         print("Starting turn \(game.currentTurn.ordinal) for \(game.currentPlayer.name)...")
         
@@ -58,8 +55,7 @@ public class AIPlayerAgent {
         let settlerAgent = try SettlerAgent(player: player,
                                             settler: settlerCmd.settler)
         if let positionUtility = try settlerAgent.getSettleCityPosition() {
-            print("\(player.name) SettlerAgent found location \(positionUtility.position) for city.")
-
+            print("\(player.name) using settler at \(settlerCmd.settler.position) to build city at \(positionUtility.position).")
             let moveUnitCmd = MoveUnitCommand(db: game.db,
                                            player: player,
                                            turn: game.currentTurn,
@@ -84,7 +80,7 @@ public class AIPlayerAgent {
     
     private func errorCheck(_ commandResult: CommandResult) {
         if commandResult.status != CommandStatus.Ok {
-            fatalError(commandResult.message)
+            //fatalError(commandResult.message)
         }
     }
 }

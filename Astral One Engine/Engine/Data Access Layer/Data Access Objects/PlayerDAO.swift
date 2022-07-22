@@ -14,7 +14,6 @@ public class PlayerDAO: BaseDAO {
     
     public func getPlayers(gameId: Int) throws -> [Player] {
         var players: [Player] = []
-        let map = try mapDao.get(gameId: gameId)
         
         var stmt: OpaquePointer?
         let sql = """
@@ -31,6 +30,10 @@ public class PlayerDAO: BaseDAO {
         
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
             while sqlite3_step(stmt) == SQLITE_ROW {
+                // FIXME: Need to get the player's map from
+                //        the datbase, not the game map
+                let map = try mapDao.get(gameId: gameId)
+
                 let playerId = getInt(stmt: stmt, colIndex: 0)
                 let ordinal = getInt(stmt: stmt, colIndex: 1)
                 let dbSkillLevel = getInt(stmt: stmt, colIndex: 3)

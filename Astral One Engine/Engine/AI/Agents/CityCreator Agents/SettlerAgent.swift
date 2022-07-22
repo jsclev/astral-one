@@ -13,56 +13,56 @@ public class SettlerAgent {
         case .One:
             analyzers.append(CityResourcesUtility(player: player, maxScore: 10.0))
             analyzers.append(CityProximityUtility(player: player, maxScore: 25.0))
-            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 5000.0))
             analyzers.append(CityWaterUtility(player: player, maxScore: 10.0))
             analyzers.append(CityDefensiveUtility(player: player, maxScore: 10.0))
             break
         case .Two:
             analyzers.append(CityResourcesUtility(player: player, maxScore: 10.0))
             analyzers.append(CityProximityUtility(player: player, maxScore: 25.0))
-            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 5000.0))
             analyzers.append(CityWaterUtility(player: player, maxScore: 10.0))
             analyzers.append(CityDefensiveUtility(player: player, maxScore: 10.0))
             break
         case .Three:
             analyzers.append(CityResourcesUtility(player: player, maxScore: 10.0))
             analyzers.append(CityProximityUtility(player: player, maxScore: 25.0))
-            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 5000.0))
             analyzers.append(CityWaterUtility(player: player, maxScore: 10.0))
             analyzers.append(CityDefensiveUtility(player: player, maxScore: 10.0))
             break
         case .Four:
             analyzers.append(CityResourcesUtility(player: player, maxScore: 10.0))
             analyzers.append(CityProximityUtility(player: player, maxScore: 25.0))
-            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 5000.0))
             analyzers.append(CityWaterUtility(player: player, maxScore: 10.0))
             analyzers.append(CityDefensiveUtility(player: player, maxScore: 10.0))
             break
         case .Five:
             analyzers.append(CityResourcesUtility(player: player, maxScore: 10.0))
             analyzers.append(CityProximityUtility(player: player, maxScore: 25.0))
-            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 5000.0))
             analyzers.append(CityWaterUtility(player: player, maxScore: 10.0))
             analyzers.append(CityDefensiveUtility(player: player, maxScore: 10.0))
             break
         case .Six:
             analyzers.append(CityResourcesUtility(player: player, maxScore: 10.0))
             analyzers.append(CityProximityUtility(player: player, maxScore: 25.0))
-            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 5000.0))
             analyzers.append(CityWaterUtility(player: player, maxScore: 10.0))
             analyzers.append(CityDefensiveUtility(player: player, maxScore: 10.0))
             break
         case .Seven:
             analyzers.append(CityResourcesUtility(player: player, maxScore: 10.0))
             analyzers.append(CityProximityUtility(player: player, maxScore: 25.0))
-            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 5000.0))
             analyzers.append(CityWaterUtility(player: player, maxScore: 10.0))
             analyzers.append(CityDefensiveUtility(player: player, maxScore: 10.0))
             break
         case .Eight:
             analyzers.append(CityResourcesUtility(player: player, maxScore: 10.0))
             analyzers.append(CityProximityUtility(player: player, maxScore: 25.0))
-            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 50.0))
+            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 5000.0))
             analyzers.append(CityWaterUtility(player: player, maxScore: 10.0))
             analyzers.append(CityDefensiveUtility(player: player, maxScore: 10.0))
             break
@@ -98,7 +98,11 @@ public class SettlerAgent {
     }
     
     private func getBuildCityScores() throws -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Utility() } }
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in
+            (0..<player.map.height).map { _ in
+                Utility()
+            }
+        }
         
         let scoreMap0 = analyzers[0].getUtilityMap()
         let scoreMap1 = analyzers[1].getUtilityMap()
@@ -112,23 +116,19 @@ public class SettlerAgent {
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
-                if row == 25 && col == 12 {
-                    print("hello")
-                }
-                if player.map.canCreateCity(at: Position(row: row, col: col)) {
-                    scoreMap[row][col].reasons += scoreMap0[row][col].reasons
-                    scoreMap[row][col].reasons += scoreMap1[row][col].reasons
-                    scoreMap[row][col].reasons += scoreMap2[row][col].reasons
-                    scoreMap[row][col].reasons += scoreMap3[row][col].reasons
-                    scoreMap[row][col].reasons += scoreMap4[row][col].reasons
-                }
-
+                scoreMap[row][col].reasons += scoreMap0[row][col].reasons
+                scoreMap[row][col].reasons += scoreMap1[row][col].reasons
+                scoreMap[row][col].reasons += scoreMap2[row][col].reasons
+                scoreMap[row][col].reasons += scoreMap3[row][col].reasons
+                scoreMap[row][col].reasons += scoreMap4[row][col].reasons
             }
         }
         
-        player.agentMap = scoreMap
+//        if player.ordinal == 4 {
+//            player.agentMap = scoreMap
+//        }
         
-        // log(scoreMap: scoreMap)
+//        log(scoreMap: scoreMap)
         
         return scoreMap
     }

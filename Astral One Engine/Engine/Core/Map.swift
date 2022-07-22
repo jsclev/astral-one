@@ -9,7 +9,8 @@ public class Map: ObservableObject {
     private var grid: [[Tile]]
     private var myMovementCosts: [[Double]]
     private var cancellable = Set<AnyCancellable>()
-    @Published internal var cities: [City] = []
+    @Published public private (set) var cities: [City] = []
+    @Published public private (set) var otherCities: [City] = []
     
     public convenience init(width: Int, height: Int) {
         self.init(mapId: Constants.noId, width: width, height: height)
@@ -63,8 +64,8 @@ public class Map: ObservableObject {
         return tile(at: position).visibility == Visibility.FullyRevealed
     }
     
-    public func load(mapId: Int) {
-        
+    internal func addOther(city: City) {
+        otherCities.append(city)
     }
     
     public func add(tile: Tile) {

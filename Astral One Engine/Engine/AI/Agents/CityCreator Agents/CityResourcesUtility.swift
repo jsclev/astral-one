@@ -23,44 +23,38 @@ public class CityResourcesUtility: AgentUtility {
     }
     
     private func getLevel1ScoreMap() -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Utility() } }
-        
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in
+            (0..<player.map.height).map { _ in
+                Utility()
+            }
+        }
+
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let tile = player.map.tile(at: Position(row: row, col: col))
                 
-                if tile.visibility == Visibility.FullyRevealed {
-                    if player.map.canCreateCity(at: position) {
-                        // let distance = player.map.getDistanceToNearestCity(position: position)
-                        
-//                        if distance == 1 {
-//                            scoreMap[row][col] = 0.5
-//                        }
-//                        else if distance == 2 {
-//                            scoreMap[row][col] = 1.0
-//                        }
-//                        else if distance == 3 {
-//                            scoreMap[row][col] = 2.0
-//                        }
-//                        else if distance == 4 {
-//                            scoreMap[row][col] = 3.0
-//                        }
-//                        else if distance == 5 {
-//                            scoreMap[row][col] = 10.0
-//                        }
-//                        else {
-//                            scoreMap[row][col] = 1.0
-//                        }
+                if player.map.canCreateCity(at: position) {
+                    var foodScore = 0.0
+                    var productionScore = 0.0
+                    var tradeScore = 0.0
+                    let tiles = player.map.getTilesInCityRadius(from: position)
+                    
+                    for tile in tiles {
+                        foodScore += Double(tile.food)
+                        productionScore += Double(tile.production)
+                        tradeScore += Double(tile.trade)
                     }
-                    else {
-                        // scoreMap[row][col] = 0.0
-                    }
+                    
+                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.FoodSource,
+                                                             value: foodScore,
+                                                             message: "Total food from all tiles in city radius."))
+                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.ProductionSource,
+                                                             value: productionScore,
+                                                             message: "Total production from all tiles in city radius."))
+                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.TradeSource,
+                                                             value: tradeScore,
+                                                             message: "Total trade from all tiles in city radius."))
                 }
-                else {
-                    // scoreMap[row][col] = 0.1
-                }
-                
             }
         }
         

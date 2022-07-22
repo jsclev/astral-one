@@ -20,6 +20,7 @@ public class Scenario1 {
         
         for player in game.players {
             if let spawnPosition = spawnPositions[player] {
+                print("Spawned \(player.name) at \(spawnPosition.position)")
                 let cmd = CreateSettlerCommand(db: game.db,
                                                player: player,
                                                turn: game.currentTurn,
@@ -57,7 +58,7 @@ public class Scenario1 {
             }
         }
         
-        while game.turnIndex < 3 {
+        while game.turnIndex < 2 {
             let agent = try AIPlayerAgent(game: game, player: game.currentPlayer)
             try agent.processPlayerTurn()
         }

@@ -4,6 +4,7 @@ import SpriteKit
 
 public class CitiesMapLayer {
     private let player: Player
+    private let scene: SKScene
     private let mapView: MapManager
     private let citiesNode: SKTileMapNode
     private var cancellable = Set<AnyCancellable>()
@@ -11,6 +12,7 @@ public class CitiesMapLayer {
 
     public init(player: Player, scene: SKScene, mapView: MapManager, tileSet: SKTileSet) {
         self.player = player
+        self.scene = scene
         self.mapView = mapView
         self.tileSet = tileSet
         
@@ -31,6 +33,14 @@ public class CitiesMapLayer {
         }
         
         self.player.map.$cities
+            .sink(receiveValue: { cities in
+                if let city = cities.last {
+                    self.render(city: city)
+                }
+            })
+            .store(in: &cancellable)
+        
+        self.player.map.$otherCities
             .sink(receiveValue: { cities in
                 if let city = cities.last {
                     self.render(city: city)
@@ -64,7 +74,7 @@ public class CitiesMapLayer {
                 print("Unable to find tile group named \"City\"")
             }
             
-            let label = SKLabelNode(fontNamed: "Arial")
+            let label = SKLabelNode(fontNamed: "Arial Bold")
             var text = city.name
             
             if city.has(building: BuildingType.Barracks) {
@@ -77,13 +87,36 @@ public class CitiesMapLayer {
                 label.numberOfLines += 1
             }
             
-            label.fontSize = 18
             label.horizontalAlignmentMode = .center
             label.text = text
             label.zPosition = Layer.cityNames
             
             adjustLabelFontSizeToFitRect(labelNode: label,
-                                         rect: CGRect(x: point.x - 72, y: point.y - 70, width: 140, height: 60))
+                                         rect: CGRect(x: point.x - 35,
+                                                      y: point.y - 35,
+                                                      width: 70,
+                                                      height: 17))
+            var color = UIColor.white
+            
+            if city.owner.ordinal == 0 {
+                color = UIColor.green
+            }
+            else if city.owner.ordinal == 1 {
+                color = UIColor.red
+            }
+            else if city.owner.ordinal == 2 {
+                color = UIColor.blue
+            }
+            else if city.owner.ordinal == 3 {
+                color = UIColor.yellow
+            }
+            else if city.owner.ordinal == 4 {
+                color = UIColor.cyan
+            }
+            
+            label.fontColor = color
+            
+            scene.addChild(label)
         }
     }
 }

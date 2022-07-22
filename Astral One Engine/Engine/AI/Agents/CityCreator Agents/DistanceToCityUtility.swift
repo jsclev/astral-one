@@ -25,37 +25,39 @@ public class DistanceToCityUtility: AgentUtility {
     }
     
     private func getLevel1ScoreMap() -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Utility() } }
-
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in
+            (0..<player.map.height).map { _ in
+                Utility()
+            }
+        }
+        
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)
-                let distance = settler.position.distance(to: position)
+                let tile = player.map.tile(at: Position(row: row, col: col))
                 var reason: Reason
                 
-                if distance < 4 {
-                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
-                                        value: -1.0 * Double(distance),
+                if tile.visibility == Visibility.FullyRevealed {
+                    if player.map.canCreateCity(at: position) {
+                        let distance = settler.position.distance(to: position)
+                        
+                        reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
+                                        value: check(position: position),
                                         message: "\(distance) movement cost to target tile location.")
-                }
-                else if distance >= 4 && distance <= 6 {
-                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
-                                    value: -4.0 * Double(distance),
-                                    message: "\(distance) movement cost to target tile location.")
-                }
-                else if distance >= 7 && distance <= 10 {
-                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
-                                    value: -6.0 * Double(distance),
-                                    message: "\(distance) movement cost to target tile location.")
+                    }
+                    else {
+                        reason = Reason(reasonType: ReasonType.InvalidCityLocation,
+                                        value: -maxScore,
+                                        message: "Cannot create city on tile.")
+                    }
                 }
                 else {
-                    reason = Reason(reasonType: ReasonType.DistanceToTargetTile,
-                                    value: -7.0 * Double(distance),
-                                    message: "\(distance) movement cost to target tile location.")
+                    reason = Reason(reasonType: ReasonType.TileNotRevealed,
+                                    value: maxScore / 100.0,
+                                    message: "Tile location is not revealed.")
                 }
                 
                 scoreMap[row][col].reasons.append(reason)
-
             }
         }
         
@@ -345,7 +347,11 @@ public class DistanceToCityUtility: AgentUtility {
 //    }
     
     private func getLevel8ScoreMap() -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Utility() } }
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in
+            (0..<player.map.height).map { _ in
+                Utility()
+            }
+        }
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
@@ -381,20 +387,31 @@ public class DistanceToCityUtility: AgentUtility {
     }
     
     private func check(position: Position) -> Double {
+        // We'll use a quadratic curve for the penalty
+        let distance = Double(settler.position.distance(to: position))
+        let m = 3.0
+        let k = 4.0
+        var penalty = -1.0 * pow((distance / m), k)
+        
+        if penalty < -maxScore {
+            penalty = -maxScore
+        }
+        
+        return penalty
         // FIXME: Need to add a parameter that will penalize the score
         //        if we are on the first few turns of the game.  If it
         //        is the first turn of the game, for example, we want
         //        to spend very few turns finding the ideal tile before
         //        settling our first city.
-        let distance = Double(settler.position.distance(to: position))
-        
-        let k = 2.0
-        let m = 2.0
-        var score = pow(distance / m, k)
-        if score > maxScore {
-            score = maxScore
-        }
-        
-        return -score        
+//        let distance = Double(settler.position.distance(to: position))
+//
+//        let k = 2.0
+//        let m = 2.0
+//        var score = pow(distance / m, k)
+//        if score > maxScore {
+//            score = maxScore
+//        }
+//
+//        return -score
     }
 }

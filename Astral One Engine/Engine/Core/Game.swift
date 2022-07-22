@@ -54,40 +54,22 @@ public class Game: ObservableObject {
                         if playerToUpdate != player {
                             for cityCreator in cityCreators {
                                 playerToUpdate.addOther(cityCreator: cityCreator)
-                                //print("City creator at \(cityCreator.position)")
-//                                let tile = playerToUpdate.map.tile(at: cityCreator.position)
-//
-//                                if tile.visibility == Visibility.FullyRevealed {
-//                                    tile.a
-//                                }
+
                             }
-//                            print("Need to update the map")
                         }
                     }
-//                    if cityCreators.count < self.localSettlers.count {
-//                        for settler in self.localSettlers {
-//                            var foundIt = false
-//                            for diff in cityCreators {
-//                                if diff.name == settler.name {
-//                                    foundIt = true
-//                                }
-//                            }
-//
-//                            if !foundIt {
-//                                self.localSettlers.remove(at: self.localSettlers.count - 1)
-//
-//                                if let node = self.scene.childNode(withName: settler.name) {
-//                                    node.removeFromParent()
-//                                }
-//                            }
-//                        }
-//                    }
-//                    else {
-//                        if let cityCreator = cityCreators.last {
-//                            self.renderUnit(unit: cityCreator)
-//                            self.localSettlers.append(cityCreator as! Settler)
-//                        }
-//                    }
+                })
+                .store(in: &cancellable)
+            
+            player.map.$cities
+                .sink(receiveValue: { cities in
+                    for playerToUpdate in self.players {
+                        if playerToUpdate != player {
+                            if let newCity = cities.last {
+                                playerToUpdate.map.addOther(city: newCity)
+                            }
+                        }
+                    }
                 })
                 .store(in: &cancellable)
         }

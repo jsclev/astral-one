@@ -59,9 +59,9 @@ public class SpawnPositionsAgent {
                 }
             }
             
-            if player.ordinal == 4 {
-                game.currentPlayer.agentMap = utilityMap
-            }
+//            if player.ordinal == 4 {
+//                game.currentPlayer.agentMap = utilityMap
+//            }
             
             startingPositions[player] = getBestPosition(utilityMap: utilityMap)
         }
