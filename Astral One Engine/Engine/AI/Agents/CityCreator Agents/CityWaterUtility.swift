@@ -23,9 +23,11 @@ public class CityWaterUtility: AgentUtility {
     }
     
     private func getLevel1ScoreMap() -> [[Utility]] {
-        let scoreMap: [[Utility]] = Array(repeating: Array(repeating: Utility(),
-                                                          count: player.map.width),
-                                         count: player.map.height)
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in
+            (0..<player.map.height).map { _ in
+                Utility()
+            }
+        }
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
@@ -375,8 +377,12 @@ public class CityWaterUtility: AgentUtility {
 //    }
     
     private func getLevel8ScoreMap() -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Utility() } }
-
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in
+            (0..<player.map.height).map { _ in
+                Utility()
+            }
+        }
+        
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
                 let position = Position(row: row, col: col)

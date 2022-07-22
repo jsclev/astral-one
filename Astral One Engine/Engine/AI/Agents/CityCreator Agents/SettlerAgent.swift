@@ -11,11 +11,11 @@ public class SettlerAgent {
         
         switch player.skillLevel {
         case .One:
-            analyzers.append(CityResourcesUtility(player: player, maxScore: 10.0))
-            analyzers.append(CityProximityUtility(player: player, maxScore: 25.0))
-            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 5000.0))
-            analyzers.append(CityWaterUtility(player: player, maxScore: 10.0))
-            analyzers.append(CityDefensiveUtility(player: player, maxScore: 10.0))
+            analyzers.append(CityResourcesUtility(player: player, maxScore: 100.0))
+            analyzers.append(CityProximityUtility(player: player, maxScore: 100.0))
+            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 10000.0))
+            analyzers.append(CityWaterUtility(player: player, maxScore: 100.0))
+            analyzers.append(CityDefensiveUtility(player: player, maxScore: 50.0))
             break
         case .Two:
             analyzers.append(CityResourcesUtility(player: player, maxScore: 10.0))
@@ -60,11 +60,11 @@ public class SettlerAgent {
             analyzers.append(CityDefensiveUtility(player: player, maxScore: 10.0))
             break
         case .Eight:
-            analyzers.append(CityResourcesUtility(player: player, maxScore: 10.0))
-            analyzers.append(CityProximityUtility(player: player, maxScore: 25.0))
-            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 5000.0))
-            analyzers.append(CityWaterUtility(player: player, maxScore: 10.0))
-            analyzers.append(CityDefensiveUtility(player: player, maxScore: 10.0))
+            analyzers.append(CityResourcesUtility(player: player, maxScore: 100.0))
+            analyzers.append(CityProximityUtility(player: player, maxScore: 100.0))
+            analyzers.append(DistanceToCityUtility(player: player, cityCreator: settler, maxScore: 10000.0))
+            analyzers.append(CityWaterUtility(player: player, maxScore: 100.0))
+            analyzers.append(CityDefensiveUtility(player: player, maxScore: 50.0))
             break
         }
     }
@@ -98,17 +98,16 @@ public class SettlerAgent {
     }
     
     private func getBuildCityScores() throws -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in
+        let aggregateMap:[[Utility]] = (0..<player.map.width).map { _ in
             (0..<player.map.height).map { _ in
                 Utility()
             }
         }
         
-        let scoreMap0 = analyzers[0].getUtilityMap()
-        let scoreMap1 = analyzers[1].getUtilityMap()
-        let scoreMap2 = analyzers[2].getUtilityMap()
-        let scoreMap3 = analyzers[3].getUtilityMap()
-        let scoreMap4 = analyzers[4].getUtilityMap()
+        var utilityMaps = [[[Utility]]]()
+        for analyzer in analyzers {
+            utilityMaps.append(analyzer.getUtilityMap())
+        }
         
         // TODO: Add scorer to boost river tiles if there are few rivers on the map.
         // TODO: Add scorer to boost coastal tiles if there are few ocean tiles on the map.
@@ -116,11 +115,9 @@ public class SettlerAgent {
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
-                scoreMap[row][col].reasons += scoreMap0[row][col].reasons
-                scoreMap[row][col].reasons += scoreMap1[row][col].reasons
-                scoreMap[row][col].reasons += scoreMap2[row][col].reasons
-                scoreMap[row][col].reasons += scoreMap3[row][col].reasons
-                scoreMap[row][col].reasons += scoreMap4[row][col].reasons
+                for utilityMap in utilityMaps {
+                    aggregateMap[row][col].reasons += utilityMap[row][col].reasons
+                }
             }
         }
         
@@ -130,7 +127,7 @@ public class SettlerAgent {
         
 //        log(scoreMap: scoreMap)
         
-        return scoreMap
+        return aggregateMap
     }
     
     public func getBuildScore(player: Player, tile: Tile) throws -> Double {

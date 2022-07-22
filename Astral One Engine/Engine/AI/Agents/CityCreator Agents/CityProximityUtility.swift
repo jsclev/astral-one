@@ -69,16 +69,16 @@ public class CityProximityUtility: AgentUtility {
                         scoreMap[row][col].reasons.append(reason)
                     }
                     else {
-                        let reason = Reason(reasonType: ReasonType.ProximityToWater,
-                                            value: 0.5,
-                                            message: "1 tile away from water.")
+                        let reason = Reason(reasonType: ReasonType.InvalidCityLocation,
+                                            value: -maxScore,
+                                            message: "Invalid city location.")
                         
                         scoreMap[row][col].reasons.append(reason)
                     }
                 }
                 else {
                     let reason = Reason(reasonType: ReasonType.ProximityToWater,
-                                        value: 0.5,
+                                        value: 0.0,
                                         message: "1 tile away from water.")
                     
                     scoreMap[row][col].reasons.append(reason)

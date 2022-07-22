@@ -34,26 +34,37 @@ public class CityResourcesUtility: AgentUtility {
                 let position = Position(row: row, col: col)
                 
                 if player.map.canCreateCity(at: position) {
+                    let tiles = player.map.getTilesInCityRadius(from: position)
+
                     var foodScore = 0.0
                     var productionScore = 0.0
                     var tradeScore = 0.0
-                    let tiles = player.map.getTilesInCityRadius(from: position)
+                    var totalScore = 0.0
                     
                     for tile in tiles {
                         foodScore += Double(tile.food)
                         productionScore += Double(tile.production)
                         tradeScore += Double(tile.trade)
+                        totalScore += foodScore + productionScore + tradeScore
                     }
                     
-                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.FoodSource,
-                                                             value: foodScore,
-                                                             message: "Total food from all tiles in city radius."))
-                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.ProductionSource,
-                                                             value: productionScore,
-                                                             message: "Total production from all tiles in city radius."))
-                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.TradeSource,
-                                                             value: tradeScore,
-                                                             message: "Total trade from all tiles in city radius."))
+                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.BasicResources,
+                                                             value: totalScore,
+                                                             message: "Resources score."))
+//                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.FoodSource,
+//                                                             value: foodScore,
+//                                                             message: "Total food from all tiles in city radius."))
+//                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.ProductionSource,
+//                                                             value: productionScore,
+//                                                             message: "Total production from all tiles in city radius."))
+//                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.TradeSource,
+//                                                             value: tradeScore,
+//                                                             message: "Total trade from all tiles in city radius."))
+                }
+                else {
+                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.InvalidCityLocation,
+                                                             value: -maxScore,
+                                                             message: "Invalid city location."))
                 }
             }
         }

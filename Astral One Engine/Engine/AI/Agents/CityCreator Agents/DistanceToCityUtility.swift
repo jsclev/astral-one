@@ -387,10 +387,16 @@ public class DistanceToCityUtility: AgentUtility {
     }
     
     private func check(position: Position) -> Double {
+        // FIXME: Need to add a parameter that will penalize the score
+        //        if we are on the first few turns of the game.  If it
+        //        is the first turn of the game, for example, we want
+        //        to spend very few turns finding the ideal tile before
+        //        settling our first city.
+        
         // We'll use a quadratic curve for the penalty
         let distance = Double(settler.position.distance(to: position))
-        let m = 3.0
-        let k = 4.0
+        let m = 7.0
+        let k = 8.0
         var penalty = -1.0 * pow((distance / m), k)
         
         if penalty < -maxScore {
@@ -398,20 +404,5 @@ public class DistanceToCityUtility: AgentUtility {
         }
         
         return penalty
-        // FIXME: Need to add a parameter that will penalize the score
-        //        if we are on the first few turns of the game.  If it
-        //        is the first turn of the game, for example, we want
-        //        to spend very few turns finding the ideal tile before
-        //        settling our first city.
-//        let distance = Double(settler.position.distance(to: position))
-//
-//        let k = 2.0
-//        let m = 2.0
-//        var score = pow(distance / m, k)
-//        if score > maxScore {
-//            score = maxScore
-//        }
-//
-//        return -score
     }
 }

@@ -11,7 +11,11 @@ public class SpawnResourcesUtility: AgentUtility {
     }
     
     public func getUtilityMap() -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<game.map.width).map { _ in (0..<game.map.height).map { _ in Utility() } }
+        let scoreMap:[[Utility]] = (0..<game.map.width).map { _ in
+            (0..<game.map.height).map { _ in
+                Utility()
+            }
+        }
         
         for row in 0..<game.map.height {
             for col in 0..<game.map.width {

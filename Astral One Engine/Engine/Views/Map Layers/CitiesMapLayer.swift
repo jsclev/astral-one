@@ -87,6 +87,8 @@ public class CitiesMapLayer {
                 label.numberOfLines += 1
             }
             
+            text += " (\(city.owner.name))"
+            
             label.horizontalAlignmentMode = .center
             label.text = text
             label.zPosition = Layer.cityNames

@@ -34,36 +34,34 @@ public class CityDefensiveUtility: AgentUtility {
                 let position = Position(row: row, col: col)
                 let tile = player.map.tile(at: Position(row: row, col: col))
                 
-                if tile.visibility == Visibility.FullyRevealed {
-                    if player.map.canCreateCity(at: position) {
-                        // let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
-                        
-                        // if distance == 1 {
-                        //                            scoreMap[row][col] = 0.5
-                        //                        }
-                        //                        else if distance == 2 {
-                        //                            scoreMap[row][col] = 1.0
-                        //                        }
-                        //                        else if distance == 3 {
-                        //                            scoreMap[row][col] = 2.0
-                        //                        }
-                        //                        else if distance == 4 {
-                        //                            scoreMap[row][col] = 3.0
-                        //                        }
-                        //                        else if distance == 5 {
-                        //                            scoreMap[row][col] = 10.0
-                        //                        }
-                        //                        else {
-                        //                            scoreMap[row][col] = 1.0
-                        //                        }
-                    }
-                    else {
-                        // scoreMap[row][col] = 0.0
-                    }
+                if player.map.canCreateCity(at: position) {
+                    // let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
+                    
+                    // if distance == 1 {
+                    //                            scoreMap[row][col] = 0.5
+                    //                        }
+                    //                        else if distance == 2 {
+                    //                            scoreMap[row][col] = 1.0
+                    //                        }
+                    //                        else if distance == 3 {
+                    //                            scoreMap[row][col] = 2.0
+                    //                        }
+                    //                        else if distance == 4 {
+                    //                            scoreMap[row][col] = 3.0
+                    //                        }
+                    //                        else if distance == 5 {
+                    //                            scoreMap[row][col] = 10.0
+                    //                        }
+                    //                        else {
+                    //                            scoreMap[row][col] = 1.0
+                    //                        }
                 }
                 else {
-                    // scoreMap[row][col] = 0.1
+                    scoreMap[row][col].reasons.append(Reason(reasonType: ReasonType.InvalidCityLocation,
+                                                             value: -maxScore,
+                                                             message: "Invalid city location."))
                 }
+
                 
             }
         }
