@@ -98,6 +98,34 @@ public class AIPlayerAgent {
                                                   to: Position(row: 30,
                                                                col: 18))
             errorCheck(moveCavalry8Cmd.execute())
+            
+            let naval3Cmd = CreateNaval3Command(db: game.db,
+                                                    player: player,
+                                                    turn: game.currentTurn,
+                                                    city: createCityCmd.city)
+            errorCheck(naval3Cmd.execute())
+            
+            let moveNaval3Cmd = MoveUnitCommand(db: game.db,
+                                                  player: player,
+                                                  turn: game.currentTurn,
+                                                  unit: naval3Cmd.naval,
+                                                  to: Position(row: 33,
+                                                               col: 18))
+            errorCheck(moveNaval3Cmd.execute())
+            
+            let naval4Cmd = CreateNaval4Command(db: game.db,
+                                                player: player,
+                                                turn: game.currentTurn,
+                                                city: createCityCmd.city)
+            errorCheck(naval4Cmd.execute())
+            
+            let moveNaval4Cmd = MoveUnitCommand(db: game.db,
+                                                player: player,
+                                                turn: game.currentTurn,
+                                                unit: naval4Cmd.naval,
+                                                to: Position(row: 34,
+                                                             col: 19))
+            errorCheck(moveNaval4Cmd.execute())
         }
         
         let turnCmd = EndPlayerTurnCommand(db: game.db,

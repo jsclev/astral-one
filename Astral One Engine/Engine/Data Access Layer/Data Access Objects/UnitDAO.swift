@@ -233,6 +233,56 @@ public class UnitDAO: BaseDAO {
                         position: cavalry.position)
     }
     
+    public func insert(naval: Naval1) throws -> Naval1 {
+        let unitId = try insert(unit: naval)
+        
+        return Naval1(id: unitId,
+                      player: naval.player,
+                      theme: naval.theme,
+                      name: naval.name,
+                      position: naval.position)
+    }
+    
+    public func insert(naval: Naval2) throws -> Naval2 {
+        let unitId = try insert(unit: naval)
+        
+        return Naval2(id: unitId,
+                      player: naval.player,
+                      theme: naval.theme,
+                      name: naval.name,
+                      position: naval.position)
+    }
+    
+    public func insert(naval: Naval3) throws -> Naval3 {
+        let unitId = try insert(unit: naval)
+        
+        return Naval3(id: unitId,
+                      player: naval.player,
+                      theme: naval.theme,
+                      name: naval.name,
+                      position: naval.position)
+    }
+    
+    public func insert(naval: Naval4) throws -> Naval4 {
+        let unitId = try insert(unit: naval)
+        
+        return Naval4(id: unitId,
+                      player: naval.player,
+                      theme: naval.theme,
+                      name: naval.name,
+                      position: naval.position)
+    }
+    
+    public func insert(naval: Naval5) throws -> Naval5 {
+        let unitId = try insert(unit: naval)
+        
+        return Naval5(id: unitId,
+                      player: naval.player,
+                      theme: naval.theme,
+                      name: naval.name,
+                      position: naval.position)
+    }
+    
     public func insert(settler: Settler) throws -> Settler {
         var rowId: Int = -1
         var mainStmt: OpaquePointer?

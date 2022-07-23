@@ -159,6 +159,22 @@ public class CreateUnitCommandDAO: BaseDAO {
         return try unitDao.insert(infantry4: command.infantry4)
     }
     
+    public func insert(command: CreateNaval3Command) throws -> Naval3 {
+        let _ = try commandDao.insert(command: Command(player: command.player,
+                                                       turn: command.turn,
+                                                       ordinal: command.ordinal,
+                                                       cost: command.cost))
+        return try unitDao.insert(naval: command.naval)
+    }
+    
+    public func insert(command: CreateNaval4Command) throws -> Naval4 {
+        let _ = try commandDao.insert(command: Command(player: command.player,
+                                                       turn: command.turn,
+                                                       ordinal: command.ordinal,
+                                                       cost: command.cost))
+        return try unitDao.insert(naval: command.naval)
+    }
+    
     private func insert(command: Command, unit: Unit) throws {
         var sql = "INSERT INTO create_unit_command (command_id, unit_id, tile_id) VALUES "
         sql += "("

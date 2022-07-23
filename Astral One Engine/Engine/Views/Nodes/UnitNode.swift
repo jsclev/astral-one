@@ -66,7 +66,8 @@ import SpriteKit
         
         labelNode.fontColor = color
         
-        if unit.assetName.contains("cavalry") {
+        if unit.assetName.contains("cavalry") ||
+           unit.assetName.contains("naval"){
             labelNode.text = "------"
         }
         else {

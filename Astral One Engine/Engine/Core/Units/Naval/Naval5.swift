@@ -1,5 +1,6 @@
 import Foundation
 
+/// Equivalent to Civilization II Ironclad unit
 public class Naval5: Unit {
     public convenience init(player: Player,
                             theme: Theme,
@@ -34,5 +35,21 @@ public class Naval5: Unit {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override func move(to: Position) {
+        if canMove(to: to) {
+            position = to
+            
+            movementPoints -= player.map.tile(at: to).movementCost
+        }
+    }
+    
+    public override func canMove(to: Position) -> Bool {
+        if player.map.tile(at: to).terrain.type != TerrainType.Ocean {
+            return false
+        }
+        
+        return movementPoints >= player.map.tile(at: to).movementCost
     }
 }

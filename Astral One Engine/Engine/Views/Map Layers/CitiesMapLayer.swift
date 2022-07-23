@@ -54,7 +54,8 @@ public class CitiesMapLayer {
         let scalingFactor = min(rect.width / labelNode.frame.width, rect.height / labelNode.frame.height)
         
         // Change the fontSize.
-        labelNode.fontSize *= scalingFactor
+//        labelNode.fontSize *= scalingFactor
+        labelNode.fontSize = 18
         
         // Optionally move the SKLabelNode to the center of the rectangle.
         labelNode.position = CGPoint(x: rect.midX, y: rect.midY - labelNode.frame.height / 2.0)
@@ -87,14 +88,14 @@ public class CitiesMapLayer {
                 label.numberOfLines += 1
             }
             
-            text += " (\(city.owner.name))"
+//            text += " (\(city.owner.name))"
             
             label.horizontalAlignmentMode = .center
             label.text = text
             label.zPosition = Layer.cityNames
             
             adjustLabelFontSizeToFitRect(labelNode: label,
-                                         rect: CGRect(x: point.x - 75,
+                                         rect: CGRect(x: point.x - 80,
                                                       y: point.y - 55,
                                                       width: 160,
                                                       height: 57))
