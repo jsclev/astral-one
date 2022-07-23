@@ -28,6 +28,7 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
     @Published public var agentMap: [[Utility]]
     @Published public private (set) var turnStatus = 0
     @Published public var otherCityCreators: [Builder] = []
+    private var cityNameIndex = 0
     
     public init(playerId: Int,
                 type: PlayerType,
@@ -145,6 +146,19 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
         }
         
         return sum
+    }
+    
+    public var nextCityName: String {
+        var nextName = "City"
+        
+        if cityNameIndex < civilization.cityNames.count {
+            print("Getting city name: \(cityNameIndex): \(civilization.cityNames[cityNameIndex])")
+            nextName = civilization.cityNames[cityNameIndex]
+            cityNameIndex += 1
+        }
+        
+        
+        return nextName
     }
     
     public func get(advanceType: AdvanceType) -> Advance {

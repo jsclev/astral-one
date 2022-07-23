@@ -7,6 +7,7 @@ import SpriteKit
     private let unit: Unit
     private let mapManager: MapManager
     private let unitSprite: SKSpriteNode
+      private let labelNode: SKLabelNode
 //    private let selectedIndicator: SKSpriteNode
 //    private let selectedSkyIndicator: SKSpriteNode
     private var cancellable = Set<AnyCancellable>()
@@ -22,6 +23,56 @@ import SpriteKit
                                   size: unitTexture.size())
         unitSprite.position = CGPoint.zero
         unitSprite.zPosition = 10
+        
+        labelNode = SKLabelNode(fontNamed: "Arial Bold")
+        labelNode.text = "------" // "\(unit.player.ordinal + 1)"
+        labelNode.position = CGPoint(x: -5.0, y: -50.0)
+        labelNode.fontSize = 32
+        labelNode.horizontalAlignmentMode = .center
+        labelNode.zPosition = unitSprite.zPosition + 1.0
+        
+        var color = UIColor.white
+        
+        if unit.player.ordinal == 0 {
+            color = UIColor.green
+        }
+        else if unit.player.ordinal == 1 {
+            color = UIColor.red
+        }
+        else if unit.player.ordinal == 2 {
+            color = UIColor.blue
+        }
+        else if unit.player.ordinal == 3 {
+            color = UIColor.yellow
+        }
+        else if unit.player.ordinal == 4 {
+            color = UIColor.cyan
+        }
+        
+        if unit.assetName.contains("Americans") {
+            color = UIColor.cyan
+        }
+        else if unit.assetName.contains("Americans") {
+            color = UIColor.red
+        }
+        else if unit.assetName.contains("Americans") {
+            color = UIColor.blue
+        }
+        else if unit.assetName.contains("Russians") {
+            color = UIColor.red
+        }
+        else if unit.assetName.contains("Russians") {
+            color = UIColor.cyan
+        }
+        
+        labelNode.fontColor = color
+        
+        if unit.assetName.contains("cavalry") {
+            labelNode.text = "------"
+        }
+        else {
+            labelNode.text = ""
+        }
         
 //        let selectedTexture = SKTexture(imageNamed: "select-single")
 //        selectedIndicator = SKSpriteNode(texture: selectedTexture,
@@ -48,6 +99,7 @@ import SpriteKit
         zPosition = Layer.units
         
         addChild(unitSprite)
+        addChild(labelNode)
 //        addChild(selectedIndicator)
 //        addChild(selectedSkyIndicator)
         
@@ -62,6 +114,14 @@ import SpriteKit
         self.unit.$position
             .sink(receiveValue: { unitPosition in
                 self.position = self.mapManager.getCenterOf(position: unitPosition)
+                
+                if self.unit.isInCity() {
+                    self.labelNode.text = ""
+                }
+                else {
+                    self.labelNode.text = "------"
+                }
+
                 
             })
             .store(in: &cancellable)

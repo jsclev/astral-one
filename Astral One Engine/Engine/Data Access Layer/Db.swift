@@ -11,6 +11,7 @@ public class Db {
     public let buildingTypeDao: BuildingTypeDAO
     public let buildBuildingCommandDao: BuildBuildingCommandDAO
     public let cityDao: CityDAO
+    public let cityNameDao: CityNameDAO
     public let commandDao: CommandDAO
     public let createCityCommandDao: CreateCityCommandDAO
     public let createUnitCommandDao: CreateUnitCommandDAO
@@ -103,6 +104,7 @@ public class Db {
         sqlite3_finalize(stmt)
         
         buildingTypeDao = BuildingTypeDAO(conn: db)
+        cityNameDao = CityNameDAO(conn: db)
         cityDao = CityDAO(conn: db)
         unitDao = UnitDAO(conn: db)
         commandDao = CommandDAO(conn: db, cityDao: cityDao)
@@ -114,7 +116,7 @@ public class Db {
         buildBuildingCommandDao = BuildBuildingCommandDAO(conn: db, commandDao: commandDao, buildingTypeDao: buildingTypeDao)
         moveUnitCommandDao = MoveUnitCommandDAO(conn: db, commandDao: commandDao)
         researchAdvanceCommandDao = ResearchAdvanceCommandDAO(conn: db, commandDao: commandDao)
-        playerDao = PlayerDAO(conn: db, mapDao: mapDao, unitDao: unitDao)
+        playerDao = PlayerDAO(conn: db, mapDao: mapDao, unitDao: unitDao, cityNameDao: cityNameDao)
         terrainDao = TerrainDAO(conn: db)
         themeDao = ThemeDAO(conn: db)
         turnDao = TurnDAO(conn: db)

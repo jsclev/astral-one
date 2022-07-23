@@ -170,7 +170,7 @@ public class Unit: ObservableObject, Equatable {
     }
     
     public func isInCity() -> Bool {
-        return true
+        return city == nil
     }
     
     public var defenseVsGroundAttacks: Double {

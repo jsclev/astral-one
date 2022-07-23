@@ -206,8 +206,7 @@ public class EventBus {
                                 
                                 let cityCmd = CreateCityCommand(player: game.currentPlayer,
                                                                 turn: game.currentTurn,
-                                                                cityCreator: unit as! Settler,
-                                                                cityName: "Chicago")
+                                                                cityCreator: unit as! Settler)
                                 let cityCmdResult = cityCmd.execute()
                                 if cityCmdResult.status != CommandStatus.Ok {
                                     fatalError(cityCmdResult.message)
@@ -349,8 +348,7 @@ public class EventBus {
         
         let createCityCmd = CreateCityCommand(player: player,
                                               turn: game.currentTurn,
-                                              cityCreator: settler,
-                                              cityName: "New York-\(player.playerId)")
+                                              cityCreator: settler)
         let result = createCityCmd.execute()
         
         if result.status != CommandStatus.Ok {

@@ -22,7 +22,7 @@ public class Cavalry7: Unit {
                    theme: theme,
                    tiledId: 100,
                    name: name,
-                   assetName: "Civs/\(player.civilization.name)/Units/Cavalry/cavalry-7",
+                   assetName: "Civs/Americans/Units/Cavalry/cavalry-7",
                    cost: 80,
                    maxHp: 30,
                    attack: 10,

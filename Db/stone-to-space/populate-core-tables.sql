@@ -335,6 +335,60 @@ insert into advance (parent_advance_id, theme_id, name) values (NULL, (select th
 insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Stone to Space'), 'Wheel');
 insert into advance (parent_advance_id, theme_id, name) values (NULL, (select theme_id from theme where name = 'Stone to Space'), 'Writing');
 
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Washington', 0);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'New York', 1);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Boston', 2);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Philadelphia', 3);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Atlanta', 4);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Chicago', 5);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'San Francisco', 6);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Buffalo', 7);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'St. Louis', 8);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Detroit', 9);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'New Orleans', 10);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Baltimore', 11);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Denver', 12);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Cincinnati', 13);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Dallas', 14);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Los Angeles', 15);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Kansas City', 16);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'San Diego', 17);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Trenton', 18);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Las Vegas', 19);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Phoenix', 20);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Seattle', 21);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Albuquerque', 22);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Portland', 23);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Minneapolis', 24);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Norfolk', 25);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Savannah', 26);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Jacksonville', 27);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Mobile', 28);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Birmingham', 29);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Pittsburgh', 30);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Cleveland', 31);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Milwaukee', 32);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Houston', 33);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'San Antonio', 34);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Salt Lake City', 35);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Spokane', 36);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Oakland', 37);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Omaha', 38);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Wichita', 39);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Fargo', 40);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Duluth', 41);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Miami', 42);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Indianapolis', 43);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Raleigh', 44);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Hartford', 45);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Santa Fe', 46);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Nashville', 47);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Des Moines', 48);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Lincoln', 49);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Springfield', 50);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'El Paso', 51);
+insert into city_name (civilization_id, name, ordinal) values ((select civilization_id from civilization where name = 'Americans'), 'Little Rock', 52);
+
 -- Terrain
 -- insert into terrain
 --     (tiled_id, terrain_type, food, shields, trade, movement_cost, defensive_bonus) values

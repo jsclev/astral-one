@@ -26,18 +26,31 @@ public class City: ObservableObject, Equatable {
     @Published var production: Int = 0
     @Published var food: Int = 0
     
+    public convenience init(id: Int,
+                            owner: Player,
+                            theme: Theme,
+                            assetName: String,
+                            position: Position) {
+        self.init(id: id,
+                  owner: owner,
+                  name: owner.nextCityName,
+                  theme: theme,
+                  assetName: assetName,
+                  position: position)
+    }
+    
     public init(id: Int,
                 owner: Player,
-                theme: Theme,
                 name: String,
+                theme: Theme,
                 assetName: String,
                 position: Position) {
         self.id = id
         self.owner = owner
         self.theme = theme
-        self.name = name
         self.assetName = theme.name + "/Cities/" + assetName
         self.position = position
+        self.name = name
         
         var startRow = position.row - 2
         if startRow < 0 {
@@ -108,6 +121,7 @@ public class City: ObservableObject, Equatable {
                 production += tile.production
             }
         }
+        
     }
     
     public var isCoastal: Bool {
@@ -298,8 +312,8 @@ public class City: ObservableObject, Equatable {
     public func clone() -> City {
         let copy = City(id: id,
                         owner: owner,
-                        theme: theme,
                         name: name,
+                        theme: theme,
                         assetName: assetName,
                         position: position)
         copy.buildings = buildings

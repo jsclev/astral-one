@@ -29,10 +29,9 @@ public class Scenario1 {
                 errorCheck(cmd.execute())
                 
                 let createCity = CreateCityCommand(db: game.db,
-                                                    player: game.currentPlayer,
-                                                    turn: game.currentTurn,
-                                                   cityCreator: cmd.settler,
-                                                    cityName: "Chicago")
+                                                   player: game.currentPlayer,
+                                                   turn: game.currentTurn,
+                                                   cityCreator: cmd.settler)
                 errorCheck(createCity.execute())
                 
                 let cityAgent = try CityAgent.getAgent(game: game,

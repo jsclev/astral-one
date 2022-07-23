@@ -94,10 +94,10 @@ public class CitiesMapLayer {
             label.zPosition = Layer.cityNames
             
             adjustLabelFontSizeToFitRect(labelNode: label,
-                                         rect: CGRect(x: point.x - 35,
-                                                      y: point.y - 35,
-                                                      width: 70,
-                                                      height: 17))
+                                         rect: CGRect(x: point.x - 75,
+                                                      y: point.y - 55,
+                                                      width: 160,
+                                                      height: 57))
             var color = UIColor.white
             
             if city.owner.ordinal == 0 {

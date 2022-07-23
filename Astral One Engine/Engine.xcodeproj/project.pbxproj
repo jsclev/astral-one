@@ -47,6 +47,8 @@
 		52391A76288B298100DB4242 /* CreateCavalry8Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52391A75288B298100DB4242 /* CreateCavalry8Command.swift */; };
 		52391A78288B637E00DB4242 /* CreateCavalry7Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52391A77288B637E00DB4242 /* CreateCavalry7Command.swift */; };
 		52391A7A288B835800DB4242 /* Civilization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52391A79288B835800DB4242 /* Civilization.swift */; };
+		52391A7C288C46AD00DB4242 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52391A7B288C46AD00DB4242 /* Language.swift */; };
+		52391A7E288C57E100DB4242 /* CityNameDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52391A7D288C57E000DB4242 /* CityNameDAO.swift */; };
 		5258868A288265A3009EC608 /* Scenario1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52588689288265A2009EC608 /* Scenario1.swift */; };
 		5258868D28827919009EC608 /* TileCoordsToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258868C28827919009EC608 /* TileCoordsToggle.swift */; };
 		5258869028832FB3009EC608 /* SettlerPathfinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258868F28832FB3009EC608 /* SettlerPathfinder.swift */; };
@@ -314,6 +316,8 @@
 		52391A75288B298100DB4242 /* CreateCavalry8Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCavalry8Command.swift; sourceTree = "<group>"; };
 		52391A77288B637E00DB4242 /* CreateCavalry7Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCavalry7Command.swift; sourceTree = "<group>"; };
 		52391A79288B835800DB4242 /* Civilization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Civilization.swift; sourceTree = "<group>"; };
+		52391A7B288C46AD00DB4242 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		52391A7D288C57E000DB4242 /* CityNameDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNameDAO.swift; sourceTree = "<group>"; };
 		52588689288265A2009EC608 /* Scenario1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenario1.swift; sourceTree = "<group>"; };
 		5258868C28827919009EC608 /* TileCoordsToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCoordsToggle.swift; sourceTree = "<group>"; };
 		5258868F28832FB3009EC608 /* SettlerPathfinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerPathfinder.swift; sourceTree = "<group>"; };
@@ -731,6 +735,7 @@
 				52E0B19D27E6DFA100607FBE /* EntityManager.swift */,
 				52F5595A28375E4200966F06 /* Enums.swift */,
 				52D1A3E2285662DE0046B219 /* EventBus.swift */,
+				52391A7B288C46AD00DB4242 /* Language.swift */,
 				52E0B19927E6DFA000607FBE /* Game.swift */,
 				52E0B18F27E6D87600607FBE /* Map.swift */,
 				52DE5F80281C6DB60029EFE1 /* Player.swift */,
@@ -1167,6 +1172,7 @@
 				52F9042F27F6B5B100D1AC97 /* BaseDAO.swift */,
 				52D78CE9287B759A006AF649 /* BuildingTypeDAO.swift */,
 				52DE5FB42820EC570029EFE1 /* CityDAO.swift */,
+				52391A7D288C57E000DB4242 /* CityNameDAO.swift */,
 				52F9044327F6D68A00D1AC97 /* GameDAO.swift */,
 				52DE5F332810DAB90029EFE1 /* MapDAO.swift */,
 				52D78CE12877EC4A006AF649 /* PlayerDAO.swift */,
@@ -1351,6 +1357,7 @@
 				5266816A282315670089D0DD /* Partisan.swift in Sources */,
 				5258869028832FB3009EC608 /* SettlerPathfinder.swift in Sources */,
 				52F9042627F4E1AC00D1AC97 /* Unit.swift in Sources */,
+				52391A7C288C46AD00DB4242 /* Language.swift in Sources */,
 				52AB0748280287580039B47D /* City.swift in Sources */,
 				52A6469128317ADD0066B82D /* Temple.swift in Sources */,
 				52D78CE42879410A006AF649 /* HUDConfig.swift in Sources */,
@@ -1559,6 +1566,7 @@
 				52A64670282F01500066B82D /* GoodieHut.swift in Sources */,
 				521F21BF2804811C00F1D61D /* Air4.swift in Sources */,
 				521F21AF2803F92F00F1D61D /* Artillery4.swift in Sources */,
+				52391A7E288C57E100DB4242 /* CityNameDAO.swift in Sources */,
 				52E0B1B527E6DFD100607FBE /* Lighthouse.swift in Sources */,
 				52E0B1BC27E6E18000607FBE /* SpriteComponent.swift in Sources */,
 				52E0B1B727E6DFD100607FBE /* Colossus.swift in Sources */,

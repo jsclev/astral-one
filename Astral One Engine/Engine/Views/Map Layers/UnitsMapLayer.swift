@@ -97,7 +97,7 @@ public class UnitsMapLayer {
     
     private func renderUnit(unit: Unit) {
         let unitPosition = mapManager.getCenterOf(position: unit.position)
-        let labelPosition = CGPoint(x: unitPosition.x - 5.0, y: unitPosition.y - 35.0)
+//        let labelPosition = CGPoint(x: unitPosition.x - 5.0, y: unitPosition.y - 35.0)
         
         let unitNode = UnitNode(player: player, unit: unit, mapManager: mapManager)
         unitNode.position = unitPosition
@@ -107,33 +107,6 @@ public class UnitsMapLayer {
         scene.addChild(unitNode)
         unit.node = unitNode
         
-        let playerNumNode = SKLabelNode(fontNamed: "Arial")
-        playerNumNode.text = "\(unit.player.ordinal + 1)"
-        playerNumNode.position = labelPosition
-        playerNumNode.fontSize = 20
-        playerNumNode.horizontalAlignmentMode = .center
-        playerNumNode.zPosition = unitNode.zPosition + 1.0
-        
-        var color = UIColor.white
-        
-        if unit.player.ordinal == 0 {
-            color = UIColor.green
-        }
-        else if unit.player.ordinal == 1 {
-            color = UIColor.red
-        }
-        else if unit.player.ordinal == 2 {
-            color = UIColor.blue
-        }
-        else if unit.player.ordinal == 3 {
-            color = UIColor.yellow
-        }
-        else if unit.player.ordinal == 4 {
-            color = UIColor.cyan
-        }
-        
-        playerNumNode.fontColor = color
-        
-        scene.addChild(playerNumNode)
+
     }
 }

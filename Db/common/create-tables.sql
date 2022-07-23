@@ -18,13 +18,29 @@ DROP TABLE IF EXISTS unit_type;
 DROP TABLE IF EXISTS advance;
 DROP TABLE IF EXISTS turn;
 
+CREATE TABLE language (
+    language_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
 CREATE TABLE civilization (
     civilization_id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
-    color TEXT NOT NULL
+    language_id INTEGER NOT NULL,
+    color TEXT NOT NULL,
+    FOREIGN KEY (language_id) REFERENCES language (language_id)
 );
 
 CREATE UNIQUE INDEX civilization_idx1 ON civilization (name);
+
+CREATE TABLE city_name (
+    city_name_id INTEGER PRIMARY KEY,
+    civilization_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    ordinal INTEGER NOT NULL CHECK (ordinal >= 0)
+);
+
+CREATE UNIQUE INDEX city_name_idx1 ON city_name (civilization_id, ordinal);
 
 CREATE TABLE theme (
     theme_id INTEGER PRIMARY KEY,

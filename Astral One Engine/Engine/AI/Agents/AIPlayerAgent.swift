@@ -64,8 +64,8 @@ public class AIPlayerAgent {
                                              player: player,
                                              turn: game.currentTurn,
                                              unit: cavalryCmd.cavalry,
-                                             to: Position(row: cavalryCmd.cavalry.position.row - 1,
-                                                          col: cavalryCmd.cavalry.position.col))
+                                             to: Position(row: 29,
+                                                          col: 20))
         errorCheck(moveCavalryCmd.execute())
         
         let settlerAgent = try SettlerAgent(player: player,
@@ -82,8 +82,7 @@ public class AIPlayerAgent {
             let createCityCmd = CreateCityCommand(db: game.db,
                                                   player: player,
                                                   turn: game.currentTurn,
-                                                  cityCreator: settlerCmd.settler,
-                                                  cityName: "Auto City")
+                                                  cityCreator: settlerCmd.settler)
             errorCheck(createCityCmd.execute())
             
             let cavalry8Cmd = CreateCavalry8Command(db: game.db,
@@ -96,8 +95,8 @@ public class AIPlayerAgent {
                                                   player: player,
                                                   turn: game.currentTurn,
                                                   unit: cavalry8Cmd.cavalry,
-                                                  to: Position(row: createCityCmd.city.position.row - 2,
-                                                               col: createCityCmd.city.position.col))
+                                                  to: Position(row: 30,
+                                                               col: 18))
             errorCheck(moveCavalry8Cmd.execute())
         }
         

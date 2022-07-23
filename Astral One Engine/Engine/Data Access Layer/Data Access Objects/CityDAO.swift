@@ -36,8 +36,8 @@ public class CityDAO: BaseDAO {
         
         return City(id: cityId,
                     owner: city.owner,
-                    theme: city.theme,
                     name: city.name,
+                    theme: city.theme,
                     assetName: city.assetName,
                     position: city.position)
     }
@@ -48,7 +48,10 @@ public class CityDAO: BaseDAO {
                             type: PlayerType.AI,
                             civilization: Civilization(id: Constants.noId,
                                                        name: "",
-                                                       color: ""),
+                                                       language: Language(id: Constants.noId,
+                                                                          name: "English"),
+                                                       color: "",
+                                                       cityNames: []),
                             name: "",
                             ordinal: 1,
                             map: game.map,
@@ -83,7 +86,6 @@ public class CityDAO: BaseDAO {
                     cities.append(City(id: cityId,
                                        owner: player,
                                        theme: theme,
-                                       name: cityName,
                                        assetName: "city-1",
                                        position: Position(row: row, col: col)))
                 }
