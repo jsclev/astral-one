@@ -2,8 +2,6 @@
 rm game.sqlite 2>/dev/null
 sqlite3 game.sqlite ""
 sqlite3 game.sqlite < common/create-tables.sql
-
-# Populate the common tables
 sqlite3 game.sqlite < common/populate-core-tables.sql
 
 # Engine Tests

@@ -12,6 +12,94 @@ public class CreateUnitCommandDAO: BaseDAO {
         super.init(conn: conn, table: "command", loggerName: String(describing: type(of: self)))
     }
     
+//    public func insert(command: CreateCavalry8Command) throws -> Cavalry8 {
+//        let newCommand = try commandDao.insert(command: Command(player: command.player,
+//                                                                turn: command.turn,
+//                                                                ordinal: command.ordinal,
+//                                                                cost: command.cost))
+//        let unit = try unitDao.insert(cavalry: command.cavalry)
+//        try insert(command: newCommand, unit: unit)
+//
+//        return unit
+//    }
+//
+//    public func insert(command: CreateCavalry8Command) throws -> Cavalry8 {
+//        let newCommand = try commandDao.insert(command: Command(player: command.player,
+//                                                                turn: command.turn,
+//                                                                ordinal: command.ordinal,
+//                                                                cost: command.cost))
+//        let unit = try unitDao.insert(cavalry: command.cavalry)
+//        try insert(command: newCommand, unit: unit)
+//
+//        return unit
+//    }
+//
+//    public func insert(command: CreateCavalry8Command) throws -> Cavalry8 {
+//        let newCommand = try commandDao.insert(command: Command(player: command.player,
+//                                                                turn: command.turn,
+//                                                                ordinal: command.ordinal,
+//                                                                cost: command.cost))
+//        let unit = try unitDao.insert(cavalry: command.cavalry)
+//        try insert(command: newCommand, unit: unit)
+//
+//        return unit
+//    }
+//
+//    public func insert(command: CreateCavalry8Command) throws -> Cavalry8 {
+//        let newCommand = try commandDao.insert(command: Command(player: command.player,
+//                                                                turn: command.turn,
+//                                                                ordinal: command.ordinal,
+//                                                                cost: command.cost))
+//        let unit = try unitDao.insert(cavalry: command.cavalry)
+//        try insert(command: newCommand, unit: unit)
+//
+//        return unit
+//    }
+//
+//    public func insert(command: CreateCavalry8Command) throws -> Cavalry8 {
+//        let newCommand = try commandDao.insert(command: Command(player: command.player,
+//                                                                turn: command.turn,
+//                                                                ordinal: command.ordinal,
+//                                                                cost: command.cost))
+//        let unit = try unitDao.insert(cavalry: command.cavalry)
+//        try insert(command: newCommand, unit: unit)
+//
+//        return unit
+//    }
+//
+//    public func insert(command: CreateCavalry8Command) throws -> Cavalry8 {
+//        let newCommand = try commandDao.insert(command: Command(player: command.player,
+//                                                                turn: command.turn,
+//                                                                ordinal: command.ordinal,
+//                                                                cost: command.cost))
+//        let unit = try unitDao.insert(cavalry: command.cavalry)
+//        try insert(command: newCommand, unit: unit)
+//
+//        return unit
+//    }
+    
+    public func insert(command: CreateCavalry7Command) throws -> Cavalry7 {
+        let newCommand = try commandDao.insert(command: Command(player: command.player,
+                                                                turn: command.turn,
+                                                                ordinal: command.ordinal,
+                                                                cost: command.cost))
+        let unit = try unitDao.insert(cavalry: command.cavalry)
+        try insert(command: newCommand, unit: unit)
+        
+        return unit
+    }
+    
+    public func insert(command: CreateCavalry8Command) throws -> Cavalry8 {
+        let newCommand = try commandDao.insert(command: Command(player: command.player,
+                                                                turn: command.turn,
+                                                                ordinal: command.ordinal,
+                                                                cost: command.cost))
+        let unit = try unitDao.insert(cavalry: command.cavalry)
+        try insert(command: newCommand, unit: unit)
+        
+        return unit
+    }
+    
     public func insert(command: CreateSettlerCommand) throws -> Settler {
         let newCommand = try commandDao.insert(command: Command(player: command.player,
                                                                 turn: command.turn,

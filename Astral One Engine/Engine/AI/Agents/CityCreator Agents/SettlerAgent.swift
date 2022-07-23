@@ -121,10 +121,6 @@ public class SettlerAgent {
             }
         }
         
-//        if player.ordinal == 4 {
-//            player.agentMap = scoreMap
-//        }
-        
 //        log(scoreMap: scoreMap)
         
         return aggregateMap

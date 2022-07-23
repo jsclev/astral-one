@@ -6,6 +6,9 @@ public class UnitFactory {
         let map = Map(mapId: 1, width: 1, height: 1)
         let player = Player(playerId: 1,
                             type: PlayerType.AI,
+                            civilization: Civilization(id: Constants.noId,
+                                                       name: "",
+                                                       color: ""),
                             name: "",
                             ordinal: 1,
                             map: map,

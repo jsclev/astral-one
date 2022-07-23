@@ -46,6 +46,9 @@ public class CityDAO: BaseDAO {
         var cities: [City] = []
         let player = Player(playerId: 1,
                             type: PlayerType.AI,
+                            civilization: Civilization(id: Constants.noId,
+                                                       name: "",
+                                                       color: ""),
                             name: "",
                             ordinal: 1,
                             map: game.map,

@@ -2,7 +2,7 @@ import Foundation
 import Combine
 import SpriteKit
 
-public class UnitNode: SKNode {
+  public class UnitNode: SKNode {
     private let player: Player
     private let unit: Unit
     private let mapManager: MapManager
@@ -59,6 +59,13 @@ public class UnitNode: SKNode {
     }
     
     private func attachSubscribers() {
+        self.unit.$position
+            .sink(receiveValue: { unitPosition in
+                self.position = self.mapManager.getCenterOf(position: unitPosition)
+                
+            })
+            .store(in: &cancellable)
+        
 //        self.player.$selectedUnit
 //            .sink(receiveValue: { updatedUnit in
 //                if let selectedUnit = updatedUnit {

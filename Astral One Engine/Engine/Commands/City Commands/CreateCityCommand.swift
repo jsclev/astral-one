@@ -3,7 +3,7 @@ import Foundation
 public class CreateCityCommand: Command {
     public private(set) var cityCreator: Builder
     private var cityName: String
-    public private(set) var city: City?
+    public private(set) var city: City
     private var currentDisplayText: String
     private var currentDebugText: String
     
@@ -28,6 +28,13 @@ public class CreateCityCommand: Command {
         self.cityCreator = cityCreator
         self.cityName = cityName
         
+        city = City(id: Constants.noId,
+                    owner: player,
+                    theme: Theme(id: Constants.noId, name: "Standard"),
+                    name: cityName,
+                    assetName: "city-1",
+                    position: cityCreator.position)
+        
         currentDisplayText = "Ready to create city \(cityName)."
         currentDebugText = "Ready to create city \(cityName)."
         
@@ -45,6 +52,13 @@ public class CreateCityCommand: Command {
                 cityName: String) {
         self.cityCreator = cityCreator
         self.cityName = cityName
+        
+        city = City(id: Constants.noId,
+                    owner: player,
+                    theme: Theme(id: Constants.noId, name: "Standard"),
+                    name: cityName,
+                    assetName: "city-1",
+                    position: cityCreator.position)
         
         currentDisplayText = "Ready to create city \(cityName)."
         currentDebugText = "Ready to create city \(cityName)."
@@ -70,13 +84,6 @@ public class CreateCityCommand: Command {
     
     public override func execute() -> CommandResult {
         if cityCreator.canCreateCity.score > 0 {
-            city = City(id: Constants.noId,
-                        owner: player,
-                        theme: Theme(id: Constants.noId, name: "Standard"),
-                        name: cityName,
-                        assetName: "city-1",
-                        position: cityCreator.position)
-            
             if persist {
                 do {
                     guard let db = database else {
@@ -91,14 +98,12 @@ public class CreateCityCommand: Command {
                 }
             }
             
-            if let newCity = city {
-                player.create(city: newCity, using: cityCreator)
+            player.create(city: city, using: cityCreator)
                 
-                currentDisplayText = "\(cityCreator.name) created city \(newCity.name)."
-                currentDebugText = "\(cityCreator.name) created city \(newCity.name) \(newCity.id)."
+            currentDisplayText = "\(cityCreator.name) created city \(city.name)."
+            currentDebugText = "\(cityCreator.name) created city \(city.name) \(city.id)."
             
-                return CommandResult(status: CommandStatus.Ok, message: "Success")
-            }
+            return CommandResult(status: CommandStatus.Ok, message: "Success")
         }
         
         return CommandResult(status: CommandStatus.Invalid,

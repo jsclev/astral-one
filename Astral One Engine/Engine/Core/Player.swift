@@ -4,6 +4,7 @@ import Combine
 public class Player: ObservableObject, Equatable, CustomStringConvertible, Hashable {
     public let playerId: Int
     public let type: PlayerType
+    public let civilization: Civilization
     public let ordinal: Int
     public let name: String
     public let map: Map
@@ -30,6 +31,7 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
     
     public init(playerId: Int,
                 type: PlayerType,
+                civilization: Civilization,
                 name: String,
                 ordinal: Int,
                 map: Map,
@@ -38,6 +40,7 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
                 strategy: AIStrategy) {
         self.playerId = playerId
         self.type = type
+        self.civilization = civilization
         self.ordinal = ordinal
         self.name = name
         self.map = map
@@ -362,12 +365,11 @@ public class Player: ObservableObject, Equatable, CustomStringConvertible, Hasha
         //        map.add(tile: tile)
     }
     
-    
-    
     public func clone() -> Player {
         // FIXME: Need to clone the map, right now only the pointer is being cloned
         let copy = Player(playerId: playerId,
                           type: type,
+                          civilization: civilization,
                           name: name,
                           ordinal: ordinal,
                           map: map,

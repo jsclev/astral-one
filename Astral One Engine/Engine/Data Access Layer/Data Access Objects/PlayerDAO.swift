@@ -18,14 +18,19 @@ public class PlayerDAO: BaseDAO {
         var stmt: OpaquePointer?
         let sql = """
             SELECT
-                player_id,
-                ordinal,
-                name,
-                skill_level
+                p.player_id,
+                p.ordinal,
+                p.name,
+                p.skill_level,
+                c.civilization_id,
+                c.name,
+                c.color
             FROM
-                player
+                player p
+            INNER JOIN
+                civilization c ON c.civilization_id = p.civilization_id
             WHERE
-                game_id = \(gameId)
+                p.game_id = \(gameId)
         """
         
         if sqlite3_prepare_v2(conn, sql, -1, &stmt, nil) == SQLITE_OK {
@@ -37,8 +42,11 @@ public class PlayerDAO: BaseDAO {
                 let playerId = getInt(stmt: stmt, colIndex: 0)
                 let ordinal = getInt(stmt: stmt, colIndex: 1)
                 let dbSkillLevel = getInt(stmt: stmt, colIndex: 3)
-                
-                if let name = try getString(stmt: stmt, colIndex: 2) {
+                let civilizationId = getInt(stmt: stmt, colIndex: 4)
+
+                if let playerName = try getString(stmt: stmt, colIndex: 2),
+                   let civilizationName = try getString(stmt: stmt, colIndex: 5),
+                   let civilizationColor = try getString(stmt: stmt, colIndex: 6) {
                     var skillLevel = SkillLevel.One
                     
                     if dbSkillLevel == 1 {
@@ -68,7 +76,10 @@ public class PlayerDAO: BaseDAO {
                     
                     let player = Player(playerId: playerId,
                                         type: PlayerType.AI,
-                                        name: name,
+                                        civilization: Civilization(id: civilizationId,
+                                                                   name: civilizationName,
+                                                                   color: civilizationColor),
+                                        name: playerName,
                                         ordinal: ordinal,
                                         map: map,
                                         skillLevel: skillLevel,

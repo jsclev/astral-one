@@ -27,6 +27,11 @@ public class CityProximityUtility: AgentUtility {
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
+                if !player.map.isPlayable(row: row, col: col) {
+                    continue
+                }
+                Debug.shared.bumpCounter()
+                
                 let position = Position(row: row, col: col)
                 let tile = player.map.tile(at: Position(row: row, col: col))
                 
@@ -382,6 +387,12 @@ public class CityProximityUtility: AgentUtility {
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
+                if !player.map.isPlayable(row: row, col: col) {
+                    continue
+                }
+                
+                Debug.shared.bumpCounter()
+
                 let position = Position(row: row, col: col)
                 let tile = player.map.tile(at: Position(row: row, col: col))
                 

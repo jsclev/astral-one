@@ -22,7 +22,7 @@ public class Cavalry8: Unit {
                    theme: theme,
                    tiledId: 100,
                    name: name,
-                   assetName: "Units/Cavalry/cavalry-8",
+                   assetName: "Civs/\(player.civilization.name)/Units/Cavalry/cavalry-8",
                    cost: 80,
                    maxHp: 30,
                    attack: 10,
@@ -34,5 +34,22 @@ public class Cavalry8: Unit {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override func move(to: Position) {
+        if canMove(to: to) {
+            position = to
+            
+            movementPoints -= player.map.tile(at: to).movementCost
+        }
+    }
+    
+    public override func canMove(to: Position) -> Bool {
+        if player.map.tile(at: to).terrain.type == TerrainType.Ocean ||
+            player.map.tile(at: to).terrain.type == TerrainType.Glacier {
+            return false
+        }
+        
+        return movementPoints >= player.map.tile(at: to).movementCost
     }
 }

@@ -213,13 +213,11 @@ public class EventBus {
                                     fatalError(cityCmdResult.message)
                                 }
                                 
-                                if let city = cityCmd.city {
-                                    let cityAgent = try CityAgent.getAgent(game: game,
-                                                                           player: game.currentPlayer,
-                                                                           city: city)
-                                    let cmd = cityAgent.getNextCommand()
-                                    let _ = cmd.execute()
-                                }
+                                let cityAgent = try CityAgent.getAgent(game: game,
+                                                                       player: game.currentPlayer,
+                                                                       city: cityCmd.city)
+                                let cmd = cityAgent.getNextCommand()
+                                let _ = cmd.execute()
                             }
                         }
                         catch {

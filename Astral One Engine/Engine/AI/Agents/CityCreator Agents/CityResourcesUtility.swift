@@ -31,6 +31,12 @@ public class CityResourcesUtility: AgentUtility {
 
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
+                if !player.map.isPlayable(row: row, col: col) {
+                    continue
+                }
+                
+                Debug.shared.bumpCounter()
+
                 let position = Position(row: row, col: col)
                 
                 if player.map.canCreateCity(at: position) {
@@ -359,6 +365,12 @@ public class CityResourcesUtility: AgentUtility {
 
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
+                if !player.map.isPlayable(row: row, col: col) {
+                    continue
+                }
+                
+                Debug.shared.bumpCounter()
+
                 let position = Position(row: row, col: col)
                 
                 if player.map.canCreateCity(at: position) {

@@ -1,5 +1,5 @@
+DROP TABLE IF EXISTS civilization;
 DROP TABLE IF EXISTS tile;
-DROP TABLE IF EXISTS advance_command;
 DROP TABLE IF EXISTS create_city_command;
 DROP TABLE IF EXISTS build_building_command;
 DROP TABLE IF EXISTS move_unit_command;
@@ -17,6 +17,14 @@ DROP TABLE IF EXISTS building_type;
 DROP TABLE IF EXISTS unit_type;
 DROP TABLE IF EXISTS advance;
 DROP TABLE IF EXISTS turn;
+
+CREATE TABLE civilization (
+    civilization_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    color TEXT NOT NULL
+);
+
+CREATE UNIQUE INDEX civilization_idx1 ON civilization (name);
 
 CREATE TABLE theme (
     theme_id INTEGER PRIMARY KEY,
@@ -123,11 +131,13 @@ CREATE TABLE game_setting (
 CREATE TABLE player (
     player_id INTEGER PRIMARY KEY,
     game_id INTEGER NOT NULL,
+    civilization_id INTEGER NOT NULL,
     ordinal INTEGER NOT NULL CHECK (ordinal IN (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)),
     name TEXT NOT NULL,
     type TEXT NOT NULL CHECK(type IN ('Human', 'AI')),
     skill_level INTEGER NOT NULL CHECK (skill_level IN (0, 1, 2, 3, 4, 5, 6, 7, 8)),
-    FOREIGN KEY (game_id) REFERENCES game (game_id)
+    FOREIGN KEY (game_id) REFERENCES game (game_id),
+    FOREIGN KEY (civilization_id) REFERENCES civilization (civilization_id)
 );
 
 CREATE UNIQUE INDEX player_idx1 ON player (game_id, ordinal);

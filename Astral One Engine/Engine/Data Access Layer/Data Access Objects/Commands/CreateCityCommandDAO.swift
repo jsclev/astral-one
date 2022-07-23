@@ -17,7 +17,7 @@ public class CreateCityCommandDAO: BaseDAO {
                                                              turn: command.turn,
                                                              ordinal: command.ordinal,
                                                              cost: command.cost))
-        let city = try cityDao.add(city: command.city!)
+        let city = try cityDao.add(city: command.city)
         
         var createCitySql = "INSERT INTO create_city_command (" +
         "command_id, unit_id, city_id" +

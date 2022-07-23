@@ -43,6 +43,10 @@
 		5236B41328450C1C006DF7E6 /* SettlerAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B41228450C1C006DF7E6 /* SettlerAgent.swift */; };
 		5236B41528451AEF006DF7E6 /* AISkillLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B41428451AEF006DF7E6 /* AISkillLevel.swift */; };
 		5236B4172845450B006DF7E6 /* LuaVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236B4162845450B006DF7E6 /* LuaVM.swift */; };
+		52391A74288AEF0000DB4242 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52391A73288AEF0000DB4242 /* Debug.swift */; };
+		52391A76288B298100DB4242 /* CreateCavalry8Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52391A75288B298100DB4242 /* CreateCavalry8Command.swift */; };
+		52391A78288B637E00DB4242 /* CreateCavalry7Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52391A77288B637E00DB4242 /* CreateCavalry7Command.swift */; };
+		52391A7A288B835800DB4242 /* Civilization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52391A79288B835800DB4242 /* Civilization.swift */; };
 		5258868A288265A3009EC608 /* Scenario1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52588689288265A2009EC608 /* Scenario1.swift */; };
 		5258868D28827919009EC608 /* TileCoordsToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258868C28827919009EC608 /* TileCoordsToggle.swift */; };
 		5258869028832FB3009EC608 /* SettlerPathfinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5258868F28832FB3009EC608 /* SettlerPathfinder.swift */; };
@@ -306,6 +310,10 @@
 		5236B41228450C1C006DF7E6 /* SettlerAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerAgent.swift; sourceTree = "<group>"; };
 		5236B41428451AEF006DF7E6 /* AISkillLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISkillLevel.swift; sourceTree = "<group>"; };
 		5236B4162845450B006DF7E6 /* LuaVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuaVM.swift; sourceTree = "<group>"; };
+		52391A73288AEF0000DB4242 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
+		52391A75288B298100DB4242 /* CreateCavalry8Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCavalry8Command.swift; sourceTree = "<group>"; };
+		52391A77288B637E00DB4242 /* CreateCavalry7Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCavalry7Command.swift; sourceTree = "<group>"; };
+		52391A79288B835800DB4242 /* Civilization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Civilization.swift; sourceTree = "<group>"; };
 		52588689288265A2009EC608 /* Scenario1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenario1.swift; sourceTree = "<group>"; };
 		5258868C28827919009EC608 /* TileCoordsToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCoordsToggle.swift; sourceTree = "<group>"; };
 		5258868F28832FB3009EC608 /* SettlerPathfinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlerPathfinder.swift; sourceTree = "<group>"; };
@@ -673,6 +681,14 @@
 			path = HUD;
 			sourceTree = "<group>";
 		};
+		52391A72288AEED900DB4242 /* Debug Tools */ = {
+			isa = PBXGroup;
+			children = (
+				52391A73288AEF0000DB4242 /* Debug.swift */,
+			);
+			path = "Debug Tools";
+			sourceTree = "<group>";
+		};
 		525886882882657F009EC608 /* Scenarios */ = {
 			isa = PBXGroup;
 			children = (
@@ -701,6 +717,7 @@
 		52605C8828014FF90082C0DB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				52391A72288AEED900DB4242 /* Debug Tools */,
 				521F21D8280699CD00F1D61D /* Data Structures */,
 				52E0B1A327E6DFAB00607FBE /* Buildings */,
 				52605C8E2801E37E0082C0DB /* Influence Maps */,
@@ -710,6 +727,7 @@
 				52A609412864327E0029BBFA /* AssetValidator.swift */,
 				52E0B18927E6D86A00607FBE /* Constants.swift */,
 				52AB0747280287580039B47D /* City.swift */,
+				52391A79288B835800DB4242 /* Civilization.swift */,
 				52E0B19D27E6DFA100607FBE /* EntityManager.swift */,
 				52F5595A28375E4200966F06 /* Enums.swift */,
 				52D1A3E2285662DE0046B219 /* EventBus.swift */,
@@ -916,6 +934,8 @@
 			children = (
 				5266819F282C20EF0089D0DD /* CreateCavalry1Action.swift */,
 				52A6467B282F58B00066B82D /* CreateCavalry2Action.swift */,
+				52391A77288B637E00DB4242 /* CreateCavalry7Command.swift */,
+				52391A75288B298100DB4242 /* CreateCavalry8Command.swift */,
 			);
 			path = Cavalry;
 			sourceTree = "<group>";
@@ -1396,6 +1416,7 @@
 				52EA0D6828481C9F005E9AF8 /* AIPlayerAgent.swift in Sources */,
 				521F21A02803F88400F1D61D /* Infantry2.swift in Sources */,
 				52A64666282DFFA40066B82D /* ResearchLeadershipAction.swift in Sources */,
+				52391A78288B637E00DB4242 /* CreateCavalry7Command.swift in Sources */,
 				5293BC28280B6A86001DE2F3 /* Cavalry7.swift in Sources */,
 				52D1A3E3285662DE0046B219 /* EventBus.swift in Sources */,
 				52A6469D28321AAD0066B82D /* BuildRoadCommand.swift in Sources */,
@@ -1407,6 +1428,7 @@
 				52668176282595B10089D0DD /* Position.swift in Sources */,
 				52F9043927F6D02500D1AC97 /* SqliteError.swift in Sources */,
 				52D78CF2287D13B5006AF649 /* UnitMovementMapLayer.swift in Sources */,
+				52391A7A288B835800DB4242 /* Civilization.swift in Sources */,
 				3AE92BB72864CAEE0048C41A /* GameGestureRecognizer.swift in Sources */,
 				52A64652282DF8880066B82D /* ResearchIronWorkingAction.swift in Sources */,
 				52A64633282C36030066B82D /* Advance.swift in Sources */,
@@ -1475,6 +1497,7 @@
 				5234D531285F6F380051172E /* NextTurnButton.swift in Sources */,
 				52668191282B72280089D0DD /* ResearchWarriorCodeAction.swift in Sources */,
 				52DE5FAF281EEC360029EFE1 /* Cavalry6.swift in Sources */,
+				52391A76288B298100DB4242 /* CreateCavalry8Command.swift in Sources */,
 				52D78CE8287B2C25006AF649 /* BuildBuildingCommandDAO.swift in Sources */,
 				5234D524285CE7BE0051172E /* FortressesMapLayer.swift in Sources */,
 				52BD35AC285B84DE00B0BBD4 /* RoadsMapLayer.swift in Sources */,
@@ -1506,6 +1529,7 @@
 				52D78CF6287E401B006AF649 /* Utility.swift in Sources */,
 				5215E8C8286D68A700D97549 /* CityWaterUtility.swift in Sources */,
 				52605C902801E3B00082C0DB /* InfluenceMapCalculator.swift in Sources */,
+				52391A74288AEF0000DB4242 /* Debug.swift in Sources */,
 				52F559D9283DE26600966F06 /* CreateNavalTransportAction.swift in Sources */,
 				52BD35AE285C305500B0BBD4 /* CreateUnitCommandDAO.swift in Sources */,
 				5234D533285F6F7E0051172E /* HUD.swift in Sources */,

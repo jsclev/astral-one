@@ -108,6 +108,17 @@ public class Map: ObservableObject {
         }
     }
     
+    public func isPlayable(row: Int, col: Int) -> Bool {
+        if row > (-col + 28) &&
+            row < (-col + 109) &&
+            row < (col + 24) &&
+            row > (col - 25) {
+            return true
+        }
+        
+        return false
+    }
+    
     public func canCreateCity(at: Position) -> Bool {
         if tile(at: at).terrain.type == TerrainType.Ocean ||
            tile(at: at).terrain.type == TerrainType.Glacier {

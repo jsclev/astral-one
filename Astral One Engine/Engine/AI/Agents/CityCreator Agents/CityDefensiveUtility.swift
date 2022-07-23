@@ -27,12 +27,22 @@ public class CityDefensiveUtility: AgentUtility {
     }
     
     private func getLevel1ScoreMap() -> [[Utility]] {
-        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in (0..<player.map.height).map { _ in Utility() } }
+        let scoreMap:[[Utility]] = (0..<player.map.width).map { _ in
+            (0..<player.map.height).map { _ in
+                Utility()
+            }
+        }
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
+                if !player.map.isPlayable(row: row, col: col) {
+                    continue
+                }
+                
+                Debug.shared.bumpCounter()
+
                 let position = Position(row: row, col: col)
-                let tile = player.map.tile(at: Position(row: row, col: col))
+//                let tile = player.map.tile(at: Position(row: row, col: col))
                 
                 if player.map.canCreateCity(at: position) {
                     // let distance = aiPlayer.map.getDistanceToNearestCity(position: position)
@@ -356,6 +366,12 @@ public class CityDefensiveUtility: AgentUtility {
         
         for row in 0..<player.map.height {
             for col in 0..<player.map.width {
+                if !player.map.isPlayable(row: row, col: col) {
+                    continue
+                }
+                
+                Debug.shared.bumpCounter()
+
                 let position = Position(row: row, col: col)
                 
                 if player.map.canCreateCity(at: position) {

@@ -21,6 +21,7 @@ public class Scenario1 {
         for player in game.players {
             if let spawnPosition = spawnPositions[player] {
                 print("Spawned \(player.name) at \(spawnPosition.position)")
+                
                 let cmd = CreateSettlerCommand(db: game.db,
                                                player: player,
                                                turn: game.currentTurn,
@@ -34,13 +35,11 @@ public class Scenario1 {
                                                     cityName: "Chicago")
                 errorCheck(createCity.execute())
                 
-                if let city = createCity.city {
-                    let cityAgent = try CityAgent.getAgent(game: game,
-                                                           player: game.currentPlayer,
-                                                           city: city)
-                    let cityAgentCmd = cityAgent.getNextCommand()
-                    errorCheck(cityAgentCmd.execute())
-                }
+                let cityAgent = try CityAgent.getAgent(game: game,
+                                                       player: game.currentPlayer,
+                                                       city: createCity.city)
+                let cityAgentCmd = cityAgent.getNextCommand()
+                errorCheck(cityAgentCmd.execute())
                 
                 let research = ResearchAdvanceCommand(db: game.db,
                                                        player: game.currentPlayer,

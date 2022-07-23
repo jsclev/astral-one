@@ -3,7 +3,9 @@ import SQLite3
 
 public class UnitDAO: BaseDAO {
     init(conn: OpaquePointer?) {
-        super.init(conn: conn, table: "unit", loggerName: String(describing: type(of: self)))
+        super.init(conn: conn,
+                   table: "unit",
+                   loggerName: String(describing: type(of: self)))
     }
     
     public func get(mapId: Int) throws -> Map {
@@ -83,6 +85,152 @@ public class UnitDAO: BaseDAO {
         }
         
         return returnMap
+    }
+    
+    private func insert(unit: Unit) throws -> Int {
+        var rowId: Int = -1
+        var mainStmt: OpaquePointer?
+        var rowIdStmt: OpaquePointer?
+        
+        // FIXME: Need to provide correct unit type id
+        let sql = "INSERT INTO unit (player_id, unit_type_id, tile_id) VALUES (?, ?, ?)"
+        let rowIdSql = "SELECT last_insert_rowid()"
+        let playerId = Int32(unit.player.playerId)
+        let unitTypeId = Int32(Constants.noId)
+        let tileId = Int32(unit.player.map.tile(at: unit.position).id)
+        
+        if sqlite3_prepare_v2(conn, sql, -1, &mainStmt, nil) == SQLITE_OK {
+            // TODO Need to fix the truncation of the Int id
+            guard sqlite3_bind_int(mainStmt, 1, playerId) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind player_id")
+            }
+            
+            guard sqlite3_bind_int(mainStmt, 2, unitTypeId) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind unit_type_id")
+            }
+            
+            guard sqlite3_bind_int(mainStmt, 3, tileId) == SQLITE_OK else {
+                throw DbError.Db(message: "Unable to bind tile_id")
+            }
+        } else {
+            let sqliteMsg = String(cString: sqlite3_errmsg(conn)!)
+            sqlite3_finalize(mainStmt)
+            
+            var errMsg = "Failed to prepare the statement \"" + sql + "\".  "
+            errMsg += "SQLite error message: " + sqliteMsg
+            throw DbError.Db(message: errMsg)
+        }
+        
+        if sqlite3_prepare_v2(conn, rowIdSql, -1, &rowIdStmt, nil) != SQLITE_OK {
+            let errMsg = String(cString: sqlite3_errmsg(conn)!)
+            sqlite3_finalize(rowIdStmt)
+            
+            throw SQLiteError.Prepare(message: errMsg)
+        }
+        
+        if sqlite3_step(mainStmt) == SQLITE_DONE {
+            if sqlite3_step(rowIdStmt) == SQLITE_ROW {
+                rowId = getInt(stmt: rowIdStmt, colIndex: 0)
+            }
+            else {
+                let errMsg = String(cString: sqlite3_errmsg(conn)!)
+                sqlite3_finalize(rowIdStmt)
+                
+                throw SQLiteError.Step(message: errMsg)
+            }
+        }
+        else {
+            let sqliteMsg = String(cString: sqlite3_errmsg(conn)!)
+            sqlite3_finalize(mainStmt)
+            
+            let errMsg = "Could not insert row into \(table) table.  " + sqliteMsg
+            throw DbError.Db(message: errMsg)
+        }
+        
+        sqlite3_finalize(rowIdStmt)
+        sqlite3_finalize(mainStmt)
+        
+        return rowId
+    }
+    
+    public func insert(cavalry: Cavalry1) throws -> Cavalry1 {
+        let unitId = try insert(unit: cavalry)
+        
+        return Cavalry1(id: unitId,
+                        player: cavalry.player,
+                        theme: cavalry.theme,
+                        name: cavalry.name,
+                        position: cavalry.position)
+    }
+    
+    public func insert(cavalry: Cavalry2) throws -> Cavalry2 {
+        let unitId = try insert(unit: cavalry)
+        
+        return Cavalry2(id: unitId,
+                        player: cavalry.player,
+                        theme: cavalry.theme,
+                        name: cavalry.name,
+                        position: cavalry.position)
+    }
+    
+    public func insert(cavalry: Cavalry3) throws -> Cavalry3 {
+        let unitId = try insert(unit: cavalry)
+        
+        return Cavalry3(id: unitId,
+                        player: cavalry.player,
+                        theme: cavalry.theme,
+                        name: cavalry.name,
+                        position: cavalry.position)
+    }
+    
+    public func insert(cavalry: Cavalry4) throws -> Cavalry4 {
+        let unitId = try insert(unit: cavalry)
+        
+        return Cavalry4(id: unitId,
+                        player: cavalry.player,
+                        theme: cavalry.theme,
+                        name: cavalry.name,
+                        position: cavalry.position)
+    }
+    
+    public func insert(cavalry: Cavalry5) throws -> Cavalry5 {
+        let unitId = try insert(unit: cavalry)
+        
+        return Cavalry5(id: unitId,
+                        player: cavalry.player,
+                        theme: cavalry.theme,
+                        name: cavalry.name,
+                        position: cavalry.position)
+    }
+    
+    public func insert(cavalry: Cavalry6) throws -> Cavalry6 {
+        let unitId = try insert(unit: cavalry)
+        
+        return Cavalry6(id: unitId,
+                        player: cavalry.player,
+                        theme: cavalry.theme,
+                        name: cavalry.name,
+                        position: cavalry.position)
+    }
+    
+    public func insert(cavalry: Cavalry7) throws -> Cavalry7 {
+        let unitId = try insert(unit: cavalry)
+        
+        return Cavalry7(id: unitId,
+                        player: cavalry.player,
+                        theme: cavalry.theme,
+                        name: cavalry.name,
+                        position: cavalry.position)
+    }
+    
+    public func insert(cavalry: Cavalry8) throws -> Cavalry8 {
+        let unitId = try insert(unit: cavalry)
+        
+        return Cavalry8(id: unitId,
+                        player: cavalry.player,
+                        theme: cavalry.theme,
+                        name: cavalry.name,
+                        position: cavalry.position)
     }
     
     public func insert(settler: Settler) throws -> Settler {
@@ -424,6 +572,9 @@ public class UnitDAO: BaseDAO {
         let map = Map(mapId: 1, width: 1, height: 1)
         let player = Player(playerId: 1,
                             type: PlayerType.AI,
+                            civilization: Civilization(id: Constants.noId,
+                                                       name: "",
+                                                       color: ""),
                             name: "",
                             ordinal: 1,
                             map: map,
