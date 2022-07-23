@@ -8,7 +8,7 @@ insert into player (game_id, civilization_id, ordinal, name, type, skill_level)
             0, 'Abe Lincoln', 'AI', 8);
 insert into player (game_id, civilization_id, ordinal, name, type, skill_level)
     values ((select game_id from game where name = 'New Rome'),
-            (select civilization_id from civilization where name = 'Egyptians'),
+            (select civilization_id from civilization where name = 'Russians'),
             1, 'Cleopatra', 'AI', 1);
 insert into player (game_id, civilization_id, ordinal, name, type, skill_level)
     values ((select game_id from game where name = 'New Rome'),

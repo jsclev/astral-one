@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS city_name;
 DROP TABLE IF EXISTS civilization;
 DROP TABLE IF EXISTS tile;
 DROP TABLE IF EXISTS create_city_command;
@@ -40,7 +41,7 @@ CREATE TABLE city_name (
     ordinal INTEGER NOT NULL CHECK (ordinal >= 0)
 );
 
-CREATE UNIQUE INDEX city_name_idx1 ON city_name (civilization_id, ordinal);
+-- CREATE UNIQUE INDEX city_name_idx1 ON city_name (civilization_id, ordinal);
 
 CREATE TABLE theme (
     theme_id INTEGER PRIMARY KEY,

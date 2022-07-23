@@ -25,7 +25,6 @@ import SpriteKit
         unitSprite.zPosition = 10
         
         labelNode = SKLabelNode(fontNamed: "Arial Bold")
-        labelNode.text = "------" // "\(unit.player.ordinal + 1)"
         labelNode.position = CGPoint(x: -5.0, y: -50.0)
         labelNode.fontSize = 32
         labelNode.horizontalAlignmentMode = .center
@@ -74,6 +73,8 @@ import SpriteKit
             labelNode.text = ""
         }
         
+
+        
 //        let selectedTexture = SKTexture(imageNamed: "select-single")
 //        selectedIndicator = SKSpriteNode(texture: selectedTexture,
 //                                         color: UIColor.systemPink,
@@ -115,12 +116,7 @@ import SpriteKit
             .sink(receiveValue: { unitPosition in
                 self.position = self.mapManager.getCenterOf(position: unitPosition)
                 
-                if self.unit.isInCity() {
-                    self.labelNode.text = ""
-                }
-                else {
-                    self.labelNode.text = "------"
-                }
+
 
                 
             })

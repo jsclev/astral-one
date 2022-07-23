@@ -20,6 +20,7 @@ sqlite3 game.sqlite < fantasy/populate-core-tables.sql
 
 # Stone to Space
 sqlite3 game.sqlite < stone-to-space/populate-core-tables.sql
+sqlite3 game.sqlite < stone-to-space/populate-city-names.sql
 sqlite3 game.sqlite < stone-to-space/game.sql
 cp game.sqlite "../Pathfinder/Stone to Space/Resources/Data/game.sqlite"
 
