@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS skin;
 DROP TABLE IF EXISTS city_name;
 DROP TABLE IF EXISTS civilization;
 DROP TABLE IF EXISTS tile;
@@ -53,6 +54,13 @@ CREATE TABLE theme (
 
 CREATE UNIQUE INDEX theme_idx1 ON theme (name);
 
+CREATE TABLE skin (
+    skin_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+CREATE UNIQUE INDEX skin_idx1 ON skin (name);
+
 CREATE TABLE turn (
     turn_id INTEGER PRIMARY KEY,
     theme_id INTEGER NOT NULL,
@@ -70,8 +78,10 @@ CREATE TABLE unit_type (
     name TEXT NOT NULL,
     display_name TEXT NOT NULL,
     theme_id INTEGER NOT NULL,
+    skin_id INTEGER NOT NULL,
     notes TEXT,
-    FOREIGN KEY (theme_id) REFERENCES theme (theme_id)
+    FOREIGN KEY (theme_id) REFERENCES theme (theme_id),
+    FOREIGN KEY (skin_id) REFERENCES skin (skin_id)
 );
 
 CREATE TABLE building_type (
@@ -205,10 +215,12 @@ CREATE TABLE unit (
     player_id INTEGER NOT NULL,
     unit_type_id INTEGER NOT NULL,
     tile_id INTEGER NOT NULL,
+    skin_id INTEGER NOT NULL,
     FOREIGN KEY (player_id) REFERENCES player (player_id),
     -- FIXME Need to implement the unit type foreign key
 --     FOREIGN KEY (unit_type_id) REFERENCES unit_type (unit_type_id)
-    FOREIGN KEY (tile_id) REFERENCES tile (tile_id)
+    FOREIGN KEY (tile_id) REFERENCES tile (tile_id),
+    FOREIGN KEY (skin_id) REFERENCES skin (skin_id)
 );
 
 CREATE TABLE city (

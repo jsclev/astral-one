@@ -77,6 +77,16 @@ public class CreateUnitCommandDAO: BaseDAO {
 //
 //        return unit
 //    }
+    public func insert(command: CreateCavalry6Command) throws -> Cavalry6 {
+        let newCommand = try commandDao.insert(command: Command(player: command.player,
+                                                                turn: command.turn,
+                                                                ordinal: command.ordinal,
+                                                                cost: command.cost))
+        let unit = try unitDao.insert(cavalry: command.cavalry)
+        try insert(command: newCommand, unit: unit)
+        
+        return unit
+    }
     
     public func insert(command: CreateCavalry7Command) throws -> Cavalry7 {
         let newCommand = try commandDao.insert(command: Command(player: command.player,
@@ -159,6 +169,22 @@ public class CreateUnitCommandDAO: BaseDAO {
         return try unitDao.insert(infantry4: command.infantry4)
     }
     
+    public func insert(command: CreateNaval1Command) throws -> Naval1 {
+        let _ = try commandDao.insert(command: Command(player: command.player,
+                                                       turn: command.turn,
+                                                       ordinal: command.ordinal,
+                                                       cost: command.cost))
+        return try unitDao.insert(naval: command.naval)
+    }
+    
+    public func insert(command: CreateNaval2Command) throws -> Naval2 {
+        let _ = try commandDao.insert(command: Command(player: command.player,
+                                                       turn: command.turn,
+                                                       ordinal: command.ordinal,
+                                                       cost: command.cost))
+        return try unitDao.insert(naval: command.naval)
+    }
+    
     public func insert(command: CreateNaval3Command) throws -> Naval3 {
         let _ = try commandDao.insert(command: Command(player: command.player,
                                                        turn: command.turn,
@@ -168,6 +194,14 @@ public class CreateUnitCommandDAO: BaseDAO {
     }
     
     public func insert(command: CreateNaval4Command) throws -> Naval4 {
+        let _ = try commandDao.insert(command: Command(player: command.player,
+                                                       turn: command.turn,
+                                                       ordinal: command.ordinal,
+                                                       cost: command.cost))
+        return try unitDao.insert(naval: command.naval)
+    }
+    
+    public func insert(command: CreateNaval5Command) throws -> Naval5 {
         let _ = try commandDao.insert(command: Command(player: command.player,
                                                        turn: command.turn,
                                                        ordinal: command.ordinal,

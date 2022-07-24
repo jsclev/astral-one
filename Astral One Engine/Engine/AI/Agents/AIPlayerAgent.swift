@@ -54,19 +54,33 @@ public class AIPlayerAgent {
                                               tile: player.map.tile(at: city.position))
         errorCheck(settlerCmd.execute())
         
-        let cavalryCmd = CreateCavalry7Command(db: game.db,
-                                               player: player,
-                                               turn: game.currentTurn,
-                                               city: city)
-        errorCheck(cavalryCmd.execute())
+        let cavalry6Cmd = CreateCavalry6Command(db: game.db,
+                                                player: player,
+                                                turn: game.currentTurn,
+                                                city: city)
+        errorCheck(cavalry6Cmd.execute())
         
-        let moveCavalryCmd = MoveUnitCommand(db: game.db,
-                                             player: player,
-                                             turn: game.currentTurn,
-                                             unit: cavalryCmd.cavalry,
-                                             to: Position(row: 29,
-                                                          col: 20))
-        errorCheck(moveCavalryCmd.execute())
+        let moveCavalry6Cmd = MoveUnitCommand(db: game.db,
+                                              player: player,
+                                              turn: game.currentTurn,
+                                              unit: cavalry6Cmd.cavalry,
+                                              to: Position(row: 28,
+                                                           col: 18))
+        errorCheck(moveCavalry6Cmd.execute())
+        
+        let cavalry7Cmd = CreateCavalry7Command(db: game.db,
+                                                player: player,
+                                                turn: game.currentTurn,
+                                                city: city)
+        errorCheck(cavalry7Cmd.execute())
+        
+        let moveCavalry7Cmd = MoveUnitCommand(db: game.db,
+                                              player: player,
+                                              turn: game.currentTurn,
+                                              unit: cavalry7Cmd.cavalry,
+                                              to: Position(row: 29,
+                                                           col: 20))
+        errorCheck(moveCavalry7Cmd.execute())
         
         let settlerAgent = try SettlerAgent(player: player,
                                             settler: settlerCmd.settler)
@@ -99,6 +113,34 @@ public class AIPlayerAgent {
                                                                col: 18))
             errorCheck(moveCavalry8Cmd.execute())
             
+            let naval1Cmd = CreateNaval1Command(db: game.db,
+                                                player: player,
+                                                turn: game.currentTurn,
+                                                city: createCityCmd.city)
+            errorCheck(naval1Cmd.execute())
+            
+            let moveNaval1Cmd = MoveUnitCommand(db: game.db,
+                                                player: player,
+                                                turn: game.currentTurn,
+                                                unit: naval1Cmd.naval,
+                                                to: Position(row: 34,
+                                                             col: 17))
+            errorCheck(moveNaval1Cmd.execute())
+            
+            let naval2Cmd = CreateNaval2Command(db: game.db,
+                                                player: player,
+                                                turn: game.currentTurn,
+                                                city: createCityCmd.city)
+            errorCheck(naval2Cmd.execute())
+            
+            let moveNaval2Cmd = MoveUnitCommand(db: game.db,
+                                                player: player,
+                                                turn: game.currentTurn,
+                                                unit: naval2Cmd.naval,
+                                                to: Position(row: 32,
+                                                             col: 20))
+            errorCheck(moveNaval2Cmd.execute())
+            
             let naval3Cmd = CreateNaval3Command(db: game.db,
                                                     player: player,
                                                     turn: game.currentTurn,
@@ -109,8 +151,8 @@ public class AIPlayerAgent {
                                                   player: player,
                                                   turn: game.currentTurn,
                                                   unit: naval3Cmd.naval,
-                                                  to: Position(row: 33,
-                                                               col: 18))
+                                                  to: Position(row: 35,
+                                                               col: 19))
             errorCheck(moveNaval3Cmd.execute())
             
             let naval4Cmd = CreateNaval4Command(db: game.db,
@@ -126,6 +168,20 @@ public class AIPlayerAgent {
                                                 to: Position(row: 34,
                                                              col: 19))
             errorCheck(moveNaval4Cmd.execute())
+            
+            let naval5Cmd = CreateNaval5Command(db: game.db,
+                                                player: player,
+                                                turn: game.currentTurn,
+                                                city: createCityCmd.city)
+            errorCheck(naval5Cmd.execute())
+            
+            let moveNaval5Cmd = MoveUnitCommand(db: game.db,
+                                                player: player,
+                                                turn: game.currentTurn,
+                                                unit: naval5Cmd.naval,
+                                                to: Position(row: 34,
+                                                             col: 16))
+            errorCheck(moveNaval5Cmd.execute())
         }
         
         let turnCmd = EndPlayerTurnCommand(db: game.db,

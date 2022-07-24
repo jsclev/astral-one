@@ -47,3 +47,7 @@ insert into civilization (name, language_id, color) values (
     'Mongols', (select language_id from language where name = 'English'), 'Purple');
 insert into civilization (name, language_id, color) values (
     'Sioux', (select language_id from language where name = 'English'), 'Purple');
+
+-- Skins
+insert into skin (name) values ('Standard');
+insert into skin (name) values ('Upgraded');

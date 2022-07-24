@@ -24,7 +24,7 @@ public class CreateCavalry7Command: Command {
         
         cavalry = Cavalry7(player: player,
                            theme: Theme(id: Constants.noId, name: "Standard"),
-                           name: "Cavalry8-\(Int.random(in: 0..<500))",
+                           name: "Cavalry7-\(Int.random(in: 0..<500))",
                            position: city.position)
         
         currentDisplayText = "Ready to create cavalry unit named \(cavalry.name)."
@@ -46,7 +46,7 @@ public class CreateCavalry7Command: Command {
         
         cavalry = Cavalry7(player: player,
                            theme: Theme(id: Constants.noId, name: "Standard"),
-                           name: "Cavalry8-\(Int.random(in: 0..<500))",
+                           name: "Cavalry7-\(Int.random(in: 0..<500))",
                            position: city.position)
         
         currentDisplayText = "Ready to create infantry unit named \(cavalry.name)."

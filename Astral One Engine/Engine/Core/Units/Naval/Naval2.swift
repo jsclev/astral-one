@@ -4,11 +4,13 @@ import Foundation
 public class Naval2: BaseNavalTransport {
     public convenience init(player: Player,
                             theme: Theme,
+                            skin: Skin,
                             name: String,
                             position: Position) {
         self.init(id: Constants.noId,
                   player: player,
                   theme: theme,
+                  skin: skin,
                   name: name,
                   position: position)
     }
@@ -16,14 +18,16 @@ public class Naval2: BaseNavalTransport {
     public init(id: Int,
                 player: Player,
                 theme: Theme,
+                skin: Skin,
                 name: String,
                 position: Position) {
         super.init(id: id,
                    player: player,
                    theme: theme,
+                   skin: skin,
                    tiledId: 100,
                    name: name,
-                   assetName: "Units/Naval/naval-2",
+                   assetName: "Units/Skins/Upgraded/Naval/naval-2",
                    cost: 40,
                    maxHp: 10,
                    attack: 2,
@@ -56,8 +60,9 @@ public class Naval2: BaseNavalTransport {
     
     public override func clone() -> Unit {
         return Naval2(player: player,
-                         theme: theme,
-                         name: name,
-                         position: position)
+                      theme: theme,
+                      skin: skin,
+                      name: name,
+                      position: position)
     }
 }

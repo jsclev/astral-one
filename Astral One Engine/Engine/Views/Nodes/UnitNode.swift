@@ -106,6 +106,21 @@ import SpriteKit
 //        addChild(selectedSkyIndicator)
         
         attachSubscribers()
+        
+        if unit.assetName.contains("cavalry-6") {
+            unitSprite.size = CGSize(width: 74.0, height: 62.0)
+            //unitSprite.position = CGPoint(x: 90, y: 20)
+        }
+        
+        if unit.assetName == "Units/Skins/Upgraded/Naval/naval-1" {
+            unitSprite.size = CGSize(width: 60.0, height: 55.0)
+            //unitSprite.position = CGPoint(x: 90, y: 20)
+        }
+        
+        if unit.assetName == "Units/Skins/Upgraded/Naval/naval-3" {
+            unitSprite.size = CGSize(width: 65.0, height: 79.0)
+            //unitSprite.position = CGPoint(x: 90, y: 20)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -113,6 +128,12 @@ import SpriteKit
     }
     
     private func attachSubscribers() {
+        self.unit.$skin
+            .sink(receiveValue: { skin in
+                print("Skin of \(self.unit.name) changed to \(skin.name)")
+            })
+            .store(in: &cancellable)
+        
         self.unit.$position
             .sink(receiveValue: { unitPosition in
                 self.position = self.mapManager.getCenterOf(position: unitPosition)

@@ -4,11 +4,13 @@ import Foundation
 public class Naval3: BaseNavalTransport {
     public convenience init(player: Player,
                             theme: Theme,
+                            skin: Skin,
                             name: String,
                             position: Position) {
         self.init(id: Constants.noId,
                   player: player,
                   theme: theme,
+                  skin: skin,
                   name: name,
                   position: position)
     }
@@ -16,14 +18,16 @@ public class Naval3: BaseNavalTransport {
     public init(id: Int,
                 player: Player,
                 theme: Theme,
+                skin: Skin,
                 name: String,
                 position: Position) {
         super.init(id: id,
                    player: player,
                    theme: theme,
+                   skin: skin,
                    tiledId: 100,
                    name: name,
-                   assetName: "Units/Naval/naval-3",
+                   assetName: "Units/Skins/Upgraded/Naval/naval-3",
                    cost: 60,
                    maxHp: 30,
                    attack: 4,

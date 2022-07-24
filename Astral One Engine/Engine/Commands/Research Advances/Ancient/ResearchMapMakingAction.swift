@@ -17,11 +17,11 @@ public class ResearchMapMakingAction: ResearchAction {
         player.removeAvailable(researchAction: self)
         player.add(advanceName: name)
         
-        for city in player.map.cities {
-            if city.isCoastal {
-                city.addAvailable(action: CreateNaval1Action(game: game, player: player, city: city))
-            }
-        }
+//        for city in player.map.cities {
+//            if city.isCoastal {
+//                city.addAvailable(action: CreateNaval1Action(game: game, player: player, city: city))
+//            }
+//        }
         
         if player.hasResearched(advanceName: ResearchAlphabetAction(game: game, player: player).name) {
             player.addAvailable(researchAction: ResearchSeafaringAction(game: game, player: player))

@@ -5,32 +5,81 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fd414d6-76be-43aa-bf8a-c5778b259c52" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Naval/CreateNaval3Command.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Naval/CreateNaval4Command.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Standard/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Naval/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Naval/naval-4.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Naval/naval-4.imageset/naval-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Cavalry/CreateCavalry6Command.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Naval/CreateNaval1Command.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Naval/CreateNaval5Command.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Skin.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/SkinDAO.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Cavalry/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Cavalry/cavalry-6.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Cavalry/cavalry-6.imageset/cavalry-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Cavalry/cavalry-6.imageset/cavalry-6@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Naval/naval-1.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Naval/naval-1.imageset/naval-1@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Naval/naval-2.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Naval/naval-2.imageset/naval-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Naval/naval-3.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Units/Skins/Upgraded/Naval/naval-3.imageset/naval-3@3x.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine.xcodeproj/project.pbxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/AIPlayerAgent.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/AI/Agents/AIPlayerAgent.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry8.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry8.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Cavalry/CreateCavalry1Action.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Cavalry/CreateCavalry1Command.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Cavalry/CreateCavalry2Action.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Cavalry/CreateCavalry7Command.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Cavalry/CreateCavalry7Command.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Naval/CreateNaval1Action.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Naval/CreateNaval2Command.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Naval/CreateNavalTransportAction.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Create Units/Naval/CreateNavalTransportAction.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Research Advances/Ancient/ResearchMapMakingAction.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Research Advances/Ancient/ResearchMapMakingAction.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Research Advances/Ancient/ResearchTheWheelAction.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Commands/Research Advances/Ancient/ResearchTheWheelAction.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Constants.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Constants.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Enums.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Enums.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Game.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Game.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Air/Air1.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Air/Air1.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Air/Air2.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Air/Air2.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Air/Air3.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Air/Air3.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Air/Air4.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Air/Air4.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Air/Air5.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Air/Air5.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry1.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry1.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry2.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry2.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry3.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry3.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry4.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry4.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry5.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry5.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry6.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Cavalry/Cavalry6.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry1.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry1.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry2.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry2.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry3.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry3.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry4.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry4.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry5.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry5.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry6.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry6.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry7.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry7.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry8.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Infantry8.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Marine.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Infantry/Marine.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Miscellaneous/Diplomat.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Miscellaneous/Diplomat.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/AircraftCarrier.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/AircraftCarrier.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/BaseNavalTransport.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/BaseNavalTransport.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval1.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval1.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval2.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval2.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval3.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval3.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval4.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval4.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval5.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval5.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval6.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval6.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval7.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval7.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval8.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval8.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval9.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Naval9.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Submarine.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Naval/Submarine.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Unit.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Core/Units/Unit.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/CityDAO.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/CityDAO.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/Commands/CreateUnitCommandDAO.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/Commands/CreateUnitCommandDAO.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/UnitDAO.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Data Access Objects/UnitDAO.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Db.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Data Access Layer/Db.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/Map Layers/CitiesMapLayer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/Map Layers/CitiesMapLayer.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/Nodes/UnitNode.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One Engine/Engine/Views/Nodes/UnitNode.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Astral One/Resources/Data/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/../Astral One/Resources/Data/game.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e834f441-23ad-4ed8-bdbd-9b68f3e95065.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e834f441-23ad-4ed8-bdbd-9b68f3e95065.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/create-tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/common/create-tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/populate-core-tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/common/populate-core-tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/game.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stone-to-space/game.sql" beforeDir="false" afterPath="$PROJECT_DIR$/stone-to-space/game.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stone-to-space/populate-city-names.sql" beforeDir="false" afterPath="$PROJECT_DIR$/stone-to-space/populate-city-names.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stone-to-space/populate-core-tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/stone-to-space/populate-core-tables.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Engine Tests/Resources/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/../Engine Tests/Resources/game.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Terrain/water-1.imageset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Assets.xcassets/Terrain/water-1.imageset/Contents.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Resources/Data/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/../Pathfinder/Stone to Space/Resources/Data/game.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Simulator/Simulator/Resources/Data/game.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/../Simulator/Simulator/Resources/Data/game.sqlite" afterDir="false" />
     </list>

@@ -6,11 +6,13 @@ public class Infantry5: Unit {
      */
     public convenience init(player: Player,
                             theme: Theme,
+                            skin: Skin,
                             name: String,
                             position: Position) {
         self.init(id: Constants.noId,
                   player: player,
                   theme: theme,
+                  skin: skin,
                   name: name,
                   position: position)
     }
@@ -18,11 +20,13 @@ public class Infantry5: Unit {
     public init(id: Int,
                 player: Player,
                 theme: Theme,
+                skin: Skin,
                 name: String,
                 position: Position) {
         super.init(id: id,
                    player: player,
                    theme: theme,
+                   skin: skin,
                    tiledId: 100,
                    name: name,
                    assetName: "Units/Infantry/infantry-5",
@@ -42,6 +46,7 @@ public class Infantry5: Unit {
     public override func clone() -> Unit {
         return Infantry5(player: player,
                          theme: theme,
+                         skin: skin,
                          name: name,
                          position: position)
     }

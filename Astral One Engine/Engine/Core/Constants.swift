@@ -7,6 +7,7 @@ public struct Constants {
     public static let mapFilename = "map-40x26"
     public static let tilesetName = "Game Tile Set"
     public static let tiledTilesetName = "map"
+    public static let defaultSkinName = "Standard"
     public static let minDefense: Double = 0.001
     public static let minMovementCost: Double = 0.0
     public static let mapWidth: CGFloat = 1000.0 / 3.0

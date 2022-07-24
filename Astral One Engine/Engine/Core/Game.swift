@@ -23,6 +23,7 @@ public class Game: ObservableObject {
     public var canvasSize = CGSize.zero
     public private (set) var currentPlayerIndex = 0
     private var cancellable = Set<AnyCancellable>()
+    private let skins: [UnitType: Skin]
     
     public init(gameId: Int,
                 theme: Theme,
@@ -37,6 +38,13 @@ public class Game: ObservableObject {
         self.currentPlayerIndex = 0
         self.players = players
         self.currentPlayer = players[0]
+        
+        do {
+            self.skins = try db.skinDao.getSkins()
+        }
+        catch {
+            fatalError("\(error)")
+        }
         
         for player in players {
             player.$turnStatus

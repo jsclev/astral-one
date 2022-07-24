@@ -85,6 +85,7 @@ public class CityDAO: BaseDAO {
                 if let cityName = try getString(stmt: stmt, colIndex: 4) {
                     cities.append(City(id: cityId,
                                        owner: player,
+                                       name: cityName,
                                        theme: theme,
                                        assetName: "city-1",
                                        position: Position(row: row, col: col)))

@@ -3,11 +3,13 @@ import Foundation
 public class Air4: Unit {
     public convenience init(player: Player,
                             theme: Theme,
+                            skin: Skin,
                             name: String,
                             position: Position) {
         self.init(id: Constants.noId,
                   player: player,
                   theme: theme,
+                  skin: skin,
                   name: name,
                   position: position)
     }
@@ -15,11 +17,13 @@ public class Air4: Unit {
     public init(id: Int,
                 player: Player,
                 theme: Theme,
+                skin: Skin,
                 name: String,
                 position: Position) {
         super.init(id: id,
                    player: player,
                    theme: theme,
+                   skin: skin,
                    tiledId: 50,
                    name: name,
                    assetName: "Units/Air/air-4",

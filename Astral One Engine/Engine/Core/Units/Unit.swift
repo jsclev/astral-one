@@ -6,6 +6,7 @@ public class Unit: ObservableObject, Equatable {
     public let id: Int
     public let player: Player
     public let theme: Theme
+    @Published public private (set) var skin: Skin
     public let tiledId: Int
     public let name: String
     public let assetName: String
@@ -27,6 +28,7 @@ public class Unit: ObservableObject, Equatable {
     public init(id: Int,
                 player: Player,
                 theme: Theme,
+                skin: Skin,
                 tiledId: Int,
                 name: String,
                 assetName: String,
@@ -38,8 +40,9 @@ public class Unit: ObservableObject, Equatable {
                 maxMovementPoints: Double,
                 position: Position) {
         self.id = id
-        self.theme = theme
         self.player = player
+        self.theme = theme
+        self.skin = skin
         self.tiledId = tiledId
         self.name = name
         self.assetName = assetName
@@ -120,6 +123,10 @@ public class Unit: ObservableObject, Equatable {
         }
         
         return DiplomacyStatus.AtWar
+    }
+    
+    public func set(skin: Skin) {
+        self.skin = skin
     }
     
     public func getPathfindingGraph(map: Map) throws -> GridGraph {

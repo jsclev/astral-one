@@ -31,7 +31,7 @@ public class CreateNavalTransportAction: Action {
     }
     
     public override func clone() -> Action {
-        let copy = CreateNaval1Action(game: game, player: player, city: city)
+        let copy = CreateNavalTransportAction(game: game, player: player, city: city)
         copyProps(source: self, target: copy)
         
         return copy

@@ -6,6 +6,7 @@ public class Infantry6: Unit {
      */
     public convenience init(player: Player,
                             theme: Theme,
+                            skin: Skin,
                             name: String,
                             position: Position) {
         self.init(id: Constants.noId,
@@ -18,11 +19,13 @@ public class Infantry6: Unit {
     public init(id: Int,
                 player: Player,
                 theme: Theme,
+                skin: Skin,
                 name: String,
                 position: Position) {
         super.init(id: id,
                    player: player,
                    theme: theme,
+                   skin: skin,
                    tiledId: 101,
                    name: name,
                    assetName: "Units/Infantry/infantry-6",

@@ -355,3 +355,87 @@ public enum PlayerType {
     case AI
     case Human
 }
+
+public enum UnitType: CustomStringConvertible {
+    case Air1
+    case Air2
+    case Air3
+    case Air4
+    case Air5
+    case Cavalry1
+    case Cavalry2
+    case Cavalry3
+    case Cavalry4
+    case Cavalry5
+    case Cavarly6
+    case Cavalry7
+    case Cavalry8
+    case Engineer
+    case Explorer
+    case Fanatic
+    case Infantry1
+    case Infantry2
+    case Infantry3
+    case Infantry4
+    case Infantry5
+    case Infantry6
+    case Infantry7
+    case Infantry8
+    case Marine
+    case Naval1
+    case Naval2
+    case Naval3
+    case Naval4
+    case Naval5
+    case Naval6
+    case Naval7
+    case Naval8
+    case Naval9
+    case Settler
+    case Trade1
+    case Trade2
+    
+    public var description: String {
+        switch self {
+            
+        case .Air1: return "Air1"
+        case .Air2: return "Air1"
+        case .Air3: return "Air1"
+        case .Air4: return "Air1"
+        case .Air5: return "Air1"
+        case .Cavalry1: return "Cavalry1"
+        case .Cavalry2: return "Cavalry1"
+        case .Cavalry3: return "Cavalry1"
+        case .Cavalry4: return "Cavalry1"
+        case .Cavalry5: return "Cavalry1"
+        case .Cavarly6: return "Cavalry1"
+        case .Cavalry7: return "Cavalry1"
+        case .Cavalry8: return "Cavalry1"
+        case .Engineer: return "Cavalry1"
+        case .Explorer: return "Cavalry1"
+        case .Fanatic: return "Cavalry1"
+        case .Infantry1: return "Air1"
+        case .Infantry2: return "Air1"
+        case .Infantry3: return "Air1"
+        case .Infantry4: return "Air1"
+        case .Infantry5: return "Air1"
+        case .Infantry6: return "Air1"
+        case .Infantry7: return "Air1"
+        case .Infantry8: return "Air1"
+        case .Marine: return "Air1"
+        case .Naval1: return "Air1"
+        case .Naval2: return "Air1"
+        case .Naval3: return "Air1"
+        case .Naval4: return "Air1"
+        case .Naval5: return "Air1"
+        case .Naval6: return "Air1"
+        case .Naval7: return "Air1"
+        case .Naval8: return "Air1"
+        case .Naval9: return "Air1"
+        case .Settler: return "Air1"
+        case .Trade1: return "Air1"
+        case .Trade2: return "Air1"
+        }
+    }
+    
+}
